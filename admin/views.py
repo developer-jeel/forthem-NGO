@@ -1,5 +1,37 @@
 from django.shortcuts import render
+import django.utils.timezone as timezone
+from models import *
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.hashers import check_password, make_password
 
+def login(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+
+        manager = Manager.objects.filter(email=email).first()
+
+        if manager.is_active :
+            if manager is not None and check_password(password, manager.password):
+                request.session['email'] = manager.email
+                manager.last_login = timezone.now()
+                manager.save()
+
+                if manager.role == 'Admin':
+                    return render(request, "admin-temp/dashboard.html")
+                elif manager.role == 'Content_Manager':
+                    return render(request, "content-manager/dashboard.html")
+                elif manager.role == 'Campaign_Manager':
+                    return render(request, "campaign-manager/dashboard.html")
+                elif manager.role == 'Rescue_Manager':
+                    return render(request, "rescue-manager/dashboard.html")
+                elif manager.role == 'Finance_Manager':
+                    return render(request, "finance-manager/dashboard.html")
+                elif manager.role == 'Volunteer_Manager':
+                    return render(request, "volunteer-manager/dashboard.html")
+                
+        # Perform authentication logic here (e.g., check against the database)
+    return render(request, "admin-temp/login.html")
 
 def dashboard(request):
     return render(request, "admin-temp/dashboard.html")
