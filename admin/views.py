@@ -1,6 +1,6 @@
 from django.shortcuts import render
 import django.utils.timezone as timezone
-from models import *
+from .models import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import check_password, make_password
 
@@ -11,7 +11,7 @@ def login(request):
 
         manager = Manager.objects.filter(email=email).first()
 
-        if manager.is_active :
+        if manager.is_active:
             if manager is not None and check_password(password, manager.password):
                 request.session['email'] = manager.email
                 manager.last_login = timezone.now()
@@ -29,8 +29,13 @@ def login(request):
                     return render(request, "finance-manager/dashboard.html")
                 elif manager.role == 'Volunteer_Manager':
                     return render(request, "volunteer-manager/dashboard.html")
-                
-        # Perform authentication logic here (e.g., check against the database)
+
+            else:
+                error_message = "Invalid email or password. Please try again."
+                return render(request, "admin-temp/login.html", {"error_message": error_message})
+        else:
+            error_message = "Your account is not active. Please contact the administrator."
+            return render(request, "admin-temp/login.html", {"error_message": error_message})       
     return render(request, "admin-temp/login.html")
 
 def dashboard(request):
