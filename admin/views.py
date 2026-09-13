@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 import django.utils.timezone as timezone
 from .models import *
 from django.contrib.auth.decorators import login_required
@@ -39,6 +39,28 @@ def login(request):
             return render(request, "admin-temp/login.html", {"error_message": error_message})       
     return render(request, "admin-temp/login.html")
 
+def check_login(allowed_roles):
+    def decorator(view_function):
+        def wrapper(request, *args, **kwargs):
+            if "contact" in request.session:
+                try:
+                    manager = Manager.objects.get(contact=request.session['contact'])
+                    request.uid = manager
+                    #  Role check
+                    if manager.role not in allowed_roles:
+                        messages.error(request, "Access Denied")
+                        return redirect('login')
+
+                    return view_function(request, *args, **kwargs)
+
+                except Manager.DoesNotExist:
+                    return redirect('login')
+
+            return redirect('login')
+        return wrapper
+    return decorator
+
+@check_login(['Admin'])
 def dashboard(request):
     print(make_password("1234"))
     return render(request, "admin-temp/dashboard.html")
