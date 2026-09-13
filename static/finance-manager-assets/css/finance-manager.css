@@ -1,0 +1,704 @@
+/* ============================================
+   UNKE LIYE (FORTHEM) NGO
+   Finance Manager Panel - Main Stylesheet
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+@import './variables.css';
+@import './base.css';
+@import './layout.css';
+@import './components.css';
+@import './tables.css';
+@import './responsive.css';
+
+/* Additional Finance-Specific Styles */
+
+/* KPI Grid */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-6);
+  margin-bottom: var(--space-6);
+}
+
+/* Campaign Card */
+.campaign-card {
+  background-color: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  padding: var(--space-5);
+  transition: box-shadow var(--transition-fast), transform var(--transition-fast);
+}
+
+.campaign-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.campaign-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: var(--space-4);
+}
+
+.campaign-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.campaign-icon.animal {
+  background-color: var(--pillar-animal-bg);
+  color: var(--pillar-animal);
+}
+
+.campaign-icon.environment {
+  background-color: var(--pillar-environment-bg);
+  color: var(--pillar-environment);
+}
+
+.campaign-icon.sanitation {
+  background-color: var(--pillar-sanitation-bg);
+  color: var(--pillar-sanitation);
+}
+
+.campaign-icon.disaster {
+  background-color: var(--pillar-disaster-bg);
+  color: var(--pillar-disaster);
+}
+
+.campaign-icon.general {
+  background-color: var(--bg-sunken);
+  color: var(--text-secondary);
+}
+
+.campaign-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.campaign-info {
+  flex: 1;
+  min-width: 0;
+  margin-left: var(--space-3);
+}
+
+.campaign-name {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-1);
+}
+
+.campaign-pillar {
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.campaign-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.campaign-stat {
+  text-align: center;
+}
+
+.campaign-stat-value {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.campaign-stat-label {
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: var(--space-1);
+}
+
+/* Allocation Card */
+.allocation-card {
+  background-color: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  padding: var(--space-6);
+}
+
+.allocation-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-5);
+}
+
+.allocation-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.allocation-status {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.allocation-status.within {
+  background-color: var(--status-success-bg);
+  color: var(--status-success);
+}
+
+.allocation-status.review {
+  background-color: var(--status-warning-bg);
+  color: var(--status-warning);
+}
+
+.allocation-visual {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.allocation-chart {
+  width: 200px;
+  height: 200px;
+  position: relative;
+}
+
+.allocation-ring {
+  transform: rotate(-90deg);
+}
+
+.allocation-segment {
+  fill: none;
+  stroke-width: 24;
+  stroke-linecap: round;
+}
+
+.allocation-segment.programs {
+  stroke: var(--status-success);
+}
+
+.allocation-segment.admin {
+  stroke: var(--status-info);
+}
+
+.allocation-segment.fundraising {
+  stroke: var(--status-warning);
+}
+
+.allocation-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.allocation-center-label {
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.allocation-center-value {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.allocation-legend {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.allocation-legend-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.allocation-legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-sm);
+}
+
+.allocation-legend-info {
+  flex: 1;
+}
+
+.allocation-legend-label {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.allocation-legend-target {
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+}
+
+.allocation-legend-value {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.allocation-legend-variance {
+  font-size: var(--text-xs);
+  font-weight: 500;
+}
+
+.allocation-legend-variance.positive {
+  color: var(--status-success);
+}
+
+.allocation-legend-variance.negative {
+  color: var(--status-danger);
+}
+
+/* Payment Channel Bars */
+.payment-channels {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.payment-channel-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.payment-channel-name {
+  width: 140px;
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+
+.payment-channel-bar {
+  flex: 1;
+  height: 10px;
+  background-color: var(--bg-sunken);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.payment-channel-fill {
+  height: 100%;
+  background-color: var(--brand-primary);
+  border-radius: var(--radius-full);
+  transition: width var(--transition-slow);
+}
+
+.payment-channel-percent {
+  width: 50px;
+  text-align: right;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* Financial Summary */
+.financial-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-6);
+}
+
+.summary-section {
+  background-color: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  padding: var(--space-5);
+}
+
+.summary-section-title {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-2) 0;
+}
+
+.summary-row:not(:last-child) {
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.summary-label {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+
+.summary-value {
+  font-family: var(--font-heading);
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* Report Card */
+.report-card {
+  background-color: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+.report-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--brand-primary);
+}
+
+.report-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  background-color: var(--bg-sunken);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-4);
+}
+
+.report-icon svg {
+  width: 24px;
+  height: 24px;
+  color: var(--brand-primary);
+}
+
+.report-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.report-description {
+  font-size: var(--text-sm);
+  color: var(--text-tertiary);
+  margin-bottom: var(--space-4);
+  flex: 1;
+}
+
+.report-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+}
+
+/* Audit Log Entry */
+.audit-entry {
+  display: flex;
+  gap: var(--space-4);
+  padding: var(--space-4) 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.audit-entry:last-child {
+  border-bottom: none;
+}
+
+.audit-entry:hover {
+  background-color: var(--bg-sunken);
+  margin: 0 calc(-1 * var(--space-5));
+  padding-left: var(--space-5);
+  padding-right: var(--space-5);
+}
+
+.audit-timestamp {
+  min-width: 140px;
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+}
+
+.audit-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.audit-user {
+  font-weight: 600;
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+  margin-bottom: var(--space-1);
+}
+
+.audit-action {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-1);
+}
+
+.audit-record {
+  font-family: 'SF Mono', 'Monaco', monospace;
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+}
+
+.audit-category {
+  min-width: 100px;
+}
+
+.audit-status {
+  min-width: 120px;
+  text-align: right;
+}
+
+/* Receipt Preview */
+.receipt-preview {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.receipt-header {
+  text-align: center;
+  padding-bottom: var(--space-4);
+  border-bottom: 2px solid var(--brand-primary);
+  margin-bottom: var(--space-5);
+}
+
+.receipt-org-name {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--brand-primary);
+  margin-bottom: var(--space-1);
+}
+
+.receipt-title {
+  font-size: var(--text-sm);
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.receipt-section {
+  margin-bottom: var(--space-4);
+}
+
+.receipt-section-title {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-2);
+}
+
+.receipt-row {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--space-2) 0;
+  font-size: var(--text-sm);
+}
+
+.receipt-row-label {
+  color: var(--text-secondary);
+}
+
+.receipt-row-value {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.receipt-total {
+  border-top: 2px solid var(--border-subtle);
+  padding-top: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.receipt-total .receipt-row-value {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--brand-primary);
+}
+
+.receipt-footer {
+  margin-top: var(--space-6);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-subtle);
+  text-align: center;
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+}
+
+.receipt-disclaimer {
+  margin-top: var(--space-3);
+  padding: var(--space-3);
+  background-color: var(--status-warning-bg);
+  border-radius: var(--radius-md);
+  font-size: var(--text-xs);
+  color: var(--status-warning);
+  line-height: 1.5;
+}
+
+/* Dashboard Alerts */
+.alerts-section {
+  margin-bottom: var(--space-6);
+}
+
+.alerts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-4);
+}
+
+/* Global Search Modal */
+.search-modal {
+  max-width: 700px;
+}
+
+.search-modal-input {
+  width: 100%;
+  padding: var(--space-4) var(--space-5);
+  font-size: var(--text-lg);
+  border: none;
+  border-bottom: 2px solid var(--border-subtle);
+  border-radius: 0;
+  background-color: transparent;
+}
+
+.search-modal-input:focus {
+  border-bottom-color: var(--brand-primary);
+  box-shadow: none;
+}
+
+.search-results {
+  max-height: 400px;
+  overflow-y: auto;
+  margin-top: var(--space-4);
+}
+
+.search-result-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.search-result-item:hover {
+  background-color: var(--bg-sunken);
+}
+
+.search-result-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  background-color: var(--bg-sunken);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.search-result-icon svg {
+  width: 18px;
+  height: 18px;
+  color: var(--brand-primary);
+}
+
+.search-result-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.search-result-title {
+  font-weight: 500;
+  color: var(--text-primary);
+  font-size: var(--text-sm);
+}
+
+.search-result-subtitle {
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+}
+
+.search-result-type {
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Print Header */
+.print-header {
+  display: none;
+}
+
+@media print {
+  .print-header {
+    display: block;
+    text-align: center;
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--space-4);
+    border-bottom: 2px solid var(--brand-primary);
+  }
+  
+  .print-header h1 {
+    font-family: var(--font-heading);
+    font-size: var(--text-3xl);
+    color: var(--brand-primary);
+    margin-bottom: var(--space-2);
+  }
+  
+  .print-header p {
+    font-size: var(--text-sm);
+    color: var(--text-tertiary);
+  }
+}

@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Donate to Unke Liye — support animal rescue, environment, sanitation, and disaster relief in India. 80G tax exemption available." />
+  <title>Donate — Unke Liye</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <style>
+    .donate-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-10);
+      align-items: flex-start;
+    }
+    @media (min-width: 1024px) {
+      .donate-layout { grid-template-columns: 1fr 380px; }
+    }
+    /* Frequency Toggle */
+    .freq-toggle {
+      display: inline-flex;
+      background: var(--color-surface-alt);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 4px;
+      gap: 4px;
+      margin-bottom: var(--space-8);
+    }
+    .freq-btn {
+      padding: var(--space-2) var(--space-6);
+      border: none;
+      border-radius: var(--radius-sm);
+      font-size: var(--text-sm);
+      font-weight: var(--font-weight-medium);
+      background: none;
+      color: var(--color-text-muted);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    .freq-btn.active {
+      background: var(--color-surface);
+      color: var(--color-primary);
+      font-weight: var(--font-weight-semibold);
+      box-shadow: var(--shadow-xs);
+    }
+
+    /* Fund Selector */
+    .fund-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-3);
+      margin-bottom: var(--space-8);
+    }
+    @media (min-width: 640px) {
+      .fund-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+    .fund-option {
+      position: relative;
+    }
+    .fund-option input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+    }
+    .fund-label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-4);
+      background: var(--color-surface);
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      text-align: center;
+      transition: all var(--transition-fast);
+      font-size: var(--text-sm);
+      font-weight: var(--font-weight-medium);
+      color: var(--color-text-muted);
+    }
+    .fund-label:hover { border-color: var(--color-primary); color: var(--color-text); }
+    .fund-option input:checked + .fund-label {
+      border-color: var(--color-primary);
+      background: var(--color-primary-light);
+      color: var(--color-primary);
+      font-weight: var(--font-weight-semibold);
+    }
+    .fund-label .fund-icon { font-size: 1.75rem; }
+
+    /* Amount Buttons */
+    .amount-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-3);
+      margin-bottom: var(--space-4);
+    }
+    .amount-btn {
+      padding: var(--space-3);
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-md);
+      background: var(--color-surface);
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-text);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      text-align: center;
+    }
+    .amount-btn:hover { border-color: var(--color-primary); color: var(--color-primary); }
+    .amount-btn.active {
+      border-color: var(--color-primary);
+      background: var(--color-primary);
+      color: #fff;
+    }
+    .amount-desc {
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+      margin-top: 4px;
+      display: block;
+    }
+
+    /* Summary sidebar */
+    .donation-summary {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-8);
+      position: sticky;
+      top: calc(80px + var(--space-4));
+    }
+    .summary-amount {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: var(--font-weight-bold);
+      color: var(--color-primary);
+      line-height: 1;
+      margin-bottom: var(--space-2);
+    }
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: var(--text-sm);
+      padding: var(--space-3) 0;
+      border-top: 1px solid var(--color-border);
+    }
+    .summary-row:first-of-type { margin-top: var(--space-6); }
+    .trust-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      margin-top: var(--space-6);
+    }
+    .trust-badge {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+    }
+    .trust-badge-icon {
+      width: 20px;
+      height: 20px;
+      background: var(--color-primary-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+    }
+
+    .section-divider {
+      font-size: var(--text-xs);
+      font-weight: var(--font-weight-semibold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin: var(--space-8) 0 var(--space-5);
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+    }
+    .section-divider::before, .section-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--color-border);
+    }
+
+    .payment-icons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      align-items: center;
+      margin-top: var(--space-4);
+    }
+    .payment-icon {
+      background: var(--color-surface-alt);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      padding: 4px 10px;
+      font-size: var(--text-xs);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-text-muted);
+    }
+
+    .impact-preview {
+      background: var(--color-primary-light);
+      border-radius: var(--radius-md);
+      padding: var(--space-5);
+      margin: var(--space-6) 0;
+      border-left: 4px solid var(--color-primary);
+    }
+    .impact-preview-title {
+      font-size: var(--text-sm);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-primary);
+      margin-bottom: var(--space-2);
+    }
+    .impact-preview-text {
+      font-size: var(--text-sm);
+      color: var(--color-text);
+      line-height: var(--leading-relaxed);
+    }
+  </style>
+</head>
+<body>
+<a href="#main-content" class="skip-nav">Skip to main content</a>
+
+<div class="emergency-bar">
+  <span class="pulse-dot" aria-hidden="true"></span>
+  <span>🚨 Animal in distress? We respond 24/7 —</span>
+  <a href="report-animal.html">Report Now →</a>
+</div>
+
+<header class="site-header" role="banner">
+  <div class="container">
+    <nav class="nav-inner" aria-label="Main navigation">
+      <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a>
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">Our Work <svg viewBox="0 0 16 16" fill="currentColor" width="14" height="14"><path d="M4 6l4 4 4-4"/></svg></a>
+          <div class="nav-dropdown">
+            <a href="work-animal-rescue.html"><span class="icon">🐾</span> Animal Rescue</a>
+            <a href="work-environment.html"><span class="icon">🌱</span> Environment</a>
+            <a href="work-sanitation.html"><span class="icon">🧹</span> Sanitation</a>
+            <a href="work-disaster-relief.html"><span class="icon">🚨</span> Disaster Relief</a>
+          </div>
+        </li>
+        <li><a href="campaigns.html" class="nav-link">Campaigns</a></li>
+        <li><a href="impact.html" class="nav-link">Impact</a></li>
+        <li><a href="stories.html" class="nav-link">Stories</a></li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">Get Involved <svg viewBox="0 0 16 16" fill="currentColor" width="14" height="14"><path d="M4 6l4 4 4-4"/></svg></a>
+          <div class="nav-dropdown">
+            <a href="volunteer.html"><span class="icon">🙋</span> Volunteer</a>
+            <a href="foster.html"><span class="icon">🏠</span> Foster</a>
+            <a href="sponsor-animal.html"><span class="icon">💛</span> Sponsor</a>
+            <a href="report-animal.html" style="color:var(--color-urgent)"><span class="icon">🚨</span> Report</a>
+          </div>
+        </li>
+      </ul>
+      <div class="nav-actions">
+        <a href="donate.html" class="btn btn--primary btn--sm">Donate</a>
+        <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="nav-mobile-panel" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <div class="nav-mobile-overlay"></div>
+  <div class="nav-mobile-drawer">
+    <button class="nav-mobile-close" aria-label="Close menu">✕</button>
+    <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a>
+    <ul class="nav-mobile-list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="campaigns.html">Campaigns</a></li>
+      <li><a href="volunteer.html">Volunteer</a></li>
+      <li><a href="adopt.html">Adopt</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-mobile-actions">
+      <a href="donate.html" class="btn btn--primary btn--full">Donate Now</a>
+    </div>
+  </div>
+</div>
+
+<main id="main-content">
+
+  <div class="page-hero" style="--ph-img: url('https://images.unsplash.com/photo-1593113598332-cd288d649433?w=1600&q=80')">
+    <div class="container page-hero-content">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="breadcrumb-sep">›</span>
+        <span aria-current="page">Donate</span>
+      </nav>
+      <h1>Give Hope. Save Lives.</h1>
+      <p>Every donation is documented, utilized with zero wastage, and you get a 80G tax exemption certificate. Transparent by design.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="donate-layout">
+
+        <!-- DONATION FORM -->
+        <div>
+          <form id="donate-form" novalidate aria-label="Donation form">
+
+            <!-- Frequency Toggle -->
+            <div>
+              <h2 style="font-size:var(--text-2xl);margin-bottom:var(--space-5)">How would you like to give?</h2>
+              <div class="freq-toggle" role="group" aria-label="Donation frequency">
+                <button type="button" class="freq-btn active" data-freq="one-time">One-time</button>
+                <button type="button" class="freq-btn" data-freq="monthly">Monthly</button>
+              </div>
+              <div id="monthly-note" style="display:none;background:var(--color-primary-light);border-radius:var(--radius-md);padding:var(--space-3) var(--space-4);font-size:var(--text-sm);color:var(--color-primary);margin-bottom:var(--space-6)">
+                💚 Monthly donors keep our rescue lines running year-round. You can cancel anytime.
+              </div>
+            </div>
+
+            <!-- Fund Selector -->
+            <div style="margin-bottom:var(--space-8)">
+              <h3 style="font-size:var(--text-lg);margin-bottom:var(--space-4)">Where should your donation go?</h3>
+              <div class="fund-grid" role="group" aria-label="Fund selection">
+                <div class="fund-option">
+                  <input type="radio" name="fund" id="fund-rescue" value="rescue" checked />
+                  <label class="fund-label" for="fund-rescue">
+                    <span class="fund-icon">🐾</span>
+                    <span>Animal Rescue</span>
+                  </label>
+                </div>
+                <div class="fund-option">
+                  <input type="radio" name="fund" id="fund-env" value="environment" />
+                  <label class="fund-label" for="fund-env">
+                    <span class="fund-icon">🌱</span>
+                    <span>Environment</span>
+                  </label>
+                </div>
+                <div class="fund-option">
+                  <input type="radio" name="fund" id="fund-disaster" value="disaster" />
+                  <label class="fund-label" for="fund-disaster">
+                    <span class="fund-icon">🚨</span>
+                    <span>Disaster Relief</span>
+                  </label>
+                </div>
+                <div class="fund-option">
+                  <input type="radio" name="fund" id="fund-general" value="general" />
+                  <label class="fund-label" for="fund-general">
+                    <span class="fund-icon">💛</span>
+                    <span>Where Most Needed</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Impact Preview -->
+              <div class="impact-preview" id="impact-preview" aria-live="polite">
+                <div class="impact-preview-title">🐾 Your donation to Animal Rescue funds:</div>
+                <div class="impact-preview-text">
+                  ₹500 feeds a rescued animal for one month · ₹2,000 covers an emergency vet visit · ₹5,000 funds sterilization for 5 street dogs · ₹15,000 sponsors a full month of shelter care for one animal
+                </div>
+              </div>
+            </div>
+
+            <!-- Amount Selection -->
+            <div>
+              <h3 style="font-size:var(--text-lg);margin-bottom:var(--space-4)">Choose an amount</h3>
+              <div class="amount-grid" role="group" aria-label="Donation amount options">
+                <button type="button" class="amount-btn" data-amount="300">₹300<span class="amount-desc">A week of food</span></button>
+                <button type="button" class="amount-btn active" data-amount="500">₹500<span class="amount-desc">A month's food</span></button>
+                <button type="button" class="amount-btn" data-amount="1000">₹1,000<span class="amount-desc">Vaccination</span></button>
+                <button type="button" class="amount-btn" data-amount="2000">₹2,000<span class="amount-desc">Vet visit</span></button>
+                <button type="button" class="amount-btn" data-amount="5000">₹5,000<span class="amount-desc">Sterilize 5 dogs</span></button>
+                <button type="button" class="amount-btn" data-amount="10000">₹10,000<span class="amount-desc">Full surgery</span></button>
+              </div>
+
+              <!-- Custom Amount -->
+              <div class="form-group" style="margin-top:var(--space-4)">
+                <label for="custom-amount" class="form-label">Or enter your own amount (₹)</label>
+                <input type="number" id="custom-amount" name="custom_amount" class="form-input" placeholder="Enter amount (min ₹100)" min="100" />
+              </div>
+            </div>
+
+            <div class="section-divider">Donor Details</div>
+
+            <div class="form-section" style="gap:var(--space-5)">
+              <div class="form-row form-row--2">
+                <div class="form-group">
+                  <label for="donor-first" class="form-label">First Name <span class="required">*</span></label>
+                  <input type="text" id="donor-first" name="first_name" class="form-input" required autocomplete="given-name" />
+                  <span class="form-error" role="alert"></span>
+                </div>
+                <div class="form-group">
+                  <label for="donor-last" class="form-label">Last Name <span class="required">*</span></label>
+                  <input type="text" id="donor-last" name="last_name" class="form-input" required autocomplete="family-name" />
+                  <span class="form-error" role="alert"></span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="donor-email" class="form-label">Email Address <span class="required">*</span></label>
+                <input type="email" id="donor-email" name="email" class="form-input" required autocomplete="email" />
+                <span class="form-error" role="alert"></span>
+                <span class="form-hint">Your receipt and 80G certificate will be sent here.</span>
+              </div>
+              <div class="form-group">
+                <label for="donor-phone" class="form-label">Phone Number <span class="required">*</span></label>
+                <input type="tel" id="donor-phone" name="phone" class="form-input" required autocomplete="tel" placeholder="10-digit mobile number" />
+                <span class="form-error" role="alert"></span>
+              </div>
+              <div class="form-row form-row--2">
+                <div class="form-group">
+                  <label for="donor-pan" class="form-label">PAN Number</label>
+                  <input type="text" id="donor-pan" name="pan" class="form-input" placeholder="ABCDE1234F" maxlength="10" style="text-transform:uppercase" />
+                  <span class="form-hint">Required for 80G tax exemption certificate.</span>
+                </div>
+                <div class="form-group">
+                  <label for="donor-city" class="form-label">City</label>
+                  <input type="text" id="donor-city" name="city" class="form-input" autocomplete="address-level2" />
+                </div>
+              </div>
+              <label class="form-check">
+                <input type="checkbox" name="anonymous" id="anonymous-check" />
+                <span class="form-check-label">Make this donation anonymous (your name won't appear publicly)</span>
+              </label>
+              <label class="form-check">
+                <input type="checkbox" name="updates" id="updates-check" checked />
+                <span class="form-check-label">Send me impact updates about where this donation goes</span>
+              </label>
+            </div>
+
+            <div class="section-divider">Payment Method</div>
+
+            <div class="form-section">
+              <p style="font-size:var(--text-sm);color:var(--color-text-muted)">Payments are processed securely through Razorpay. Unke Liye never stores your card/UPI details.</p>
+              <div class="payment-icons" aria-label="Accepted payment methods">
+                <span class="payment-icon">UPI</span>
+                <span class="payment-icon">Net Banking</span>
+                <span class="payment-icon">Visa</span>
+                <span class="payment-icon">Mastercard</span>
+                <span class="payment-icon">RuPay</span>
+                <span class="payment-icon">Wallets</span>
+              </div>
+              <p style="font-size:var(--text-xs);color:var(--color-success);display:flex;align-items:center;gap:4px;">
+                <span>🔒</span> 256-bit SSL encryption · Your data is safe
+              </p>
+            </div>
+
+            <div style="margin-top:var(--space-8)">
+              <button type="submit" class="btn btn--primary btn--lg btn--full" id="donate-submit-btn">
+                Donate ₹<span id="submit-amount">500</span> Now
+              </button>
+              <p style="font-size:var(--text-xs);color:var(--color-text-muted);text-align:center;margin-top:var(--space-4)">By donating, you agree to our <a href="terms.html">Terms of Use</a> and <a href="privacy-policy.html">Privacy Policy</a>. 80G certificate issued within 7 working days.</p>
+            </div>
+          </form>
+        </div>
+
+        <!-- SIDEBAR SUMMARY -->
+        <aside class="donation-summary" aria-label="Donation summary">
+          <h3 style="font-size:var(--text-lg);margin-bottom:var(--space-4)">Your Contribution</h3>
+          <div class="summary-amount">₹<span id="sidebar-amount">500</span></div>
+          <div style="font-size:var(--text-sm);color:var(--color-text-muted)"><span id="sidebar-freq">One-time</span> · <span id="sidebar-fund">Animal Rescue</span></div>
+
+          <div class="summary-row">
+            <span>Donation Amount</span>
+            <span>₹<span id="summary-base">500</span></span>
+          </div>
+          <div class="summary-row">
+            <span style="color:var(--color-success)">Tax Deduction (80G)</span>
+            <span style="color:var(--color-success)">−₹<span id="summary-tax">250</span></span>
+          </div>
+          <div class="summary-row" style="font-weight:var(--font-weight-semibold)">
+            <span>Effective Cost to You</span>
+            <span>₹<span id="summary-effective">250</span></span>
+          </div>
+
+          <div style="margin-top:var(--space-6);background:var(--color-surface-alt);border-radius:var(--radius-md);padding:var(--space-5)">
+            <div style="font-size:var(--text-sm);font-weight:var(--font-weight-semibold);margin-bottom:var(--space-3)">Utilization (FY 2023–24)</div>
+            <div style="display:flex;flex-direction:column;gap:var(--space-3)">
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:var(--text-xs);margin-bottom:4px">
+                  <span>Program Work</span><span style="font-weight:600">82%</span>
+                </div>
+                <div class="progress-bar-track"><div class="progress-bar-fill" data-progress="82" style="width:0%"></div></div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:var(--text-xs);margin-bottom:4px">
+                  <span>Administration</span><span style="font-weight:600">10%</span>
+                </div>
+                <div class="progress-bar-track"><div class="progress-bar-fill" data-progress="10" style="width:0%;background:var(--color-text-muted)"></div></div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:var(--text-xs);margin-bottom:4px">
+                  <span>Fundraising</span><span style="font-weight:600">8%</span>
+                </div>
+                <div class="progress-bar-track"><div class="progress-bar-fill" data-progress="8" style="width:0%;background:var(--color-text-muted)"></div></div>
+              </div>
+            </div>
+            <a href="transparency.html" style="font-size:var(--text-xs);color:var(--color-primary);display:block;margin-top:var(--space-3)">View full financial report →</a>
+          </div>
+
+          <div class="trust-badges" aria-label="Trust indicators">
+            <div class="trust-badge">
+              <div class="trust-badge-icon">✓</div>
+              <span>80G Certified</span>
+            </div>
+            <div class="trust-badge">
+              <div class="trust-badge-icon">✓</div>
+              <span>FCRA Registered</span>
+            </div>
+            <div class="trust-badge">
+              <div class="trust-badge-icon">✓</div>
+              <span>Transparent Reports</span>
+            </div>
+            <div class="trust-badge">
+              <div class="trust-badge-icon">🔒</div>
+              <span>Secure Payment</span>
+            </div>
+          </div>
+
+          <div style="margin-top:var(--space-6);padding-top:var(--space-6);border-top:1px solid var(--color-border)">
+            <div style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:var(--space-2)">Questions?</div>
+            <a href="mailto:donate@unkeliye.org" style="font-size:var(--text-sm);color:var(--color-primary)">donate@unkeliye.org</a><br/>
+            <a href="tel:+919999xxxxxx" style="font-size:var(--text-sm);color:var(--color-primary)">+91 99999 00000</a>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <img src="logo.png" alt="Unke Liye" class="footer-logo-img" />
+        <p class="footer-brand-tagline">For Every Life. For Nature. For a Better Tomorrow.</p>
+        <div class="footer-emergency">
+          <div class="footer-emergency-title">🚨 24/7 Animal Emergency</div>
+          <a href="tel:+918888000000">+91 88888 00000</a>
+        </div>
+      </div>
+      <div>
+        <h3 class="footer-col-title">Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="transparency.html">Financial Reports</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="footer-col-title">Legal</h3>
+        <ul class="footer-links">
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Use</a></li>
+          <li><a href="transparency.html">Transparency</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 Unke Liye. Reg. No. MAH/2015/1234 | 80G No. DIT(E)/MH/421-2016</p>
+    </div>
+  </div>
+</footer>
+
+<a href="report-animal.html" class="emergency-float" aria-label="Report an animal emergency">
+  <span aria-hidden="true">🚨</span>
+  <span>Report Animal Emergency</span>
+</a>
+
+<script src="js/main.js"></script>
+<script src="js/forms.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    let currentAmount = 500;
+    let currentFreq = 'one-time';
+    
+    const impactText = {
+      rescue: '₹500 feeds a rescued animal for one month · ₹2,000 covers an emergency vet visit · ₹5,000 sterilizes 5 street dogs · ₹15,000 sponsors full shelter care for one animal',
+      environment: '₹300 plants 3 native saplings · ₹1,000 sponsors a school environment session · ₹5,000 funds a full plantation drive · ₹15,000 covers a water conservation project',
+      disaster: '₹500 provides a day\'s food kit for a family · ₹2,000 covers emergency medical supplies · ₹5,000 builds a temporary shelter · ₹20,000 rebuilds a flood-damaged home',
+      general: 'Your donation goes where it\'s needed most — rescue, relief, or restoration. Our team allocates it to the highest-priority need each month.'
+    };
+    
+    const impactTitles = {
+      rescue: '🐾 Your donation to Animal Rescue funds:',
+      environment: '🌱 Your donation to Environment funds:',
+      disaster: '🚨 Your donation to Disaster Relief funds:',
+      general: '💛 Your "Where Most Needed" donation:'
+    };
+
+    // Fund selection
+    document.querySelectorAll('input[name="fund"]').forEach(radio => {
+      radio.addEventListener('change', () => {
+        const val = radio.value;
+        document.getElementById('impact-preview').querySelector('.impact-preview-title').textContent = impactTitles[val];
+        document.getElementById('impact-preview').querySelector('.impact-preview-text').textContent = impactText[val];
+        document.getElementById('sidebar-fund').textContent = radio.closest('.fund-option').querySelector('.fund-label span:last-child').textContent;
+      });
+    });
+
+    // Amount buttons
+    document.querySelectorAll('.amount-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('custom-amount').value = '';
+        currentAmount = parseInt(btn.dataset.amount);
+        updateSummary();
+      });
+    });
+
+    // Custom amount
+    document.getElementById('custom-amount').addEventListener('input', (e) => {
+      const val = parseInt(e.target.value);
+      if (val >= 100) {
+        document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+        currentAmount = val;
+        updateSummary();
+      }
+    });
+
+    // Frequency toggle
+    document.querySelectorAll('.freq-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.freq-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentFreq = btn.dataset.freq;
+        document.getElementById('monthly-note').style.display = currentFreq === 'monthly' ? 'block' : 'none';
+        document.getElementById('sidebar-freq').textContent = currentFreq === 'monthly' ? 'Monthly' : 'One-time';
+        updateSummary();
+      });
+    });
+
+    function updateSummary() {
+      const tax = Math.round(currentAmount * 0.5);
+      const effective = currentAmount - tax;
+      document.getElementById('sidebar-amount').textContent = currentAmount.toLocaleString('en-IN');
+      document.getElementById('submit-amount').textContent = currentAmount.toLocaleString('en-IN');
+      document.getElementById('summary-base').textContent = currentAmount.toLocaleString('en-IN');
+      document.getElementById('summary-tax').textContent = tax.toLocaleString('en-IN');
+      document.getElementById('summary-effective').textContent = effective.toLocaleString('en-IN');
+    }
+
+    updateSummary();
+
+    // Form submission
+    const form = document.getElementById('donate-form');
+    const { Validators, setupForm } = window.FormUtils;
+    
+    setupForm(form, {
+      first_name: [Validators.required, Validators.minLength(2)],
+      last_name: [Validators.required, Validators.minLength(2)],
+      email: [Validators.required, Validators.email],
+      phone: [Validators.required, Validators.phone],
+    }, (formEl) => {
+      const btn = document.getElementById('donate-submit-btn');
+      btn.textContent = 'Processing...';
+      btn.disabled = true;
+      setTimeout(() => {
+        window.location.href = `donate-confirmation.html?amount=${currentAmount}&fund=${document.querySelector('input[name=fund]:checked').value}`;
+      }, 1500);
+    });
+  });
+</script>
+</body>
+</html>

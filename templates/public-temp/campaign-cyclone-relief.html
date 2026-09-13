@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Cyclone Relief 2026 — Support immediate rescue, relief, shelter, and medical care for affected communities in Gujarat. Transparent allocation and verified updates." />
+  <title>Cyclone Relief 2026 — Emergency Campaign — Unke Liye</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/enhanced-pages.css" />
+  <style>
+    /* Custom Campaign specific page styling */
+    .cmp-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    @media(min-width:1024px){ .cmp-layout { grid-template-columns: 1fr 400px; } }
+
+    /* Sticky sidebar card style */
+    .sticky-sidebar {
+      position: sticky;
+      top: 100px;
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    /* Progress details */
+    .progress-box {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: 1.75rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .progress-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      text-align: center;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--color-border);
+    }
+    .progress-stat-val {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--color-primary);
+    }
+    .progress-stat-lbl {
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    /* Needs visual cards */
+    .needs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+    .need-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: var(--shadow-xs);
+    }
+    .need-icon {
+      font-size: 2.25rem;
+      width: 52px; height: 52px;
+      background: var(--color-surface-alt);
+      border-radius: var(--radius-md);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .need-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.15rem; }
+    .need-amount { color: var(--color-urgent); font-weight: 700; font-size: 1.05rem; }
+
+    /* Allocation visual bars */
+    .alloc-card {
+      background: var(--color-surface-alt);
+      border-radius: var(--radius-lg);
+      padding: 1rem 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+    .alloc-header {
+      display: flex; justify-content: space-between;
+      font-weight: 600; font-size: 0.88rem; margin-bottom: 0.5rem;
+    }
+    .alloc-bar-track { height: 6px; background: var(--color-border); border-radius: 99px; }
+    .alloc-bar-fill { height: 100%; border-radius: 99px; background: var(--color-primary); }
+
+    /* Before/After slider */
+    .compare-container {
+      position: relative;
+      height: 380px;
+      width: 100%;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      margin: 1.5rem 0;
+      user-select: none;
+    }
+    .compare-img {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+    }
+    .compare-before { background-image: url('https://images.unsplash.com/photo-1547683905-f686c993aae5?auto=format&fit=crop&w=1000&q=80'); }
+    .compare-after {
+      background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80');
+      clip-path: inset(0 0 0 50%);
+    }
+    .compare-handle {
+      position: absolute; top: 0; bottom: 0; left: 50%; width: 4px;
+      background: #fff; cursor: ew-resize; transform: translateX(-50%);
+      box-shadow: 0 0 8px rgba(0,0,0,0.5); z-index: 10;
+    }
+    .compare-handle-btn {
+      position: absolute; top: 50%; left: 50%;
+      width: 38px; height: 38px; background: #fff;
+      border-radius: 50%; transform: translate(-50%, -50%);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem; font-weight: 700; color: var(--color-text-muted);
+    }
+    .compare-badge {
+      position: absolute; top: 1rem; padding: 0.4rem 0.75rem;
+      background: rgba(0,0,0,0.65); color: #fff;
+      font-size: 0.75rem; font-weight: 700; border-radius: var(--radius-sm);
+    }
+    .compare-badge-before { left: 1rem; }
+    .compare-badge-after { right: 1rem; }
+
+    /* Timeline style */
+    .timeline-wrap {
+      position: relative;
+      padding-left: 2rem;
+      margin-top: 1.5rem;
+    }
+    .timeline-wrap::before {
+      content: '';
+      position: absolute; left: 6px; top: 6px; bottom: 6px; width: 2px;
+      background: var(--color-border);
+    }
+    .timeline-node {
+      position: relative; margin-bottom: 2rem;
+    }
+    .timeline-node::before {
+      content: '';
+      position: absolute; left: -26px; top: 4px; width: 14px; height: 14px;
+      border-radius: 50%; background: var(--color-primary);
+      border: 3px solid var(--color-surface);
+    }
+    .timeline-date {
+      font-size: 0.75rem; font-weight: 700; color: var(--color-primary);
+      text-transform: uppercase; margin-bottom: 0.25rem;
+    }
+    .timeline-title { font-weight: 700; font-size: 1rem; margin-bottom: 0.25rem; }
+    .timeline-desc { font-size: 0.875rem; color: var(--color-text-muted); line-height: 1.6; }
+
+    /* FAQ accordion styling */
+    .faq-accordion {
+      display: grid; gap: 0.75rem; margin-top: 1.5rem;
+    }
+    .faq-item {
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      background: var(--color-surface);
+      overflow: hidden;
+    }
+    .faq-question {
+      width: 100%; text-align: left; padding: 1.25rem;
+      font-weight: 600; font-size: 0.95rem; border: none;
+      background: transparent; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center;
+      color: var(--color-text);
+      font-family: var(--font-body);
+    }
+    .faq-answer {
+      max-height: 0; overflow: hidden; transition: max-height 0.3s ease;
+      background: var(--color-surface-alt);
+    }
+    .faq-answer-inner { padding: 1.25rem; font-size: 0.875rem; color: var(--color-text-muted); line-height: 1.65; }
+    .faq-item.is-open .faq-answer { max-height: 250px; }
+    .faq-icon-arrow { transition: transform 0.3s; }
+    .faq-item.is-open .faq-icon-arrow { transform: rotate(180deg); }
+
+    /* Step donation wizard inside sidebar */
+    .don-card {
+      background: var(--color-surface);
+      border: 2px solid rgba(192,57,43,0.15);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+    .don-steps {
+      display: flex; border-bottom: 1px solid var(--color-border);
+      background: var(--color-surface-alt);
+    }
+    .don-step-ind {
+      flex: 1; text-align: center; padding: 0.75rem 0.25rem;
+      font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+      color: var(--color-text-muted); border-bottom: 3px solid transparent;
+    }
+    .don-step-ind.is-active {
+      color: var(--color-urgent); border-bottom-color: var(--color-urgent);
+    }
+    .don-step-ind.is-done {
+      color: var(--color-primary); border-bottom-color: var(--color-primary);
+    }
+    .don-panel { display: none; padding: 1.5rem; }
+    .don-panel.is-active { display: block; }
+
+    /* Amount grid */
+    .don-amount-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin-bottom: 1rem;
+    }
+    .don-amount-btn {
+      padding: 0.65rem 0.25rem; border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-md); background: var(--color-bg);
+      font-weight: 700; font-size: 0.88rem; cursor: pointer; text-align: center;
+      transition: all 0.2s;
+    }
+    .don-amount-btn:hover { border-color: var(--color-urgent); }
+    .don-amount-btn.is-active {
+      border-color: var(--color-urgent); background: #FFF3F0; color: var(--color-urgent);
+    }
+
+    /* UPI/Card Pay Interface options */
+    .pay-opt-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin: 1rem 0;
+    }
+    .pay-opt-btn {
+      padding: 0.75rem 0.25rem; border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-md); background: var(--color-surface);
+      cursor: pointer; font-size: 0.75rem; text-align: center; font-weight: 600;
+    }
+    .pay-opt-btn.is-active {
+      border-color: var(--color-urgent); background: #FFF3F0; color: var(--color-urgent);
+    }
+
+    /* Static location simple box */
+    .location-map-box {
+      height: 240px; background-color: #e3ece6;
+      border: 1px solid var(--color-border); border-radius: var(--radius-lg);
+      position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center;
+    }
+    .location-grid-bg {
+      position: absolute; inset: 0;
+      background-image: radial-gradient(var(--color-border) 1px, transparent 1px);
+      background-size: 20px 20px; opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+<a href="#main" class="skip-nav">Skip to main content</a>
+
+<!-- Site Emergency strip -->
+<div class="emergency-bar">
+  <span class="pulse-dot"></span>
+  <span>🚨 Cyclone Relief 2026: Direct community recovery is active —</span>
+  <a href="#donate-box">Donate Now →</a>
+</div>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="container">
+    <nav class="nav-inner">
+      <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a>
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="campaigns.html" class="nav-link active">Campaigns</a></li>
+        <li class="nav-item"><a href="adopt.html" class="nav-link">Adopt</a></li>
+        <li class="nav-item"><a href="stories.html" class="nav-link">Stories</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="volunteer.html" class="btn btn--outline btn--sm">Volunteer</a>
+        <a href="donate.html" class="btn btn--primary btn--sm">Donate Now</a>
+        <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="pg-hero" style="min-height: 520px">
+    <div class="pg-hero__bg" style="background-image:url('https://images.unsplash.com/photo-1547683905-f686c993aae5?auto=format&fit=crop&w=1600&q=80')"></div>
+    <div class="pg-hero__overlay"></div>
+    <div class="container pg-hero__content">
+      <nav class="pg-breadcrumb">
+        <a href="index.html">Home</a><span class="pg-breadcrumb-sep">›</span>
+        <a href="campaigns.html">Campaigns</a><span class="pg-breadcrumb-sep">›</span>
+        <span>Cyclone Relief 2026</span>
+      </nav>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1rem">
+        <span class="pg-badge pg-badge--urgent">🚨 Active Emergency Campaign</span>
+        <span class="pg-badge" style="background:rgba(255,255,255,0.25);color:#fff">📍 Gujarat, India</span>
+      </div>
+      <h1 style="font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.1">Cyclone Relief 2026:<br><em style="color:#A8D8B9;font-style:normal">Rebuild After the Storm</em></h1>
+      <p class="lead">Support coastal villages and rural communities devastated by Cyclone Michaung. We are distributing food, restoring clean water, erecting temporary shelters, and rescuing displaced animals.</p>
+    </div>
+  </section>
+
+  <section class="pg-section">
+    <div class="container">
+      <div class="cmp-layout">
+
+        <!-- LEFT: Campaign Details -->
+        <div>
+          <!-- Story Section -->
+          <div class="reveal">
+            <span class="pg-pill pg-pill--care">Emergency Rescue Response</span>
+            <h2 style="margin-top:0.5rem;margin-bottom:1rem">Why This Campaign Matters</h2>
+            <p style="font-size:1.05rem;line-height:1.75;color:var(--color-text-muted);margin-bottom:1.25rem">On August 10, 2026, Cyclone Michaung made landfall along the coastal tracts of western India, packing winds up to 140 km/h. Heavy rains and storm surges flooded rural lowlands, sweeping away mud houses, contaminating open drinking water wells, and displacing thousands of families and local street animals.</p>
+            <p style="font-size:1.05rem;line-height:1.75;color:var(--color-text-muted);margin-bottom:1.25rem">Unke Liye’s initial response team arrived on site within 12 hours. The immediate needs are critical: safe hot meals, water purification kits, emergency medical care, and dry temporary shelters. Without this intervention, water-borne illnesses pose a severe risk to displaced survivors in temporary camps.</p>
+            <p style="font-size:1.05rem;line-height:1.75;color:var(--color-text-muted);margin-bottom:1.5rem">Beyond instant food relief, we are committed to helping families stand back on their feet. Fostering a cycle of recovery means helping rebuild damaged roof structures, setting up secure enclosures for rescued farm animals, and delivering long-term rehabilitation support.</p>
+          </div>
+
+          <!-- Slider Before/After -->
+          <div class="reveal" style="margin-top: 2.5rem">
+            <h3>Visual Impact Reference</h3>
+            <p style="font-size:0.875rem;color:var(--color-text-muted)">Drag the handle to see the path from destruction to recovery.</p>
+            <div class="compare-container" id="compare-slider">
+              <div class="compare-img compare-before"></div>
+              <div class="compare-img compare-after" id="compare-after-img"></div>
+              <div class="compare-handle" id="compare-handle">
+                <div class="compare-handle-btn">↔</div>
+              </div>
+              <div class="compare-badge compare-badge-before">Storm Damage</div>
+              <div class="compare-badge compare-badge-after">Community Recovery</div>
+            </div>
+          </div>
+
+          <!-- Emergency Needs Visual Cards -->
+          <div class="reveal" style="margin-top: 3rem">
+            <h3>What is Needed Right Now?</h3>
+            <p style="font-size:0.875rem;color:var(--color-text-muted)">The total budget required for this phase is ₹13,50,000, mapped to direct relief works.</p>
+            <div class="needs-grid">
+              <div class="need-card">
+                <div class="need-icon">🍚</div>
+                <div><div class="need-title">Food &amp; Kits</div><div class="need-amount">₹3,00,000</div></div>
+              </div>
+              <div class="need-card">
+                <div class="need-icon">💧</div>
+                <div><div class="need-title">Clean Water</div><div class="need-amount">₹1,50,000</div></div>
+              </div>
+              <div class="need-card">
+                <div class="need-icon">🏥</div>
+                <div><div class="need-title">Medical Camps</div><div class="need-amount">₹2,50,000</div></div>
+              </div>
+              <div class="need-card">
+                <div class="need-icon">🏠</div>
+                <div><div class="need-title">Temp Shelter</div><div class="need-amount">₹4,00,000</div></div>
+              </div>
+              <div class="need-card">
+                <div class="need-icon">🐾</div>
+                <div><div class="need-title">Animal Rescue</div><div class="need-amount">₹1,50,000</div></div>
+              </div>
+              <div class="need-card">
+                <div class="need-icon">🚚</div>
+                <div><div class="need-title">Logistics</div><div class="need-amount">₹1,00,000</div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Where the money goes -->
+          <div class="reveal" style="margin-top: 3rem">
+            <h3>Where the Money Goes</h3>
+            <p style="font-size:0.875rem;color:var(--color-text-muted);margin-bottom:1.5rem">We commit to complete transparency. Here is how every rupee is allocated across direct relief channels.</p>
+            
+            <div class="alloc-card">
+              <div class="alloc-header"><span>Food &amp; Essential Supplies</span><span>30%</span></div>
+              <div class="alloc-bar-track"><div class="alloc-bar-fill" style="width:30%"></div></div>
+            </div>
+            <div class="alloc-card">
+              <div class="alloc-header"><span>Medical Support</span><span>20%</span></div>
+              <div class="alloc-bar-track"><div class="alloc-bar-fill" style="width:20%"></div></div>
+            </div>
+            <div class="alloc-card">
+              <div class="alloc-header"><span>Shelter &amp; Infrastructure</span><span>20%</span></div>
+              <div class="alloc-bar-track"><div class="alloc-bar-fill" style="width:20%"></div></div>
+            </div>
+            <div class="alloc-card">
+              <div class="alloc-header"><span>Animal Rescue &amp; Enclosures</span><span>10%</span></div>
+              <div class="alloc-bar-track"><div class="alloc-bar-fill" style="width:10%"></div></div>
+            </div>
+            <div class="alloc-card">
+              <div class="alloc-header"><span>Transportation &amp; Dispatch</span><span>10%</span></div>
+              <div class="alloc-bar-track"><div class="alloc-bar-fill" style="width:10%"></div></div>
+            </div>
+            <div class="alloc-card">
+              <div class="alloc-header"><span>Community Rebuilding</span><span>10%</span></div>
+              <div class="alloc-bar-track"><div class="alloc-bar-fill" style="width:10%"></div></div>
+            </div>
+          </div>
+
+          <!-- Donation Impact Cards -->
+          <div class="reveal" style="margin-top: 3rem">
+            <h3>What Your Donation Can Do</h3>
+            <p style="font-size:0.875rem;color:var(--color-text-muted);margin-bottom:1.5rem">Select a donation tier to understand the direct relief impact you provide.</p>
+            <div style="display:grid;gap:1rem">
+              <div style="display:flex;gap:1rem;background:var(--color-surface);border:1px solid var(--color-border);padding:1rem;border-radius:var(--radius-lg);align-items:center">
+                <div style="font-size:1.5rem;font-weight:700;color:var(--color-urgent);width:80px;flex-shrink:0">₹500</div>
+                <div style="font-size:0.875rem;color:var(--color-text-muted)">Provides essential food supplies (grains, pulses, oil) for one displaced family for 3 days.</div>
+              </div>
+              <div style="display:flex;gap:1rem;background:var(--color-surface);border:1px solid var(--color-border);padding:1rem;border-radius:var(--radius-lg);align-items:center">
+                <div style="font-size:1.5rem;font-weight:700;color:var(--color-urgent);width:80px;flex-shrink:0">₹1,000</div>
+                <div style="font-size:0.875rem;color:var(--color-text-muted)">Supports water purification supplies and personal hygiene kits for two families in shelter camps.</div>
+              </div>
+              <div style="display:flex;gap:1rem;background:var(--color-surface);border:1px solid var(--color-border);padding:1rem;border-radius:var(--radius-lg);align-items:center">
+                <div style="font-size:1.5rem;font-weight:700;color:var(--color-urgent);width:80px;flex-shrink:0">₹2,500</div>
+                <div style="font-size:0.875rem;color:var(--color-text-muted)">Delivers a full family relief kit including bedding, clothing, dry rations, and basic medicine.</div>
+              </div>
+              <div style="display:flex;gap:1rem;background:var(--color-surface);border:1px solid var(--color-border);padding:1rem;border-radius:var(--radius-lg);align-items:center">
+                <div style="font-size:1.5rem;font-weight:700;color:var(--color-urgent);width:80px;flex-shrink:0">₹5,000</div>
+                <div style="font-size:0.875rem;color:var(--color-text-muted)">Supports the purchase of tarpaulins, bamboo poles, and materials for establishing two temporary shelters.</div>
+              </div>
+              <div style="display:flex;gap:1rem;background:var(--color-surface);border:1px solid var(--color-border);padding:1rem;border-radius:var(--radius-lg);align-items:center">
+                <div style="font-size:1.5rem;font-weight:700;color:var(--color-urgent);width:80px;flex-shrink:0">₹10,000</div>
+                <div style="font-size:0.875rem;color:var(--color-text-muted)">Sponsors a complete emergency village response kit containing tools, medical packs, and bulk rations.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Animal Rescue section -->
+          <div class="reveal" style="margin-top: 3.5rem;background:#F4EFEB;border:1px solid rgba(201,124,77,0.15);border-radius:var(--radius-xl);padding:2rem">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem">
+              <div>
+                <span class="pg-badge pg-badge--care">Co-existence First</span>
+                <h3 style="margin-top:0.5rem;margin-bottom:0.5rem">Animals Need Help Too</h3>
+                <p style="font-size:0.875rem;color:var(--color-text-muted);max-width:500px;line-height:1.6">Disasters hit animals just as hard as humans. Our rescue units navigate waterlogged villages to bring dogs, cats, cows, and birds to safety.</p>
+              </div>
+              <div style="font-size:3rem;line-height:1">🐕</div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:1.5rem;text-align:center">
+              <div style="background:#fff;padding:1rem;border-radius:var(--radius-md)">
+                <strong style="display:block;font-size:1.5rem;color:var(--color-primary)" id="count-anim-resc">186</strong>
+                <span style="font-size:0.75rem;color:var(--color-text-muted)">Animals Rescued</span>
+              </div>
+              <div style="background:#fff;padding:1rem;border-radius:var(--radius-md)">
+                <strong style="display:block;font-size:1.5rem;color:var(--color-primary)" id="count-anim-treat">94</strong>
+                <span style="font-size:0.75rem;color:var(--color-text-muted)">Injured Treated</span>
+              </div>
+              <div style="background:#fff;padding:1rem;border-radius:var(--radius-md)">
+                <strong style="display:block;font-size:1.5rem;color:var(--color-primary)" id="count-anim-reloc">62</strong>
+                <span style="font-size:0.75rem;color:var(--color-text-muted)">Relocated to Sanctuary</span>
+              </div>
+              <div style="background:#fff;padding:1rem;border-radius:var(--radius-md)">
+                <strong style="display:block;font-size:1.5rem;color:var(--color-primary)" id="count-anim-reunit">30</strong>
+                <span style="font-size:0.75rem;color:var(--color-text-muted)">Owners Reunited</span>
+              </div>
+            </div>
+
+            <div style="margin-top:1.5rem;text-align:center">
+              <button onclick="scrollToDonate()" class="btn btn--primary">Support Animal Rescue →</button>
+            </div>
+          </div>
+
+          <!-- Image Gallery Section -->
+          <div class="reveal" style="margin-top: 3.5rem">
+            <h3>Campaign Image Gallery</h3>
+            <p style="font-size:0.875rem;color:var(--color-text-muted);margin-bottom:1.5rem">Real-time photographs captured by our volunteers on site.</p>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(180px, 1fr));gap:0.75rem" id="campaign-gallery">
+              <div class="pg-gallery-tile" onclick="openLightbox('https://images.unsplash.com/photo-1547683905-f686c993aae5?auto=format&fit=crop&w=800&q=80', 'Emergency relief distribution')" style="height:150px">
+                <div class="pg-gallery-tile__img" style="background-image:url('https://images.unsplash.com/photo-1547683905-f686c993aae5?auto=format&fit=crop&w=300&q=80')"></div>
+              </div>
+              <div class="pg-gallery-tile" onclick="openLightbox('https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&w=800&q=80', 'Volunteers preparing food kits')" style="height:150px">
+                <div class="pg-gallery-tile__img" style="background-image:url('https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&w=300&q=80')"></div>
+              </div>
+              <div class="pg-gallery-tile" onclick="openLightbox('https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=800&q=80', 'Medical support camp')" style="height:150px">
+                <div class="pg-gallery-tile__img" style="background-image:url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=300&q=80')"></div>
+              </div>
+              <div class="pg-gallery-tile" onclick="openLightbox('https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=800&q=80', 'Animal rescue operation')" style="height:150px">
+                <div class="pg-gallery-tile__img" style="background-image:url('https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=300&q=80')"></div>
+              </div>
+              <div class="pg-gallery-tile" onclick="openLightbox('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80', 'Food and dry ration packages')" style="height:150px">
+                <div class="pg-gallery-tile__img" style="background-image:url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=300&q=80')"></div>
+              </div>
+              <div class="pg-gallery-tile" onclick="openLightbox('https://images.unsplash.com/photo-1618477461853-cf6ed80faba5?auto=format&fit=crop&w=800&q=80', 'Debris cleanup and sanitization')" style="height:150px">
+                <div class="pg-gallery-tile__img" style="background-image:url('https://images.unsplash.com/photo-1618477461853-cf6ed80faba5?auto=format&fit=crop&w=300&q=80')"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Updates Section -->
+          <div class="reveal" style="margin-top: 3.5rem">
+            <h3>Campaign Updates Timeline</h3>
+            <div class="timeline-wrap">
+              <div class="timeline-node">
+                <div class="timeline-date">August 20, 2026</div>
+                <div class="timeline-title">Animal Rescue Operations Expanded</div>
+                <div class="timeline-desc">Fitted boats with safety nets to relocate cattle and stray dogs trapped on rooftops in the low-lying sectors. 34 animals treated today.</div>
+              </div>
+              <div class="timeline-node">
+                <div class="timeline-date">August 18, 2026</div>
+                <div class="timeline-title">Temporary Medical Camp Established</div>
+                <div class="timeline-desc">Partnered with local health workers to treat skin infections and vaccinate residents in the community centers.</div>
+              </div>
+              <div class="timeline-node">
+                <div class="timeline-date">August 15, 2026</div>
+                <div class="timeline-title">500 Families Supplied with Ration Kits</div>
+                <div class="timeline-desc">Completed food distribution in two coastal zones. Dry logs and tarpaulins delivered to families with damaged roofs.</div>
+              </div>
+              <div class="timeline-node">
+                <div class="timeline-date">August 12, 2026</div>
+                <div class="timeline-title">First Field Teams Deployed</div>
+                <div class="timeline-desc">First logistics trucks carrying fresh drinking water tanks arrived at the transit shelters. Setup temporary kitchens.</div>
+              </div>
+              <div class="timeline-node">
+                <div class="timeline-date">August 10, 2026</div>
+                <div class="timeline-title">Emergency Response Started</div>
+                <div class="timeline-desc">Assessment call taken by our coordinators. Initial rescue lines launched and resource mobilization initiated.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- People Behind Response -->
+          <div class="reveal" style="margin-top: 3.5rem">
+            <h3>People Behind the Response</h3>
+            <p style="font-size:0.875rem;color:var(--color-text-muted);margin-bottom:1.5rem">Our dedicated field coordinators, vets, and local volunteers making it happen.</p>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(130px, 1fr));gap:1rem;text-align:center">
+              <div>
+                <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=150&h=150&q=80" alt="Volunteers" style="width:72px;height:72px;border-radius:50%;object-fit:cover;margin-bottom:0.5rem" />
+                <div style="font-weight:700;font-size:1.1rem" id="count-vol-number">128</div>
+                <div style="font-size:0.75rem;color:var(--color-text-muted)">Volunteers</div>
+              </div>
+              <div>
+                <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=150&h=150&q=80" alt="Medical team" style="width:72px;height:72px;border-radius:50%;object-fit:cover;margin-bottom:0.5rem" />
+                <div style="font-weight:700;font-size:1.1rem;" id="count-med-number">24</div>
+                <div style="font-size:0.75rem;color:var(--color-text-muted)">Vets &amp; Medics</div>
+              </div>
+              <div>
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&h=150&q=80" alt="Rescue managers" style="width:72px;height:72px;border-radius:50%;object-fit:cover;margin-bottom:0.5rem" />
+                <div style="font-weight:700;font-size:1.1rem" id="count-coord-number">16</div>
+                <div style="font-size:0.75rem;color:var(--color-text-muted)">Coordinators</div>
+              </div>
+              <div>
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80" alt="Rescue staff" style="width:72px;height:72px;border-radius:50%;object-fit:cover;margin-bottom:0.5rem" />
+                <div style="font-weight:700;font-size:1.1rem" id="count-team-number">8</div>
+                <div style="font-size:0.75rem;color:var(--color-text-muted)">Field Teams</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Location Section -->
+          <div class="reveal" style="margin-top: 3.5rem">
+            <h3>Campaign Relief Area</h3>
+            <p style="font-size:0.875rem;color:var(--color-text-muted);margin-bottom:1rem">Targeting rural coastal districts in Gujarat, India, with low infrastructural access.</p>
+            <div class="location-map-box">
+              <div class="location-grid-bg"></div>
+              <div style="position:relative;z-index:2;text-align:center">
+                <span style="font-size:2rem">📍</span>
+                <h4 style="margin:0.25rem 0">Gujarat Relief Sector 2026</h4>
+                <p style="font-size:0.8rem;color:var(--color-text-muted);margin:0">Active Camps: Jamnagar Rural, Okha Lowlands, Dwarka Coast</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Accordion -->
+          <div class="reveal" style="margin-top: 3.5rem">
+            <h3>Frequently Asked Questions</h3>
+            <div class="faq-accordion">
+              <div class="faq-item">
+                <button class="faq-question">Where will my donation go? <span class="faq-icon-arrow">▼</span></button>
+                <div class="faq-answer"><div class="faq-answer-inner">100% of the funds raised are spent directly on purchasing rations, medical items, temporary shelters, and emergency fuel for rescue vehicles. All administrative costs are met via corporate grants.</div></div>
+              </div>
+              <div class="faq-item">
+                <button class="faq-question">How is the campaign goal calculated? <span class="faq-icon-arrow">▼</span></button>
+                <div class="faq-answer"><div class="faq-answer-inner">The goals are mapped based on real quotes for dry food bulk orders, basic shelter materials, and average clinic costs for treating injured animals.</div></div>
+              </div>
+              <div class="faq-item">
+                <button class="faq-question">Can I support animal rescue separately? <span class="faq-icon-arrow">▼</span></button>
+                <div class="faq-answer"><div class="faq-answer-inner">Yes! All donation requests include an optional message field. You can mention "Animal rescue only" and our allocation team will earmark your support.</div></div>
+              </div>
+              <div class="faq-item">
+                <button class="faq-question">How does Unke Liye report on impact? <span class="faq-icon-arrow">▼</span></button>
+                <div class="faq-answer"><div class="faq-answer-inner">We publish monthly financial ledger and deployment reports on our Transparency page. Photos of rebuilt houses and rescued animals are updated directly on the updates page.</div></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- RIGHT: Progress & Form Sidebar -->
+        <div class="sticky-sidebar">
+
+          <!-- Progress summary box -->
+          <div class="progress-box reveal">
+            <span class="pg-badge pg-badge--warning" style="margin-bottom:0.75rem">⏳ 18 Days Left</span>
+            <div style="font-size:0.8rem;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:0.04em">Total Raised So Far</div>
+            <div style="font-size:2.25rem;font-weight:800;color:var(--color-primary);line-height:1.2;margin:0.25rem 0">₹8,50,000</div>
+            <div style="font-size:0.875rem;color:var(--color-text-muted)">of ₹15,00,000 required goal</div>
+
+            <div class="pg-progress-bar" style="height:10px;margin-top:1rem;margin-bottom:0.5rem">
+              <div class="pg-progress-fill" style="width:56.67%"></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:var(--color-text-muted);font-weight:600">
+              <span>56.7% Funded</span>
+              <span style="color:var(--color-urgent)">₹6,50,000 remaining</span>
+            </div>
+
+            <div class="progress-stats-grid">
+              <div>
+                <div class="progress-stat-val">428</div>
+                <div class="progress-stat-lbl">Donors</div>
+              </div>
+              <div>
+                <div class="progress-stat-val">2.4k</div>
+                <div class="progress-stat-lbl">Helped</div>
+              </div>
+              <div>
+                <div class="progress-stat-val">186</div>
+                <div class="progress-stat-lbl">Rescues</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Wizard Donation Card -->
+          <div class="don-card reveal" id="donate-box">
+            <div class="don-steps">
+              <div class="don-step-ind is-active" id="wiz-step-1">1. Support</div>
+              <div class="don-step-ind" id="wiz-step-2">2. Details</div>
+              <div class="don-step-ind" id="wiz-step-3">3. Pay</div>
+            </div>
+
+            <!-- PANEL 1: Amounts -->
+            <div class="don-panel is-active" id="wiz-panel-1">
+              <h4 style="margin-bottom:0.25rem">Every Contribution Helps</h4>
+              <p style="font-size:0.75rem;color:var(--color-text-muted);margin-bottom:1rem">Select an amount to proceed with donation.</p>
+
+              <div class="don-amount-grid">
+                <button class="don-amount-btn" data-val="500" onclick="setWizAmount(500)">₹500</button>
+                <button class="don-amount-btn is-active" data-val="1000" onclick="setWizAmount(1000)">₹1,000</button>
+                <button class="don-amount-btn" data-val="2500" onclick="setWizAmount(2500)">₹2,500</button>
+                <button class="don-amount-btn" data-val="5000" onclick="setWizAmount(5000)">₹5,000</button>
+                <button class="don-amount-btn" data-val="10000" onclick="setWizAmount(10000)">₹10,000</button>
+              </div>
+
+              <div class="cd-custom-wrap">
+                <span class="cd-custom-prefix">₹</span>
+                <input type="number" class="cd-custom-input" id="wiz-custom-input" placeholder="Custom amount" oninput="onWizCustomAmountInput()" />
+              </div>
+
+              <div class="cd-impact-line" id="wiz-impact-text" style="margin-bottom:1.25rem">💚 Supports clean water and hygiene supplies.</div>
+
+              <div class="cd-freq" style="margin-bottom:1.25rem">
+                <button class="cd-freq-btn is-active" id="wiz-freq-one" onclick="setWizFreq('One Time')">One Time</button>
+                <button class="cd-freq-btn" id="wiz-freq-mon" onclick="setWizFreq('Monthly')">Monthly</button>
+              </div>
+
+              <button class="cd-btn-next" onclick="goWizStep(2)">Continue →</button>
+            </div>
+
+            <!-- PANEL 2: Personal Details -->
+            <div class="don-panel" id="wiz-panel-2">
+              <h4 style="margin-bottom:0.25rem">Your Details</h4>
+              <p style="font-size:0.75rem;color:var(--color-text-muted);margin-bottom:1rem">We require just a few details to associate your payment.</p>
+
+              <div class="cd-field">
+                <label class="cd-label">Full Name <span style="color:var(--color-urgent)">*</span></label>
+                <input class="cd-input" type="text" id="wiz-name" placeholder="e.g. Rahul Patil" required />
+                <div class="ff-err" id="wiz-err-name">Please enter your name.</div>
+              </div>
+              <div class="cd-field">
+                <label class="cd-label">Email Address <span style="color:var(--color-urgent)">*</span></label>
+                <input class="cd-input" type="email" id="wiz-email" placeholder="name@example.com" required />
+                <div class="ff-err" id="wiz-err-email">Please enter a valid email.</div>
+              </div>
+              <div class="cd-field">
+                <label class="cd-label">Phone Number <span style="color:var(--color-urgent)">*</span></label>
+                <input class="cd-input" type="tel" id="wiz-phone" placeholder="10-digit mobile" maxlength="10" required />
+                <div class="ff-err" id="wiz-err-phone">Please enter your 10-digit phone.</div>
+              </div>
+              <div class="cd-field">
+                <label class="cd-label">Message <span class="cd-optional">(optional)</span></label>
+                <input class="cd-input" type="text" id="wiz-message" placeholder="A note of encouragement" />
+              </div>
+
+              <div class="ff-nav">
+                <button class="ff-btn-back" onclick="goWizStep(1)">← Back</button>
+                <button class="ff-btn-next" onclick="goWizStep(3)">Pay →</button>
+              </div>
+            </div>
+
+            <!-- PANEL 3: Pay -->
+            <div class="don-panel" id="wiz-panel-3">
+              <h4 style="margin-bottom:0.25rem">Demo Payment Gateway</h4>
+              <p style="font-size:0.75rem;color:var(--color-text-muted);margin-bottom:1rem">This is only a frontend simulation card.</p>
+
+              <div class="cd-review-table" style="margin-bottom:1rem">
+                <div class="cd-review-row"><span>Campaign</span><span class="cd-review-val">Cyclone Relief 2026</span></div>
+                <div class="cd-review-row"><span>Amount</span><span class="cd-review-val highlight" id="wiz-rev-amount">₹1,000</span></div>
+                <div class="cd-review-row"><span>Frequency</span><span class="cd-review-val" id="wiz-rev-freq">One Time</span></div>
+                <div class="cd-review-row"><span>Donor</span><span class="cd-review-val" id="wiz-rev-name">Rahul Patil</span></div>
+              </div>
+
+              <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:0.5rem">Select Method</div>
+              <div class="pay-opt-grid">
+                <button class="pay-opt-btn is-active" id="pay-upi" onclick="setPayMethod('UPI')">📱 UPI</button>
+                <button class="pay-opt-btn" id="pay-card" onclick="setPayMethod('Card')">💳 Card</button>
+                <button class="pay-opt-btn" id="pay-net" onclick="setPayMethod('Net Banking')">🏦 Net</button>
+              </div>
+
+              <div style="background:var(--color-surface-alt);padding:0.75rem;border-radius:var(--radius-md);font-size:0.75rem;color:var(--color-text-muted);margin-bottom:1.25rem;text-align:center">
+                🔒 Simulated secure transmission.<br><strong>No real payment will be processed.</strong>
+              </div>
+
+              <button class="cd-btn-confirm" id="btn-pay-action" onclick="executePayment()" style="background:var(--color-urgent)">Pay ₹1,000</button>
+
+              <div class="ff-nav" style="margin-top:0.75rem">
+                <button class="ff-btn-back" onclick="goWizStep(2)" style="width:100%">← Back</button>
+              </div>
+            </div>
+
+            <!-- PANEL: Success -->
+            <div class="don-panel" id="wiz-panel-success" style="text-align:center">
+              <div class="ff-success-icon" style="background:#EBFEEB; color:var(--color-primary)">✓</div>
+              <h3 style="margin-bottom:0.25rem">Thank You!</h3>
+              <p style="font-size:0.875rem;color:var(--color-text-muted);margin-bottom:1rem">Your contribution has been simulated successfully.</p>
+
+              <div class="cd-review-table" style="margin-bottom:1rem">
+                <div class="cd-review-row"><span>Receipt ID</span><span class="cd-review-val" id="suc-ref-id" style="font-family:monospace">UL-DON-2026-00124</span></div>
+                <div class="cd-review-row"><span>Amount</span><span class="cd-review-val highlight" id="suc-amount">₹1,000</span></div>
+                <div class="cd-review-row"><span>Status</span><span class="cd-review-val" style="color:var(--color-primary);font-weight:700">Successful</span></div>
+              </div>
+
+              <div style="background:var(--color-surface-alt);padding:0.6rem;border-radius:var(--radius-md);font-size:0.7rem;color:var(--color-text-muted);margin-bottom:1rem">
+                💡 Frontend Demo Prototype
+              </div>
+
+              <a href="campaigns.html" class="btn btn--outline btn--sm btn--full" style="margin-bottom:0.5rem">View Other Campaigns</a>
+              <a href="index.html" class="btn btn--ghost btn--sm btn--full">Return Home</a>
+            </div>
+
+            <!-- PANEL: Failure -->
+            <div class="don-panel" id="wiz-panel-failure" style="text-align:center">
+              <div class="ff-success-icon" style="background:#FFEBEB; color:var(--color-urgent)">✕</div>
+              <h3 style="margin-bottom:0.25rem;color:var(--color-urgent)">Payment Not Completed</h3>
+              <p style="font-size:0.875rem;color:var(--color-text-muted);margin-bottom:1.5rem">Your simulated transaction could not be processed.</p>
+
+              <button class="btn btn--urgent btn--full" style="background:var(--color-urgent);border:none" onclick="goWizStep(3)">Try Again</button>
+              <a href="campaign-cyclone-relief.html" class="btn btn--ghost btn--full" style="margin-top:0.5rem">Return to Campaign</a>
+            </div>
+
+          </div>
+
+          <!-- Transparency details -->
+          <div style="background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:1.5rem;box-shadow:var(--shadow-sm);text-align:center">
+            <h4 style="margin-bottom:0.5rem">Donor Transparency</h4>
+            <p style="font-size:0.75rem;color:var(--color-text-muted);line-height:1.5">Unke Liye holds MAH/2015/1234 registration. All contributions are 80G tax exempt. Financial sheets are audited quarterly.<br><br><span style="color:var(--color-urgent)">* All figures shown on this frontend prototype are sample/demo values.</span></p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- RELATED CAMPAIGNS -->
+  <section class="pg-section pg-section--alt">
+    <div class="container">
+      <div class="pg-flex-between reveal" style="margin-bottom:2rem">
+        <h2>Other Campaigns You Can Support</h2>
+        <a href="campaigns.html" class="btn btn--outline">All Campaigns →</a>
+      </div>
+      <div class="pg-grid-3 reveal">
+        <div class="pg-photo-card">
+          <div class="pg-photo-card__img" style="background-image:url('https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=600&q=80')"></div>
+          <div class="pg-photo-card__body">
+            <div class="pg-pill pg-pill--care" style="font-size:.65rem;margin-bottom:.5rem">Animal Rescue</div>
+            <h3>Monsoon Rescue &amp; Shelter</h3>
+            <div class="pg-progress-bar" style="margin:.5rem 0"><div class="pg-progress-fill" style="width:42%;background:var(--color-primary)"></div></div>
+            <p style="font-size:.875rem;color:var(--color-text-muted)">₹2.1L of ₹5L raised · 48 days left</p>
+            <a href="campaign-donate.html?id=animal-rescue" class="btn btn--primary btn--sm" style="margin-top:.75rem">Donate Now</a>
+          </div>
+        </div>
+        <div class="pg-photo-card">
+          <div class="pg-photo-card__img" style="background-image:url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=600&q=80')"></div>
+          <div class="pg-photo-card__body">
+            <div class="pg-pill pg-pill--green" style="font-size:.65rem;margin-bottom:.5rem">Environment</div>
+            <h3>Plant 25,000 Native Trees</h3>
+            <div class="pg-progress-bar" style="margin:.5rem 0"><div class="pg-progress-fill" style="width:68%;background:var(--color-primary)"></div></div>
+            <p style="font-size:.875rem;color:var(--color-text-muted)">₹5.44L of ₹8L raised · 32 days left</p>
+            <a href="campaign-donate.html?id=tree-plantation" class="btn btn--primary btn--sm" style="margin-top:.75rem">Donate Now</a>
+          </div>
+        </div>
+        <div class="pg-photo-card">
+          <div class="pg-photo-card__img" style="background-image:url('https://images.unsplash.com/photo-1581888227599-779811939961?auto=format&fit=crop&w=600&q=80')"></div>
+          <div class="pg-photo-card__body">
+            <div class="pg-pill pg-pill--blue" style="font-size:.65rem;margin-bottom:.5rem">Sanitation</div>
+            <h3>Mobile Vet Rural Clinics</h3>
+            <div class="pg-progress-bar" style="margin:.5rem 0"><div class="pg-progress-fill" style="width:29%;background:var(--color-primary)"></div></div>
+            <p style="font-size:.875rem;color:var(--color-text-muted)">₹1.45L of ₹5L raised · 60 days left</p>
+            <a href="campaign-donate.html?id=mobile-vet" class="btn btn--primary btn--sm" style="margin-top:.75rem">Donate Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="pg-section pg-section--tight" style="background:var(--color-primary-dark);color:#fff">
+    <div class="container" style="text-align:center;padding:var(--space-8) 0">
+      <h2 style="color:#fff;margin-bottom:1rem">Together, We Can Help Communities Recover</h2>
+      <p style="max-width:600px;margin:0 auto var(--space-6);color:rgba(255,255,255,0.8);font-size:var(--text-lg)">Your tax-exempt contribution directly supplies immediate hot food, shelter poles, and animal welfare operations.</p>
+      <div style="display:flex;justify-content:center;gap:1rem;flex-wrap:wrap">
+        <button onclick="scrollToDonate()" class="btn btn--primary">Donate Now 💚</button>
+        <a href="volunteer.html" class="btn btn--outline-white">Become a Volunteer</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Lightbox Modal for Gallery -->
+<div class="pg-lightbox" id="wiz-lightbox">
+  <div class="pg-lightbox__inner">
+    <button class="pg-lightbox__close" onclick="closeLightbox()">✕</button>
+    <div class="pg-lightbox__img" id="lightbox-img-pane"></div>
+    <div class="pg-lightbox__caption" id="lightbox-caption-text"></div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col footer-col--brand">
+        <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="footer-logo-img" /></a>
+        <p style="color:rgba(255,255,255,.7);font-size:.875rem;line-height:1.75">Registered NGO — Animal Rescue, Environmental Conservation, Sanitation &amp; Disaster Relief across Maharashtra.</p>
+      </div>
+      <div class="footer-col">
+        <h4 style="color:#fff;margin-bottom:1rem">Get Involved</h4>
+        <ul style="list-style:none;padding:0;margin:0;display:grid;gap:.5rem;font-size:.875rem">
+          <li><a href="volunteer.html">Volunteer</a></li>
+          <li><a href="foster.html">Foster an Animal</a></li>
+          <li><a href="donate.html">Make a Donation</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 style="color:#fff;margin-bottom:1rem">Emergency</h4>
+        <p style="color:rgba(255,255,255,.7);font-size:.875rem;line-height:1.6;margin-bottom:.75rem">🚨 <strong>24/7 Rescue:</strong><br><a href="tel:+918888800000" style="color:#fff;font-weight:600">+91 88888 00000</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Unke Liye · Reg. No. MAH/2015/1234 · 80G Exempt</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+(function() {
+  // ── BEFORE/AFTER SLIDER ──
+  var compare = document.getElementById('compare-slider');
+  var handle = document.getElementById('compare-handle');
+  var afterImg = document.getElementById('compare-after-img');
+  
+  if (compare && handle && afterImg) {
+    var dragging = false;
+    
+    function setPosition(x) {
+      var rect = compare.getBoundingClientRect();
+      var pct = ((x - rect.left) / rect.width) * 100;
+      pct = Math.max(0, Math.min(100, pct));
+      afterImg.style.clipPath = 'inset(0 0 0 ' + pct + '%)';
+      handle.style.left = pct + '%';
+    }
+    
+    compare.addEventListener('mousedown', function(e) { dragging = true; setPosition(e.clientX); });
+    window.addEventListener('mousemove', function(e) { if (dragging) setPosition(e.clientX); });
+    window.addEventListener('mouseup', function() { dragging = false; });
+    
+    compare.addEventListener('touchstart', function(e) { dragging = true; setPosition(e.touches[0].clientX); }, { passive: true });
+    window.addEventListener('touchmove', function(e) { if (dragging) setPosition(e.touches[0].clientX); }, { passive: true });
+    window.addEventListener('touchend', function() { dragging = false; });
+  }
+
+  // ── ACCORDION ──
+  document.querySelectorAll('.faq-question').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var item = btn.closest('.faq-item');
+      var isOpen = item.classList.contains('is-open');
+      document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('is-open'); });
+      if (!isOpen) item.classList.add('is-open');
+    });
+  });
+
+  // ── GALLERY LIGHTBOX ──
+  window.openLightbox = function(url, caption) {
+    document.getElementById('lightbox-img-pane').style.backgroundImage = "url('" + url + "')";
+    document.getElementById('lightbox-caption-text').textContent = caption;
+    document.getElementById('wiz-lightbox').classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  };
+  
+  window.closeLightbox = function() {
+    document.getElementById('wiz-lightbox').classList.remove('is-open');
+    document.body.style.overflow = '';
+  };
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeLightbox();
+  });
+
+  // ── SCROLL TO DONATE ──
+  window.scrollToDonate = function() {
+    var db = document.getElementById('donate-box');
+    if (db) db.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  };
+
+  // ── WIZARD FORM STATE ──
+  var state = {
+    amount: 1000,
+    customAmount: null,
+    frequency: 'One Time',
+    name: '',
+    email: '',
+    phone: '',
+    message: '',
+    payMethod: 'UPI'
+  };
+
+  var currentStep = 1;
+
+  var impacts = {
+    500: 'Provides essential food supplies for one displaced family for 3 days.',
+    1000: 'Supports clean water and hygiene supplies for two families.',
+    2500: 'Delivers a full family relief kit including bedding and clothing.',
+    5000: 'Supports temporary shelter and essential supplies.',
+    10000: 'Sponsors a complete emergency village response kit.'
+  };
+
+  window.setWizAmount = function(val) {
+    state.amount = val;
+    state.customAmount = null;
+    document.getElementById('wiz-custom-input').value = '';
+    document.querySelectorAll('.don-amount-btn').forEach(function(b) {
+      b.classList.toggle('is-active', parseInt(b.dataset.val) === val);
+    });
+    updateImpactText(val);
+  };
+
+  window.onWizCustomAmountInput = function() {
+    var val = parseInt(document.getElementById('wiz-custom-input').value);
+    if (val > 0) {
+      state.amount = val;
+      state.customAmount = val;
+      document.querySelectorAll('.don-amount-btn').forEach(function(b) { b.classList.remove('is-active'); });
+      updateImpactText(val);
+    }
+  };
+
+  function updateImpactText(val) {
+    var text = impacts[val] || 'Supports direct cyclone emergency response relief.';
+    document.getElementById('wiz-impact-text').textContent = '💚 ' + text;
+  }
+
+  window.setWizFreq = function(f) {
+    state.frequency = f;
+    document.getElementById('wiz-freq-one').classList.toggle('is-active', f === 'One Time');
+    document.getElementById('wiz-freq-mon').classList.toggle('is-active', f === 'Monthly');
+  };
+
+  window.goWizStep = function(step) {
+    if (step === 2 && !validateStep1()) return;
+    if (step === 3 && !validateStep2()) return;
+    if (step === 3) populateWizReview();
+
+    currentStep = step;
+    [1,2,3].forEach(function(n) {
+      document.getElementById('wiz-panel-' + n).classList.toggle('is-active', n === step);
+      var ind = document.getElementById('wiz-step-' + n);
+      ind.classList.remove('is-active','is-done');
+      if (n < step) ind.classList.add('is-done');
+      if (n === step) ind.classList.add('is-active');
+    });
+    window.scrollToDonate();
+  };
+
+  function validateStep1() {
+    var amt = state.customAmount || state.amount;
+    if (!amt || amt < 100) { alert('Minimum donation is ₹100.'); return false; }
+    return true;
+  }
+
+  function validateStep2() {
+    var ok = true;
+    var name = document.getElementById('wiz-name').value.trim();
+    var email = document.getElementById('wiz-email').value.trim();
+    var phone = document.getElementById('wiz-phone').value.trim();
+
+    function chk(id, errId, cond) {
+      document.getElementById(id).classList.toggle('ff-input-err', !cond);
+      document.getElementById(errId).classList.toggle('show', !cond);
+      if (!cond) ok = false;
+    }
+
+    chk('wiz-name', 'wiz-err-name', name.length >= 2);
+    chk('wiz-email', 'wiz-err-email', /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email));
+    chk('wiz-phone', 'wiz-err-phone', /^\d{10}$/.test(phone));
+
+    if (ok) {
+      state.name = name;
+      state.email = email;
+      state.phone = phone;
+      state.message = document.getElementById('wiz-message').value.trim();
+    }
+    return ok;
+  }
+
+  function populateWizReview() {
+    var amt = state.customAmount || state.amount;
+    document.getElementById('wiz-rev-amount').textContent = '₹' + amt.toLocaleString('en-IN');
+    document.getElementById('wiz-rev-freq').textContent = state.frequency;
+    document.getElementById('wiz-rev-name').textContent = state.name;
+    document.getElementById('btn-pay-action').textContent = 'Pay ₹' + amt.toLocaleString('en-IN');
+  }
+
+  window.setPayMethod = function(m) {
+    state.payMethod = m;
+    document.getElementById('pay-upi').classList.toggle('is-active', m === 'UPI');
+    document.getElementById('pay-card').classList.toggle('is-active', m === 'Card');
+    document.getElementById('pay-net').classList.toggle('is-active', m === 'Net Banking');
+  };
+
+  window.executePayment = function() {
+    var btn = document.getElementById('btn-pay-action');
+    btn.textContent = 'Simulating Payment…';
+    btn.disabled = true;
+
+    setTimeout(function() {
+      // Simulate success 90% of times, failure 10% for test diversity
+      var isSuccess = Math.random() > 0.1;
+      
+      document.getElementById('wiz-panel-3').classList.remove('is-active');
+      
+      if (isSuccess) {
+        var ref = 'UL-DON-2026-' + String(Math.floor(10000 + Math.random() * 90000));
+        var amt = state.customAmount || state.amount;
+        document.getElementById('suc-ref-id').textContent = ref;
+        document.getElementById('suc-amount').textContent = '₹' + amt.toLocaleString('en-IN');
+        document.getElementById('wiz-panel-success').classList.add('is-active');
+      } else {
+        document.getElementById('wiz-panel-failure').classList.add('is-active');
+      }
+      btn.disabled = false;
+      populateWizReview();
+      window.scrollToDonate();
+    }, 1200);
+  };
+})();
+</script>
+</body>
+</html>

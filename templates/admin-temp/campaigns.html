@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Campaigns — Unke Liye Admin</title>
+<link rel="stylesheet" href="assets/variables.css">
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" href="assets/components.css">
+<link rel="stylesheet" href="assets/charts.css">
+<style>
+.prog-cell { min-width: 140px; }
+.prog-label { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-secondary); margin-top: 3px; }
+.star-toggle { color: var(--border-subtle); transition: color var(--transition-fast); }
+.star-toggle.starred { color: #F59E0B; }
+.star-toggle:hover { color: #F59E0B; }
+</style>
+</head>
+<body>
+
+<div class="toast-region" id="toast-region" aria-live="polite">
+  <div class="toast hidden" id="toast-tpl-success" role="alert"><div class="toast-icon success"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="toast-body"><div class="toast-title">Success</div><div class="toast-msg"></div></div><button class="toast-close" aria-label="Close"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button><div class="toast-progress"></div></div>
+  <div class="toast hidden" id="toast-tpl-danger" role="alert"><div class="toast-icon danger"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div class="toast-body"><div class="toast-title">Deleted</div><div class="toast-msg"></div></div><button class="toast-close" aria-label="Close"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button><div class="toast-progress" style="background:var(--status-danger)"></div></div>
+  <div class="toast hidden" id="toast-tpl-info" role="alert"><div class="toast-icon info"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div><div class="toast-body"><div class="toast-title">Info</div><div class="toast-msg"></div></div><button class="toast-close" aria-label="Close"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button><div class="toast-progress" style="background:var(--status-info)"></div></div>
+</div>
+
+<!-- Confirm Delete Modal -->
+<div class="modal-backdrop" id="modal-confirm-delete">
+  <div class="modal-panel">
+    <div class="modal-header">
+      <h2>Delete Campaign</h2>
+      <button class="modal-close" data-modal-close="modal-confirm-delete" aria-label="Close">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p style="margin-bottom:var(--sp-3);">Are you sure you want to permanently delete this campaign? This action cannot be undone and all associated donation data will be preserved but unlinked.</p>
+      <p style="color:var(--status-danger);font-size:0.875rem;font-weight:500;">This campaign will be removed from the public site immediately.</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" data-modal-close="modal-confirm-delete">Cancel</button>
+      <button class="btn btn-danger" data-modal-close="modal-confirm-delete"
+        data-toast="danger" data-toast-title="Campaign Deleted" data-toast-msg="The campaign has been permanently removed.">Delete Campaign</button>
+    </div>
+  </div>
+</div>
+
+<!-- New Campaign Modal -->
+<div class="modal-backdrop" id="modal-new-campaign">
+  <div class="modal-panel modal-lg">
+    <div class="modal-header">
+      <h2>Create New Campaign</h2>
+      <button class="modal-close" data-modal-close="modal-new-campaign" aria-label="Close">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="form-group"><label class="form-label required">Campaign Title</label><input class="form-control" type="text" placeholder="e.g. Save Raju — Street Dog Rescue"></div>
+        <div class="form-group">
+          <label class="form-label required">Pillar</label>
+          <select class="form-control">
+            <option>Animal Rescue</option>
+            <option>Environment</option>
+            <option>Sanitation</option>
+            <option>Disaster Relief</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group"><label class="form-label required">Description</label><textarea class="form-control" rows="4" placeholder="Describe the campaign purpose, goals, and impact…"></textarea></div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label required">Target Amount (₹)</label><input class="form-control" type="number" placeholder="150000"></div>
+        <div class="form-group"><label class="form-label">Cover Image URL</label><input class="form-control" type="url" placeholder="https://loremflickr.com/800/400/dog"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label required">Start Date</label><input class="form-control" type="date" value="2025-06-10"></div>
+        <div class="form-group"><label class="form-label required">End Date</label><input class="form-control" type="date" value="2025-08-31"></div>
+      </div>
+      <div class="toggle-wrap">
+        <label class="toggle"><input type="checkbox"><span class="toggle-track"></span></label>
+        <span class="toggle-label">Feature this campaign on homepage</span>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" data-modal-close="modal-new-campaign">Cancel</button>
+      <button class="btn btn-secondary" data-modal-close="modal-new-campaign" data-toast="info" data-toast-title="Draft Saved" data-toast-msg="Campaign saved as draft.">Save Draft</button>
+      <button class="btn btn-primary" data-modal-close="modal-new-campaign" data-toast="success" data-toast-title="Campaign Created" data-toast-msg="Campaign is now live on the public site.">Publish Campaign</button>
+    </div>
+  </div>
+</div>
+
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+<div class="admin-shell">
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <img src="../logo.png" alt="Unke Liye Logo" class="sidebar-logo-img">
+    <div class="sidebar-logo-text"><strong>Unke Liye</strong><span>Admin Panel</span></div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-group"><div class="nav-group-label">Overview</div>
+      <a href="dashboard.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg><span class="nav-link-label">Dashboard</span></a>
+    </div>
+    <div class="nav-group"><div class="nav-group-label">Content</div>
+      <a href="content.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg><span class="nav-link-label">Homepage Content</span></a>
+      <a href="banners.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg><span class="nav-link-label">Page Banners</span></a>
+      <a href="stories.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg><span class="nav-link-label">Stories</span></a>
+      <a href="news.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg><span class="nav-link-label">News</span></a>
+      <a href="gallery.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span class="nav-link-label">Gallery</span></a>
+    </div>
+    <div class="nav-group"><div class="nav-group-label">Programs</div>
+      <a href="campaigns.html" class="nav-link active" aria-current="page"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span class="nav-link-label">Campaigns</span></a>
+      <a href="animals.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2.823.47-4.113 6.006-4 7 .08.703 1.725 1.722 3.656 1 1.261-.472 1.96-1.45 2.344-2.5"/><path d="M14.267 5.172c0-1.39 1.577-2.493 3.5-2.172 2.823.47 4.113 6.006 4 7-.08.703-1.725 1.722-3.656 1-1.261-.472-1.96-1.45-2.344-2.5"/><path d="M8 14v.5"/><path d="M16 14v.5"/><path d="M11.25 16.25h1.5L12 17l-.75-.75z"/><path d="M4.42 11.247A13.152 13.152 0 0 0 4 14.556C4 18.728 7.582 21 12 21s8-2.272 8-6.444c0-1.273-.241-2.248-.382-2.826"/></svg><span class="nav-link-label">Animals</span></a>
+      <a href="events.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span class="nav-link-label">Events</span></a>
+    </div>
+    <div class="nav-group"><div class="nav-group-label">People</div>
+      <a href="volunteers.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span class="nav-link-label">Volunteers</span></a>
+      <a href="donors.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span class="nav-link-label">Donors</span></a>
+    </div>
+    <div class="nav-group"><div class="nav-group-label">Money</div>
+      <a href="donations.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg><span class="nav-link-label">Donations</span></a>
+      <a href="reports.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg><span class="nav-link-label">Reports</span></a>
+    </div>
+    <div class="nav-group"><div class="nav-group-label">Operations</div>
+      <a href="messages.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span class="nav-link-label">Messages</span><span class="badge badge-danger" style="margin-left:auto;padding:2px 6px;font-size:.65rem;">7</span></a>
+    </div>
+    <div class="nav-group"><div class="nav-group-label">System</div>
+      <a href="admin-users.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span class="nav-link-label">Admin Users</span></a>
+      <a href="settings.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg><span class="nav-link-label">Settings</span></a>
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    <button class="sidebar-collapse-btn" id="sidebar-collapse" aria-label="Collapse sidebar">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+      <span class="sidebar-collapse-btn-label">Collapse</span>
+    </button>
+  </div>
+</aside>
+
+<div class="main-content" id="main-content">
+  <!-- Topbar -->
+  <header class="topbar">
+    <div class="topbar-breadcrumb">
+      <a href="dashboard.html">Unke Liye</a><span class="sep">/</span>
+      <a href="campaigns.html">Programs</a><span class="sep">/</span>
+      <span class="current">Campaigns</span>
+    </div>
+    <div class="topbar-search">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="search" placeholder="Search campaigns…" aria-label="Search" data-search-table="campaigns-table">
+    </div>
+    <div class="topbar-actions">
+      <button class="topbar-icon-btn theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+      <div class="dropdown-wrap">
+        <button class="topbar-profile" data-dropdown="profile-dd" aria-expanded="false">
+          <div class="profile-avatar">RS</div>
+          <div class="profile-info"><strong>Rohit Sinha</strong><small>Super Admin</small></div>
+        </button>
+        <div class="dropdown-menu profile-menu" id="profile-dd">
+          <a href="settings.html" class="dropdown-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="login.html" class="dropdown-item danger"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Sign Out</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-content">
+    <div class="page-header">
+      <div class="page-header-left">
+        <h1>Campaigns</h1>
+        <p>Manage all fundraising campaigns across the four program pillars.</p>
+      </div>
+      <div class="page-header-actions">
+        <button class="btn btn-secondary btn-sm">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="8 17 12 21 16 17"/><line x1="12" y1="3" x2="12" y2="21"/></svg>
+          Export
+        </button>
+        <button class="btn btn-primary btn-sm" data-modal-open="modal-new-campaign">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          New Campaign
+        </button>
+      </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="table-toolbar">
+      <div class="search-input-wrap">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text-secondary)"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input class="search-input" type="search" placeholder="Search by title…" data-search-table="campaigns-table">
+      </div>
+      <div class="filter-chips" data-filter-table="campaigns-table" data-filter-attr="data-status">
+        <button class="filter-chip active" data-filter-val="all">All (12)</button>
+        <button class="filter-chip" data-filter-val="active">Active</button>
+        <button class="filter-chip" data-filter-val="draft">Draft</button>
+        <button class="filter-chip" data-filter-val="completed">Completed</button>
+        <button class="filter-chip" data-filter-val="archived">Archived</button>
+      </div>
+      <select class="filter-select" data-filter-select="campaigns-table" data-filter-attr="data-pillar">
+        <option value="">All Pillars</option>
+        <option value="animal">Animal Rescue</option>
+        <option value="environment">Environment</option>
+        <option value="sanitation">Sanitation</option>
+        <option value="disaster">Disaster Relief</option>
+      </select>
+    </div>
+
+    <!-- Table -->
+    <div class="table-wrap">
+      <table class="data-table" id="campaigns-table">
+        <thead>
+          <tr>
+            <th class="col-check"><input type="checkbox" aria-label="Select all"></th>
+            <th>★</th>
+            <th data-sort="2">Title</th>
+            <th data-sort="3">Pillar</th>
+            <th data-sort="4">Progress</th>
+            <th data-sort="5">Status</th>
+            <th data-sort="6">Dates</th>
+            <th class="col-action">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Page 1 -->
+          <tr data-status="active" data-pillar="animal" class="page-group" data-page="1">
+            <td class="col-check" data-label=""><input type="checkbox" aria-label="Select row"></td>
+            <td data-label="Featured"><button class="star-toggle starred" aria-label="Unfeature campaign">★</button></td>
+            <td data-label="Title"><a href="campaign-detail.html" style="font-weight:500;color:var(--brand-primary)">Save Raju — Street Dog Rescue</a></td>
+            <td data-label="Pillar"><span class="badge badge-terracotta">Animal Rescue</span></td>
+            <td data-label="Progress" class="prog-cell">
+              <div class="progress-bar-wrap"><div class="progress-bar-fill terracotta" style="width:78%"></div></div>
+              <div class="prog-label"><span>₹1,17,000 / ₹1,50,000</span><span>78%</span></div>
+            </td>
+            <td data-label="Status"><span class="badge badge-success"><span class="badge-dot" style="background:var(--status-success)"></span>Active</span></td>
+            <td data-label="Dates" style="font-size:0.8125rem;color:var(--text-secondary);">1 Mar – 30 Jun 2025</td>
+            <td class="col-action" data-label="Actions">
+              <div class="row-actions">
+                <a href="campaign-detail.html" class="row-action-btn" aria-label="View campaign"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></a>
+                <button class="row-action-btn" aria-label="Edit campaign"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+                <button class="row-action-btn danger" aria-label="Delete campaign" data-modal-open="modal-confirm-delete"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></button>
+              </div>
+            </td>
+          </tr>
+          <tr data-status="active" data-pillar="environment" class="page-group" data-page="1">
+            <td class="col-check" data-label=""><input type="checkbox" aria-label="Select row"></td>
+            <td data-label="Featured"><button class="star-toggle" aria-label="Feature campaign">☆</button></td>
+            <td data-label="Title"><a href="campaign-detail.html" style="font-weight:500;color:var(--brand-primary)">Pune River Clean-Up Drive</a></td>
+            <td data-label="Pillar"><span class="badge badge-leaf">Environment</span></td>
+            <td data-label="Progress" class="prog-cell">
+              <div class="progress-bar-wrap"><div class="progress-bar-fill leaf" style="width:61%"></div></div>
+              <div class="prog-label"><span>₹91,500 / ₹1,50,000</span><span>61%</span></div>
+            </td>
+            <td data-label="Status"><span class="badge badge-success"><span class="badge-dot" style="background:var(--status-success)"></span>Active</span></td>
+            <td data-label="Dates" style="font-size:0.8125rem;color:var(--text-secondary);">15 Apr – 15 Jul 2025</td>
+            <td class="col-action" data-label="Actions"><div class="row-actions"><a href="campaign-detail.html" class="row-action-btn" aria-label="View"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></a><button class="row-action-btn" aria-label="Edit"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button><button class="row-action-btn danger" aria-label="Delete" data-modal-open="modal-confirm-delete"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></button></div></td>
+          </tr>
+          <tr data-status="active" data-pillar="sanitation" class="page-group" data-page="1">
+            <td class="col-check" data-label=""><input type="checkbox" aria-label="Select row"></td>
+            <td data-label="Featured"><button class="star-toggle starred" aria-label="Unfeature">★</button></td>
+            <td data-label="Title"><a href="campaign-detail.html" style="font-weight:500;color:var(--brand-primary)">Slum Sanitation Project — Dharavi</a></td>
+            <td data-label="Pillar"><span class="badge badge-slate">Sanitation</span></td>
+            <td data-label="Progress" class="prog-cell">
+              <div class="progress-bar-wrap"><div class="progress-bar-fill slate" style="width:89%"></div></div>
+              <div class="prog-label"><span>₹2,67,000 / ₹3,00,000</span><span>89%</span></div>
+            </td>
+            <td data-label="Status"><span class="badge badge-success"><span class="badge-dot" style="background:var(--status-success)"></span>Active</span></td>
+            <td data-label="Dates" style="font-size:0.8125rem;color:var(--text-secondary);">1 Jan – 31 Aug 2025</td>
+            <td class="col-action" data-label="Actions"><div class="row-actions"><a href="campaign-detail.html" class="row-action-btn" aria-label="View"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></a><button class="row-action-btn" aria-label="Edit"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button><button class="row-action-btn danger" aria-label="Delete" data-modal-open="modal-confirm-delete"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></button></div></td>
+          </tr>
+          <tr data-status="active" data-pillar="disaster" class="page-group" data-page="1">
+            <td class="col-check" data-label=""><input type="checkbox" aria-label="Select row"></td>
+            <td data-label="Featured"><button class="star-toggle starred" aria-label="Unfeature">★</button></td>
+            <td data-label="Title"><a href="campaign-detail.html" style="font-weight:500;color:var(--brand-primary)">Uttarakhand Flood Relief 2025</a></td>
+            <td data-label="Pillar"><span class="badge badge-red">Disaster Relief</span></td>
+            <td data-label="Progress" class="prog-cell">
+              <div class="progress-bar-wrap"><div class="progress-bar-fill red" style="width:94%"></div></div>
+              <div class="prog-label"><span>₹4,70,000 / ₹5,00,000</span><span>94%</span></div>
+            </td>
+            <td data-label="Status"><span class="badge badge-success"><span class="badge-dot" style="background:var(--status-success)"></span>Active</span></td>
+            <td data-label="Dates" style="font-size:0.8125rem;color:var(--text-secondary);">12 May – 30 Jun 2025</td>
+            <td class="col-action" data-label="Actions"><div class="row-actions"><a href="campaign-detail.html" class="row-action-btn" aria-label="View"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></a><button class="row-action-btn" aria-label="Edit"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button><button class="row-action-btn danger" aria-label="Delete" data-modal-open="modal-confirm-delete"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></button></div></td>
+          </tr>
+          <tr data-status="active" data-pillar="environment" class="page-group" data-page="1">
+            <td class="col-check" data-label=""><input type="checkbox" aria-label="Select row"></td>
+            <td data-label="Featured"><button class="star-toggle" aria-label="Feature">☆</button></td>
+            <td data-label="Title"><a href="campaign-detail.html" style="font-weight:500;color:var(--brand-primary)">Adopt-a-Tree: Mumbai Suburbs</a></td>
+            <td data-label="Pillar"><span class="badge badge-leaf">Environment</span></td>
+            <td data-label="Progress" class="prog-cell">
+              <div class="progress-bar-wrap"><div class="progress-bar-fill leaf" style="width:44%"></div></div>
+              <div class="prog-label"><span>₹44,000 / ₹1,00,000</span><span>44%</span></div>
+            </td>
+            <td data-label="Status"><span class="badge badge-success"><span class="badge-dot" style="background:var(--status-success)"></span>Active</span></td>
+            <td data-label="Dates" style="font-size:0.8125rem;color:var(--text-secondary);">1 Jun – 31 Aug 2025</td>
+            <td class="col-action" data-label="Actions"><div class="row-actions"><a href="campaign-detail.html" class="row-action-btn" aria-label="View"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></a><button class="row-action-btn" aria-label="Edit"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button><button class="row-action-btn danger" aria-label="Delete" data-modal-open="modal-confirm-delete"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></button></div></td>
+          </tr>
+          <tr data-status="draft" data-pillar="animal" class="page-group" data-page="1">
+            <td class="col-check" data-label=""><input type="checkbox" aria-label="Select row"></td>
+            <td data-label="Featured"><button class="star-toggle" aria-label="Feature">☆</button></td>
+            <td data-label="Title"><span style="font-weight:500;">Winter Dog Shelter — Delhi</span></td>
+            <td data-label="Pillar"><span class="badge badge-terracotta">Animal Rescue</span></td>
+            <td data-label="Progress" class="prog-cell">
+              <div class="progress-bar-wrap"><div class="progress-bar-fill terracotta" style="width:0%"></div></div>
+              <div class="prog-label"><span>₹0 / ₹2,50,000</span><span>0%</span></div>
+            </td>
+            <td data-label="Status"><span class="badge badge-neutral">Draft</span></td>
+            <td data-label="Dates" style="font-size:0.8125rem;color:var(--text-secondary);">15 Jun – 31 Dec 2025</td>
+            <td class="col-action" data-label="Actions"><div class="row-actions"><button class="row-action-btn" aria-label="Edit"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button><button class="row-action-btn danger" aria-label="Delete" data-modal-open="modal-confirm-delete"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></button></div></td>
+          </tr>
+          <!-- Page 2 -->
+          <tr data-status="active" data-pillar="sanitation" class="page-group row-hidden" data-page="2">
+            <td class="col-check" data-label=""><input type="checkbox" aria-label="Select row"></td>
+            <td data-label="Featured"><button class="star-toggle" aria-label="Feature">☆</button></td>
+            <td data-label="Title"><a href="campaign-detail.html" style="font-weight:500;color:var(--brand-primary)">Clean Ganges Initiative 2025</a></td>
+            <td data-label="Pillar"><span class="badge badge-leaf">Environment</span></td>
+            <td data-label="Progress" class="prog-cell">
+              <div class="progress-bar-wrap"><div class="progress-bar-fill leaf" style="width:32%"></div></div>
+              <div class="prog-label"><span>₹1,28,000 / ₹4,00,000</span><span>32%</span></div>
+            </td>
+            <td data-label="Status"><span class="badge badge-success"><span class="badge-dot" style="background:var(--status-success)"></span>Active</span></td>
+            <td data-label="Dates" style="font-size:0.8125rem;color:var(--text-secondary);">1 May – 30 Sep 2025</td>
+            <td class="col-action" data-label="Actions"><div class="row-actions"><a href="campaign-detail.html" class="row-action-btn" aria-label="View"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></a><button class="row-action-btn" aria-label="Edit"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button><button class="row-action-btn danger" aria-label="Delete" data-modal-open="modal-confirm-delete"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></button></div></td>
+          </tr>
+          <tr data-status="completed" data-pillar="animal" class="page-group row-hidden" data-page="2">
+            <td class="col-check" data-label=""><input type="checkbox" aria-label="Select row"></td>
+            <td data-label="Featured"><button class="star-toggle" aria-label="Feature">☆</button></td>
+            <td data-label="Title"><span style="font-weight:500;">Stray Cat Vaccination Drive — Chennai</span></td>
+            <td data-label="Pillar"><span class="badge badge-terracotta">Animal Rescue</span></td>
+            <td data-label="Progress" class="prog-cell">
+              <div class="progress-bar-wrap"><div class="progress-bar-fill terracotta" style="width:100%"></div></div>
+              <div class="prog-label"><span>₹75,000 / ₹75,000</span><span>100%</span></div>
+            </td>
+            <td data-label="Status"><span class="badge badge-info">Completed</span></td>
+            <td data-label="Dates" style="font-size:0.8125rem;color:var(--text-secondary);">1 Jan – 28 Feb 2025</td>
+            <td class="col-action" data-label="Actions"><div class="row-actions"><button class="row-action-btn" aria-label="View"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button><button class="row-action-btn danger" aria-label="Delete" data-modal-open="modal-confirm-delete"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></button></div></td>
+          </tr>
+          <tr data-status="active" data-pillar="disaster" class="page-group row-hidden" data-page="2">
+            <td class="col-check" data-label=""><input type="checkbox" aria-label="Select row"></td>
+            <td data-label="Featured"><button class="star-toggle" aria-label="Feature">☆</button></td>
+            <td data-label="Title"><a href="campaign-detail.html" style="font-weight:500;color:var(--brand-primary)">Cyclone Relief Fund — Odisha Coast</a></td>
+            <td data-label="Pillar"><span class="badge badge-red">Disaster Relief</span></td>
+            <td data-label="Progress" class="prog-cell">
+              <div class="progress-bar-wrap"><div class="progress-bar-fill red" style="width:67%"></div></div>
+              <div class="prog-label"><span>₹3,35,000 / ₹5,00,000</span><span>67%</span></div>
+            </td>
+            <td data-label="Status"><span class="badge badge-success"><span class="badge-dot" style="background:var(--status-success)"></span>Active</span></td>
+            <td data-label="Dates" style="font-size:0.8125rem;color:var(--text-secondary);">3 Jun – 30 Jul 2025</td>
+            <td class="col-action" data-label="Actions"><div class="row-actions"><a href="campaign-detail.html" class="row-action-btn" aria-label="View"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></a><button class="row-action-btn" aria-label="Edit"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button><button class="row-action-btn danger" aria-label="Delete" data-modal-open="modal-confirm-delete"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></button></div></td>
+          </tr>
+          <tr data-status="archived" data-pillar="sanitation" class="page-group row-hidden" data-page="2">
+            <td class="col-check" data-label=""><input type="checkbox" aria-label="Select row"></td>
+            <td data-label="Featured"><button class="star-toggle" aria-label="Feature">☆</button></td>
+            <td data-label="Title"><span style="font-weight:500;color:var(--text-secondary);">Open Drain Repair — Nagpur Ward 7</span></td>
+            <td data-label="Pillar"><span class="badge badge-slate">Sanitation</span></td>
+            <td data-label="Progress" class="prog-cell">
+              <div class="progress-bar-wrap"><div class="progress-bar-fill slate" style="width:100%"></div></div>
+              <div class="prog-label"><span>₹1,20,000 / ₹1,20,000</span><span>100%</span></div>
+            </td>
+            <td data-label="Status"><span class="badge badge-neutral">Archived</span></td>
+            <td data-label="Dates" style="font-size:0.8125rem;color:var(--text-secondary);">Oct – Dec 2024</td>
+            <td class="col-action" data-label="Actions"><div class="row-actions"><button class="row-action-btn" aria-label="View"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button></div></td>
+          </tr>
+          <tr data-status="draft" data-pillar="environment" class="page-group row-hidden" data-page="2">
+            <td class="col-check" data-label=""><input type="checkbox" aria-label="Select row"></td>
+            <td data-label="Featured"><button class="star-toggle" aria-label="Feature">☆</button></td>
+            <td data-label="Title"><span style="font-weight:500;">Mangrove Restoration — Konkan Coast</span></td>
+            <td data-label="Pillar"><span class="badge badge-leaf">Environment</span></td>
+            <td data-label="Progress" class="prog-cell">
+              <div class="progress-bar-wrap"><div class="progress-bar-fill leaf" style="width:0%"></div></div>
+              <div class="prog-label"><span>₹0 / ₹6,00,000</span><span>0%</span></div>
+            </td>
+            <td data-label="Status"><span class="badge badge-neutral">Draft</span></td>
+            <td data-label="Dates" style="font-size:0.8125rem;color:var(--text-secondary);">TBD</td>
+            <td class="col-action" data-label="Actions"><div class="row-actions"><button class="row-action-btn" aria-label="Edit"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button><button class="row-action-btn danger" aria-label="Delete" data-modal-open="modal-confirm-delete"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></button></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination" data-pagination="campaigns-table">
+      <button class="page-btn" data-page="1">1</button>
+      <button class="page-btn" data-page="2">2</button>
+    </div>
+
+  </main>
+</div>
+</div>
+<script src="assets/app.js"></script>
+</body>
+</html>

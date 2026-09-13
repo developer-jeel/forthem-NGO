@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rescue Status — Unke Liye</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <style>
+    .dashboard-layout { display: grid; grid-template-columns: 1fr; gap: var(--space-8); }
+    @media (min-width: 1024px) { .dashboard-layout { grid-template-columns: 280px 1fr; } }
+    .dash-sidebar { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-6); height: fit-content; }
+    .rescue-update { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-5); margin-bottom: var(--space-4); }
+    .update-time { font-size: var(--text-xs); color: var(--color-text-muted); margin-bottom: var(--space-2); }
+    .update-status { font-weight: var(--font-weight-semibold); font-size: var(--text-sm); }
+    .update-note { font-size: var(--text-sm); color: var(--color-text-muted); margin-top: var(--space-2); }
+    .animal-detail-box { background: var(--color-surface-alt); border-radius: var(--radius-md); padding: var(--space-5); margin-bottom: var(--space-6); }
+    .detail-row { display: flex; justify-content: space-between; font-size: var(--text-sm); padding: var(--space-2) 0; border-bottom: 1px solid var(--color-border); }
+    .detail-row:last-child { border-bottom: none; }
+    .detail-label { color: var(--color-text-muted); }
+    .detail-value { font-weight: var(--font-weight-medium); }
+  </style>
+</head>
+<body>
+<a href="#main-content" class="skip-nav">Skip to main content</a>
+<div class="emergency-bar"><span class="pulse-dot" aria-hidden="true"></span><span>🚨 Animal in distress? —</span><a href="report-animal.html">Report Now →</a></div>
+<header class="site-header" role="banner">
+  <div class="container">
+    <nav class="nav-inner">
+      <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a>
+      <div class="nav-actions">
+        <a href="report-animal.html" class="btn btn--urgent btn--sm">🚨 Report Animal</a>
+        <a href="donate.html" class="btn btn--primary btn--sm">Donate</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="main-content">
+  <div class="page-hero" style="padding:var(--space-12) 0 var(--space-10); --ph-img: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80')">
+    <div class="container page-hero-content">
+      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">›</span><a href="login.html">My Account</a><span class="breadcrumb-sep">›</span><span aria-current="page">Rescue Status</span></nav>
+      <h1>Rescue Status Tracker</h1>
+      <p>Track your rescue report in real-time.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="dashboard-layout">
+
+        <!-- Sidebar -->
+        <aside class="dash-sidebar">
+          <div style="font-size:var(--text-xs);font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--color-text-muted);margin-bottom:var(--space-5)">Your Report</div>
+          <div style="background:var(--color-urgent-tint);border-radius:var(--radius-md);padding:var(--space-4);margin-bottom:var(--space-5)">
+            <div style="font-size:var(--text-xs);color:var(--color-text-muted)">Reference Number</div>
+            <div style="font-family:monospace;font-size:var(--text-base);font-weight:700;color:var(--color-urgent)">UKL-RESCUE-847291</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:var(--space-3);font-size:var(--text-sm)">
+            <div><span style="color:var(--color-text-muted)">Reported:</span> <strong>14 Mar 2024, 11:42 PM</strong></div>
+            <div><span style="color:var(--color-text-muted)">Animal:</span> <strong>Dog (Indie mix)</strong></div>
+            <div><span style="color:var(--color-text-muted)">Location:</span> <strong>Near Hadapsar Signal, Pune</strong></div>
+            <div><span style="color:var(--color-text-muted)">Urgency:</span> <strong style="color:var(--color-urgent)">Critical</strong></div>
+            <div><span style="color:var(--color-text-muted)">Reporter:</span> <strong>Meena Kulkarni</strong></div>
+          </div>
+          <div style="margin-top:var(--space-6);padding-top:var(--space-6);border-top:1px solid var(--color-border)">
+            <a href="report-animal.html" class="btn btn--urgent btn--full btn--sm">Report Another Animal</a>
+            <a href="index.html" class="btn btn--ghost btn--full btn--sm" style="margin-top:var(--space-3)">← Back to Home</a>
+          </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div>
+          <!-- Stepper -->
+          <div style="background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-8);margin-bottom:var(--space-8)">
+            <h2 style="font-size:var(--text-xl);margin-bottom:var(--space-8)">Rescue Progress</h2>
+            <div class="stepper" role="list" aria-label="Rescue status steps">
+              <div class="step done" role="listitem">
+                <div class="step-circle" aria-label="Completed">✓</div>
+                <div class="step-label">Reported</div>
+              </div>
+              <div class="step done" role="listitem">
+                <div class="step-circle" aria-label="Completed">✓</div>
+                <div class="step-label">Reviewed</div>
+              </div>
+              <div class="step done" role="listitem">
+                <div class="step-circle" aria-label="Completed">✓</div>
+                <div class="step-label">Assigned</div>
+              </div>
+              <div class="step active" role="listitem" aria-current="step">
+                <div class="step-circle">4</div>
+                <div class="step-label">In Progress</div>
+              </div>
+              <div class="step" role="listitem">
+                <div class="step-circle">5</div>
+                <div class="step-label">Resolved</div>
+              </div>
+            </div>
+
+            <div style="margin-top:var(--space-8);padding:var(--space-5);background:var(--color-primary-light);border-radius:var(--radius-md);border-left:4px solid var(--color-primary)">
+              <div style="font-weight:700;margin-bottom:var(--space-2)">🚐 Team Currently En Route / On Site</div>
+              <div style="font-size:var(--text-sm);color:var(--color-text-muted)">Rescue team UKL-PUNE-02 dispatched at 11:58 PM. They are currently treating the animal on site. Status will update when resolved.</div>
+            </div>
+          </div>
+
+          <!-- Animal Details -->
+          <div style="background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-8);margin-bottom:var(--space-8)">
+            <h3 style="font-size:var(--text-xl);margin-bottom:var(--space-6)">Case Details</h3>
+            <div class="animal-detail-box">
+              <div class="detail-row"><span class="detail-label">Animal Description</span><span class="detail-value">Brown indie dog, medium size, ~2 yrs</span></div>
+              <div class="detail-row"><span class="detail-label">Condition Reported</span><span class="detail-value">Broken hind leg, bleeding, lying on road</span></div>
+              <div class="detail-row"><span class="detail-label">Location</span><span class="detail-value">Near Hadapsar Signal, opposite Magarpatta Gate 4</span></div>
+              <div class="detail-row"><span class="detail-label">Team Assigned</span><span class="detail-value">UKL-PUNE-02 (Rahul + Dr. Ananya)</span></div>
+              <div class="detail-row"><span class="detail-label">ETA on Report</span><span class="detail-value">11:58 PM (16 min after report)</span></div>
+            </div>
+          </div>
+
+          <!-- Updates Timeline -->
+          <div style="background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-8)">
+            <h3 style="font-size:var(--text-xl);margin-bottom:var(--space-6)">Live Updates</h3>
+            <div class="rescue-update" style="border-left:4px solid var(--color-primary)">
+              <div class="update-time">14 Mar 2024 · 12:28 AM</div>
+              <div class="update-status" style="color:var(--color-primary)">🏥 Animal Receiving Treatment On Site</div>
+              <div class="update-note">Dr. Ananya has stabilized the animal. Hind leg fracture confirmed. IV fluids and pain relief administered. Preparing for transport to shelter clinic.</div>
+            </div>
+            <div class="rescue-update">
+              <div class="update-time">14 Mar 2024 · 11:58 PM</div>
+              <div class="update-status">🚐 Team Arrived at Location</div>
+              <div class="update-note">UKL-PUNE-02 (Rahul Bapat + Dr. Ananya Joshi) reached the reported location. Animal located 50m from the signal. Initial assessment underway.</div>
+            </div>
+            <div class="rescue-update">
+              <div class="update-time">14 Mar 2024 · 11:50 PM</div>
+              <div class="update-status">🚗 Team Dispatched</div>
+              <div class="update-note">Rescue team UKL-PUNE-02 dispatched from Hadapsar base. ETA 10–15 minutes.</div>
+            </div>
+            <div class="rescue-update">
+              <div class="update-time">14 Mar 2024 · 11:46 PM</div>
+              <div class="update-status">📋 Report Reviewed & Classified Critical</div>
+              <div class="update-note">Report reviewed by dispatch. Classified as Critical. Nearest available team being contacted.</div>
+            </div>
+            <div class="rescue-update" style="border-left:4px solid var(--color-border)">
+              <div class="update-time">14 Mar 2024 · 11:42 PM</div>
+              <div class="update-status" style="color:var(--color-text-muted)">📝 Rescue Report Submitted</div>
+              <div class="update-note">Report received by Unke Liye emergency system. Reference: UKL-RESCUE-847291.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-bottom" style="padding-top:var(--space-8)">
+      <p>© 2024 Unke Liye · <a href="tel:+918888000000" style="color:rgba(250,247,242,0.7)">+91 88888 00000</a> (24/7 Emergency)</p>
+      <div class="footer-legal-links"><a href="index.html">Home</a><a href="contact.html">Contact</a><a href="sitemap.html">Sitemap</a></div>
+    </div>
+  </div>
+</footer>
+<a href="report-animal.html" class="emergency-float" aria-label="Report an animal emergency"><span aria-hidden="true">🚨</span><span>Report Animal Emergency</span></a>
+<script src="js/main.js"></script>
+</body>
+</html>

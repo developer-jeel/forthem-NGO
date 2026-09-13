@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Unke Liye active campaigns — support animal rescue, environment, sanitation, and disaster relief campaigns across Maharashtra." />
+  <title>Campaigns — Unke Liye</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <style>
+    .campaigns-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+    @media (min-width: 640px) { .campaigns-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1024px) { .campaigns-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    .campaign-hero-card {
+      background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
+      border-radius: var(--radius-lg);
+      padding: var(--space-10) var(--space-8);
+      color: #fff;
+      margin-bottom: var(--space-12);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+    @media (min-width: 768px) {
+      .campaign-hero-card { grid-template-columns: 1fr 1fr; align-items: center; }
+    }
+    .campaign-hero-card h2 { color: #fff; font-size: clamp(1.5rem, 3vw, 2.5rem); margin-bottom: var(--space-4); }
+    .campaign-hero-card p { color: rgba(250,247,242,0.85); margin-bottom: var(--space-6); }
+    .hero-progress { background: rgba(255,255,255,0.15); border-radius: var(--radius-full); height: 10px; margin-bottom: var(--space-3); overflow: hidden; }
+    .hero-progress-fill { height: 100%; background: #A8D8B9; border-radius: var(--radius-full); transition: width 1.2s ease-in-out; }
+    .hero-raised { font-family: var(--font-display); font-size: 2.5rem; font-weight: 700; color: #A8D8B9; line-height: 1; }
+
+    .section-label-strip {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      margin-bottom: var(--space-6);
+      padding-bottom: var(--space-4);
+      border-bottom: 2px solid var(--color-border);
+    }
+    .section-label-strip h3 { font-size: var(--text-xl); }
+    .completed-card { opacity: 0.7; }
+    .completed-card .progress-bar-fill { background: var(--color-success) !important; }
+  </style>
+</head>
+<body>
+<a href="#main-content" class="skip-nav">Skip to main content</a>
+<div class="emergency-bar"><span class="pulse-dot" aria-hidden="true"></span><span>🚨 Animal in distress? —</span><a href="report-animal.html">Report Now →</a></div>
+<header class="site-header" role="banner">
+  <div class="container">
+    <nav class="nav-inner" aria-label="Main navigation">
+      <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a>
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li><li><a href="about.html" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Our Work <svg viewBox="0 0 16 16" fill="currentColor" width="14" height="14"><path d="M4 6l4 4 4-4"/></svg></a>
+          <div class="nav-dropdown"><a href="work-animal-rescue.html"><span class="icon">🐾</span> Animal Rescue</a><a href="work-environment.html"><span class="icon">🌱</span> Environment</a><a href="work-sanitation.html"><span class="icon">🧹</span> Sanitation</a><a href="work-disaster-relief.html"><span class="icon">🚨</span> Disaster Relief</a></div>
+        </li>
+        <li><a href="adopt.html" class="nav-link">Adopt</a></li>
+        <li><a href="campaigns.html" class="nav-link active">Campaigns</a></li>
+        <li><a href="impact.html" class="nav-link">Impact</a></li>
+        <li><a href="stories.html" class="nav-link">Stories</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Get Involved <svg viewBox="0 0 16 16" fill="currentColor" width="14" height="14"><path d="M4 6l4 4 4-4"/></svg></a>
+          <div class="nav-dropdown"><a href="volunteer.html"><span class="icon">🙋</span> Volunteer</a><a href="foster.html"><span class="icon">🏠</span> Foster</a><a href="sponsor-animal.html"><span class="icon">💛</span> Sponsor</a><a href="report-animal.html" style="color:var(--color-urgent)"><span class="icon">🚨</span> Report</a></div>
+        </li>
+      </ul>
+      <div class="nav-actions"><a href="donate.html" class="btn btn--primary btn--sm">Donate</a><button class="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button></div>
+    </nav>
+  </div>
+</header>
+<div class="nav-mobile-panel" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <div class="nav-mobile-overlay"></div>
+  <div class="nav-mobile-drawer">
+    <button class="nav-mobile-close" aria-label="Close menu">✕</button>
+    <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a>
+    <ul class="nav-mobile-list"><li><a href="index.html">Home</a></li><li><a href="campaigns.html">Campaigns</a></li><li><a href="donate.html">Donate</a></li><li><a href="volunteer.html">Volunteer</a></li></ul>
+    <div class="nav-mobile-actions"><a href="donate.html" class="btn btn--primary btn--full">Donate Now</a></div>
+  </div>
+</div>
+
+<main id="main-content">
+  <div class="page-hero" style="--ph-img: url('https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=1600&q=80')">
+    <div class="container page-hero-content">
+      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">›</span><span aria-current="page">Campaigns</span></nav>
+      <h1>Active Campaigns</h1>
+      <p>Every campaign here funds something real — a rescue, a forest, a rebuilt home. Choose a cause and contribute.</p>
+    </div>
+  </div>
+
+  <section class="section" aria-labelledby="campaigns-heading">
+    <div class="container">
+
+      <!-- Featured Emergency Campaign -->
+      <div class="campaign-hero-card reveal" aria-labelledby="featured-campaign">
+        <div>
+          <span class="badge badge--respond" style="margin-bottom:var(--space-4)">🚨 URGENT · Disaster Relief</span>
+          <h2 id="featured-campaign">Cyclone Michaung — Rebuild Villages, Restore Lives</h2>
+          <p>Families in coastal Andhra Pradesh lost everything. We're on the ground with food kits, medical aid, and home rebuilding. 81% funded — help us finish strong.</p>
+          <div style="margin-bottom:var(--space-6)">
+            <div class="hero-progress"><div class="hero-progress-fill" data-progress="81" style="width:0%"></div></div>
+            <div style="display:flex;justify-content:space-between;font-size:var(--text-sm);color:rgba(250,247,242,0.7)">
+              <span>81% funded</span><span>18 days left</span>
+            </div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:var(--space-3)">
+            <a href="campaign-cyclone-relief.html" class="btn btn--urgent btn--lg">Donate to This Campaign</a>
+            <a href="campaign-cyclone-relief.html" class="btn btn--outline-white">Full Details →</a>
+          </div>
+        </div>
+        <div style="text-align:center">
+          <div style="font-size:0.875rem;color:rgba(250,247,242,0.6);margin-bottom:var(--space-3)">Raised so far</div>
+          <div class="hero-raised" data-counter data-target="1215000" data-prefix="₹" data-suffix="">₹0</div>
+          <div style="font-size:var(--text-sm);color:rgba(250,247,242,0.7);margin-top:var(--space-2)">of ₹15,00,000 goal</div>
+          <div style="margin-top:var(--space-8);display:flex;flex-direction:column;gap:var(--space-3);font-size:var(--text-sm);color:rgba(250,247,242,0.8)">
+            <div>🏠 320 homes rebuilt</div>
+            <div>🍱 4,800 food kits distributed</div>
+            <div>👨‍⚕️ 940 medical consultations</div>
+            <div>🐾 120 animals rescued from flood</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filter Bar -->
+      <div class="filter-bar" role="group" aria-label="Filter campaigns by pillar">
+        <button class="filter-btn active" data-filter="all">All Campaigns</button>
+        <button class="filter-btn" data-filter="rescue">🐾 Animal Rescue</button>
+        <button class="filter-btn" data-filter="environment">🌱 Environment</button>
+        <button class="filter-btn" data-filter="sanitation">🧹 Sanitation</button>
+        <button class="filter-btn" data-filter="disaster">🚨 Disaster Relief</button>
+      </div>
+
+      <!-- Active Campaigns Grid -->
+      <div>
+        <div class="section-label-strip">
+          <span class="badge badge--primary">Active</span>
+          <h3>Ongoing Campaigns</h3>
+        </div>
+        <div class="campaigns-grid" id="campaigns-grid">
+
+          <article class="card campaign-card reveal reveal-delay-1" data-category="environment">
+            <div style="height:180px;position:relative;overflow:hidden;" aria-hidden="true">
+              <img src="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=600&q=80" alt="Tree planting" style="width:100%;height:100%;object-fit:cover;" />
+              <span class="badge badge--protect" style="position:absolute;top:12px;left:12px">Environment</span>
+            </div>
+            <div class="card-body">
+              <h3 style="font-size:var(--text-lg);margin-bottom:var(--space-2)">Plant 25,000 Trees Before Monsoon</h3>
+              <p style="font-size:var(--text-sm);color:var(--color-text-muted);margin-bottom:0">Reforesting 5 barren hillsides across Maharashtra with native species before this year's monsoon season begins.</p>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar-track"><div class="progress-bar-fill progress-bar-fill--protect" data-progress="68" style="width:0%"></div></div>
+                <div class="progress-meta"><span class="progress-raised">₹5,44,000 raised</span><span class="progress-goal">of ₹8,00,000</span></div>
+              </div>
+              <div style="font-size:var(--text-xs);color:var(--color-text-muted);margin-top:var(--space-2)">🌱 17,000 saplings ordered · 32 days left</div>
+            </div>
+            <div class="card-footer">
+              <a href="campaign-detail.html" class="btn btn--ghost btn--sm">Full Details</a>
+              <a href="campaign-donate.html?id=tree-plantation" class="btn btn--primary btn--sm">Donate</a>
+            </div>
+          </article>
+
+          <article class="card campaign-card reveal reveal-delay-2" data-category="rescue">
+            <div style="height:180px;position:relative;overflow:hidden;" aria-hidden="true">
+              <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=600&q=80" alt="Monsoon rescue" style="width:100%;height:100%;object-fit:cover;" />
+              <span class="badge badge--care" style="position:absolute;top:12px;left:12px">Animal Rescue</span>
+            </div>
+            <div class="card-body">
+              <h3 style="font-size:var(--text-lg);margin-bottom:var(--space-2)">Monsoon Rescue & Shelter Fund</h3>
+              <p style="font-size:var(--text-sm);color:var(--color-text-muted);margin-bottom:0">Every monsoon, hundreds of street animals are at risk. Food, shelter, and emergency vet care all season.</p>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar-track"><div class="progress-bar-fill progress-bar-fill--care" data-progress="42" style="width:0%"></div></div>
+                <div class="progress-meta"><span class="progress-raised">₹2,10,000 raised</span><span class="progress-goal">of ₹5,00,000</span></div>
+              </div>
+              <div style="font-size:var(--text-xs);color:var(--color-text-muted);margin-top:var(--space-2)">🐾 310 animals currently sheltered · 48 days left</div>
+            </div>
+            <div class="card-footer">
+              <a href="campaign-detail.html" class="btn btn--ghost btn--sm">Full Details</a>
+              <a href="campaign-donate.html?id=animal-rescue" class="btn btn--primary btn--sm">Donate</a>
+            </div>
+          </article>
+
+          <article class="card campaign-card reveal reveal-delay-3" data-category="rescue">
+            <div style="height:180px;position:relative;overflow:hidden;" aria-hidden="true">
+              <img src="https://images.unsplash.com/photo-1581888227599-779811939961?w=600&q=80" alt="Mobile vet clinic" style="width:100%;height:100%;object-fit:cover;" />
+              <span class="badge badge--care" style="position:absolute;top:12px;left:12px">Veterinary</span>
+            </div>
+            <div class="card-body">
+              <h3 style="font-size:var(--text-lg);margin-bottom:var(--space-2)">Mobile Vet Clinic for Remote Villages</h3>
+              <p style="font-size:var(--text-sm);color:var(--color-text-muted);margin-bottom:0">A van-mounted veterinary unit to serve animals in villages 50km from Pune — where no vet currently exists.</p>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar-track"><div class="progress-bar-fill progress-bar-fill--care" data-progress="29" style="width:0%"></div></div>
+                <div class="progress-meta"><span class="progress-raised">₹1,45,000 raised</span><span class="progress-goal">of ₹5,00,000</span></div>
+              </div>
+              <div style="font-size:var(--text-xs);color:var(--color-text-muted);margin-top:var(--space-2)">🚐 Van identified · 60 days left</div>
+            </div>
+            <div class="card-footer">
+              <a href="campaign-detail.html" class="btn btn--ghost btn--sm">Full Details</a>
+              <a href="campaign-donate.html?id=mobile-vet" class="btn btn--primary btn--sm">Donate</a>
+            </div>
+          </article>
+
+          <article class="card campaign-card reveal reveal-delay-4" data-category="sanitation">
+            <div style="height:180px;position:relative;overflow:hidden;" aria-hidden="true">
+              <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=600&q=80" alt="Clean waterways" style="width:100%;height:100%;object-fit:cover;" />
+              <span class="badge badge--restore" style="position:absolute;top:12px;left:12px">Sanitation</span>
+            </div>
+            <div class="card-body">
+              <h3 style="font-size:var(--text-lg);margin-bottom:var(--space-2)">Clean Waterways Initiative — Pune 2024</h3>
+              <p style="font-size:var(--text-sm);color:var(--color-text-muted);margin-bottom:0">12 riverside cleanup drives, waste collection, citizen awareness, and bio-degradable waste segregation across 5 Pune wards.</p>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar-track"><div class="progress-bar-fill progress-bar-fill--restore" data-progress="55" style="width:0%"></div></div>
+                <div class="progress-meta"><span class="progress-raised">₹2,75,000 raised</span><span class="progress-goal">of ₹5,00,000</span></div>
+              </div>
+              <div style="font-size:var(--text-xs);color:var(--color-text-muted);margin-top:var(--space-2)">🚣 5 of 12 drives completed · 45 days left</div>
+            </div>
+            <div class="card-footer">
+              <a href="campaign-detail.html" class="btn btn--ghost btn--sm">Full Details</a>
+              <a href="donate.html?fund=sanitation" class="btn btn--primary btn--sm">Donate</a>
+            </div>
+          </article>
+
+          <article class="card campaign-card reveal reveal-delay-5" data-category="environment">
+            <div style="height:180px;position:relative;overflow:hidden;" aria-hidden="true">
+              <img src="https://images.unsplash.com/photo-1518173946687-a4c8a383392e?w=600&q=80" alt="Water harvesting" style="width:100%;height:100%;object-fit:cover;" />
+              <span class="badge badge--protect" style="position:absolute;top:12px;left:12px">Water Conservation</span>
+            </div>
+            <div class="card-body">
+              <h3 style="font-size:var(--text-lg);margin-bottom:var(--space-2)">Rainwater Harvesting for 50 Schools</h3>
+              <p style="font-size:var(--text-sm);color:var(--color-text-muted);margin-bottom:0">Installing rooftop rainwater harvesting systems in 50 rural schools across Pune and Nashik districts to address water scarcity.</p>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar-track"><div class="progress-bar-fill progress-bar-fill--protect" data-progress="38" style="width:0%"></div></div>
+                <div class="progress-meta"><span class="progress-raised">₹3,80,000 raised</span><span class="progress-goal">of ₹10,00,000</span></div>
+              </div>
+              <div style="font-size:var(--text-xs);color:var(--color-text-muted);margin-top:var(--space-2)">🏫 19 schools completed · 75 days left</div>
+            </div>
+            <div class="card-footer">
+              <a href="campaign-detail.html" class="btn btn--ghost btn--sm">Full Details</a>
+              <a href="donate.html?fund=environment" class="btn btn--primary btn--sm">Donate</a>
+            </div>
+          </article>
+
+          <article class="card campaign-card reveal" style="transition-delay:0.6s" data-category="disaster">
+            <div style="height:180px;position:relative;overflow:hidden;" aria-hidden="true">
+              <img src="https://images.unsplash.com/photo-1508873696983-2df519f0397e?w=600&q=80" alt="Forest fire recovery" style="width:100%;height:100%;object-fit:cover;" />
+              <span class="badge badge--respond" style="position:absolute;top:12px;left:12px">Disaster Relief</span>
+            </div>
+            <div class="card-body">
+              <h3 style="font-size:var(--text-lg);margin-bottom:var(--space-2)">Forest Fire Recovery — Sahyadri Hills</h3>
+              <p style="font-size:var(--text-sm);color:var(--color-text-muted);margin-bottom:0">The summer fires in Sahyadri destroyed habitat for hundreds of species. Reforestation and wildlife corridor restoration campaign.</p>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar-track"><div class="progress-bar-fill progress-bar-fill--respond" data-progress="22" style="width:0%"></div></div>
+                <div class="progress-meta"><span class="progress-raised">₹1,10,000 raised</span><span class="progress-goal">of ₹5,00,000</span></div>
+              </div>
+              <div style="font-size:var(--text-xs);color:var(--color-text-muted);margin-top:var(--space-2)">🌿 Survey completed · 90 days left</div>
+            </div>
+            <div class="card-footer">
+              <a href="campaign-detail.html" class="btn btn--ghost btn--sm">Full Details</a>
+              <a href="donate.html?fund=disaster" class="btn btn--primary btn--sm">Donate</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- Completed Campaigns -->
+      <div style="margin-top:var(--space-16)">
+        <div class="section-label-strip">
+          <span class="badge badge--success">Completed</span>
+          <h3>Past Campaigns — Fully Funded</h3>
+        </div>
+        <div class="campaigns-grid">
+          <article class="card campaign-card completed-card reveal reveal-delay-1" data-category="rescue">
+            <div style="height:140px;overflow:hidden;" aria-hidden="true">
+              <img src="https://images.unsplash.com/photo-1551730459-92db2a308d6a?w=600&q=80" alt="Completed campaign" style="width:100%;height:100%;object-fit:cover;" />
+            </div>
+            <div class="card-body">
+              <div style="display:flex;gap:var(--space-2);margin-bottom:var(--space-3)">
+                <span class="badge badge--success">100% Funded</span>
+                <span class="badge badge--care">Animal Rescue</span>
+              </div>
+              <h3 style="font-size:var(--text-base);margin-bottom:var(--space-2)">Winter Warmth for Shelter Animals</h3>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar-track"><div class="progress-bar-fill" data-progress="100" style="width:0%;background:var(--color-success)"></div></div>
+                <div class="progress-meta"><span class="progress-raised">₹3,00,000 raised</span><span class="progress-goal">of ₹3,00,000</span></div>
+              </div>
+            </div>
+            <div class="card-footer"><span style="font-size:var(--text-xs);color:var(--color-text-muted)">Completed Dec 2023</span><a href="campaign-detail.html" class="btn btn--ghost btn--sm">Impact Report</a></div>
+          </article>
+          <article class="card campaign-card completed-card reveal reveal-delay-2" data-category="environment">
+            <div style="height:140px;overflow:hidden;" aria-hidden="true">
+              <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&q=80" alt="Completed campaign" style="width:100%;height:100%;object-fit:cover;" />
+            </div>
+            <div class="card-body">
+              <div style="display:flex;gap:var(--space-2);margin-bottom:var(--space-3)">
+                <span class="badge badge--success">100% Funded</span>
+                <span class="badge badge--protect">Environment</span>
+              </div>
+              <h3 style="font-size:var(--text-base);margin-bottom:var(--space-2)">5,000 Trees for Nashik's Barren Hill</h3>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar-track"><div class="progress-bar-fill" data-progress="100" style="width:0%;background:var(--color-success)"></div></div>
+                <div class="progress-meta"><span class="progress-raised">₹5,00,000 raised</span><span class="progress-goal">of ₹5,00,000</span></div>
+              </div>
+            </div>
+            <div class="card-footer"><span style="font-size:var(--text-xs);color:var(--color-text-muted)">Completed Oct 2023</span><a href="campaign-detail.html" class="btn btn--ghost btn--sm">Impact Report</a></div>
+          </article>
+          <article class="card campaign-card completed-card reveal reveal-delay-3" data-category="disaster">
+            <div style="height:140px;overflow:hidden;" aria-hidden="true">
+              <img src="https://images.unsplash.com/photo-1547683905-f686c993aae5?w=600&q=80" alt="Completed campaign" style="width:100%;height:100%;object-fit:cover;" />
+            </div>
+            <div class="card-body">
+              <div style="display:flex;gap:var(--space-2);margin-bottom:var(--space-3)">
+                <span class="badge badge--success">100% Funded</span>
+                <span class="badge badge--respond">Disaster Relief</span>
+              </div>
+              <h3 style="font-size:var(--text-base);margin-bottom:var(--space-2)">Raigad Flood Relief — Emergency Response</h3>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar-track"><div class="progress-bar-fill" data-progress="100" style="width:0%;background:var(--color-success)"></div></div>
+                <div class="progress-meta"><span class="progress-raised">₹12,00,000 raised</span><span class="progress-goal">of ₹12,00,000</span></div>
+              </div>
+            </div>
+            <div class="card-footer"><span style="font-size:var(--text-xs);color:var(--color-text-muted)">Completed Aug 2023</span><a href="campaign-detail.html" class="btn btn--ghost btn--sm">Impact Report</a></div>
+          </article>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div><img src="logo.png" alt="Unke Liye" class="footer-logo-img" /><p class="footer-brand-tagline">For Every Life. For Nature. For a Better Tomorrow.</p><div class="footer-emergency"><div class="footer-emergency-title">🚨 24/7 Emergency</div><a href="tel:+918888000000">+91 88888 00000</a></div></div>
+      <div><h3 class="footer-col-title">Campaigns</h3><ul class="footer-links"><li><a href="campaigns.html">All Campaigns</a></li><li><a href="donate.html">Donate</a></li><li><a href="transparency.html">Financial Reports</a></li></ul></div>
+      <div><h3 class="footer-col-title">Our Work</h3><ul class="footer-links"><li><a href="work-animal-rescue.html">🐾 Animal Rescue</a></li><li><a href="work-environment.html">🌱 Environment</a></li><li><a href="work-sanitation.html">🧹 Sanitation</a></li><li><a href="work-disaster-relief.html">🚨 Disaster Relief</a></li></ul></div>
+      <div><h3 class="footer-col-title">Quick Links</h3><ul class="footer-links"><li><a href="about.html">About</a></li><li><a href="volunteer.html">Volunteer</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2024 Unke Liye. Reg. No. MAH/2015/1234</p><div class="footer-legal-links"><a href="privacy-policy.html">Privacy</a><a href="terms.html">Terms</a><a href="sitemap.html">Sitemap</a></div></div>
+  </div>
+</footer>
+<a href="report-animal.html" class="emergency-float" aria-label="Report an animal emergency"><span aria-hidden="true">🚨</span><span>Report Animal Emergency</span></a>
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Events — Unke Liye Admin</title>
+<link rel="stylesheet" href="assets/variables.css">
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" href="assets/components.css">
+<style>
+.events-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: var(--sp-4); }
+.event-card { background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); transition: transform var(--transition-fast), box-shadow var(--transition-fast); }
+.event-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.event-card-img { width: 100%; height: 160px; object-fit: cover; background: var(--bg-sunken); display: block; position: relative; }
+.event-card-img-badge { position: absolute; top: 12px; left: 12px; }
+.event-card-body { padding: var(--sp-4); }
+.event-date-chip { display: inline-flex; align-items: center; gap: 6px; background: var(--bg-sunken); border-radius: var(--radius-md); padding: 4px 10px; font-size: 0.75rem; font-weight: 600; color: var(--text-secondary); margin-bottom: var(--sp-3); }
+.event-title { font-size: 1rem; font-weight: 600; margin-bottom: var(--sp-2); font-family: var(--font-heading); }
+.event-meta { font-size: 0.8125rem; color: var(--text-secondary); margin-bottom: var(--sp-3); }
+.event-capacity { margin-bottom: var(--sp-3); }
+.event-footer { display: flex; align-items: center; justify-content: space-between; padding-top: var(--sp-3); border-top: 1px solid var(--border-subtle); }
+</style>
+</head>
+<body>
+<div class="toast-region" id="toast-region" aria-live="polite">
+  <div class="toast hidden" id="toast-tpl-success" role="alert"><div class="toast-icon success"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="toast-body"><div class="toast-title">Success</div><div class="toast-msg"></div></div><button class="toast-close" aria-label="Close"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button><div class="toast-progress"></div></div>
+</div>
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+<div class="admin-shell">
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo"><img src="../logo.png" alt="Unke Liye Logo" class="sidebar-logo-img"><div class="sidebar-logo-text"><strong>Unke Liye</strong><span>Admin Panel</span></div></div>
+  <nav class="sidebar-nav">
+    <div class="nav-group"><div class="nav-group-label">Overview</div><a href="dashboard.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg><span class="nav-link-label">Dashboard</span></a></div>
+    <div class="nav-group"><div class="nav-group-label">Content</div><a href="content.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg><span class="nav-link-label">Homepage Content</span></a><a href="stories.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg><span class="nav-link-label">Stories</span></a><a href="gallery.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span class="nav-link-label">Gallery</span></a></div>
+    <div class="nav-group"><div class="nav-group-label">Programs</div><a href="campaigns.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span class="nav-link-label">Campaigns</span></a><a href="animals.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2.823.47-4.113 6.006-4 7 .08.703 1.725 1.722 3.656 1 1.261-.472 1.96-1.45 2.344-2.5"/><path d="M4.42 11.247A13.152 13.152 0 0 0 4 14.556C4 18.728 7.582 21 12 21s8-2.272 8-6.444c0-1.273-.241-2.248-.382-2.826"/></svg><span class="nav-link-label">Animals</span></a><a href="events.html" class="nav-link active" aria-current="page"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span class="nav-link-label">Events</span></a></div>
+    <div class="nav-group"><div class="nav-group-label">People</div><a href="volunteers.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span class="nav-link-label">Volunteers</span></a><a href="donors.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span class="nav-link-label">Donors</span></a></div>
+    <div class="nav-group"><div class="nav-group-label">Money</div><a href="donations.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg><span class="nav-link-label">Donations</span></a><a href="reports.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg><span class="nav-link-label">Reports</span></a></div>
+    <div class="nav-group"><div class="nav-group-label">Operations</div><a href="messages.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span class="nav-link-label">Messages</span><span class="badge badge-danger" style="margin-left:auto;padding:2px 6px;font-size:.65rem;">7</span></a></div>
+    <div class="nav-group"><div class="nav-group-label">System</div><a href="admin-users.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span class="nav-link-label">Admin Users</span></a><a href="settings.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg><span class="nav-link-label">Settings</span></a></div>
+  </nav>
+  <div class="sidebar-footer"><button class="sidebar-collapse-btn" id="sidebar-collapse" aria-label="Collapse sidebar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg><span class="sidebar-collapse-btn-label">Collapse</span></button></div>
+</aside>
+<div class="main-content" id="main-content">
+  <header class="topbar">
+    <div class="topbar-breadcrumb"><a href="dashboard.html">Unke Liye</a><span class="sep">/</span><a href="events.html">Programs</a><span class="sep">/</span><span class="current">Events</span></div>
+    <div class="topbar-search"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="search" placeholder="Search events…" aria-label="Search"></div>
+    <div class="topbar-actions">
+      <button class="topbar-icon-btn theme-toggle" id="theme-toggle" aria-label="Toggle dark mode"><svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/></svg></button>
+      <div class="dropdown-wrap"><button class="topbar-profile" data-dropdown="profile-dd-ev" aria-expanded="false"><div class="profile-avatar">RS</div><div class="profile-info"><strong>Rohit Sinha</strong><small>Super Admin</small></div></button><div class="dropdown-menu profile-menu" id="profile-dd-ev"><a href="login.html" class="dropdown-item danger"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Sign Out</a></div></div>
+    </div>
+  </header>
+  
+  <main class="page-content">
+    <div class="page-header">
+      <div class="page-header-left"><h1>Events</h1><p>6 upcoming events · 14 completed this year.</p></div>
+      <div class="page-header-actions">
+        <div class="filter-chips">
+          <button class="filter-chip active">All</button>
+          <button class="filter-chip">Upcoming</button>
+          <button class="filter-chip">Ongoing</button>
+          <button class="filter-chip">Completed</button>
+          <button class="filter-chip">Cancelled</button>
+        </div>
+        <button class="btn btn-primary btn-sm"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Create Event</button>
+      </div>
+    </div>
+
+    <div class="events-grid">
+      <div class="event-card">
+        <div style="position:relative;">
+          <img class="event-card-img" src="https://loremflickr.com/600/320/tree,plantation,community?lock=31" alt="Event" loading="lazy">
+          <div class="event-card-img-badge"><span class="badge badge-warning">Upcoming</span></div>
+        </div>
+        <div class="event-card-body">
+          <div class="event-date-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>11 Jun 2025 · 7:00 AM</div>
+          <div class="event-title">Tree Plantation Drive — Aarey Forest</div>
+          <div class="event-meta"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Aarey Colony, Mumbai · Organiser: Vikram Tiwari</div>
+          <div class="event-capacity">
+            <div style="display:flex;justify-content:space-between;font-size:0.8125rem;margin-bottom:4px;"><span>Registrations</span><strong>142 / 250</strong></div>
+            <div class="progress-bar-wrap"><div class="progress-bar-fill leaf" style="width:57%"></div></div>
+          </div>
+          <div class="event-footer">
+            <span class="badge badge-leaf">Environment</span>
+            <div style="display:flex;gap:6px;"><a href="event-detail.html" class="btn btn-ghost btn-sm">Manage</a></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <div style="position:relative;">
+          <img class="event-card-img" src="https://loremflickr.com/600/320/dog,adoption,event?lock=32" alt="Event" loading="lazy">
+          <div class="event-card-img-badge"><span class="badge badge-warning">Upcoming</span></div>
+        </div>
+        <div class="event-card-body">
+          <div class="event-date-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>22 Jun 2025 · 10:00 AM</div>
+          <div class="event-title">Adopt-a-Thon — Pune Summer Edition</div>
+          <div class="event-meta"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> FC Road Grounds, Pune · Organiser: Priya Sharma</div>
+          <div class="event-capacity">
+            <div style="display:flex;justify-content:space-between;font-size:0.8125rem;margin-bottom:4px;"><span>Registrations</span><strong>88 / 200</strong></div>
+            <div class="progress-bar-wrap"><div class="progress-bar-fill terracotta" style="width:44%"></div></div>
+          </div>
+          <div class="event-footer">
+            <span class="badge badge-terracotta">Animal Rescue</span>
+            <div style="display:flex;gap:6px;"><a href="event-detail.html" class="btn btn-ghost btn-sm">Manage</a></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <div style="position:relative;">
+          <img class="event-card-img" src="https://loremflickr.com/600/320/run,charity,marathon?lock=33" alt="Event" loading="lazy">
+          <div class="event-card-img-badge"><span class="badge badge-warning">Upcoming</span></div>
+        </div>
+        <div class="event-card-body">
+          <div class="event-date-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>5 Jul 2025 · 6:30 AM</div>
+          <div class="event-title">Paws for a Cause 5K Run — Delhi</div>
+          <div class="event-meta"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Lodhi Garden, Delhi · Organiser: Ravi Kumar</div>
+          <div class="event-capacity">
+            <div style="display:flex;justify-content:space-between;font-size:0.8125rem;margin-bottom:4px;"><span>Registrations</span><strong>210 / 500</strong></div>
+            <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:42%"></div></div>
+          </div>
+          <div class="event-footer">
+            <span class="badge badge-terracotta">Animal Rescue</span>
+            <div style="display:flex;gap:6px;"><a href="event-detail.html" class="btn btn-ghost btn-sm">Manage</a></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="event-card" style="opacity:0.75;">
+        <div style="position:relative;">
+          <img class="event-card-img" src="https://loremflickr.com/600/320/gala,dinner,charity?lock=34" alt="Event" loading="lazy">
+          <div class="event-card-img-badge"><span class="badge badge-info">Completed</span></div>
+        </div>
+        <div class="event-card-body">
+          <div class="event-date-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>10 May 2025</div>
+          <div class="event-title">Disaster Relief Gala Dinner — Delhi</div>
+          <div class="event-meta"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> The Leela Palace, Delhi</div>
+          <div class="event-capacity">
+            <div style="display:flex;justify-content:space-between;font-size:0.8125rem;margin-bottom:4px;"><span>Attendees</span><strong>320 / 350</strong></div>
+            <div class="progress-bar-wrap"><div class="progress-bar-fill red" style="width:91%"></div></div>
+          </div>
+          <div class="event-footer">
+            <span class="badge badge-red">Disaster Relief</span>
+            <div style="display:flex;gap:6px;"><span style="font-size:0.8125rem;color:var(--status-success);font-weight:600;">₹2,40,000 raised</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="event-card" style="opacity:0.75;">
+        <div style="position:relative;">
+          <img class="event-card-img" src="https://loremflickr.com/600/320/earth,day,environment?lock=35" alt="Event" loading="lazy">
+          <div class="event-card-img-badge"><span class="badge badge-info">Completed</span></div>
+        </div>
+        <div class="event-card-body">
+          <div class="event-date-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>22 Apr 2025</div>
+          <div class="event-title">Earth Day Plantation Drive — Hyderabad</div>
+          <div class="event-meta"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Hussain Sagar Lake, Hyderabad</div>
+          <div class="event-capacity">
+            <div style="display:flex;justify-content:space-between;font-size:0.8125rem;margin-bottom:4px;"><span>Attendees</span><strong>640 / 700</strong></div>
+            <div class="progress-bar-wrap"><div class="progress-bar-fill leaf" style="width:91%"></div></div>
+          </div>
+          <div class="event-footer">
+            <span class="badge badge-leaf">Environment</span>
+            <div style="display:flex;gap:6px;"><span style="font-size:0.8125rem;color:var(--status-success);font-weight:600;">₹45,000 raised</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="event-card" style="opacity:0.75;">
+        <div style="position:relative;">
+          <img class="event-card-img" src="https://loremflickr.com/600/320/run,charity,animals?lock=36" alt="Event" loading="lazy">
+          <div class="event-card-img-badge"><span class="badge badge-info">Completed</span></div>
+        </div>
+        <div class="event-card-body">
+          <div class="event-date-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>12 Jan 2025</div>
+          <div class="event-title">Mumbai Rescue Run 2025</div>
+          <div class="event-meta"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Marine Drive, Mumbai</div>
+          <div class="event-capacity">
+            <div style="display:flex;justify-content:space-between;font-size:0.8125rem;margin-bottom:4px;"><span>Attendees</span><strong>480 / 500</strong></div>
+            <div class="progress-bar-wrap"><div class="progress-bar-fill terracotta" style="width:96%"></div></div>
+          </div>
+          <div class="event-footer">
+            <span class="badge badge-terracotta">Animal Rescue</span>
+            <div style="display:flex;gap:6px;"><span style="font-size:0.8125rem;color:var(--status-success);font-weight:600;">₹1,20,000 raised</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+</div>
+<script src="assets/app.js"></script>
+</body>
+</html>

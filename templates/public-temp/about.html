@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="About Unke Liye — our vision, mission, story, values, team, and partners. A Maharashtra-based NGO for animals, nature, and people." />
+  <title>About Us — Unke Liye</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <style>
+    .values-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-6);
+    }
+    @media (min-width: 1024px) {
+      .values-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+    .value-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+      text-align: center;
+    }
+    .value-icon { font-size: 2.5rem; margin-bottom: var(--space-4); display: block; }
+    .value-card h4 { font-size: var(--text-lg); margin-bottom: var(--space-2); }
+    .value-card p { font-size: var(--text-sm); color: var(--color-text-muted); }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-6);
+    }
+    @media (min-width: 768px) { .team-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (min-width: 1024px) { .team-grid { grid-template-columns: repeat(5, 1fr); } }
+
+    .partners-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-6);
+      align-items: center;
+      justify-content: center;
+    }
+    .partner-logo {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-4) var(--space-8);
+      font-size: var(--text-sm);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-text-muted);
+      min-width: 140px;
+      text-align: center;
+    }
+
+    .vision-mission-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+    @media (min-width: 768px) {
+      .vision-mission-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .vm-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-10) var(--space-8);
+      position: relative;
+      overflow: hidden;
+    }
+    .vm-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+    }
+    .vm-card--vision::before { background: var(--color-primary); }
+    .vm-card--mission::before { background: var(--color-care); }
+
+    .vm-card h3 { font-size: var(--text-2xl); margin-bottom: var(--space-5); }
+    .vm-card p { font-size: var(--text-base); color: var(--color-text); line-height: var(--leading-relaxed); }
+
+    .founding-story {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-12);
+      align-items: center;
+    }
+    @media (min-width: 768px) {
+      .founding-story { grid-template-columns: 1fr 1fr; }
+    }
+    .story-visual {
+      background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
+      border-radius: var(--radius-lg);
+      padding: var(--space-12);
+      text-align: center;
+      color: #fff;
+      font-size: 5rem;
+    }
+  </style>
+</head>
+<body>
+<a href="#main-content" class="skip-nav">Skip to main content</a>
+
+<!-- Emergency Bar -->
+<div class="emergency-bar" role="banner">
+  <span class="pulse-dot" aria-hidden="true"></span>
+  <span>🚨 Animal in distress? We respond 24/7 —</span>
+  <a href="report-animal.html">Report Now →</a>
+</div>
+
+<!-- Header (shared) -->
+<header class="site-header" role="banner">
+  <div class="container">
+    <nav class="nav-inner" aria-label="Main navigation">
+      <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a>
+      <ul class="nav-menu" role="list">
+        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="about.html" class="nav-link active">About</a></li>
+        <li class="nav-item">
+          <a href="#" class="nav-link" aria-haspopup="true">Our Work <svg viewBox="0 0 16 16" fill="currentColor" width="14" height="14" aria-hidden="true"><path d="M4 6l4 4 4-4"/></svg></a>
+          <div class="nav-dropdown">
+            <a href="work-animal-rescue.html"><span class="icon">🐾</span> Animal Rescue & Healthcare</a>
+            <a href="work-environment.html"><span class="icon">🌱</span> Environment</a>
+            <a href="work-sanitation.html"><span class="icon">🧹</span> Sanitation & Cleanliness</a>
+            <a href="work-disaster-relief.html"><span class="icon">🚨</span> Disaster Relief</a>
+          </div>
+        </li>
+        <li class="nav-item"><a href="adopt.html" class="nav-link">Adopt</a></li>
+        <li class="nav-item"><a href="campaigns.html" class="nav-link">Campaigns</a></li>
+        <li class="nav-item"><a href="impact.html" class="nav-link">Impact</a></li>
+        <li class="nav-item"><a href="stories.html" class="nav-link">Stories</a></li>
+        <li class="nav-item">
+          <a href="#" class="nav-link" aria-haspopup="true">Get Involved <svg viewBox="0 0 16 16" fill="currentColor" width="14" height="14" aria-hidden="true"><path d="M4 6l4 4 4-4"/></svg></a>
+          <div class="nav-dropdown">
+            <a href="volunteer.html"><span class="icon">🙋</span> Volunteer</a>
+            <a href="foster.html"><span class="icon">🏠</span> Foster an Animal</a>
+            <a href="sponsor-animal.html"><span class="icon">💛</span> Sponsor an Animal</a>
+            <a href="report-animal.html" style="color:var(--color-urgent)"><span class="icon">🚨</span> Report an Animal</a>
+          </div>
+        </li>
+      </ul>
+      <div class="nav-actions">
+        <a href="donate.html" class="btn btn--primary btn--sm">Donate</a>
+        <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- Mobile Nav -->
+<div class="nav-mobile-panel" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <div class="nav-mobile-overlay"></div>
+  <div class="nav-mobile-drawer">
+    <button class="nav-mobile-close" aria-label="Close menu">✕</button>
+    <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a>
+    <ul class="nav-mobile-list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><span class="section-label">Our Work</span></li>
+      <li class="nav-mobile-sub"><a href="work-animal-rescue.html">🐾 Animal Rescue</a></li>
+      <li class="nav-mobile-sub"><a href="work-environment.html">🌱 Environment</a></li>
+      <li class="nav-mobile-sub"><a href="work-sanitation.html">🧹 Sanitation</a></li>
+      <li class="nav-mobile-sub"><a href="work-disaster-relief.html">🚨 Disaster Relief</a></li>
+      <li><a href="adopt.html">Adopt a Pet</a></li>
+      <li><a href="campaigns.html">Campaigns</a></li>
+      <li><a href="impact.html">Our Impact</a></li>
+      <li><a href="stories.html">Stories</a></li>
+      <li><a href="volunteer.html">Volunteer</a></li>
+      <li><a href="donate.html">Donate</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-mobile-actions">
+      <a href="donate.html" class="btn btn--primary btn--full">Donate Now</a>
+    </div>
+  </div>
+</div>
+
+<main id="main-content">
+
+  <!-- Page Hero -->
+  <div class="page-hero" style="--ph-img: url('https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=1600&q=80')">
+    <div class="container page-hero-content">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <span aria-current="page">About Us</span>
+      </nav>
+      <h1>About Unke Liye</h1>
+      <p>Born from urgency, built on love — the story of a small team that refused to look away.</p>
+    </div>
+  </div>
+
+  <!-- Vision & Mission -->
+  <section class="section" aria-labelledby="vision-heading">
+    <div class="container">
+      <div class="vision-mission-grid">
+        <div class="vm-card vm-card--vision reveal reveal-left">
+          <span style="font-size:2.5rem;margin-bottom:var(--space-4);display:block" aria-hidden="true">🔭</span>
+          <h3 id="vision-heading">Our Vision</h3>
+          <p>A Maharashtra — and eventually an India — where no animal suffers on the street, no forest is razed without a replacement, no community faces a disaster alone, and where every person feels a responsibility to care for the living world around them.</p>
+          <p>We believe care is contagious. When one person acts, five follow. We are building that culture — one rescue, one tree, one drive, one disaster response at a time.</p>
+        </div>
+        <div class="vm-card vm-card--mission reveal reveal-right">
+          <span style="font-size:2.5rem;margin-bottom:var(--space-4);display:block" aria-hidden="true">🎯</span>
+          <h3>Our Mission</h3>
+          <p>To provide rapid, compassionate, and professional rescue and relief across four areas — Animal Healthcare, Environmental Restoration, Community Sanitation, and Disaster Response — with full transparency, zero bureaucracy, and deep community rooting.</p>
+          <p>Every rupee donated, every hour volunteered, and every report submitted through us generates a direct, documented, and measurable impact on a real life.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Founding Story -->
+  <section class="section section--alt" aria-labelledby="story-heading">
+    <div class="container">
+      <div class="founding-story">
+        <div class="story-visual reveal reveal-left" style="overflow:hidden;padding:0;height:320px;" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600&q=80" alt="Founded 2015" style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+        <div class="reveal reveal-right">
+          <span class="eyebrow">Our Story</span>
+          <h2 id="story-heading">It Started with One Dog and a Midnight Phone Call</h2>
+          <p>In 2015, Priya Kulkarni — a software engineer with no NGO experience — received a frantic call from a neighbour about an injured dog hit by a car near Hadapsar. She called every rescue number she could find. No one picked up. She went herself, wrapped the dog in her dupatta, and drove to three different vets before finding one who would treat a street animal.</p>
+          <p style="margin-top:var(--space-4)">That dog survived. Priya didn't stop. Three friends joined. They named the effort <em>Unke Liye</em> — "For Them" — because it was always about the ones who couldn't speak for themselves.</p>
+          <p style="margin-top:var(--space-4)">Nine years later, we have a team of 47 staff, 340+ active volunteers, a full veterinary clinic, a shelter housing 80+ animals, and operations spanning animal rescue, environmental drives, community sanitation, and disaster relief across Maharashtra.</p>
+          <p style="margin-top:var(--space-4)">But we still pick up every call.</p>
+          <a href="stories.html" class="btn btn--primary" style="margin-top:var(--space-6)">Read Our Stories</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Milestones / Timeline -->
+  <section class="section" aria-labelledby="milestones-heading">
+    <div class="container" style="max-width:800px">
+      <div class="section-header reveal">
+        <span class="eyebrow">Our Journey</span>
+        <h2 id="milestones-heading">Nine Years of Showing Up</h2>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item reveal reveal-delay-1">
+          <div class="timeline-year">2015</div>
+          <div class="timeline-title">Founded — First Rescue</div>
+          <div class="timeline-desc">Unke Liye registered as an NGO in Pune. First veterinary tie-up with Dr. Anand Deshpande clinic. 12 rescues in Year 1.</div>
+        </div>
+        <div class="timeline-item reveal reveal-delay-2">
+          <div class="timeline-year">2016</div>
+          <div class="timeline-title">First Vaccination Camp</div>
+          <div class="timeline-desc">Partnered with Pune Municipal Corporation to run Maharashtra's first free street animal vaccination camp — 800 animals vaccinated in one weekend.</div>
+        </div>
+        <div class="timeline-item reveal reveal-delay-3">
+          <div class="timeline-year">2017</div>
+          <div class="timeline-title">Green Pillar Launched</div>
+          <div class="timeline-desc">Expanded beyond animals — first tree plantation drive in Sinhagad Road hills. 1,200 trees planted. Partnerships with 6 schools.</div>
+        </div>
+        <div class="timeline-item reveal reveal-delay-4">
+          <div class="timeline-year">2018</div>
+          <div class="timeline-title">First Disaster Response</div>
+          <div class="timeline-desc">Responded to Kerala floods — 47 volunteers deployed, 1,200 families supported. This defined the Disaster Relief pillar permanently.</div>
+        </div>
+        <div class="timeline-item reveal reveal-delay-5">
+          <div class="timeline-year">2019</div>
+          <div class="timeline-title">Shelter & Clinic Opened</div>
+          <div class="timeline-desc">Inaugurated our permanent shelter in Hadapsar — capacity 80 animals, full veterinary clinic, ICU unit, and adoption center.</div>
+        </div>
+        <div class="timeline-item reveal" style="transition-delay:0.6s">
+          <div class="timeline-year">2021</div>
+          <div class="timeline-title">COVID Relief — 14,000 Meals</div>
+          <div class="timeline-desc">Distributed 14,000+ dry ration kits across Pune's slums during lockdown. Partnered with 3 corporate CSR funds for emergency relief.</div>
+        </div>
+        <div class="timeline-item reveal" style="transition-delay:0.7s">
+          <div class="timeline-year">2023</div>
+          <div class="timeline-title">Sanitation Pillar Formalized</div>
+          <div class="timeline-desc">Launched structured Sanitation & Cleanliness pillar. 120+ drives, 4,500 kg of waste removed from waterways in first year.</div>
+        </div>
+        <div class="timeline-item reveal" style="transition-delay:0.8s">
+          <div class="timeline-year">2024</div>
+          <div class="timeline-title">Maharashtra NGO of the Year</div>
+          <div class="timeline-desc">Awarded Maharashtra State Social Welfare Department's NGO of the Year. 14,800+ animals rescued since inception. We don't plan to stop.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="section section--alt" aria-labelledby="values-heading">
+    <div class="container">
+      <div class="section-header text-center reveal">
+        <span class="eyebrow">What Guides Us</span>
+        <h2 id="values-heading">Our Core Values</h2>
+      </div>
+      <div class="values-grid">
+        <div class="value-card reveal reveal-delay-1">
+          <span class="value-icon" aria-hidden="true">💛</span>
+          <h4>Compassion First</h4>
+          <p>Every decision starts with the question: what is best for the being who cannot advocate for itself?</p>
+        </div>
+        <div class="value-card reveal reveal-delay-2">
+          <span class="value-icon" aria-hidden="true">🔍</span>
+          <h4>Radical Transparency</h4>
+          <p>Every rupee is documented. Every report is public. We believe donors deserve to see exactly how their trust is spent.</p>
+        </div>
+        <div class="value-card reveal reveal-delay-3">
+          <span class="value-icon" aria-hidden="true">⚡</span>
+          <h4>Speed of Response</h4>
+          <p>Emergencies don't wait. We aim for under 45-minute response in our primary zones and activate disaster teams within hours.</p>
+        </div>
+        <div class="value-card reveal reveal-delay-4">
+          <span class="value-icon" aria-hidden="true">🤝</span>
+          <h4>Community Rooting</h4>
+          <p>We don't parachute in and out. We train local volunteers, build local systems, and ensure every solution outlasts our presence.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="section" aria-labelledby="team-heading">
+    <div class="container">
+      <div class="section-header text-center reveal">
+        <span class="eyebrow">The People</span>
+        <h2 id="team-heading">Our Core Team</h2>
+        <p>47 full-time staff, 340+ volunteers. Here are the people you'll recognize.</p>
+      </div>
+      <div class="team-grid">
+        <div class="card team-card reveal reveal-delay-1">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&q=80" alt="Priya Kulkarni" style="width:96px;height:96px;border-radius:50%;object-fit:cover;margin:0 auto var(--space-4);display:block;" />
+          <h4>Priya Kulkarni</h4>
+          <div class="role">Founder & Executive Director</div>
+          <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-top:var(--space-3)">Former software engineer, now full-time for the animals. 9 years in the field.</p>
+        </div>
+        <div class="card team-card reveal reveal-delay-2">
+          <img src="https://images.unsplash.com/photo-1594744803329-e58b31de215f?w=150&q=80" alt="Dr. Ananya Joshi" style="width:96px;height:96px;border-radius:50%;object-fit:cover;margin:0 auto var(--space-4);display:block;" />
+          <h4>Dr. Ananya Joshi</h4>
+          <div class="role">Head Veterinarian</div>
+          <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-top:var(--space-3)">BVSc, MVSc (Surgery). Leads our clinic and vaccination drives. 7+ years street animal practice.</p>
+        </div>
+        <div class="card team-card reveal reveal-delay-3">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=80" alt="Rahul Bapat" style="width:96px;height:96px;border-radius:50%;object-fit:cover;margin:0 auto var(--space-4);display:block;" />
+          <h4>Rahul Bapat</h4>
+          <div class="role">Head of Disaster Relief</div>
+          <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-top:var(--space-3)">Ex-NCC, former disaster management trainer. Led 23 relief operations in 5 states.</p>
+        </div>
+        <div class="card team-card reveal reveal-delay-4">
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&q=80" alt="Neha Deore" style="width:96px;height:96px;border-radius:50%;object-fit:cover;margin:0 auto var(--space-4);display:block;" />
+          <h4>Neha Deore</h4>
+          <div class="role">Environment Program Lead</div>
+          <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-top:var(--space-3)">MSc Environmental Science. Coordinates plantation drives, school programs, and biodiversity surveys.</p>
+        </div>
+        <div class="card team-card reveal reveal-delay-5">
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&q=80" alt="Sanjay Thorat" style="width:96px;height:96px;border-radius:50%;object-fit:cover;margin:0 auto var(--space-4);display:block;" />
+          <h4>Sanjay Thorat</h4>
+          <div class="role">Finance & Transparency Officer</div>
+          <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-top:var(--space-3)">CA, 14 years NGO finance. Ensures every rupee is accounted for and published on time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners -->
+  <section class="section section--alt" aria-labelledby="partners-heading">
+    <div class="container">
+      <div class="section-header text-center reveal">
+        <span class="eyebrow">We Don't Work Alone</span>
+        <h2 id="partners-heading">Our Partners & Supporters</h2>
+      </div>
+      <div class="partners-strip">
+        <div class="partner-logo reveal reveal-delay-1">Pune Municipal Corporation</div>
+        <div class="partner-logo reveal reveal-delay-2">Animal Welfare Board of India</div>
+        <div class="partner-logo reveal reveal-delay-3">NDMA India</div>
+        <div class="partner-logo reveal reveal-delay-4">Maharashtra Forest Dept.</div>
+        <div class="partner-logo reveal reveal-delay-5">TCS Foundation CSR</div>
+        <div class="partner-logo reveal" style="transition-delay:0.6s">Infosys BPM</div>
+        <div class="partner-logo reveal" style="transition-delay:0.7s">PETA India</div>
+        <div class="partner-logo reveal" style="transition-delay:0.8s">WWF India</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-banner reveal">
+        <h2>Join 340+ People Who Show Up</h2>
+        <p>Whether you have 3 hours a month or ₹500 to give — there is a place for you in Unke Liye's work. Every form of showing up counts.</p>
+        <div class="cta-banner-actions">
+          <a href="volunteer.html" class="btn btn--outline-white btn--lg">Become a Volunteer</a>
+          <a href="donate.html" class="btn btn--primary btn--lg" style="background:#A8D8B9;color:var(--color-primary-dark);border-color:#A8D8B9">Donate Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <img src="logo.png" alt="Unke Liye" class="footer-logo-img" />
+        <p class="footer-brand-tagline">For Every Life. For Nature. For a Better Tomorrow.</p>
+        <div class="footer-emergency">
+          <div class="footer-emergency-title">🚨 24/7 Animal Emergency</div>
+          <a href="tel:+918888000000">+91 88888 00000</a>
+          <span style="color:rgba(250,247,242,0.5);margin:0 8px">·</span>
+          <a href="report-animal.html">Report Online</a>
+        </div>
+      </div>
+      <div>
+        <h3 class="footer-col-title">Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="campaigns.html">Campaigns</a></li>
+          <li><a href="impact.html">Our Impact</a></li>
+          <li><a href="stories.html">Stories</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="footer-col-title">Our Work</h3>
+        <ul class="footer-links">
+          <li><a href="work-animal-rescue.html">🐾 Animal Rescue</a></li>
+          <li><a href="work-environment.html">🌱 Environment</a></li>
+          <li><a href="work-sanitation.html">🧹 Sanitation</a></li>
+          <li><a href="work-disaster-relief.html">🚨 Disaster Relief</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="footer-col-title">Get Involved</h3>
+        <ul class="footer-links">
+          <li><a href="volunteer.html">Volunteer</a></li>
+          <li><a href="donate.html">Donate</a></li>
+          <li><a href="adopt.html">Adopt a Pet</a></li>
+          <li><a href="foster.html">Foster</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 Unke Liye. Registered NGO, Maharashtra. Reg. No. MAH/2015/1234</p>
+      <div class="footer-legal-links">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms.html">Terms</a>
+        <a href="transparency.html">Financial Reports</a>
+        <a href="sitemap.html">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="report-animal.html" class="emergency-float" aria-label="Report an animal emergency">
+  <span class="emergency-float-icon" aria-hidden="true">🚨</span>
+  <span>Report Animal Emergency</span>
+</a>
+
+<script src="js/main.js"></script>
+</body>
+</html>

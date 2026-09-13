@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expenses & Utilization - Unke Liye Finance Manager</title>
+  <link rel="stylesheet" href="assets/css/finance-manager.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="../logo.png" alt="Unke Liye Logo" class="sidebar-logo-img"><div class="sidebar-brand">UNKE LIYE<span>Finance Operations</span></div></div>
+      <nav class="sidebar-nav">
+        <div class="nav-section"><div class="nav-section-title">Overview</div><a href="dashboard.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Dashboard</a></div>
+        <div class="nav-section"><div class="nav-section-title">Revenue</div><a href="donations.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>Donations</a><a href="donors.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>Donors</a><a href="receipts.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>Receipts</a></div>
+        <div class="nav-section"><div class="nav-section-title">Programs</div><a href="campaigns.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>Campaigns</a><a href="expenses.html" class="nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 14l4-4-4-4M5 20h14a2 2 0 002-2V8l-7-5-7 5v10a2 2 0 002 2z"/></svg>Expenses</a></div>
+        <div class="nav-section"><div class="nav-section-title">Analysis</div><a href="reports.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Financial Reports</a><a href="audit-log.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>Audit Log</a></div>
+      </nav>
+      <div class="sidebar-footer"><div class="user-profile"><div class="user-avatar">AM</div><div class="user-info"><div class="user-name">Aarav Mehta</div><div class="user-role">Finance Manager</div><div class="user-status"><span class="user-status-dot"></span>Online</div></div></div></div>
+    </aside>
+    <div class="sidebar-overlay"></div>
+    <main class="main-content">
+      <header class="header">
+        <div class="header-left"><button class="sidebar-toggle" aria-label="Toggle sidebar"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button><nav class="breadcrumb"><span>Finance Manager</span><span class="breadcrumb-separator">/</span><span class="breadcrumb-current">Expenses</span></nav></div>
+        <div class="header-right"><div class="search-input-wrapper"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg><input type="text" placeholder="Search..." aria-label="Global search"></div><button class="header-action" aria-label="Notifications"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg><span class="badge">4</span></button><button class="theme-toggle" aria-label="Toggle theme"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg></button></div>
+      </header>
+      <div class="page-content">
+        <div class="content-container">
+          <div class="page-header">
+            <h1 class="page-title">Expenses & Utilization</h1>
+            <p class="page-subtitle">Track operational spending and monitor allocation against the internal 82/10/8 framework.</p>
+            <div class="page-actions"><button class="btn btn-secondary" data-action="export"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Export</button></div>
+          </div>
+          <!-- Allocation Monitor -->
+          <div class="allocation-card" style="margin-bottom: 1.5rem;">
+            <div class="allocation-header"><h3 class="allocation-title">Budget Allocation Monitor</h3><span class="allocation-status review">Requires Review</span></div>
+            <div class="allocation-indicator">
+              <div class="allocation-item" data-allocation="program">
+                <span class="allocation-label">Program (82%)</span>
+                <div class="allocation-bar"><div class="allocation-fill success" style="width: 80.8%;"></div></div>
+                <span class="allocation-value">80.8%</span>
+                <span class="allocation-target">-1.2 pp</span>
+              </div>
+              <div class="allocation-item" data-allocation="administration">
+                <span class="allocation-label">Admin (10%)</span>
+                <div class="allocation-bar"><div class="allocation-fill info" style="width: 9.6%;"></div></div>
+                <span class="allocation-value">9.6%</span>
+                <span class="allocation-target">-0.4 pp</span>
+              </div>
+              <div class="allocation-item" data-allocation="fundraising">
+                <span class="allocation-label">Fundraising (8%)</span>
+                <div class="allocation-bar"><div class="allocation-fill warning" style="width: 9.6%;"></div></div>
+                <span class="allocation-value">9.6%</span>
+                <span class="allocation-target" style="color: var(--status-danger);">+1.6 pp</span>
+              </div>
+            </div>
+          </div>
+          <div class="filter-bar">
+            <div class="filter-group"><label class="filter-label">Search</label><input type="text" class="filter-input" data-filter="search" placeholder="Description, vendor..."></div>
+            <div class="filter-group"><label class="filter-label">Category</label><select class="filter-select" data-filter="category"><option value="all">All Categories</option><option value="program">Program</option><option value="administration">Administration</option><option value="fundraising">Fundraising</option></select></div>
+            <div class="filter-group"><label class="filter-label">Status</label><select class="filter-select" data-filter="status"><option value="all">All Statuses</option><option value="pending">Pending</option><option value="approved">Approved</option><option value="paid">Paid</option></select></div>
+          </div>
+          <div class="table-container">
+            <div class="table-wrapper">
+              <table class="data-table" id="expenses-table">
+                <thead><tr><th>Expense ID</th><th>Date</th><th>Description</th><th>Category</th><th>Campaign</th><th>Vendor</th><th>Amount</th><th>Approval</th><th>Payment</th><th>Actions</th></tr></thead>
+                <tbody>
+                  <tr data-expense-id="EXP-001" data-category="program" data-status="paid">
+                    <td><span class="txn-id">EXP-001</span></td><td class="date-cell">25/08/2026</td><td>Rescue transport vehicles</td><td><span class="campaign-pill animal">Program</span></td><td><span class="campaign-pill animal">Save Raju</span></td><td>Auto Fleet Services</td><td class="amount-cell">₹45,000</td><td class="status-cell"><span class="badge badge-success">Approved</span></td><td class="status-cell"><span class="badge badge-success">Paid</span></td>
+                    <td class="actions-cell"><div class="table-actions"><button class="table-action-btn">View</button></div></td>
+                  </tr>
+                  <tr data-expense-id="EXP-002" data-category="program" data-status="paid">
+                    <td><span class="txn-id">EXP-002</span></td><td class="date-cell">24/08/2026</td><td>Medical supplies for flood victims</td><td><span class="campaign-pill disaster">Program</span></td><td><span class="campaign-pill disaster">Flood Relief</span></td><td>MediCare Distributors</td><td class="amount-cell">₹85,000</td><td class="status-cell"><span class="badge badge-success">Approved</span></td><td class="status-cell"><span class="badge badge-success">Paid</span></td>
+                    <td class="actions-cell"><div class="table-actions"><button class="table-action-btn">View</button></div></td>
+                  </tr>
+                  <tr data-expense-id="EXP-003" data-category="program" data-status="approved">
+                    <td><span class="txn-id">EXP-003</span></td><td class="date-cell">23/08/2026</td><td>Sanitation equipment</td><td><span class="campaign-pill sanitation">Program</span></td><td><span class="campaign-pill sanitation">Dharavi</span></td><td>CleanTech Solutions</td><td class="amount-cell">₹62,000</td><td class="status-cell"><span class="badge badge-success">Approved</span></td><td class="status-cell"><span class="badge badge-warning">Pending</span></td>
+                    <td class="actions-cell"><div class="table-actions"><button class="table-action-btn" data-action="mark-paid">Mark Paid</button></div></td>
+                  </tr>
+                  <tr data-expense-id="EXP-004" data-category="administration" data-status="paid">
+                    <td><span class="txn-id">EXP-004</span></td><td class="date-cell">22/08/2026</td><td>Office rent - August</td><td><span class="campaign-pill general">Admin</span></td><td><span class="campaign-pill general">General</span></td><td>Property Management Co.</td><td class="amount-cell">₹35,000</td><td class="status-cell"><span class="badge badge-success">Approved</span></td><td class="status-cell"><span class="badge badge-success">Paid</span></td>
+                    <td class="actions-cell"><div class="table-actions"><button class="table-action-btn">View</button></div></td>
+                  </tr>
+                  <tr data-expense-id="EXP-005" data-category="administration" data-status="paid">
+                    <td><span class="txn-id">EXP-005</span></td><td class="date-cell">20/08/2026</td><td>Staff salaries</td><td><span class="campaign-pill general">Admin</span></td><td><span class="campaign-pill general">General</span></td><td>Payroll Services</td><td class="amount-cell">₹1,20,000</td><td class="status-cell"><span class="badge badge-success">Approved</span></td><td class="status-cell"><span class="badge badge-success">Paid</span></td>
+                    <td class="actions-cell"><div class="table-actions"><button class="table-action-btn">View</button></div></td>
+                  </tr>
+                  <tr data-expense-id="EXP-006" data-category="fundraising" data-status="approved">
+                    <td><span class="txn-id">EXP-006</span></td><td class="date-cell">19/08/2026</td><td>Donor campaign materials</td><td><span class="campaign-pill general">Fundraising</span></td><td><span class="campaign-pill general">General</span></td><td>PrintHub Media</td><td class="amount-cell">₹28,000</td><td class="status-cell"><span class="badge badge-success">Approved</span></td><td class="status-cell"><span class="badge badge-warning">Pending</span></td>
+                    <td class="actions-cell"><div class="table-actions"><button class="table-action-btn" data-action="mark-paid">Mark Paid</button></div></td>
+                  </tr>
+                  <tr data-expense-id="EXP-007" data-category="program" data-status="pending">
+                    <td><span class="txn-id">EXP-007</span></td><td class="date-cell">18/08/2026</td><td>Tree saplings for plantation</td><td><span class="campaign-pill environment">Program</span></td><td><span class="campaign-pill environment">Adopt-a-Tree</span></td><td>Green Nursery</td><td class="amount-cell">₹15,000</td><td class="status-cell"><span class="badge badge-warning">Pending</span></td><td class="status-cell"><span class="badge badge-neutral">Draft</span></td>
+                    <td class="actions-cell"><div class="table-actions"><button class="table-action-btn" data-action="approve">Approve</button><button class="table-action-btn" data-action="reject">Reject</button></div></td>
+                  </tr>
+                  <tr data-expense-id="EXP-008" data-category="program" data-status="paid">
+                    <td><span class="txn-id">EXP-008</span></td><td class="date-cell">17/08/2026</td><td>River cleanup equipment</td><td><span class="campaign-pill environment">Program</span></td><td><span class="campaign-pill environment">Pune River</span></td><td>EcoEquip Ltd.</td><td class="amount-cell">₹32,000</td><td class="status-cell"><span class="badge badge-success">Approved</span></td><td class="status-cell"><span class="badge badge-success">Paid</span></td>
+                    <td class="actions-cell"><div class="table-actions"><button class="table-action-btn">View</button></div></td>
+                  </tr>
+                  <tr data-expense-id="EXP-009" data-category="administration" data-status="paid">
+                    <td><span class="txn-id">EXP-009</span></td><td class="date-cell">15/08/2026</td><td>Utilities - Electricity</td><td><span class="campaign-pill general">Admin</span></td><td><span class="campaign-pill general">General</span></td><td>MSEDCL</td><td class="amount-cell">₹8,500</td><td class="status-cell"><span class="badge badge-success">Approved</span></td><td class="status-cell"><span class="badge badge-success">Paid</span></td>
+                    <td class="actions-cell"><div class="table-actions"><button class="table-action-btn">View</button></div></td>
+                  </tr>
+                  <tr data-expense-id="EXP-010" data-category="fundraising" data-status="approved">
+                    <td><span class="txn-id">EXP-010</span></td><td class="date-cell">14/08/2026</td><td>Social media advertising</td><td><span class="campaign-pill general">Fundraising</span></td><td><span class="campaign-pill general">General</span></td><td>Meta Ads</td><td class="amount-cell">₹22,000</td><td class="status-cell"><span class="badge badge-success">Approved</span></td><td class="status-cell"><span class="badge badge-success">Paid</span></td>
+                    <td class="actions-cell"><div class="table-actions"><button class="table-action-btn">View</button></div></td>
+                  </tr>
+                  <tr data-expense-id="EXP-011" data-category="program" data-status="paid">
+                    <td><span class="txn-id">EXP-011</span></td><td class="date-cell">12/08/2026</td><td>Animal food supplies</td><td><span class="campaign-pill animal">Program</span></td><td><span class="campaign-pill animal">Save Raju</span></td><td>PetFood Wholesale</td><td class="amount-cell">₹18,000</td><td class="status-cell"><span class="badge badge-success">Approved</span></td><td class="status-cell"><span class="badge badge-success">Paid</span></td>
+                    <td class="actions-cell"><div class="table-actions"><button class="table-action-btn">View</button></div></td>
+                  </tr>
+                  <tr data-expense-id="EXP-012" data-category="administration" data-status="pending">
+                    <td><span class="txn-id">EXP-012</span></td><td class="date-cell">10/08/2026</td><td>Legal consultation fees</td><td><span class="campaign-pill general">Admin</span></td><td><span class="campaign-pill general">General</span></td><td>Legal Associates</td><td class="amount-cell">₹15,000</td><td class="status-cell"><span class="badge badge-warning">Pending</span></td><td class="status-cell"><span class="badge badge-neutral">Draft</span></td>
+                    <td class="actions-cell"><div class="table-actions"><button class="table-action-btn" data-action="approve">Approve</button><button class="table-action-btn" data-action="reject">Reject</button></div></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="text-tertiary text-sm" style="margin-top: 1rem;" data-counter="expenses">20 expenses</div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <div class="toast-container"></div>
+  <script src="assets/js/layout.js"></script>
+  <script src="assets/js/ui.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/expenses.js"></script>
+</body>
+</html>

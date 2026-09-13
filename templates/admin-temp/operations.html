@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cross-Department Operations Executive Overview — Unke Liye Admin</title>
+  <link rel="stylesheet" href="assets/variables.css">
+  <link rel="stylesheet" href="assets/base.css">
+  <link rel="stylesheet" href="assets/components.css">
+  <link rel="stylesheet" href="../shared/css/platform-theme.css">
+  <style>
+    .portal-link-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-5);
+      transition: all var(--transition-fast);
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .portal-link-card:hover {
+      border-color: var(--brand-primary);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-brand">
+          <img src="../logo.png" alt="Unke Liye Logo" class="sidebar-logo-img">
+          <div class="sidebar-title">Unke Liye<span>Admin Console</span></div>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <div class="nav-section-title">Core</div>
+          <a href="dashboard.html" class="nav-item">Dashboard</a>
+          <a href="operations.html" class="nav-item active">Operations Overview</a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Administration</div>
+          <a href="admin-users.html" class="nav-item">System Users</a>
+          <a href="roles.html" class="nav-item">Roles & Permissions</a>
+          <a href="../finance-manager/audit-log.html" class="nav-item">Audit Trail</a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Programs</div>
+          <a href="campaigns.html" class="nav-item">Campaigns</a>
+          <a href="donations.html" class="nav-item">Donations</a>
+          <a href="volunteers.html" class="nav-item">Volunteers</a>
+          <a href="animals.html" class="nav-item">Animals</a>
+        </div>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="user-block">
+          <div class="user-avatar">AD</div>
+          <div class="user-info">
+            <span class="user-name">Meera Nambiar</span>
+            <span class="user-role">Super Administrator</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="header">
+        <div class="header-left">
+          <nav class="breadcrumb-nav">
+            <a href="dashboard.html">Admin</a>
+            <span class="breadcrumb-sep">/</span>
+            <span class="breadcrumb-current">Executive Operations</span>
+          </nav>
+        </div>
+        <div class="header-right">
+          <button class="btn btn-secondary btn-sm theme-toggle-btn" title="Toggle theme">
+            <span class="icon-moon">🌙</span>
+            <span class="icon-sun" style="display:none;">☀️</span>
+          </button>
+          <a href="../index.html" class="btn btn-secondary btn-sm">Main Portal Hub</a>
+        </div>
+      </header>
+
+      <div class="content-container">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:var(--space-6);flex-wrap:wrap;gap:var(--space-4);">
+          <div>
+            <h1 class="page-title">Cross-Department Operations Executive Overview</h1>
+            <p class="page-subtitle">Real-time status bridge across all 6 management consoles: Live incident response, fundraising campaigns, and treasury approvals.</p>
+          </div>
+          <div style="display:flex;gap:var(--space-2);">
+            <a href="../requests/request-center.html" class="btn btn-primary btn-sm">Universal Request Center &rarr;</a>
+          </div>
+        </div>
+
+        <!-- System-wide 4 High Impact Counters -->
+        <div class="kpi-row">
+          <div class="kpi-card kpi-primary">
+            <div class="kpi-header"><span class="kpi-label">Active Emergency Operations</span><span style="font-size:1.25rem;">🚨</span></div>
+            <div class="kpi-value">3 SOS Cases</div>
+            <div class="kpi-subtext">Ambulances deployed in field</div>
+          </div>
+
+          <div class="kpi-card kpi-success">
+            <div class="kpi-header"><span class="kpi-label">Treasury Capital Available</span><span style="font-size:1.25rem;">₹</span></div>
+            <div class="kpi-value">₹34,82,500</div>
+            <div class="kpi-subtext" style="color:var(--status-success);">82/10/8 statutory compliant</div>
+          </div>
+
+          <div class="kpi-card kpi-warning">
+            <div class="kpi-header"><span class="kpi-label">Pending Fund Approvals</span><span style="font-size:1.25rem;">⏳</span></div>
+            <div class="kpi-value" id="admin-pending-amt">₹35,000</div>
+            <div class="kpi-subtext" style="color:var(--status-warning);">Raju Spine Surgery (FR-1042)</div>
+          </div>
+
+          <div class="kpi-card kpi-accent">
+            <div class="kpi-header"><span class="kpi-label">Active Volunteer Roster</span><span style="font-size:1.25rem;">🤝</span></div>
+            <div class="kpi-value">142 Vetted</div>
+            <div class="kpi-subtext">28 active check-ins today</div>
+          </div>
+        </div>
+
+        <!-- 6 Department Operations Hub Cards -->
+        <h2 style="font-family:var(--font-heading);font-size:1.25rem;font-weight:700;margin-bottom:var(--space-4);">Department Management Consoles</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));gap:var(--space-5);margin-bottom:var(--space-8);">
+          <!-- Rescue -->
+          <a href="../rescue-manager/command-center.html" class="portal-link-card">
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-2);">
+                <span class="badge badge-danger">High Alert</span>
+                <span style="font-size:1.5rem;">🚨</span>
+              </div>
+              <h3 style="font-weight:700;font-size:1.15rem;color:var(--text-primary);margin-bottom:var(--space-1);">Rescue Command Center</h3>
+              <p style="font-size:0.8125rem;color:var(--text-secondary);line-height:1.45;margin-bottom:var(--space-3);">Emergency triage, ambulance dispatch, trauma ICU surgical cases, and fleet management.</p>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border-subtle);padding-top:var(--space-3);font-size:0.8125rem;color:var(--brand-primary);font-weight:600;">
+              <span>Open Command Center</span>
+              <span>&rarr;</span>
+            </div>
+          </a>
+
+          <!-- Finance -->
+          <a href="../finance-manager/dashboard.html" class="portal-link-card">
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-2);">
+                <span class="badge badge-success">80G Audited</span>
+                <span style="font-size:1.5rem;">💰</span>
+              </div>
+              <h3 style="font-weight:700;font-size:1.15rem;color:var(--text-primary);margin-bottom:var(--space-1);">Finance Manager</h3>
+              <p style="font-size:0.8125rem;color:var(--text-secondary);line-height:1.45;margin-bottom:var(--space-3);">Treasury liquidity, fund requests review desk, bank disbursements, and statutory compliance.</p>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border-subtle);padding-top:var(--space-3);font-size:0.8125rem;color:var(--brand-primary);font-weight:600;">
+              <span>Open Finance Desk</span>
+              <span>&rarr;</span>
+            </div>
+          </a>
+
+          <!-- Campaigns -->
+          <a href="../campaign-manager/dashboard.html" class="portal-link-card">
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-2);">
+                <span class="badge badge-brand">Active Drives</span>
+                <span style="font-size:1.5rem;">📢</span>
+              </div>
+              <h3 style="font-weight:700;font-size:1.15rem;color:var(--text-primary);margin-bottom:var(--space-1);">Campaign Manager</h3>
+              <p style="font-size:0.8125rem;color:var(--text-secondary);line-height:1.45;margin-bottom:var(--space-3);">Fundraising drives, donor engagement, impact milestones, and field procurement budgets.</p>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border-subtle);padding-top:var(--space-3);font-size:0.8125rem;color:var(--brand-primary);font-weight:600;">
+              <span>Open Campaign Portal</span>
+              <span>&rarr;</span>
+            </div>
+          </a>
+
+          <!-- Volunteers -->
+          <a href="../volunteer-manager/dashboard.html" class="portal-link-card">
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-2);">
+                <span class="badge badge-brand">Operations</span>
+                <span style="font-size:1.5rem;">🤝</span>
+              </div>
+              <h3 style="font-weight:700;font-size:1.15rem;color:var(--text-primary);margin-bottom:var(--space-1);">Volunteer Manager</h3>
+              <p style="font-size:0.8125rem;color:var(--text-secondary);line-height:1.45;margin-bottom:var(--space-3);">Application vetting, field duty shifts, service hours logging, and emergency SMS broadcasts.</p>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border-subtle);padding-top:var(--space-3);font-size:0.8125rem;color:var(--brand-primary);font-weight:600;">
+              <span>Open Volunteer Portal</span>
+              <span>&rarr;</span>
+            </div>
+          </a>
+
+          <!-- Content -->
+          <a href="../content-manager/dashboard.html" class="portal-link-card">
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-2);">
+                <span class="badge badge-info">CMS Publishing</span>
+                <span style="font-size:1.5rem;">✏️</span>
+              </div>
+              <h3 style="font-weight:700;font-size:1.15rem;color:var(--text-primary);margin-bottom:var(--space-1);">Content Manager</h3>
+              <p style="font-size:0.8125rem;color:var(--text-secondary);line-height:1.45;margin-bottom:var(--space-3);">Stories of transformation, news releases, central media library, and homepage content.</p>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border-subtle);padding-top:var(--space-3);font-size:0.8125rem;color:var(--brand-primary);font-weight:600;">
+              <span>Open Content Portal</span>
+              <span>&rarr;</span>
+            </div>
+          </a>
+
+          <!-- Public Website -->
+          <a href="../user/index.html" class="portal-link-card">
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-2);">
+                <span class="badge badge-success">Public Site</span>
+                <span style="font-size:1.5rem;">🌐</span>
+              </div>
+              <h3 style="font-weight:700;font-size:1.15rem;color:var(--text-primary);margin-bottom:var(--space-1);">Public Donor & Volunteer Website</h3>
+              <p style="font-size:0.8125rem;color:var(--text-secondary);line-height:1.45;margin-bottom:var(--space-3);">Public donation checkouts, 80G receipts, adoption portal, and emergency rescue report form.</p>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border-subtle);padding-top:var(--space-3);font-size:0.8125rem;color:var(--brand-primary);font-weight:600;">
+              <span>Visit Public Website</span>
+              <span>&rarr;</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="toast-container"></div>
+  <script src="../shared/js/platform-store.js"></script>
+  <script src="../shared/js/platform-ui.js"></script>
+</body>
+</html>

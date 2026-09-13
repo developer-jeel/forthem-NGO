@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Treasury & Cash Position — Unke Liye Finance Manager</title>
+  <link rel="stylesheet" href="assets/css/finance-manager.css">
+  <link rel="stylesheet" href="../shared/css/platform-theme.css">
+  <style>
+    .bank-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-5);
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-xs);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    }
+    .bank-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .bank-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--space-3);
+    }
+    .bank-logo {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      background: var(--bg-sunken);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--brand-primary);
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="../logo.png" alt="Unke Liye Logo" class="sidebar-logo-img">
+        <div class="sidebar-brand">
+          UNKE LIYE
+          <span>Finance Operations</span>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <div class="nav-section-title">Overview</div>
+          <a href="dashboard.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            Dashboard
+          </a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Treasury & Budgets</div>
+          <a href="cash-position.html" class="nav-item active">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+            Cash Position
+          </a>
+          <a href="department-budgets.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+            Department Budgets
+          </a>
+          <a href="compliance.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Compliance & 80G
+          </a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Fund Requests & Approvals</div>
+          <a href="fund-approvals.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+            Fund Approvals
+          </a>
+          <a href="fund-requests.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Fund Requests
+          </a>
+          <a href="disbursements.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+            Disbursements
+          </a>
+          <a href="expense-claims.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 14l4-4-4-4M5 20h14a2 2 0 002-2V8l-7-5-7 5v10a2 2 0 002 2z"/></svg>
+            Expense Claims
+          </a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Revenue & Donors</div>
+          <a href="donations.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+            Donations
+          </a>
+          <a href="donors.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            Donors
+          </a>
+          <a href="receipts.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            Receipts
+          </a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Analysis</div>
+          <a href="reports.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            Reports
+          </a>
+          <a href="audit-log.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/></svg>
+            Audit Log
+          </a>
+        </div>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="user-profile">
+          <div class="user-avatar">AM</div>
+          <div class="user-info">
+            <div class="user-name">Aarav Mehta</div>
+            <div class="user-role">Finance Manager</div>
+            <div class="user-status"><span class="user-status-dot"></span> Online</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="header">
+        <div class="header-left">
+          <nav class="breadcrumb">
+            <span>Finance Manager</span>
+            <span class="breadcrumb-separator">/</span>
+            <span>Treasury</span>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Cash Position</span>
+          </nav>
+        </div>
+        <div class="header-right">
+          <button class="btn btn-secondary btn-sm theme-toggle-btn" title="Toggle theme">
+            <span class="icon-moon">🌙</span>
+            <span class="icon-sun" style="display:none;">☀️</span>
+          </button>
+          <a href="../index.html" class="btn btn-secondary btn-sm">Exit to Portals</a>
+        </div>
+      </header>
+
+      <div class="content-container">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:var(--space-6);flex-wrap:wrap;gap:var(--space-4);">
+          <div>
+            <h1 class="page-title">Treasury Liquidity & Cash Position</h1>
+            <p class="page-subtitle">Real-time balances across institutional bank accounts, 80G designated reserves, and gateway holding balances.</p>
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="PlatformUI.showToast('All 5 banking webhooks synced successfully', 'success')">Sync Bank Feeds</button>
+        </div>
+
+        <!-- Master Cash Overview Cards -->
+        <div class="kpi-row">
+          <div class="kpi-card kpi-primary">
+            <div class="kpi-header">
+              <span class="kpi-label">Total Liquid Reserves</span>
+              <div class="kpi-icon" style="background:var(--brand-primary-light);color:var(--brand-primary);">🏛️</div>
+            </div>
+            <div class="kpi-value">₹34,82,500</div>
+            <div class="kpi-subtext" style="color:var(--status-success);">+8.4% monthly net inflow</div>
+          </div>
+
+          <div class="kpi-card kpi-accent">
+            <div class="kpi-header">
+              <span class="kpi-label">Operational Runway</span>
+              <div class="kpi-icon" style="background:var(--brand-accent-light);color:var(--brand-accent);">⏳</div>
+            </div>
+            <div class="kpi-value">5.8 Months</div>
+            <div class="kpi-subtext">Based on ₹6.0L avg monthly burn</div>
+          </div>
+
+          <div class="kpi-card kpi-warning">
+            <div class="kpi-header">
+              <span class="kpi-label">Pending Disbursements</span>
+              <div class="kpi-icon" style="background:var(--status-warning-bg);color:var(--status-warning);">📤</div>
+            </div>
+            <div class="kpi-value">₹35,000</div>
+            <div class="kpi-subtext">1 urgent emergency request</div>
+          </div>
+
+          <div class="kpi-card kpi-success">
+            <div class="kpi-header">
+              <span class="kpi-label">Unrestricted Capital</span>
+              <div class="kpi-icon" style="background:var(--status-success-bg);color:var(--status-success);">₹</div>
+            </div>
+            <div class="kpi-value">₹24,50,000</div>
+            <div class="kpi-subtext">Immediately deployable</div>
+          </div>
+        </div>
+
+        <!-- Bank Accounts Grid -->
+        <h2 style="font-family:var(--font-heading);font-size:1.25rem;font-weight:700;margin-bottom:var(--space-4);">Institutional Accounts & Custody</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:var(--space-5);margin-bottom:var(--space-8);">
+          <!-- SBI Primary -->
+          <div class="bank-card">
+            <div class="bank-card-header">
+              <div class="bank-logo">SBI</div>
+              <span class="badge badge-success">Operational</span>
+            </div>
+            <div style="font-size:0.8125rem;color:var(--text-tertiary);">State Bank of India — Current A/c</div>
+            <div style="font-weight:600;font-size:0.9rem;color:var(--text-primary);margin-bottom:var(--space-2);">A/c •••• 9924 (Fort Branch)</div>
+            <div style="font-family:var(--font-heading);font-size:1.6rem;font-weight:700;color:var(--text-primary);margin-bottom:var(--space-3);">₹18,45,200</div>
+            <div style="font-size:0.75rem;color:var(--text-tertiary);border-top:1px solid var(--border-subtle);padding-top:var(--space-2);display:flex;justify-content:space-between;">
+              <span>Daily NEFT Limit: ₹10,00,000</span>
+              <span style="color:var(--status-success);">Reconciled Today</span>
+            </div>
+          </div>
+
+          <!-- HDFC Emergency Reserve -->
+          <div class="bank-card">
+            <div class="bank-card-header">
+              <div class="bank-logo">HDFC</div>
+              <span class="badge badge-brand">Emergency Reserve</span>
+            </div>
+            <div style="font-size:0.8125rem;color:var(--text-tertiary);">HDFC Bank — Fixed Deposit Linked</div>
+            <div style="font-weight:600;font-size:0.9rem;color:var(--text-primary);margin-bottom:var(--space-2);">A/c •••• 4108 (Bandra Branch)</div>
+            <div style="font-family:var(--font-heading);font-size:1.6rem;font-weight:700;color:var(--text-primary);margin-bottom:var(--space-3);">₹10,32,000</div>
+            <div style="font-size:0.75rem;color:var(--text-tertiary);border-top:1px solid var(--border-subtle);padding-top:var(--space-2);display:flex;justify-content:space-between;">
+              <span>Earns 6.8% Ann. Interest</span>
+              <span style="color:var(--status-success);">Audited</span>
+            </div>
+          </div>
+
+          <!-- ICICI 80G Account -->
+          <div class="bank-card">
+            <div class="bank-card-header">
+              <div class="bank-logo">ICICI</div>
+              <span class="badge badge-info">80G Designated</span>
+            </div>
+            <div style="font-size:0.8125rem;color:var(--text-tertiary);">ICICI Bank — Donor Earmarked</div>
+            <div style="font-weight:600;font-size:0.9rem;color:var(--text-primary);margin-bottom:var(--space-2);">A/c •••• 7715 (Nariman Point)</div>
+            <div style="font-family:var(--font-heading);font-size:1.6rem;font-weight:700;color:var(--text-primary);margin-bottom:var(--space-3);">₹4,75,300</div>
+            <div style="font-size:0.75rem;color:var(--text-tertiary);border-top:1px solid var(--border-subtle);padding-top:var(--space-2);display:flex;justify-content:space-between;">
+              <span>Exclusively 80G Donors</span>
+              <span style="color:var(--status-success);">Compliant</span>
+            </div>
+          </div>
+
+          <!-- Razorpay Gateway Settlement -->
+          <div class="bank-card">
+            <div class="bank-card-header">
+              <div class="bank-logo">RZP</div>
+              <span class="badge badge-warning">T+1 Settlement</span>
+            </div>
+            <div style="font-size:0.8125rem;color:var(--text-tertiary);">Razorpay Merchant Escrow</div>
+            <div style="font-weight:600;font-size:0.9rem;color:var(--text-primary);margin-bottom:var(--space-2);">MID: rzp_live_unke_liye</div>
+            <div style="font-family:var(--font-heading);font-size:1.6rem;font-weight:700;color:var(--text-primary);margin-bottom:var(--space-3);">₹1,30,000</div>
+            <div style="font-size:0.75rem;color:var(--text-tertiary);border-top:1px solid var(--border-subtle);padding-top:var(--space-2);display:flex;justify-content:space-between;">
+              <span>Settles Tomorrow 09:00</span>
+              <span style="color:var(--status-warning);">In Transit</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Large Inflows & Settlements -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Recent Inflow Settlements & Bank Credits</h3>
+            <a href="donations.html" class="btn btn-secondary btn-sm">View All Inflows &rarr;</a>
+          </div>
+          <div class="table-container" style="border:none;">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Value Date</th>
+                  <th>Receiving Bank</th>
+                  <th>Source / Donor</th>
+                  <th>Channel</th>
+                  <th>UTR / Reference</th>
+                  <th style="text-align:right;">Credit Amount</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Today, 11:20 AM</td>
+                  <td><span style="font-weight:600;">SBI Current</span></td>
+                  <td>Tata Trusts CSR Grant (Sanitation)</td>
+                  <td>RTGS</td>
+                  <td><code>TATACSR-2026-99120</code></td>
+                  <td style="text-align:right;font-weight:700;color:var(--status-success);">+₹5,00,000</td>
+                  <td><span class="badge badge-success">Cleared</span></td>
+                </tr>
+                <tr>
+                  <td>Yesterday</td>
+                  <td><span style="font-weight:600;">ICICI 80G</span></td>
+                  <td>Online Campaign Donors (Save Raju)</td>
+                  <td>UPI Bulk</td>
+                  <td><code>RZP-SETTLE-88910</code></td>
+                  <td style="text-align:right;font-weight:700;color:var(--status-success);">+₹1,24,000</td>
+                  <td><span class="badge badge-success">Cleared</span></td>
+                </tr>
+                <tr>
+                  <td>04 Sep 2026</td>
+                  <td><span style="font-weight:600;">HDFC Reserve</span></td>
+                  <td>Quarterly FD Interest Credit</td>
+                  <td>Auto-Credit</td>
+                  <td><code>INT-HDFC-Q2-26</code></td>
+                  <td style="text-align:right;font-weight:700;color:var(--status-success);">+₹17,340</td>
+                  <td><span class="badge badge-success">Cleared</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="toast-container"></div>
+  <script src="../shared/js/platform-store.js"></script>
+  <script src="../shared/js/platform-ui.js"></script>
+</body>
+</html>

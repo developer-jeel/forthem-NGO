@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — Unke Liye Admin</title>
+<link rel="stylesheet" href="assets/variables.css">
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" href="assets/components.css">
+<link rel="stylesheet" href="assets/charts.css">
+<style>
+  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-4); margin-bottom: var(--sp-6); }
+  .dashboard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-5); margin-bottom: var(--sp-5); }
+  .dashboard-grid.three { grid-template-columns: 2fr 1fr; }
+  .sparkline-wrap { width: 80px; height: 36px; }
+  .activity-feed { display: flex; flex-direction: column; }
+  .activity-item { display: flex; gap: var(--sp-3); padding: var(--sp-3) 0; border-bottom: 1px solid var(--border-subtle); font-size: 0.8125rem; }
+  .activity-item:last-child { border-bottom: none; }
+  .activity-icon { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+  .activity-body { flex: 1; }
+  .activity-body strong { font-weight: 500; }
+  .activity-time { font-size: 0.75rem; color: var(--text-secondary); white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
+  .pending-item { display: flex; align-items: center; gap: var(--sp-3); padding: var(--sp-3) 0; border-bottom: 1px solid var(--border-subtle); font-size: 0.875rem; }
+  .pending-item:last-child { border-bottom: none; }
+  .pending-avatar { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 600; color: #fff; flex-shrink: 0; }
+  .pending-info { flex: 1; }
+  .pending-actions { display: flex; gap: var(--sp-2); flex-shrink: 0; }
+  .campaign-row { display: flex; align-items: center; gap: var(--sp-3); padding: var(--sp-3) 0; border-bottom: 1px solid var(--border-subtle); font-size: 0.8125rem; }
+  .campaign-row:last-child { border-bottom: none; }
+  .campaign-name { flex: 1; min-width: 0; }
+  .campaign-name strong { display: block; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .campaign-name small { color: var(--text-secondary); }
+  .campaign-progress { width: 120px; }
+  .campaign-amount { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  @media (max-width: 1100px) { .stats-grid { grid-template-columns: repeat(2,1fr); } }
+  @media (max-width: 900px) { .dashboard-grid, .dashboard-grid.three { grid-template-columns: 1fr; } }
+  @media (max-width: 600px) { .stats-grid { grid-template-columns: 1fr 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- Toast Region -->
+<div class="toast-region" id="toast-region" aria-live="polite">
+  <div class="toast hidden" id="toast-tpl-success" role="alert">
+    <div class="toast-icon success">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <div class="toast-body"><div class="toast-title">Success</div><div class="toast-msg">Action completed.</div></div>
+    <button class="toast-close" aria-label="Close notification">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="toast-progress"></div>
+  </div>
+  <div class="toast hidden" id="toast-tpl-danger" role="alert">
+    <div class="toast-icon danger">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    </div>
+    <div class="toast-body"><div class="toast-title">Error</div><div class="toast-msg">Something went wrong.</div></div>
+    <button class="toast-close" aria-label="Close notification">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="toast-progress" style="background:var(--status-danger)"></div>
+  </div>
+  <div class="toast hidden" id="toast-tpl-warning" role="alert">
+    <div class="toast-icon warning">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    </div>
+    <div class="toast-body"><div class="toast-title">Warning</div><div class="toast-msg">Please check before proceeding.</div></div>
+    <button class="toast-close" aria-label="Close notification">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="toast-progress" style="background:var(--status-warning)"></div>
+  </div>
+  <div class="toast hidden" id="toast-tpl-info" role="alert">
+    <div class="toast-icon info">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+    </div>
+    <div class="toast-body"><div class="toast-title">Info</div><div class="toast-msg">Here's something to know.</div></div>
+    <button class="toast-close" aria-label="Close notification">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="toast-progress" style="background:var(--status-info)"></div>
+  </div>
+</div>
+
+<!-- Sidebar Overlay (mobile) -->
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+<div class="admin-shell">
+<!-- ═══════════════════════════════════════════════════════
+     SIDEBAR
+════════════════════════════════════════════════════════ -->
+<aside class="sidebar" id="sidebar" role="navigation" aria-label="Main navigation">
+  <div class="sidebar-logo">
+    <img src="../logo.png" alt="Unke Liye Logo" class="sidebar-logo-img">
+    <div class="sidebar-logo-text">
+      <strong>Unke Liye</strong>
+      <span>Admin Panel</span>
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-group">
+      <div class="nav-group-label">Overview</div>
+      <a href="dashboard.html" class="nav-link active" aria-current="page">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        <span class="nav-link-label">Dashboard</span>
+      </a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-label">Content</div>
+      <a href="content.html" class="nav-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        <span class="nav-link-label">Homepage Content</span>
+      </a>
+      <a href="banners.html" class="nav-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg>
+        <span class="nav-link-label">Page Banners</span>
+      </a>
+      <a href="stories.html" class="nav-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        <span class="nav-link-label">Stories</span>
+      </a>
+      <a href="news.html" class="nav-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg>
+        <span class="nav-link-label">News</span>
+      </a>
+      <a href="gallery.html" class="nav-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span class="nav-link-label">Gallery</span>
+      </a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-label">Programs</div>
+      <a href="campaigns.html" class="nav-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <span class="nav-link-label">Campaigns</span>
+      </a>
+      <a href="animals.html" class="nav-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2.823.47-4.113 6.006-4 7 .08.703 1.725 1.722 3.656 1 1.261-.472 1.96-1.45 2.344-2.5"/><path d="M14.267 5.172c0-1.39 1.577-2.493 3.5-2.172 2.823.47 4.113 6.006 4 7-.08.703-1.725 1.722-3.656 1-1.261-.472-1.96-1.45-2.344-2.5"/><path d="M8 14v.5"/><path d="M16 14v.5"/><path d="M11.25 16.25h1.5L12 17l-.75-.75z"/><path d="M4.42 11.247A13.152 13.152 0 0 0 4 14.556C4 18.728 7.582 21 12 21s8-2.272 8-6.444c0-1.273-.241-2.248-.382-2.826"/></svg>
+        <span class="nav-link-label">Animals</span>
+      </a>
+      <a href="events.html" class="nav-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <span class="nav-link-label">Events</span>
+      </a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-label">People</div>
+      <a href="volunteers.html" class="nav-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span class="nav-link-label">Volunteers</span>
+      </a>
+      <a href="donors.html" class="nav-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <span class="nav-link-label">Donors</span>
+      </a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-label">Money</div>
+      <a href="donations.html" class="nav-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        <span class="nav-link-label">Donations</span>
+      </a>
+      <a href="reports.html" class="nav-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        <span class="nav-link-label">Reports</span>
+      </a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-label">Operations</div>
+      <a href="notifications.html" class="nav-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        <span class="nav-link-label">Notifications</span>
+      </a>
+      <a href="tasks.html" class="nav-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        <span class="nav-link-label">Task Center</span>
+      </a>
+      <a href="activity.html" class="nav-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        <span class="nav-link-label">Activity Feed</span>
+      </a>
+      <a href="messages.html" class="nav-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <span class="nav-link-label">Messages</span>
+        <span class="badge badge-danger" style="margin-left:auto;padding:2px 6px;font-size:0.65rem;">7</span>
+      </a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-label">System</div>
+      <a href="admin-users.html" class="nav-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span class="nav-link-label">Admin Users</span>
+      </a>
+      <a href="settings.html" class="nav-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        <span class="nav-link-label">Settings</span>
+      </a>
+    </div>
+  </nav>
+
+  <div class="sidebar-footer">
+    <button class="sidebar-collapse-btn" id="sidebar-collapse" aria-label="Collapse sidebar">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      <span class="sidebar-collapse-btn-label">Collapse</span>
+    </button>
+  </div>
+</aside>
+
+<!-- ═══════════════════════════════════════════════════════
+     MAIN CONTENT
+════════════════════════════════════════════════════════ -->
+<div class="main-content" id="main-content">
+
+  <!-- Topbar -->
+  <header class="topbar">
+    <button class="topbar-icon-btn" id="mobile-menu-toggle" aria-label="Open menu" style="display:none;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+
+    <div class="topbar-breadcrumb">
+      <a href="dashboard.html">Unke Liye</a>
+      <span class="sep">/</span>
+      <span class="current">Dashboard</span>
+    </div>
+
+    <div class="topbar-search">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="search" placeholder="Search…" aria-label="Global search" data-search-table="dash-campaigns-table">
+    </div>
+
+    <div class="topbar-actions">
+      <button class="topbar-icon-btn theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+
+      <div class="dropdown-wrap">
+        <button class="topbar-icon-btn" data-dropdown="notif-dropdown" aria-label="Notifications" aria-expanded="false">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <span class="notif-badge" aria-hidden="true"></span>
+        </button>
+        <div class="dropdown-menu notif-menu" id="notif-dropdown">
+          <div class="dropdown-header">Notifications <span class="badge badge-danger" style="font-size:.6rem;padding:1px 5px;">5</span></div>
+          <div class="notif-item unread">
+            <div class="notif-item-icon" style="background:var(--status-success-bg)">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--status-success)" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="notif-item-body">
+              <div class="notif-item-title">Volunteer application approved</div>
+              <div class="notif-item-meta">Priya Sharma — 8 minutes ago</div>
+            </div>
+          </div>
+          <div class="notif-item unread">
+            <div class="notif-item-icon" style="background:var(--status-info-bg)">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--status-info)" stroke-width="2" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <div class="notif-item-body">
+              <div class="notif-item-title">Donation of ₹15,000 received</div>
+              <div class="notif-item-meta">Arjun Mehta — 22 minutes ago</div>
+            </div>
+          </div>
+          <div class="notif-item unread">
+            <div class="notif-item-icon" style="background:var(--status-danger-bg)">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--status-danger)" stroke-width="2" stroke-linecap="round"><polygon points="7.86,2 16.14,2 22,7.86 22,16.14 16.14,22 7.86,22 2,16.14 2,7.86"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            </div>
+            <div class="notif-item-body">
+              <div class="notif-item-title">Animal abuse report received</div>
+              <div class="notif-item-meta">Anonymous, Pune — 1 hour ago</div>
+            </div>
+          </div>
+          <div class="notif-item">
+            <div class="notif-item-icon" style="background:var(--status-warning-bg)">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--status-warning)" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <div class="notif-item-body">
+              <div class="notif-item-title">Event "Tree Plantation Drive" starts tomorrow</div>
+              <div class="notif-item-meta">Reminder — 3 hours ago</div>
+            </div>
+          </div>
+          <div class="notif-item">
+            <div class="notif-item-icon" style="background:var(--bg-sunken)">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" stroke-width="2" stroke-linecap="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            </div>
+            <div class="notif-item-body">
+              <div class="notif-item-title">Story draft "Raju's Journey" awaiting review</div>
+              <div class="notif-item-meta">Neha Kulkarni — Yesterday</div>
+            </div>
+          </div>
+          <div style="padding:10px 16px; text-align:center;">
+            <a href="messages.html" style="font-size:0.8125rem;color:var(--brand-primary);">View all notifications</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="dropdown-wrap">
+        <button class="topbar-profile" data-dropdown="profile-dropdown" aria-label="Profile menu" aria-expanded="false">
+          <div class="profile-avatar">RS</div>
+          <div class="profile-info">
+            <strong>Rohit Sinha</strong>
+            <small>Super Admin</small>
+          </div>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="dropdown-menu profile-menu" id="profile-dropdown">
+          <div class="dropdown-item">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            My Profile
+          </div>
+          <a href="settings.html" class="dropdown-item">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            Settings
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="login.html" class="dropdown-item danger">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            Sign Out
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Content -->
+  <main class="page-content">
+    <div class="page-header">
+      <div class="page-header-left">
+        <h1>Dashboard</h1>
+        <p>Welcome back, Rohit. Here's what's happening at Unke Liye today.</p>
+      </div>
+      <div class="page-header-actions">
+        <span style="font-size:0.8125rem;color:var(--text-secondary);">Tuesday, 10 June 2025</span>
+        <button class="btn btn-secondary btn-sm">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.5"/></svg>
+          Refresh
+        </button>
+      </div>
+    </div>
+
+    <!-- ── Stat Cards ── -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-card-top">
+          <div>
+            <div class="stat-label">Total Donations</div>
+            <div class="stat-value tabular-nums" style="margin-top:4px;">₹38.6L</div>
+          </div>
+          <div class="stat-icon" style="background:var(--status-success-bg)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--status-success)" stroke-width="1.5" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+        </div>
+        <div class="flex items-center justify-between" style="margin-top:var(--sp-2)">
+          <span class="stat-trend up">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="18 15 12 9 6 15"/></svg>
+            +14.3% vs last month
+          </span>
+          <svg class="sparkline" width="80" height="30" viewBox="0 0 80 30">
+            <polyline class="sparkline-path" points="0,24 13,18 26,20 39,10 52,14 65,6 80,8" stroke="var(--status-success)" fill="none" stroke-width="1.5"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-card-top">
+          <div>
+            <div class="stat-label">Active Campaigns</div>
+            <div class="stat-value tabular-nums" style="margin-top:4px;">12</div>
+          </div>
+          <div class="stat-icon" style="background:var(--accent-terracotta-bg)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-terracotta)" stroke-width="1.5" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+        </div>
+        <div class="flex items-center justify-between" style="margin-top:var(--sp-2)">
+          <span class="stat-trend up">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="18 15 12 9 6 15"/></svg>
+            +3 this month
+          </span>
+          <svg class="sparkline" width="80" height="30" viewBox="0 0 80 30">
+            <polyline class="sparkline-path" points="0,20 13,16 26,22 39,12 52,18 65,10 80,8" stroke="var(--accent-terracotta)" fill="none" stroke-width="1.5"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-card-top">
+          <div>
+            <div class="stat-label">Animals in Care</div>
+            <div class="stat-value tabular-nums" style="margin-top:4px;">47</div>
+          </div>
+          <div class="stat-icon" style="background:var(--accent-leaf-bg)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-leaf)" stroke-width="1.5" stroke-linecap="round"><path d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2.823.47-4.113 6.006-4 7 .08.703 1.725 1.722 3.656 1 1.261-.472 1.96-1.45 2.344-2.5"/><path d="M14.267 5.172c0-1.39 1.577-2.493 3.5-2.172 2.823.47 4.113 6.006 4 7-.08.703-1.725 1.722-3.656 1-1.261-.472-1.96-1.45-2.344-2.5"/><path d="M8 14v.5"/><path d="M16 14v.5"/><path d="M11.25 16.25h1.5L12 17l-.75-.75z"/><path d="M4.42 11.247A13.152 13.152 0 0 0 4 14.556C4 18.728 7.582 21 12 21s8-2.272 8-6.444c0-1.273-.241-2.248-.382-2.826"/></svg>
+          </div>
+        </div>
+        <div class="flex items-center justify-between" style="margin-top:var(--sp-2)">
+          <span class="stat-trend down">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="18 9 12 15 6 9"/></svg>
+            8 adopted this week
+          </span>
+          <svg class="sparkline" width="80" height="30" viewBox="0 0 80 30">
+            <polyline class="sparkline-path" points="0,10 13,14 26,8 39,16 52,12 65,20 80,18" stroke="var(--accent-leaf)" fill="none" stroke-width="1.5"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-card-top">
+          <div>
+            <div class="stat-label">Active Volunteers</div>
+            <div class="stat-value tabular-nums" style="margin-top:4px;">84</div>
+          </div>
+          <div class="stat-icon" style="background:var(--accent-slate-bg)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-slate)" stroke-width="1.5" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+        </div>
+        <div class="flex items-center justify-between" style="margin-top:var(--sp-2)">
+          <span class="stat-trend up">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="18 15 12 9 6 15"/></svg>
+            +12 this quarter
+          </span>
+          <svg class="sparkline" width="80" height="30" viewBox="0 0 80 30">
+            <polyline class="sparkline-path" points="0,22 13,18 26,16 39,14 52,10 65,8 80,6" stroke="var(--accent-slate)" fill="none" stroke-width="1.5"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-card-top">
+          <div>
+            <div class="stat-label">Upcoming Events</div>
+            <div class="stat-value tabular-nums" style="margin-top:4px;">6</div>
+          </div>
+          <div class="stat-icon" style="background:var(--status-warning-bg)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--status-warning)" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+        </div>
+        <div class="flex items-center justify-between" style="margin-top:var(--sp-2)">
+          <span class="stat-trend up"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="18 15 12 9 6 15"/></svg>Next: 11 Jun</span>
+          <svg class="sparkline" width="80" height="30" viewBox="0 0 80 30">
+            <polyline class="sparkline-path" points="0,18 13,14 26,20 39,10 52,16 65,12 80,8" stroke="var(--status-warning)" fill="none" stroke-width="1.5"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-card-top">
+          <div>
+            <div class="stat-label">Unread Messages</div>
+            <div class="stat-value tabular-nums" style="margin-top:4px;">23</div>
+          </div>
+          <div class="stat-icon" style="background:var(--status-info-bg)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--status-info)" stroke-width="1.5" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+        </div>
+        <div class="flex items-center justify-between" style="margin-top:var(--sp-2)">
+          <span class="stat-trend down" style="color:var(--status-danger)">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="18 9 12 15 6 9"/></svg>
+            5 rescue reports
+          </span>
+          <svg class="sparkline" width="80" height="30" viewBox="0 0 80 30">
+            <polyline class="sparkline-path" points="0,8 13,12 26,6 39,16 52,8 65,18 80,14" stroke="var(--status-info)" fill="none" stroke-width="1.5"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-card-top">
+          <div>
+            <div class="stat-label">Pending Approvals</div>
+            <div class="stat-value tabular-nums" style="margin-top:4px;">6</div>
+          </div>
+          <div class="stat-icon" style="background:var(--status-danger-bg)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--status-danger)" stroke-width="1.5" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+        </div>
+        <div class="flex items-center justify-between" style="margin-top:var(--sp-2)">
+          <span class="stat-trend down" style="color:var(--status-danger)">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="18 9 12 15 6 9"/></svg>
+            Needs attention
+          </span>
+          <svg class="sparkline" width="80" height="30" viewBox="0 0 80 30">
+            <polyline class="sparkline-path" points="0,20 13,16 26,18 39,12 52,20 65,14 80,10" stroke="var(--status-danger)" fill="none" stroke-width="1.5"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-card-top">
+          <div>
+            <div class="stat-label">Total Donors</div>
+            <div class="stat-value tabular-nums" style="margin-top:4px;">1,248</div>
+          </div>
+          <div class="stat-icon" style="background:var(--brand-primary-muted)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-primary)" stroke-width="1.5" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+        </div>
+        <div class="flex items-center justify-between" style="margin-top:var(--sp-2)">
+          <span class="stat-trend up">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="18 15 12 9 6 15"/></svg>
+            +87 this month
+          </span>
+          <svg class="sparkline" width="80" height="30" viewBox="0 0 80 30">
+            <polyline class="sparkline-path" points="0,26 13,22 26,20 39,16 52,12 65,8 80,6" stroke="var(--brand-primary)" fill="none" stroke-width="1.5"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Charts Row ── -->
+    <div class="dashboard-grid" style="margin-bottom:var(--sp-5)">
+
+      <!-- Bar Chart: Donations by Month -->
+      <div class="chart-wrap">
+        <div class="chart-header">
+          <div>
+            <div class="chart-title">Donation Revenue</div>
+            <div class="chart-subtitle">Last 6 months (₹ in thousands)</div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <span class="badge badge-success">Jan–Jun 2025</span>
+          </div>
+        </div>
+        <svg class="chart-svg" viewBox="0 0 480 200" height="200">
+          <!-- Grid lines -->
+          <line class="grid-line" x1="48" y1="160" x2="460" y2="160"/>
+          <line class="grid-line" x1="48" y1="120" x2="460" y2="120"/>
+          <line class="grid-line" x1="48" y1="80" x2="460" y2="80"/>
+          <line class="grid-line" x1="48" y1="40" x2="460" y2="40"/>
+          <!-- Axis labels -->
+          <text class="axis-label" x="40" y="164" text-anchor="end">0</text>
+          <text class="axis-label" x="40" y="124" text-anchor="end">2L</text>
+          <text class="axis-label" x="40" y="84" text-anchor="end">4L</text>
+          <text class="axis-label" x="40" y="44" text-anchor="end">6L</text>
+          <!-- Bars: Jan=3.2L, Feb=4.8L, Mar=5.1L, Apr=6.4L, May=4.2L, Jun=5.9L (scale: 1L=20px, max=6L=120px) -->
+          <rect class="bar-chart-bar bar-animate" x="62" y="96" width="44" height="64" fill="var(--brand-primary)" rx="4" ry="4" opacity="0.9"/>
+          <rect class="bar-chart-bar bar-animate" x="128" y="64" width="44" height="96" fill="var(--brand-primary)" rx="4" ry="4" opacity="0.9"/>
+          <rect class="bar-chart-bar bar-animate" x="194" y="58" width="44" height="102" fill="var(--brand-primary)" rx="4" ry="4" opacity="0.9"/>
+          <rect class="bar-chart-bar bar-animate" x="260" y="32" width="44" height="128" fill="var(--accent-leaf)" rx="4" ry="4" opacity="0.9"/>
+          <rect class="bar-chart-bar bar-animate" x="326" y="76" width="44" height="84" fill="var(--brand-primary)" rx="4" ry="4" opacity="0.9"/>
+          <rect class="bar-chart-bar bar-animate" x="392" y="42" width="44" height="118" fill="var(--accent-leaf)" rx="4" ry="4" opacity="0.9"/>
+          <!-- Month labels -->
+          <text class="axis-label" x="84" y="178" text-anchor="middle">Jan</text>
+          <text class="axis-label" x="150" y="178" text-anchor="middle">Feb</text>
+          <text class="axis-label" x="216" y="178" text-anchor="middle">Mar</text>
+          <text class="axis-label" x="282" y="178" text-anchor="middle">Apr</text>
+          <text class="axis-label" x="348" y="178" text-anchor="middle">May</text>
+          <text class="axis-label" x="414" y="178" text-anchor="middle">Jun</text>
+          <!-- Value labels -->
+          <text class="chart-label" x="84" y="90" text-anchor="middle" font-size="10">₹3.2L</text>
+          <text class="chart-label" x="150" y="58" text-anchor="middle" font-size="10">₹4.8L</text>
+          <text class="chart-label" x="216" y="52" text-anchor="middle" font-size="10">₹5.1L</text>
+          <text class="chart-label" x="282" y="26" text-anchor="middle" font-size="10">₹6.4L</text>
+          <text class="chart-label" x="348" y="70" text-anchor="middle" font-size="10">₹4.2L</text>
+          <text class="chart-label" x="414" y="36" text-anchor="middle" font-size="10">₹5.9L</text>
+        </svg>
+      </div>
+
+      <!-- Donut Chart: By Pillar -->
+      <div class="chart-wrap">
+        <div class="chart-header">
+          <div>
+            <div class="chart-title">Donations by Pillar</div>
+            <div class="chart-subtitle">YTD distribution</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:24px;justify-content:center;flex-wrap:wrap;">
+          <svg width="160" height="160" viewBox="0 0 160 160">
+            <!-- Track -->
+            <circle class="progress-ring-track" cx="80" cy="80" r="54" stroke="var(--bg-sunken)" stroke-width="20"/>
+            <!-- Animal Rescue: 42% → dashoffset = 339.29*(1-0.42) = 196.79 → drawn portion = 142.5 -->
+            <circle class="donut-arc animate" cx="80" cy="80" r="54"
+              stroke="var(--accent-terracotta)" stroke-width="20"
+              stroke-dasharray="339.29" style="--dash-end:196.79"
+              transform="rotate(-90 80 80)" fill="none"/>
+            <!-- Environment: 28% → offset = 339.29*(1-0.28) = 244.29 -->
+            <circle class="donut-arc animate" cx="80" cy="80" r="54"
+              stroke="var(--accent-leaf)" stroke-width="20"
+              stroke-dasharray="339.29" style="--dash-end:244.29"
+              transform="rotate(61.2 80 80)" fill="none"/>
+            <!-- Sanitation: 18% → offset = 339.29*(1-0.18) = 278.42 -->
+            <circle class="donut-arc animate" cx="80" cy="80" r="54"
+              stroke="var(--accent-slate)" stroke-width="20"
+              stroke-dasharray="339.29" style="--dash-end:278.42"
+              transform="rotate(162 80 80)" fill="none"/>
+            <!-- Disaster: 12% → offset = 339.29*(1-0.12) = 298.58 -->
+            <circle class="donut-arc animate" cx="80" cy="80" r="54"
+              stroke="var(--accent-signal-red)" stroke-width="20"
+              stroke-dasharray="339.29" style="--dash-end:298.58"
+              transform="rotate(226.8 80 80)" fill="none"/>
+            <!-- Center -->
+            <text class="donut-center-value" x="80" y="76">₹38.6L</text>
+            <text class="donut-center-label" x="80" y="94" font-size="9">Total YTD</text>
+          </svg>
+          <div class="chart-legend" style="flex-direction:column;gap:10px;margin:0;">
+            <div class="legend-item">
+              <div class="legend-swatch" style="background:var(--accent-terracotta)"></div>
+              <span class="legend-label">Animal Rescue</span>
+              <span class="legend-value">42%</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-swatch" style="background:var(--accent-leaf)"></div>
+              <span class="legend-label">Environment</span>
+              <span class="legend-value">28%</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-swatch" style="background:var(--accent-slate)"></div>
+              <span class="legend-label">Sanitation</span>
+              <span class="legend-value">18%</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-swatch" style="background:var(--accent-signal-red)"></div>
+              <span class="legend-label">Disaster Relief</span>
+              <span class="legend-value">12%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Bottom Grid: Campaign Table + Activity + Pending ── -->
+    <div class="dashboard-grid" style="grid-template-columns:1fr 1fr;margin-bottom:var(--sp-5);">
+
+      <!-- Campaign Performance -->
+      <div class="card">
+        <div class="card-header">
+          <h3>Campaign Performance</h3>
+          <a href="campaigns.html" style="font-size:0.8125rem;color:var(--brand-primary);">View all →</a>
+        </div>
+        <div class="card-body" style="padding-top:var(--sp-3);">
+          <div class="campaign-row">
+            <div class="campaign-name">
+              <strong>Save Raju — Street Dog Rescue</strong>
+              <small>Animal Rescue</small>
+            </div>
+            <div class="campaign-progress">
+              <div class="progress-bar-wrap"><div class="progress-bar-fill terracotta" style="width:78%"></div></div>
+              <small style="color:var(--text-secondary);font-size:0.7rem;">78%</small>
+            </div>
+            <div class="campaign-amount"><strong>₹1.17L</strong><br><small style="color:var(--text-secondary)">/ ₹1.5L</small></div>
+          </div>
+          <div class="campaign-row">
+            <div class="campaign-name">
+              <strong>Pune River Clean-Up Drive</strong>
+              <small>Environment</small>
+            </div>
+            <div class="campaign-progress">
+              <div class="progress-bar-wrap"><div class="progress-bar-fill leaf" style="width:61%"></div></div>
+              <small style="color:var(--text-secondary);font-size:0.7rem;">61%</small>
+            </div>
+            <div class="campaign-amount"><strong>₹91,500</strong><br><small style="color:var(--text-secondary)">/ ₹1.5L</small></div>
+          </div>
+          <div class="campaign-row">
+            <div class="campaign-name">
+              <strong>Slum Sanitation Project — Dharavi</strong>
+              <small>Sanitation</small>
+            </div>
+            <div class="campaign-progress">
+              <div class="progress-bar-wrap"><div class="progress-bar-fill slate" style="width:89%"></div></div>
+              <small style="color:var(--text-secondary);font-size:0.7rem;">89%</small>
+            </div>
+            <div class="campaign-amount"><strong>₹2.67L</strong><br><small style="color:var(--text-secondary)">/ ₹3L</small></div>
+          </div>
+          <div class="campaign-row">
+            <div class="campaign-name">
+              <strong>Uttarakhand Flood Relief 2025</strong>
+              <small>Disaster Relief</small>
+            </div>
+            <div class="campaign-progress">
+              <div class="progress-bar-wrap"><div class="progress-bar-fill red" style="width:94%"></div></div>
+              <small style="color:var(--text-secondary);font-size:0.7rem;">94%</small>
+            </div>
+            <div class="campaign-amount"><strong>₹4.7L</strong><br><small style="color:var(--text-secondary)">/ ₹5L</small></div>
+          </div>
+          <div class="campaign-row">
+            <div class="campaign-name">
+              <strong>Adopt-a-Tree: Mumbai Suburbs</strong>
+              <small>Environment</small>
+            </div>
+            <div class="campaign-progress">
+              <div class="progress-bar-wrap"><div class="progress-bar-fill leaf" style="width:44%"></div></div>
+              <small style="color:var(--text-secondary);font-size:0.7rem;">44%</small>
+            </div>
+            <div class="campaign-amount"><strong>₹44,000</strong><br><small style="color:var(--text-secondary)">/ ₹1L</small></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Activity Feed -->
+      <div class="card">
+        <div class="card-header">
+          <h3>Recent Activity</h3>
+          <span class="badge badge-neutral">Last 24h</span>
+        </div>
+        <div class="card-body" style="padding:0 var(--sp-5);">
+          <div class="activity-feed">
+            <div class="activity-item">
+              <div class="activity-icon" style="background:var(--status-success-bg)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--status-success)" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div class="activity-body"><strong>Donation ₹12,000</strong> received from Sunita Desai for Flood Relief campaign.</div>
+              <div class="activity-time">2m</div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon" style="background:var(--accent-leaf-bg)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent-leaf)" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+              <div class="activity-body"><strong>Kavya Nair</strong> submitted volunteer application — Pune chapter.</div>
+              <div class="activity-time">18m</div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon" style="background:var(--accent-terracotta-bg)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent-terracotta)" stroke-width="2" stroke-linecap="round"><path d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2.823.47-4.113 6.006-4 7 .08.703 1.725 1.722 3.656 1 1.261-.472 1.96-1.45 2.344-2.5"/><path d="M14.267 5.172c0-1.39 1.577-2.493 3.5-2.172 2.823.47 4.113 6.006 4 7-.08.703-1.725 1.722-3.656 1-1.261-.472-1.96-1.45-2.344-2.5"/></svg></div>
+              <div class="activity-body"><strong>Moti</strong> (Labrador, 3y) status changed to <em>Foster Care</em>.</div>
+              <div class="activity-time">45m</div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon" style="background:var(--status-info-bg)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--status-info)" stroke-width="2" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+              <div class="activity-body">Campaign <strong>"Adopt-a-Tree Mumbai"</strong> published by Neha Kulkarni.</div>
+              <div class="activity-time">1h</div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon" style="background:var(--status-danger-bg)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--status-danger)" stroke-width="2" stroke-linecap="round"><polygon points="7.86,2 16.14,2 22,7.86 22,16.14 16.14,22 7.86,22 2,16.14 2,7.86"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+              <div class="activity-body">Rescue report filed — injured dog near Bandra flyover, Mumbai.</div>
+              <div class="activity-time">2h</div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon" style="background:var(--status-success-bg)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--status-success)" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div class="activity-body"><strong>Donation ₹50,000</strong> received from Tata Motors Foundation (corporate).</div>
+              <div class="activity-time">3h</div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon" style="background:var(--accent-leaf-bg)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent-leaf)" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+              <div class="activity-body">Event <strong>"Tree Plantation Drive"</strong> — 142 registrations so far.</div>
+              <div class="activity-time">4h</div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon" style="background:var(--bg-sunken)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" stroke-width="2" stroke-linecap="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+              <div class="activity-body">Story <strong>"How Raju Found His Family"</strong> published to public site.</div>
+              <div class="activity-time">5h</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Pending Approvals ── -->
+    <div class="card">
+      <div class="card-header">
+        <h3>Pending Approvals</h3>
+        <span class="badge badge-danger">6 items</span>
+      </div>
+      <div class="card-body" style="padding-top:var(--sp-2);">
+
+        <div class="pending-item">
+          <div class="pending-avatar" style="background:var(--accent-slate)">KN</div>
+          <div class="pending-info">
+            <strong style="font-size:0.875rem;">Kavya Nair</strong>
+            <div style="font-size:0.8125rem;color:var(--text-secondary);">Volunteer application · Pune · Skills: Rescue, First Aid, Photography</div>
+          </div>
+          <span class="badge badge-warning">Volunteer</span>
+          <div class="pending-actions">
+            <button class="btn btn-sm" style="background:var(--status-success-bg);color:var(--status-success);border:1px solid var(--status-success);"
+              data-toast="success" data-toast-title="Approved" data-toast-msg="Kavya Nair's application has been approved.">Approve</button>
+            <button class="btn btn-sm btn-secondary"
+              data-toast="danger" data-toast-title="Rejected" data-toast-msg="Application rejected and applicant notified.">Reject</button>
+          </div>
+        </div>
+
+        <div class="pending-item">
+          <div class="pending-avatar" style="background:var(--accent-terracotta)">AP</div>
+          <div class="pending-info">
+            <strong style="font-size:0.875rem;">Aman Patel</strong>
+            <div style="font-size:0.8125rem;color:var(--text-secondary);">Volunteer application · Ahmedabad · Skills: Logistics, Driving, Carpentry</div>
+          </div>
+          <span class="badge badge-warning">Volunteer</span>
+          <div class="pending-actions">
+            <button class="btn btn-sm" style="background:var(--status-success-bg);color:var(--status-success);border:1px solid var(--status-success);"
+              data-toast="success" data-toast-title="Approved" data-toast-msg="Aman Patel's application has been approved.">Approve</button>
+            <button class="btn btn-sm btn-secondary"
+              data-toast="danger" data-toast-title="Rejected" data-toast-msg="Application rejected.">Reject</button>
+          </div>
+        </div>
+
+        <div class="pending-item">
+          <div class="pending-avatar" style="background:var(--accent-leaf)">SR</div>
+          <div class="pending-info">
+            <strong style="font-size:0.875rem;">Sneha Reddy</strong>
+            <div style="font-size:0.8125rem;color:var(--text-secondary);">Volunteer application · Hyderabad · Skills: Veterinary Assist, Social Media</div>
+          </div>
+          <span class="badge badge-warning">Volunteer</span>
+          <div class="pending-actions">
+            <button class="btn btn-sm" style="background:var(--status-success-bg);color:var(--status-success);border:1px solid var(--status-success);"
+              data-toast="success" data-toast-title="Approved" data-toast-msg="Sneha Reddy's application has been approved.">Approve</button>
+            <button class="btn btn-sm btn-secondary"
+              data-toast="danger" data-toast-title="Rejected" data-toast-msg="Application rejected.">Reject</button>
+          </div>
+        </div>
+
+        <div class="pending-item">
+          <div class="pending-avatar" style="background:var(--brand-primary)">RS</div>
+          <div class="pending-info">
+            <strong style="font-size:0.875rem;">Campaign: "Clean Ganges Initiative 2025"</strong>
+            <div style="font-size:0.8125rem;color:var(--text-secondary);">Submitted by Rahul Singh · Environment · Target: ₹4,00,000</div>
+          </div>
+          <span class="badge badge-info">Campaign</span>
+          <div class="pending-actions">
+            <button class="btn btn-sm" style="background:var(--status-success-bg);color:var(--status-success);border:1px solid var(--status-success);"
+              data-toast="success" data-toast-title="Published" data-toast-msg="Campaign is now live on the public site.">Publish</button>
+            <button class="btn btn-sm btn-secondary">Review</button>
+          </div>
+        </div>
+
+        <div class="pending-item">
+          <div class="pending-avatar" style="background:var(--status-warning)">MK</div>
+          <div class="pending-info">
+            <strong style="font-size:0.875rem;">Campaign: "Winter Dog Shelter — Delhi"</strong>
+            <div style="font-size:0.8125rem;color:var(--text-secondary);">Submitted by Manish Kumar · Animal Rescue · Target: ₹2,50,000</div>
+          </div>
+          <span class="badge badge-info">Campaign</span>
+          <div class="pending-actions">
+            <button class="btn btn-sm" style="background:var(--status-success-bg);color:var(--status-success);border:1px solid var(--status-success);"
+              data-toast="success" data-toast-title="Published" data-toast-msg="Campaign is now live.">Publish</button>
+            <button class="btn btn-sm btn-secondary">Review</button>
+          </div>
+        </div>
+
+        <div class="pending-item">
+          <div class="pending-avatar" style="background:var(--status-info)">NK</div>
+          <div class="pending-info">
+            <strong style="font-size:0.875rem;">Story Draft: "Raju's Second Chance"</strong>
+            <div style="font-size:0.8125rem;color:var(--text-secondary);">Written by Neha Kulkarni · Animal Rescue pillar · 1,240 words</div>
+          </div>
+          <span class="badge badge-neutral">Story</span>
+          <div class="pending-actions">
+            <button class="btn btn-sm" style="background:var(--status-success-bg);color:var(--status-success);border:1px solid var(--status-success);"
+              data-toast="success" data-toast-title="Published" data-toast-msg="Story is now live on the public site.">Publish</button>
+            <button class="btn btn-sm btn-secondary">Preview</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+</div><!-- end main-content -->
+</div><!-- end admin-shell -->
+
+<script src="assets/app.js"></script>
+</body>
+</html>

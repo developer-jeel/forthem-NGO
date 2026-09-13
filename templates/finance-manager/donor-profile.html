@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donor Profile - Unke Liye Finance Manager</title>
+  <link rel="stylesheet" href="assets/css/finance-manager.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="../logo.png" alt="Unke Liye Logo" class="sidebar-logo-img"><div class="sidebar-brand">UNKE LIYE<span>Finance Operations</span></div></div>
+      <nav class="sidebar-nav">
+        <div class="nav-section"><div class="nav-section-title">Overview</div><a href="dashboard.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Dashboard</a></div>
+        <div class="nav-section"><div class="nav-section-title">Revenue</div><a href="donations.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>Donations</a><a href="donors.html" class="nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>Donors</a><a href="receipts.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>Receipts</a></div>
+        <div class="nav-section"><div class="nav-section-title">Programs</div><a href="campaigns.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>Campaigns</a><a href="expenses.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 14l4-4-4-4M5 20h14a2 2 0 002-2V8l-7-5-7 5v10a2 2 0 002 2z"/></svg>Expenses</a></div>
+        <div class="nav-section"><div class="nav-section-title">Analysis</div><a href="reports.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Financial Reports</a><a href="audit-log.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>Audit Log</a></div>
+      </nav>
+      <div class="sidebar-footer"><div class="user-profile"><div class="user-avatar">AM</div><div class="user-info"><div class="user-name">Aarav Mehta</div><div class="user-role">Finance Manager</div><div class="user-status"><span class="user-status-dot"></span>Online</div></div></div></div>
+    </aside>
+    <div class="sidebar-overlay"></div>
+    <main class="main-content">
+      <header class="header">
+        <div class="header-left"><button class="sidebar-toggle" aria-label="Toggle sidebar"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button><nav class="breadcrumb"><span>Finance Manager</span><span class="breadcrumb-separator">/</span><a href="donors.html" style="color: var(--text-tertiary);">Donors</a><span class="breadcrumb-separator">/</span><span class="breadcrumb-current">Profile</span></nav></div>
+        <div class="header-right"><button class="theme-toggle" aria-label="Toggle theme"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg></button></div>
+      </header>
+      <div class="page-content">
+        <div class="content-container">
+          <div class="page-header">
+            <h1 class="page-title">Donor Profile</h1>
+            <p class="page-subtitle">View donor information, contribution history, and engagement metrics.</p>
+          </div>
+          <div class="grid-2">
+            <div class="section">
+              <div class="section-header"><h3 class="section-title">Donor Information</h3></div>
+              <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                <div class="avatar avatar-lg avatar-default">AS</div>
+                <div>
+                  <h4 style="margin-bottom: 0.25rem;">Ananya Shah</h4>
+                  <span class="badge badge-success">Individual Donor</span>
+                </div>
+              </div>
+              <div class="form-group"><label class="form-label">Email</label><div>ananya.shah@example.com</div></div>
+              <div class="form-group"><label class="form-label">Phone</label><div>+91 98765 43210</div></div>
+              <div class="form-group"><label class="form-label">City</label><div>Mumbai, Maharashtra</div></div>
+              <div class="form-group"><label class="form-label">Preferred Payment</label><div>UPI / QR</div></div>
+              <div class="form-group"><label class="form-label">Donor Since</label><div>January 2025</div></div>
+              <div class="form-group"><label class="form-label">Status</label><div><span class="badge badge-success">Active</span></div></div>
+            </div>
+            <div class="section">
+              <div class="section-header"><h3 class="section-title">Contribution Summary</h3></div>
+              <div class="kpi-grid" style="grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1.5rem;">
+                <div class="card" style="padding: 1rem;"><div class="card-title">Total Contributed</div><div class="card-value" style="font-size: 1.5rem;">₹1,25,000</div></div>
+                <div class="card" style="padding: 1rem;"><div class="card-title">Number of Donations</div><div class="card-value" style="font-size: 1.5rem;">5</div></div>
+                <div class="card" style="padding: 1rem;"><div class="card-title">Average Donation</div><div class="card-value" style="font-size: 1.5rem;">₹25,000</div></div>
+                <div class="card" style="padding: 1rem;"><div class="card-title">Last Contribution</div><div class="card-value" style="font-size: 1.5rem;">26/08/2026</div></div>
+              </div>
+              <div class="form-group"><label class="form-label">Campaigns Supported</label><div style="display: flex; flex-wrap: wrap; gap: 0.5rem;"><span class="campaign-pill disaster">Uttarakhand Flood</span><span class="campaign-pill animal">Save Raju Rescue</span><span class="campaign-pill general">General Fund</span></div></div>
+            </div>
+          </div>
+          <div class="section">
+            <div class="section-header"><h3 class="section-title">Contribution History</h3></div>
+            <div class="table-container">
+              <div class="table-wrapper">
+                <table class="data-table">
+                  <thead><tr><th>Transaction</th><th>Date</th><th>Campaign</th><th>Amount</th><th>Payment</th><th>Receipt</th><th>Status</th></tr></thead>
+                  <tbody>
+                    <tr><td><span class="txn-id">TXN-2608261042</span></td><td class="date-cell">26/08/2026</td><td><span class="campaign-pill disaster">Uttarakhand Flood</span></td><td class="amount-cell">₹25,000</td><td>UPI</td><td><span class="badge badge-success">Generated</span></td><td><span class="badge badge-success">Verified</span></td></tr>
+                    <tr><td><span class="txn-id">TXN-2607154523</span></td><td class="date-cell">15/07/2026</td><td><span class="campaign-pill animal">Save Raju Rescue</span></td><td class="amount-cell">₹30,000</td><td>UPI</td><td><span class="badge badge-success">Sent</span></td><td><span class="badge badge-success">Verified</span></td></tr>
+                    <tr><td><span class="txn-id">TXN-2606082341</span></td><td class="date-cell">08/06/2026</td><td><span class="campaign-pill general">General Fund</span></td><td class="amount-cell">₹20,000</td><td>Card</td><td><span class="badge badge-success">Sent</span></td><td><span class="badge badge-success">Verified</span></td></tr>
+                    <tr><td><span class="txn-id">TXN-2604221234</span></td><td class="date-cell">22/04/2026</td><td><span class="campaign-pill disaster">Uttarakhand Flood</span></td><td class="amount-cell">₹25,000</td><td>UPI</td><td><span class="badge badge-success">Sent</span></td><td><span class="badge badge-success">Verified</span></td></tr>
+                    <tr><td><span class="txn-id">TXN-2601150987</span></td><td class="date-cell">15/01/2026</td><td><span class="campaign-pill general">General Fund</span></td><td class="amount-cell">₹25,000</td><td>UPI</td><td><span class="badge badge-success">Sent</span></td><td><span class="badge badge-success">Verified</span></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="section">
+            <div class="section-header"><h3 class="section-title">Communication Preferences</h3></div>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;">
+              <div><label style="display: flex; align-items: center; gap: 0.5rem;"><input type="checkbox" checked style="width: auto;"> Email Updates</label></div>
+              <div><label style="display: flex; align-items: center; gap: 0.5rem;"><input type="checkbox" checked style="width: auto;"> Tax Receipts</label></div>
+              <div><label style="display: flex; align-items: center; gap: 0.5rem;"><input type="checkbox" style="width: auto;"> SMS Notifications</label></div>
+            </div>
+          </div>
+          <div class="page-actions" style="margin-top: 1.5rem;">
+            <button class="btn btn-secondary" onclick="window.history.back()">Back to Donors</button>
+            <button class="btn btn-primary">Edit Profile</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <div class="toast-container"></div>
+  <script src="assets/js/layout.js"></script>
+  <script src="assets/js/ui.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Volunteers — Rescue Manager · Unke Liye NGO</title>
+<meta name="description" content="On-call volunteer directory and emergency broadcast for Unke Liye rescue operations.">
+<link rel="stylesheet" href="assets/css/rescue-manager.css">
+</head>
+<body>
+<div class="toast-region" id="toast-region"></div>
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+<div class="app-shell" id="app-shell">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar" role="navigation" aria-label="Rescue Manager navigation">
+    <div class="sidebar-header">
+      <img src="../logo.png" alt="Unke Liye Logo" class="sidebar-logo-img">
+      <div class="sidebar-logo-text"><strong>Unke Liye</strong><span>Rescue Portal</span></div>
+    </div>
+    <div class="sidebar-role-badge"><span class="role-pulse-dot"></span><span>Rescue Manager · Active</span></div>
+    <nav class="sidebar-nav">
+      <div class="nav-section">
+        <div class="nav-section-label">Overview</div>
+        <a href="dashboard.html" class="nav-item"><svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span class="nav-item-label">Dashboard</span></a>
+      </div>
+      <div class="nav-divider"></div>
+      <div class="nav-section">
+        <div class="nav-section-label">Operations</div>
+        <a href="incidents.html" class="nav-item"><svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><polygon points="7.86,2 16.14,2 22,7.86 22,16.14 16.14,22 7.86,22 2,16.14 2,7.86"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><span class="nav-item-label">Incidents Queue</span><span class="nav-item-badge">5</span></a>
+        <a href="dispatch.html" class="nav-item"><svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3"/><rect x="9" y="11" width="14" height="10" rx="1"/><circle cx="12" cy="21" r="1"/><circle cx="20" cy="21" r="1"/></svg><span class="nav-item-label">Team Dispatch</span></a>
+        <a href="cases.html" class="nav-item"><svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2.823.47-4.113 6.006-4 7 .08.703 1.725 1.722 3.656 1 1.261-.472 1.96-1.45 2.344-2.5"/><path d="M14.267 5.172c0-1.39 1.577-2.493 3.5-2.172 2.823.47 4.113 6.006 4 7-.08.703-1.725 1.722-3.656 1-1.261-.472-1.96-1.45-2.344-2.5"/><path d="M4.42 11.247A13.152 13.152 0 0 0 4 14.556C4 18.728 7.582 21 12 21s8-2.272 8-6.444c0-1.273-.241-2.248-.382-2.826"/></svg><span class="nav-item-label">Active Cases</span></a>
+        <a href="volunteers.html" class="nav-item active" aria-current="page"><svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span class="nav-item-label">Volunteers</span></a>
+      </div>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="user-chip"><div class="user-avatar">KJ</div><div class="user-meta"><strong>Karan Joshi</strong><small>Chief Dispatcher</small></div></div>
+      <button class="sidebar-collapse-btn" id="sidebar-collapse" aria-label="Collapse sidebar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg><span class="collapse-label">Collapse</span></button>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main-content">
+    <header class="topbar">
+      <button class="topbar-icon-btn topbar-menu-btn" id="mobile-menu-toggle" aria-label="Open menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+      <div class="topbar-breadcrumb">
+        <span class="rescue-dot"></span>
+        <a href="dashboard.html">Rescue Manager</a><span class="sep">/</span><span class="current">Volunteers</span>
+      </div>
+      <div class="topbar-search">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="search" id="vol-search" placeholder="Search volunteers…">
+      </div>
+      <div class="topbar-actions">
+        <button class="topbar-icon-btn" id="theme-toggle" aria-label="Toggle dark mode">
+          <svg class="icon-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/></svg>
+        </button>
+        <div class="topbar-icon-btn" style="position:relative;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><span class="notif-count">3</span></div>
+      </div>
+    </header>
+
+    <main class="page-content">
+      <div class="page-header">
+        <div class="page-header-left">
+          <h1>On-Call Volunteers</h1>
+          <p>Rescue specialists available for field deployment — filter by skill or area.</p>
+        </div>
+        <div class="page-header-actions">
+          <button class="btn btn-outline btn-sm" data-toast="info" data-toast-title="Export List" data-toast-msg="Volunteer roster exported to CSV.">Export Roster</button>
+          <span style="font-size:0.875rem;color:var(--text-muted);font-weight:500;padding-left:var(--sp-2);">📋 Roster managed by Admin</span>
+        </div>
+      </div>
+
+      <!-- Broadcast Box -->
+      <div class="broadcast-box mb-5">
+        <h3>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-signal-red)" stroke-width="2.5" stroke-linecap="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+          Broadcast Emergency Alert
+        </h3>
+        <p>Send an SMS + WhatsApp alert to all filtered volunteers instantly. Use skill and area filters to target the right people.</p>
+        <form id="broadcast-form">
+          <div class="broadcast-filters">
+            <select class="form-control" id="bc-skill">
+              <option value="">All Skills</option>
+              <option>Snake Handler</option>
+              <option>Swimmer</option>
+              <option>Vet Student</option>
+              <option>First Aid Certified</option>
+              <option>Wildlife Handler</option>
+              <option>Rope Rescue</option>
+              <option>Driver</option>
+            </select>
+            <select class="form-control" id="bc-area">
+              <option value="">All Areas</option>
+              <option>Kothrud</option>
+              <option>Hadapsar</option>
+              <option>Sangvi</option>
+              <option>Baner</option>
+              <option>Aundh</option>
+              <option>Deccan</option>
+            </select>
+            <select class="form-control" id="bc-avail">
+              <option value="">All Availability</option>
+              <option>On-Call</option>
+              <option>Active on Field</option>
+            </select>
+          </div>
+          <div class="form-group" style="margin-bottom:var(--sp-3);">
+            <textarea class="form-control" id="broadcast-msg" rows="2" placeholder="Type your emergency message here… e.g., 'Urgent: Water rescue needed at Sangvi bridge. Swimmers report ASAP.'"></textarea>
+          </div>
+          <button class="btn btn-danger" type="submit">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+            Send Broadcast Alert
+          </button>
+        </form>
+      </div>
+
+      <!-- Filter Chips -->
+      <div style="display:flex;align-items:center;gap:var(--sp-3);margin-bottom:var(--sp-4);flex-wrap:wrap;">
+        <span class="section-label">FILTER BY AVAILABILITY</span>
+        <div class="filter-chips">
+          <button class="filter-chip vol-filter-chip active" data-avail="all">All (8)</button>
+          <button class="filter-chip vol-filter-chip" data-avail="on-call">🟢 On-Call</button>
+          <button class="filter-chip vol-filter-chip" data-avail="active">🔵 Active on Field</button>
+          <button class="filter-chip vol-filter-chip" data-avail="unavailable">⚫ Unavailable</button>
+        </div>
+      </div>
+
+      <!-- Volunteers Grid -->
+      <div class="volunteers-grid">
+
+        <!-- V01 -->
+        <div class="vol-card anim-delay-1" data-avail="on-call">
+          <div class="vol-card-top">
+            <div class="vol-avatar">AD</div>
+            <div>
+              <div class="vol-name">Arjun Desai</div>
+              <div class="vol-area">📍 Kothrud, Pune</div>
+            </div>
+          </div>
+          <div class="vol-contact">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12.54a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.9 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            9876541230
+          </div>
+          <div class="vol-skills">
+            <span class="skill-tag">🐍 Snake Handler</span>
+            <span class="skill-tag">🩺 First Aid</span>
+          </div>
+          <div class="vol-card-footer">
+            <span class="badge badge-success">On-Call</span>
+            <button class="btn btn-primary btn-sm" data-assign-vol="Arjun Desai">Assign Task</button>
+          </div>
+        </div>
+
+        <!-- V02 -->
+        <div class="vol-card anim-delay-2" data-avail="active">
+          <div class="vol-card-top">
+            <div class="vol-avatar" style="background:var(--accent-leaf-bg);border-color:var(--accent-leaf);color:var(--accent-leaf);">SK</div>
+            <div>
+              <div class="vol-name">Sneha Kulkarni</div>
+              <div class="vol-area">📍 Hadapsar, Pune</div>
+            </div>
+          </div>
+          <div class="vol-contact">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12.54a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.9 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            9012341234
+          </div>
+          <div class="vol-skills">
+            <span class="skill-tag">🩺 Vet Student</span>
+            <span class="skill-tag">🐾 Animal Behavior</span>
+          </div>
+          <div class="vol-card-footer">
+            <span class="badge badge-info">Active on Field</span>
+            <button class="btn btn-outline btn-sm" disabled>Assigned</button>
+          </div>
+        </div>
+
+        <!-- V03 -->
+        <div class="vol-card anim-delay-3" data-avail="on-call">
+          <div class="vol-card-top">
+            <div class="vol-avatar" style="background:var(--accent-slate-bg);border-color:var(--accent-slate);color:var(--accent-slate);">RP</div>
+            <div>
+              <div class="vol-name">Rohan Pawar</div>
+              <div class="vol-area">📍 Sangvi, Pune</div>
+            </div>
+          </div>
+          <div class="vol-contact">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12.54a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.9 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            9988771234
+          </div>
+          <div class="vol-skills">
+            <span class="skill-tag">🏊 Swimmer</span>
+            <span class="skill-tag">🚨 Disaster Relief</span>
+          </div>
+          <div class="vol-card-footer">
+            <span class="badge badge-success">On-Call</span>
+            <button class="btn btn-primary btn-sm" data-assign-vol="Rohan Pawar">Assign Task</button>
+          </div>
+        </div>
+
+        <!-- V04 -->
+        <div class="vol-card anim-delay-4" data-avail="unavailable">
+          <div class="vol-card-top">
+            <div class="vol-avatar" style="background:var(--status-neutral-bg);border-color:var(--border-default);color:var(--text-muted);">AJ</div>
+            <div>
+              <div class="vol-name">Ananya Joshi</div>
+              <div class="vol-area">📍 Baner, Pune</div>
+            </div>
+          </div>
+          <div class="vol-contact">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12.54a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.9 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            9765431234
+          </div>
+          <div class="vol-skills">
+            <span class="skill-tag">🩺 First Aid</span>
+            <span class="skill-tag">🩺 Vet Student</span>
+          </div>
+          <div class="vol-card-footer">
+            <span class="badge badge-neutral">Unavailable</span>
+            <button class="btn btn-ghost btn-sm" disabled>Unavailable</button>
+          </div>
+        </div>
+
+        <!-- V05 -->
+        <div class="vol-card anim-delay-5" data-avail="on-call">
+          <div class="vol-card-top">
+            <div class="vol-avatar">DM</div>
+            <div>
+              <div class="vol-name">Dev Marathe</div>
+              <div class="vol-area">📍 Aundh, Pune</div>
+            </div>
+          </div>
+          <div class="vol-contact">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12.54a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.9 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            9112231234
+          </div>
+          <div class="vol-skills">
+            <span class="skill-tag">🏊 Swimmer</span>
+            <span class="skill-tag">🪢 Rope Rescue</span>
+          </div>
+          <div class="vol-card-footer">
+            <span class="badge badge-success">On-Call</span>
+            <button class="btn btn-primary btn-sm" data-assign-vol="Dev Marathe">Assign Task</button>
+          </div>
+        </div>
+
+        <!-- V06 -->
+        <div class="vol-card" data-avail="active">
+          <div class="vol-card-top">
+            <div class="vol-avatar" style="background:var(--accent-leaf-bg);border-color:var(--accent-leaf);color:var(--accent-leaf);">PN</div>
+            <div>
+              <div class="vol-name">Pooja Nair</div>
+              <div class="vol-area">📍 Kothrud, Pune</div>
+            </div>
+          </div>
+          <div class="vol-contact">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12.54a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.9 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            9800231234
+          </div>
+          <div class="vol-skills">
+            <span class="skill-tag">🐾 Wildlife Handler</span>
+            <span class="skill-tag">🩺 First Aid</span>
+          </div>
+          <div class="vol-card-footer">
+            <span class="badge badge-info">Active on Field</span>
+            <button class="btn btn-outline btn-sm" disabled>Assigned</button>
+          </div>
+        </div>
+
+        <!-- V07 -->
+        <div class="vol-card" data-avail="on-call">
+          <div class="vol-card-top">
+            <div class="vol-avatar" style="background:var(--accent-slate-bg);border-color:var(--accent-slate);color:var(--accent-slate);">KS</div>
+            <div>
+              <div class="vol-name">Kiran Shah</div>
+              <div class="vol-area">📍 Deccan, Pune</div>
+            </div>
+          </div>
+          <div class="vol-contact">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12.54a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.9 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            9900001234
+          </div>
+          <div class="vol-skills">
+            <span class="skill-tag">🚗 Driver</span>
+            <span class="skill-tag">🐾 Animal Handler</span>
+          </div>
+          <div class="vol-card-footer">
+            <span class="badge badge-success">On-Call</span>
+            <button class="btn btn-primary btn-sm" data-assign-vol="Kiran Shah">Assign Task</button>
+          </div>
+        </div>
+
+        <!-- V08 -->
+        <div class="vol-card" data-avail="unavailable">
+          <div class="vol-card-top">
+            <div class="vol-avatar" style="background:var(--status-neutral-bg);border-color:var(--border-default);color:var(--text-muted);">MG</div>
+            <div>
+              <div class="vol-name">Maya Gaikwad</div>
+              <div class="vol-area">📍 Hadapsar, Pune</div>
+            </div>
+          </div>
+          <div class="vol-contact">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12.54a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.9 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            9765009874
+          </div>
+          <div class="vol-skills">
+            <span class="skill-tag">🩺 Vet Student</span>
+            <span class="skill-tag">🩺 First Aid</span>
+          </div>
+          <div class="vol-card-footer">
+            <span class="badge badge-neutral">Unavailable</span>
+            <button class="btn btn-ghost btn-sm" disabled>Unavailable</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- Assign Task Modal -->
+<div class="modal-backdrop" id="assign-task-modal" role="dialog" aria-modal="true" aria-labelledby="atm-title">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="atm-title">📋 Assign Rescue Task</h3>
+      <button class="modal-close" data-modal-close="assign-task-modal" aria-label="Close">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <form class="modal-body" id="assign-task-form">
+      <div class="form-group">
+        <label class="form-label">Volunteer Name</label>
+        <input class="form-control" type="text" id="assign-vol-name" readonly style="background:var(--bg-sunken);font-weight:600;">
+      </div>
+      <div class="form-group">
+        <label class="form-label required" for="assign-incident">Select Active Incident</label>
+        <select class="form-control" id="assign-incident" required>
+          <option value="">-- Choose Incident --</option>
+          <option value="INC-001">INC-001 · Injured Cow — Aundh</option>
+          <option value="INC-003">INC-003 · Injured Dog — Kothrud</option>
+          <option value="INC-004">INC-004 · Cat on Crane — Baner</option>
+          <option value="INC-005">INC-005 · Water Logging — Sangvi</option>
+          <option value="INC-006">INC-006 · Injured Peacock — Talegaon</option>
+          <option value="INC-008">INC-008 · Bridge Collapse — Nashik Highway</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="assign-instructions">Special Instructions</label>
+        <textarea class="form-control" id="assign-instructions" rows="3" placeholder="Provide details, contact info, transport instructions..."></textarea>
+      </div>
+    </form>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" data-modal-close="assign-task-modal">Cancel</button>
+      <button class="btn btn-danger" form="assign-task-form" type="submit">Assign Task</button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>

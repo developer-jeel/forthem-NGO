@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Unke Liye Transparency — annual reports, financial statements, donation utilization, certificates, and governance documents." />
+  <title>Transparency & Reports — Unke Liye</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <style>
+    .report-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+      display: flex;
+      gap: var(--space-4);
+      align-items: flex-start;
+      transition: box-shadow var(--transition-base);
+    }
+    .report-card:hover { box-shadow: var(--shadow-sm); }
+    .report-icon { font-size: 2rem; flex-shrink: 0; width: 52px; height: 52px; background: var(--color-primary-light); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; }
+    .report-card h4 { font-size: var(--text-base); margin-bottom: var(--space-1); }
+    .report-card p { font-size: var(--text-sm); color: var(--color-text-muted); }
+    .report-card .report-actions { display: flex; gap: var(--space-2); margin-top: var(--space-4); flex-wrap: wrap; }
+
+    .reports-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-5);
+    }
+    @media (min-width: 640px) { .reports-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1024px) { .reports-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    .utilization-bar-section { margin: var(--space-8) 0; }
+    .util-bar { display: flex; gap: var(--space-4); align-items: center; margin-bottom: var(--space-4); }
+    .util-label { font-size: var(--text-sm); font-weight: 600; min-width: 180px; }
+    .util-track { flex: 1; height: 32px; background: var(--color-surface-alt); border-radius: var(--radius-sm); overflow: hidden; }
+    .util-fill { height: 100%; border-radius: var(--radius-sm); display: flex; align-items: center; padding-left: var(--space-3); font-size: var(--text-xs); font-weight: 700; color: #fff; transition: width 1.2s ease-in-out; }
+    .util-pct { font-size: var(--text-sm); font-weight: 700; min-width: 40px; text-align: right; }
+
+    .cert-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+      text-align: center;
+    }
+    .cert-card .cert-icon { font-size: 2.5rem; margin-bottom: var(--space-3); display: block; }
+    .cert-card h4 { font-size: var(--text-base); margin-bottom: var(--space-2); }
+    .cert-card p { font-size: var(--text-sm); color: var(--color-text-muted); }
+    .cert-card .cert-num { font-size: var(--text-xs); font-family: monospace; background: var(--color-surface-alt); padding: 2px 8px; border-radius: var(--radius-sm); color: var(--color-primary); margin-top: var(--space-3); display: inline-block; }
+  </style>
+</head>
+<body>
+<a href="#main-content" class="skip-nav">Skip to main content</a>
+<div class="emergency-bar"><span class="pulse-dot" aria-hidden="true"></span><span>🚨 Animal in distress? —</span><a href="report-animal.html">Report Now →</a></div>
+<header class="site-header" role="banner">
+  <div class="container">
+    <nav class="nav-inner" aria-label="Main navigation">
+      <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a>
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li><li><a href="about.html" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Our Work <svg viewBox="0 0 16 16" fill="currentColor" width="14" height="14"><path d="M4 6l4 4 4-4"/></svg></a><div class="nav-dropdown"><a href="work-animal-rescue.html"><span class="icon">🐾</span> Animal Rescue</a><a href="work-environment.html"><span class="icon">🌱</span> Environment</a><a href="work-sanitation.html"><span class="icon">🧹</span> Sanitation</a><a href="work-disaster-relief.html"><span class="icon">🚨</span> Disaster Relief</a></div></li>
+        <li><a href="campaigns.html" class="nav-link">Campaigns</a></li><li><a href="impact.html" class="nav-link">Impact</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Get Involved <svg viewBox="0 0 16 16" fill="currentColor" width="14" height="14"><path d="M4 6l4 4 4-4"/></svg></a><div class="nav-dropdown"><a href="volunteer.html"><span class="icon">🙋</span> Volunteer</a><a href="foster.html"><span class="icon">🏠</span> Foster</a><a href="sponsor-animal.html"><span class="icon">💛</span> Sponsor</a><a href="report-animal.html" style="color:var(--color-urgent)"><span class="icon">🚨</span> Report</a></div></li>
+      </ul>
+      <div class="nav-actions"><a href="donate.html" class="btn btn--primary btn--sm">Donate</a><button class="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button></div>
+    </nav>
+  </div>
+</header>
+<div class="nav-mobile-panel" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <div class="nav-mobile-overlay"></div>
+  <div class="nav-mobile-drawer">
+    <button class="nav-mobile-close" aria-label="Close menu">✕</button>
+    <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a>
+    <ul class="nav-mobile-list"><li><a href="index.html">Home</a></li><li><a href="transparency.html">Transparency</a></li><li><a href="donate.html">Donate</a></li></ul>
+    <div class="nav-mobile-actions"><a href="donate.html" class="btn btn--primary btn--full">Donate Now</a></div>
+  </div>
+</div>
+
+<main id="main-content">
+  <div class="page-hero" style="--ph-img: url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1600&q=80')">
+    <div class="container page-hero-content">
+      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">›</span><span aria-current="page">Transparency</span></nav>
+      <h1>Transparency &amp; Reports</h1>
+      <p>We believe every donor deserves to know exactly where their money goes. Here is everything — no exceptions.</p>
+    </div>
+  </div>
+
+  <!-- Utilization Overview -->
+  <section class="section section--alt" aria-labelledby="util-heading">
+    <div class="container" style="max-width:800px">
+      <div class="section-header reveal"><span class="eyebrow">FY 2023–24</span><h2 id="util-heading">Donation Utilization</h2><p>Of every ₹100 donated to Unke Liye, this is how it was spent.</p></div>
+      <div class="utilization-bar-section">
+        <div class="util-bar reveal reveal-delay-1">
+          <div class="util-label">Program Activities</div>
+          <div class="util-track"><div class="util-fill" data-progress="82" style="width:0%;background:var(--color-primary)">Animal Rescue, Environment, Relief</div></div>
+          <div class="util-pct">82%</div>
+        </div>
+        <div class="util-bar reveal reveal-delay-2">
+          <div class="util-label">Administration</div>
+          <div class="util-track"><div class="util-fill" data-progress="10" style="width:0%;background:var(--color-text-muted)">Staff, Office, Infrastructure</div></div>
+          <div class="util-pct">10%</div>
+        </div>
+        <div class="util-bar reveal reveal-delay-3">
+          <div class="util-label">Fundraising</div>
+          <div class="util-track"><div class="util-fill" data-progress="8" style="width:0%;background:var(--color-border)">Campaigns, Communications</div></div>
+          <div class="util-pct">8%</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--space-4);margin-top:var(--space-6)">
+        <div style="text-align:center;background:var(--color-surface);border-radius:var(--radius-md);padding:var(--space-5)">
+          <div style="font-family:var(--font-display);font-size:2rem;font-weight:700;color:var(--color-primary)" data-counter data-target="4230000" data-prefix="₹">0</div>
+          <div style="font-size:var(--text-xs);color:var(--color-text-muted);margin-top:4px">Total Raised FY24</div>
+        </div>
+        <div style="text-align:center;background:var(--color-surface);border-radius:var(--radius-md);padding:var(--space-5)">
+          <div style="font-family:var(--font-display);font-size:2rem;font-weight:700;color:var(--color-success)" data-counter data-target="3468600" data-prefix="₹">0</div>
+          <div style="font-size:var(--text-xs);color:var(--color-text-muted);margin-top:4px">Program Spend</div>
+        </div>
+        <div style="text-align:center;background:var(--color-surface);border-radius:var(--radius-md);padding:var(--space-5)">
+          <div style="font-family:var(--font-display);font-size:2rem;font-weight:700;color:var(--color-care)">1,840</div>
+          <div style="font-size:var(--text-xs);color:var(--color-text-muted);margin-top:4px">Donors This Year</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Annual Reports -->
+  <section class="section" aria-labelledby="annual-reports-heading">
+    <div class="container">
+      <div class="section-header reveal"><span class="eyebrow">Documents</span><h2 id="annual-reports-heading">Annual Reports</h2></div>
+      <div class="reports-grid">
+        <div class="report-card reveal reveal-delay-1">
+          <div class="report-icon" aria-hidden="true">📋</div>
+          <div>
+            <h4>Annual Report 2023–24</h4>
+            <p>Full year report — programs, rescues, financials, team, and impact. 48 pages.</p>
+            <div class="report-actions">
+              <a href="#" class="btn btn--primary btn--sm" aria-label="Download Annual Report 2023-24">Download PDF</a>
+              <a href="#" class="btn btn--ghost btn--sm">View Online</a>
+            </div>
+          </div>
+        </div>
+        <div class="report-card reveal reveal-delay-2">
+          <div class="report-icon" aria-hidden="true">📋</div>
+          <div>
+            <h4>Annual Report 2022–23</h4>
+            <p>Full year report including COVID recovery programs, Raigad flood operations, and shelter expansion.</p>
+            <div class="report-actions">
+              <a href="#" class="btn btn--primary btn--sm">Download PDF</a>
+              <a href="#" class="btn btn--ghost btn--sm">View Online</a>
+            </div>
+          </div>
+        </div>
+        <div class="report-card reveal reveal-delay-3">
+          <div class="report-icon" aria-hidden="true">📋</div>
+          <div>
+            <h4>Annual Report 2021–22</h4>
+            <p>Post-pandemic rebuilding, new environment pillar, and expanded disaster response capacity.</p>
+            <div class="report-actions">
+              <a href="#" class="btn btn--primary btn--sm">Download PDF</a>
+              <a href="#" class="btn btn--ghost btn--sm">View Online</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Certificates -->
+      <div style="margin-top:var(--space-16)">
+        <div class="section-header reveal"><span class="eyebrow">Legal & Certifications</span><h2>Our Registrations & Certificates</h2></div>
+        <div class="grid-3">
+          <div class="cert-card reveal reveal-delay-1">
+            <span class="cert-icon" aria-hidden="true">🏛️</span>
+            <h4>NGO Registration</h4>
+            <p>Registered under Societies Registration Act, 1860, Maharashtra.</p>
+            <div class="cert-num">MAH/2015/1234</div>
+            <a href="#" class="btn btn--ghost btn--sm" style="margin-top:var(--space-4)">Download Certificate</a>
+          </div>
+          <div class="cert-card reveal reveal-delay-2">
+            <span class="cert-icon" aria-hidden="true">💰</span>
+            <h4>80G Tax Exemption</h4>
+            <p>Donors receive 50% income tax deduction on all donations. Valid through FY 2025–26.</p>
+            <div class="cert-num">DIT(E)/MH/421-2016</div>
+            <a href="#" class="btn btn--ghost btn--sm" style="margin-top:var(--space-4)">Download Certificate</a>
+          </div>
+          <div class="cert-card reveal reveal-delay-3">
+            <span class="cert-icon" aria-hidden="true">🌐</span>
+            <h4>FCRA Registration</h4>
+            <p>Authorized to receive foreign contributions for our programs.</p>
+            <div class="cert-num">FCRA/MH/2018/083</div>
+            <a href="#" class="btn btn--ghost btn--sm" style="margin-top:var(--space-4)">Download Certificate</a>
+          </div>
+          <div class="cert-card reveal reveal-delay-4">
+            <span class="cert-icon" aria-hidden="true">📜</span>
+            <h4>12A Certification</h4>
+            <p>Income tax exemption on NGO income. Registered under Section 12A.</p>
+            <div class="cert-num">12A/MH/2016/004421</div>
+            <a href="#" class="btn btn--ghost btn--sm" style="margin-top:var(--space-4)">Download Certificate</a>
+          </div>
+          <div class="cert-card reveal reveal-delay-5">
+            <span class="cert-icon" aria-hidden="true">🐾</span>
+            <h4>AWBI Recognition</h4>
+            <p>Recognized by the Animal Welfare Board of India for animal care and rescue operations.</p>
+            <div class="cert-num">AWBI/2017/MH-0432</div>
+            <a href="#" class="btn btn--ghost btn--sm" style="margin-top:var(--space-4)">Download Certificate</a>
+          </div>
+          <div class="cert-card reveal" style="transition-delay:0.6s">
+            <span class="cert-icon" aria-hidden="true">🌱</span>
+            <h4>Environmental Org. Registration</h4>
+            <p>Registered with Maharashtra Forest Department for reforestation and conservation activities.</p>
+            <div class="cert-num">MFD/ENV/2019/887</div>
+            <a href="#" class="btn btn--ghost btn--sm" style="margin-top:var(--space-4)">Download Certificate</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Policies -->
+      <div style="margin-top:var(--space-16)">
+        <div class="section-header reveal"><span class="eyebrow">Governance</span><h2>Policies & Governance Documents</h2></div>
+        <div class="grid-2">
+          <div class="report-card reveal reveal-delay-1"><div class="report-icon" aria-hidden="true">🔒</div><div><h4>Privacy Policy</h4><p>How we collect, use, and protect donor, volunteer, and user data.</p><div class="report-actions"><a href="privacy-policy.html" class="btn btn--ghost btn--sm">Read Policy</a></div></div></div>
+          <div class="report-card reveal reveal-delay-2"><div class="report-icon" aria-hidden="true">📄</div><div><h4>Terms of Use</h4><p>Terms governing use of the Unke Liye website and services.</p><div class="report-actions"><a href="terms.html" class="btn btn--ghost btn--sm">Read Terms</a></div></div></div>
+          <div class="report-card reveal reveal-delay-3"><div class="report-icon" aria-hidden="true">🏦</div><div><h4>Donation Refund Policy</h4><p>Our policy on donation refunds and correction of erroneous transactions.</p><div class="report-actions"><a href="#" class="btn btn--ghost btn--sm">Read Policy</a></div></div></div>
+          <div class="report-card reveal reveal-delay-4"><div class="report-icon" aria-hidden="true">⚖️</div><div><h4>Conflict of Interest Policy</h4><p>Guidelines governing board member and staff conflicts of interest.</p><div class="report-actions"><a href="#" class="btn btn--ghost btn--sm">Read Policy</a></div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div><img src="logo.png" alt="Unke Liye" class="footer-logo-img" /><p class="footer-brand-tagline">For Every Life. For Nature. For a Better Tomorrow.</p><div class="footer-emergency"><div class="footer-emergency-title">🚨 24/7 Emergency</div><a href="tel:+918888000000">+91 88888 00000</a></div></div>
+      <div><h3 class="footer-col-title">Quick Links</h3><ul class="footer-links"><li><a href="about.html">About</a></li><li><a href="impact.html">Impact</a></li><li><a href="donate.html">Donate</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2024 Unke Liye. Reg. No. MAH/2015/1234</p><div class="footer-legal-links"><a href="privacy-policy.html">Privacy</a><a href="terms.html">Terms</a><a href="sitemap.html">Sitemap</a></div></div>
+  </div>
+</footer>
+<a href="report-animal.html" class="emergency-float" aria-label="Report an animal emergency"><span aria-hidden="true">🚨</span><span>Report Animal Emergency</span></a>
+<script src="js/main.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.style.width = e.target.dataset.progress + '%'; obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('.util-fill').forEach(el => obs.observe(el));
+  });
+</script>
+</body>
+</html>

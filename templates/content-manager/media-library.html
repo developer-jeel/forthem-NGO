@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Media Library · Content Manager · Unke Liye</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/admin.css">
+  <style>
+    /* Media Library specific styles */
+    .media-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .media-filter-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    /* Drag & Drop Upload Zone */
+    .media-dropzone {
+      border: 2px dashed var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      background: var(--bg-surface);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      margin-bottom: 1.75rem;
+    }
+    .media-dropzone:hover, .media-dropzone.drag-over {
+      border-color: var(--brand-primary);
+      background: rgba(31, 61, 43, 0.03);
+    }
+    .dropzone-icon {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 0.75rem;
+      color: var(--brand-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--brand-primary-muted);
+      border-radius: 50%;
+    }
+
+    /* Media Grid */
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+    .media-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    }
+    .media-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .media-thumb-wrap {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      background: var(--bg-sunken);
+      overflow: hidden;
+    }
+    .media-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .media-card:hover .media-thumb {
+      transform: scale(1.04);
+    }
+    .media-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(31, 61, 43, 0.75);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    .media-card:hover .media-card-overlay {
+      opacity: 1;
+    }
+    .overlay-action-btn {
+      width: 34px;
+      height: 34px;
+      background: #FFFFFF;
+      color: var(--brand-primary);
+      border-radius: 50%;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.15s ease;
+    }
+    .overlay-action-btn:hover {
+      transform: scale(1.15);
+    }
+    .media-info {
+      padding: 0.75rem 0.85rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .media-filename {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 0.25rem;
+    }
+    .media-meta-line {
+      font-size: 0.725rem;
+      color: var(--text-secondary);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .media-checkbox {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      z-index: 10;
+      width: 18px;
+      height: 18px;
+      accent-color: var(--brand-primary);
+      cursor: pointer;
+    }
+
+    /* Integration Return Banner */
+    .integration-banner {
+      background: var(--brand-primary);
+      color: #FFFFFF;
+      padding: 0.75rem 1.25rem;
+      border-radius: var(--radius-md);
+      margin-bottom: 1.5rem;
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+  <div class="admin-shell">
+    
+    <!-- Sidebar Navigation -->
+    <aside id="sidebar" class="sidebar" role="navigation" aria-label="Content Manager navigation">
+      <div class="sidebar-header">
+        <img src="../logo.png" alt="Unke Liye Logo" class="sidebar-logo-img">
+        <div class="logo-text">
+          <strong>Unke Liye</strong>
+          <small>Content Manager</small>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-group">
+          <div class="nav-group-title">Overview</div>
+          <a href="dashboard.html" class="nav-link">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+            <span class="label">Dashboard</span>
+          </a>
+        </div>
+
+        <div class="nav-group">
+          <div class="nav-group-title">Content</div>
+          <a href="homepage-content.html" class="nav-link">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+            <span class="label">Homepage Content</span>
+          </a>
+          <a href="banners.html" class="nav-link">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            <span class="label">Page Banners</span>
+          </a>
+          <a href="stories.html" class="nav-link">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+            <span class="label">Stories</span>
+          </a>
+          <a href="news.html" class="nav-link">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
+            <span class="label">News &amp; Press</span>
+          </a>
+          <a href="gallery.html" class="nav-link">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            <span class="label">Gallery</span>
+          </a>
+          <a href="media-library.html" class="nav-link active" aria-current="page">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="label">Media Library</span>
+          </a>
+        </div>
+
+        <div class="nav-group">
+          <div class="nav-group-title">Programs</div>
+          <a href="campaigns.html" class="nav-link">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+            <span class="label">Campaigns</span>
+          </a>
+          <a href="events.html" class="nav-link">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            <span class="label">Events</span>
+          </a>
+          <a href="../index.html" class="nav-link">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+            <span class="label">Hub Gateway</span>
+          </a>
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-chip">
+          <div class="user-avatar" aria-hidden="true">NK</div>
+          <div class="user-meta">
+            <strong>Neha Kulkarni</strong>
+            <small>Content Editor</small>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Wrapper -->
+    <main id="main-content" class="main-content">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button id="mobile-menu-toggle" class="menu-toggle" aria-label="Open menu">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../index.html">Unke Liye</a> / <a href="dashboard.html">Content</a> / <span id="breadcrumb-current" aria-current="page">Media Library</span>
+          </nav>
+        </div>
+
+        <div class="topbar-right">
+          <button class="icon-btn" data-theme-toggle aria-label="Toggle theme">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <div class="page-main" style="padding: 1.5rem 2rem;">
+        
+        <!-- Selection Return Banner (Visible when called from Editor) -->
+        <div class="integration-banner" id="integration-return-bar">
+          <div>
+            <strong>Selecting Media for Editor:</strong> <span id="return-target-label">Story Editor</span>
+          </div>
+          <a href="story-editor.html" class="btn btn-secondary btn-sm" id="btn-return-editor" style="background:#FFFFFF; color:#1F3D2B; font-weight:600;">
+            &larr; Return to Editor
+          </a>
+        </div>
+
+        <!-- Page Header -->
+        <div class="page-header">
+          <div class="page-title-group">
+            <h1>Central Media Library</h1>
+            <p>Upload, organize, inspect, and embed high-resolution imagery across campaigns, stories, and press articles.</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn btn-secondary" id="btn-bulk-delete" style="display:none; color:var(--accent-red);">
+              Delete Selected (<span id="bulk-count">0</span>)
+            </button>
+            <button class="btn btn-primary" onclick="document.getElementById('file-input-trigger').click()">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+              Upload New Media
+            </button>
+            <input type="file" id="file-input-trigger" style="display:none;" multiple accept="image/jpeg,image/png,image/webp">
+          </div>
+        </div>
+
+        <!-- Drag & Drop Zone -->
+        <div class="media-dropzone" id="dropzone">
+          <div class="dropzone-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          </div>
+          <h3 style="font-size:1rem; font-weight:600; margin-bottom:4px;">Drag &amp; drop photos or click to browse files</h3>
+          <p style="font-size:0.8125rem; color:var(--text-secondary);">Supports JPG, PNG, and WebP up to 10 MB each &bull; High resolution auto-optimized</p>
+        </div>
+
+        <!-- Filter & Search Toolbar -->
+        <div class="media-toolbar">
+          <div class="media-filter-group" style="flex: 1; min-width: 250px;">
+            <input type="search" class="search-input" id="media-search" placeholder="Search by filename, caption, or tags..." style="width: 100%; max-width: 320px; padding: 0.5rem 0.85rem; border: 1px solid var(--border-subtle); border-radius: 6px;">
+          </div>
+          <div class="media-filter-group">
+            <select class="form-control" id="filter-tag" style="padding: 0.45rem 0.75rem; border-radius: 6px;">
+              <option value="all">All Tags &amp; Categories</option>
+              <option value="Animal Rescue">Animal Rescue</option>
+              <option value="Environment">Environment</option>
+              <option value="Sanitation">Sanitation</option>
+              <option value="Disaster Relief">Disaster Relief</option>
+              <option value="Volunteers">Volunteers &amp; Staff</option>
+            </select>
+
+            <select class="form-control" id="filter-orientation" style="padding: 0.45rem 0.75rem; border-radius: 6px;">
+              <option value="all">All Orientations</option>
+              <option value="landscape">Landscape (16:9 / 4:3)</option>
+              <option value="portrait">Portrait</option>
+              <option value="square">Square</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Media Grid -->
+        <div class="media-grid" id="media-grid">
+          
+          <!-- Card 1 -->
+          <div class="media-card" data-id="MED-01" data-filename="raju_spine_surgery_triage.jpg" data-tag="Animal Rescue" data-orientation="landscape" data-dims="1920x1080" data-size="1.4 MB" data-date="Aug 25, 2026" data-url="https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=1200&q=80" data-used="Save Raju Story, Campaign Hero">
+            <input type="checkbox" class="media-checkbox">
+            <div class="media-thumb-wrap">
+              <img src="https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=600&q=80" alt="Raju veterinary recovery" class="media-thumb" loading="lazy">
+              <div class="media-card-overlay">
+                <button class="overlay-action-btn copy-url-btn" title="Copy Image URL">🔗</button>
+                <button class="overlay-action-btn inspect-btn" title="Inspect & Edit Metadata">ℹ️</button>
+                <button class="overlay-action-btn select-insert-btn" title="Insert into Editor">✓</button>
+              </div>
+            </div>
+            <div class="media-info">
+              <div class="media-filename" title="raju_spine_surgery_triage.jpg">raju_spine_surgery_triage.jpg</div>
+              <div class="media-meta-line">
+                <span>1920×1080 &bull; 1.4 MB</span>
+                <span class="badge" style="background:var(--accent-red-bg); color:var(--accent-red); font-size:0.68rem;">Animal</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="media-card" data-id="MED-02" data-filename="pashan_tree_nursery_saplings.jpg" data-tag="Environment" data-orientation="landscape" data-dims="2048x1365" data-size="2.1 MB" data-date="Aug 24, 2026" data-url="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=1200&q=80" data-used="Urban Green Canopy Campaign, Tree Drive Blog">
+            <input type="checkbox" class="media-checkbox">
+            <div class="media-thumb-wrap">
+              <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=600&q=80" alt="Tree planting drive saplings" class="media-thumb" loading="lazy">
+              <div class="media-card-overlay">
+                <button class="overlay-action-btn copy-url-btn" title="Copy Image URL">🔗</button>
+                <button class="overlay-action-btn inspect-btn" title="Inspect & Edit Metadata">ℹ️</button>
+                <button class="overlay-action-btn select-insert-btn" title="Insert into Editor">✓</button>
+              </div>
+            </div>
+            <div class="media-info">
+              <div class="media-filename" title="pashan_tree_nursery_saplings.jpg">pashan_tree_nursery_saplings.jpg</div>
+              <div class="media-meta-line">
+                <span>2048×1365 &bull; 2.1 MB</span>
+                <span class="badge" style="background:var(--accent-leaf-bg); color:var(--accent-leaf); font-size:0.68rem;">Env</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="media-card" data-id="MED-03" data-filename="varanasi_ghats_river_cleanup.jpg" data-tag="Sanitation" data-orientation="landscape" data-dims="1920x1080" data-size="1.8 MB" data-date="Aug 22, 2026" data-url="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=1200&q=80" data-used="Clean Ghats Sanitation Story">
+            <input type="checkbox" class="media-checkbox">
+            <div class="media-thumb-wrap">
+              <img src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=600&q=80" alt="River trash cleaning floating barrier" class="media-thumb" loading="lazy">
+              <div class="media-card-overlay">
+                <button class="overlay-action-btn copy-url-btn" title="Copy Image URL">🔗</button>
+                <button class="overlay-action-btn inspect-btn" title="Inspect & Edit Metadata">ℹ️</button>
+                <button class="overlay-action-btn select-insert-btn" title="Insert into Editor">✓</button>
+              </div>
+            </div>
+            <div class="media-info">
+              <div class="media-filename" title="varanasi_ghats_river_cleanup.jpg">varanasi_ghats_river_cleanup.jpg</div>
+              <div class="media-meta-line">
+                <span>1920×1080 &bull; 1.8 MB</span>
+                <span class="badge" style="background:var(--accent-slate-bg); color:var(--accent-slate); font-size:0.68rem;">Sanitation</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="media-card" data-id="MED-04" data-filename="sundarbans_cyclone_ambulance_boat.jpg" data-tag="Disaster Relief" data-orientation="landscape" data-dims="2400x1600" data-size="3.2 MB" data-date="Aug 20, 2026" data-url="https://images.unsplash.com/photo-1547683905-f686c993aae5?auto=format&fit=crop&w=1200&q=80" data-used="Sundarbans Cyclone Campaign">
+            <input type="checkbox" class="media-checkbox">
+            <div class="media-thumb-wrap">
+              <img src="https://images.unsplash.com/photo-1547683905-f686c993aae5?auto=format&fit=crop&w=600&q=80" alt="Flood emergency water rescue" class="media-thumb" loading="lazy">
+              <div class="media-card-overlay">
+                <button class="overlay-action-btn copy-url-btn" title="Copy Image URL">🔗</button>
+                <button class="overlay-action-btn inspect-btn" title="Inspect & Edit Metadata">ℹ️</button>
+                <button class="overlay-action-btn select-insert-btn" title="Insert into Editor">✓</button>
+              </div>
+            </div>
+            <div class="media-info">
+              <div class="media-filename" title="sundarbans_cyclone_ambulance_boat.jpg">sundarbans_cyclone_ambulance_boat.jpg</div>
+              <div class="media-meta-line">
+                <span>2400×1600 &bull; 3.2 MB</span>
+                <span class="badge" style="background:var(--status-danger-bg); color:var(--status-danger); font-size:0.68rem;">Disaster</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="media-card" data-id="MED-05" data-filename="volunteer_kavya_field_clinic.jpg" data-tag="Volunteers" data-orientation="portrait" data-dims="1080x1350" data-size="950 KB" data-date="Aug 18, 2026" data-url="https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=800&q=80" data-used="Volunteer Onboarding Spotlight">
+            <input type="checkbox" class="media-checkbox">
+            <div class="media-thumb-wrap">
+              <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=600&q=80" alt="Volunteer with rescued puppy" class="media-thumb" loading="lazy">
+              <div class="media-card-overlay">
+                <button class="overlay-action-btn copy-url-btn" title="Copy Image URL">🔗</button>
+                <button class="overlay-action-btn inspect-btn" title="Inspect & Edit Metadata">ℹ️</button>
+                <button class="overlay-action-btn select-insert-btn" title="Insert into Editor">✓</button>
+              </div>
+            </div>
+            <div class="media-info">
+              <div class="media-filename" title="volunteer_kavya_field_clinic.jpg">volunteer_kavya_field_clinic.jpg</div>
+              <div class="media-meta-line">
+                <span>1080×1350 &bull; 950 KB</span>
+                <span class="badge" style="background:#F1ECE3; color:#554D43; font-size:0.68rem;">Volunteer</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="media-card" data-id="MED-06" data-filename="homepage_hero_carousel_banner.jpg" data-tag="Animal Rescue" data-orientation="landscape" data-dims="2560x1440" data-size="4.1 MB" data-date="Aug 15, 2026" data-url="https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?auto=format&fit=crop&w=1400&q=80" data-used="Public Site Homepage Hero">
+            <input type="checkbox" class="media-checkbox">
+            <div class="media-thumb-wrap">
+              <img src="https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?auto=format&fit=crop&w=600&q=80" alt="Rescued kitten" class="media-thumb" loading="lazy">
+              <div class="media-card-overlay">
+                <button class="overlay-action-btn copy-url-btn" title="Copy Image URL">🔗</button>
+                <button class="overlay-action-btn inspect-btn" title="Inspect & Edit Metadata">ℹ️</button>
+                <button class="overlay-action-btn select-insert-btn" title="Insert into Editor">✓</button>
+              </div>
+            </div>
+            <div class="media-info">
+              <div class="media-filename" title="homepage_hero_carousel_banner.jpg">homepage_hero_carousel_banner.jpg</div>
+              <div class="media-meta-line">
+                <span>2560×1440 &bull; 4.1 MB</span>
+                <span class="badge" style="background:var(--accent-red-bg); color:var(--accent-red); font-size:0.68rem;">Animal</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Media Details & Inspector Modal -->
+  <div class="modal" id="media-detail-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:1000; align-items:center; justify-content:center; padding:1.5rem;">
+    <div style="background:#FFFFFF; border-radius:12px; max-width:840px; width:100%; max-height:90vh; overflow-y:auto; padding:1.5rem; position:relative;">
+      
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-subtle); padding-bottom:1rem; margin-bottom:1.25rem;">
+        <h3 style="font-size:1.15rem; font-weight:700;" id="modal-img-title">Media Asset Details</h3>
+        <button class="btn btn-ghost btn-sm" onclick="document.getElementById('media-detail-modal').style.display='none'">&times;</button>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;">
+        <div>
+          <img src="" alt="" id="modal-img-preview" style="width:100%; border-radius:8px; border:1px solid var(--border-subtle); aspect-ratio:16/10; object-fit:cover;">
+          <div style="margin-top:1rem; font-size:0.8125rem; color:var(--text-secondary);" id="modal-tech-specs">
+            Dimensions: 1920×1080 &bull; Size: 1.4 MB &bull; Date: Aug 25, 2026
+          </div>
+          <div style="margin-top:0.75rem;">
+            <label class="form-label" style="font-size:0.75rem; text-transform:uppercase; color:var(--text-secondary);">Direct Asset URL</label>
+            <input type="text" class="form-control" id="modal-img-url" readonly style="font-size:0.8125rem; background:var(--bg-sunken);">
+          </div>
+        </div>
+
+        <div>
+          <div class="form-group" style="margin-bottom:1rem;">
+            <label class="form-label">Accessibility Alt Text *</label>
+            <input type="text" class="form-control" id="modal-alt-text" value="Dr. Joshi performing veterinary checkup">
+          </div>
+
+          <div class="form-group" style="margin-bottom:1rem;">
+            <label class="form-label">Display Caption</label>
+            <textarea class="form-control" id="modal-caption-text" rows="2">Emergency triage stabilization at Kothrud surgical facility.</textarea>
+          </div>
+
+          <div style="margin-bottom:1rem; padding:0.75rem; background:var(--bg-sunken); border-radius:6px; font-size:0.8125rem;">
+            <strong>Referenced in Public Site:</strong>
+            <div id="modal-usage-list" style="color:var(--brand-primary); margin-top:0.25rem;">Save Raju Story, Homepage Hero</div>
+          </div>
+
+          <div style="display:flex; gap:0.5rem; margin-top:1.5rem;">
+            <button class="btn btn-secondary btn-sm" id="btn-copy-embed">Copy Embed Code</button>
+            <button class="btn btn-primary btn-sm" id="btn-modal-insert" style="flex:1;">Select &amp; Use Image</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="toast-region" class="toast-region" aria-live="polite"></div>
+
+  <script src="assets/js/admin-core.js"></script>
+  <script>
+    (function() {
+      // Return URL handling (Story editor / News editor / Event editor integration)
+      const params = new URLSearchParams(window.location.search);
+      const returnUrl = params.get('returnUrl');
+      const selectMode = params.get('select') === 'true' || Boolean(returnUrl);
+
+      if (selectMode && returnUrl) {
+        const banner = document.getElementById('integration-return-bar');
+        banner.style.display = 'flex';
+        const returnBtn = document.getElementById('btn-return-editor');
+        returnBtn.href = returnUrl;
+        
+        let label = 'Content Editor';
+        if (returnUrl.includes('story')) label = 'Impact Story Editor';
+        else if (returnUrl.includes('news')) label = 'News & Article Editor';
+        else if (returnUrl.includes('event')) label = 'Event Scheduler';
+        document.getElementById('return-target-label').textContent = label;
+      }
+
+      // Copy URL Helper
+      function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(() => {
+          alert('Asset URL copied to clipboard:\n' + text);
+        }).catch(() => {
+          prompt('Copy this image URL:', text);
+        });
+      }
+
+      document.querySelectorAll('.copy-url-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const card = btn.closest('.media-card');
+          const url = card.dataset.url;
+          copyToClipboard(url);
+        });
+      });
+
+      // Insert / Select button
+      document.querySelectorAll('.select-insert-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const card = btn.closest('.media-card');
+          const url = card.dataset.url;
+          if (returnUrl) {
+            alert(`Selected "${card.dataset.filename}". Inserting into editor...`);
+            window.location.href = returnUrl + '?insertedUrl=' + encodeURIComponent(url);
+          } else {
+            copyToClipboard(url);
+          }
+        });
+      });
+
+      // Inspect Modal
+      const modal = document.getElementById('media-detail-modal');
+      let activeSelectedUrl = '';
+
+      document.querySelectorAll('.inspect-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const card = btn.closest('.media-card');
+          openInspector(card);
+        });
+      });
+
+      document.querySelectorAll('.media-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+          if (e.target.tagName === 'INPUT' || e.target.closest('.media-card-overlay')) return;
+          openInspector(card);
+        });
+      });
+
+      function openInspector(card) {
+        activeSelectedUrl = card.dataset.url;
+        document.getElementById('modal-img-title').textContent = card.dataset.filename;
+        document.getElementById('modal-img-preview').src = card.dataset.url;
+        document.getElementById('modal-img-url').value = card.dataset.url;
+        document.getElementById('modal-tech-specs').textContent = `Dimensions: ${card.dataset.dims} • Size: ${card.dataset.size} • Uploaded: ${card.dataset.date}`;
+        document.getElementById('modal-usage-list').textContent = card.dataset.used || 'Not yet attached';
+        modal.style.display = 'flex';
+      }
+
+      document.getElementById('btn-copy-embed')?.addEventListener('click', () => {
+        const snippet = `<img src="${activeSelectedUrl}" alt="Unke Liye NGO Impact" class="story-figure" />`;
+        copyToClipboard(snippet);
+      });
+
+      document.getElementById('btn-modal-insert')?.addEventListener('click', () => {
+        if (returnUrl) {
+          window.location.href = returnUrl + '?insertedUrl=' + encodeURIComponent(activeSelectedUrl);
+        } else {
+          copyToClipboard(activeSelectedUrl);
+          modal.style.display = 'none';
+        }
+      });
+
+      // Filter & Search
+      const searchInput = document.getElementById('media-search');
+      const tagFilter = document.getElementById('filter-tag');
+      const orientFilter = document.getElementById('filter-orientation');
+
+      function filterMedia() {
+        const q = searchInput.value.toLowerCase().trim();
+        const tag = tagFilter.value;
+        const orient = orientFilter.value;
+
+        document.querySelectorAll('.media-card').forEach(card => {
+          const fn = card.dataset.filename.toLowerCase();
+          const ctag = card.dataset.tag;
+          const corient = card.dataset.orientation;
+
+          const matchQ = !q || fn.includes(q);
+          const matchTag = tag === 'all' || ctag === tag;
+          const matchOrient = orient === 'all' || corient === orient;
+
+          card.style.display = (matchQ && matchTag && matchOrient) ? 'flex' : 'none';
+        });
+      }
+
+      searchInput?.addEventListener('input', filterMedia);
+      tagFilter?.addEventListener('change', filterMedia);
+      orientFilter?.addEventListener('change', filterMedia);
+
+      // Checkbox multi-select
+      const checkboxes = document.querySelectorAll('.media-checkbox');
+      const bulkBtn = document.getElementById('btn-bulk-delete');
+      const bulkCount = document.getElementById('bulk-count');
+
+      checkboxes.forEach(cb => {
+        cb.addEventListener('change', () => {
+          const checked = Array.from(checkboxes).filter(c => c.checked);
+          if (checked.length > 0) {
+            bulkBtn.style.display = 'inline-flex';
+            bulkCount.textContent = checked.length;
+          } else {
+            bulkBtn.style.display = 'none';
+          }
+        });
+      });
+
+      bulkBtn?.addEventListener('click', () => {
+        const checked = Array.from(checkboxes).filter(c => c.checked);
+        if (confirm(`Delete ${checked.length} selected images from Media Library?`)) {
+          checked.forEach(c => c.closest('.media-card').remove());
+          bulkBtn.style.display = 'none';
+          alert('Selected media items deleted.');
+        }
+      });
+
+      // Drag & Drop
+      const dropzone = document.getElementById('dropzone');
+      dropzone?.addEventListener('dragover', (e) => { e.preventDefault(); dropzone.classList.add('drag-over'); });
+      dropzone?.addEventListener('dragleave', () => dropzone.classList.remove('drag-over'));
+      dropzone?.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropzone.classList.remove('drag-over');
+        alert('Simulated Upload: Successfully processed and indexed dropped media files!');
+      });
+      dropzone?.addEventListener('click', () => {
+        document.getElementById('file-input-trigger').click();
+      });
+
+      document.getElementById('file-input-trigger')?.addEventListener('change', (e) => {
+        if (e.target.files.length > 0) {
+          alert(`Uploading ${e.target.files.length} new photos to Media Library...`);
+        }
+      });
+
+    })();
+  </script>
+</body>
+</html>

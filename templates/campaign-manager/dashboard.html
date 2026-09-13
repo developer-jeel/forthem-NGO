@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — Campaign Manager · Unke Liye NGO</title>
+  <meta name="description" content="Campaign Manager control center — track live fundraising progress across all 4 NGO program pillars.">
+  <link rel="stylesheet" href="assets/css/campaign-manager.css">
+</head>
+<body>
+
+<!-- Toast Region -->
+<div class="toast-region" id="toast-region"></div>
+<!-- Mobile Overlay -->
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+<div class="app-shell">
+
+  <!-- ═══════════════════════════════════════════════
+       SIDEBAR
+  ═══════════════════════════════════════════════ -->
+  <aside class="sidebar" id="sidebar" role="navigation" aria-label="Campaign Manager navigation">
+
+    <div class="sidebar-header">
+      <img src="../logo.png" alt="Unke Liye Logo" class="sidebar-logo-img">
+      <div class="sidebar-logo-text">
+        <strong>Unke Liye</strong>
+        <span>Campaign Portal</span>
+      </div>
+    </div>
+
+    <div class="sidebar-role-badge">
+      <span class="role-pulse-dot"></span>
+      Campaign Manager
+    </div>
+
+    <nav class="sidebar-nav">
+
+      <!-- Overview -->
+      <div class="nav-group">
+        <div class="nav-group-label">Overview</div>
+        <div class="nav-group-items">
+          <a href="dashboard.html" class="nav-item active" aria-current="page">
+            <span class="nav-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+            </span>
+            <span class="nav-item-label">Dashboard</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="nav-divider"></div>
+
+      <!-- Campaigns -->
+      <div class="nav-group">
+        <div class="nav-group-label">Campaigns</div>
+        <div class="nav-group-items">
+          <a href="campaigns.html" class="nav-item">
+            <span class="nav-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </span>
+            <span class="nav-item-label">All Campaigns</span>
+            <span class="nav-item-badge">12</span>
+          </a>
+          <a href="campaign-new.html" class="nav-item">
+            <span class="nav-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+            </span>
+            <span class="nav-item-label">Create Campaign</span>
+          </a>
+          <a href="reports.html" class="nav-item">
+            <span class="nav-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            </span>
+            <span class="nav-item-label">Reports &amp; Analytics</span>
+          </a>
+          <a href="updates.html" class="nav-item">
+            <span class="nav-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </span>
+            <span class="nav-item-label">Field Updates</span>
+            <span class="nav-item-badge" style="background:var(--pillar-env);">4 New</span>
+          </a>
+          <a href="impact.html" class="nav-item">
+            <span class="nav-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </span>
+            <span class="nav-item-label">Impact Metrics</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="nav-divider"></div>
+
+      <!-- Financials -->
+      <div class="nav-group">
+        <div class="nav-group-label">Financials</div>
+        <div class="nav-group-items">
+          <a href="budget.html" class="nav-item">
+            <span class="nav-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+            </span>
+            <span class="nav-item-label">Campaign Budgets</span>
+          </a>
+          <a href="fund-request-new.html" class="nav-item">
+            <span class="nav-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+            </span>
+            <span class="nav-item-label">Request Funds</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="nav-divider"></div>
+
+      <!-- Donors -->
+      <div class="nav-group">
+        <div class="nav-group-label">Impact</div>
+        <div class="nav-group-items">
+          <a href="donors.html" class="nav-item">
+            <span class="nav-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </span>
+            <span class="nav-item-label">Donor Ledger</span>
+          </a>
+        </div>
+      </div>
+
+    </nav>
+
+    <!-- Footer -->
+    <div class="sidebar-footer">
+      <div class="user-chip">
+        <div class="user-avatar">AD</div>
+        <div class="user-details">
+          <div class="user-name">Ananya Deshmukh</div>
+          <div class="user-role">Campaign Lead</div>
+        </div>
+      </div>
+      <button class="sidebar-collapse-btn" id="sidebar-collapse" title="Collapse sidebar">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+    </div>
+
+  </aside>
+
+  <!-- ═══════════════════════════════════════════════
+       MAIN WRAPPER
+  ═══════════════════════════════════════════════ -->
+  <div class="main-wrapper" id="main-wrapper">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open navigation menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="dashboard.html">Unke Liye</a>
+          <span class="sep">/</span>
+          <span class="current">Dashboard</span>
+        </nav>
+      </div>
+
+      <div class="topbar-right">
+        <div class="topbar-search" role="search">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="search" placeholder="Search campaigns..." aria-label="Search campaigns">
+        </div>
+
+        <button class="topbar-btn" id="theme-toggle" title="Toggle dark / light theme" aria-label="Toggle theme">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+
+        <button class="topbar-btn" title="Notifications" data-toast="info" data-toast-title="Campaigns Expiring" data-toast-msg="3 campaigns end within 7 days — please review urgently.">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <span class="notif-dot"></span>
+        </button>
+
+        <div class="profile-chip">
+          <div class="profile-avatar-sm">AD</div>
+          <span class="profile-name-sm">Ananya D.</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ═══════════════════════════════════════════════
+         PAGE CONTENT
+    ═══════════════════════════════════════════════ -->
+    <main class="page-container">
+
+      <!-- Page Header -->
+      <div class="page-header">
+        <div class="page-title-group">
+          <h1>Campaign Control Center</h1>
+          <p class="page-subtitle">Live fundraising intelligence across Animal Rescue, Environment, Sanitation & Disaster Relief pillars.</p>
+        </div>
+        <div class="page-actions">
+          <a href="campaigns.html" class="btn btn-secondary">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            All Campaigns
+          </a>
+          <a href="campaign-new.html" class="btn btn-primary">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Launch Campaign
+          </a>
+        </div>
+      </div>
+
+      <!-- Emergency Relief Banner -->
+      <div class="urgent-banner" role="alert">
+        <div class="urgent-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <div style="flex:1;">
+          <div class="urgent-tag">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
+            Emergency Relief Active
+          </div>
+          <div class="urgent-banner-text">
+            <strong>Sundarbans Cyclone Flash Flood Relief Fund 2025</strong>
+            <p>₹67,20,000 raised of ₹80,00,000 target (84%) · 5 days remaining · 318 donors active</p>
+          </div>
+        </div>
+        <a href="campaign-detail.html" class="btn btn-accent btn-sm" style="flex-shrink:0;">
+          Manage Emergency →
+        </a>
+      </div>
+
+      <!-- ── KPI Metric Cards ── -->
+      <div class="kpi-grid">
+
+        <div class="kpi-card kpi-brand">
+          <div class="kpi-header">
+            <span class="kpi-title">Total Raised This Month</span>
+            <div class="kpi-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+          </div>
+          <div class="kpi-value tabular-nums">
+            ₹<span class="animate-counter" data-count="4850000">0</span>
+          </div>
+          <div class="kpi-footer">
+            <span class="kpi-trend positive">↑ 18.4% vs last month</span>
+            <span class="kpi-subtext">Goal: ₹65,00,000</span>
+          </div>
+        </div>
+
+        <div class="kpi-card kpi-rescue">
+          <div class="kpi-header">
+            <span class="kpi-title">Active Campaigns</span>
+            <div class="kpi-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+          </div>
+          <div class="kpi-value">
+            <span class="animate-counter" data-count="8">0</span>
+          </div>
+          <div class="kpi-footer">
+            <span class="kpi-trend negative">2 Urgent</span>
+            <span class="kpi-subtext">3 Drafts pending</span>
+          </div>
+        </div>
+
+        <div class="kpi-card kpi-env">
+          <div class="kpi-header">
+            <span class="kpi-title">Total Donors (Active)</span>
+            <div class="kpi-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+          </div>
+          <div class="kpi-value">
+            <span class="animate-counter" data-count="1420">0</span>
+          </div>
+          <div class="kpi-footer">
+            <span class="kpi-trend positive">↑ 142 this week</span>
+            <span class="kpi-subtext">Avg gift: ₹3,415</span>
+          </div>
+        </div>
+
+        <div class="kpi-card kpi-disaster">
+          <div class="kpi-header">
+            <span class="kpi-title">Overall Funding Rate</span>
+            <div class="kpi-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            </div>
+          </div>
+          <div class="kpi-value tabular-nums">
+            <span class="animate-counter" data-count="74">0</span>%
+          </div>
+          <div class="kpi-footer">
+            <span class="kpi-subtext">Avg lifecycle: 42 days</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ── Two Column Main Grid ── -->
+      <div class="grid-2col">
+
+        <!-- LEFT: Campaign List + Pillar Chart -->
+        <div style="display:flex;flex-direction:column;gap:var(--sp-5);">
+
+          <!-- High Priority Campaigns -->
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                High Priority Campaigns
+              </h2>
+              <a href="campaigns.html" style="font-size:0.82rem;font-weight:700;color:var(--brand-accent);">Manage All (12) →</a>
+            </div>
+            <div style="padding:0 var(--sp-5);">
+
+              <!-- Campaign Item 1: Animal Rescue -->
+              <div style="display:flex;align-items:center;gap:var(--sp-4);padding:var(--sp-4) 0;border-bottom:1px solid var(--border-subtle);">
+                <div style="position:relative;flex-shrink:0;">
+                  <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=120&q=80" alt="Save Raju campaign" style="width:60px;height:60px;border-radius:var(--r-md);object-fit:cover;">
+                  <span style="position:absolute;bottom:-4px;right:-4px;width:16px;height:16px;background:var(--status-active);border:2px solid var(--bg-surface);border-radius:50%;"></span>
+                </div>
+                <div style="flex:1;min-width:0;">
+                  <div style="display:flex;align-items:center;gap:var(--sp-2);margin-bottom:4px;">
+                    <span class="badge badge-pillar-rescue">Animal Rescue</span>
+                  </div>
+                  <h3 style="font-size:0.92rem;font-weight:700;margin-bottom:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+                    <a href="campaign-detail.html" style="transition:color var(--t-fast);">Save Raju — Street Dog Spine Surgery</a>
+                  </h3>
+                  <div class="progress-bar-wrap" style="height:6px;margin-bottom:4px;">
+                    <div class="progress-bar-fill fill-rescue" style="width:78%;"></div>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;font-size:0.77rem;color:var(--text-muted);">
+                    <span>₹1,17,000 raised of ₹1,50,000</span>
+                    <strong style="color:var(--pillar-rescue);">78%</strong>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Campaign Item 2: Disaster -->
+              <div style="display:flex;align-items:center;gap:var(--sp-4);padding:var(--sp-4) 0;border-bottom:1px solid var(--border-subtle);">
+                <div style="position:relative;flex-shrink:0;">
+                  <img src="https://images.unsplash.com/photo-1547683905-f686c993aae5?auto=format&fit=crop&w=120&q=80" alt="Sundarbans Relief" style="width:60px;height:60px;border-radius:var(--r-md);object-fit:cover;">
+                  <span style="position:absolute;bottom:-4px;right:-4px;width:16px;height:16px;background:var(--status-urgent);border:2px solid var(--bg-surface);border-radius:50;animation:urgentPulse 2s infinite;border-radius:50%;"></span>
+                </div>
+                <div style="flex:1;min-width:0;">
+                  <div style="display:flex;align-items:center;gap:var(--sp-2);margin-bottom:4px;">
+                    <span class="badge badge-pillar-disaster">Disaster Relief</span>
+                    <span class="badge badge-urgent">Emergency</span>
+                  </div>
+                  <h3 style="font-size:0.92rem;font-weight:700;margin-bottom:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+                    <a href="campaign-detail.html">Sundarbans Cyclone Flood Relief 2025</a>
+                  </h3>
+                  <div class="progress-bar-wrap" style="height:6px;margin-bottom:4px;">
+                    <div class="progress-bar-fill fill-disaster" style="width:84%;"></div>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;font-size:0.77rem;color:var(--text-muted);">
+                    <span>₹67,20,000 raised of ₹80,00,000</span>
+                    <strong style="color:var(--pillar-disaster);">84%</strong>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Campaign Item 3: Sanitation -->
+              <div style="display:flex;align-items:center;gap:var(--sp-4);padding:var(--sp-4) 0;border-bottom:1px solid var(--border-subtle);">
+                <img src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=120&q=80" alt="Sanitation" style="width:60px;height:60px;border-radius:var(--r-md);object-fit:cover;flex-shrink:0;">
+                <div style="flex:1;min-width:0;">
+                  <div style="margin-bottom:4px;"><span class="badge badge-pillar-sanitation">Sanitation</span></div>
+                  <h3 style="font-size:0.92rem;font-weight:700;margin-bottom:5px;">
+                    <a href="campaign-detail.html">Dharavi Slum Bio-Toilet Drive</a>
+                  </h3>
+                  <div class="progress-bar-wrap" style="height:6px;margin-bottom:4px;">
+                    <div class="progress-bar-fill fill-sanitation" style="width:89%;"></div>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;font-size:0.77rem;color:var(--text-muted);">
+                    <span>₹2,67,000 raised of ₹3,00,000</span>
+                    <strong style="color:var(--pillar-sanitation);">89%</strong>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Campaign Item 4: Environment -->
+              <div style="display:flex;align-items:center;gap:var(--sp-4);padding:var(--sp-4) 0;">
+                <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=120&q=80" alt="Trees" style="width:60px;height:60px;border-radius:var(--r-md);object-fit:cover;flex-shrink:0;">
+                <div style="flex:1;min-width:0;">
+                  <div style="margin-bottom:4px;"><span class="badge badge-pillar-env">Environment</span></div>
+                  <h3 style="font-size:0.92rem;font-weight:700;margin-bottom:5px;">
+                    <a href="campaign-detail.html">Urban Green Canopy — 10,000 Saplings</a>
+                  </h3>
+                  <div class="progress-bar-wrap" style="height:6px;margin-bottom:4px;">
+                    <div class="progress-bar-fill fill-env" style="width:61%;"></div>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;font-size:0.77rem;color:var(--text-muted);">
+                    <span>₹91,500 raised of ₹1,50,000</span>
+                    <strong style="color:var(--pillar-env);">61%</strong>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="card-footer" style="text-align:center;">
+              <a href="campaigns.html" class="btn btn-ghost btn-sm" style="width:100%;">View All 12 Campaigns →</a>
+            </div>
+          </div>
+
+          <!-- Pillar Fund Distribution -->
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                Fund Allocation by Pillar
+              </h2>
+              <span style="font-size:0.76rem;color:var(--text-muted);">Active Cycle YTD</span>
+            </div>
+            <div class="card-body" style="padding-top:var(--sp-2);">
+
+              <div class="pillar-row">
+                <div class="pillar-icon" style="background:var(--pillar-rescue-bg);color:var(--pillar-rescue);">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2.823.47-4.113 6.006-4 7 .08.703 1.725 1.722 3.656 1"/></svg>
+                </div>
+                <div class="pillar-label">
+                  Animal Rescue
+                  <div class="pillar-sub">4 Active Campaigns</div>
+                </div>
+                <div class="pillar-bar-wrap">
+                  <div class="progress-bar-wrap" style="height:8px;">
+                    <div class="progress-bar-fill fill-rescue" style="width:38%;"></div>
+                  </div>
+                </div>
+                <div class="pillar-amount" style="color:var(--pillar-rescue);">₹18,50,000 <small style="font-weight:400;color:var(--text-muted);">38%</small></div>
+              </div>
+
+              <div class="pillar-row">
+                <div class="pillar-icon" style="background:var(--pillar-disaster-bg);color:var(--pillar-disaster);">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
+                </div>
+                <div class="pillar-label">
+                  Disaster Relief
+                  <div class="pillar-sub">2 Active • Emergency</div>
+                </div>
+                <div class="pillar-bar-wrap">
+                  <div class="progress-bar-wrap" style="height:8px;">
+                    <div class="progress-bar-fill fill-disaster" style="width:31%;"></div>
+                  </div>
+                </div>
+                <div class="pillar-amount" style="color:var(--pillar-disaster);">₹15,20,000 <small style="font-weight:400;color:var(--text-muted);">31%</small></div>
+              </div>
+
+              <div class="pillar-row">
+                <div class="pillar-icon" style="background:var(--pillar-env-bg);color:var(--pillar-env);">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22V12m0-9s-6 5-6 10a6 6 0 0 0 12 0c0-5-6-10-6-10z"/></svg>
+                </div>
+                <div class="pillar-label">
+                  Environment
+                  <div class="pillar-sub">3 Active Campaigns</div>
+                </div>
+                <div class="pillar-bar-wrap">
+                  <div class="progress-bar-wrap" style="height:8px;">
+                    <div class="progress-bar-fill fill-env" style="width:18%;"></div>
+                  </div>
+                </div>
+                <div class="pillar-amount" style="color:var(--pillar-env);">₹8,80,000 <small style="font-weight:400;color:var(--text-muted);">18%</small></div>
+              </div>
+
+              <div class="pillar-row">
+                <div class="pillar-icon" style="background:var(--pillar-sanitation-bg);color:var(--pillar-sanitation);">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>
+                </div>
+                <div class="pillar-label">
+                  Sanitation & Hygiene
+                  <div class="pillar-sub">2 Active Campaigns</div>
+                </div>
+                <div class="pillar-bar-wrap">
+                  <div class="progress-bar-wrap" style="height:8px;">
+                    <div class="progress-bar-fill fill-sanitation" style="width:13%;"></div>
+                  </div>
+                </div>
+                <div class="pillar-amount" style="color:var(--pillar-sanitation);">₹6,00,000 <small style="font-weight:400;color:var(--text-muted);">13%</small></div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <!-- RIGHT: Live Feed + Quick Actions -->
+        <div style="display:flex;flex-direction:column;gap:var(--sp-5);">
+
+          <!-- Live Donation Stream -->
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                Live Donation Stream
+              </h2>
+              <div style="display:flex;align-items:center;gap:5px;font-size:0.73rem;color:var(--status-active);font-weight:700;">
+                <span class="role-pulse-dot" style="width:7px;height:7px;"></span>
+                LIVE
+              </div>
+            </div>
+            <div style="padding:0 var(--sp-5);">
+
+              <div class="activity-item">
+                <div class="activity-dot" style="background:var(--pillar-rescue-bg);color:var(--pillar-rescue);">RK</div>
+                <div class="activity-body">
+                  <strong>Ramesh Kumar</strong> donated <strong style="color:var(--brand-accent);">₹15,000</strong>
+                  <div style="font-size:0.75rem;color:var(--text-muted);margin-top:2px;">Save Raju — Spine Surgery</div>
+                </div>
+                <div class="activity-time">12 min</div>
+              </div>
+
+              <div class="activity-item">
+                <div class="activity-dot" style="background:var(--pillar-env-bg);color:var(--pillar-env);">PS</div>
+                <div class="activity-body">
+                  <strong>Priya Sharma (CSR)</strong> pledged <strong style="color:var(--pillar-env);">₹50,000</strong>
+                  <div style="font-size:0.75rem;color:var(--text-muted);margin-top:2px;">Urban Green Canopy 10k Trees</div>
+                </div>
+                <div class="activity-time">48 min</div>
+              </div>
+
+              <div class="activity-item">
+                <div class="activity-dot" style="background:var(--pillar-disaster-bg);color:var(--pillar-disaster);">AD</div>
+                <div class="activity-body">
+                  <strong>Amit Deshmukh</strong> donated <strong style="color:var(--pillar-disaster);">₹5,000</strong>
+                  <div style="font-size:0.75rem;color:var(--text-muted);margin-top:2px;">Sundarbans Flood Relief</div>
+                </div>
+                <div class="activity-time">2 hr</div>
+              </div>
+
+              <div class="activity-item">
+                <div class="activity-dot" style="background:var(--pillar-sanitation-bg);color:var(--pillar-sanitation);">VG</div>
+                <div class="activity-body">
+                  <strong>Vikram Gupta</strong> donated <strong style="color:var(--pillar-sanitation);">₹2,500</strong>
+                  <div style="font-size:0.75rem;color:var(--text-muted);margin-top:2px;">Dharavi Bio-Toilet Drive</div>
+                </div>
+                <div class="activity-time">4 hr</div>
+              </div>
+
+              <div class="activity-item">
+                <div class="activity-dot" style="background:var(--brand-primary-muted);color:var(--brand-primary);">TM</div>
+                <div class="activity-body">
+                  <strong>Tata Motors CSR</strong> pledged <strong style="color:var(--brand-primary);">₹5,00,000</strong>
+                  <div style="font-size:0.75rem;color:var(--text-muted);margin-top:2px;">Sundarbans Relief — NEFT Match</div>
+                </div>
+                <div class="activity-time">6 hr</div>
+              </div>
+
+            </div>
+            <div class="card-footer">
+              <a href="donors.html" class="btn btn-ghost btn-sm" style="width:100%;text-align:center;">View Full Donor Ledger →</a>
+            </div>
+          </div>
+
+          <!-- Quick Actions Hub -->
+          <div class="card" style="background:linear-gradient(135deg,var(--brand-primary-muted),var(--bg-surface));">
+            <div class="card-header">
+              <h2 class="card-title">Quick Actions</h2>
+            </div>
+            <div class="card-body" style="display:flex;flex-direction:column;gap:var(--sp-3);">
+              <a href="campaign-new.html" class="btn btn-primary" style="justify-content:flex-start;gap:var(--sp-3);">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                Launch New Campaign
+              </a>
+              <a href="updates.html" class="btn btn-secondary" style="justify-content:flex-start;gap:var(--sp-3);">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                Publish Field Update
+              </a>
+              <a href="donors.html" class="btn btn-secondary" style="justify-content:flex-start;gap:var(--sp-3);">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                View Donor Ledger
+              </a>
+              <button class="btn btn-ghost" style="justify-content:flex-start;gap:var(--sp-3);" data-toast="success" data-toast-title="Report Generating" data-toast-msg="Monthly PDF report queued for export.">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="8 17 12 21 16 17"/><line x1="12" y1="3" x2="12" y2="21"/></svg>
+                Export Monthly Report
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>

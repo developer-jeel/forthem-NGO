@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign In — Rescue Manager · Unke Liye NGO</title>
+<meta name="description" content="Secure portal login for Rescue Manager operations — Unke Liye NGO.">
+<link rel="stylesheet" href="assets/css/rescue-manager.css">
+<style>
+  body { display: flex; min-height: 100vh; background: var(--bg-canvas); }
+  .login-shell { display: flex; width: 100%; min-height: 100vh; }
+
+  /* Brand Panel */
+  .login-brand {
+    width: 46%;
+    background: var(--brand-primary);
+    color: #fff;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 64px 60px;
+    position: relative; overflow: hidden;
+  }
+  .login-brand::before {
+    content: '';
+    position: absolute; bottom: -100px; right: -100px;
+    width: 450px; height: 450px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.03);
+  }
+  .login-brand::after {
+    content: '';
+    position: absolute; top: -80px; left: -80px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: rgba(192,85,42,0.08);
+  }
+  .brand-mark {
+    width: 56px; height: 56px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-heading); font-weight: 800; font-size: 1.6rem; color: #fff;
+    margin-bottom: var(--sp-8);
+    position: relative; z-index: 1;
+  }
+  .brand-eyebrow {
+    font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+    color: rgba(255,255,255,.45); margin-bottom: var(--sp-3);
+    position: relative; z-index: 1;
+    display: flex; align-items: center; gap: var(--sp-2);
+  }
+  .brand-eyebrow::before {
+    content: ''; display: inline-block;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #ff5c5c;
+    box-shadow: 0 0 0 0 rgba(255,92,92,0.4);
+    animation: pulse-ring 2s infinite;
+  }
+  .brand-title {
+    font-family: var(--font-heading); font-size: 2.4rem; line-height: 1.15;
+    margin-bottom: var(--sp-4);
+    position: relative; z-index: 1;
+  }
+  .brand-desc {
+    font-size: .9375rem; line-height: 1.75;
+    color: rgba(255,255,255,.65);
+    margin-bottom: var(--sp-10);
+    position: relative; z-index: 1; max-width: 380px;
+  }
+  .brand-pillars {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+    position: relative; z-index: 1;
+  }
+  .pillar {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius-lg);
+    padding: var(--sp-4);
+    display: flex; align-items: flex-start; gap: var(--sp-3);
+    transition: background var(--transition-fast);
+  }
+  .pillar:hover { background: rgba(255,255,255,0.1); }
+  .pillar-icon {
+    width: 38px; height: 38px;
+    border-radius: var(--radius-md);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0;
+  }
+  .pillar strong { display: block; font-size: .875rem; color: #fff; font-weight: 600; margin-bottom: 2px; }
+  .pillar span   { font-size: .72rem; color: rgba(255,255,255,.45); }
+
+  /* Form Panel */
+  .login-form-panel {
+    flex: 1;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 64px 48px;
+    background: var(--bg-surface);
+    position: relative;
+  }
+  .login-form-inner { width: 100%; max-width: 380px; }
+  .login-eyebrow {
+    font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--accent-terracotta); margin-bottom: var(--sp-2);
+    display: flex; align-items: center; gap: var(--sp-2);
+  }
+  .login-form-inner h1 { font-size: 1.75rem; margin-bottom: 6px; }
+  .login-form-inner .sub { color: var(--text-secondary); font-size: .9375rem; margin-bottom: var(--sp-8); }
+
+  .pw-wrap { position: relative; }
+  .pw-wrap .form-control { padding-right: 44px; }
+  .pw-toggle {
+    position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+    color: var(--text-muted); cursor: pointer;
+    transition: color var(--transition-fast);
+  }
+  .pw-toggle:hover { color: var(--text-primary); }
+  .form-row-inline {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: var(--sp-5); gap: var(--sp-3);
+  }
+  .checkbox-wrap { display: flex; align-items: center; gap: var(--sp-2); font-size: .875rem; }
+  .checkbox-wrap input { cursor: pointer; accent-color: var(--accent-terracotta); }
+  .forgot-link { font-size: .875rem; color: var(--accent-terracotta); text-decoration: underline; text-underline-offset: 2px; }
+  .forgot-link:hover { opacity: .75; }
+  .btn-login { width: 100%; padding: 12px; font-size: 1rem; justify-content: center; position: relative; }
+  .login-footer { text-align: center; margin-top: var(--sp-5); font-size: .8125rem; color: var(--text-secondary); }
+  .login-footer a { color: var(--accent-terracotta); }
+
+  .spinner {
+    display: inline-block; width: 16px; height: 16px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin .7s linear infinite;
+    vertical-align: middle; margin-right: 6px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .theme-btn { position: fixed; top: 16px; right: 16px; z-index: 10; }
+
+  @media (max-width: 860px) {
+    .login-brand { display: none; }
+    .login-form-panel { padding: 40px 24px; }
+  }
+</style>
+</head>
+<body>
+<!-- Logo & Brand for Unke Liye -->
+<div style="display:none;"><img src="../logo.png" alt="Unke Liye Logo"><span>Unke Liye</span></div>
+
+<button class="topbar-icon-btn theme-btn" id="theme-toggle" aria-label="Toggle dark mode">
+  <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+  <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/></svg>
+</button>
+
+<div class="login-shell">
+
+  <!-- Brand Panel -->
+  <aside class="login-brand">
+    <div class="brand-mark">उ</div>
+    <div class="brand-eyebrow">Live Operations Portal</div>
+    <h1 class="brand-title">Rescue Manager<br>Control Center</h1>
+    <p class="brand-desc">
+      Coordinate active rescues, dispatch field teams, track animal rehabilitation cases, and mobilize volunteer networks — all in real time.
+    </p>
+    <div class="brand-pillars">
+      <div class="pillar">
+        <div class="pillar-icon" style="background:rgba(192,85,42,0.25);">🐾</div>
+        <div>
+          <strong>Animal Rescue</strong>
+          <span>24/7 hotline dispatch</span>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon" style="background:rgba(179,56,44,0.25);">🚨</div>
+        <div>
+          <strong>Disaster Relief</strong>
+          <span>Flood &amp; emergency ops</span>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon" style="background:rgba(46,92,62,0.25);">🚐</div>
+        <div>
+          <strong>Fleet Dispatch</strong>
+          <span>8 units · live tracking</span>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon" style="background:rgba(58,95,138,0.25);">👥</div>
+        <div>
+          <strong>Volunteers</strong>
+          <span>On-call alert system</span>
+        </div>
+      </div>
+    </div>
+    <p style="margin-top:var(--sp-10);font-size:.72rem;color:rgba(255,255,255,.25);position:relative;z-index:1;">© 2026 Unke Liye NGO · Internal Operations · Confidential</p>
+  </aside>
+
+  <!-- Form Panel -->
+  <main class="login-form-panel">
+    <div class="login-form-inner">
+      <div class="login-eyebrow">
+        <span class="role-pulse-dot"></span>
+        Rescue Manager Portal
+      </div>
+      <h1>Welcome back</h1>
+      <p class="sub">Sign in to access the rescue operations dashboard.</p>
+
+      <form id="login-form" novalidate>
+        <div class="form-group">
+          <label class="form-label required" for="email">Email Address</label>
+          <input class="form-control" type="email" id="email" name="email"
+            placeholder="rescue@unkeliye.org"
+            value="rescue@unkeliye.org"
+            autocomplete="email" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label required" for="password">Password</label>
+          <div class="pw-wrap">
+            <input class="form-control" type="password" id="password" name="password"
+              placeholder="Enter your password"
+              value="••••••••••"
+              autocomplete="current-password" required>
+            <button type="button" class="pw-toggle" data-show-password="password" aria-label="Show password">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="form-row-inline">
+          <label class="checkbox-wrap">
+            <input type="checkbox" checked> Remember me
+          </label>
+          <a href="#" class="forgot-link">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="btn btn-danger btn-login" id="login-btn">Sign In to Rescue Portal</button>
+      </form>
+
+      <p class="login-footer">
+        Access restricted to authorized Rescue staff only.<br>
+        Having trouble? Contact <a href="mailto:it@unkeliye.org">it@unkeliye.org</a>
+      </p>
+    </div>
+  </main>
+</div>
+
+<script>
+  // Theme
+  (function() {
+    const saved = localStorage.getItem('rm-theme') || 'light';
+    document.documentElement.setAttribute('data-theme', saved);
+    document.getElementById('theme-toggle').addEventListener('click', function() {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
+      localStorage.setItem('rm-theme', isDark ? 'light' : 'dark');
+    });
+  })();
+
+  // Password toggle
+  document.querySelector('[data-show-password]').addEventListener('click', function() {
+    const input = document.getElementById(this.getAttribute('data-show-password'));
+    input.type = input.type === 'password' ? 'text' : 'password';
+  });
+
+  // Login simulation
+  document.getElementById('login-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('login-btn');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span> Authenticating…';
+    setTimeout(function() {
+      window.location.href = 'dashboard.html';
+    }, 1400);
+  });
+</script>
+</body>
+</html>

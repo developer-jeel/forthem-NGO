@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Broadcast Center - Volunteer Manager | Unke Liye NGO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/volunteer-manager.css">
+</head>
+<body>
+  <div class="app-shell">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <img src="../logo.png" alt="Unke Liye Logo" class="sidebar-logo-img">
+        <div>
+          <div class="sidebar-brand">UNKE LIYE</div>
+          <div class="sidebar-brand-sub">Volunteer Operations</div>
+        </div>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <div class="nav-section-title">Overview</div>
+          <a href="dashboard.html" class="nav-item">
+            <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+            </svg>
+            Dashboard
+          </a>
+        </div>
+        
+        <div class="nav-section">
+          <div class="nav-section-title">Volunteers</div>
+          <a href="volunteers.html" class="nav-item">
+            <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            Volunteers
+          </a>
+          <a href="applications.html" class="nav-item">
+            <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+            Applications
+          </a>
+          <a href="shifts.html" class="nav-item">
+            <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+            Shifts & Schedule
+          </a>
+        </div>
+        
+        <div class="nav-section">
+          <div class="nav-section-title">Operations</div>
+          <a href="dashboard.html#incidents" class="nav-item">
+            <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+            </svg>
+            Active Incidents
+          </a>
+          <a href="dashboard.html#deployments" class="nav-item">
+            <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
+            </svg>
+            Deployments
+          </a>
+          <a href="#" class="nav-item">
+            <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            Volunteer Hours
+          </a>
+        </div>
+        
+        <div class="nav-section">
+          <div class="nav-section-title">Communication</div>
+          <a href="broadcast.html" class="nav-item active">
+            <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
+            </svg>
+            Broadcast Center
+          </a>
+        </div>
+        
+        <div class="nav-section">
+          <div class="nav-section-title">System</div>
+          <a href="#" class="nav-item">
+            <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+            Settings
+          </a>
+          <a href="#" class="nav-item">
+            <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            Help
+          </a>
+        </div>
+      </nav>
+      
+      <div class="sidebar-footer">
+        <div class="user-profile">
+          <div class="user-avatar">AM</div>
+          <div class="user-info">
+            <div class="user-name">Aarav Mehta</div>
+            <div class="user-role">Volunteer Coordinator</div>
+            <div class="user-status">
+              <span class="user-status-dot"></span>
+              Online
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+    
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Header -->
+      <header class="header">
+        <div class="header-left">
+          <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+          <nav class="breadcrumb">
+            <span>Volunteer Manager</span>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Broadcast Center</span>
+          </nav>
+        </div>
+        
+        <div class="header-center">
+          <div class="global-search">
+            <svg class="global-search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+            <input type="text" class="global-search-input" placeholder="Search... (Ctrl+K)" id="global-search-input">
+          </div>
+        </div>
+        
+        <div class="header-right">
+          <button class="icon-button has-badge" id="notification-btn" aria-label="Notifications">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+            </svg>
+            <span class="notification-badge">4</span>
+          </button>
+          <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+            <svg class="sun-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+          </button>
+        </div>
+      </header>
+      
+      <!-- Page Content -->
+      <div class="page-content">
+        <div class="page-header">
+          <h1 class="page-title">Broadcast Center</h1>
+          <p class="page-subtitle">Send emergency alerts and important updates to volunteers via SMS and WhatsApp.</p>
+        </div>
+        
+        <div class="broadcast-layout">
+          <!-- Broadcast Composer -->
+          <div>
+            <section class="broadcast-composer">
+              <div class="broadcast-filters">
+                <div class="form-group">
+                  <label class="form-label" for="broadcast-title">Broadcast Title *</label>
+                  <input type="text" class="form-input" id="broadcast-title" placeholder="e.g., Pune Rescue Alert">
+                </div>
+                
+                <div class="form-group">
+                  <label class="form-label" for="broadcast-area">Target Area</label>
+                  <select class="form-select" id="broadcast-area">
+                    <option value="all">All Areas</option>
+                    <option value="pune">Pune</option>
+                    <option value="mumbai">Mumbai</option>
+                    <option value="delhi">Delhi</option>
+                    <option value="ahmedabad">Ahmedabad</option>
+                    <option value="rajkot">Rajkot</option>
+                    <option value="surat">Surat</option>
+                    <option value="nashik">Nashik</option>
+                  </select>
+                </div>
+                
+                <div class="form-group">
+                  <label class="form-label" for="broadcast-skill">Target Skill</label>
+                  <select class="form-select" id="broadcast-skill">
+                    <option value="all">All Skills</option>
+                    <option value="animal-rescue">Animal Rescue</option>
+                    <option value="first-aid">First Aid</option>
+                    <option value="driving">Driving</option>
+                    <option value="fundraising">Fundraising</option>
+                    <option value="event-support">Event Support</option>
+                    <option value="disaster-response">Disaster Response</option>
+                    <option value="social-media">Social Media</option>
+                    <option value="community-outreach">Community Outreach</option>
+                  </select>
+                </div>
+                
+                <div class="form-group">
+                  <label class="form-label" for="broadcast-status">Volunteer Status</label>
+                  <select class="form-select" id="broadcast-status">
+                    <option value="all">All Status</option>
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label">Communication Channels *</label>
+                <div class="broadcast-channels">
+                  <label class="channel-option" id="channel-sms">
+                    <input type="checkbox" name="channel" value="sms">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                    </svg>
+                    SMS
+                  </label>
+                  <label class="channel-option" id="channel-whatsapp">
+                    <input type="checkbox" name="channel" value="whatsapp">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.97-4.03 9-9 9a8.96 8.96 0 01-4.82-1.41L3 21l1.41-4.18A8.96 8.96 0 013 12c0-4.97 4.03-9 9-9s9 4.03 9 9z"/>
+                    </svg>
+                    WhatsApp
+                  </label>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label" for="broadcast-message">Message *</label>
+                <textarea class="form-input form-textarea" id="broadcast-message" placeholder="Type your emergency message here..." maxlength="320" rows="5"></textarea>
+                <div class="character-counter" id="char-counter">0 / 320 characters</div>
+              </div>
+              
+              <div style="display: flex; gap: var(--space-3); margin-top: var(--space-4);">
+                <button class="btn btn-primary" id="send-broadcast" style="flex: 1;">
+                  <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                  </svg>
+                  Send Broadcast
+                </button>
+                <button class="btn btn-secondary" id="save-draft">
+                  <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/>
+                  </svg>
+                  Save Draft
+                </button>
+              </div>
+            </section>
+            
+            <!-- Broadcast History -->
+            <section class="section broadcast-history">
+              <div class="section-header">
+                <div>
+                  <h2 class="section-title">Broadcast History</h2>
+                  <p class="section-subtitle">Previously sent broadcasts</p>
+                </div>
+              </div>
+              
+              <div class="table-container">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Broadcast</th>
+                      <th>Audience</th>
+                      <th>Channels</th>
+                      <th>Recipients</th>
+                      <th>Status</th>
+                      <th>Sent At</th>
+                      <th>Created By</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="table-cell-info">
+                          <div class="table-cell-title">Pune Rescue Alert</div>
+                          <div class="table-cell-subtitle">Animal Rescue Emergency</div>
+                        </div>
+                      </td>
+                      <td>Pune · Animal Rescue</td>
+                      <td>
+                        <span class="badge badge-info" style="font-size: 10px;">SMS</span>
+                        <span class="badge badge-success" style="font-size: 10px;">WhatsApp</span>
+                      </td>
+                      <td>18</td>
+                      <td><span class="badge badge-success">Sent</span></td>
+                      <td>Aug 26, 2026</td>
+                      <td>Aarav Mehta</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="table-cell-info">
+                          <div class="table-cell-title">Mumbai Flood Relief</div>
+                          <div class="table-cell-subtitle">Disaster Response</div>
+                        </div>
+                      </td>
+                      <td>Mumbai · Disaster Response</td>
+                      <td>
+                        <span class="badge badge-info" style="font-size: 10px;">SMS</span>
+                        <span class="badge badge-success" style="font-size: 10px;">WhatsApp</span>
+                      </td>
+                      <td>24</td>
+                      <td><span class="badge badge-success">Sent</span></td>
+                      <td>Aug 24, 2026</td>
+                      <td>Aarav Mehta</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="table-cell-info">
+                          <div class="table-cell-title">Weekend Drive Reminder</div>
+                          <div class="table-cell-subtitle">Community Sanitation</div>
+                        </div>
+                      </td>
+                      <td>All Areas · Sanitation</td>
+                      <td>
+                        <span class="badge badge-success" style="font-size: 10px;">WhatsApp</span>
+                      </td>
+                      <td>42</td>
+                      <td><span class="badge badge-success">Sent</span></td>
+                      <td>Aug 22, 2026</td>
+                      <td>Priya Sharma</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="table-cell-info">
+                          <div class="table-cell-title">Training Session Update</div>
+                          <div class="table-cell-subtitle">First Aid Training</div>
+                        </div>
+                      </td>
+                      <td>Pune · First Aid</td>
+                      <td>
+                        <span class="badge badge-info" style="font-size: 10px;">SMS</span>
+                      </td>
+                      <td>15</td>
+                      <td><span class="badge badge-success">Sent</span></td>
+                      <td>Aug 20, 2026</td>
+                      <td>Aarav Mehta</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="table-cell-info">
+                          <div class="table-cell-title">Monthly Meet Invitation</div>
+                          <div class="table-cell-subtitle">All Volunteers</div>
+                        </div>
+                      </td>
+                      <td>All Areas · All Skills</td>
+                      <td>
+                        <span class="badge badge-success" style="font-size: 10px;">WhatsApp</span>
+                      </td>
+                      <td>84</td>
+                      <td><span class="badge badge-success">Sent</span></td>
+                      <td>Aug 15, 2026</td>
+                      <td>Aarav Mehta</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+          
+          <!-- Preview Panel -->
+          <div class="broadcast-preview-panel">
+            <div class="audience-count">
+              <div class="audience-count-number" id="audience-count">18</div>
+              <div class="audience-count-label">volunteers match your criteria</div>
+            </div>
+            
+            <div class="preview-card">
+              <h4 class="preview-title">SMS Preview</h4>
+              <div class="sms-preview" id="sms-preview">
+                Your message preview will appear here as you type...
+              </div>
+            </div>
+            
+            <div class="preview-card">
+              <h4 class="preview-title">WhatsApp Preview</h4>
+              <div class="whatsapp-preview">
+                <div class="whatsapp-bubble" id="whatsapp-preview">
+                  Your message preview will appear here as you type...
+                </div>
+              </div>
+            </div>
+            
+            <div class="preview-card">
+              <h4 class="preview-title">Matched Recipients</h4>
+              <div class="recipients-list" id="recipients-list">
+                <!-- Recipients populated by JavaScript -->
+                <div class="recipient-item" data-city="pune" data-skill="animal-rescue" data-status="active">
+                  <div class="avatar avatar-sm">AS</div>
+                  <div class="recipient-info">
+                    <div class="recipient-name">Ananya Shah</div>
+                    <div class="recipient-meta">Pune · Animal Rescue</div>
+                  </div>
+                </div>
+                <div class="recipient-item" data-city="pune" data-skill="animal-rescue" data-status="active">
+                  <div class="avatar avatar-sm" style="background-color: #EC4899;">KS</div>
+                  <div class="recipient-info">
+                    <div class="recipient-name">Kavya Shah</div>
+                    <div class="recipient-meta">Pune · Animal Rescue</div>
+                  </div>
+                </div>
+                <div class="recipient-item" data-city="pune" data-skill="first-aid" data-status="active">
+                  <div class="avatar avatar-sm" style="background-color: #EF4444;">SK</div>
+                  <div class="recipient-info">
+                    <div class="recipient-name">Sneha Kulkarni</div>
+                    <div class="recipient-meta">Pune · First Aid</div>
+                  </div>
+                </div>
+                <div class="recipient-item" data-city="pune" data-skill="animal-rescue" data-status="active">
+                  <div class="avatar avatar-sm" style="background-color: #10B981;">RP</div>
+                  <div class="recipient-info">
+                    <div class="recipient-name">Rohan Patel</div>
+                    <div class="recipient-meta">Pune · Environment</div>
+                  </div>
+                </div>
+                <div class="recipient-item" data-city="mumbai" data-skill="sanitation" data-status="active">
+                  <div class="avatar avatar-sm" style="background-color: var(--pillar-sanitation);">PM</div>
+                  <div class="recipient-info">
+                    <div class="recipient-name">Priya Mehta</div>
+                    <div class="recipient-meta">Mumbai · Sanitation</div>
+                  </div>
+                </div>
+                <div class="recipient-item" data-city="ahmedabad" data-skill="fundraising" data-status="active">
+                  <div class="avatar avatar-sm" style="background-color: #8B5CF6;">MD</div>
+                  <div class="recipient-info">
+                    <div class="recipient-name">Mehul Desai</div>
+                    <div class="recipient-meta">Ahmedabad · Fundraising</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  
+  <!-- Toast Container -->
+  <div class="toast-container" id="toast-container"></div>
+  
+  <!-- Broadcast Confirmation Modal -->
+  <div class="modal-backdrop" id="broadcast-confirm-modal">
+    <div class="modal modal-lg">
+      <div class="modal-header">
+        <h3 class="modal-title">Confirm Broadcast</h3>
+        <button class="modal-close" data-modal-close>
+          <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div style="background-color: var(--status-warning-bg); border: 1px solid var(--status-warning); border-radius: var(--radius-md); padding: var(--space-4); margin-bottom: var(--space-4);">
+          <div style="display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-2);">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: var(--status-warning);">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+            </svg>
+            <strong style="color: var(--status-warning);">You are about to send an emergency broadcast</strong>
+          </div>
+          <p style="font-size: var(--text-sm); color: var(--text-secondary);">This action will send messages to all matched volunteers. Please review the details below.</p>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-4); margin-bottom: var(--space-4);">
+          <div>
+            <div style="font-size: var(--text-xs); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: var(--space-1);">Recipients</div>
+            <div style="font-size: var(--text-xl); font-weight: var(--font-bold); color: var(--brand-primary);" id="confirm-recipients">18</div>
+          </div>
+          <div>
+            <div style="font-size: var(--text-xs); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: var(--space-1);">Channels</div>
+            <div style="font-size: var(--text-base); font-weight: var(--font-medium);" id="confirm-channels">SMS + WhatsApp</div>
+          </div>
+          <div>
+            <div style="font-size: var(--text-xs); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: var(--space-1);">Target Area</div>
+            <div style="font-size: var(--text-base);" id="confirm-area">Pune</div>
+          </div>
+          <div>
+            <div style="font-size: var(--text-xs); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: var(--space-1);">Target Skill</div>
+            <div style="font-size: var(--text-base);" id="confirm-skill">Animal Rescue</div>
+          </div>
+        </div>
+        
+        <div style="margin-bottom: var(--space-4);">
+          <div style="font-size: var(--text-xs); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: var(--space-2);">Message Preview</div>
+          <div style="background-color: var(--bg-sunken); padding: var(--space-3); border-radius: var(--radius-md); font-size: var(--text-sm); color: var(--text-primary);" id="confirm-message">
+            <!-- Message populated by JavaScript -->
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-modal-close>Cancel</button>
+        <button class="btn btn-primary" id="confirm-broadcast-send">
+          <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+          </svg>
+          Confirm & Send Broadcast
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Sending Progress Modal -->
+  <div class="modal-backdrop" id="sending-modal">
+    <div class="modal modal-sm">
+      <div class="modal-body" style="text-align: center; padding: var(--space-8);">
+        <div class="loading-spinner" style="margin: 0 auto var(--space-4);"></div>
+        <h3 style="margin-bottom: var(--space-2);">Sending Broadcast...</h3>
+        <p style="color: var(--text-secondary); font-size: var(--text-sm);">Please wait while we deliver your message to all recipients.</p>
+      </div>
+    </div>
+  </div>
+  
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/layout.js"></script>
+  <script src="assets/js/ui.js"></script>
+  <script src="assets/js/broadcast.js"></script>
+</body>
+</html>

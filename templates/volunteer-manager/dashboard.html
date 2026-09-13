@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Volunteer Manager | Unke Liye NGO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/volunteer-manager.css">
+</head>
+<body>
+  <div class="app-shell">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <img src="../logo.png" alt="Unke Liye Logo" class="sidebar-logo-img">
+        <div>
+          <div class="sidebar-brand">UNKE LIYE</div>
+          <div class="sidebar-brand-sub">Volunteer Operations</div>
+        </div>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <div class="nav-section-title">Overview</div>
+          <a href="dashboard.html" class="nav-item active">
+            <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+            </svg>
+            Dashboard
+          </a>
+        </div>
+        
+        <div class="nav-section">
+          <div class="nav-section-title">Volunteers</div>
+          <a href="volunteers.html" class="nav-item">
+            <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            Volunteers
+          </a>
+          <a href="applications.html" class="nav-item">
+            <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+            Applications
+          </a>
+          <a href="shifts.html" class="nav-item">
+            <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+            Shifts & Schedule
+          </a>
+        </div>
+        
+        <div class="nav-section">
+          <div class="nav-section-title">Operations</div>
+          <a href="dashboard.html#incidents" class="nav-item">
+            <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+            </svg>
+            Active Incidents
+          </a>
+          <a href="assignments.html" class="nav-item">
+            <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
+            </svg>
+            Field Assignments
+          </a>
+          <a href="attendance.html" class="nav-item">
+            <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            Volunteer Hours
+          </a>
+          <a href="fund-requests.html" class="nav-item">
+            <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            Operations Funds
+          </a>
+        </div>
+        
+        <div class="nav-section">
+          <div class="nav-section-title">Communication</div>
+          <a href="broadcast.html" class="nav-item">
+            <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
+            </svg>
+            Broadcast Center
+          </a>
+        </div>
+        
+        <div class="nav-section">
+          <div class="nav-section-title">System</div>
+          <a href="#" class="nav-item">
+            <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+            Settings
+          </a>
+          <a href="#" class="nav-item">
+            <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            Help
+          </a>
+        </div>
+      </nav>
+      
+      <div class="sidebar-footer">
+        <div class="user-profile">
+          <div class="user-avatar">AM</div>
+          <div class="user-info">
+            <div class="user-name">Aarav Mehta</div>
+            <div class="user-role">Volunteer Coordinator</div>
+            <div class="user-status">
+              <span class="user-status-dot"></span>
+              Online
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+    
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Header -->
+      <header class="header">
+        <div class="header-left">
+          <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+          <nav class="breadcrumb">
+            <span>Volunteer Manager</span>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Dashboard</span>
+          </nav>
+        </div>
+        
+        <div class="header-center">
+          <div class="global-search">
+            <svg class="global-search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+            <input type="text" class="global-search-input" placeholder="Search volunteers, applications... (Ctrl+K)" id="global-search-input">
+          </div>
+        </div>
+        
+        <div class="header-right">
+          <button class="icon-button has-badge" id="notification-btn" aria-label="Notifications">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+            </svg>
+            <span class="notification-badge">4</span>
+          </button>
+          <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+            <svg class="sun-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+          </button>
+        </div>
+      </header>
+      
+      <!-- Notification Dropdown -->
+      <div class="dropdown-menu" id="notification-dropdown">
+        <div class="dropdown-item">
+          <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+          </svg>
+          <span>3 applications awaiting review</span>
+        </div>
+        <div class="dropdown-item">
+          <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+          </svg>
+          <span>Critical incident requires 4 volunteers</span>
+        </div>
+        <div class="dropdown-item">
+          <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <span>Volunteer verification pending</span>
+        </div>
+        <div class="dropdown-divider"></div>
+        <div class="dropdown-item">
+          <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
+          </svg>
+          <span>Emergency broadcast completed</span>
+        </div>
+      </div>
+      
+      <!-- Page Content -->
+      <div class="page-content">
+        <div class="page-header">
+          <h1 class="page-title">Volunteer Operations</h1>
+          <p class="page-subtitle">Coordinate people, respond to incidents, and keep every field operation moving.</p>
+          <div class="page-actions">
+            <button class="btn btn-primary" id="assign-volunteer-btn">
+              <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+              </svg>
+              Assign Volunteer
+            </button>
+            <a href="applications.html" class="btn btn-secondary">
+              <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+              </svg>
+              Review Applications
+            </a>
+          </div>
+        </div>
+        
+        <!-- Statistics -->
+        <div class="stats-grid dashboard-stats">
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <div class="stat-card-icon pillar-animal">
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+                </svg>
+              </div>
+            </div>
+            <div class="stat-card-value" id="stat-volunteers">84</div>
+            <div class="stat-card-label">Active Volunteers</div>
+            <div class="stat-card-change positive">
+              <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+              </svg>
+              +8.4% vs last month
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <div class="stat-card-icon pillar-environment">
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+              </div>
+            </div>
+            <div class="stat-card-value" id="stat-applications">12</div>
+            <div class="stat-card-label">Pending Applications</div>
+            <div class="stat-card-change">
+              <span>4 require review</span>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <div class="stat-card-icon pillar-sanitation">
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                </svg>
+              </div>
+            </div>
+            <div class="stat-card-value" id="stat-field">14</div>
+            <div class="stat-card-label">Volunteers on Field</div>
+            <div class="stat-card-change">
+              <span>Across 6 active programs</span>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <div class="stat-card-icon pillar-disaster">
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+            </div>
+            <div class="stat-card-value" id="stat-hours">1,480</div>
+            <div class="stat-card-label">Contribution Hours</div>
+            <div class="stat-card-change positive">
+              <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+              </svg>
+              +12.6% this month
+            </div>
+          </div>
+        </div>
+        
+        <div class="dashboard-grid">
+          <!-- Active Deployments -->
+          <section class="section" id="deployments">
+            <div class="section-header">
+              <div>
+                <h2 class="section-title">Active Deployments</h2>
+                <p class="section-subtitle">Volunteers currently on field assignments</p>
+              </div>
+              <a href="#" class="btn btn-ghost btn-sm">View All</a>
+            </div>
+            
+            <div class="table-container">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Volunteer</th>
+                    <th>Program</th>
+                    <th>Location</th>
+                    <th>Role</th>
+                    <th>Duration</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr data-status="active">
+                    <td>
+                      <div class="table-cell-primary">
+                        <div class="avatar">AS</div>
+                        <div class="table-cell-info">
+                          <div class="table-cell-title">Ananya Shah</div>
+                          <div class="table-cell-subtitle">ananya.shah@example.com</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>Pune Rescue Unit</td>
+                    <td>Pune</td>
+                    <td>Rescue Support</td>
+                    <td>4h 20m</td>
+                    <td><span class="badge badge-success">On Field</span></td>
+                  </tr>
+                  <tr data-status="active">
+                    <td>
+                      <div class="table-cell-primary">
+                        <div class="avatar" style="background-color: var(--pillar-environment);">RP</div>
+                        <div class="table-cell-info">
+                          <div class="table-cell-title">Rohan Patel</div>
+                          <div class="table-cell-subtitle">rohan.patel@example.com</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>Green Neighborhood Initiative</td>
+                    <td>Pune</td>
+                    <td>Field Coordinator</td>
+                    <td>2h 45m</td>
+                    <td><span class="badge badge-success">On Field</span></td>
+                  </tr>
+                  <tr data-status="active">
+                    <td>
+                      <div class="table-cell-primary">
+                        <div class="avatar" style="background-color: var(--pillar-sanitation);">PM</div>
+                        <div class="table-cell-info">
+                          <div class="table-cell-title">Priya Mehta</div>
+                          <div class="table-cell-subtitle">priya.mehta@example.com</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>Community Sanitation Drive</td>
+                    <td>Mumbai</td>
+                    <td>Team Lead</td>
+                    <td>3h 15m</td>
+                    <td><span class="badge badge-success">On Field</span></td>
+                  </tr>
+                  <tr data-status="active">
+                    <td>
+                      <div class="table-cell-primary">
+                        <div class="avatar" style="background-color: var(--pillar-disaster);">AJ</div>
+                        <div class="table-cell-info">
+                          <div class="table-cell-title">Aarav Joshi</div>
+                          <div class="table-cell-subtitle">aarav.joshi@example.com</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>Disaster Relief Team</td>
+                    <td>Surat</td>
+                    <td>Emergency Response</td>
+                    <td>5h 00m</td>
+                    <td><span class="badge badge-success">On Field</span></td>
+                  </tr>
+                  <tr data-status="active">
+                    <td>
+                      <div class="table-cell-primary">
+                        <div class="avatar" style="background-color: #8B5CF6;">MD</div>
+                        <div class="table-cell-info">
+                          <div class="table-cell-title">Mehul Desai</div>
+                          <div class="table-cell-subtitle">mehul.desai@example.com</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>Food Distribution Program</td>
+                    <td>Ahmedabad</td>
+                    <td>Logistics Support</td>
+                    <td>1h 30m</td>
+                    <td><span class="badge badge-success">On Field</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+          
+          <!-- Right Column -->
+          <div>
+            <!-- Active Incidents -->
+            <section class="section" id="incidents">
+              <div class="section-header">
+                <div>
+                  <h2 class="section-title">Active Incidents</h2>
+                  <p class="section-subtitle">Incidents requiring volunteer response</p>
+                </div>
+              </div>
+              
+              <div class="incident-card critical">
+                <div class="incident-header">
+                  <div class="incident-title">Stray Animal Rescue - Kothrud</div>
+                  <span class="incident-urgency critical">Critical</span>
+                </div>
+                <div class="incident-meta">
+                  <span>Kothrud, Pune</span>
+                  <span>·</span>
+                  <span style="color: var(--pillar-animal);">Animal Rescue</span>
+                </div>
+                <div class="incident-stats">
+                  <div class="incident-stat">
+                    <div class="incident-stat-value">5</div>
+                    <div class="incident-stat-label">Needed</div>
+                  </div>
+                  <div class="incident-stat">
+                    <div class="incident-stat-value">3</div>
+                    <div class="incident-stat-label">Assigned</div>
+                  </div>
+                  <div class="incident-stat">
+                    <div class="incident-stat-value" style="color: var(--status-warning);">2</div>
+                    <div class="incident-stat-label">Still Needed</div>
+                  </div>
+                </div>
+                <div class="incident-actions">
+                  <button class="btn btn-primary btn-sm">Assign Volunteers</button>
+                  <button class="btn btn-ghost btn-sm">View Details</button>
+                </div>
+              </div>
+              
+              <div class="incident-card warning">
+                <div class="incident-header">
+                  <div class="incident-title">Elderly Support Request</div>
+                  <span class="incident-urgency warning">Medium</span>
+                </div>
+                <div class="incident-meta">
+                  <span>Shivaji Nagar, Pune</span>
+                  <span>·</span>
+                  <span style="color: var(--pillar-sanitation);">Community Support</span>
+                </div>
+                <div class="incident-stats">
+                  <div class="incident-stat">
+                    <div class="incident-stat-value">2</div>
+                    <div class="incident-stat-label">Needed</div>
+                  </div>
+                  <div class="incident-stat">
+                    <div class="incident-stat-value">1</div>
+                    <div class="incident-stat-label">Assigned</div>
+                  </div>
+                  <div class="incident-stat">
+                    <div class="incident-stat-value" style="color: var(--status-warning);">1</div>
+                    <div class="incident-stat-label">Still Needed</div>
+                  </div>
+                </div>
+                <div class="incident-actions">
+                  <button class="btn btn-primary btn-sm">Assign Volunteers</button>
+                  <button class="btn btn-ghost btn-sm">View Details</button>
+                </div>
+              </div>
+              
+              <div class="incident-card info">
+                <div class="incident-header">
+                  <div class="incident-title">Tree Plantation Drive</div>
+                  <span class="incident-urgency" style="color: var(--status-info);">Low</span>
+                </div>
+                <div class="incident-meta">
+                  <span>Pashan, Pune</span>
+                  <span>·</span>
+                  <span style="color: var(--pillar-environment);">Environment</span>
+                </div>
+                <div class="incident-stats">
+                  <div class="incident-stat">
+                    <div class="incident-stat-value">10</div>
+                    <div class="incident-stat-label">Needed</div>
+                  </div>
+                  <div class="incident-stat">
+                    <div class="incident-stat-value">8</div>
+                    <div class="incident-stat-label">Assigned</div>
+                  </div>
+                  <div class="incident-stat">
+                    <div class="incident-stat-value" style="color: var(--status-success);">2</div>
+                    <div class="incident-stat-label">Still Needed</div>
+                  </div>
+                </div>
+                <div class="incident-actions">
+                  <button class="btn btn-primary btn-sm">Assign Volunteers</button>
+                  <button class="btn btn-ghost btn-sm">View Details</button>
+                </div>
+              </div>
+            </section>
+            
+            <!-- Recent Activity -->
+            <section class="section">
+              <div class="section-header">
+                <div>
+                  <h2 class="section-title">Recent Activity</h2>
+                  <p class="section-subtitle">Latest volunteer actions</p>
+                </div>
+              </div>
+              
+              <div class="timeline">
+                <div class="timeline-item">
+                  <div class="timeline-dot success"></div>
+                  <div class="timeline-content">
+                    <div class="timeline-date">Today, 2:30 PM</div>
+                    <div class="timeline-text"><strong>Ananya Shah</strong> completed a 5-hour rescue deployment.</div>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-dot"></div>
+                  <div class="timeline-content">
+                    <div class="timeline-date">Today, 11:00 AM</div>
+                    <div class="timeline-text"><strong>Rohan Patel</strong> was assigned to Pune Rescue Unit.</div>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-dot success"></div>
+                  <div class="timeline-content">
+                    <div class="timeline-date">Yesterday, 4:45 PM</div>
+                    <div class="timeline-text"><strong>Mehul Joshi</strong> was approved as a volunteer.</div>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-dot"></div>
+                  <div class="timeline-content">
+                    <div class="timeline-date">Yesterday, 10:15 AM</div>
+                    <div class="timeline-text"><strong>Priya Shah</strong> completed first-aid training.</div>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-dot warning"></div>
+                  <div class="timeline-content">
+                    <div class="timeline-date">Aug 24, 2026</div>
+                    <div class="timeline-text">Emergency broadcast sent to 18 volunteers in Pune.</div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+        
+        <!-- Quick Actions -->
+        <section class="section">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">Quick Actions</h2>
+              <p class="section-subtitle">Common tasks at your fingertips</p>
+            </div>
+          </div>
+          
+          <div class="quick-actions-grid">
+            <a href="volunteers.html" class="quick-action-card" data-action="add-volunteer">
+              <div class="quick-action-icon">
+                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
+                </svg>
+              </div>
+              <div class="quick-action-title">Add Volunteer</div>
+            </a>
+            
+            <a href="applications.html" class="quick-action-card" data-action="review-applications">
+              <div class="quick-action-icon">
+                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+              </div>
+              <div class="quick-action-title">Review Applications</div>
+            </a>
+            
+            <a href="dashboard.html#deployments" class="quick-action-card" data-action="assign-deployment">
+              <div class="quick-action-icon">
+                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                </svg>
+              </div>
+              <div class="quick-action-title">Assign Deployment</div>
+            </a>
+            
+            <a href="broadcast.html" class="quick-action-card" data-action="create-broadcast">
+              <div class="quick-action-icon">
+                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
+                </svg>
+              </div>
+              <div class="quick-action-title">Create Broadcast</div>
+            </a>
+          </div>
+        </section>
+        
+        <!-- Recent Applications Preview -->
+        <section class="section">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">Recent Applications</h2>
+              <p class="section-subtitle">New applicants awaiting review</p>
+            </div>
+            <a href="applications.html" class="btn btn-ghost btn-sm">View All</a>
+          </div>
+          
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Applicant</th>
+                  <th>City</th>
+                  <th>Skills</th>
+                  <th>Applied</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr data-status="pending">
+                  <td>
+                    <div class="table-cell-primary">
+                      <div class="avatar" style="background-color: #EC4899;">KS</div>
+                      <div class="table-cell-info">
+                        <div class="table-cell-title">Kavya Shah</div>
+                        <div class="table-cell-subtitle">kavya.shah@example.com</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>Pune</td>
+                  <td>
+                    <span class="skill-chip pillar-animal">Animal Rescue</span>
+                    <span class="skill-chip">First Aid</span>
+                  </td>
+                  <td>Aug 25, 2026</td>
+                  <td><span class="badge badge-warning">Pending Review</span></td>
+                  <td><a href="applications.html" class="btn btn-ghost btn-sm">Review</a></td>
+                </tr>
+                <tr data-status="pending">
+                  <td>
+                    <div class="table-cell-primary">
+                      <div class="avatar" style="background-color: #10B981;">DP</div>
+                      <div class="table-cell-info">
+                        <div class="table-cell-title">Dev Patel</div>
+                        <div class="table-cell-subtitle">dev.patel@example.com</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>Mumbai</td>
+                  <td>
+                    <span class="skill-chip pillar-environment">Environment</span>
+                    <span class="skill-chip">Social Media</span>
+                  </td>
+                  <td>Aug 24, 2026</td>
+                  <td><span class="badge badge-warning">Pending Review</span></td>
+                  <td><a href="applications.html" class="btn btn-ghost btn-sm">Review</a></td>
+                </tr>
+                <tr data-status="pending">
+                  <td>
+                    <div class="table-cell-primary">
+                      <div class="avatar" style="background-color: #F59E0B;">NT</div>
+                      <div class="table-cell-info">
+                        <div class="table-cell-title">Neha Trivedi</div>
+                        <div class="table-cell-subtitle">neha.trivedi@example.com</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>Ahmedabad</td>
+                  <td>
+                    <span class="skill-chip pillar-sanitation">Sanitation</span>
+                    <span class="skill-chip">Driving</span>
+                  </td>
+                  <td>Aug 23, 2026</td>
+                  <td><span class="badge badge-warning">Pending Review</span></td>
+                  <td><a href="applications.html" class="btn btn-ghost btn-sm">Review</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+  
+  <!-- Toast Container -->
+  <div class="toast-container" id="toast-container"></div>
+  
+  <!-- Search Overlay -->
+  <div class="search-overlay" id="search-overlay">
+    <div class="search-box">
+      <div class="search-input-wrapper">
+        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: var(--text-tertiary);">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+        <input type="text" class="search-input" placeholder="Search volunteers, applications, incidents..." id="search-input">
+        <button class="search-close" id="search-close">
+          <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+      <div class="search-results" id="search-results">
+        <div class="search-result-item">
+          <div class="search-result-icon">
+            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+          </div>
+          <div class="search-result-info">
+            <div class="search-result-title">Ananya Shah</div>
+            <div class="search-result-subtitle">Volunteer · Pune · Animal Rescue</div>
+          </div>
+          <span class="search-shortcut">Go to profile</span>
+        </div>
+        <div class="search-result-item">
+          <div class="search-result-icon">
+            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+          </div>
+          <div class="search-result-info">
+            <div class="search-result-title">Kavya Shah - Application</div>
+            <div class="search-result-subtitle">Pending Review · Animal Rescue</div>
+          </div>
+          <span class="search-shortcut">Review</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Add Volunteer Modal -->
+  <div class="modal-backdrop" id="add-volunteer-modal">
+    <div class="modal modal-lg">
+      <div class="modal-header">
+        <h3 class="modal-title">Add New Volunteer</h3>
+        <button class="modal-close" data-modal-close>
+          <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="add-volunteer-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="vol-first-name">First Name *</label>
+              <input type="text" class="form-input" id="vol-first-name" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="vol-last-name">Last Name *</label>
+              <input type="text" class="form-input" id="vol-last-name" required>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="vol-email">Email *</label>
+              <input type="email" class="form-input" id="vol-email" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="vol-phone">Phone *</label>
+              <input type="tel" class="form-input" id="vol-phone" required>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="vol-city">City *</label>
+              <select class="form-select" id="vol-city" required>
+                <option value="">Select City</option>
+                <option value="pune">Pune</option>
+                <option value="mumbai">Mumbai</option>
+                <option value="delhi">Delhi</option>
+                <option value="ahmedabad">Ahmedabad</option>
+                <option value="rajkot">Rajkot</option>
+                <option value="surat">Surat</option>
+                <option value="nashik">Nashik</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="vol-area">Area</label>
+              <input type="text" class="form-input" id="vol-area">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="vol-skills">Skills *</label>
+            <select class="form-select" id="vol-skills" multiple required>
+              <option value="animal-rescue">Animal Rescue</option>
+              <option value="first-aid">First Aid</option>
+              <option value="driving">Driving</option>
+              <option value="fundraising">Fundraising</option>
+              <option value="event-support">Event Support</option>
+              <option value="disaster-response">Disaster Response</option>
+              <option value="social-media">Social Media</option>
+              <option value="community-outreach">Community Outreach</option>
+            </select>
+            <div class="form-helper">Hold Ctrl/Cmd to select multiple skills</div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="vol-availability">Availability *</label>
+              <select class="form-select" id="vol-availability" required>
+                <option value="">Select Availability</option>
+                <option value="weekdays">Weekdays</option>
+                <option value="weekends">Weekends</option>
+                <option value="full-time">Full-time</option>
+                <option value="on-call">On-call</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="vol-experience">Experience Level</label>
+              <select class="form-select" id="vol-experience">
+                <option value="beginner">Beginner</option>
+                <option value="intermediate">Intermediate</option>
+                <option value="advanced">Advanced</option>
+                <option value="expert">Expert</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="vol-emergency-contact">Emergency Contact Name</label>
+              <input type="text" class="form-input" id="vol-emergency-contact">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="vol-emergency-phone">Emergency Contact Phone</label>
+              <input type="tel" class="form-input" id="vol-emergency-phone">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="vol-preferred-comm">Preferred Communication</label>
+            <select class="form-select" id="vol-preferred-comm">
+              <option value="whatsapp">WhatsApp</option>
+              <option value="sms">SMS</option>
+              <option value="email">Email</option>
+              <option value="call">Phone Call</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-modal-close>Cancel</button>
+        <button class="btn btn-primary" id="add-volunteer-submit">Add Volunteer</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Assignment Modal -->
+  <div class="modal-backdrop" id="assignment-modal">
+    <div class="modal modal-lg">
+      <div class="modal-header">
+        <h3 class="modal-title">Assign Volunteer</h3>
+        <button class="modal-close" data-modal-close>
+          <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="assignment-form">
+          <div class="form-group">
+            <label class="form-label" for="assign-volunteer">Volunteer *</label>
+            <select class="form-select" id="assign-volunteer" required>
+              <option value="">Select Volunteer</option>
+              <option value="VOL-001">Ananya Shah - Pune</option>
+              <option value="VOL-002">Rohan Patel - Pune</option>
+              <option value="VOL-003">Priya Mehta - Mumbai</option>
+              <option value="VOL-004">Aarav Joshi - Surat</option>
+              <option value="VOL-005">Mehul Desai - Ahmedabad</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="assign-program">Program *</label>
+            <select class="form-select" id="assign-program" required>
+              <option value="">Select Program</option>
+              <option value="pune-rescue">Pune Rescue Unit</option>
+              <option value="mumbai-rescue">Mumbai Animal Rescue</option>
+              <option value="green-neighborhood">Green Neighborhood Initiative</option>
+              <option value="sanitation-drive">Community Sanitation Drive</option>
+              <option value="disaster-relief">Disaster Relief Team</option>
+              <option value="food-distribution">Food Distribution Program</option>
+              <option value="senior-support">Senior Support Program</option>
+            </select>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="assign-task">Task Type *</label>
+              <select class="form-select" id="assign-task" required>
+                <option value="">Select Task</option>
+                <option value="rescue">Rescue</option>
+                <option value="event-support">Event Support</option>
+                <option value="sanitation">Sanitation</option>
+                <option value="distribution">Distribution</option>
+                <option value="fundraising">Fundraising</option>
+                <option value="disaster-response">Disaster Response</option>
+                <option value="community-outreach">Community Outreach</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="assign-location">Location *</label>
+              <input type="text" class="form-input" id="assign-location" required>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="assign-start-date">Start Date *</label>
+              <input type="date" class="form-input" id="assign-start-date" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="assign-start-time">Start Time *</label>
+              <input type="time" class="form-input" id="assign-start-time" required>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="assign-end-date">End Date *</label>
+              <input type="date" class="form-input" id="assign-end-date" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="assign-end-time">End Time *</label>
+              <input type="time" class="form-input" id="assign-end-time" required>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="assign-priority">Priority</label>
+              <select class="form-select" id="assign-priority">
+                <option value="low">Low</option>
+                <option value="medium" selected>Medium</option>
+                <option value="high">High</option>
+                <option value="critical">Critical</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="assign-notes">Notes</label>
+            <textarea class="form-input form-textarea" id="assign-notes" placeholder="Additional instructions or details..."></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-modal-close>Cancel</button>
+        <button class="btn btn-primary" id="assignment-submit">Assign Volunteer</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Confirmation Modal -->
+  <div class="modal-backdrop" id="confirm-modal">
+    <div class="modal modal-sm">
+      <div class="modal-header">
+        <h3 class="modal-title" id="confirm-title">Confirm Action</h3>
+        <button class="modal-close" data-modal-close>
+          <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p id="confirm-message">Are you sure you want to proceed?</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-modal-close>Cancel</button>
+        <button class="btn btn-primary" id="confirm-action">Confirm</button>
+      </div>
+    </div>
+  </div>
+  
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/layout.js"></script>
+  <script src="assets/js/ui.js"></script>
+  <script src="assets/js/volunteers.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

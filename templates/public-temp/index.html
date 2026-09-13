@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Unke Liye — An NGO dedicated to Animal Rescue, Environment, Sanitation, and Disaster Relief. For Every Life. For Nature. For a Better Tomorrow." />
+  <title>Unke Liye — For Every Life. For Nature. For a Better Tomorrow.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <style>
+    /* ---- Home-specific styles ---- */
+    .hero-home {
+      min-height: 92vh;
+      background: linear-gradient(135deg, var(--color-primary-dark) 0%, #2a5a4a 60%, #1a3d30 100%);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-home::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=1600&q=80') center/cover no-repeat;
+      opacity: 0.18;
+    }
+
+    .hero-home::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 20% 50%, rgba(31, 75, 63, 0.5) 0%, transparent 70%);
+    }
+
+    .hero-home .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: rgba(250, 247, 242, 0.9);
+      padding: var(--space-2) var(--space-4);
+      border-radius: var(--radius-full);
+      font-size: var(--text-sm);
+      font-weight: var(--font-weight-medium);
+      margin-bottom: var(--space-6);
+    }
+
+    .hero-home h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      line-height: 1.1;
+      color: #fff;
+      max-width: 13ch;
+      margin-bottom: var(--space-6);
+    }
+
+    .hero-home h1 em {
+      font-style: normal;
+      color: #A8D8B9;
+    }
+
+    .hero-tagline {
+      font-size: clamp(var(--text-lg), 2vw, var(--text-xl));
+      color: rgba(250, 247, 242, 0.8);
+      max-width: 50ch;
+      margin-bottom: var(--space-10);
+      line-height: var(--leading-relaxed);
+    }
+
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-8);
+      margin-top: var(--space-12);
+      padding-top: var(--space-10);
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .hero-stat-item {
+      color: #fff;
+    }
+
+    .hero-stat-number {
+      font-family: var(--font-display);
+      font-size: var(--text-3xl);
+      font-weight: var(--font-weight-bold);
+      line-height: 1;
+      color: #A8D8B9;
+    }
+
+    .hero-stat-label {
+      font-size: var(--text-xs);
+      color: rgba(250, 247, 242, 0.6);
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* Pillars section */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+
+    @media (min-width: 640px) {
+      .pillars-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .pillars-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    /* Campaign grid */
+    .campaigns-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+
+    @media (min-width: 640px) {
+      .campaigns-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .campaigns-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* Stories grid */
+    .stories-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+
+    @media (min-width: 640px) {
+      .stories-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .stories-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* Stats section */
+    .stats-section {
+      background: var(--color-primary);
+      padding: var(--space-20) 0;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-6);
+    }
+
+    @media (min-width: 768px) {
+      .stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .stats-grid {
+        grid-template-columns: repeat(6, 1fr);
+      }
+    }
+
+    .stat-card-alt {
+      text-align: center;
+      padding: var(--space-6) var(--space-4);
+    }
+
+    .stat-card-alt .stat-number {
+      color: #A8D8B9;
+    }
+
+    .stat-card-alt .stat-label {
+      color: rgba(250, 247, 242, 0.7);
+    }
+
+    .stat-card-alt .stat-icon {
+      font-size: 2rem;
+    }
+
+    /* Events */
+    .events-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+
+    @media (min-width: 768px) {
+      .events-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .event-card {
+      display: flex;
+      gap: var(--space-5);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+      transition: transform var(--transition-base), box-shadow var(--transition-base);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .event-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .event-date-box {
+      flex-shrink: 0;
+      width: 60px;
+      height: 68px;
+      background: var(--color-primary-light);
+      border-radius: var(--radius-md);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .event-day {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-primary);
+      line-height: 1;
+    }
+
+    .event-month {
+      font-size: var(--text-xs);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .event-info h4 {
+      font-size: var(--text-base);
+      margin-bottom: var(--space-2);
+    }
+
+    .event-info p {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+    }
+
+    .event-info .event-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      margin-top: var(--space-3);
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+    }
+
+    /* Testimonials carousel */
+    .testimonials-section {
+      background: var(--color-surface-alt);
+      padding: var(--space-20) 0;
+    }
+
+    /* News */
+    .news-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+
+    @media (min-width: 640px) {
+      .news-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .news-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    /* Scroll indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: var(--space-8);
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-2);
+      color: rgba(255, 255, 255, 0.5);
+      font-size: var(--text-xs);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .scroll-arrow {
+      width: 24px;
+      height: 24px;
+      border-right: 2px solid rgba(255, 255, 255, 0.4);
+      border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+      transform: rotate(45deg);
+      animation: bounceSlight 2s ease-in-out infinite;
+      border-radius: 2px;
+    }
+
+    /* Volunteer CTA strip */
+    .volunteer-strip {
+      background: var(--color-surface-alt);
+      border-top: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+      padding: var(--space-12) 0;
+    }
+
+    .volunteer-strip-inner {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+      align-items: flex-start;
+    }
+
+    @media (min-width: 768px) {
+      .volunteer-strip-inner {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+    /* Image card placeholder */
+    .img-placeholder {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 2rem;
+    }
+
+    /* Section label pill */
+    .section-pill {
+      display: inline-block;
+      background: var(--color-primary-light);
+      color: var(--color-primary);
+      font-size: var(--text-xs);
+      font-weight: var(--font-weight-semibold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: var(--space-1) var(--space-4);
+      border-radius: var(--radius-full);
+      margin-bottom: var(--space-3);
+    }
+
+    .section-pill--care {
+      background: rgba(201, 124, 77, 0.12);
+      color: var(--color-care);
+    }
+
+    .section-pill--respond {
+      background: var(--color-urgent-tint);
+      color: var(--color-respond);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Skip Navigation -->
+  <a href="#main-content" class="skip-nav">Skip to main content</a>
+
+  <!-- Emergency Bar -->
+  <div class="emergency-bar" role="banner" aria-label="Emergency rescue alert">
+    <span class="pulse-dot" aria-hidden="true"></span>
+    <span>🚨 Animal in distress? We respond 24/7 —</span>
+    <a href="report-animal.html" aria-label="Report an animal in need">Report Now →</a>
+  </div>
+
+  <!-- Site Header -->
+  <header class="site-header" role="banner">
+    <div class="container">
+      <nav class="nav-inner" aria-label="Main navigation">
+        <!-- Logo -->
+        <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye"
+            class="nav-logo-img" /></a>
+
+        <!-- Desktop Menu -->
+        <ul class="nav-menu" role="list">
+          <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" aria-haspopup="true" aria-expanded="false">
+              Our Work <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                <path d="M4 6l4 4 4-4" />
+              </svg>
+            </a>
+            <div class="nav-dropdown" role="menu">
+              <a href="work-animal-rescue.html" role="menuitem"><span class="icon">🐾</span> Animal Rescue &
+                Healthcare</a>
+              <a href="work-environment.html" role="menuitem"><span class="icon">🌱</span> Environment</a>
+              <a href="work-sanitation.html" role="menuitem"><span class="icon">🧹</span> Sanitation & Cleanliness</a>
+              <a href="work-disaster-relief.html" role="menuitem"><span class="icon">🚨</span> Disaster Relief</a>
+            </div>
+          </li>
+          <li class="nav-item"><a href="adopt.html" class="nav-link">Adopt</a></li>
+          <li class="nav-item"><a href="campaigns.html" class="nav-link">Campaigns</a></li>
+          <li class="nav-item"><a href="impact.html" class="nav-link">Impact</a></li>
+          <li class="nav-item"><a href="stories.html" class="nav-link">Stories</a></li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" aria-haspopup="true" aria-expanded="false">
+              Get Involved <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                <path d="M4 6l4 4 4-4" />
+              </svg>
+            </a>
+            <div class="nav-dropdown" role="menu">
+              <a href="volunteer.html" role="menuitem"><span class="icon">🙋</span> Volunteer</a>
+              <a href="foster.html" role="menuitem"><span class="icon">🏠</span> Foster an Animal</a>
+              <a href="sponsor-animal.html" role="menuitem"><span class="icon">💛</span> Sponsor an Animal</a>
+              <a href="report-animal.html" role="menuitem" style="color: var(--color-urgent)"><span
+                  class="icon">🚨</span> Report an Animal</a>
+            </div>
+          </li>
+        </ul>
+
+        <!-- Nav Actions -->
+        <div class="nav-actions">
+          <a href="volunteer.html" class="btn btn--outline btn--sm" style="display:none"
+            id="nav-volunteer-btn">Volunteer</a>
+          <a href="donate.html" class="btn btn--primary btn--sm">Donate</a>
+          <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Mobile Nav Panel -->
+  <div class="nav-mobile-panel" id="mobile-nav" role="dialog" aria-modal="true" aria-label="Navigation menu">
+    <div class="nav-mobile-overlay"></div>
+    <div class="nav-mobile-drawer">
+      <button class="nav-mobile-close" aria-label="Close menu">✕</button>
+      <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye"
+          class="nav-logo-img" /></a>
+      <ul class="nav-mobile-list" role="list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><span class="section-label">Our Work</span></li>
+        <li class="nav-mobile-sub"><a href="work-animal-rescue.html">🐾 Animal Rescue & Healthcare</a></li>
+        <li class="nav-mobile-sub"><a href="work-environment.html">🌱 Environment</a></li>
+        <li class="nav-mobile-sub"><a href="work-sanitation.html">🧹 Sanitation & Cleanliness</a></li>
+        <li class="nav-mobile-sub"><a href="work-disaster-relief.html">🚨 Disaster Relief</a></li>
+        <li><a href="adopt.html">Adopt a Pet</a></li>
+        <li><a href="campaigns.html">Campaigns</a></li>
+        <li><a href="impact.html">Our Impact</a></li>
+        <li><a href="stories.html">Stories</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><span class="section-label">Get Involved</span></li>
+        <li class="nav-mobile-sub"><a href="volunteer.html">Volunteer</a></li>
+        <li class="nav-mobile-sub"><a href="foster.html">Foster an Animal</a></li>
+        <li class="nav-mobile-sub"><a href="sponsor-animal.html">Sponsor an Animal</a></li>
+        <li class="nav-mobile-sub"><a href="report-animal.html" style="color:var(--color-urgent)">🚨 Report an
+            Animal</a></li>
+        <li><a href="transparency.html">Transparency</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-mobile-actions">
+        <a href="donate.html" class="btn btn--primary btn--full">Donate Now</a>
+        <a href="volunteer.html" class="btn btn--outline btn--full">Become a Volunteer</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main id="main-content">
+
+    <!-- ============================
+       HERO
+       ============================ -->
+    <section class="hero-home" aria-label="Hero">
+      <div class="container hero-content">
+        <div class="hero-eyebrow" aria-hidden="true">
+          <span>🐾</span> <span>🌱</span> <span>🧹</span> <span>🚨</span>
+          <span style="margin-left: var(--space-2)">NGO Registered · Maharashtra</span>
+        </div>
+        <h1>Every Life<br />Deserves <em>Care</em><br />and <em>Purpose.</em></h1>
+        <p class="hero-tagline">
+          Unke Liye rescues animals, restores nature, revives communities,
+          and stands first at the scene of every disaster.
+        </p>
+        <div class="hero-actions">
+          <a href="donate.html" class="btn btn--primary btn--lg">
+            Donate Today
+          </a>
+          <a href="report-animal.html" class="btn btn--urgent btn--lg">
+            🚨 Report an Animal
+          </a>
+          <a href="about.html" class="btn btn--outline-white btn--lg" style="display:none" id="hero-learn-more">
+            Learn Our Story
+          </a>
+        </div>
+        <!-- Hero Stats -->
+        <div class="hero-stats" aria-label="Impact statistics">
+          <div class="hero-stat-item">
+            <div class="hero-stat-number" data-counter data-target="14800" data-suffix="+">0</div>
+            <div class="hero-stat-label">Animals Rescued</div>
+          </div>
+          <div class="hero-stat-item">
+            <div class="hero-stat-number" data-counter data-target="12450" data-suffix="+">0</div>
+            <div class="hero-stat-label">Trees Planted</div>
+          </div>
+          <div class="hero-stat-item">
+            <div class="hero-stat-number" data-counter data-target="340" data-suffix="+">0</div>
+            <div class="hero-stat-label">Volunteers</div>
+          </div>
+          <div class="hero-stat-item">
+            <div class="hero-stat-number" data-counter data-target="9" data-suffix=" yrs">0</div>
+            <div class="hero-stat-label">Serving Lives</div>
+          </div>
+        </div>
+      </div>
+      <!-- Scroll indicator -->
+      <div class="scroll-indicator" aria-hidden="true">
+        <div class="scroll-arrow"></div>
+      </div>
+    </section>
+
+    <!-- ============================
+       4 PILLARS / MISSIONS
+       ============================ -->
+    <section class="section" aria-labelledby="missions-heading">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="eyebrow">What We Do</span>
+          <h2 id="missions-heading">Four Pillars of Change</h2>
+          <p>Every action we take falls under one of four commitments — and together, they shape a more compassionate
+            world.</p>
+        </div>
+
+        <div class="pillars-grid">
+          <a href="work-animal-rescue.html" class="pillar-card reveal reveal-delay-1"
+            aria-label="Animal Rescue and Healthcare">
+            <div class="pillar-icon pillar-icon--care" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+            <div>
+              <h3 style="color:var(--color-care)">Care</h3>
+              <p class="text-sm" style="color: var(--color-text-muted); margin-bottom: 0;">Animal Rescue & Healthcare
+              </p>
+            </div>
+            <p>24/7 rescue operations, veterinary care, sterilization drives, vaccination camps, and shelter for street
+              animals and wildlife.</p>
+            <span class="pillar-link" aria-hidden="true">Explore Rescue Work →</span>
+          </a>
+
+          <a href="work-environment.html" class="pillar-card reveal reveal-delay-2" aria-label="Environment Protection">
+            <div class="pillar-icon pillar-icon--protect" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20h10"/><path d="M12 20V10"/><path d="M12 10C12 10 8 6 4 8c0 0 0 6 8 2"/><path d="M12 10c0 0 4-4 8-2 0 0 0 6-8 2"/></svg></div>
+            <div>
+              <h3 style="color:var(--color-protect)">Protect</h3>
+              <p class="text-sm" style="color: var(--color-text-muted); margin-bottom: 0;">Environment</p>
+            </div>
+            <p>Tree plantation drives, water conservation, plastic reduction campaigns, biodiversity restoration, and
+              environmental education in schools.</p>
+            <span class="pillar-link" aria-hidden="true">Explore Green Work →</span>
+          </a>
+
+          <a href="work-sanitation.html" class="pillar-card reveal reveal-delay-3"
+            aria-label="Sanitation and Cleanliness">
+            <div class="pillar-icon pillar-icon--restore" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4"/><path d="M12 18v4"/><path d="M4.93 4.93l2.83 2.83"/><path d="M16.24 16.24l2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="M4.93 19.07l2.83-2.83"/><path d="M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="4"/></svg></div>
+            <div>
+              <h3 style="color:var(--color-restore)">Restore</h3>
+              <p class="text-sm" style="color: var(--color-text-muted); margin-bottom: 0;">Sanitation & Cleanliness</p>
+            </div>
+            <p>Community cleanliness drives, waste segregation awareness, public sanitation improvement, and hygiene
+              education for schools and slum communities.</p>
+            <span class="pillar-link" aria-hidden="true">Explore Sanitation Work →</span>
+          </a>
+
+          <a href="work-disaster-relief.html" class="pillar-card reveal reveal-delay-4" aria-label="Disaster Relief">
+            <div class="pillar-icon pillar-icon--respond" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+            <div>
+              <h3 style="color:var(--color-respond)">Respond</h3>
+              <p class="text-sm" style="color: var(--color-text-muted); margin-bottom: 0;">Disaster Relief</p>
+            </div>
+            <p>Rapid first-response in floods, fires, and cyclones — food kits, medical assistance, temporary shelter,
+              rescue ops, and long-term rehabilitation.</p>
+            <span class="pillar-link" aria-hidden="true">Explore Disaster Relief →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================
+       LATEST RESCUE STORIES
+       ============================ -->
+    <section class="section section--alt" aria-labelledby="stories-heading">
+      <div class="container">
+        <div class="section-header reveal"
+          style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:var(--space-4)">
+          <div>
+            <span class="eyebrow">Real Impact</span>
+            <h2 id="stories-heading">Stories That Matter</h2>
+          </div>
+          <a href="stories.html" class="btn btn--ghost btn--sm">All Stories →</a>
+        </div>
+
+        <div class="stories-grid">
+          <!-- Story 1 -->
+          <article class="card story-card reveal reveal-delay-1">
+            <div style="height:220px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;">
+              <img src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=600&q=80" alt="Rescued dog Bruno recovering" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
+            </div>
+            <div class="card-body">
+              <div style="display:flex;gap:var(--space-2);margin-bottom:var(--space-3)">
+                <span class="badge badge--care">Animal Rescue</span>
+                <span class="badge badge--primary">Maharashtra</span>
+              </div>
+              <h3 style="font-size:var(--text-xl);margin-bottom:var(--space-3)">Bruno's Second Chance</h3>
+              <p style="font-size:var(--text-sm);color:var(--color-text-muted)">Found with severe mange and a broken leg
+                near Pune's highway, Bruno was rescued at 3 AM by our team. Eight weeks of treatment later, he found a
+                forever family.</p>
+            </div>
+            <div class="card-footer">
+              <span style="font-size:var(--text-xs);color:var(--color-text-muted)">March 2024</span>
+              <a href="story-detail.html" class="btn btn--ghost btn--sm">Read Story</a>
+            </div>
+          </article>
+
+          <!-- Story 2 -->
+          <article class="card story-card reveal reveal-delay-2">
+            <div style="height:220px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;">
+              <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=600&q=80" alt="Community tree plantation drive" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
+            </div>
+            <div class="card-body">
+              <div style="display:flex;gap:var(--space-2);margin-bottom:var(--space-3)">
+                <span class="badge badge--protect">Environment</span>
+                <span class="badge badge--primary">Nashik</span>
+              </div>
+              <h3 style="font-size:var(--text-xl);margin-bottom:var(--space-3)">The Forest We Grew Together</h3>
+              <p style="font-size:var(--text-sm);color:var(--color-text-muted)">150 school children, 3 villages, one
+                barren hillside. In 18 months, the Nashik community planted 4,200 trees — and now a forest breathes in
+                their name.</p>
+            </div>
+            <div class="card-footer">
+              <span style="font-size:var(--text-xs);color:var(--color-text-muted)">February 2024</span>
+              <a href="story-detail.html" class="btn btn--ghost btn--sm">Read Story</a>
+            </div>
+          </article>
+
+          <!-- Story 3 -->
+          <article class="card story-card reveal reveal-delay-3">
+            <div style="height:220px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;">
+              <img src="https://images.unsplash.com/photo-1547683905-f686c993aae5?w=600&q=80" alt="Flood relief rescue operations" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
+            </div>
+            <div class="card-body">
+              <div style="display:flex;gap:var(--space-2);margin-bottom:var(--space-3)">
+                <span class="badge badge--respond">Disaster Relief</span>
+                <span class="badge badge--primary">Raigad</span>
+              </div>
+              <h3 style="font-size:var(--text-xl);margin-bottom:var(--space-3)">When the Flood Came, We Came First</h3>
+              <p style="font-size:var(--text-sm);color:var(--color-text-muted)">The 2023 Raigad floods displaced 1,200
+                families. Our team reached within 6 hours — with boats, food, medicine, and the one thing everyone
+                needed: someone who showed up.</p>
+            </div>
+            <div class="card-footer">
+              <span style="font-size:var(--text-xs);color:var(--color-text-muted)">January 2024</span>
+              <a href="story-detail.html" class="btn btn--ghost btn--sm">Read Story</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================
+       IMPACT STATS (animated)
+       ============================ -->
+    <section class="stats-section" aria-labelledby="stats-heading">
+      <div class="container">
+        <div class="section-header text-center reveal" style="margin-bottom:var(--space-12)">
+          <span class="eyebrow" style="color:rgba(168,216,185,0.9)">Our Numbers</span>
+          <h2 id="stats-heading" style="color:#fff">The Change, in Numbers</h2>
+          <p style="color:rgba(250,247,242,0.7);margin:0 auto">Every digit here is a life touched, a tree standing, a
+            family helped, a disaster survived.</p>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-card-alt reveal reveal-delay-1">
+            <span class="stat-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#A8D8B9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span>
+            <div class="stat-number" data-counter data-target="14800" data-suffix="+">0</div>
+            <div class="stat-label">Animals Rescued</div>
+          </div>
+          <div class="stat-card-alt reveal reveal-delay-2">
+            <span class="stat-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#A8D8B9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2l4 4"/><path d="M7.5 13.5 11 10"/><path d="M15 6 6.5 14.5a2.12 2.12 0 0 0 3 3L18 9"/><path d="M16 8l-2-2"/><path d="M2 22l4-4"/></svg></span>
+            <div class="stat-number" data-counter data-target="32600" data-suffix="+">0</div>
+            <div class="stat-label">Animals Treated</div>
+          </div>
+          <div class="stat-card-alt reveal reveal-delay-3">
+            <span class="stat-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#A8D8B9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20h10"/><path d="M12 20V10"/><path d="M12 10C12 10 8 6 4 8c0 0 0 6 8 2"/><path d="M12 10c0 0 4-4 8-2 0 0 0 6-8 2"/></svg></span>
+            <div class="stat-number" data-counter data-target="12450" data-suffix="+">0</div>
+            <div class="stat-label">Trees Planted</div>
+          </div>
+          <div class="stat-card-alt reveal reveal-delay-4">
+            <span class="stat-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#A8D8B9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v4"/><path d="M12 18v4"/><path d="M4.93 4.93l2.83 2.83"/><path d="M16.24 16.24l2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/></svg></span>
+            <div class="stat-number" data-counter data-target="280" data-suffix="+">0</div>
+            <div class="stat-label">Cleanliness Drives</div>
+          </div>
+          <div class="stat-card-alt reveal reveal-delay-5">
+            <span class="stat-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#A8D8B9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
+            <div class="stat-number" data-counter data-target="8400" data-suffix="+">0</div>
+            <div class="stat-label">People Supported</div>
+          </div>
+          <div class="stat-card-alt reveal" style="transition-delay:0.6s">
+            <span class="stat-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#A8D8B9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
+            <div class="stat-number" data-counter data-target="47" data-suffix="">0</div>
+            <div class="stat-label">Disaster Ops</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================
+       ACTIVE CAMPAIGNS
+       ============================ -->
+    <section class="section" aria-labelledby="campaigns-heading">
+      <div class="container">
+        <div class="section-header reveal"
+          style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:var(--space-4)">
+          <div>
+            <span class="eyebrow">Right Now</span>
+            <h2 id="campaigns-heading">Active Campaigns</h2>
+          </div>
+          <a href="campaigns.html" class="btn btn--ghost btn--sm">All Campaigns →</a>
+        </div>
+
+        <div class="campaigns-grid">
+          <!-- Campaign 1 -->
+          <article class="card campaign-card reveal reveal-delay-1">
+            <div style="height:180px;position:relative;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;">
+              <img src="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=600&q=80" alt="Tree plantation campaign" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
+              <span class="badge badge--protect" style="position:absolute;top:12px;left:12px">Environment</span>
+            </div>
+            <div class="card-body">
+              <h3 style="font-size:var(--text-lg);margin-bottom:var(--space-3)">Plant 25,000 Trees Before Monsoon</h3>
+              <p style="font-size:var(--text-sm);color:var(--color-text-muted);margin-bottom:0">Reforesting 5 barren
+                hillsides across Maharashtra before this year's monsoon season with native species.</p>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar-track">
+                  <div class="progress-bar-fill progress-bar-fill--protect" data-progress="68" style="width:0%"></div>
+                </div>
+                <div class="progress-meta">
+                  <span class="progress-raised">₹5,44,000 raised</span>
+                  <span class="progress-goal">of ₹8,00,000</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <span style="font-size:var(--text-xs);color:var(--color-text-muted)">32 days left</span>
+              <a href="donate.html" class="btn btn--primary btn--sm">Donate</a>
+            </div>
+          </article>
+
+          <!-- Campaign 2 -->
+          <article class="card campaign-card reveal reveal-delay-2">
+            <div style="height:180px;position:relative;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;">
+              <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=600&q=80" alt="Street dogs needing shelter" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
+              <span class="badge badge--care" style="position:absolute;top:12px;left:12px">Animal Rescue</span>
+            </div>
+            <div class="card-body">
+              <h3 style="font-size:var(--text-lg);margin-bottom:var(--space-3)">Monsoon Rescue & Shelter Fund</h3>
+              <p style="font-size:var(--text-sm);color:var(--color-text-muted);margin-bottom:0">Every monsoon, hundreds
+                of street animals are at risk. This fund ensures food, shelter, and emergency vet care through the
+                season.</p>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar-track">
+                  <div class="progress-bar-fill progress-bar-fill--care" data-progress="42" style="width:0%"></div>
+                </div>
+                <div class="progress-meta">
+                  <span class="progress-raised">₹2,10,000 raised</span>
+                  <span class="progress-goal">of ₹5,00,000</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <span style="font-size:var(--text-xs);color:var(--color-text-muted)">48 days left</span>
+              <a href="donate.html" class="btn btn--primary btn--sm">Donate</a>
+            </div>
+          </article>
+
+          <!-- Campaign 3 -->
+          <article class="card campaign-card reveal reveal-delay-3">
+            <div style="height:180px;position:relative;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;">
+              <img src="https://images.unsplash.com/photo-1545830790-68e2b540e398?w=600&q=80" alt="Cyclone disaster relief" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
+              <span class="badge badge--respond" style="position:absolute;top:12px;left:12px">Disaster Relief</span>
+              <span class="badge badge--urgent" style="position:absolute;top:12px;right:12px">URGENT</span>
+            </div>
+            <div class="card-body">
+              <h3 style="font-size:var(--text-lg);margin-bottom:var(--space-3)">Cyclone Michaung — Rebuild Villages</h3>
+              <p style="font-size:var(--text-sm);color:var(--color-text-muted);margin-bottom:0">Families in Andhra
+                Pradesh lost everything. We're on the ground rebuilding homes, distributing kits, and providing
+                psychological support.</p>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar-track">
+                  <div class="progress-bar-fill progress-bar-fill--respond" data-progress="81" style="width:0%"></div>
+                </div>
+                <div class="progress-meta">
+                  <span class="progress-raised">₹12,15,000 raised</span>
+                  <span class="progress-goal">of ₹15,00,000</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <span style="font-size:var(--text-xs);color:var(--color-text-muted)">18 days left</span>
+              <a href="donate.html" class="btn btn--urgent btn--sm">Donate Now</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================
+       UPCOMING EVENTS
+       ============================ -->
+    <section class="section section--alt" aria-labelledby="events-heading">
+      <div class="container">
+        <div class="section-header reveal"
+          style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:var(--space-4)">
+          <div>
+            <span class="eyebrow">Join Us</span>
+            <h2 id="events-heading">Upcoming Drives & Events</h2>
+          </div>
+          <a href="events.html" class="btn btn--ghost btn--sm">All Events →</a>
+        </div>
+
+        <div class="events-grid">
+          <a href="event-detail.html" class="event-card reveal reveal-delay-1">
+            <div class="event-date-box" aria-hidden="true">
+              <span class="event-day">22</span>
+              <span class="event-month">Jun</span>
+            </div>
+            <div class="event-info">
+              <h4>Mega Tree Plantation Drive — Sinhagad Road</h4>
+              <p>Join 200+ volunteers as we plant 2,000 trees on a barren slope in western Pune.</p>
+              <div class="event-meta">
+                <span>📍 Pune, Maharashtra</span>
+                <span>⏰ 7:00 AM</span>
+                <span class="badge badge--protect">Environment</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="event-detail.html" class="event-card reveal reveal-delay-2">
+            <div class="event-date-box" aria-hidden="true">
+              <span class="event-day">01</span>
+              <span class="event-month">Jul</span>
+            </div>
+            <div class="event-info">
+              <h4>Street Animal Vaccination Camp — Kondhwa Area</h4>
+              <p>Free vaccination and sterilization for 300+ street dogs and cats. Volunteers needed for handling
+                assistance.</p>
+              <div class="event-meta">
+                <span>📍 Kondhwa, Pune</span>
+                <span>⏰ 9:00 AM</span>
+                <span class="badge badge--care">Animal Rescue</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="event-detail.html" class="event-card reveal reveal-delay-3">
+            <div class="event-date-box" aria-hidden="true">
+              <span class="event-day">14</span>
+              <span class="event-month">Jul</span>
+            </div>
+            <div class="event-info">
+              <h4>Riverside Cleanup Drive — Mula-Mutha</h4>
+              <p>A community cleanup of 3km riverbank. Gloves, bags & breakfast provided. Just show up.</p>
+              <div class="event-meta">
+                <span>📍 Pune, Maharashtra</span>
+                <span>⏰ 6:30 AM</span>
+                <span class="badge badge--restore">Cleanliness</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="event-detail.html" class="event-card reveal reveal-delay-4">
+            <div class="event-date-box" aria-hidden="true">
+              <span class="event-day">20</span>
+              <span class="event-month">Jul</span>
+            </div>
+            <div class="event-info">
+              <h4>Foster Family Open Day — Meet Animals Needing Homes</h4>
+              <p>Come meet animals that need foster families. No commitment required — just come with an open heart.</p>
+              <div class="event-meta">
+                <span>📍 Unke Liye Shelter, Hadapsar</span>
+                <span>⏰ 11:00 AM</span>
+                <span class="badge badge--care">Adoption</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================
+       VOLUNTEER STRIP
+       ============================ -->
+    <section class="volunteer-strip" aria-label="Volunteer call to action">
+      <div class="container">
+        <div class="volunteer-strip-inner">
+          <div class="reveal">
+            <span class="eyebrow">Make a difference with your time</span>
+            <h2 style="font-size:var(--text-3xl);max-width:16ch">340 volunteers. Room for one more — you.</h2>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:var(--space-3);flex-shrink:0" class="reveal">
+            <a href="volunteer.html" class="btn btn--primary btn--lg">Become a Volunteer</a>
+            <a href="foster.html" class="btn btn--outline btn--lg">Foster an Animal</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================
+       DONATION CTA
+       ============================ -->
+    <section class="section" aria-label="Donation call to action">
+      <div class="container">
+        <div class="cta-banner reveal"
+          style="background:linear-gradient(135deg,var(--color-primary-dark),var(--color-primary))">
+          <span class="eyebrow" style="color:rgba(168,216,185,0.9)">Every rupee counts</span>
+          <h2>Your Donation Saves Lives Today</h2>
+          <p>₹500 feeds a rescued animal for a month. ₹2,000 covers a vet visit. ₹10,000 funds a full monsoon shelter
+            kit. However much — it matters.</p>
+          <div class="cta-banner-actions">
+            <a href="donate.html?amount=500" class="btn btn--outline-white">₹500</a>
+            <a href="donate.html?amount=2000" class="btn btn--outline-white">₹2,000</a>
+            <a href="donate.html?amount=5000" class="btn btn--outline-white">₹5,000</a>
+            <a href="donate.html" class="btn btn--primary"
+              style="background:#A8D8B9;color:var(--color-primary-dark);border-color:#A8D8B9">Donate Any Amount</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================
+       TESTIMONIALS CAROUSEL
+       ============================ -->
+    <section class="testimonials-section" aria-labelledby="testimonials-heading">
+      <div class="container">
+        <div class="section-header text-center reveal">
+          <span class="eyebrow">What People Say</span>
+          <h2 id="testimonials-heading">Voices of the Community</h2>
+        </div>
+
+        <div class="carousel reveal" data-autoplay="5000" style="max-width:800px;margin:0 auto" role="region"
+          aria-label="Testimonials" aria-live="polite">
+          <div class="carousel-track">
+            <!-- Testimonial 1 -->
+            <div class="carousel-slide">
+              <div class="testimonial-card" style="margin-inline:auto;max-width:700px">
+                <p class="quote-text">"I called Unke Liye at midnight about an injured dog on the highway. They picked
+                  up immediately and were on-site within 40 minutes. The dog — Kalu — is now at their shelter
+                  recovering. I've never seen an NGO move that fast."</p>
+                <div class="testimonial-author">
+                  <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=96&q=80" alt="Ruchika Sharma" style="width:48px;height:48px;border-radius:50%;object-fit:cover;flex-shrink:0" />
+                  <div>
+                    <div class="testimonial-author-name">Ruchika Sharma</div>
+                    <div class="testimonial-author-role">Animal rescuer, Pune</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Testimonial 2 -->
+            <div class="carousel-slide">
+              <div class="testimonial-card" style="margin-inline:auto;max-width:700px">
+                <p class="quote-text">"I've been donating ₹1,000/month for three years. The quarterly impact reports are
+                  incredibly transparent — they show exactly how the money was spent, photo by photo. It's rare to trust
+                  an NGO this much."</p>
+                <div class="testimonial-author">
+                  <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=96&q=80" alt="Aakash Mehta" style="width:48px;height:48px;border-radius:50%;object-fit:cover;flex-shrink:0" />
+                  <div>
+                    <div class="testimonial-author-name">Aakash Mehta</div>
+                    <div class="testimonial-author-role">Monthly donor, Mumbai</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Testimonial 3 -->
+            <div class="carousel-slide">
+              <div class="testimonial-card" style="margin-inline:auto;max-width:700px">
+                <p class="quote-text">"Our village was under 4 feet of water in July. Unke Liye's team arrived before
+                  any government agency. They brought food, clean water, and helped us rescue our animals. They stayed
+                  for three weeks. We owe them everything."</p>
+                <div class="testimonial-author">
+                  <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=96&q=80" alt="Sangita Patil" style="width:48px;height:48px;border-radius:50%;object-fit:cover;flex-shrink:0" />
+                  <div>
+                    <div class="testimonial-author-name">Sangita Patil</div>
+                    <div class="testimonial-author-role">Flood survivor, Raigad</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-controls">
+            <button class="carousel-btn carousel-prev" aria-label="Previous testimonial">‹</button>
+            <div class="carousel-dots" aria-label="Testimonial slides"></div>
+            <button class="carousel-btn carousel-next" aria-label="Next testimonial">›</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================
+       LATEST NEWS
+       ============================ -->
+    <section class="section" aria-labelledby="news-heading">
+      <div class="container">
+        <div class="section-header reveal"
+          style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:var(--space-4)">
+          <div>
+            <span class="eyebrow">Stay Updated</span>
+            <h2 id="news-heading">News & Updates</h2>
+          </div>
+          <a href="news.html" class="btn btn--ghost btn--sm">All News →</a>
+        </div>
+
+        <div class="news-grid">
+          <article class="card story-card reveal reveal-delay-1">
+            <div style="height:160px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;">
+              <img src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=500&q=80" alt="12,000 trees milestone" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
+            </div>
+            <div class="card-body">
+              <span class="badge badge--protect" style="margin-bottom:var(--space-3)">Environment</span>
+              <h4 style="font-size:var(--text-base);margin-bottom:var(--space-2)">We Just Crossed 12,000 Trees This Year
+              </h4>
+              <p style="font-size:var(--text-sm);color:var(--color-text-muted)">Our monsoon plantation campaign hit a
+                historic milestone. Read the full update on how we did it.</p>
+              <a href="news-detail.html" class="btn btn--ghost btn--sm" style="margin-top:var(--space-4)">Read More</a>
+            </div>
+          </article>
+
+          <article class="card story-card reveal reveal-delay-2">
+            <div style="height:160px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;">
+              <img src="https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?w=500&q=80" alt="NGO award ceremony" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
+            </div>
+            <div class="card-body">
+              <span class="badge badge--care" style="margin-bottom:var(--space-3)">Award</span>
+              <h4 style="font-size:var(--text-base);margin-bottom:var(--space-2)">Unke Liye Wins Maharashtra NGO of the
+                Year 2024</h4>
+              <p style="font-size:var(--text-sm);color:var(--color-text-muted)">Recognized by the Maharashtra State
+                Social Welfare Department for outstanding contribution to animal welfare.</p>
+              <a href="news-detail.html" class="btn btn--ghost btn--sm" style="margin-top:var(--space-4)">Read More</a>
+            </div>
+          </article>
+
+          <article class="card story-card reveal reveal-delay-3">
+            <div style="height:160px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;">
+              <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=500&q=80" alt="Sanitation and cleanliness drive" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
+            </div>
+            <div class="card-body">
+              <span class="badge badge--restore" style="margin-bottom:var(--space-3)">Sanitation</span>
+              <h4 style="font-size:var(--text-base);margin-bottom:var(--space-2)">New Sanitation Drive in 5 Pune Slum
+                Areas Launches July 1</h4>
+              <p style="font-size:var(--text-sm);color:var(--color-text-muted)">Partnering with the municipal
+                corporation to bring hygiene education and waste management to 12,000 residents.</p>
+              <a href="news-detail.html" class="btn btn--ghost btn--sm" style="margin-top:var(--space-4)">Read More</a>
+            </div>
+          </article>
+
+          <article class="card story-card reveal reveal-delay-4">
+            <div style="height:160px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;">
+              <img src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=500&q=80" alt="Disaster relief volunteers" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
+            </div>
+            <div class="card-body">
+              <span class="badge badge--respond" style="margin-bottom:var(--space-3)">Disaster Relief</span>
+              <h4 style="font-size:var(--text-base);margin-bottom:var(--space-2)">Relief Operations Wrap Up in
+                Cyclone-Affected Andhra Villages</h4>
+              <p style="font-size:var(--text-sm);color:var(--color-text-muted)">Three months after Cyclone Michaung, our
+                team hands over rebuilt infrastructure and community kitchens to local leaders.</p>
+              <a href="news-detail.html" class="btn btn--ghost btn--sm" style="margin-top:var(--space-4)">Read More</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================
+       NEWSLETTER + FINAL CTA
+       ============================ -->
+    <section class="section section--alt" aria-labelledby="newsletter-heading">
+      <div class="container" style="max-width:600px;text-align:center">
+        <div class="reveal">
+          <span class="eyebrow">Stay Connected</span>
+          <h2 id="newsletter-heading">Get Impact Updates in Your Inbox</h2>
+          <p style="color:var(--color-text-muted);margin-bottom:var(--space-8)">Monthly stories, rescue updates, event
+            alerts, and honest transparency reports. No spam — ever.</p>
+          <form id="newsletter-form" novalidate style="display:flex;gap:var(--space-3);max-width:480px;margin:0 auto"
+            aria-label="Newsletter signup">
+            <div class="form-group" style="flex:1;margin:0">
+              <label for="newsletter-email" class="sr-only">Email address</label>
+              <input type="email" id="newsletter-email" name="email" class="form-input" placeholder="your@email.com"
+                required autocomplete="email" />
+            </div>
+            <button type="submit" class="btn btn--primary" style="flex-shrink:0">Subscribe</button>
+          </form>
+          <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-top:var(--space-4)">We respect your
+            privacy. Unsubscribe anytime.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================
+     FOOTER
+     ============================ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Brand column -->
+        <div>
+          <img src="logo.png" alt="Unke Liye" class="footer-logo-img" />
+          <p class="footer-brand-tagline">Registered NGO rescuing animals, protecting nature, and responding to
+            disasters across Maharashtra since 2015.</p>
+          <div class="footer-emergency">
+            <div class="footer-emergency-title">🚨 24/7 Animal Emergency</div>
+            <a href="tel:+918888xxxxxx" aria-label="Emergency rescue hotline">+91 88888 00000</a>
+            <span style="color:rgba(250,247,242,0.6);margin:0 var(--space-1)">·</span>
+            <a href="report-animal.html">Report Online</a>
+          </div>
+          <div class="footer-socials" aria-label="Social media links">
+            <a href="#" class="footer-social-icon" aria-label="Facebook">f</a>
+            <a href="#" class="footer-social-icon" aria-label="Instagram">ig</a>
+            <a href="#" class="footer-social-icon" aria-label="Twitter/X">𝕏</a>
+            <a href="#" class="footer-social-icon" aria-label="YouTube">▶</a>
+            <a href="#" class="footer-social-icon" aria-label="LinkedIn">in</a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h3 class="footer-col-title">Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="campaigns.html">Campaigns</a></li>
+            <li><a href="impact.html">Our Impact</a></li>
+            <li><a href="stories.html">Stories & News</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Our Work -->
+        <div>
+          <h3 class="footer-col-title">Our Work</h3>
+          <ul class="footer-links">
+            <li><a href="work-animal-rescue.html">🐾 Animal Rescue</a></li>
+            <li><a href="work-environment.html">🌱 Environment</a></li>
+            <li><a href="work-sanitation.html">🧹 Sanitation</a></li>
+            <li><a href="work-disaster-relief.html">🚨 Disaster Relief</a></li>
+            <li><a href="transparency.html">Financial Reports</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+          </ul>
+        </div>
+
+        <!-- Get Involved -->
+        <div>
+          <h3 class="footer-col-title">Get Involved</h3>
+          <ul class="footer-links">
+            <li><a href="volunteer.html">Volunteer</a></li>
+            <li><a href="donate.html">Donate Now</a></li>
+            <li><a href="adopt.html">Adopt a Pet</a></li>
+            <li><a href="foster.html">Foster Program</a></li>
+            <li><a href="sponsor-animal.html">Sponsor an Animal</a></li>
+            <li><a href="report-animal.html">Report Emergency</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <div>
+          <p>© 2024 Unke Liye. Registered NGO, Maharashtra. Reg. No. MAH/2015/1234 | 80G Tax Exemption Available</p>
+        </div>
+        <div class="footer-legal-links">
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Use</a>
+          <a href="transparency.html">Financial Reports</a>
+          <a href="sitemap.html">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Emergency Float Button -->
+  <a href="report-animal.html" class="emergency-float" aria-label="Report an animal emergency">
+    <span class="emergency-float-icon" aria-hidden="true">🚨</span>
+    <span>Report Animal Emergency</span>
+  </a>
+
+  <!-- Toast Container -->
+  <div class="toast-container" aria-live="polite" aria-atomic="false"></div>
+
+  <script src="js/main.js"></script>
+  <script src="js/forms.js"></script>
+  <script>
+    // Show volunteer btn on desktop
+    document.addEventListener('DOMContentLoaded', () => {
+      const vBtn = document.getElementById('nav-volunteer-btn');
+      const learnMore = document.getElementById('hero-learn-more');
+      if (window.innerWidth >= 1024) {
+        if (vBtn) vBtn.style.display = 'inline-flex';
+        if (learnMore) learnMore.style.display = 'inline-flex';
+      }
+
+      // Newsletter form
+      const nlForm = document.getElementById('newsletter-form');
+      if (nlForm) {
+        nlForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const email = nlForm.querySelector('input[type="email"]');
+          if (!email.value || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+            if (window.UnkeLiye) window.UnkeLiye.showToast('Please enter a valid email address.', 'error');
+            return;
+          }
+          if (window.UnkeLiye) window.UnkeLiye.showToast('Thank you! You\'re now subscribed to our updates.', 'success');
+          email.value = '';
+        });
+      }
+
+      const footerNl = document.getElementById('footer-newsletter');
+      if (footerNl) {
+        footerNl.addEventListener('submit', (e) => {
+          e.preventDefault();
+          if (window.UnkeLiye) window.UnkeLiye.showToast('Subscribed! Watch your inbox for our next update.', 'success');
+          footerNl.reset();
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>

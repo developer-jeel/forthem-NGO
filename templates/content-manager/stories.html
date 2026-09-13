@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stories · Content Manager · Unke Liye</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+  <div class="admin-shell">
+    <!-- Sidebar -->
+    <aside id="sidebar" class="sidebar" role="navigation" aria-label="Content Manager navigation">
+      <div class="sidebar-header">
+        <img src="../logo.png" alt="Unke Liye Logo" class="sidebar-logo-img">
+        <div class="logo-text">
+          <strong>Unke Liye</strong>
+          <small>Content Manager</small>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-group">
+          <div class="nav-group-title">Overview</div>
+          <a href="dashboard.html" class="nav-link">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+            <span class="label">Dashboard</span>
+          </a>
+        </div>
+
+        <div class="nav-group">
+          <div class="nav-group-title">Content</div>
+          <a href="homepage-content.html" class="nav-link">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+            <span class="label">Homepage Content</span>
+          </a>
+          <a href="banners.html" class="nav-link">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            <span class="label">Page Banners</span>
+          </a>
+          <a href="stories.html" class="nav-link active" aria-current="page">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+            <span class="label">Stories</span>
+          </a>
+          <a href="news.html" class="nav-link">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
+            <span class="label">News &amp; Press</span>
+          </a>
+          <a href="gallery.html" class="nav-link">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            <span class="label">Gallery</span>
+          </a>
+          <a href="media-library.html" class="nav-link">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="label">Media Library</span>
+          </a>
+        </div>
+
+        <div class="nav-group">
+          <div class="nav-group-title">Programs</div>
+          <a href="campaigns.html" class="nav-link">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+            <span class="label">Campaigns</span>
+            <span class="nav-readonly">View</span>
+          </a>
+          <a href="events.html" class="nav-link">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            <span class="label">Events</span>
+            <span class="nav-readonly">View</span>
+          </a>
+        </div>
+
+        <div class="nav-group">
+          <div class="nav-group-title">Restricted</div>
+          <a href="#" class="nav-link" aria-disabled="true" tabindex="-1">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+            <span class="label">Volunteers</span>
+          </a>
+          <a href="#" class="nav-link" aria-disabled="true" tabindex="-1">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+            <span class="label">Donations</span>
+          </a>
+          <a href="#" class="nav-link" aria-disabled="true" tabindex="-1">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+            <span class="label">Messages</span>
+          </a>
+          <a href="#" class="nav-link" aria-disabled="true" tabindex="-1">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+            <span class="label">Settings</span>
+          </a>
+          <a href="#" class="nav-link" aria-disabled="true" tabindex="-1">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+            <span class="label">Admin Users</span>
+          </a>
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-chip">
+          <div class="user-avatar" aria-hidden="true">NK</div>
+          <div class="user-meta">
+            <strong>Neha Kulkarni</strong>
+            <small>Content Editor</small>
+          </div>
+        </div>
+        <button id="sidebar-collapse-btn" class="collapse-btn" aria-label="Collapse sidebar">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main id="main-content" class="main-content">
+      <!-- Topbar -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <button id="mobile-menu-toggle" class="menu-toggle" aria-label="Open menu">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../index.html">Unke Liye</a> / <a href="dashboard.html">Content</a> / <span id="breadcrumb-current" aria-current="page">Stories</span>
+          </nav>
+        </div>
+
+        <div class="search-wrap" role="search">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          <label class="sr-only" for="topbar-search-input">Search content</label>
+          <input type="search" id="topbar-search-input" class="search-input" placeholder="Search stories, news, photos…">
+        </div>
+
+        <div class="topbar-right">
+          <button class="icon-btn" data-theme-toggle aria-label="Toggle theme">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+          </button>
+
+          <div class="profile-dropdown">
+            <button class="profile-trigger" data-dropdown="profile-menu" aria-haspopup="true" aria-expanded="false">
+              <span class="avatar" aria-hidden="true">NK</span>
+              <span class="name">Neha Kulkarni</span>
+              <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div id="profile-menu" class="dropdown-menu">
+              <a href="#">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                My Profile
+              </a>
+              <a href="#" class="danger">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+                Sign Out
+              </a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Page main -->
+      <main class="page-main">
+        <div class="page-header">
+          <div class="page-title-group">
+            <h1>Impact Stories</h1>
+            <p>8 published, 2 drafts — share the stories behind the work.</p>
+          </div>
+        </div>
+
+        <div class="toolbar">
+          <div class="filter-chips" data-filter-target="stories-grid">
+            <button class="filter-chip active" data-filter-val="all">All</button>
+            <button class="filter-chip" data-filter-val="published">Published</button>
+            <button class="filter-chip" data-filter-val="draft">Drafts</button>
+            <button class="filter-chip" data-filter-val="featured">Featured</button>
+          </div>
+          <button class="btn btn-primary" data-modal-open="modal-new-story">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+            Write Story
+          </button>
+        </div>
+
+        <section id="stories-grid" class="story-grid" aria-label="Stories">
+          <article class="story-card" data-status="published" data-pillar="rescue">
+            <div class="story-card-thumb">
+              <img src="https://picsum.photos/seed/raju/600/360" alt="Raju the rescue dog" loading="lazy">
+              <div class="story-card-badges">
+                <span class="badge badge-terracotta">Animal Rescue</span>
+                <span class="badge badge-success">Published</span>
+              </div>
+              <button class="star-btn starred" aria-pressed="true" aria-label="Unfeature story">★</button>
+            </div>
+            <div class="story-card-body">
+              <h2 class="story-card-title">How Raju Found His Forever Home</h2>
+              <p class="story-card-excerpt">After three months of treatment at our Mumbai shelter, Raju — the street dog rescued near Bandra — finally found a loving family in Powai. His story moved thousands online…</p>
+              <div class="story-card-meta">By Neha Kulkarni · 5 Jun 2025 · 1,240 words</div>
+              <div class="story-card-actions">
+                <button class="btn btn-secondary btn-sm" data-modal-open="modal-edit-story">Edit</button>
+                <button class="btn btn-ghost btn-sm" data-toast="danger" data-toast-title="Story Deleted" data-toast-msg="Story removed.">Delete</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="story-card" data-status="published" data-pillar="disaster">
+            <div class="story-card-thumb">
+              <img src="https://picsum.photos/seed/floodrelief/600/360" alt="Flood relief team" loading="lazy">
+              <div class="story-card-badges">
+                <span class="badge badge-red">Disaster Relief</span>
+                <span class="badge badge-success">Published</span>
+              </div>
+              <button class="star-btn starred" aria-pressed="true" aria-label="Unfeature story">★</button>
+            </div>
+            <div class="story-card-body">
+              <h2 class="story-card-title">48 Hours in Uttarakhand: Our Flood Response Team's Account</h2>
+              <p class="story-card-excerpt">When the floods hit Chamoli district, our 12-member team reached within 48 hours, evacuating 240 families and rescuing 18 animals trapped in rising waters…</p>
+              <div class="story-card-meta">By Rohit Sinha · 20 May 2025 · 2,100 words</div>
+              <div class="story-card-actions">
+                <button class="btn btn-secondary btn-sm" data-modal-open="modal-edit-story">Edit</button>
+                <button class="btn btn-ghost btn-sm" data-toast="danger" data-toast-title="Story Deleted" data-toast-msg="Story removed.">Delete</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="story-card" data-status="published" data-pillar="environment">
+            <div class="story-card-thumb">
+              <img src="https://picsum.photos/seed/riverclean/600/360" alt="River cleanup volunteers" loading="lazy">
+              <div class="story-card-badges">
+                <span class="badge badge-leaf">Environment</span>
+                <span class="badge badge-success">Published</span>
+              </div>
+              <button class="star-btn" aria-pressed="false" aria-label="Feature story">☆</button>
+            </div>
+            <div class="story-card-body">
+              <h2 class="story-card-title">480 Volunteers, One River: The Pune Clean-Up Story</h2>
+              <p class="story-card-excerpt">On a Sunday morning in April, 480 volunteers gathered on the banks of the Mula river. By evening, they had collected 4 tonnes of plastic from a 6km stretch…</p>
+              <div class="story-card-meta">By Manish Kumar · 18 Apr 2025 · 980 words</div>
+              <div class="story-card-actions">
+                <button class="btn btn-secondary btn-sm" data-modal-open="modal-edit-story">Edit</button>
+                <button class="btn btn-ghost btn-sm" data-toast="danger" data-toast-title="Story Deleted" data-toast-msg="Story removed.">Delete</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="story-card" data-status="published" data-pillar="rescue">
+            <div class="story-card-thumb">
+              <img src="https://picsum.photos/seed/catdharavi/600/360" alt="Cat rescue in Dharavi" loading="lazy">
+              <div class="story-card-badges">
+                <span class="badge badge-terracotta">Animal Rescue</span>
+                <span class="badge badge-success">Published</span>
+              </div>
+              <button class="star-btn" aria-pressed="false" aria-label="Feature story">☆</button>
+            </div>
+            <div class="story-card-body">
+              <h2 class="story-card-title">The Cats of Dharavi: 60 Lives Saved in One Week</h2>
+              <p class="story-card-excerpt">After a tip from a local resident, our rescue team found a colony of 60+ cats living in Dharavi's drainage tunnels. This is their story of survival and recovery…</p>
+              <div class="story-card-meta">By Neha Kulkarni · 2 Apr 2025 · 760 words</div>
+              <div class="story-card-actions">
+                <button class="btn btn-secondary btn-sm" data-modal-open="modal-edit-story">Edit</button>
+                <button class="btn btn-ghost btn-sm" data-toast="danger" data-toast-title="Story Deleted" data-toast-msg="Story removed.">Delete</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="story-card" data-status="published" data-pillar="environment">
+            <div class="story-card-thumb">
+              <img src="https://picsum.photos/seed/volunteerpriya/600/360" alt="Volunteer Priya Sharma" loading="lazy">
+              <div class="story-card-badges">
+                <span class="badge badge-leaf">Environment</span>
+                <span class="badge badge-success">Published</span>
+              </div>
+              <button class="star-btn starred" aria-pressed="true" aria-label="Unfeature story">★</button>
+            </div>
+            <div class="story-card-body">
+              <h2 class="story-card-title">Priya's 300-Hour Year: A Volunteer's Diary</h2>
+              <p class="story-card-excerpt">Priya Sharma gave 300+ hours to Unke Liye in 2024. From midnight flood alerts to tree plantation drives at 5AM — this is her extraordinary year in her own words…</p>
+              <div class="story-card-meta">By Neha Kulkarni · 12 Mar 2025 · 1,050 words</div>
+              <div class="story-card-actions">
+                <button class="btn btn-secondary btn-sm" data-modal-open="modal-edit-story">Edit</button>
+                <button class="btn btn-ghost btn-sm" data-toast="danger" data-toast-title="Story Deleted" data-toast-msg="Story removed.">Delete</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="story-card" data-status="published" data-pillar="environment">
+            <div class="story-card-thumb">
+              <img src="https://picsum.photos/seed/aareyforest/600/360" alt="Aarey forest restoration" loading="lazy">
+              <div class="story-card-badges">
+                <span class="badge badge-leaf">Environment</span>
+                <span class="badge badge-success">Published</span>
+              </div>
+              <button class="star-btn" aria-pressed="false" aria-label="Feature story">☆</button>
+            </div>
+            <div class="story-card-body">
+              <h2 class="story-card-title">When the Forest Speaks: Our Aarey Mission</h2>
+              <p class="story-card-excerpt">Aarey Colony — Mumbai's last green lung — was threatened. We mobilised 180 volunteers for a 3-day restoration mission. Here's what we found inside the forest…</p>
+              <div class="story-card-meta">By Manish Kumar · 5 Feb 2025 · 890 words</div>
+              <div class="story-card-actions">
+                <button class="btn btn-secondary btn-sm" data-modal-open="modal-edit-story">Edit</button>
+                <button class="btn btn-ghost btn-sm" data-toast="danger" data-toast-title="Story Deleted" data-toast-msg="Story removed.">Delete</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="story-card" data-status="published" data-pillar="rescue">
+            <div class="story-card-thumb">
+              <img src="https://picsum.photos/seed/dogvaccine/600/360" alt="Street dog vaccination camp" loading="lazy">
+              <div class="story-card-badges">
+                <span class="badge badge-terracotta">Animal Rescue</span>
+                <span class="badge badge-success">Published</span>
+              </div>
+              <button class="star-btn" aria-pressed="false" aria-label="Feature story">☆</button>
+            </div>
+            <div class="story-card-body">
+              <h2 class="story-card-title">Vaccinating 200 Street Dogs in 3 Days</h2>
+              <p class="story-card-excerpt">Our mobile vet unit set up camp in Dharavi for 72 hours straight. Here's how 8 vets and 20 volunteers vaccinated 200 dogs against rabies and distemper in record time…</p>
+              <div class="story-card-meta">By Neha Kulkarni · 18 Jan 2025 · 670 words</div>
+              <div class="story-card-actions">
+                <button class="btn btn-secondary btn-sm" data-modal-open="modal-edit-story">Edit</button>
+                <button class="btn btn-ghost btn-sm" data-toast="danger" data-toast-title="Story Deleted" data-toast-msg="Story removed.">Delete</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="story-card" data-status="published" data-pillar="disaster">
+            <div class="story-card-thumb">
+              <img src="https://picsum.photos/seed/cycloneodisha/600/360" alt="Cyclone relief in Odisha" loading="lazy">
+              <div class="story-card-badges">
+                <span class="badge badge-red">Disaster Relief</span>
+                <span class="badge badge-success">Published</span>
+              </div>
+              <button class="star-btn" aria-pressed="false" aria-label="Feature story">☆</button>
+            </div>
+            <div class="story-card-body">
+              <h2 class="story-card-title">The Cyclone They Didn't Forget</h2>
+              <p class="story-card-excerpt">Cyclone Remal hit Odisha with 130km/h winds. Our team reached Bhadrak within 16 hours, distributing 800 relief kits and establishing 3 animal rescue camps…</p>
+              <div class="story-card-meta">By Rohit Sinha · 10 Jan 2025 · 1,430 words</div>
+              <div class="story-card-actions">
+                <button class="btn btn-secondary btn-sm" data-modal-open="modal-edit-story">Edit</button>
+                <button class="btn btn-ghost btn-sm" data-toast="danger" data-toast-title="Story Deleted" data-toast-msg="Story removed.">Delete</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="story-card" data-status="draft" data-pillar="sanitation">
+            <div class="story-card-thumb">
+              <img src="https://picsum.photos/seed/sanitationdraft/600/360" alt="Sanitation project report" loading="lazy">
+              <div class="story-card-badges">
+                <span class="badge badge-neutral">Sanitation</span>
+                <span class="badge badge-neutral">Draft</span>
+              </div>
+              <button class="star-btn" aria-pressed="false" aria-label="Feature story">☆</button>
+            </div>
+            <div class="story-card-body">
+              <h2 class="story-card-title">Draft: Dharavi Sanitation Q1 2025 Report</h2>
+              <p class="story-card-excerpt">78% of planned infrastructure is complete. 3,000 residents are already benefiting from improved drainage systems. Final numbers being compiled…</p>
+              <div class="story-card-meta">By Savita Rao · Created 4 Jun 2025 · Draft</div>
+              <div class="story-card-actions">
+                <button class="btn btn-secondary btn-sm" data-modal-open="modal-edit-story">Edit</button>
+                <button class="btn btn-ghost btn-sm" data-toast="danger" data-toast-title="Story Deleted" data-toast-msg="Story removed.">Delete</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="story-card" data-status="draft" data-pillar="rescue">
+            <div class="story-card-thumb">
+              <img src="https://picsum.photos/seed/shelternavi/600/360" alt="New Navi Mumbai shelter" loading="lazy">
+              <div class="story-card-badges">
+                <span class="badge badge-terracotta">Animal Rescue</span>
+                <span class="badge badge-neutral">Draft</span>
+              </div>
+              <button class="star-btn" aria-pressed="false" aria-label="Feature story">☆</button>
+            </div>
+            <div class="story-card-body">
+              <h2 class="story-card-title">Draft: The New Shelter in Navi Mumbai</h2>
+              <p class="story-card-excerpt">Our new 200-capacity shelter in Navi Mumbai opens in August. This article covers the construction journey, fundraising story, and what it means for animals in the region…</p>
+              <div class="story-card-meta">By Neha Kulkarni · Created 1 Jun 2025 · Draft</div>
+              <div class="story-card-actions">
+                <button class="btn btn-secondary btn-sm" data-modal-open="modal-edit-story">Edit</button>
+                <button class="btn btn-ghost btn-sm" data-toast="danger" data-toast-title="Story Deleted" data-toast-msg="Story removed.">Delete</button>
+              </div>
+            </div>
+          </article>
+        </section>
+      </main>
+
+      <!-- New story modal -->
+      <div id="modal-new-story" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-new-story-title">
+        <div class="modal-backdrop"></div>
+        <div class="modal-panel">
+          <div class="modal-header">
+            <h2 id="modal-new-story-title" class="modal-title">Write New Story</h2>
+            <button class="modal-close" data-modal-close="modal-new-story" aria-label="Close modal">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form onsubmit="return false;">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="story-title">Story Title</label>
+                  <input type="text" id="story-title" placeholder="A compelling headline…" required>
+                </div>
+                <div class="form-group">
+                  <label for="story-pillar">Pillar</label>
+                  <select id="story-pillar">
+                    <option>Animal Rescue</option>
+                    <option>Environment</option>
+                    <option>Sanitation</option>
+                    <option>Disaster Relief</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="story-cover-url">Cover Image URL</label>
+                <input type="url" id="story-cover-url" placeholder="https://picsum.photos/seed/…">
+              </div>
+              <div class="form-group">
+                <label>Story Body</label>
+                <div class="editor-toolbar" role="toolbar" aria-label="Story editor toolbar">
+                  <button type="button" class="editor-btn" data-cmd="bold" aria-label="Bold">B</button>
+                  <button type="button" class="editor-btn" data-cmd="italic" aria-label="Italic">I</button>
+                  <button type="button" class="editor-btn" data-cmd="underline" aria-label="Underline">U</button>
+                  <button type="button" class="editor-btn" data-cmd="h2" aria-label="Heading 2">H2</button>
+                  <button type="button" class="editor-btn" data-cmd="h3" aria-label="Heading 3">H3</button>
+                  <button type="button" class="editor-btn" data-cmd="insertUnorderedList" aria-label="Bullet list">≡</button>
+                  <button type="button" class="editor-btn" data-cmd="createLink" aria-label="Insert link">🔗</button>
+                  <button type="button" class="editor-btn" data-cmd="insertImage" aria-label="Insert image">🖼</button>
+                  <button type="button" class="editor-btn" data-cmd="formatBlock" aria-label="Quote">"</button>
+                </div>
+                <div id="story-editor" class="editor-content" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Story body">
+                  <p>Start writing your story here…</p>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="story-author">Author</label>
+                  <input type="text" id="story-author" value="Neha Kulkarni">
+                </div>
+                <div class="form-group">
+                  <label for="story-img-caption">Image Caption</label>
+                  <input type="text" id="story-img-caption" placeholder="Caption…">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="toggle-wrap switch" for="story-featured">
+                  <input type="checkbox" id="story-featured" checked>
+                  <span class="slider"></span>
+                  <span class="toggle-label">Feature this story on homepage</span>
+                </label>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-ghost" data-modal-close="modal-new-story">Cancel</button>
+            <button class="btn btn-secondary" data-modal-close="modal-new-story" data-toast="info" data-toast-title="Draft Saved" data-toast-msg="Your story draft has been saved.">Save Draft</button>
+            <button class="btn btn-primary" data-modal-close="modal-new-story" data-toast="success" data-toast-title="Story Published" data-toast-msg="Your story is now live on the site.">Publish Story</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Edit story modal -->
+      <div id="modal-edit-story" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-edit-story-title">
+        <div class="modal-backdrop"></div>
+        <div class="modal-panel">
+          <div class="modal-header">
+            <h2 id="modal-edit-story-title" class="modal-title">Edit Story</h2>
+            <button class="modal-close" data-modal-close="modal-edit-story" aria-label="Close modal">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form onsubmit="return false;">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="edit-story-title">Story Title</label>
+                  <input type="text" id="edit-story-title" value="How Raju Found His Forever Home" required>
+                </div>
+                <div class="form-group">
+                  <label for="edit-story-pillar">Pillar</label>
+                  <select id="edit-story-pillar">
+                    <option selected>Animal Rescue</option>
+                    <option>Environment</option>
+                    <option>Sanitation</option>
+                    <option>Disaster Relief</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="edit-story-cover-url">Cover Image URL</label>
+                <input type="url" id="edit-story-cover-url" value="https://picsum.photos/seed/raju/600/360">
+              </div>
+              <div class="form-group">
+                <label>Story Body</label>
+                <div class="editor-toolbar" role="toolbar" aria-label="Story editor toolbar">
+                  <button type="button" class="editor-btn" data-cmd="bold" aria-label="Bold">B</button>
+                  <button type="button" class="editor-btn" data-cmd="italic" aria-label="Italic">I</button>
+                  <button type="button" class="editor-btn" data-cmd="underline" aria-label="Underline">U</button>
+                  <button type="button" class="editor-btn" data-cmd="h2" aria-label="Heading 2">H2</button>
+                  <button type="button" class="editor-btn" data-cmd="h3" aria-label="Heading 3">H3</button>
+                  <button type="button" class="editor-btn" data-cmd="insertUnorderedList" aria-label="Bullet list">≡</button>
+                  <button type="button" class="editor-btn" data-cmd="createLink" aria-label="Insert link">🔗</button>
+                  <button type="button" class="editor-btn" data-cmd="insertImage" aria-label="Insert image">🖼</button>
+                  <button type="button" class="editor-btn" data-cmd="formatBlock" aria-label="Quote">"</button>
+                </div>
+                <div id="edit-story-editor" class="editor-content" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Story body">
+                  <p>After three months of treatment at our Mumbai shelter, Raju — the street dog rescued near Bandra — finally found a loving family in Powai.</p>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="edit-story-author">Author</label>
+                  <input type="text" id="edit-story-author" value="Neha Kulkarni">
+                </div>
+                <div class="form-group">
+                  <label for="edit-story-img-caption">Image Caption</label>
+                  <input type="text" id="edit-story-img-caption" value="Raju with his new family in Powai">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="toggle-wrap switch" for="edit-story-featured">
+                  <input type="checkbox" id="edit-story-featured" checked>
+                  <span class="slider"></span>
+                  <span class="toggle-label">Feature this story on homepage</span>
+                </label>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-ghost" data-modal-close="modal-edit-story">Cancel</button>
+            <button class="btn btn-secondary" data-modal-close="modal-edit-story" data-toast="info" data-toast-title="Draft Saved" data-toast-msg="Your changes have been saved.">Save Draft</button>
+            <button class="btn btn-primary" data-modal-close="modal-edit-story" data-toast="success" data-toast-title="Story Updated" data-toast-msg="Your story has been updated.">Publish Changes</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Delete story modal -->
+      <div id="modal-delete-story" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-delete-story-title">
+        <div class="modal-backdrop"></div>
+        <div class="modal-panel">
+          <div class="modal-header">
+            <h2 id="modal-delete-story-title" class="modal-title">Delete Story?</h2>
+            <button class="modal-close" data-modal-close="modal-delete-story" aria-label="Close modal">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p class="modal-danger-text">This action cannot be undone. The story will be permanently removed from the public site.</p>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-ghost" data-modal-close="modal-delete-story">Cancel</button>
+            <button class="btn btn-danger" data-modal-close="modal-delete-story" data-toast="danger" data-toast-title="Story Deleted" data-toast-msg="Story removed.">Delete</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Toast templates -->
+      <div id="toast-region" class="toast-region" aria-live="polite" role="alert" aria-atomic="true"></div>
+      <template id="toast-tpl-success">
+        <div class="toast toast-success" role="alert">
+          <svg class="toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          <div class="toast-content">
+            <div class="toast-title">Success</div>
+            <div class="toast-msg"></div>
+          </div>
+        </div>
+      </template>
+      <template id="toast-tpl-info">
+        <div class="toast toast-info" role="alert">
+          <svg class="toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <div class="toast-content">
+            <div class="toast-title">Info</div>
+            <div class="toast-msg"></div>
+          </div>
+        </div>
+      </template>
+      <template id="toast-tpl-warning">
+        <div class="toast toast-warning" role="alert">
+          <svg class="toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+          <div class="toast-content">
+            <div class="toast-title">Warning</div>
+            <div class="toast-msg"></div>
+          </div>
+        </div>
+      </template>
+      <template id="toast-tpl-danger">
+        <div class="toast toast-danger" role="alert">
+          <svg class="toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <div class="toast-content">
+            <div class="toast-title">Error</div>
+            <div class="toast-msg"></div>
+          </div>
+        </div>
+      </template>
+    </main>
+  </div>
+
+  <div id="sidebar-overlay"></div>
+
+  <script src="assets/js/admin-core.js"></script>
+  <script src="assets/js/stories.js"></script>
+</body>
+</html>

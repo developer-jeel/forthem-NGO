@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Volunteer Dashboard — Unke Liye NGO. Track volunteer hours, view upcoming field shifts, download certificates, and manage activities." />
+  <title>Volunteer Dashboard — Unke Liye</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/missing-pages.css" />
+  <style>
+    .dashboard-header {
+      background: linear-gradient(rgba(31, 75, 63, 0.90), rgba(22, 58, 49, 0.95)), url('https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      color: #fff; padding: var(--space-10) 0;
+    }
+    .vol-badge { background: rgba(255,255,255,0.18); color: #fff; padding: var(--space-1) var(--space-3); border-radius: var(--radius-full); font-size: var(--text-xs); }
+    .badge-card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-5); text-align: center; }
+    .badge-icon { font-size: 2.5rem; margin-bottom: var(--space-2); }
+  </style>
+</head>
+<body data-page="dashboard-volunteer">
+
+<a href="#main-content" class="skip-nav">Skip to main content</a>
+
+<div class="emergency-bar" role="banner" aria-label="Emergency rescue alert">
+  <span class="pulse-dot" aria-hidden="true"></span>
+  <span>🚨 Animal in distress? We respond 24/7 —</span>
+  <a href="report-animal.html" aria-label="Report an animal in need">Report Now →</a>
+</div>
+
+<header class="site-header" role="banner">
+  <div class="container">
+    <nav class="nav-inner" aria-label="Main navigation">
+      <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a>
+      <ul class="nav-menu" role="list">
+        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+        <li class="nav-item">
+          <a href="#" class="nav-link" aria-haspopup="true" aria-expanded="false">
+            Our Work <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 6l4 4 4-4"/></svg>
+          </a>
+          <div class="nav-dropdown" role="menu">
+            <a href="work-animal-rescue.html" role="menuitem"><span class="icon">🐾</span> Animal Rescue & Healthcare</a>
+            <a href="work-environment.html" role="menuitem"><span class="icon">🌱</span> Environment</a>
+            <a href="work-sanitation.html" role="menuitem"><span class="icon">🧹</span> Sanitation & Cleanliness</a>
+            <a href="work-disaster-relief.html" role="menuitem"><span class="icon">🚨</span> Disaster Relief</a>
+          </div>
+        </li>
+        <li class="nav-item"><a href="adopt.html" class="nav-link">Adopt</a></li>
+        <li class="nav-item"><a href="campaigns.html" class="nav-link">Campaigns</a></li>
+        <li class="nav-item"><a href="impact.html" class="nav-link">Impact</a></li>
+        <li class="nav-item"><a href="stories.html" class="nav-link">Stories</a></li>
+        <li class="nav-item">
+          <a href="#" class="nav-link" aria-haspopup="true" aria-expanded="false">
+            Get Involved <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 6l4 4 4-4"/></svg>
+          </a>
+          <div class="nav-dropdown" role="menu">
+            <a href="volunteer.html" role="menuitem"><span class="icon">🙋</span> Volunteer</a>
+            <a href="foster.html" role="menuitem"><span class="icon">🏠</span> Foster an Animal</a>
+            <a href="sponsor-animal.html" role="menuitem"><span class="icon">💛</span> Sponsor an Animal</a>
+            <a href="report-animal.html" role="menuitem" style="color: var(--color-urgent)"><span class="icon">🚨</span> Report an Animal</a>
+          </div>
+        </li>
+      </ul>
+      <div class="nav-actions">
+        <a href="login.html" class="btn btn--outline btn--sm" style="color: var(--color-primary); border-color: var(--color-primary)">My Account</a>
+        <a href="donate.html" class="btn btn--primary btn--sm">Donate</a>
+        <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="nav-mobile-panel" id="mobile-nav" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <div class="nav-mobile-overlay"></div>
+  <div class="nav-mobile-drawer">
+    <button class="nav-mobile-close" aria-label="Close menu">✕</button>
+    <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a>
+    <ul class="nav-mobile-list" role="list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="work-animal-rescue.html">Animal Rescue & Healthcare</a></li>
+      <li><a href="work-environment.html">Environment & Reforestation</a></li>
+      <li><a href="work-sanitation.html">Sanitation & Cleanliness</a></li>
+      <li><a href="work-disaster-relief.html">Disaster Relief</a></li>
+      <li><a href="adopt.html">Adopt an Animal</a></li>
+      <li><a href="volunteer.html">Volunteer With Us</a></li>
+      <li><a href="dashboard-volunteer.html">Volunteer Dashboard</a></li>
+      <li><a href="dashboard-donor.html">Donor Dashboard</a></li>
+    </ul>
+  </div>
+</div>
+
+<main id="main-content">
+  <!-- Dashboard Banner -->
+  <div class="dashboard-header">
+    <div class="container">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-4)">
+        <div>
+          <span class="vol-badge">Volunteer Portal · ID: UL-VOL-4092</span>
+          <h1 style="color: #fff; font-size: var(--text-3xl); margin-top: var(--space-2)">Welcome Back, Aarav Sharma!</h1>
+          <p style="opacity: 0.9; font-size: var(--text-sm)">Registered Animal Rescue & Sanitation Volunteer · Hadapsar Zone, Pune</p>
+        </div>
+        <div style="display: flex; gap: var(--space-3)">
+          <a href="events.html" class="btn btn--sm" style="background:#fff; color:var(--color-primary); font-weight:600">Browse Drives →</a>
+          <a href="login.html" class="btn btn--outline btn--sm" style="color:#fff; border-color:rgba(255,255,255,0.4)">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Key Metrics Row -->
+  <section class="section" style="padding-top: var(--space-8); padding-bottom: var(--space-6)">
+    <div class="container">
+      <div class="stat-row">
+        <div style="background: var(--color-surface); padding: var(--space-6); border-radius: var(--radius-lg); border: 1px solid var(--color-border); text-align: center">
+          <div style="font-size: var(--text-xs); color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.08em">Hours Contributed</div>
+          <div style="font-family: var(--font-display); font-size: var(--text-4xl); font-weight: var(--font-weight-bold); color: var(--color-primary); margin: var(--space-2) 0">48 hrs</div>
+          <div style="font-size: var(--text-xs); color: var(--color-success)">+6 hrs this month</div>
+        </div>
+
+        <div style="background: var(--color-surface); padding: var(--space-6); border-radius: var(--radius-lg); border: 1px solid var(--color-border); text-align: center">
+          <div style="font-size: var(--text-xs); color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.08em">Drives Attended</div>
+          <div style="font-family: var(--font-display); font-size: var(--text-4xl); font-weight: var(--font-weight-bold); color: var(--color-care); margin: var(--space-2) 0">12 drives</div>
+          <div style="font-size: var(--text-xs); color: var(--color-text-muted)">Animal Rescue & Cleanups</div>
+        </div>
+
+        <div style="background: var(--color-surface); padding: var(--space-6); border-radius: var(--radius-lg); border: 1px solid var(--color-border); text-align: center">
+          <div style="font-size: var(--text-xs); color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.08em">Badges Earned</div>
+          <div style="font-family: var(--font-display); font-size: var(--text-4xl); font-weight: var(--font-weight-bold); color: var(--color-protect); margin: var(--space-2) 0">4 badges</div>
+          <div style="font-size: var(--text-xs); color: var(--color-success)">Level 2 Senior Responder</div>
+        </div>
+
+        <div style="background: var(--color-surface); padding: var(--space-6); border-radius: var(--radius-lg); border: 1px solid var(--color-border); text-align: center">
+          <div style="font-size: var(--text-xs); color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.08em">Next Assignment</div>
+          <div style="font-family: var(--font-display); font-size: var(--text-xl); font-weight: var(--font-weight-bold); color: var(--color-respond); margin: var(--space-3) 0">12 Sept 2026</div>
+          <div style="font-size: var(--text-xs); color: var(--color-text-muted)">Pune Rescue Training</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dashboard Tabs & Content -->
+  <section class="section" style="padding-top: 0">
+    <div class="container">
+      <div class="tabs" data-tabs>
+        <div class="tab-list" role="tablist" style="margin-bottom: var(--space-8)">
+          <button class="tab-btn active" role="tab" aria-selected="true" data-tab="shifts">Upcoming Shifts & Drives</button>
+          <button class="tab-btn" role="tab" aria-selected="false" data-tab="history">Activity History</button>
+          <button class="tab-btn" role="tab" aria-selected="false" data-tab="log">Log Volunteer Hours</button>
+          <button class="tab-btn" role="tab" aria-selected="false" data-tab="badges">Badges & Certificate</button>
+        </div>
+
+        <!-- Tab 1: Shifts -->
+        <div class="tab-panel active" id="tab-shifts" role="tabpanel">
+          <h3 style="margin-bottom: var(--space-4)">Your Confirmed Upcoming Assignments</h3>
+          <div class="dashboard-list">
+            <div>
+              <div>
+                <strong>Animal Rescue Basics Training</strong><br/>
+                <small style="color: var(--color-text-muted)">📅 12 September 2026 · 9:00 AM - 1:00 PM | Hadapsar Community Hall</small>
+              </div>
+              <span class="badge badge--success" style="align-self: center">Confirmed RSVP</span>
+            </div>
+
+            <div>
+              <div>
+                <strong>Native Tree Plantation Drive</strong><br/>
+                <small style="color: var(--color-text-muted)">📅 20 September 2026 · 7:00 AM - 10:00 AM | Mundhwa Riverside</small>
+              </div>
+              <span class="badge badge--success" style="align-self: center">Confirmed RSVP</span>
+            </div>
+
+            <div>
+              <div>
+                <strong>Mula-Mutha Clean Waterways Drive</strong><br/>
+                <small style="color: var(--color-text-muted)">📅 27 September 2026 · 7:30 AM - 10:30 AM | Mula-Mutha Riverbank</small>
+              </div>
+              <a href="event-detail.html?id=river-cleanup" class="btn btn--outline btn--sm" style="align-self: center">Register Shift</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 2: History -->
+        <div class="tab-panel" id="tab-history" role="tabpanel">
+          <h3 style="margin-bottom: var(--space-4)">Past Volunteering Record</h3>
+          <div class="dashboard-list">
+            <div>
+              <div>
+                <strong>Hadapsar Stray Vaccination Drive</strong><br/>
+                <small style="color: var(--color-text-muted)">Completed on 14 August 2026 · 5 hours logged</small>
+              </div>
+              <span style="color: var(--color-success); font-weight: 600">✓ Verified (+5 hrs)</span>
+            </div>
+
+            <div>
+              <div>
+                <strong>Monsoon Animal Rescue Patrol</strong><br/>
+                <small style="color: var(--color-text-muted)">Completed on 28 July 2026 · 6 hours logged</small>
+              </div>
+              <span style="color: var(--color-success); font-weight: 600">✓ Verified (+6 hrs)</span>
+            </div>
+
+            <div>
+              <div>
+                <strong>Taljai Hill Reforestation Drive</strong><br/>
+                <small style="color: var(--color-text-muted)">Completed on 10 June 2026 · 4 hours logged</small>
+              </div>
+              <span style="color: var(--color-success); font-weight: 600">✓ Verified (+4 hrs)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 3: Log Hours Form -->
+        <div class="tab-panel" id="tab-log" role="tabpanel">
+          <div style="max-width: 600px; background: var(--color-surface); padding: var(--space-6); border-radius: var(--radius-lg); border: 1px solid var(--color-border)">
+            <h3 style="margin-bottom: var(--space-2)">Log Unscheduled Field Hours</h3>
+            <p style="font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: var(--space-4)">Did you perform independent rescue reporting, foster transport, or local cleanup? Submit hours for verification.</p>
+
+            <form id="log-hours-form">
+              <div class="form-group" style="margin-bottom: var(--space-4)">
+                <label for="log-date" class="form-label required">Activity Date</label>
+                <input type="date" id="log-date" name="date" class="form-input" required />
+              </div>
+              <div class="form-group" style="margin-bottom: var(--space-4)">
+                <label for="log-category" class="form-label required">Category</label>
+                <select id="log-category" name="category" class="form-select" required>
+                  <option value="Animal Rescue">Animal Rescue & Transport</option>
+                  <option value="Tree Plantation">Tree Planting & Watering</option>
+                  <option value="Sanitation">River Cleanup & Waste Sorting</option>
+                  <option value="Disaster Relief">Relief Kit Distribution</option>
+                </select>
+              </div>
+              <div class="form-group" style="margin-bottom: var(--space-4)">
+                <label for="log-hours" class="form-label required">Hours Spent</label>
+                <input type="number" id="log-hours" name="hours" min="1" max="12" class="form-input" placeholder="e.g. 4" required />
+              </div>
+              <div class="form-group" style="margin-bottom: var(--space-6)">
+                <label for="log-desc" class="form-label required">Brief Description</label>
+                <textarea id="log-desc" name="desc" class="form-textarea" rows="3" placeholder="Describe the location, animals assisted, or work performed..." required></textarea>
+              </div>
+              <button type="submit" class="btn btn--primary btn--full">Submit Hours for Verification →</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Tab 4: Badges -->
+        <div class="tab-panel" id="tab-badges" role="tabpanel">
+          <h3 style="margin-bottom: var(--space-4)">Badges & Official Recognition</h3>
+          <div class="feature-grid" style="margin-bottom: var(--space-8)">
+            <div class="badge-card">
+              <div class="badge-icon">🐾</div>
+              <h4>First Responder</h4>
+              <p style="font-size: var(--text-xs); color: var(--color-text-muted)">Completed 5+ Animal Rescue Drives</p>
+            </div>
+            <div class="badge-card">
+              <div class="badge-icon">🌱</div>
+              <h4>Green Guardian</h4>
+              <p style="font-size: var(--text-xs); color: var(--color-text-muted)">Planted & Nurtured 50+ Trees</p>
+            </div>
+            <div class="badge-card">
+              <div class="badge-icon">🧹</div>
+              <h4>River Hero</h4>
+              <p style="font-size: var(--text-xs); color: var(--color-text-muted)">Participated in 3 River Cleanups</p>
+            </div>
+            <div class="badge-card">
+              <div class="badge-icon">🏆</div>
+              <h4>50 Hours Milestone</h4>
+              <p style="font-size: var(--text-xs); color: var(--color-text-muted)">Almost unlocked (48/50 hrs)</p>
+            </div>
+          </div>
+
+          <div style="background: var(--color-primary-light); padding: var(--space-6); border-radius: var(--radius-lg); display: flex; justify-content: space-between; align-items: center">
+            <div>
+              <h4 style="color: var(--color-primary); margin-bottom: var(--space-1)">Official Volunteer Service Certificate</h4>
+              <p style="font-size: var(--text-sm); color: var(--color-text-muted)">Generated for 48 verified hours of community service at Unke Liye NGO.</p>
+            </div>
+            <button onclick="downloadCertificate()" class="btn btn--primary btn--sm">Download PDF Certificate 📄</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col footer-col--brand">
+        <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="footer-logo-img" /></a>
+        <p style="color: rgba(255,255,255,0.7); font-size: var(--text-sm); line-height: var(--leading-relaxed); margin-bottom: var(--space-4)">
+          Registered NGO dedicated to animal rescue, environmental conservation, clean water initiatives, and disaster emergency response in Maharashtra.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4 style="color:#fff; font-size: var(--text-base); margin-bottom: var(--space-4)">Our Work</h4>
+        <ul style="list-style:none; padding:0; margin:0; display:grid; gap:var(--space-2); font-size: var(--text-sm)">
+          <li><a href="work-animal-rescue.html">Animal Rescue & Healthcare</a></li>
+          <li><a href="work-environment.html">Environment & Reforestation</a></li>
+          <li><a href="work-sanitation.html">Sanitation & Cleanliness</a></li>
+          <li><a href="work-disaster-relief.html">Disaster Emergency Relief</a></li>
+          <li><a href="adopt.html">Animal Adoption</a></li>
+          <li><a href="sponsor-animal.html">Sponsor an Animal</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 style="color:#fff; font-size: var(--text-base); margin-bottom: var(--space-4)">Get Involved</h4>
+        <ul style="list-style:none; padding:0; margin:0; display:grid; gap:var(--space-2); font-size: var(--text-sm)">
+          <li><a href="volunteer.html">Volunteer With Us</a></li>
+          <li><a href="foster.html">Foster an Animal</a></li>
+          <li><a href="events.html">Upcoming Events & Drives</a></li>
+          <li><a href="campaigns.html">Active Campaigns</a></li>
+          <li><a href="donate.html">Make a Donation</a></li>
+          <li><a href="transparency.html">Transparency & Reports</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 style="color:#fff; font-size: var(--text-base); margin-bottom: var(--space-4)">Emergency & Contact</h4>
+        <p style="color: rgba(255,255,255,0.7); font-size: var(--text-sm); line-height: 1.6; margin-bottom: var(--space-3)">
+          🚨 <strong>24/7 Rescue Line:</strong><br/><a href="tel:+919876543210" style="color: #fff; font-weight: 600;">+91 98765 43210</a>
+        </p>
+        <p style="color: rgba(255,255,255,0.7); font-size: var(--text-sm); line-height: 1.6; margin-bottom: var(--space-4)">
+          📧 <strong>General Inquiries:</strong><br/><a href="mailto:info@unkeliye.org" style="color: #fff;">info@unkeliye.org</a>
+        </p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>
+        <p>© 2026 Unke Liye. Registered NGO, Maharashtra. Reg. No. MAH/2015/1234 | 80G Tax Exemption Available</p>
+      </div>
+      <div class="footer-legal-links">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
+        <a href="transparency.html">Financial Reports</a>
+        <a href="sitemap.html">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="report-animal.html" class="emergency-float" aria-label="Report an animal emergency">
+  <span class="emergency-float-icon" aria-hidden="true">🚨</span>
+  <span>Report Animal Emergency</span>
+</a>
+
+<div class="toast-container" aria-live="polite" aria-atomic="false"></div>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/forms.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const logForm = document.getElementById('log-hours-form');
+    if (logForm) {
+      logForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (window.UnkeLiye) {
+          window.UnkeLiye.showToast('Hours submitted successfully! Pending verification by field supervisor.', 'success');
+        }
+        logForm.reset();
+      });
+    }
+  });
+
+  function downloadCertificate() {
+    if (window.UnkeLiye) {
+      window.UnkeLiye.showToast('Generating official Volunteer Service Certificate PDF...', 'success');
+    }
+  }
+</script>
+</body>
+</html>

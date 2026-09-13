@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Settings — Unke Liye Admin</title>
+<link rel="stylesheet" href="assets/variables.css">
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" href="assets/components.css">
+<style>
+.swatch-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
+.swatch { width: 40px; height: 40px; border-radius: 8px; border: 2px solid transparent; cursor: pointer; position: relative; transition: transform 0.15s; }
+.swatch:hover { transform: scale(1.1); }
+.swatch.active::after { content: '✓'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1rem; font-weight: 700; }
+.logo-preview { width: 180px; height: 60px; background: var(--brand-primary); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #fff; font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700; }
+.nav-drag-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 8px; margin-bottom: 8px; cursor: grab; }
+.nav-drag-item svg { color: var(--text-secondary); flex-shrink: 0; }
+.section-vis-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--border-subtle); font-size: 0.875rem; }
+.section-vis-item:last-child { border-bottom: none; }
+</style>
+</head>
+<body>
+<div class="toast-region" id="toast-region" aria-live="polite">
+  <div class="toast hidden" id="toast-tpl-success" role="alert"><div class="toast-icon success"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="toast-body"><div class="toast-title">Saved</div><div class="toast-msg"></div></div><button class="toast-close" aria-label="Close"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button><div class="toast-progress"></div></div>
+</div>
+
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+<div class="admin-shell">
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo"><img src="../logo.png" alt="Unke Liye Logo" class="sidebar-logo-img"><div class="sidebar-logo-text"><strong>Unke Liye</strong><span>Admin Panel</span></div></div>
+  <nav class="sidebar-nav">
+    <div class="nav-group"><div class="nav-group-label">Overview</div><a href="dashboard.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg><span class="nav-link-label">Dashboard</span></a></div>
+    <div class="nav-group"><div class="nav-group-label">Content</div><a href="content.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg><span class="nav-link-label">Homepage Content</span></a><a href="banners.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg><span class="nav-link-label">Page Banners</span></a><a href="stories.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg><span class="nav-link-label">Stories</span></a><a href="gallery.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span class="nav-link-label">Gallery</span></a></div>
+    <div class="nav-group"><div class="nav-group-label">Programs</div><a href="campaigns.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span class="nav-link-label">Campaigns</span></a><a href="animals.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2.823.47-4.113 6.006-4 7 .08.703 1.725 1.722 3.656 1 1.261-.472 1.96-1.45 2.344-2.5"/><path d="M4.42 11.247A13.152 13.152 0 0 0 4 14.556C4 18.728 7.582 21 12 21s8-2.272 8-6.444c0-1.273-.241-2.248-.382-2.826"/></svg><span class="nav-link-label">Animals</span></a><a href="events.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span class="nav-link-label">Events</span></a></div>
+    <div class="nav-group"><div class="nav-group-label">People</div><a href="volunteers.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span class="nav-link-label">Volunteers</span></a><a href="donors.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span class="nav-link-label">Donors</span></a></div>
+    <div class="nav-group"><div class="nav-group-label">Money</div><a href="donations.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg><span class="nav-link-label">Donations</span></a><a href="reports.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg><span class="nav-link-label">Reports</span></a></div>
+    <div class="nav-group"><div class="nav-group-label">Operations</div><a href="messages.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span class="nav-link-label">Messages</span><span class="badge badge-danger" style="margin-left:auto;padding:2px 6px;font-size:.65rem;">7</span></a></div>
+    <div class="nav-group"><div class="nav-group-label">System</div><a href="admin-users.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span class="nav-link-label">Admin Users</span></a><a href="settings.html" class="nav-link active" aria-current="page"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg><span class="nav-link-label">Settings</span></a></div>
+  </nav>
+  <div class="sidebar-footer"><button class="sidebar-collapse-btn" id="sidebar-collapse" aria-label="Collapse sidebar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg><span class="sidebar-collapse-btn-label">Collapse</span></button></div>
+</aside>
+
+<div class="main-content" id="main-content">
+  <header class="topbar">
+    <div class="topbar-breadcrumb"><a href="dashboard.html">Unke Liye</a><span class="sep">/</span><a href="settings.html">System</a><span class="sep">/</span><span class="current">Settings</span></div>
+    <div class="topbar-search"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="search" placeholder="Search settings…" aria-label="Search"></div>
+    <div class="topbar-actions">
+      <button class="topbar-icon-btn theme-toggle" id="theme-toggle" aria-label="Toggle dark mode"><svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/></svg></button>
+      <div class="dropdown-wrap"><button class="topbar-profile" data-dropdown="profile-dd-set" aria-expanded="false"><div class="profile-avatar">RS</div><div class="profile-info"><strong>Rohit Sinha</strong><small>Super Admin</small></div></button><div class="dropdown-menu profile-menu" id="profile-dd-set"><a href="login.html" class="dropdown-item danger"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Sign Out</a></div></div>
+    </div>
+  </header>
+
+  <main class="page-content">
+    <div class="page-header">
+      <div class="page-header-left"><h1>Settings</h1><p>Configure the public website appearance, contact details, and legal pages.</p></div>
+      <div class="page-header-actions">
+        <button class="btn btn-secondary btn-sm">Discard Changes</button>
+        <button class="btn btn-primary btn-sm" data-toast="success" data-toast-title="Settings Saved" data-toast-msg="All changes have been published to the live site.">Save All Changes</button>
+      </div>
+    </div>
+
+    <!-- Settings Tabs -->
+    <div class="tabs" data-tab-group="settings">
+      <button class="tab-btn active" data-tab="tab-general" data-tab-group="settings" aria-selected="true">General</button>
+      <button class="tab-btn" data-tab="tab-contact" data-tab-group="settings" aria-selected="false">Contact & Social</button>
+      <button class="tab-btn" data-tab="tab-navigation" data-tab-group="settings" aria-selected="false">Navigation</button>
+      <button class="tab-btn" data-tab="tab-sections" data-tab-group="settings" aria-selected="false">Homepage Sections</button>
+      <button class="tab-btn" data-tab="tab-legal" data-tab-group="settings" aria-selected="false">Legal</button>
+    </div>
+
+    <!-- Tab: General -->
+    <div class="tab-panel active" id="tab-general" data-tab-group-panel="settings">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-5);">
+        <div class="card"><div class="card-body">
+          <div class="form-section-title">Brand Identity</div>
+          <div class="form-group">
+            <label class="form-label">Organisation Name</label>
+            <input class="form-control" type="text" value="Unke Liye">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Tagline</label>
+            <input class="form-control" type="text" value="For Those Who Cannot Speak">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Logo</label>
+            <div style="margin-bottom:12px;"><div class="logo-preview">उ Unke Liye</div></div>
+            <button class="btn btn-secondary btn-sm">Replace Logo</button>
+            <div class="form-hint">Recommended: SVG or PNG, 240×60px minimum</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Favicon</label>
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+              <div style="width:32px;height:32px;background:var(--brand-primary);border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--font-heading);font-weight:700;font-size:1rem;">उ</div>
+              <button class="btn btn-secondary btn-sm">Replace Favicon</button>
+            </div>
+          </div>
+        </div></div>
+
+        <div class="card"><div class="card-body">
+          <div class="form-section-title">Typography &amp; Colours</div>
+          <div class="form-group">
+            <label class="form-label">Primary Brand Colour</label>
+            <div class="swatch-row">
+              <div class="swatch active" style="background:#1F3D2B;"></div>
+              <div class="swatch" style="background:#2D5A4A;"></div>
+              <div class="swatch" style="background:#3D6B58;"></div>
+              <div class="swatch" style="background:#1A4A2E;"></div>
+              <div class="swatch" style="background:#0D2B1A;"></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;margin-top:8px;"><input type="color" value="#1F3D2B" style="width:40px;height:36px;border-radius:6px;border:1px solid var(--border-subtle);cursor:pointer;"><input class="form-control" type="text" value="#1F3D2B" style="width:120px;font-family:monospace;"></div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Heading Font</label>
+            <select class="form-control">
+              <option selected>Fraunces (current)</option>
+              <option>Playfair Display</option>
+              <option>Lora</option>
+              <option>Merriweather</option>
+              <option>Georgia (system)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Body Font</label>
+            <select class="form-control">
+              <option selected>Inter (current)</option>
+              <option>DM Sans</option>
+              <option>Nunito</option>
+              <option>Open Sans</option>
+            </select>
+          </div>
+          <div style="padding:var(--sp-4);background:var(--bg-sunken);border-radius:var(--radius-md);margin-top:var(--sp-4);">
+            <div style="font-family:var(--font-heading);font-size:1.5rem;margin-bottom:4px;color:var(--brand-primary);">Heading Preview</div>
+            <div style="font-size:0.875rem;color:var(--text-secondary);">Body text preview. The quick brown fox jumps over the lazy dog.</div>
+          </div>
+        </div></div>
+
+        <div class="card col-span-2"><div class="card-body">
+          <div class="form-section-title">SEO & Metadata</div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Default Meta Title</label><input class="form-control" type="text" value="Unke Liye — For Those Who Cannot Speak"></div>
+            <div class="form-group"><label class="form-label">Canonical URL</label><input class="form-control" type="url" value="https://www.unkeliye.org"></div>
+          </div>
+          <div class="form-group"><label class="form-label">Meta Description</label><textarea class="form-control" rows="2">Unke Liye is an Indian NGO dedicated to animal rescue, environmental protection, sanitation, and disaster relief. Join us in making a difference.</textarea></div>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- Tab: Contact -->
+    <div class="tab-panel" id="tab-contact" data-tab-group-panel="settings">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-5);">
+        <div class="card"><div class="card-body">
+          <div class="form-section-title">Contact Information</div>
+          <div class="form-group"><label class="form-label">Email (Public)</label><input class="form-control" type="email" value="hello@unkeliye.org"></div>
+          <div class="form-group"><label class="form-label">Phone</label><input class="form-control" type="tel" value="+91 98765 43210"></div>
+          <div class="form-group"><label class="form-label">WhatsApp</label><input class="form-control" type="tel" value="+91 98765 43210"></div>
+          <div class="form-group"><label class="form-label">Registered Address</label><textarea class="form-control" rows="3">Unke Liye NGO, 4th Floor, Green Tower,
+Bandra West, Mumbai — 400 050
+Maharashtra, India</textarea></div>
+        </div></div>
+        <div class="card"><div class="card-body">
+          <div class="form-section-title">Social Media Links</div>
+          <div class="form-group"><label class="form-label">Instagram</label><input class="form-control" type="url" value="https://instagram.com/unkeliye"></div>
+          <div class="form-group"><label class="form-label">Facebook</label><input class="form-control" type="url" value="https://facebook.com/unkeliyengo"></div>
+          <div class="form-group"><label class="form-label">Twitter / X</label><input class="form-control" type="url" value="https://twitter.com/unkeliye"></div>
+          <div class="form-group"><label class="form-label">YouTube</label><input class="form-control" type="url" value="https://youtube.com/@unkeliye"></div>
+          <div class="form-group"><label class="form-label">LinkedIn</label><input class="form-control" type="url" value="https://linkedin.com/company/unkeliye"></div>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- Tab: Navigation -->
+    <div class="tab-panel" id="tab-navigation" data-tab-group-panel="settings">
+      <div class="card"><div class="card-body">
+        <div class="form-section-title">Main Navigation Order <span style="font-size:0.8125rem;font-weight:400;color:var(--text-secondary);">— drag to reorder (visual only)</span></div>
+        <div class="nav-drag-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>Home<span style="margin-left:auto;font-size:0.75rem;color:var(--text-secondary);">/</span></div>
+        <div class="nav-drag-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>About<span style="margin-left:auto;font-size:0.75rem;color:var(--text-secondary);">/about</span></div>
+        <div class="nav-drag-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>Programs<span style="margin-left:auto;font-size:0.75rem;color:var(--text-secondary);">/programs (dropdown)</span></div>
+        <div class="nav-drag-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>Adopt &amp; Foster<span style="margin-left:auto;font-size:0.75rem;color:var(--text-secondary);">/adopt</span></div>
+        <div class="nav-drag-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>Stories &amp; News<span style="margin-left:auto;font-size:0.75rem;color:var(--text-secondary);">/stories</span></div>
+        <div class="nav-drag-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>Donate<span style="margin-left:auto;font-size:0.75rem;color:var(--text-secondary);">/donate (CTA)</span></div>
+        <div class="nav-drag-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>Contact<span style="margin-left:auto;font-size:0.75rem;color:var(--text-secondary);">/contact</span></div>
+      </div></div>
+    </div>
+
+    <!-- Tab: Sections -->
+    <div class="tab-panel" id="tab-sections" data-tab-group-panel="settings">
+      <div class="card"><div class="card-body">
+        <div class="form-section-title">Homepage Section Visibility</div>
+        <div class="section-vis-item"><span>Hero Banner</span><div class="toggle-wrap"><label class="toggle"><input type="checkbox" checked><span class="toggle-track"></span></label><span class="toggle-label" style="font-size:0.8125rem;">Visible</span></div></div>
+        <div class="section-vis-item"><span>Impact Stats Bar</span><div class="toggle-wrap"><label class="toggle"><input type="checkbox" checked><span class="toggle-track"></span></label><span class="toggle-label" style="font-size:0.8125rem;">Visible</span></div></div>
+        <div class="section-vis-item"><span>Four Pillars Section</span><div class="toggle-wrap"><label class="toggle"><input type="checkbox" checked><span class="toggle-track"></span></label><span class="toggle-label" style="font-size:0.8125rem;">Visible</span></div></div>
+        <div class="section-vis-item"><span>Featured Campaigns</span><div class="toggle-wrap"><label class="toggle"><input type="checkbox" checked><span class="toggle-track"></span></label><span class="toggle-label" style="font-size:0.8125rem;">Visible</span></div></div>
+        <div class="section-vis-item"><span>Animals Ready for Adoption</span><div class="toggle-wrap"><label class="toggle"><input type="checkbox" checked><span class="toggle-track"></span></label><span class="toggle-label" style="font-size:0.8125rem;">Visible</span></div></div>
+        <div class="section-vis-item"><span>Impact Stories</span><div class="toggle-wrap"><label class="toggle"><input type="checkbox" checked><span class="toggle-track"></span></label><span class="toggle-label" style="font-size:0.8125rem;">Visible</span></div></div>
+        <div class="section-vis-item"><span>Testimonials</span><div class="toggle-wrap"><label class="toggle"><input type="checkbox"><span class="toggle-track"></span></label><span class="toggle-label" style="font-size:0.8125rem;">Hidden</span></div></div>
+        <div class="section-vis-item"><span>Partners & Supporters</span><div class="toggle-wrap"><label class="toggle"><input type="checkbox" checked><span class="toggle-track"></span></label><span class="toggle-label" style="font-size:0.8125rem;">Visible</span></div></div>
+        <div class="section-vis-item"><span>Newsletter Signup</span><div class="toggle-wrap"><label class="toggle"><input type="checkbox" checked><span class="toggle-track"></span></label><span class="toggle-label" style="font-size:0.8125rem;">Visible</span></div></div>
+      </div></div>
+    </div>
+
+    <!-- Tab: Legal -->
+    <div class="tab-panel" id="tab-legal" data-tab-group-panel="settings">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-5);">
+        <div class="card"><div class="card-body">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--sp-3);">
+            <div class="form-section-title" style="margin-bottom:0;">Privacy Policy</div>
+            <button class="btn btn-secondary btn-sm" data-toast="success" data-toast-title="Saved" data-toast-msg="Privacy Policy updated successfully.">Save</button>
+          </div>
+          <div class="form-group"><label class="form-label">Last Updated</label><input class="form-control" type="date" value="2025-01-15"></div>
+          <textarea class="form-control" rows="12" style="font-size:0.8125rem;line-height:1.7;">1. Information We Collect
+We collect information you provide directly to us, such as your name, email address, phone number, and payment information when you make a donation or sign up to volunteer.
+
+2. How We Use Your Information
+We use the information we collect to process donations, send receipts and acknowledgements, communicate about our programs and campaigns, and to comply with legal obligations.
+
+3. Information Sharing
+We do not sell, trade, or otherwise transfer your personal information to outside parties except as described in this policy or with your consent.
+
+4. Data Retention
+We retain your personal information for as long as necessary to fulfill the purposes described in this policy, unless a longer retention period is required by law.
+
+5. Contact Us
+For privacy-related questions, contact us at privacy@unkeliye.org.</textarea>
+        </div></div>
+        <div class="card"><div class="card-body">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--sp-3);">
+            <div class="form-section-title" style="margin-bottom:0;">Terms of Service</div>
+            <button class="btn btn-secondary btn-sm" data-toast="success" data-toast-title="Saved" data-toast-msg="Terms of Service updated.">Save</button>
+          </div>
+          <div class="form-group"><label class="form-label">Last Updated</label><input class="form-control" type="date" value="2025-01-15"></div>
+          <textarea class="form-control" rows="12" style="font-size:0.8125rem;line-height:1.7;">1. Acceptance of Terms
+By using the Unke Liye website and services, you agree to these Terms of Service and our Privacy Policy.
+
+2. Donations
+All donations made through this website are voluntary and non-refundable unless explicitly stated. We are registered as a charitable organisation under Section 8 of the Companies Act, 2013.
+
+3. Volunteer Participation
+Volunteers participate at their own discretion. Unke Liye is not liable for any injuries sustained during volunteer activities outside of organised rescue operations.
+
+4. Intellectual Property
+All content on this website, including text, images, and graphics, belongs to Unke Liye unless otherwise stated.
+
+5. Limitation of Liability
+Unke Liye shall not be liable for any indirect, incidental, or consequential damages arising from your use of this website or services.</textarea>
+        </div></div>
+      </div>
+    </div>
+
+  </main>
+</div>
+</div>
+<script src="assets/app.js"></script>
+</body>
+</html>

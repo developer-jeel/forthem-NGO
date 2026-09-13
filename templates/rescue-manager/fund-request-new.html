@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Rescue Fund Request — Unke Liye NGO</title>
+  <link rel="stylesheet" href="assets/css/rescue-manager.css">
+  <link rel="stylesheet" href="../shared/css/platform-theme.css">
+  <style>
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: var(--space-6);
+      align-items: start;
+    }
+    .form-group {
+      margin-bottom: var(--space-4);
+    }
+    .form-label {
+      display: block;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: var(--space-1);
+    }
+    .form-control {
+      width: 100%;
+      padding: 0.6rem 0.85rem;
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-md);
+      font-size: 0.875rem;
+      background: var(--bg-surface);
+      color: var(--text-primary);
+      font-family: inherit;
+    }
+    .form-control:focus {
+      outline: none;
+      border-color: var(--brand-primary);
+      box-shadow: 0 0 0 3px var(--brand-primary-light);
+    }
+    @media (max-width: 960px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell" id="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <img src="../logo.png" alt="Unke Liye Logo" class="sidebar-logo-img">
+        <div class="sidebar-logo-text">
+          <strong>Unke Liye</strong>
+          <span>Rescue Operations</span>
+        </div>
+      </div>
+      <div class="sidebar-role-badge">
+        <span class="role-pulse-dot"></span>
+        <span>Rescue Manager Active</span>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <div class="nav-section-label">Overview</div>
+          <a href="dashboard.html" class="nav-item">
+            <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+            <span class="nav-item-label">Dashboard</span>
+          </a>
+          <a href="command-center.html" class="nav-item">
+            <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+            <span class="nav-item-label">Command Center</span>
+          </a>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-section">
+          <div class="nav-section-label">Finance & Logistics</div>
+          <a href="fund-requests.html" class="nav-item active">
+            <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+            <span class="nav-item-label">Rescue Fund Requests</span>
+          </a>
+          <a href="resources.html" class="nav-item">
+            <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            <span class="nav-item-label">Fleet & Equipment</span>
+          </a>
+          <a href="medical-records.html" class="nav-item">
+            <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            <span class="nav-item-label">Medical Records</span>
+          </a>
+        </div>
+      </nav>
+      <div class="sidebar-user-block">
+        <div class="sidebar-avatar">AS</div>
+        <div class="sidebar-user-meta">
+          <span class="user-display-name">Dr. Ananya Sharma</span>
+          <span class="user-role-label">Lead Vet & Rescue Dir.</span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="header">
+        <div class="header-left">
+          <nav class="breadcrumb-nav">
+            <a href="dashboard.html">Rescue Operations</a>
+            <span class="breadcrumb-sep">/</span>
+            <a href="fund-requests.html" style="color:var(--text-secondary);text-decoration:none;">Fund Requests</a>
+            <span class="breadcrumb-sep">/</span>
+            <span class="breadcrumb-current">New Request</span>
+          </nav>
+        </div>
+        <div class="header-right">
+          <button class="btn btn-secondary btn-sm theme-toggle-btn" title="Toggle theme">
+            <span class="icon-moon">🌙</span>
+            <span class="icon-sun" style="display:none;">☀️</span>
+          </button>
+          <a href="fund-requests.html" class="btn btn-secondary btn-sm">← Back to Requests</a>
+        </div>
+      </header>
+
+      <div class="content-container">
+        <div style="margin-bottom:var(--space-6);">
+          <h1 class="page-title">Submit Emergency Rescue Fund Request</h1>
+          <p class="page-subtitle">Submit surgical, medication, or equipment procurement requirements directly to Central Finance for authorization and disbursement.</p>
+        </div>
+
+        <form id="new-request-form">
+          <div class="form-grid">
+            <!-- Left: Form Inputs -->
+            <div>
+              <div class="card" style="margin-bottom:var(--space-6);">
+                <h3 class="card-title" style="margin-bottom:var(--space-4);">1. Case Linkage & Request Header</h3>
+
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);">
+                  <div class="form-group">
+                    <label class="form-label">Link to Active Incident / Call</label>
+                    <select class="form-control" id="req-incident-select">
+                      <option value="INC-2026-104">#INC-2026-104 — Stray Dog Raju (Sion Flyover)</option>
+                      <option value="INC-2026-102">#INC-2026-102 — Kite Manja Entanglement (Goregaon)</option>
+                      <option value="INC-2026-098">#INC-2026-098 — Stranded Feline Litter (Bandra)</option>
+                      <option value="GENERAL">General Operational Inventory</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label">Request Classification</label>
+                    <select class="form-control" id="req-type-select">
+                      <option value="Medical Treatment">Emergency Surgery / Neurosurgery</option>
+                      <option value="Medicine">Anti-venom & Serums Replenishment</option>
+                      <option value="Equipment">Surgical Implants & Pinning Kits</option>
+                      <option value="Transportation">Hydraulic Large Animal Transfer</option>
+                      <option value="Food & Nutrition">Post-op Recovery Canine Formula</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Request Title</label>
+                  <input type="text" class="form-control" id="req-title-input" value="Emergency Veterinary Spine Surgery — Stray Dog Raju" required>
+                </div>
+
+                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--space-4);">
+                  <div class="form-group">
+                    <label class="form-label">Priority Level</label>
+                    <select class="form-control" id="req-priority-select">
+                      <option value="CRITICAL">🔴 CRITICAL (Immediate Life Threat)</option>
+                      <option value="HIGH">🟡 HIGH (Urgent within 24h)</option>
+                      <option value="NORMAL">🟢 NORMAL (Planned Procedure)</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Total Amount Required (INR)</label>
+                    <input type="number" class="form-control" id="req-amount-input" value="35000" style="font-weight:700;font-size:1.05rem;" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Funds Needed By</label>
+                    <input type="date" class="form-control" id="req-date-needed" value="2026-09-08" required>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Justification -->
+              <div class="card" style="margin-bottom:var(--space-6);">
+                <h3 class="card-title" style="margin-bottom:var(--space-3);">2. Clinical Justification & Scope</h3>
+                <div class="form-group">
+                  <label class="form-label">Detailed Justification for Central Finance Review</label>
+                  <textarea class="form-control" id="req-justification-input" rows="4" required>Severe pelvic and lower thoracic injury sustained in high-speed vehicle impact at Sion flyover. Urgent spinal decompression surgery and 3-week post-op cage stabilization mandatory to prevent permanent paraplegia.</textarea>
+                </div>
+              </div>
+
+              <!-- Cost Breakdown -->
+              <div class="card" style="margin-bottom:var(--space-6);">
+                <h3 class="card-title" style="margin-bottom:var(--space-3);">3. Itemized Quotation Estimates</h3>
+                <div style="display:flex;flex-direction:column;gap:var(--space-2);" id="breakdown-rows">
+                  <div style="display:grid;grid-template-columns:1fr 140px;gap:var(--space-2);">
+                    <input type="text" class="form-control" value="Decompression Neurosurgery & Implant Screws" readonly>
+                    <input type="text" class="form-control" value="₹18,000" readonly style="text-align:right;font-weight:600;">
+                  </div>
+                  <div style="display:grid;grid-template-columns:1fr 140px;gap:var(--space-2);">
+                    <input type="text" class="form-control" value="Pre-op CT Scan & Anesthesia Suite" readonly>
+                    <input type="text" class="form-control" value="₹7,000" readonly style="text-align:right;font-weight:600;">
+                  </div>
+                  <div style="display:grid;grid-template-columns:1fr 140px;gap:var(--space-2);">
+                    <input type="text" class="form-control" value="Post-op ICU Incubator, Antibiotics & Pain Meds" readonly>
+                    <input type="text" class="form-control" value="₹5,000" readonly style="text-align:right;font-weight:600;">
+                  </div>
+                  <div style="display:grid;grid-template-columns:1fr 140px;gap:var(--space-2);">
+                    <input type="text" class="form-control" value="Hydraulic Ambulance Transfer & Oxygen Support" readonly>
+                    <input type="text" class="form-control" value="₹5,000" readonly style="text-align:right;font-weight:600;">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Department Impact & Submit -->
+            <div>
+              <div class="card" style="border:2px solid var(--border-medium);position:sticky;top:calc(var(--topbar-height) + 20px);">
+                <h3 style="font-family:var(--font-heading);font-size:1.15rem;font-weight:700;margin-bottom:var(--space-3);">Department Budget Check</h3>
+
+                <div style="background:var(--bg-sunken);padding:var(--space-4);border-radius:var(--radius-md);margin-bottom:var(--space-4);">
+                  <div style="display:flex;justify-content:space-between;margin-bottom:var(--space-2);font-size:0.875rem;">
+                    <span style="color:var(--text-secondary);">Rescue Budget Pool:</span>
+                    <span style="font-weight:700;">₹5,00,000</span>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;margin-bottom:var(--space-2);font-size:0.875rem;">
+                    <span style="color:var(--text-secondary);">Available Balance:</span>
+                    <span style="font-weight:700;color:var(--brand-primary);" id="sidebar-avail">₹50,000</span>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;border-top:1px dashed var(--border-medium);padding-top:var(--space-2);font-size:0.875rem;">
+                    <span style="color:var(--text-primary);font-weight:600;">Balance After Approval:</span>
+                    <span style="font-weight:700;color:var(--status-warning);">₹15,000</span>
+                  </div>
+                </div>
+
+                <div style="font-size:0.75rem;color:var(--text-tertiary);margin-bottom:var(--space-4);line-height:1.4;">
+                  ℹ️ Upon submission, this request is immediately dispatched to the Finance Manager inbox with notification alerts and audit logging.
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width:100%;padding:0.75rem;font-size:0.95rem;">
+                  🚀 Submit Request to Finance
+                </button>
+                <a href="fund-requests.html" class="btn btn-secondary" style="width:100%;margin-top:var(--space-2);text-align:center;">Cancel</a>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <div class="toast-container"></div>
+  <script src="../shared/js/platform-store.js"></script>
+  <script src="../shared/js/platform-ui.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('new-request-form');
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const title = document.getElementById('req-title-input').value;
+        const amount = Number(document.getElementById('req-amount-input').value);
+        const priority = document.getElementById('req-priority-select').value;
+        const type = document.getElementById('req-type-select').value;
+        const incident = document.getElementById('req-incident-select').value;
+        const justification = document.getElementById('req-justification-input').value;
+        const dateNeeded = document.getElementById('req-date-needed').value;
+
+        const newReq = window.PlatformStore.createFundRequest({
+          title,
+          department: 'rescue',
+          departmentName: 'Emergency Rescue & Medical',
+          requestedBy: 'Dr. Ananya Sharma',
+          requesterRole: 'Chief Veterinary Officer',
+          priority,
+          requestType: type,
+          category: 'Animal Welfare',
+          relatedEntity: `Incident #${incident}`,
+          dateNeededBy: dateNeeded,
+          requestedAmount: amount,
+          justification,
+          breakdown: [
+            { item: 'Decompression Neurosurgery & Implant Screws', amount: 18000 },
+            { item: 'Pre-op CT Scan & Anesthesia Suite', amount: 7000 },
+            { item: 'Post-op ICU Incubator & Meds', amount: 5000 },
+            { item: 'Hydraulic Ambulance Transfer', amount: 5000 }
+          ],
+          documents: [
+            { name: 'Dr_Verma_Surgical_Estimate.pdf', size: '1.2 MB', type: 'Invoice Estimate' }
+          ]
+        });
+
+        PlatformUI.showToast(`Fund Request ${newReq.id} submitted to Central Finance!`, 'success');
+
+        setTimeout(() => {
+          window.location.href = 'fund-requests.html';
+        }, 1200);
+      });
+    });
+  </script>
+</body>
+</html>

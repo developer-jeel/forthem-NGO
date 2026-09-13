@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Unke Liye Animal Rescue & Healthcare — 24/7 rescue operations, veterinary care, vaccination drives, sterilization, shelter, and adoption." />
+  <title>Animal Rescue & Healthcare — Unke Liye</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <style>
+    :root { --page-accent: var(--color-care); }
+    .page-hero {
+      background: linear-gradient(135deg, #4a2808, #8a4a22, #C97C4D);
+      --ph-img: url('https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=1600&q=80');
+    }
+    .programs-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+    @media (min-width: 640px) { .programs-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1024px) { .programs-grid { grid-template-columns: repeat(3, 1fr); } }
+    .program-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+      transition: transform var(--transition-base), box-shadow var(--transition-base);
+    }
+    .program-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .program-card-icon {
+      width: 52px; height: 52px;
+      background: rgba(201,124,77,0.12);
+      border-radius: var(--radius-md);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: var(--space-4);
+    }
+    .program-card h4 { font-size: var(--text-lg); margin-bottom: var(--space-3); color: var(--color-care); }
+    .program-card p { font-size: var(--text-sm); color: var(--color-text-muted); line-height: var(--leading-relaxed); }
+
+    .rescue-process {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+    @media (min-width: 768px) { .rescue-process { grid-template-columns: repeat(4, 1fr); } }
+    .process-step {
+      text-align: center;
+      position: relative;
+    }
+    .process-step:not(:last-child)::after {
+      content: '→';
+      position: absolute;
+      right: -20px;
+      top: 20px;
+      font-size: 1.5rem;
+      color: var(--color-care);
+      display: none;
+    }
+    @media (min-width: 768px) { .process-step:not(:last-child)::after { display: block; } }
+    .process-circle {
+      width: 64px; height: 64px;
+      background: rgba(201,124,77,0.12);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.75rem;
+      margin: 0 auto var(--space-4);
+      border: 2px solid rgba(201,124,77,0.3);
+    }
+    .process-step h4 { font-size: var(--text-base); margin-bottom: var(--space-2); }
+    .process-step p { font-size: var(--text-sm); color: var(--color-text-muted); }
+
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-6);
+    }
+    @media (min-width: 1024px) { .stat-row { grid-template-columns: repeat(4, 1fr); } }
+
+    .urgent-rescue-box {
+      background: var(--color-urgent);
+      border-radius: var(--radius-lg);
+      padding: var(--space-8);
+      color: #fff;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+      align-items: center;
+    }
+    @media (min-width: 768px) {
+      .urgent-rescue-box { grid-template-columns: 1fr auto; }
+    }
+    .urgent-rescue-box h3 { color: #fff; margin-bottom: var(--space-3); }
+    .urgent-rescue-box p { color: rgba(255,255,255,0.85); font-size: var(--text-base); }
+  </style>
+</head>
+<body>
+<a href="#main-content" class="skip-nav">Skip to main content</a>
+<div class="emergency-bar">
+  <span class="pulse-dot" aria-hidden="true"></span>
+  <span>🚨 Animal in distress? We respond 24/7 —</span>
+  <a href="report-animal.html">Report Now →</a>
+</div>
+<header class="site-header" role="banner">
+  <div class="container">
+    <nav class="nav-inner" aria-label="Main navigation">
+      <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a>
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="#" class="nav-link active">Our Work <svg viewBox="0 0 16 16" fill="currentColor" width="14" height="14"><path d="M4 6l4 4 4-4"/></svg></a>
+          <div class="nav-dropdown">
+            <a href="work-animal-rescue.html" style="color:var(--color-primary);font-weight:600"><span class="icon">🐾</span> Animal Rescue & Healthcare</a>
+            <a href="work-environment.html"><span class="icon">🌱</span> Environment</a>
+            <a href="work-sanitation.html"><span class="icon">🧹</span> Sanitation & Cleanliness</a>
+            <a href="work-disaster-relief.html"><span class="icon">🚨</span> Disaster Relief</a>
+          </div>
+        </li>
+        <li><a href="adopt.html" class="nav-link">Adopt</a></li>
+        <li><a href="campaigns.html" class="nav-link">Campaigns</a></li>
+        <li><a href="impact.html" class="nav-link">Impact</a></li>
+        <li><a href="stories.html" class="nav-link">Stories</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Get Involved <svg viewBox="0 0 16 16" fill="currentColor" width="14" height="14"><path d="M4 6l4 4 4-4"/></svg></a>
+          <div class="nav-dropdown">
+            <a href="volunteer.html"><span class="icon">🙋</span> Volunteer</a>
+            <a href="foster.html"><span class="icon">🏠</span> Foster an Animal</a>
+            <a href="sponsor-animal.html"><span class="icon">💛</span> Sponsor an Animal</a>
+            <a href="report-animal.html" style="color:var(--color-urgent)"><span class="icon">🚨</span> Report an Animal</a>
+          </div>
+        </li>
+      </ul>
+      <div class="nav-actions">
+        <a href="donate.html" class="btn btn--primary btn--sm">Donate</a>
+        <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      </div>
+    </nav>
+  </div>
+</header>
+<div class="nav-mobile-panel" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <div class="nav-mobile-overlay"></div>
+  <div class="nav-mobile-drawer">
+    <button class="nav-mobile-close" aria-label="Close menu">✕</button>
+    <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a>
+    <ul class="nav-mobile-list">
+      <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li>
+      <li><span class="section-label">Our Work</span></li>
+      <li class="nav-mobile-sub"><a href="work-animal-rescue.html">🐾 Animal Rescue</a></li>
+      <li class="nav-mobile-sub"><a href="work-environment.html">🌱 Environment</a></li>
+      <li class="nav-mobile-sub"><a href="work-sanitation.html">🧹 Sanitation</a></li>
+      <li class="nav-mobile-sub"><a href="work-disaster-relief.html">🚨 Disaster Relief</a></li>
+      <li><a href="adopt.html">Adopt a Pet</a></li><li><a href="volunteer.html">Volunteer</a></li><li><a href="donate.html">Donate</a></li>
+    </ul>
+    <div class="nav-mobile-actions"><a href="donate.html" class="btn btn--primary btn--full">Donate Now</a></div>
+  </div>
+</div>
+
+<main id="main-content">
+  <!-- Hero -->
+  <div class="page-hero">
+    <div class="container page-hero-content">
+      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">›</span><a href="#">Our Work</a><span class="breadcrumb-sep">›</span><span aria-current="page">Animal Rescue & Healthcare</span></nav>
+      <span style="background:rgba(201,124,77,0.2);border:1px solid rgba(201,124,77,0.4);color:#f5c49a;padding:4px 14px;border-radius:9999px;font-size:0.75rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;display:inline-block;margin-bottom:var(--space-4)">🐾 Care Pillar</span>
+      <h1>Animal Rescue & Healthcare</h1>
+      <p>24/7 rescue. Professional veterinary care. No animal left behind. This is the work that started it all.</p>
+    </div>
+  </div>
+
+  <!-- URGENT REPORT BOX -->
+  <section class="section--sm" style="background:var(--color-urgent-tint)">
+    <div class="container">
+      <div class="urgent-rescue-box">
+        <div>
+          <h3>🚨 See an Animal in Distress?</h3>
+          <p>Our rescue hotline is active 24 hours, 7 days, 365 days a year. If you see an injured, sick, or trapped animal — don't wait. Call or report online and we'll be there.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:var(--space-3);margin-top:var(--space-5)">
+            <a href="tel:+918888000000" class="btn btn--outline-white">📞 +91 88888 00000</a>
+            <a href="report-animal.html" class="btn" style="background:#fff;color:var(--color-urgent);border-color:#fff">Report Online →</a>
+          </div>
+        </div>
+        <div style="text-align:right;flex-shrink:0">
+          <div style="font-family:var(--font-display);font-size:1rem;color:rgba(255,255,255,0.7);margin-bottom:8px">Average Response Time</div>
+          <div style="font-family:var(--font-display);font-size:3.5rem;font-weight:700;color:#fff;line-height:1">42</div>
+          <div style="font-size:1rem;color:rgba(255,255,255,0.8)">minutes in Pune zone</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPACT STATS -->
+  <section class="section section--alt" aria-labelledby="rescue-stats">
+    <div class="container">
+      <div class="section-header text-center reveal"><span class="eyebrow" style="color:var(--color-care)">By the Numbers</span><h2 id="rescue-stats">Our Rescue Impact</h2></div>
+      <div class="stat-row">
+        <div class="stat-card reveal reveal-delay-1"><span class="stat-icon" aria-hidden="true">🐾</span><div class="stat-number" style="color:var(--color-care)" data-counter data-target="14800" data-suffix="+">0</div><div class="stat-label">Animals Rescued</div></div>
+        <div class="stat-card reveal reveal-delay-2"><span class="stat-icon" aria-hidden="true">💉</span><div class="stat-number" style="color:var(--color-care)" data-counter data-target="32600" data-suffix="+">0</div><div class="stat-label">Animals Treated</div></div>
+        <div class="stat-card reveal reveal-delay-3"><span class="stat-icon" aria-hidden="true">✂️</span><div class="stat-number" style="color:var(--color-care)" data-counter data-target="8200" data-suffix="+">0</div><div class="stat-label">Animals Sterilized</div></div>
+        <div class="stat-card reveal reveal-delay-4"><span class="stat-icon" aria-hidden="true">🏠</span><div class="stat-number" style="color:var(--color-care)" data-counter data-target="2300" data-suffix="+">0</div><div class="stat-label">Animals Adopted</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW RESCUE WORKS -->
+  <section class="section" aria-labelledby="process-heading">
+    <div class="container">
+      <div class="section-header text-center reveal">
+        <span class="eyebrow" style="color:var(--color-care)">How It Works</span>
+        <h2 id="process-heading">From Distress Call to Safe Recovery</h2>
+      </div>
+      <div class="rescue-process">
+        <div class="process-step reveal reveal-delay-1">
+          <div class="process-circle" aria-hidden="true">📞</div>
+          <h4>1. You Call or Report</h4>
+          <p>Via hotline, app, or our website. You give us location, condition, and photos if possible.</p>
+        </div>
+        <div class="process-step reveal reveal-delay-2">
+          <div class="process-circle" aria-hidden="true">🚐</div>
+          <h4>2. Team Dispatched</h4>
+          <p>Our nearest rescue unit — with trained staff and equipment — is dispatched within minutes.</p>
+        </div>
+        <div class="process-step reveal reveal-delay-3">
+          <div class="process-circle" aria-hidden="true">🏥</div>
+          <h4>3. Immediate Care</h4>
+          <p>On-site stabilization, transport to our clinic or partner vet. Treatment begins immediately.</p>
+        </div>
+        <div class="process-step reveal reveal-delay-4">
+          <div class="process-circle" aria-hidden="true">🏡</div>
+          <h4>4. Rehab & Adoption</h4>
+          <p>Recovery, socialization, spay/neuter, vaccination — then a forever home or a return to their territory.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAMS -->
+  <section class="section section--alt" aria-labelledby="programs-heading">
+    <div class="container">
+      <div class="section-header text-center reveal">
+        <span class="eyebrow" style="color:var(--color-care)">Our Programs</span>
+        <h2 id="programs-heading">What We Do for Animals</h2>
+      </div>
+      <div class="programs-grid">
+        <div class="program-card reveal reveal-delay-1">
+          <div class="program-card-icon" aria-hidden="true">🚑</div>
+          <h4>24/7 Emergency Rescue</h4>
+          <p>Round-the-clock rescue operations for injured, sick, trapped, or distressed street animals. Three rescue vans on standby across Pune.</p>
+        </div>
+        <div class="program-card reveal reveal-delay-2">
+          <div class="program-card-icon" aria-hidden="true">🏥</div>
+          <h4>Full Veterinary Clinic</h4>
+          <p>Our Hadapsar clinic handles 40+ cases weekly — surgeries, intensive care, chronic disease management, and specialist referrals.</p>
+        </div>
+        <div class="program-card reveal reveal-delay-3">
+          <div class="program-card-icon" aria-hidden="true">💉</div>
+          <h4>Vaccination Camps</h4>
+          <p>Free street animal vaccination camps monthly across Pune — rabies, distemper, parvovirus, and more. No appointment needed.</p>
+        </div>
+        <div class="program-card reveal reveal-delay-4">
+          <div class="program-card-icon" aria-hidden="true">✂️</div>
+          <h4>Sterilization Program</h4>
+          <p>Humane and ethical ABC (Animal Birth Control) drives in partnership with PMC — reducing population without cruelty.</p>
+        </div>
+        <div class="program-card reveal reveal-delay-5">
+          <div class="program-card-icon" aria-hidden="true">🏠</div>
+          <h4>Shelter & Boarding</h4>
+          <p>Our 80-animal shelter provides medical boarding, recovery space, and socialization before adoption placement.</p>
+        </div>
+        <div class="program-card reveal" style="transition-delay:0.6s">
+          <div class="program-card-icon" aria-hidden="true">🐾</div>
+          <h4>Adoption & Foster</h4>
+          <p>Connecting recovered animals with loving families. Adoption includes vaccination record, microchipping, and a follow-up call at 30 days.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RELATED CAMPAIGNS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:var(--space-4)">
+        <div><span class="eyebrow" style="color:var(--color-care)">Support the Work</span><h2>Active Animal Rescue Campaigns</h2></div>
+        <a href="campaigns.html" class="btn btn--ghost btn--sm">All Campaigns →</a>
+      </div>
+      <div class="grid-2">
+        <article class="card campaign-card reveal reveal-delay-1">
+          <div style="height:160px;overflow:hidden;" aria-hidden="true">
+            <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=600&q=80" alt="Rescued dog" style="width:100%;height:100%;object-fit:cover;" />
+          </div>
+          <div class="card-body">
+            <span class="badge badge--care" style="margin-bottom:var(--space-3)">Animal Rescue</span>
+            <h3 style="font-size:var(--text-lg);margin-bottom:var(--space-2)">Monsoon Rescue & Shelter Fund</h3>
+            <p style="font-size:var(--text-sm);color:var(--color-text-muted)">Keeping animals safe through the monsoon season — food, shelter, emergency vet care.</p>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar-track"><div class="progress-bar-fill progress-bar-fill--care" data-progress="42" style="width:0%"></div></div>
+              <div class="progress-meta"><span class="progress-raised">₹2,10,000</span><span class="progress-goal">of ₹5,00,000</span></div>
+            </div>
+          </div>
+          <div class="card-footer"><span style="font-size:var(--text-xs);color:var(--color-text-muted)">48 days left</span><a href="donate.html?fund=rescue" class="btn btn--primary btn--sm">Donate</a></div>
+        </article>
+        <article class="card campaign-card reveal reveal-delay-2">
+          <div style="height:160px;overflow:hidden;" aria-hidden="true">
+            <img src="https://images.unsplash.com/photo-1581888227599-779811939961?w=600&q=80" alt="Mobile vet clinic" style="width:100%;height:100%;object-fit:cover;" />
+          </div>
+          <div class="card-body">
+            <span class="badge badge--care" style="margin-bottom:var(--space-3)">Veterinary</span>
+            <h3 style="font-size:var(--text-lg);margin-bottom:var(--space-2)">Mobile Vet Clinic for Remote Areas</h3>
+            <p style="font-size:var(--text-sm);color:var(--color-text-muted)">A van-mounted veterinary unit to serve animals in villages 50km from Pune city limits.</p>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar-track"><div class="progress-bar-fill progress-bar-fill--care" data-progress="29" style="width:0%"></div></div>
+              <div class="progress-meta"><span class="progress-raised">₹1,45,000</span><span class="progress-goal">of ₹5,00,000</span></div>
+            </div>
+          </div>
+          <div class="card-footer"><span style="font-size:var(--text-xs);color:var(--color-text-muted)">60 days left</span><a href="donate.html?fund=rescue" class="btn btn--primary btn--sm">Donate</a></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="cta-banner reveal" style="background:linear-gradient(135deg,#8a4a22,#C97C4D)">
+        <h2>Help Us Rescue the Next Animal</h2>
+        <p>Every rescue costs money. Vet bills, fuel, staff time, medicines. Your donation keeps our rescue line active 24/7.</p>
+        <div class="cta-banner-actions">
+          <a href="donate.html?fund=rescue" class="btn btn--primary btn--lg" style="background:#fff;color:var(--color-care);border-color:#fff">Donate to Animal Rescue</a>
+          <a href="volunteer.html" class="btn btn--outline-white btn--lg">Volunteer</a>
+          <a href="adopt.html" class="btn btn--outline-white btn--lg">Adopt a Pet</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div><img src="logo.png" alt="Unke Liye" class="footer-logo-img" /><p class="footer-brand-tagline">For Every Life. For Nature. For a Better Tomorrow.</p><div class="footer-emergency"><div class="footer-emergency-title">🚨 24/7 Animal Emergency</div><a href="tel:+918888000000">+91 88888 00000</a><span style="margin:0 8px;color:rgba(250,247,242,0.4)">·</span><a href="report-animal.html">Report Online</a></div></div>
+      <div><h3 class="footer-col-title">Our Work</h3><ul class="footer-links"><li><a href="work-animal-rescue.html">🐾 Animal Rescue</a></li><li><a href="work-environment.html">🌱 Environment</a></li><li><a href="work-sanitation.html">🧹 Sanitation</a></li><li><a href="work-disaster-relief.html">🚨 Disaster Relief</a></li></ul></div>
+      <div><h3 class="footer-col-title">Animals</h3><ul class="footer-links"><li><a href="adopt.html">Adopt a Pet</a></li><li><a href="foster.html">Foster</a></li><li><a href="sponsor-animal.html">Sponsor</a></li><li><a href="report-animal.html">Report an Animal</a></li></ul></div>
+      <div><h3 class="footer-col-title">Donate</h3><ul class="footer-links"><li><a href="donate.html">Donate Now</a></li><li><a href="campaigns.html">Campaigns</a></li><li><a href="transparency.html">Transparency</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2024 Unke Liye. Reg. No. MAH/2015/1234</p><div class="footer-legal-links"><a href="privacy-policy.html">Privacy</a><a href="terms.html">Terms</a><a href="sitemap.html">Sitemap</a></div></div>
+  </div>
+</footer>
+<a href="report-animal.html" class="emergency-float" aria-label="Report an animal emergency"><span aria-hidden="true">🚨</span><span>Report Animal Emergency</span></a>
+<script src="js/main.js"></script>
+</body>
+</html>

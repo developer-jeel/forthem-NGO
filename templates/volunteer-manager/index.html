@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="0; url=dashboard.html">
+  <title>Redirecting... | Unke Liye NGO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background-color: #F7F4EF;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .redirect-container {
+      text-align: center;
+      padding: 40px;
+    }
+    .brand {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: #1F3D2B;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      font-size: 14px;
+      color: #737373;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 32px;
+    }
+    .loading {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: #525252;
+    }
+    .spinner {
+      width: 24px;
+      height: 24px;
+      border: 3px solid #E4DFD5;
+      border-top-color: #1F3D2B;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .redirect-link {
+      display: block;
+      margin-top: 24px;
+      color: #1F3D2B;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .redirect-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+<!-- Logo & Brand for Unke Liye -->
+<div style="display:none;"><img src="../logo.png" alt="Unke Liye Logo"><span>Unke Liye</span></div>
+  <div class="redirect-container">
+    <div class="brand">UNKE LIYE</div>
+    <div class="subtitle">Volunteer Operations</div>
+    <div class="loading">
+      <div class="spinner"></div>
+      <span>Redirecting to Dashboard...</span>
+    </div>
+    <a href="dashboard.html" class="redirect-link">Click here if not redirected</a>
+  </div>
+</body>
+</html>

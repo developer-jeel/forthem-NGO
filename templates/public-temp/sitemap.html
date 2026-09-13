@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sitemap — Unke Liye</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <style>
+    .sitemap-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+    @media (min-width: 640px) { .sitemap-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1024px) { .sitemap-grid { grid-template-columns: repeat(3, 1fr); } }
+    .sitemap-group {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+    }
+    .sitemap-group h3 {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-semibold);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--color-text-muted);
+      font-size: var(--text-xs);
+      margin-bottom: var(--space-4);
+      padding-bottom: var(--space-3);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .sitemap-links { list-style: none; padding: 0; display: flex; flex-direction: column; gap: var(--space-2); }
+    .sitemap-links a { font-size: var(--text-sm); color: var(--color-primary); text-decoration: none; display: flex; align-items: center; gap: var(--space-2); }
+    .sitemap-links a:hover { text-decoration: underline; }
+    .sitemap-links a::before { content: '→'; color: var(--color-text-muted); flex-shrink: 0; }
+  </style>
+</head>
+<body>
+<a href="#main-content" class="skip-nav">Skip to main content</a>
+<div class="emergency-bar"><span class="pulse-dot" aria-hidden="true"></span><span>🚨 Animal in distress? —</span><a href="report-animal.html">Report Now →</a></div>
+<header class="site-header"><div class="container"><nav class="nav-inner"><a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a><div class="nav-actions"><a href="donate.html" class="btn btn--primary btn--sm">Donate</a><button class="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button></div></nav></div></header>
+<div class="nav-mobile-panel" role="dialog" aria-modal="true" aria-label="Navigation menu"><div class="nav-mobile-overlay"></div><div class="nav-mobile-drawer"><button class="nav-mobile-close" aria-label="Close menu">✕</button><a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a><ul class="nav-mobile-list"><li><a href="index.html">Home</a></li><li><a href="sitemap.html">Sitemap</a></li></ul><div class="nav-mobile-actions"><a href="donate.html" class="btn btn--primary btn--full">Donate Now</a></div></div></div>
+
+<main id="main-content">
+  <div class="page-hero" style="--ph-img: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1600&q=80')"><div class="container page-hero-content"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">›</span><span aria-current="page">Sitemap</span></nav><h1>Sitemap</h1><p>All pages on the Unke Liye website — organized by section.</p></div></div>
+
+  <section class="section">
+    <div class="container">
+      <div class="sitemap-grid">
+
+        <div class="sitemap-group">
+          <h3>Main Pages</h3>
+          <ul class="sitemap-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="impact.html">Our Impact</a></li>
+            <li><a href="transparency.html">Transparency & Reports</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+          </ul>
+        </div>
+
+        <div class="sitemap-group">
+          <h3>Our Work</h3>
+          <ul class="sitemap-links">
+            <li><a href="work-animal-rescue.html">🐾 Animal Rescue & Healthcare</a></li>
+            <li><a href="work-environment.html">🌱 Environment</a></li>
+            <li><a href="work-sanitation.html">🧹 Sanitation & Cleanliness</a></li>
+            <li><a href="work-disaster-relief.html">🚨 Disaster Relief</a></li>
+          </ul>
+        </div>
+
+        <div class="sitemap-group">
+          <h3>Animals</h3>
+          <ul class="sitemap-links">
+            <li><a href="adopt.html">Adopt a Pet</a></li>
+            <li><a href="adopt-detail.html">Animal Profile (Template)</a></li>
+            <li><a href="foster.html">Foster Program</a></li>
+            <li><a href="sponsor-animal.html">Sponsor an Animal</a></li>
+            <li><a href="report-animal.html">Report an Animal in Need</a></li>
+          </ul>
+        </div>
+
+        <div class="sitemap-group">
+          <h3>Campaigns & Stories</h3>
+          <ul class="sitemap-links">
+            <li><a href="campaigns.html">All Campaigns</a></li>
+            <li><a href="campaign-detail.html">Campaign Detail (Template)</a></li>
+            <li><a href="stories.html">Impact Stories</a></li>
+            <li><a href="story-detail.html">Story Detail (Template)</a></li>
+          </ul>
+        </div>
+
+        <div class="sitemap-group">
+          <h3>News, Events & Gallery</h3>
+          <ul class="sitemap-links">
+            <li><a href="news.html">News & Updates</a></li>
+            <li><a href="news-detail.html">News Detail (Template)</a></li>
+            <li><a href="events.html">Events & Drives</a></li>
+            <li><a href="event-detail.html">Event Detail (Template)</a></li>
+            <li><a href="gallery.html">Photo Gallery</a></li>
+          </ul>
+        </div>
+
+        <div class="sitemap-group">
+          <h3>Get Involved</h3>
+          <ul class="sitemap-links">
+            <li><a href="volunteer.html">Volunteer</a></li>
+            <li><a href="donate.html">Donate</a></li>
+            <li><a href="donate-confirmation.html">Donation Confirmation</a></li>
+          </ul>
+        </div>
+
+        <div class="sitemap-group">
+          <h3>My Account</h3>
+          <ul class="sitemap-links">
+            <li><a href="login.html">Login</a></li>
+            <li><a href="dashboard-volunteer.html">Volunteer Dashboard</a></li>
+            <li><a href="dashboard-donor.html">Donor Dashboard</a></li>
+            <li><a href="dashboard-rescue-status.html">Rescue Status Tracker</a></li>
+          </ul>
+        </div>
+
+        <div class="sitemap-group">
+          <h3>Legal & Info</h3>
+          <ul class="sitemap-links">
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Use</a></li>
+            <li><a href="sitemap.html">Sitemap</a></li>
+            <li><a href="404.html">404 — Not Found</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer"><div class="container"><div class="footer-bottom" style="padding-top:var(--space-8)"><p>© 2024 Unke Liye. Reg. No. MAH/2015/1234</p><div class="footer-legal-links"><a href="privacy-policy.html">Privacy</a><a href="terms.html">Terms</a></div></div></div></footer>
+<a href="report-animal.html" class="emergency-float" aria-label="Report an animal emergency"><span aria-hidden="true">🚨</span><span>Report Animal Emergency</span></a>
+<script src="js/main.js"></script>
+</body>
+</html>

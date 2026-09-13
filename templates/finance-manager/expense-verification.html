@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expense Bill Verification Desk — Unke Liye Finance Manager</title>
+  <link rel="stylesheet" href="assets/css/finance-manager.css">
+  <link rel="stylesheet" href="../shared/css/platform-theme.css">
+  <style>
+    .verify-grid {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: var(--space-6);
+      align-items: start;
+    }
+    .bill-card {
+      background: var(--bg-sunken);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: var(--space-4);
+      margin-bottom: var(--space-3);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="../logo.png" alt="Unke Liye Logo" class="sidebar-logo-img">
+        <div class="sidebar-brand">
+          UNKE LIYE
+          <span>Finance Operations</span>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <div class="nav-section-title">Overview</div>
+          <a href="dashboard.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            Dashboard
+          </a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Fund Requests & Approvals</div>
+          <a href="fund-approvals.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+            Fund Approvals
+          </a>
+          <a href="fund-requests.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Fund Requests
+          </a>
+          <a href="disbursements.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+            Disbursements
+          </a>
+          <a href="expense-claims.html" class="nav-item active">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 14l4-4-4-4M5 20h14a2 2 0 002-2V8l-7-5-7 5v10a2 2 0 002 2z"/></svg>
+            Expense Claims
+          </a>
+        </div>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="user-profile">
+          <div class="user-avatar">AM</div>
+          <div class="user-info">
+            <div class="user-name">Aarav Mehta</div>
+            <div class="user-role">Finance Manager</div>
+            <div class="user-status"><span class="user-status-dot"></span> Online</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="header">
+        <div class="header-left">
+          <nav class="breadcrumb">
+            <span>Finance Manager</span>
+            <span class="breadcrumb-separator">/</span>
+            <a href="expense-claims.html" style="color:var(--text-secondary);text-decoration:none;">Expenses</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Verification Desk</span>
+          </nav>
+        </div>
+        <div class="header-right">
+          <button class="btn btn-secondary btn-sm theme-toggle-btn" title="Toggle theme">
+            <span class="icon-moon">🌙</span>
+            <span class="icon-sun" style="display:none;">☀️</span>
+          </button>
+          <a href="expense-claims.html" class="btn btn-secondary btn-sm">← Back to Claims</a>
+        </div>
+      </header>
+
+      <div class="content-container">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:var(--space-6);flex-wrap:wrap;gap:var(--space-4);">
+          <div>
+            <span class="badge badge-warning" id="claim-badge-status">UNDER AUDIT</span>
+            <h1 class="page-title" id="claim-title" style="margin-top:var(--space-1);">Dharavi Sanitation Gear Procurement Bills</h1>
+            <p class="page-subtitle" id="claim-subtitle">Audit invoices submitted by field team against approved fund allocation.</p>
+          </div>
+          <a href="audit-log.html" class="btn btn-secondary btn-sm">Audit History &rarr;</a>
+        </div>
+
+        <div class="verify-grid">
+          <!-- Left: Invoices & Receipts -->
+          <div>
+            <div class="card" style="margin-bottom:var(--space-6);">
+              <h3 class="card-title" style="margin-bottom:var(--space-3);">Attached Vendor Invoices</h3>
+              <div id="claim-bills-container"></div>
+            </div>
+
+            <div class="card">
+              <h3 class="card-title" style="margin-bottom:var(--space-3);">Audit Checklist</h3>
+              <div style="display:flex;flex-direction:column;gap:var(--space-2);font-size:0.875rem;">
+                <label style="display:flex;align-items:center;gap:var(--space-2);">
+                  <input type="checkbox" checked disabled> GSTIN / PAN of Vendor Verified
+                </label>
+                <label style="display:flex;align-items:center;gap:var(--space-2);">
+                  <input type="checkbox" checked disabled> Goods Delivery Receipt / Physical Inspection Signed
+                </label>
+                <label style="display:flex;align-items:center;gap:var(--space-2);">
+                  <input type="checkbox" checked disabled> Invoiced Amount within Approved Allocation Cap
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Audit Reconciliation Box -->
+          <div>
+            <div class="card" style="border:2px solid var(--border-medium);">
+              <h3 style="font-family:var(--font-heading);font-size:1.2rem;font-weight:700;margin-bottom:var(--space-3);">Financial Settlement</h3>
+              <div style="background:var(--bg-sunken);padding:var(--space-4);border-radius:var(--radius-md);margin-bottom:var(--space-4);">
+                <div style="display:flex;justify-content:space-between;margin-bottom:var(--space-2);font-size:0.875rem;">
+                  <span style="color:var(--text-secondary);">Fund Disbursed:</span>
+                  <span style="font-weight:700;color:var(--brand-primary);" id="settle-disbursed">₹48,000</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;margin-bottom:var(--space-2);font-size:0.875rem;">
+                  <span style="color:var(--text-secondary);">Actual Invoiced:</span>
+                  <span style="font-weight:700;color:var(--status-danger);" id="settle-spent">₹47,200</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;border-top:1px dashed var(--border-medium);padding-top:var(--space-2);font-size:0.875rem;">
+                  <span style="color:var(--text-primary);font-weight:600;">Surplus Refunded:</span>
+                  <span style="font-weight:700;color:var(--status-success);" id="settle-surplus">+ ₹800</span>
+                </div>
+              </div>
+
+              <div id="verify-action-area">
+                <button class="btn btn-primary" id="btn-verify-claim" style="width:100%;padding:0.75rem;margin-bottom:var(--space-2);">
+                  ✓ Approve Invoices & Close Request
+                </button>
+                <button class="btn btn-secondary" onclick="PlatformUI.showToast('Requested revised GST bill from coordinator', 'warning')" style="width:100%;">
+                  Request Clarification
+                </button>
+              </div>
+
+              <div id="verify-completed-area" style="display:none;padding:var(--space-3);background:var(--status-success-bg);border-radius:var(--radius-md);text-align:center;">
+                <div style="font-weight:700;color:var(--status-success);font-size:0.95rem;">✓ Verified & Closed</div>
+                <p style="font-size:0.8125rem;color:var(--text-secondary);margin-top:var(--space-1);">Reconciliation complete. Surplus balance returned to department budget pool.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="toast-container"></div>
+  <script src="../shared/js/platform-store.js"></script>
+  <script src="../shared/js/platform-ui.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const claimId = urlParams.get('claimId') || 'EXP-2026-042';
+
+      const claims = window.PlatformStore.getExpenseClaims();
+      const claim = claims.find(c => c.id === claimId) || claims[0];
+
+      if (!claim) return;
+
+      document.getElementById('claim-title').textContent = claim.title;
+      document.getElementById('claim-subtitle').textContent = `Submitted by ${claim.submittedBy} (${claim.department}) • Request ID: ${claim.fundRequestId}`;
+      document.getElementById('settle-disbursed').textContent = '₹' + Number(claim.approvedAmount).toLocaleString('en-IN');
+      document.getElementById('settle-spent').textContent = '₹' + Number(claim.actualSpent).toLocaleString('en-IN');
+      document.getElementById('settle-surplus').textContent = '+ ₹' + Number(claim.surplusReturned).toLocaleString('en-IN');
+
+      const billsContainer = document.getElementById('claim-bills-container');
+      billsContainer.innerHTML = claim.bills.map(b => `
+        <div class="bill-card">
+          <div>
+            <div style="font-weight:600;font-size:0.9rem;color:var(--text-primary);">${b.vendor}</div>
+            <div style="font-size:0.75rem;color:var(--text-tertiary);">Invoice: ${b.invoiceNo}</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-family:var(--font-heading);font-weight:700;font-size:1.1rem;color:var(--text-primary);">₹${Number(b.amount).toLocaleString('en-IN')}</div>
+            <button class="btn btn-secondary btn-sm" style="font-size:0.75rem;padding:2px 8px;margin-top:4px;" onclick="PlatformUI.showToast('Opening invoice scan: ${b.invoiceNo}', 'info')">Inspect Scan</button>
+          </div>
+        </div>
+      `).join('');
+
+      if (claim.status === 'VERIFIED') {
+        document.getElementById('verify-action-area').style.display = 'none';
+        document.getElementById('verify-completed-area').style.display = 'block';
+        document.getElementById('claim-badge-status').className = 'badge badge-success';
+        document.getElementById('claim-badge-status').textContent = 'VERIFIED & CLOSED';
+      }
+
+      document.getElementById('btn-verify-claim').addEventListener('click', () => {
+        window.PlatformStore.verifyAndCloseExpenseClaim(claim.id, 'Aarav Mehta');
+        PlatformUI.showToast(`Claim ${claim.id} verified and closed!`, 'success');
+        document.getElementById('verify-action-area').style.display = 'none';
+        document.getElementById('verify-completed-area').style.display = 'block';
+        document.getElementById('claim-badge-status').className = 'badge badge-success';
+        document.getElementById('claim-badge-status').textContent = 'VERIFIED & CLOSED';
+      });
+    });
+  </script>
+</body>
+</html>

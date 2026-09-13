@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — Rescue Manager · Unke Liye NGO</title>
+<meta name="description" content="Rescue Manager control center — live incident tracking, dispatch board, fleet status, and field operations for Unke Liye NGO.">
+<link rel="stylesheet" href="assets/css/rescue-manager.css">
+</head>
+<body>
+
+<!-- Toast Region -->
+<div class="toast-region" id="toast-region"></div>
+<!-- Mobile Overlay -->
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+<div class="app-shell" id="app-shell">
+
+  <!-- ═══════════════════════════════════════════
+       SIDEBAR
+  ═══════════════════════════════════════════ -->
+  <aside class="sidebar" id="sidebar" role="navigation" aria-label="Rescue Manager navigation">
+    <div class="sidebar-header">
+      <img src="logo.png" alt="Unke Liye Logo" class="sidebar-logo-img">
+      <div class="sidebar-logo-text">
+        <strong>Unke Liye</strong>
+        <span>Rescue Portal</span>
+      </div>
+    </div>
+
+    <div class="sidebar-role-badge">
+      <span class="role-pulse-dot"></span>
+      <span>Rescue Manager · Active</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section">
+        <div class="nav-section-label">Overview</div>
+        <a href="dashboard.html" class="nav-item active" aria-current="page">
+          <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          <span class="nav-item-label">Dashboard</span>
+        </a>
+        <a href="command-center.html" class="nav-item">
+          <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          <span class="nav-item-label">Command Center</span>
+        </a>
+      </div>
+
+      <div class="nav-divider"></div>
+
+      <div class="nav-section">
+        <div class="nav-section-label">Operations</div>
+        <a href="incidents.html" class="nav-item">
+          <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><polygon points="7.86,2 16.14,2 22,7.86 22,16.14 16.14,22 7.86,22 2,16.14 2,7.86"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span class="nav-item-label">Incidents Queue</span>
+          <span class="nav-item-badge">5</span>
+        </a>
+        <a href="dispatch.html" class="nav-item">
+          <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3"/><rect x="9" y="11" width="14" height="10" rx="1"/><circle cx="12" cy="21" r="1"/><circle cx="20" cy="21" r="1"/></svg>
+          <span class="nav-item-label">Team Dispatch</span>
+        </a>
+        <a href="cases.html" class="nav-item">
+          <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2.823.47-4.113 6.006-4 7 .08.703 1.725 1.722 3.656 1 1.261-.472 1.96-1.45 2.344-2.5"/><path d="M14.267 5.172c0-1.39 1.577-2.493 3.5-2.172 2.823.47 4.113 6.006 4 7-.08.703-1.725 1.722-3.656 1-1.261-.472-1.96-1.45-2.344-2.5"/><path d="M8 14v.5"/><path d="M16 14v.5"/><path d="M11.25 16.25h1.5L12 17l-.75-.75z"/><path d="M4.42 11.247A13.152 13.152 0 0 0 4 14.556C4 18.728 7.582 21 12 21s8-2.272 8-6.444c0-1.273-.241-2.248-.382-2.826"/></svg>
+          <span class="nav-item-label">Active Cases</span>
+        </a>
+        <a href="volunteers.html" class="nav-item">
+          <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span class="nav-item-label">Volunteers</span>
+        </a>
+      </div>
+
+      <div class="nav-divider"></div>
+
+      <div class="nav-section">
+        <div class="nav-section-label">Finance & Logistics</div>
+        <a href="fund-requests.html" class="nav-item">
+          <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          <span class="nav-item-label">Rescue Fund Requests</span>
+        </a>
+        <a href="resources.html" class="nav-item">
+          <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          <span class="nav-item-label">Fleet & Equipment</span>
+        </a>
+        <a href="medical-records.html" class="nav-item">
+          <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          <span class="nav-item-label">Medical Records</span>
+        </a>
+      </div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-chip">
+        <div class="user-avatar">KJ</div>
+        <div class="user-meta">
+          <strong>Karan Joshi</strong>
+          <small>Chief Dispatcher</small>
+        </div>
+      </div>
+      <button class="sidebar-collapse-btn" id="sidebar-collapse" aria-label="Collapse sidebar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+        <span class="collapse-label">Collapse</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ═══════════════════════════════════════════
+       MAIN CONTENT
+  ═══════════════════════════════════════════ -->
+  <div class="main-content">
+
+    <!-- Topbar -->
+    <header class="topbar">
+      <button class="topbar-icon-btn topbar-menu-btn" id="mobile-menu-toggle" aria-label="Open menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <div class="topbar-breadcrumb">
+        <span class="rescue-dot"></span>
+        <a href="dashboard.html">Rescue Manager</a>
+        <span class="sep">/</span>
+        <span class="current">Dashboard</span>
+      </div>
+
+      <div class="topbar-search">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="search" placeholder="Search operations…" aria-label="Search" data-search-table="ops-table">
+      </div>
+
+      <div class="topbar-actions">
+        <button class="topbar-icon-btn" id="theme-toggle" aria-label="Toggle dark mode">
+          <svg class="icon-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
+        <div class="dropdown-wrap">
+          <button class="topbar-icon-btn" data-dropdown="notif-menu" aria-label="Notifications" aria-expanded="false">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <span class="notif-count" aria-label="3 pending alerts">3</span>
+          </button>
+          <div class="dropdown-menu" id="notif-menu">
+            <div class="dropdown-header">Hotline Alerts <span style="font-size:.7rem;font-weight:400;color:var(--text-muted)">3 new</span></div>
+            <div class="notif-item unread">
+              <div class="notif-item-icon" style="background:var(--accent-signal-red-bg)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--accent-signal-red)" stroke-width="2.5" stroke-linecap="round"><polygon points="7.86,2 16.14,2 22,7.86 22,16.14 16.14,22 7.86,22 2,16.14 2,7.86"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+              <div class="notif-item-body"><div class="notif-item-title">Flash flood — Sangvi (Critical)</div><div class="notif-item-meta">4 boats needed · 10:51 AM</div></div>
+            </div>
+            <div class="notif-item unread">
+              <div class="notif-item-icon" style="background:var(--accent-terracotta-bg)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--accent-terracotta)" stroke-width="2.5" stroke-linecap="round"><path d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2.823.47-4.113 6.006-4 7 .08.703 1.725 1.722 3.656 1 1.261-.472 1.96-1.45 2.344-2.5"/><path d="M14.267 5.172c0-1.39 1.577-2.493 3.5-2.172 2.823.47 4.113 6.006 4 7-.08.703-1.725 1.722-3.656 1-1.261-.472-1.96-1.45-2.344-2.5"/></svg></div>
+              <div class="notif-item-body"><div class="notif-item-title">Injured dog · Kothrud flyover</div><div class="notif-item-meta">High Priority · 10:42 AM</div></div>
+            </div>
+            <div class="notif-item unread">
+              <div class="notif-item-icon" style="background:var(--accent-terracotta-bg)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--accent-terracotta)" stroke-width="2.5" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+              <div class="notif-item-body"><div class="notif-item-title">Snake spotted — Hadapsar apt.</div><div class="notif-item-meta">Critical · 10:07 AM</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Page Content -->
+    <main class="page-content">
+      <div class="page-header">
+        <div class="page-header-left">
+          <h1>Operations Control Center</h1>
+          <p>Live rescue dashboard · Thursday, 28 August 2026 · Pune, Maharashtra</p>
+        </div>
+        <div class="page-header-actions">
+          <button class="btn btn-outline btn-sm" data-toast="info" data-toast-title="Generating Report" data-toast-msg="Field operations report is being prepared...">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Export Report
+          </button>
+          <button class="btn btn-danger btn-sm" data-modal-open="dispatch-modal">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+            New Dispatch
+          </button>
+        </div>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="stats-grid">
+        <div class="stat-card terracotta anim-delay-1">
+          <div class="stat-card-icon terracotta">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <div class="stat-value">14</div>
+          <div class="stat-label">Active Rescues</div>
+          <div class="stat-sub">9 Animal · 5 Disaster Relief</div>
+          <div class="stat-trend up">↑ 3 more than yesterday</div>
+        </div>
+        <div class="stat-card brand anim-delay-2">
+          <div class="stat-card-icon brand">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3"/><rect x="9" y="11" width="14" height="10" rx="1"/><circle cx="12" cy="21" r="1"/><circle cx="20" cy="21" r="1"/></svg>
+          </div>
+          <div class="stat-value">5<span style="font-size:1.1rem;font-weight:400;color:var(--text-muted)">/8</span></div>
+          <div class="stat-label">Available Units</div>
+          <div class="stat-sub">2 Boats on standby · 1 maintenance</div>
+          <div class="stat-trend down">↓ 3 units dispatched</div>
+        </div>
+        <div class="stat-card danger anim-delay-3">
+          <div class="stat-card-icon danger">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          </div>
+          <div class="stat-value">3</div>
+          <div class="stat-label">Hotline Alerts</div>
+          <div class="stat-sub">Avg response: 4.5 mins today</div>
+          <div class="stat-trend down">↑ 3 unassigned reports</div>
+        </div>
+        <div class="stat-card leaf anim-delay-4">
+          <div class="stat-card-icon leaf">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <div class="stat-value">27</div>
+          <div class="stat-label">Today's Rescued</div>
+          <div class="stat-sub">23 animals · 4 humans evacuated</div>
+          <div class="stat-trend up">↑ 12% vs yesterday</div>
+        </div>
+      </div>
+
+      <!-- Main Grid -->
+      <div class="dashboard-grid">
+
+        <!-- Left: Map + Live Feed -->
+        <div style="display:flex;flex-direction:column;gap:var(--sp-5);">
+          <!-- Simulated Map -->
+          <div class="card" style="overflow:visible;">
+            <div class="card-header">
+              <h3>Live Incident Map — Maharashtra</h3>
+              <div class="live-indicator"><span class="live-dot"></span> LIVE</div>
+            </div>
+            <div class="map-container" style="min-height:300px;border-radius:0 0 var(--radius-lg) var(--radius-lg);">
+              <div class="map-bg-glow"></div>
+              <div class="map-label">Pune Metro + Surrounding Districts</div>
+              <!-- Region Labels -->
+              <div class="map-region-names">
+                <span style="top:18%;left:32%">KOTHRUD</span>
+                <span style="top:28%;left:55%">AUNDH</span>
+                <span style="top:42%;left:20%">DECCAN</span>
+                <span style="top:45%;left:48%">SHIVAJI NAGAR</span>
+                <span style="top:55%;left:70%">HADAPSAR</span>
+                <span style="top:65%;left:35%">KATRAJ</span>
+                <span style="top:72%;left:60%">BANER</span>
+                <span style="top:20%;left:75%">SANGVI</span>
+                <span style="top:80%;left:18%">KOLHAPUR</span>
+              </div>
+              <!-- Map Markers -->
+              <div class="map-ping critical" style="top:21%;left:76%;" title="Flash flood – Sangvi (Critical)">
+                <div class="map-tooltip">Flash flood – Sangvi</div>
+              </div>
+              <div class="map-ping critical" style="top:42%;left:21%;" title="Flood rescue – Kolhapur (Critical)">
+                <div class="map-tooltip">Flood – Kolhapur</div>
+              </div>
+              <div class="map-ping high" style="top:19%;left:33%;" title="Injured dog – Kothrud (High)">
+                <div class="map-tooltip">Injured dog – Kothrud</div>
+              </div>
+              <div class="map-ping high" style="top:30%;left:56%;" title="Injured cow – Aundh (High)">
+                <div class="map-tooltip">Injured cow – Aundh</div>
+              </div>
+              <div class="map-ping active" style="top:55%;left:70%;" title="Van 2 – Active Dispatch (Hadapsar)">
+                <div class="map-tooltip">Van 2 – Hadapsar</div>
+              </div>
+              <div class="map-ping active" style="top:44%;left:49%;" title="Van 3 – On Scene (Shivaji Nagar)">
+                <div class="map-tooltip">Van 3 – On Scene</div>
+              </div>
+              <div class="map-ping medium" style="top:72%;left:60%;" title="Cat rescue – Baner (Medium)">
+                <div class="map-tooltip">Cat rescue – Baner</div>
+              </div>
+              <div class="map-ping critical" style="top:65%;left:35%;" title="Snake – Katraj (Critical)">
+                <div class="map-tooltip">Snake – Katraj</div>
+              </div>
+              <div class="map-legend">
+                <div class="legend-item"><span class="legend-dot" style="background:#CC4D40"></span>Critical</div>
+                <div class="legend-item"><span class="legend-dot" style="background:#E8803A"></span>High</div>
+                <div class="legend-item"><span class="legend-dot" style="background:#B8863B"></span>Medium</div>
+                <div class="legend-item"><span class="legend-dot" style="background:#4ade80"></span>Dispatched</div>
+              </div>
+              <div class="map-coords">18.5204° N, 73.8567° E · Zoom 11</div>
+            </div>
+          </div>
+
+          <!-- Live Incident Feed -->
+          <div class="card">
+            <div class="card-header">
+              <h3>Live Hotline Feed</h3>
+              <div class="live-indicator"><span class="live-dot"></span> UPDATING</div>
+            </div>
+            <div class="live-feed">
+              <div class="live-feed-item">
+                <div class="live-feed-dot" style="background:var(--accent-signal-red)"></div>
+                <div class="live-feed-body">
+                  <div class="live-feed-title">Flash flood evacuation — Sangvi</div>
+                  <div class="live-feed-meta">🚨 Disaster Relief · 4 boats requested · Boat A, B dispatched</div>
+                </div>
+                <div class="live-feed-time">10:51</div>
+              </div>
+              <div class="live-feed-item">
+                <div class="live-feed-dot" style="background:#E8803A"></div>
+                <div class="live-feed-body">
+                  <div class="live-feed-title">Injured dog near Kothrud flyover</div>
+                  <div class="live-feed-meta">🐾 Animal Rescue · Van 1 dispatched · ETA 6 min</div>
+                </div>
+                <div class="live-feed-time">10:42</div>
+              </div>
+              <div class="live-feed-item">
+                <div class="live-feed-dot" style="background:var(--status-warning)"></div>
+                <div class="live-feed-body">
+                  <div class="live-feed-title">Cat rescue — Baner construction crane</div>
+                  <div class="live-feed-meta">🐾 Animal Rescue · Pending assignment</div>
+                </div>
+                <div class="live-feed-time">10:29</div>
+              </div>
+              <div class="live-feed-item">
+                <div class="live-feed-dot" style="background:var(--accent-signal-red)"></div>
+                <div class="live-feed-body">
+                  <div class="live-feed-title">Snake in residential apartment — Hadapsar</div>
+                  <div class="live-feed-meta">🐍 Wildlife · Van 4 dispatched · Arjun (snake handler) alerted</div>
+                </div>
+                <div class="live-feed-time">10:07</div>
+              </div>
+              <div class="live-feed-item">
+                <div class="live-feed-dot" style="background:#E8803A"></div>
+                <div class="live-feed-body">
+                  <div class="live-feed-title">Peacock with broken wing — Talegaon</div>
+                  <div class="live-feed-meta">🦚 Wildlife · Assessment requested</div>
+                </div>
+                <div class="live-feed-time">09:45</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Charts -->
+        <div style="display:flex;flex-direction:column;gap:var(--sp-5);">
+          <!-- Donut Chart -->
+          <div class="card">
+            <div class="card-header">
+              <h3>Rescues by Type</h3>
+              <span class="text-muted" style="font-size:.8rem;">This month</span>
+            </div>
+            <div class="card-body">
+              <div class="donut-wrap">
+                <svg class="donut-svg" width="120" height="120" viewBox="0 0 120 120">
+                  <circle cx="60" cy="60" r="46" fill="none" stroke="var(--border-subtle)" stroke-width="18"/>
+                  <!-- Dogs 45% = 289.02 of 641.6 -->
+                  <circle cx="60" cy="60" r="46" fill="none" stroke="var(--accent-terracotta)" stroke-width="18"
+                    stroke-dasharray="288.5 360" stroke-dashoffset="0" transform="rotate(-90 60 60)" stroke-linecap="round"/>
+                  <!-- Cats 20% = 128.3 -->
+                  <circle cx="60" cy="60" r="46" fill="none" stroke="var(--accent-leaf)" stroke-width="18"
+                    stroke-dasharray="128.2 360" stroke-dashoffset="-288.5" transform="rotate(-90 60 60)" stroke-linecap="round"/>
+                  <!-- Birds 15% = 96.2 -->
+                  <circle cx="60" cy="60" r="46" fill="none" stroke="var(--accent-slate)" stroke-width="18"
+                    stroke-dasharray="96.2 360" stroke-dashoffset="-416.7" transform="rotate(-90 60 60)" stroke-linecap="round"/>
+                  <!-- Disaster 20% = 128.3 -->
+                  <circle cx="60" cy="60" r="46" fill="none" stroke="var(--accent-signal-red)" stroke-width="18"
+                    stroke-dasharray="128.2 360" stroke-dashoffset="-512.9" transform="rotate(-90 60 60)" stroke-linecap="round"/>
+                  <text x="60" y="56" text-anchor="middle" font-family="Fraunces,Georgia,serif" font-size="18" font-weight="700" fill="var(--text-primary)">218</text>
+                  <text x="60" y="70" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="var(--text-muted)">TOTAL</text>
+                </svg>
+                <div class="donut-legend">
+                  <div class="donut-legend-item"><span class="donut-legend-dot" style="background:var(--accent-terracotta)"></span>Dogs<span class="donut-legend-val">45%</span></div>
+                  <div class="donut-legend-item"><span class="donut-legend-dot" style="background:var(--accent-leaf)"></span>Cats<span class="donut-legend-val">20%</span></div>
+                  <div class="donut-legend-item"><span class="donut-legend-dot" style="background:var(--accent-slate)"></span>Birds / Wildlife<span class="donut-legend-val">15%</span></div>
+                  <div class="donut-legend-item"><span class="donut-legend-dot" style="background:var(--accent-signal-red)"></span>Disaster Evacuations<span class="donut-legend-val">20%</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bar Chart -->
+          <div class="card">
+            <div class="card-header">
+              <h3>Weekly Incident Load</h3>
+              <span class="text-muted" style="font-size:.8rem;">This week</span>
+            </div>
+            <div class="card-body">
+              <div class="bar-chart">
+                <div class="bar-col">
+                  <div class="bar-col-val">18</div>
+                  <div class="bar-col-bar" style="height:60px;" data-height="60"></div>
+                  <div class="bar-col-day">Mon</div>
+                </div>
+                <div class="bar-col">
+                  <div class="bar-col-val">24</div>
+                  <div class="bar-col-bar" style="height:80px;"></div>
+                  <div class="bar-col-day">Tue</div>
+                </div>
+                <div class="bar-col">
+                  <div class="bar-col-val">31</div>
+                  <div class="bar-col-bar secondary" style="height:100px;"></div>
+                  <div class="bar-col-day">Wed</div>
+                </div>
+                <div class="bar-col">
+                  <div class="bar-col-val">19</div>
+                  <div class="bar-col-bar" style="height:63px;"></div>
+                  <div class="bar-col-day">Thu</div>
+                </div>
+                <div class="bar-col">
+                  <div class="bar-col-val">22</div>
+                  <div class="bar-col-bar" style="height:73px;"></div>
+                  <div class="bar-col-day">Fri</div>
+                </div>
+                <div class="bar-col">
+                  <div class="bar-col-val">28</div>
+                  <div class="bar-col-bar secondary" style="height:93px;"></div>
+                  <div class="bar-col-day">Sat</div>
+                </div>
+                <div class="bar-col">
+                  <div class="bar-col-val">27</div>
+                  <div class="bar-col-bar" style="height:89px;"></div>
+                  <div class="bar-col-day">Sun</div>
+                </div>
+              </div>
+              <div style="display:flex;gap:var(--sp-4);margin-top:var(--sp-3);font-size:.72rem;color:var(--text-muted);">
+                <span style="display:flex;align-items:center;gap:5px;"><span style="width:10px;height:10px;border-radius:2px;background:var(--accent-terracotta);display:inline-block;"></span>Animal Rescue</span>
+                <span style="display:flex;align-items:center;gap:5px;"><span style="width:10px;height:10px;border-radius:2px;background:var(--accent-signal-red);display:inline-block;"></span>Disaster Relief</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Actions -->
+          <div class="card">
+            <div class="card-header"><h3>Quick Actions</h3></div>
+            <div class="card-body" style="display:flex;flex-direction:column;gap:var(--sp-2);">
+              <button class="btn btn-danger" style="width:100%;justify-content:flex-start;gap:var(--sp-3);" data-modal-open="dispatch-modal">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                Emergency Dispatch
+              </button>
+              <a href="incidents.html" class="btn btn-outline" style="width:100%;justify-content:flex-start;gap:var(--sp-3);">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="7.86,2 16.14,2 22,7.86 22,16.14 16.14,22 7.86,22 2,16.14 2,7.86"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                View Incident Queue
+              </a>
+              <a href="volunteers.html" class="btn btn-outline" style="width:100%;justify-content:flex-start;gap:var(--sp-3);">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>
+                Broadcast Volunteer Alert
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Active Operations Table -->
+      <div class="card mb-5">
+        <div class="card-header">
+          <h3>Active Operations</h3>
+          <a href="incidents.html" class="btn btn-ghost btn-sm">View all →</a>
+        </div>
+        <div class="table-wrap card-body-flush">
+          <table class="data-table" id="ops-table">
+            <thead>
+              <tr>
+                <th>Case ID</th>
+                <th>Incident Type</th>
+                <th>Description</th>
+                <th>Location</th>
+                <th>Assigned Unit</th>
+                <th>Status</th>
+                <th class="td-actions">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-status="dispatched">
+                <td><strong>INC-002</strong></td>
+                <td><span class="badge badge-disaster">🚨 Disaster</span></td>
+                <td>Flash flood — building rescue, 4 families stranded</td>
+                <td>Kolhapur, MH</td>
+                <td>Van 3 + Boat A</td>
+                <td><span class="badge badge-info"><span class="badge-dot" style="background:var(--status-info)"></span>On-Site</span></td>
+                <td class="td-actions"><a href="incidents.html" class="btn btn-outline btn-sm">View</a></td>
+              </tr>
+              <tr data-status="dispatched">
+                <td><strong>INC-007</strong></td>
+                <td><span class="badge badge-animal">🐍 Wildlife</span></td>
+                <td>Cobra in apartment — Hadapsar residential complex</td>
+                <td>Hadapsar, Pune</td>
+                <td>Van 4</td>
+                <td><span class="badge badge-info"><span class="badge-dot" style="background:var(--status-info)"></span>Dispatched</span></td>
+                <td class="td-actions"><a href="incidents.html" class="btn btn-outline btn-sm">View</a></td>
+              </tr>
+              <tr data-status="dispatched">
+                <td><strong>INC-003</strong></td>
+                <td><span class="badge badge-animal">🐾 Animal</span></td>
+                <td>Stray dog with deep laceration — aggressive</td>
+                <td>Kothrud, Pune</td>
+                <td>Van 1</td>
+                <td><span class="badge badge-warning"><span class="badge-dot" style="background:var(--status-warning)"></span>Transporting</span></td>
+                <td class="td-actions"><a href="incidents.html" class="btn btn-outline btn-sm">View</a></td>
+              </tr>
+              <tr data-status="open">
+                <td><strong>INC-005</strong></td>
+                <td><span class="badge badge-disaster">🚨 Disaster</span></td>
+                <td>Water logging — elderly residents trapped</td>
+                <td>Sangvi, Pune</td>
+                <td>Boat B</td>
+                <td><span class="badge badge-warning"><span class="badge-dot" style="background:var(--status-warning)"></span>On-Site</span></td>
+                <td class="td-actions"><a href="incidents.html" class="btn btn-outline btn-sm">View</a></td>
+              </tr>
+              <tr data-status="open">
+                <td><strong>INC-001</strong></td>
+                <td><span class="badge badge-animal">🐮 Animal</span></td>
+                <td>Injured cow trapped in open drain, cannot move</td>
+                <td>Aundh, Pune</td>
+                <td>Van 2</td>
+                <td><span class="badge badge-success"><span class="badge-dot" style="background:var(--status-success)"></span>Completed</span></td>
+                <td class="td-actions"><a href="incidents.html" class="btn btn-outline btn-sm">View</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- ── Emergency Dispatch Modal ──────────────────────────── -->
+<div class="modal-backdrop" id="dispatch-modal" role="dialog" aria-modal="true" aria-labelledby="dispatch-modal-title">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="dispatch-modal-title">⚡ Emergency Dispatch</h3>
+      <button class="modal-close" data-modal-close="dispatch-modal" aria-label="Close">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <form class="modal-body" id="dispatch-form">
+      <div class="form-group">
+        <label class="form-label required" for="d-title">Incident Title</label>
+        <input class="form-control" type="text" id="d-title" placeholder="e.g., Injured animal near market" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label required" for="d-address">Destination Address</label>
+        <input class="form-control" type="text" id="d-address" placeholder="Full address or landmark" required>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label required" for="d-vehicle">Select Vehicle</label>
+          <select class="form-control" id="d-vehicle" required>
+            <option value="">-- Choose Unit --</option>
+            <option>Van 1 — Rescue Alpha (Ready)</option>
+            <option>Van 4 — Swift (Ready)</option>
+            <option>Van 5 — Guardian (Ready)</option>
+            <option>Rescue Boat A (Ready)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label required" for="d-crew">Crew Leader</label>
+          <select class="form-control" id="d-crew" required>
+            <option value="">-- Assign Leader --</option>
+            <option>Aarav Joshi (Driver, Van 1)</option>
+            <option>Rohit Gupta (Driver, Van 4)</option>
+            <option>Neha Sawant (Driver, Van 5)</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="d-notes">Dispatch Notes</label>
+        <textarea class="form-control" id="d-notes" placeholder="Equipment needed, special instructions..."></textarea>
+      </div>
+    </form>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" data-modal-close="dispatch-modal">Cancel</button>
+      <button class="btn btn-danger" form="dispatch-form" type="submit">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Dispatch Now
+      </button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>

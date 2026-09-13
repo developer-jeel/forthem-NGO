@@ -1,0 +1,138 @@
+/* ============================================
+   UNKE LIYE (FORTHEM) NGO
+   Finance Manager Panel - Design Tokens
+   ============================================ */
+
+:root {
+  /* Light Mode Colors */
+  --bg-canvas: #F7F4EF;
+  --bg-surface: #FFFFFF;
+  --bg-sunken: #F0ECE4;
+  --bg-sunken-hover: #E8E4DC;
+  
+  --border-subtle: #E4DFD5;
+  --border-medium: #D1C9BC;
+  --border-strong: #B8AFA0;
+  
+  --text-primary: #1A1A1A;
+  --text-secondary: #4A4A4A;
+  --text-tertiary: #757575;
+  --text-inverse: #FFFFFF;
+  
+  --brand-primary: #1F3D2B;
+  --brand-primary-hover: #28503A;
+  --brand-primary-light: #2D5A42;
+  --brand-accent: #C0552A;
+  
+  /* Status Colors */
+  --status-success: #4A7C59;
+  --status-success-bg: #E8F1EA;
+  --status-warning: #B98232;
+  --status-warning-bg: #F5EBD8;
+  --status-danger: #B3382C;
+  --status-danger-bg: #F5E6E4;
+  --status-info: #3A5F8A;
+  --status-info-bg: #E6ECF2;
+  
+  /* Program Pillar Colors */
+  --pillar-animal: #C0552A;
+  --pillar-animal-bg: #F5E8E2;
+  --pillar-environment: #4A7C3F;
+  --pillar-environment-bg: #E8F1E6;
+  --pillar-sanitation: #3A5F8A;
+  --pillar-sanitation-bg: #E6ECF2;
+  --pillar-disaster: #B3382C;
+  --pillar-disaster-bg: #F5E6E4;
+  
+  /* Typography */
+  --font-heading: 'Fraunces', Georgia, serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  
+  /* Font Sizes */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  
+  /* Border Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-full: 9999px;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
+  
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 350ms ease;
+  
+  /* Z-Index Scale */
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-modal: 300;
+  --z-toast: 400;
+  
+  /* Sidebar */
+  --sidebar-width: 260px;
+  --sidebar-collapsed-width: 70px;
+  --header-height: 64px;
+}
+
+/* Dark Mode */
+[data-theme="dark"] {
+  --bg-canvas: #141814;
+  --bg-surface: #1B211C;
+  --bg-sunken: #0F130F;
+  --bg-sunken-hover: #1A1F1A;
+  
+  --border-subtle: #2A322B;
+  --border-medium: #3D453D;
+  --border-strong: #525C52;
+  
+  --text-primary: #F5F5F5;
+  --text-secondary: #D1D1D1;
+  --text-tertiary: #9CA39C;
+  
+  --status-success-bg: #1A2F22;
+  --status-warning-bg: #2F2618;
+  --status-danger-bg: #2F1A18;
+  --status-info-bg: #1A242F;
+  
+  --pillar-animal-bg: #2F1A14;
+  --pillar-environment-bg: #1A2F16;
+  --pillar-sanitation-bg: #1A242F;
+  --pillar-disaster-bg: #2F1A18;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

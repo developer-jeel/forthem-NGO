@@ -1,0 +1,201 @@
+/* ============================================================
+   UNKE LIYE — Animations & Keyframes
+   ============================================================ */
+
+@import './variables.css';
+
+/* ============================
+   Keyframes
+   ============================ */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-32px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(32px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes bounceSlight {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
+}
+
+/* ============================
+   Scroll Reveal Classes
+   ============================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity var(--transition-reveal), transform var(--transition-reveal);
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-32px);
+  transition: opacity var(--transition-reveal), transform var(--transition-reveal);
+}
+
+.reveal-left.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(32px);
+  transition: opacity var(--transition-reveal), transform var(--transition-reveal);
+}
+
+.reveal-right.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.94);
+  transition: opacity var(--transition-reveal), transform var(--transition-reveal);
+}
+
+.reveal-scale.revealed {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Staggered delays */
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+/* ============================
+   Page Load Transition
+   ============================ */
+.page-transition {
+  animation: fadeIn 0.4s ease-out;
+}
+
+/* ============================
+   Loading Skeleton
+   ============================ */
+.skeleton {
+  background: linear-gradient(90deg,
+    var(--color-surface-alt) 25%,
+    var(--color-border) 50%,
+    var(--color-surface-alt) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius-sm);
+}
+
+/* ============================
+   Utility Animation Classes
+   ============================ */
+.animate-fade-up   { animation: fadeUp 0.6s ease-out both; }
+.animate-fade-in   { animation: fadeIn 0.5s ease-out both; }
+.animate-scale-in  { animation: scaleIn 0.4s ease-out both; }
+.animate-bounce    { animation: bounceSlight 2s ease-in-out infinite; }
+
+/* ============================
+   Hover Effects
+   ============================ */
+.hover-lift {
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ============================
+   Progress Bar Animation
+   ============================ */
+.progress-bar-fill {
+  width: 0%;
+  transition: width 1.2s ease-in-out;
+}
+
+.progress-bar-fill.animated {
+  /* width set via JS */
+}
+
+/* ============================
+   Floating Emergency Button
+   ============================ */
+.emergency-float {
+  position: fixed;
+  bottom: var(--space-8);
+  left: var(--space-6);
+  z-index: var(--z-toast);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  background: var(--color-urgent);
+  color: #fff;
+  text-decoration: none;
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-semibold);
+  box-shadow: 0 4px 20px rgba(192,57,43,0.4);
+  animation: bounceSlight 3s ease-in-out infinite;
+  transition: background-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.emergency-float:hover {
+  background-color: var(--color-urgent-dark);
+  color: #fff;
+  transform: scale(1.04);
+  box-shadow: 0 6px 24px rgba(192,57,43,0.5);
+  animation: none;
+}
+
+@media (max-width: 640px) {
+  .emergency-float span:not(.emergency-float-icon) {
+    display: none;
+  }
+}

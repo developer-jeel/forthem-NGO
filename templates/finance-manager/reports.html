@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Financial Reports - Unke Liye Finance Manager</title>
+  <link rel="stylesheet" href="assets/css/finance-manager.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="../logo.png" alt="Unke Liye Logo" class="sidebar-logo-img"><div class="sidebar-brand">UNKE LIYE<span>Finance Operations</span></div></div>
+      <nav class="sidebar-nav">
+        <div class="nav-section"><div class="nav-section-title">Overview</div><a href="dashboard.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Dashboard</a></div>
+        <div class="nav-section"><div class="nav-section-title">Revenue</div><a href="donations.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>Donations</a><a href="donors.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>Donors</a><a href="receipts.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>Receipts</a></div>
+        <div class="nav-section"><div class="nav-section-title">Programs</div><a href="campaigns.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>Campaigns</a><a href="expenses.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 14l4-4-4-4M5 20h14a2 2 0 002-2V8l-7-5-7 5v10a2 2 0 002 2z"/></svg>Expenses</a></div>
+        <div class="nav-section"><div class="nav-section-title">Analysis</div><a href="reports.html" class="nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Financial Reports</a><a href="audit-log.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>Audit Log</a></div>
+      </nav>
+      <div class="sidebar-footer"><div class="user-profile"><div class="user-avatar">AM</div><div class="user-info"><div class="user-name">Aarav Mehta</div><div class="user-role">Finance Manager</div><div class="user-status"><span class="user-status-dot"></span>Online</div></div></div></div>
+    </aside>
+    <div class="sidebar-overlay"></div>
+    <main class="main-content">
+      <header class="header">
+        <div class="header-left"><button class="sidebar-toggle" aria-label="Toggle sidebar"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button><nav class="breadcrumb"><span>Finance Manager</span><span class="breadcrumb-separator">/</span><span class="breadcrumb-current">Reports</span></nav></div>
+        <div class="header-right"><div class="search-input-wrapper"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg><input type="text" placeholder="Search..." aria-label="Global search"></div><button class="header-action" aria-label="Notifications"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg><span class="badge">4</span></button><button class="theme-toggle" aria-label="Toggle theme"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg></button></div>
+      </header>
+      <div class="page-content">
+        <div class="content-container">
+          <div class="page-header">
+            <h1 class="page-title">Financial Reports</h1>
+            <p class="page-subtitle">Review fundraising, expenses, campaign performance, and allocation trends.</p>
+            <div class="page-actions"><button class="btn btn-secondary" data-action="print"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>Print</button><button class="btn btn-secondary" data-action="export-report"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Export</button></div>
+          </div>
+          <div class="filter-bar">
+            <div class="filter-group"><label class="filter-label">Period</label><select class="filter-select" data-filter="period"><option value="current-month">Current Month</option><option value="last-month">Last Month</option><option value="quarter">Current Quarter</option><option value="half-year">Half Year</option><option value="financial-year">Financial Year 2025-26</option></select></div>
+            <div class="filter-group"><label class="filter-label">Report Type</label><button class="btn btn-sm btn-secondary active" data-report-type="donation">Donation Summary</button><button class="btn btn-sm btn-ghost" data-report-type="expense">Expense Summary</button><button class="btn btn-sm btn-ghost" data-report-type="allocation">Allocation Report</button><button class="btn btn-sm btn-ghost" data-report-type="payment">Payment Channels</button></div>
+          </div>
+          <div class="section" style="margin-top: 1.5rem;">
+            <div class="section-header"><h3 class="section-title">Report Summary</h3><span class="text-tertiary text-sm" data-field="date-range">Current Month</span></div>
+            <div class="report-section" id="report-donation">
+              <div class="financial-summary">
+                <div class="summary-section">
+                  <h4 class="summary-section-title">Donation Summary - H1 FY25</h4>
+                  <div class="summary-row"><span class="summary-label">Total Raised</span><span class="summary-value">₹38,60,000</span></div>
+                  <div class="summary-row"><span class="summary-label">Transaction Count</span><span class="summary-value">1,248</span></div>
+                  <div class="summary-row"><span class="summary-label">Average Donation</span><span class="summary-value">₹3,093</span></div>
+                  <div class="summary-row"><span class="summary-label">Largest Single Gift</span><span class="summary-value">₹2,00,000</span></div>
+                  <div class="summary-row"><span class="summary-label">Individual Contributions</span><span class="summary-value">₹28,95,000 (75%)</span></div>
+                  <div class="summary-row"><span class="summary-label">Corporate Contributions</span><span class="summary-value">₹9,65,000 (25%)</span></div>
+                </div>
+                <div class="summary-section">
+                  <h4 class="summary-section-title">Payment Channel Breakdown</h4>
+                  <div class="payment-channels">
+                    <div class="payment-channel-item"><span class="payment-channel-name">UPI / QR</span><div class="payment-channel-bar"><div class="payment-channel-fill" style="width: 58%;"></div></div><span class="payment-channel-percent">58%</span></div>
+                    <div class="payment-channel-item"><span class="payment-channel-name">Debit / Credit Cards</span><div class="payment-channel-bar"><div class="payment-channel-fill" style="width: 24%;"></div></div><span class="payment-channel-percent">24%</span></div>
+                    <div class="payment-channel-item"><span class="payment-channel-name">Net Banking</span><div class="payment-channel-bar"><div class="payment-channel-fill" style="width: 11%;"></div></div><span class="payment-channel-percent">11%</span></div>
+                    <div class="payment-channel-item"><span class="payment-channel-name">Cheques / NEFT</span><div class="payment-channel-bar"><div class="payment-channel-fill" style="width: 7%;"></div></div><span class="payment-channel-percent">7%</span></div>
+                  </div>
+                </div>
+                <div class="summary-section">
+                  <h4 class="summary-section-title">Allocation Summary</h4>
+                  <div class="allocation-indicator">
+                    <div class="allocation-item"><span class="allocation-label">Program</span><div class="allocation-bar"><div class="allocation-fill success" style="width: 82%;"></div></div><span class="allocation-value">82.0%</span></div>
+                    <div class="allocation-item"><span class="allocation-label">Administration</span><div class="allocation-bar"><div class="allocation-fill info" style="width: 10%;"></div></div><span class="allocation-value">10.0%</span></div>
+                    <div class="allocation-item"><span class="allocation-label">Fundraising</span><div class="allocation-bar"><div class="allocation-fill warning" style="width: 8%;"></div></div><span class="allocation-value">8.0%</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="report-section" id="report-expense" style="display: none;">
+              <div class="financial-summary">
+                <div class="summary-section">
+                  <h4 class="summary-section-title">Expense Summary</h4>
+                  <div class="summary-row"><span class="summary-label">Total Expenses</span><span class="summary-value">₹31,65,200</span></div>
+                  <div class="summary-row"><span class="summary-label">Program Expenses</span><span class="summary-value">₹25,95,464 (82%)</span></div>
+                  <div class="summary-row"><span class="summary-label">Administration</span><span class="summary-value">₹3,16,520 (10%)</span></div>
+                  <div class="summary-row"><span class="summary-label">Fundraising</span><span class="summary-value">₹2,53,216 (8%)</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="report-section" id="report-allocation" style="display: none;">
+              <div class="allocation-card">
+                <div class="allocation-header"><h3 class="allocation-title">82/10/8 Allocation Framework</h3><span class="allocation-status within">Within Framework</span></div>
+                <div class="allocation-visual">
+                  <div class="allocation-chart"><svg viewBox="0 0 100 100" class="allocation-ring"><circle class="allocation-segment programs" cx="50" cy="50" r="38" stroke-dasharray="238.76 238.76" stroke-dashoffset="0"/><circle class="allocation-segment admin" cx="50" cy="50" r="38" stroke-dasharray="29.84 238.76" stroke-dashoffset="-238.76"/><circle class="allocation-segment fundraising" cx="50" cy="50" r="38" stroke-dasharray="19.9 238.76" stroke-dashoffset="-268.6"/></svg><div class="allocation-center"><span class="allocation-center-label">Allocation</span><span class="allocation-center-value">82%</span></div></div>
+                  <div class="allocation-legend">
+                    <div class="allocation-legend-item"><div class="allocation-legend-color" style="background-color: var(--status-success);"></div><div class="allocation-legend-info"><div class="allocation-legend-label">Programs</div><div class="allocation-legend-target">Target: 82%</div></div><div class="allocation-legend-value">82.0%</div></div>
+                    <div class="allocation-legend-item"><div class="allocation-legend-color" style="background-color: var(--status-info);"></div><div class="allocation-legend-info"><div class="allocation-legend-label">Administration</div><div class="allocation-legend-target">Target: 10%</div></div><div class="allocation-legend-value">10.0%</div></div>
+                    <div class="allocation-legend-item"><div class="allocation-legend-color" style="background-color: var(--status-warning);"></div><div class="allocation-legend-info"><div class="allocation-legend-label">Fundraising</div><div class="allocation-legend-target">Target: 8%</div></div><div class="allocation-legend-value">8.0%</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="report-section" id="report-payment" style="display: none;">
+              <div class="card">
+                <div class="card-header"><span class="card-title">Payment Channel Report</span></div>
+                <div class="payment-channels">
+                  <div class="payment-channel-item"><span class="payment-channel-name">UPI / QR</span><div class="payment-channel-bar"><div class="payment-channel-fill" style="width: 58%;"></div></div><span class="payment-channel-percent">58%</span></div>
+                  <div class="payment-channel-item"><span class="payment-channel-name">Debit / Credit Cards</span><div class="payment-channel-bar"><div class="payment-channel-fill" style="width: 24%;"></div></div><span class="payment-channel-percent">24%</span></div>
+                  <div class="payment-channel-item"><span class="payment-channel-name">Net Banking</span><div class="payment-channel-bar"><div class="payment-channel-fill" style="width: 11%;"></div></div><span class="payment-channel-percent">11%</span></div>
+                  <div class="payment-channel-item"><span class="payment-channel-name">Cheques / NEFT</span><div class="payment-channel-bar"><div class="payment-channel-fill" style="width: 7%;"></div></div><span class="payment-channel-percent">7%</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <div class="toast-container"></div>
+  <script src="assets/js/layout.js"></script>
+  <script src="assets/js/ui.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/reports.js"></script>
+</body>
+</html>

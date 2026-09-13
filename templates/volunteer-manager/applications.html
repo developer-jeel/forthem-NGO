@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Applications - Volunteer Manager | Unke Liye NGO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/volunteer-manager.css">
+</head>
+<body>
+  <div class="app-shell">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <img src="../logo.png" alt="Unke Liye Logo" class="sidebar-logo-img">
+        <div>
+          <div class="sidebar-brand">UNKE LIYE</div>
+          <div class="sidebar-brand-sub">Volunteer Operations</div>
+        </div>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <div class="nav-section-title">Overview</div>
+          <a href="dashboard.html" class="nav-item">
+            <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+            </svg>
+            Dashboard
+          </a>
+        </div>
+        
+        <div class="nav-section">
+          <div class="nav-section-title">Volunteers</div>
+          <a href="volunteers.html" class="nav-item">
+            <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            Volunteers
+          </a>
+          <a href="applications.html" class="nav-item active">
+            <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+            Applications
+          </a>
+          <a href="shifts.html" class="nav-item">
+            <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+            Shifts & Schedule
+          </a>
+        </div>
+        
+        <div class="nav-section">
+          <div class="nav-section-title">Operations</div>
+          <a href="dashboard.html#incidents" class="nav-item">
+            <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+            </svg>
+            Active Incidents
+          </a>
+          <a href="dashboard.html#deployments" class="nav-item">
+            <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
+            </svg>
+            Deployments
+          </a>
+          <a href="#" class="nav-item">
+            <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            Volunteer Hours
+          </a>
+        </div>
+        
+        <div class="nav-section">
+          <div class="nav-section-title">Communication</div>
+          <a href="broadcast.html" class="nav-item">
+            <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
+            </svg>
+            Broadcast Center
+          </a>
+        </div>
+        
+        <div class="nav-section">
+          <div class="nav-section-title">System</div>
+          <a href="#" class="nav-item">
+            <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+            Settings
+          </a>
+          <a href="#" class="nav-item">
+            <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            Help
+          </a>
+        </div>
+      </nav>
+      
+      <div class="sidebar-footer">
+        <div class="user-profile">
+          <div class="user-avatar">AM</div>
+          <div class="user-info">
+            <div class="user-name">Aarav Mehta</div>
+            <div class="user-role">Volunteer Coordinator</div>
+            <div class="user-status">
+              <span class="user-status-dot"></span>
+              Online
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+    
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Header -->
+      <header class="header">
+        <div class="header-left">
+          <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+          <nav class="breadcrumb">
+            <span>Volunteer Manager</span>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Applications</span>
+          </nav>
+        </div>
+        
+        <div class="header-center">
+          <div class="global-search">
+            <svg class="global-search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+            <input type="text" class="global-search-input" placeholder="Search applications... (Ctrl+K)" id="global-search-input">
+          </div>
+        </div>
+        
+        <div class="header-right">
+          <button class="icon-button has-badge" id="notification-btn" aria-label="Notifications">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+            </svg>
+            <span class="notification-badge">4</span>
+          </button>
+          <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+            <svg class="sun-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+          </button>
+        </div>
+      </header>
+      
+      <!-- Page Content -->
+      <div class="page-content">
+        <div class="page-header">
+          <h1 class="page-title">Volunteer Applications</h1>
+          <p class="page-subtitle">Review new applicants and build the next generation of field volunteers.</p>
+        </div>
+        
+        <!-- Application Statistics -->
+        <div class="application-stats">
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <div class="stat-card-icon pillar-animal">
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+            </div>
+            <div class="stat-card-value" id="stat-pending">12</div>
+            <div class="stat-card-label">Pending Review</div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <div class="stat-card-icon pillar-environment">
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+              </div>
+            </div>
+            <div class="stat-card-value" id="stat-review">4</div>
+            <div class="stat-card-label">Under Review</div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <div class="stat-card-icon pillar-sanitation">
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+            </div>
+            <div class="stat-card-value" id="stat-approved">18</div>
+            <div class="stat-card-label">Approved This Month</div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <div class="stat-card-icon pillar-disaster">
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+            </div>
+            <div class="stat-card-value" id="stat-rejected">6</div>
+            <div class="stat-card-label">Rejected</div>
+          </div>
+        </div>
+        
+        <!-- Filter Toolbar -->
+        <div class="filter-toolbar">
+          <div class="filter-group" style="flex: 1; min-width: 200px;">
+            <label class="filter-label" for="app-search">Search</label>
+            <input type="text" class="filter-input" id="app-search" placeholder="Name, email, city...">
+          </div>
+          
+          <div class="filter-group">
+            <label class="filter-label" for="filter-app-status">Status</label>
+            <select class="filter-select" id="filter-app-status">
+              <option value="all">All Status</option>
+              <option value="pending">Pending Review</option>
+              <option value="under-review">Under Review</option>
+              <option value="approved">Approved</option>
+              <option value="rejected">Rejected</option>
+              <option value="waitlisted">Waitlisted</option>
+            </select>
+          </div>
+          
+          <div class="filter-group">
+            <label class="filter-label" for="filter-app-city">City</label>
+            <select class="filter-select" id="filter-app-city">
+              <option value="all">All Cities</option>
+              <option value="pune">Pune</option>
+              <option value="mumbai">Mumbai</option>
+              <option value="delhi">Delhi</option>
+              <option value="ahmedabad">Ahmedabad</option>
+              <option value="rajkot">Rajkot</option>
+            </select>
+          </div>
+          
+          <div class="filter-group">
+            <label class="filter-label" for="filter-app-skill">Skills</label>
+            <select class="filter-select" id="filter-app-skill">
+              <option value="all">All Skills</option>
+              <option value="animal-rescue">Animal Rescue</option>
+              <option value="first-aid">First Aid</option>
+              <option value="driving">Driving</option>
+              <option value="fundraising">Fundraising</option>
+              <option value="event-support">Event Support</option>
+              <option value="disaster-response">Disaster Response</option>
+              <option value="social-media">Social Media</option>
+            </select>
+          </div>
+          
+          <div class="filter-group">
+            <label class="filter-label" for="filter-app-date">Application Date</label>
+            <select class="filter-select" id="filter-app-date">
+              <option value="all">Any Time</option>
+              <option value="today">Today</option>
+              <option value="week">This Week</option>
+              <option value="month">This Month</option>
+            </select>
+          </div>
+          
+          <div class="filter-actions">
+            <button class="btn btn-secondary btn-sm" id="clear-app-filters">Clear Filters</button>
+          </div>
+        </div>
+        
+        <!-- Applications Grid -->
+        <div class="applications-grid">
+          <!-- Application Card 1 -->
+          <div class="application-card" data-id="APP-001" data-status="pending" data-city="pune" data-skills="animal-rescue first-aid">
+            <div class="application-card-header">
+              <div class="avatar" style="background-color: #EC4899;">KS</div>
+              <div style="flex: 1;">
+                <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-1);">Kavya Shah</h3>
+                <p style="font-size: var(--text-sm); color: var(--text-tertiary);">kavya.shah@example.com</p>
+              </div>
+              <span class="badge badge-warning">Pending Review</span>
+            </div>
+            <div class="application-card-body">
+              <div style="display: flex; gap: var(--space-4); margin-bottom: var(--space-3); font-size: var(--text-sm); color: var(--text-secondary);">
+                <span>📍 Pune</span>
+                <span>📅 Aug 25, 2026</span>
+                <span class="verification-badge pending">⏳ Verification Pending</span>
+              </div>
+              <div style="margin-bottom: var(--space-3);">
+                <span class="skill-chip pillar-animal">Animal Rescue</span>
+                <span class="skill-chip">First Aid</span>
+                <span class="skill-chip">Driving</span>
+              </div>
+              <div style="font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: var(--space-3);">
+                <strong>Availability:</strong> Weekends, On-call
+              </div>
+              <div class="application-statement">
+                "I have always been passionate about animal welfare. I grew up helping my uncle at his veterinary clinic and would love to contribute my skills to rescue operations in Pune."
+              </div>
+            </div>
+            <div class="application-actions">
+              <a href="application-detail.html?id=APP-001" class="btn btn-secondary btn-sm">Dossier &rarr;</a>
+              <button class="btn btn-secondary btn-sm" data-action="review" data-app-id="APP-001">Quick Review</button>
+              <button class="btn btn-success btn-sm" data-action="approve" data-app-id="APP-001">Approve</button>
+              <button class="btn btn-danger btn-sm" data-action="reject" data-app-id="APP-001">Reject</button>
+            </div>
+          </div>
+          
+          <!-- Application Card 2 -->
+          <div class="application-card" data-id="APP-002" data-status="pending" data-city="mumbai" data-skills="environment social-media">
+            <div class="application-card-header">
+              <div class="avatar" style="background-color: #10B981;">DP</div>
+              <div style="flex: 1;">
+                <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-1);">Dev Patel</h3>
+                <p style="font-size: var(--text-sm); color: var(--text-tertiary);">dev.patel@example.com</p>
+              </div>
+              <span class="badge badge-warning">Pending Review</span>
+            </div>
+            <div class="application-card-body">
+              <div style="display: flex; gap: var(--space-4); margin-bottom: var(--space-3); font-size: var(--text-sm); color: var(--text-secondary);">
+                <span>📍 Mumbai</span>
+                <span>📅 Aug 24, 2026</span>
+                <span class="verification-badge pending">⏳ Verification Pending</span>
+              </div>
+              <div style="margin-bottom: var(--space-3);">
+                <span class="skill-chip pillar-environment">Environment</span>
+                <span class="skill-chip">Social Media</span>
+                <span class="skill-chip">Fundraising</span>
+              </div>
+              <div style="font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: var(--space-3);">
+                <strong>Availability:</strong> Weekdays, Full-time
+              </div>
+              <div class="application-statement">
+                "As a digital marketing professional, I want to use my skills to help NGOs reach more people. I'm particularly interested in environmental initiatives and tree plantation drives."
+              </div>
+            </div>
+            <div class="application-actions">
+              <a href="application-detail.html?id=APP-002" class="btn btn-secondary btn-sm">Dossier &rarr;</a>
+              <button class="btn btn-secondary btn-sm" data-action="review" data-app-id="APP-002">Quick Review</button>
+              <button class="btn btn-success btn-sm" data-action="approve" data-app-id="APP-002">Approve</button>
+              <button class="btn btn-danger btn-sm" data-action="reject" data-app-id="APP-002">Reject</button>
+            </div>
+          </div>
+          
+          <!-- Application Card 3 -->
+          <div class="application-card" data-id="APP-003" data-status="pending" data-city="ahmedabad" data-skills="sanitation driving">
+            <div class="application-card-header">
+              <div class="avatar" style="background-color: #F59E0B;">NT</div>
+              <div style="flex: 1;">
+                <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-1);">Neha Trivedi</h3>
+                <p style="font-size: var(--text-sm); color: var(--text-tertiary);">neha.trivedi@example.com</p>
+              </div>
+              <span class="badge badge-warning">Pending Review</span>
+            </div>
+            <div class="application-card-body">
+              <div style="display: flex; gap: var(--space-4); margin-bottom: var(--space-3); font-size: var(--text-sm); color: var(--text-secondary);">
+                <span>📍 Ahmedabad</span>
+                <span>📅 Aug 23, 2026</span>
+                <span class="verification-badge verified">✓ Verified</span>
+              </div>
+              <div style="margin-bottom: var(--space-3);">
+                <span class="skill-chip pillar-sanitation">Sanitation</span>
+                <span class="skill-chip">Driving</span>
+                <span class="skill-chip">Community Outreach</span>
+              </div>
+              <div style="font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: var(--space-3);">
+                <strong>Availability:</strong> Weekends
+              </div>
+              <div class="application-statement">
+                "I believe in giving back to the community. I have a valid driving license and can help with transportation for sanitation drives and community outreach programs."
+              </div>
+            </div>
+            <div class="application-actions">
+              <a href="application-detail.html?id=APP-003" class="btn btn-secondary btn-sm">Dossier &rarr;</a>
+              <button class="btn btn-secondary btn-sm" data-action="review" data-app-id="APP-003">Quick Review</button>
+              <button class="btn btn-success btn-sm" data-action="approve" data-app-id="APP-003">Approve</button>
+              <button class="btn btn-danger btn-sm" data-action="reject" data-app-id="APP-003">Reject</button>
+            </div>
+          </div>
+          
+          <!-- Application Card 4 -->
+          <div class="application-card" data-id="APP-004" data-status="under-review" data-city="pune" data-skills="disaster-response first-aid">
+            <div class="application-card-header">
+              <div class="avatar" style="background-color: #EF4444;">VK</div>
+              <div style="flex: 1;">
+                <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-1);">Vikram Kulkarni</h3>
+                <p style="font-size: var(--text-sm); color: var(--text-tertiary);">vikram.kulkarni@example.com</p>
+              </div>
+              <span class="badge badge-info">Under Review</span>
+            </div>
+            <div class="application-card-body">
+              <div style="display: flex; gap: var(--space-4); margin-bottom: var(--space-3); font-size: var(--text-sm); color: var(--text-secondary);">
+                <span>📍 Pune</span>
+                <span>📅 Aug 20, 2026</span>
+                <span class="verification-badge verified">✓ Verified</span>
+              </div>
+              <div style="margin-bottom: var(--space-3);">
+                <span class="skill-chip pillar-disaster">Disaster Response</span>
+                <span class="skill-chip">First Aid</span>
+                <span class="skill-chip">Driving</span>
+              </div>
+              <div style="font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: var(--space-3);">
+                <strong>Availability:</strong> On-call, Full-time
+              </div>
+              <div class="application-statement">
+                "Former NDRF volunteer with 5 years of experience in disaster response. Certified in advanced first aid and emergency medical response. Ready to serve immediately."
+              </div>
+            </div>
+            <div class="application-actions">
+              <button class="btn btn-secondary btn-sm" data-action="review" data-app-id="APP-004">Review</button>
+              <button class="btn btn-success btn-sm" data-action="approve" data-app-id="APP-004">Approve</button>
+              <button class="btn btn-danger btn-sm" data-action="reject" data-app-id="APP-004">Reject</button>
+            </div>
+          </div>
+          
+          <!-- Application Card 5 -->
+          <div class="application-card" data-id="APP-005" data-status="pending" data-city="delhi" data-skills="fundraising event-support">
+            <div class="application-card-header">
+              <div class="avatar" style="background-color: #8B5CF6;">AS</div>
+              <div style="flex: 1;">
+                <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-1);">Aditi Singh</h3>
+                <p style="font-size: var(--text-sm); color: var(--text-tertiary);">aditi.singh@example.com</p>
+              </div>
+              <span class="badge badge-warning">Pending Review</span>
+            </div>
+            <div class="application-card-body">
+              <div style="display: flex; gap: var(--space-4); margin-bottom: var(--space-3); font-size: var(--text-sm); color: var(--text-secondary);">
+                <span>📍 Delhi</span>
+                <span>📅 Aug 22, 2026</span>
+                <span class="verification-badge pending">⏳ Verification Pending</span>
+              </div>
+              <div style="margin-bottom: var(--space-3);">
+                <span class="skill-chip">Fundraising</span>
+                <span class="skill-chip">Event Support</span>
+                <span class="skill-chip">Social Media</span>
+              </div>
+              <div style="font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: var(--space-3);">
+                <strong>Availability:</strong> Weekends
+              </div>
+              <div class="application-statement">
+                "Event management professional with experience in organizing charity events. I want to help Unke Liye organize impactful fundraising events in Delhi NCR."
+              </div>
+            </div>
+            <div class="application-actions">
+              <button class="btn btn-secondary btn-sm" data-action="review" data-app-id="APP-005">Review</button>
+              <button class="btn btn-success btn-sm" data-action="approve" data-app-id="APP-005">Approve</button>
+              <button class="btn btn-danger btn-sm" data-action="reject" data-app-id="APP-005">Reject</button>
+            </div>
+          </div>
+          
+          <!-- Application Card 6 -->
+          <div class="application-card" data-id="APP-006" data-status="approved" data-city="rajkot" data-skills="animal-rescue">
+            <div class="application-card-header">
+              <div class="avatar" style="background-color: #14B8A6;">RM</div>
+              <div style="flex: 1;">
+                <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-1);">Rahul Mehta</h3>
+                <p style="font-size: var(--text-sm); color: var(--text-tertiary);">rahul.mehta@example.com</p>
+              </div>
+              <span class="badge badge-success">Approved</span>
+            </div>
+            <div class="application-card-body">
+              <div style="display: flex; gap: var(--space-4); margin-bottom: var(--space-3); font-size: var(--text-sm); color: var(--text-secondary);">
+                <span>📍 Rajkot</span>
+                <span>📅 Aug 15, 2026</span>
+                <span class="verification-badge verified">✓ Verified</span>
+              </div>
+              <div style="margin-bottom: var(--space-3);">
+                <span class="skill-chip pillar-animal">Animal Rescue</span>
+                <span class="skill-chip">First Aid</span>
+              </div>
+              <div style="font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: var(--space-3);">
+                <strong>Availability:</strong> Weekends, On-call
+              </div>
+              <div class="application-statement">
+                "Veterinary assistant by profession. Passionate about animal welfare and have experience handling rescue operations for injured stray animals."
+              </div>
+            </div>
+            <div class="application-actions">
+              <button class="btn btn-secondary btn-sm" disabled>Approved</button>
+              <a href="volunteers.html" class="btn btn-primary btn-sm">View in Roster</a>
+            </div>
+          </div>
+          
+          <!-- Application Card 7 -->
+          <div class="application-card" data-id="APP-007" data-status="rejected" data-city="surat" data-skills="event-support">
+            <div class="application-card-header">
+              <div class="avatar" style="background-color: #6B7280;">PJ</div>
+              <div style="flex: 1;">
+                <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-1);">Pooja Joshi</h3>
+                <p style="font-size: var(--text-sm); color: var(--text-tertiary);">pooja.joshi@example.com</p>
+              </div>
+              <span class="badge badge-neutral">Rejected</span>
+            </div>
+            <div class="application-card-body">
+              <div style="display: flex; gap: var(--space-4); margin-bottom: var(--space-3); font-size: var(--text-sm); color: var(--text-secondary);">
+                <span>📍 Surat</span>
+                <span>📅 Aug 10, 2026</span>
+              </div>
+              <div style="margin-bottom: var(--space-3);">
+                <span class="skill-chip">Event Support</span>
+              </div>
+              <div style="font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: var(--space-3);">
+                <strong>Availability:</strong> Weekdays only
+              </div>
+              <div class="application-statement">
+                "I would like to volunteer for events and community programs."
+              </div>
+              <div style="font-size: var(--text-xs); color: var(--status-critical); margin-top: var(--space-2);">
+                <strong>Rejection Reason:</strong> Not enough availability for our current needs.
+              </div>
+            </div>
+            <div class="application-actions">
+              <button class="btn btn-secondary btn-sm" disabled>Rejected</button>
+            </div>
+          </div>
+          
+          <!-- Application Card 8 -->
+          <div class="application-card" data-id="APP-008" data-status="pending" data-city="mumbai" data-skills="first-aid community-outreach">
+            <div class="application-card-header">
+              <div class="avatar" style="background-color: #F97316;">SK</div>
+              <div style="flex: 1;">
+                <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-1);">Sanjay Kumar</h3>
+                <p style="font-size: var(--text-sm); color: var(--text-tertiary);">sanjay.kumar@example.com</p>
+              </div>
+              <span class="badge badge-warning">Pending Review</span>
+            </div>
+            <div class="application-card-body">
+              <div style="display: flex; gap: var(--space-4); margin-bottom: var(--space-3); font-size: var(--text-sm); color: var(--text-secondary);">
+                <span>📍 Mumbai</span>
+                <span>📅 Aug 26, 2026</span>
+                <span class="verification-badge pending">⏳ Verification Pending</span>
+              </div>
+              <div style="margin-bottom: var(--space-3);">
+                <span class="skill-chip">First Aid</span>
+                <span class="skill-chip pillar-sanitation">Community Outreach</span>
+              </div>
+              <div style="font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: var(--space-3);">
+                <strong>Availability:</strong> Full-time
+              </div>
+              <div class="application-statement">
+                "Retired nurse looking to continue serving the community. I have 30 years of medical experience and would like to contribute to health-related volunteer work."
+              </div>
+            </div>
+            <div class="application-actions">
+              <button class="btn btn-secondary btn-sm" data-action="review" data-app-id="APP-008">Review</button>
+              <button class="btn btn-success btn-sm" data-action="approve" data-app-id="APP-008">Approve</button>
+              <button class="btn btn-danger btn-sm" data-action="reject" data-app-id="APP-008">Reject</button>
+            </div>
+          </div>
+          
+          <!-- Application Card 9 -->
+          <div class="application-card" data-id="APP-009" data-status="under-review" data-city="pune" data-skills="social-media fundraising">
+            <div class="application-card-header">
+              <div class="avatar" style="background-color: #EC4899;">IM</div>
+              <div style="flex: 1;">
+                <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-1);">Isha Malhotra</h3>
+                <p style="font-size: var(--text-sm); color: var(--text-tertiary);">isha.malhotra@example.com</p>
+              </div>
+              <span class="badge badge-info">Under Review</span>
+            </div>
+            <div class="application-card-body">
+              <div style="display: flex; gap: var(--space-4); margin-bottom: var(--space-3); font-size: var(--text-sm); color: var(--text-secondary);">
+                <span>📍 Pune</span>
+                <span>📅 Aug 18, 2026</span>
+                <span class="verification-badge verified">✓ Verified</span>
+              </div>
+              <div style="margin-bottom: var(--space-3);">
+                <span class="skill-chip">Social Media</span>
+                <span class="skill-chip">Fundraising</span>
+                <span class="skill-chip">Event Support</span>
+              </div>
+              <div style="font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: var(--space-3);">
+                <strong>Availability:</strong> Weekends
+              </div>
+              <div class="application-statement">
+                "Social media manager with 3 years of experience. I want to help NGOs amplify their message and reach more donors through effective digital campaigns."
+              </div>
+            </div>
+            <div class="application-actions">
+              <button class="btn btn-secondary btn-sm" data-action="review" data-app-id="APP-009">Review</button>
+              <button class="btn btn-success btn-sm" data-action="approve" data-app-id="APP-009">Approve</button>
+              <button class="btn btn-danger btn-sm" data-action="reject" data-app-id="APP-009">Reject</button>
+            </div>
+          </div>
+          
+          <!-- Application Card 10 -->
+          <div class="application-card" data-id="APP-010" data-status="pending" data-city="nashik" data-skills="driving disaster-response">
+            <div class="application-card-header">
+              <div class="avatar" style="background-color: #3B82F6;">AP</div>
+              <div style="flex: 1;">
+                <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-1);">Ajay Patil</h3>
+                <p style="font-size: var(--text-sm); color: var(--text-tertiary);">ajay.patil@example.com</p>
+              </div>
+              <span class="badge badge-warning">Pending Review</span>
+            </div>
+            <div class="application-card-body">
+              <div style="display: flex; gap: var(--space-4); margin-bottom: var(--space-3); font-size: var(--text-sm); color: var(--text-secondary);">
+                <span>📍 Nashik</span>
+                <span>📅 Aug 21, 2026</span>
+                <span class="verification-badge pending">⏳ Verification Pending</span>
+              </div>
+              <div style="margin-bottom: var(--space-3);">
+                <span class="skill-chip">Driving</span>
+                <span class="skill-chip pillar-disaster">Disaster Response</span>
+              </div>
+              <div style="font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: var(--space-3);">
+                <strong>Availability:</strong> On-call
+              </div>
+              <div class="application-statement">
+                "Commercial vehicle driver with clean record. Have heavy vehicle license and willing to help with transportation during disaster relief operations."
+              </div>
+            </div>
+            <div class="application-actions">
+              <button class="btn btn-secondary btn-sm" data-action="review" data-app-id="APP-010">Review</button>
+              <button class="btn btn-success btn-sm" data-action="approve" data-app-id="APP-010">Approve</button>
+              <button class="btn btn-danger btn-sm" data-action="reject" data-app-id="APP-010">Reject</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  
+  <!-- Toast Container -->
+  <div class="toast-container" id="toast-container"></div>
+  
+  <!-- Application Review Modal -->
+  <div class="modal-backdrop" id="review-modal">
+    <div class="modal modal-lg">
+      <div class="modal-header">
+        <h3 class="modal-title">Application Review</h3>
+        <button class="modal-close" data-modal-close>
+          <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="review-content">
+          <!-- Content populated by JavaScript -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-modal-close>Close</button>
+        <button class="btn btn-success" id="review-approve">Approve Application</button>
+        <button class="btn btn-danger" id="review-reject">Reject Application</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Reject Reason Modal -->
+  <div class="modal-backdrop" id="reject-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Reject Application</h3>
+        <button class="modal-close" data-modal-close>
+          <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="reject-form">
+          <div class="form-group">
+            <label class="form-label" for="reject-reason">Rejection Reason *</label>
+            <select class="form-select" id="reject-reason" required>
+              <option value="">Select a reason</option>
+              <option value="availability">Not enough availability</option>
+              <option value="experience">Experience mismatch</option>
+              <option value="incomplete">Incomplete application</option>
+              <option value="verification">Verification issue</option>
+              <option value="location">Location not serviceable</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="reject-notes">Additional Notes</label>
+            <textarea class="form-input form-textarea" id="reject-notes" placeholder="Add any additional feedback..."></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-modal-close>Cancel</button>
+        <button class="btn btn-danger" id="reject-submit">Confirm Rejection</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Confirmation Modal -->
+  <div class="modal-backdrop" id="confirm-modal">
+    <div class="modal modal-sm">
+      <div class="modal-header">
+        <h3 class="modal-title" id="confirm-title">Confirm Action</h3>
+        <button class="modal-close" data-modal-close>
+          <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p id="confirm-message">Are you sure you want to proceed?</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-modal-close>Cancel</button>
+        <button class="btn btn-primary" id="confirm-action">Confirm</button>
+      </div>
+    </div>
+  </div>
+  
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/layout.js"></script>
+  <script src="assets/js/ui.js"></script>
+  <script src="assets/js/applications.js"></script>
+</body>
+</html>

@@ -1,0 +1,301 @@
+/* ============================================
+   UNKE LIYE (FORTHEM) NGO
+   Finance Manager Panel - Responsive
+   ============================================ */
+
+/* Tablet - Collapsible Sidebar */
+@media (max-width: 1024px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+  
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  
+  .main-content {
+    margin-left: 0;
+  }
+  
+  .sidebar-toggle {
+    display: flex;
+  }
+  
+  .sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: calc(var(--z-sticky) - 1);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-base), visibility var(--transition-base);
+  }
+  
+  .sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .search-input-wrapper input {
+    width: 200px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  :root {
+    --header-height: 56px;
+  }
+  
+  .page-content {
+    padding: var(--space-4);
+  }
+  
+  .page-header {
+    margin-bottom: var(--space-4);
+  }
+  
+  .page-title {
+    font-size: var(--text-xl);
+  }
+  
+  .page-subtitle {
+    font-size: var(--text-xs);
+  }
+  
+  .page-actions {
+    flex-direction: column;
+  }
+  
+  .page-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+  
+  .section {
+    padding: var(--space-4);
+  }
+  
+  .card {
+    padding: var(--space-4);
+  }
+  
+  .card-value {
+    font-size: var(--text-2xl);
+  }
+  
+  .filter-bar {
+    flex-direction: column;
+  }
+  
+  .filter-group {
+    width: 100%;
+  }
+  
+  .filter-input,
+  .filter-select {
+    width: 100%;
+    min-width: auto;
+  }
+  
+  .search-input-wrapper input {
+    width: 100%;
+  }
+  
+  .header {
+    padding: 0 var(--space-4);
+  }
+  
+  .header-right .btn {
+    display: none;
+  }
+  
+  .header-right .header-action {
+    display: flex;
+  }
+  
+  .modal {
+    max-width: calc(100% - var(--space-4));
+    margin: var(--space-4);
+    max-height: calc(100vh - var(--space-8));
+  }
+  
+  .modal-header,
+  .modal-body,
+  .modal-footer {
+    padding: var(--space-4);
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .toast-container {
+    left: var(--space-4);
+    right: var(--space-4);
+    bottom: var(--space-4);
+  }
+  
+  .toast {
+    min-width: auto;
+    max-width: none;
+  }
+  
+  .allocation-item {
+    flex-wrap: wrap;
+  }
+  
+  .allocation-label {
+    width: 100%;
+    margin-bottom: var(--space-1);
+  }
+  
+  .allocation-value,
+  .allocation-target {
+    width: auto;
+  }
+  
+  .table-container {
+    border-radius: var(--radius-md);
+  }
+  
+  .pagination {
+    flex-wrap: wrap;
+  }
+  
+  .pagination-info {
+    order: -1;
+    width: 100%;
+    margin-bottom: var(--space-2);
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .page-content {
+    padding: var(--space-3);
+  }
+  
+  .card {
+    padding: var(--space-3);
+  }
+  
+  .section {
+    padding: var(--space-3);
+  }
+  
+  .btn {
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--text-xs);
+  }
+  
+  .btn svg {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .avatar {
+    width: 32px;
+    height: 32px;
+    font-size: var(--text-xs);
+  }
+  
+  .user-profile {
+    padding: var(--space-2);
+  }
+  
+  .user-info {
+    display: none;
+  }
+  
+  .breadcrumb {
+    font-size: var(--text-xs);
+  }
+}
+
+/* Large Desktop */
+@media (min-width: 1440px) {
+  .content-container {
+    max-width: 1600px;
+  }
+  
+  .grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Print Styles */
+@media print {
+  .sidebar,
+  .sidebar-overlay,
+  .header,
+  .page-actions,
+  .filter-bar,
+  .pagination,
+  .btn,
+  .table-actions,
+  .toast-container,
+  .modal-overlay {
+    display: none !important;
+  }
+  
+  .main-content {
+    margin-left: 0;
+  }
+  
+  .page-content {
+    padding: 0;
+  }
+  
+  .section,
+  .card,
+  .table-container {
+    border: none;
+    box-shadow: none;
+  }
+  
+  body {
+    background-color: white;
+    color: black;
+  }
+  
+  .data-table {
+    font-size: 10pt;
+  }
+  
+  .data-table th,
+  .data-table td {
+    padding: 4pt 6pt;
+  }
+  
+  a {
+    color: black;
+    text-decoration: none;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  :root {
+    --border-subtle: #000000;
+    --border-medium: #000000;
+    --border-strong: #000000;
+  }
+  
+  [data-theme="dark"] {
+    --border-subtle: #FFFFFF;
+    --border-medium: #FFFFFF;
+    --border-strong: #FFFFFF;
+  }
+}

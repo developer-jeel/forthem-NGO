@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Campaign Detail — Unke Liye Admin</title>
+<link rel="stylesheet" href="assets/variables.css">
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" href="assets/components.css">
+<link rel="stylesheet" href="assets/charts.css">
+<style>
+.hero-img { width: 100%; height: 280px; object-fit: cover; border-radius: var(--radius-lg); display: block; margin-bottom: var(--sp-5); }
+.stat-row { display: grid; grid-template-columns: repeat(4,1fr); gap: var(--sp-4); margin-bottom: var(--sp-6); }
+.ring-stat { text-align: center; }
+.ring-center-value { font-size: 1.4rem; font-weight: 700; font-family: var(--font-heading); fill: var(--text-primary); text-anchor: middle; dominant-baseline: middle; }
+.ring-center-label { font-size: 0.75rem; fill: var(--text-secondary); text-anchor: middle; dominant-baseline: middle; }
+</style>
+</head>
+<body>
+<div class="toast-region" id="toast-region" aria-live="polite">
+  <div class="toast hidden" id="toast-tpl-success" role="alert"><div class="toast-icon success"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="toast-body"><div class="toast-title">Success</div><div class="toast-msg"></div></div><button class="toast-close" aria-label="Close"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button><div class="toast-progress"></div></div>
+  <div class="toast hidden" id="toast-tpl-danger" role="alert"><div class="toast-icon danger"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div class="toast-body"><div class="toast-title">Deleted</div><div class="toast-msg"></div></div><button class="toast-close" aria-label="Close"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button><div class="toast-progress" style="background:var(--status-danger)"></div></div>
+</div>
+
+<!-- Confirm delete -->
+<div class="modal-backdrop" id="modal-del-campaign">
+  <div class="modal-panel">
+    <div class="modal-header"><h2>Delete Campaign</h2><button class="modal-close" data-modal-close="modal-del-campaign" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
+    <div class="modal-body"><p>Are you sure you want to permanently delete <strong>Save Raju — Street Dog Rescue</strong>? This cannot be undone.</p></div>
+    <div class="modal-footer"><button class="btn btn-secondary" data-modal-close="modal-del-campaign">Cancel</button><button class="btn btn-danger" data-modal-close="modal-del-campaign" data-toast="danger" data-toast-title="Campaign Deleted" data-toast-msg="Campaign removed.">Delete</button></div>
+  </div>
+</div>
+
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+<div class="admin-shell">
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo"><img src="../logo.png" alt="Unke Liye Logo" class="sidebar-logo-img"><div class="sidebar-logo-text"><strong>Unke Liye</strong><span>Admin Panel</span></div></div>
+  <nav class="sidebar-nav">
+    <div class="nav-group"><div class="nav-group-label">Overview</div><a href="dashboard.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg><span class="nav-link-label">Dashboard</span></a></div>
+    <div class="nav-group"><div class="nav-group-label">Programs</div><a href="campaigns.html" class="nav-link active"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span class="nav-link-label">Campaigns</span></a><a href="animals.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2.823.47-4.113 6.006-4 7 .08.703 1.725 1.722 3.656 1 1.261-.472 1.96-1.45 2.344-2.5"/><path d="M4.42 11.247A13.152 13.152 0 0 0 4 14.556C4 18.728 7.582 21 12 21s8-2.272 8-6.444c0-1.273-.241-2.248-.382-2.826"/></svg><span class="nav-link-label">Animals</span></a><a href="events.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span class="nav-link-label">Events</span></a></div>
+    <div class="nav-group"><div class="nav-group-label">People</div><a href="volunteers.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span class="nav-link-label">Volunteers</span></a><a href="donors.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span class="nav-link-label">Donors</span></a></div>
+    <div class="nav-group"><div class="nav-group-label">Money</div><a href="donations.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg><span class="nav-link-label">Donations</span></a><a href="reports.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg><span class="nav-link-label">Reports</span></a></div>
+    <div class="nav-group"><div class="nav-group-label">Operations</div><a href="messages.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span class="nav-link-label">Messages</span><span class="badge badge-danger" style="margin-left:auto;padding:2px 6px;font-size:.65rem;">7</span></a></div>
+    <div class="nav-group"><div class="nav-group-label">System</div><a href="admin-users.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span class="nav-link-label">Admin Users</span></a><a href="settings.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg><span class="nav-link-label">Settings</span></a></div>
+  </nav>
+  <div class="sidebar-footer"><button class="sidebar-collapse-btn" id="sidebar-collapse" aria-label="Collapse sidebar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg><span class="sidebar-collapse-btn-label">Collapse</span></button></div>
+</aside>
+<div class="main-content" id="main-content">
+  <header class="topbar">
+    <div class="topbar-breadcrumb"><a href="dashboard.html">Unke Liye</a><span class="sep">/</span><a href="campaigns.html">Campaigns</a><span class="sep">/</span><span class="current">Save Raju — Street Dog Rescue</span></div>
+    <div class="topbar-search"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="search" placeholder="Search…" aria-label="Search"></div>
+    <div class="topbar-actions">
+      <button class="topbar-icon-btn theme-toggle" id="theme-toggle" aria-label="Toggle dark mode"><svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/></svg></button>
+      <div class="dropdown-wrap"><button class="topbar-profile" data-dropdown="profile-dd-cd" aria-expanded="false"><div class="profile-avatar">RS</div><div class="profile-info"><strong>Rohit Sinha</strong><small>Super Admin</small></div></button><div class="dropdown-menu profile-menu" id="profile-dd-cd"><a href="login.html" class="dropdown-item danger"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Sign Out</a></div></div>
+    </div>
+  </header>
+  <main class="page-content">
+    <!-- Header -->
+    <div class="page-header">
+      <div class="page-header-left">
+        <div style="display:flex;align-items:center;gap:var(--sp-3);margin-bottom:var(--sp-2);">
+          <a href="campaigns.html" style="color:var(--text-secondary);font-size:0.875rem;">← Back to Campaigns</a>
+        </div>
+        <h1>Save Raju — Street Dog Rescue</h1>
+        <div style="display:flex;align-items:center;gap:var(--sp-3);margin-top:var(--sp-2);">
+          <span class="badge badge-terracotta">Animal Rescue</span>
+          <span class="badge badge-success">Active</span>
+          <button class="star-toggle starred" aria-label="Unfeature campaign">★ Featured</button>
+          <span style="font-size:0.8125rem;color:var(--text-secondary);">1 Mar – 30 Jun 2025</span>
+        </div>
+      </div>
+      <div class="page-header-actions">
+        <button class="btn btn-secondary btn-sm" data-toast="success" data-toast-title="Archived" data-toast-msg="Campaign archived.">Archive</button>
+        <button class="btn btn-danger btn-sm" data-modal-open="modal-del-campaign">Delete</button>
+        <button class="btn btn-primary btn-sm" data-toast="success" data-toast-title="Changes Saved" data-toast-msg="Campaign updated successfully.">Save Changes</button>
+      </div>
+    </div>
+
+    <!-- Hero Image -->
+    <img class="hero-img" src="https://loremflickr.com/1200/400/dog,rescue,india?lock=91" alt="Campaign hero">
+
+    <!-- Stat Row with Progress Ring -->
+    <div class="stat-row">
+      <div class="ring-stat">
+        <svg width="140" height="140" viewBox="0 0 140 140">
+          <circle class="progress-ring-track" cx="70" cy="70" r="54" stroke="var(--bg-sunken)" stroke-width="18"/>
+          <circle class="progress-ring-fill" cx="70" cy="70" r="54"
+            stroke="var(--accent-terracotta)" stroke-width="18"
+            style="--ring-offset:70.3" transform="rotate(-90 70 70)"/>
+          <text class="ring-center-value" x="70" y="66">78%</text>
+          <text class="ring-center-label" x="70" y="82" font-size="10">Funded</text>
+        </svg>
+      </div>
+      <div class="stat-card" style="animation:none;">
+        <div class="stat-label">Target Amount</div>
+        <div class="stat-value tabular-nums" style="margin-top:4px;">₹1,50,000</div>
+      </div>
+      <div class="stat-card" style="animation:none;">
+        <div class="stat-label">Amount Raised</div>
+        <div class="stat-value tabular-nums" style="color:var(--accent-terracotta);margin-top:4px;">₹1,17,000</div>
+        <div style="font-size:0.75rem;color:var(--text-secondary);margin-top:4px;">₹33,000 remaining</div>
+      </div>
+      <div class="stat-card" style="animation:none;">
+        <div class="stat-label">Total Donors</div>
+        <div class="stat-value tabular-nums" style="margin-top:4px;">204</div>
+        <div style="font-size:0.75rem;color:var(--text-secondary);margin-top:4px;">Avg gift ₹574</div>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs" data-tab-group="campaign-detail">
+      <button class="tab-btn active" data-tab="tab-overview" data-tab-group="campaign-detail" aria-selected="true">Overview</button>
+      <button class="tab-btn" data-tab="tab-donations" data-tab-group="campaign-detail" aria-selected="false">Donation History</button>
+      <button class="tab-btn" data-tab="tab-updates" data-tab-group="campaign-detail" aria-selected="false">Updates</button>
+      <button class="tab-btn" data-tab="tab-edit" data-tab-group="campaign-detail" aria-selected="false">Edit Campaign</button>
+    </div>
+
+    <!-- Tab: Overview -->
+    <div class="tab-panel active" id="tab-overview" data-tab-group-panel="campaign-detail">
+      <div style="display:grid;grid-template-columns:2fr 1fr;gap:var(--sp-5);">
+        <div class="card"><div class="card-body">
+          <div class="section-label">Campaign Description</div>
+          <p style="font-size:0.9375rem;line-height:1.75;color:var(--text-primary);">
+            Raju is a 2-year-old Indian Pariah Dog rescued from near the Bandra-Kurla Complex in Mumbai on 28 May 2025. He was found with severe injuries to his hind legs, likely from being hit by a vehicle, and was also severely malnourished.
+          </p>
+          <p style="font-size:0.9375rem;line-height:1.75;margin-top:var(--sp-3);color:var(--text-primary);">
+            Our veterinary team has assessed that Raju requires at least 3 months of intensive care, including surgery on his right hind leg, physiotherapy, and a full vaccination and deworming schedule. The campaign funds will cover his complete medical treatment, feed, and shelter costs — and ultimately, his adoption screening and placement.
+          </p>
+          <div style="margin-top:var(--sp-4);padding:var(--sp-4);background:var(--accent-terracotta-bg);border-left:3px solid var(--accent-terracotta);border-radius:0 var(--radius-md) var(--radius-md) 0;">
+            <strong style="font-size:0.875rem;color:var(--accent-terracotta);">₹33,000 still needed</strong> — 20 days remaining. Please help us get there!
+          </div>
+        </div></div>
+        <div class="card"><div class="card-body">
+          <div class="section-label">Campaign Details</div>
+          <dl>
+            <div class="info-row"><dt>Pillar</dt><dd><span class="badge badge-terracotta">Animal Rescue</span></dd></div>
+            <div class="info-row"><dt>Start Date</dt><dd>1 March 2025</dd></div>
+            <div class="info-row"><dt>End Date</dt><dd>30 June 2025</dd></div>
+            <div class="info-row"><dt>Days Left</dt><dd>20 days</dd></div>
+            <div class="info-row"><dt>Created by</dt><dd>Savita Rao</dd></div>
+            <div class="info-row"><dt>Featured</dt><dd>Yes ★</dd></div>
+            <div class="info-row"><dt>Publicly visible</dt><dd>Yes</dd></div>
+          </dl>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- Tab: Donation History -->
+    <div class="tab-panel" id="tab-donations" data-tab-group-panel="campaign-detail">
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr><th>Donor</th><th>Amount</th><th>Date</th><th>Status</th><th>Txn ID</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Donor"><strong>Arjun Mehta</strong> · Pune</td><td data-label="Amount" class="tabular-nums"><strong>₹15,000</strong></td><td data-label="Date" style="font-size:0.8125rem;color:var(--text-secondary);">9 Jun 2025</td><td data-label="Status"><span class="badge badge-success">Success</span></td><td data-label="Txn ID" style="font-size:0.75rem;font-family:monospace;">TXN-2506090001</td></tr>
+            <tr><td data-label="Donor"><strong>Sunita Desai</strong> · Mumbai</td><td data-label="Amount" class="tabular-nums"><strong>₹8,000</strong></td><td data-label="Date" style="font-size:0.8125rem;color:var(--text-secondary);">7 Jun 2025</td><td data-label="Status"><span class="badge badge-success">Success</span></td><td data-label="Txn ID" style="font-size:0.75rem;font-family:monospace;">TXN-2506070002</td></tr>
+            <tr><td data-label="Donor"><strong>Priya Raghavan</strong> · Chennai</td><td data-label="Amount" class="tabular-nums"><strong>₹5,000</strong></td><td data-label="Date" style="font-size:0.8125rem;color:var(--text-secondary);">5 Jun 2025</td><td data-label="Status"><span class="badge badge-success">Success</span></td><td data-label="Txn ID" style="font-size:0.75rem;font-family:monospace;">TXN-2506050002</td></tr>
+            <tr><td data-label="Donor"><strong>Meena Gupta</strong> · Jaipur</td><td data-label="Amount" class="tabular-nums"><strong>₹3,000</strong></td><td data-label="Date" style="font-size:0.8125rem;color:var(--text-secondary);">6 Jun 2025</td><td data-label="Status"><span class="badge badge-neutral">Refunded</span></td><td data-label="Txn ID" style="font-size:0.75rem;font-family:monospace;">TXN-2506060001</td></tr>
+            <tr><td data-label="Donor"><strong>Anonymous</strong></td><td data-label="Amount" class="tabular-nums"><strong>₹500</strong></td><td data-label="Date" style="font-size:0.8125rem;color:var(--text-secondary);">3 Jun 2025</td><td data-label="Status"><span class="badge badge-success">Success</span></td><td data-label="Txn ID" style="font-size:0.75rem;font-family:monospace;">TXN-2506030001</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pagination" style="margin-top:var(--sp-4);"><button class="page-btn active">1</button><button class="page-btn">2</button><button class="page-btn">→</button></div>
+    </div>
+
+    <!-- Tab: Updates -->
+    <div class="tab-panel" id="tab-updates" data-tab-group-panel="campaign-detail">
+      <div style="display:flex;justify-content:flex-end;margin-bottom:var(--sp-4);">
+        <button class="btn btn-primary btn-sm" data-toast="success" data-toast-title="Update Posted" data-toast-msg="Campaign update published to donors.">Post Update</button>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-spine"><div class="timeline-dot success"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div><div class="timeline-line"></div></div>
+          <div class="timeline-content">
+            <div class="timeline-title">Raju's surgery was successful!</div>
+            <div class="timeline-meta">7 Jun 2025 · Posted by Savita Rao</div>
+            <div class="timeline-body">Great news! Raju underwent his right hind leg surgery yesterday at the Dr. Sheth Animal Hospital and came out brilliantly. The vet is very optimistic about his recovery. He's resting comfortably and will begin physiotherapy next week.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-spine"><div class="timeline-dot info"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div><div class="timeline-line"></div></div>
+          <div class="timeline-content">
+            <div class="timeline-title">Raju completed first week of care</div>
+            <div class="timeline-meta">4 Jun 2025 · Posted by Savita Rao</div>
+            <div class="timeline-body">Raju has settled in at our Mumbai shelter. He's eating well — 3 full meals a day — and his injuries are being treated daily. The team has grown very fond of him. Surgery is scheduled for 6 June.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-spine"><div class="timeline-dot warning"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/></svg></div><div class="timeline-line"></div></div>
+          <div class="timeline-content">
+            <div class="timeline-title">Campaign launched — urgent care needed</div>
+            <div class="timeline-meta">1 Mar 2025 · Campaign created</div>
+            <div class="timeline-body">Raju was rescued from near the BKC flyover. We've launched this campaign to cover his full treatment, rehabilitation, and eventual adoption placement.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab: Edit -->
+    <div class="tab-panel" id="tab-edit" data-tab-group-panel="campaign-detail">
+      <div class="card"><div class="card-body">
+        <div class="form-row">
+          <div class="form-group"><label class="form-label required">Campaign Title</label><input class="form-control" type="text" value="Save Raju — Street Dog Rescue"></div>
+          <div class="form-group"><label class="form-label required">Pillar</label><select class="form-control"><option selected>Animal Rescue</option><option>Environment</option><option>Sanitation</option><option>Disaster Relief</option></select></div>
+        </div>
+        <div class="form-group"><label class="form-label required">Description</label><textarea class="form-control" rows="6">Raju is a 2-year-old Indian Pariah Dog rescued from near the Bandra-Kurla Complex in Mumbai on 28 May 2025. He was found with severe injuries to his hind legs, likely from being hit by a vehicle, and was also severely malnourished...</textarea></div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label required">Target Amount (₹)</label><input class="form-control" type="number" value="150000"></div>
+          <div class="form-group"><label class="form-label">Cover Image URL</label><input class="form-control" type="url" value="https://loremflickr.com/1200/400/dog,rescue,india?lock=91"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label required">Start Date</label><input class="form-control" type="date" value="2025-03-01"></div>
+          <div class="form-group"><label class="form-label required">End Date</label><input class="form-control" type="date" value="2025-06-30"></div>
+        </div>
+        <div class="toggle-wrap" style="margin-top:var(--sp-3);"><label class="toggle"><input type="checkbox" checked><span class="toggle-track"></span></label><span class="toggle-label">Feature on homepage</span></div>
+        <div style="margin-top:var(--sp-5);display:flex;justify-content:flex-end;gap:var(--sp-3);">
+          <button class="btn btn-secondary">Discard</button>
+          <button class="btn btn-primary" data-toast="success" data-toast-title="Campaign Updated" data-toast-msg="Changes saved and published.">Save Changes</button>
+        </div>
+      </div></div>
+    </div>
+
+  </main>
+</div>
+</div>
+<script src="assets/app.js"></script>
+</body>
+</html>

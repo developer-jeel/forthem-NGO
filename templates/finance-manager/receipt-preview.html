@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Receipt Preview - Unke Liye Finance Manager</title>
+  <meta name="description" content="Preview and print 80G tax exemption receipts.">
+  <link rel="stylesheet" href="assets/css/finance-manager.css">
+  <style>
+    .receipt-container { max-width:800px;margin:0 auto;background:#fff;border:1px solid #e0e0e0;box-shadow:0 10px 30px rgba(0,0,0,0.05);padding:3rem;color:#333;font-family:'Times New Roman', Times, serif;position:relative; }
+    .receipt-header { display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid #1F3D2B;padding-bottom:1.5rem;margin-bottom:2rem; }
+    .receipt-logo-area { display:flex;align-items:center;gap:1rem; }
+    .receipt-ngo-details { font-size:0.875rem;line-height:1.4;text-align:right; }
+    .receipt-title { text-align:center;font-size:1.5rem;font-weight:bold;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:2rem;color:#1F3D2B; }
+    .receipt-meta { display:flex;justify-content:space-between;margin-bottom:2rem;font-size:0.9375rem;font-family:sans-serif; }
+    .receipt-body { line-height:1.8;font-size:1.0625rem;margin-bottom:3rem;text-align:justify; }
+    .receipt-amount-box { border:1px solid #1F3D2B;background:#f9fbf9;padding:1rem;text-align:center;font-size:1.25rem;font-weight:bold;margin:2rem 0;font-family:sans-serif; }
+    .receipt-footer { display:flex;justify-content:space-between;align-items:flex-end;margin-top:4rem; }
+    .receipt-signature { text-align:center; }
+    .receipt-sig-line { width:200px;border-top:1px solid #333;margin-top:4rem;padding-top:0.5rem;font-size:0.875rem; }
+    .receipt-80g-note { font-size:0.75rem;color:#666;text-align:center;margin-top:3rem;border-top:1px dashed #ccc;padding-top:1rem;font-family:sans-serif; }
+    
+    .toolbar { display:flex;justify-content:space-between;align-items:center;max-width:800px;margin:0 auto 1.5rem auto;background:var(--color-surface);padding:1rem;border-radius:8px;border:1px solid var(--color-border); }
+    
+    @media print {
+      body { background: #fff; }
+      .sidebar, .header, .toolbar { display: none !important; }
+      .app-shell, .main-content, .page-content { margin:0; padding:0; display:block; }
+      .receipt-container { box-shadow:none; border:none; padding:0; margin:0; max-width:100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="../logo.png" alt="Unke Liye Logo" class="sidebar-logo-img">
+        <div class="sidebar-logo-wrap" style="display:flex;align-items:center;gap:.75rem;padding:.25rem 0;">
+          <img src="../user/logo.png" alt="Unke Liye NGO" style="width:38px;height:38px;object-fit:contain;border-radius:8px;background:rgba(255,255,255,0.15);padding:3px;flex-shrink:0;">
+          <div class="sidebar-brand" style="margin:0;border:none;padding:0;">UNKE LIYE<span>Finance Operations</span></div>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-section"><div class="nav-section-title">Overview</div><a href="dashboard.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Dashboard</a></div>
+        <div class="nav-section"><div class="nav-section-title">Revenue</div><a href="donations.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>Donations</a><a href="donors.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Donors</a><a href="receipts.html" class="nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>Receipts</a><a href="pan-audit.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>PAN Audit</a></div>
+      </nav>
+      <div class="sidebar-footer"><div class="user-profile"><div class="user-avatar">AM</div><div class="user-info"><div class="user-name">Aarav Mehta</div><div class="user-role">Finance Manager</div></div></div></div>
+    </aside>
+
+    <main class="main-content">
+      <header class="header">
+        <div class="header-left"><button class="sidebar-toggle" aria-label="Toggle sidebar"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button><nav class="breadcrumb"><span>Finance Manager</span><span class="breadcrumb-separator">/</span><a href="receipts.html" style="color:inherit;text-decoration:none;">Receipts</a><span class="breadcrumb-separator">/</span><span class="breadcrumb-current">Preview</span></nav></div>
+        <div class="header-right"><button class="theme-toggle" aria-label="Toggle theme"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg></button></div>
+      </header>
+
+      <div class="page-content" style="background:var(--color-background);padding:2rem;">
+        
+        <div class="toolbar">
+          <a href="receipts.html" class="btn btn-secondary"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>Back</a>
+          <div style="display:flex;gap:1rem;">
+            <button class="btn btn-secondary" onclick="alert('Receipt emailed to donor!')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Email Donor</button>
+            <button class="btn btn-primary" onclick="window.print()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>Print PDF</button>
+          </div>
+        </div>
+
+        <!-- Printable Receipt -->
+        <div class="receipt-container">
+          <div class="receipt-header">
+            <div class="receipt-logo-area">
+              <img src="../user/logo.png" alt="Unke Liye" style="width:60px;height:auto;">
+              <div>
+                <h1 style="font-size:1.75rem;margin:0;color:#1F3D2B;">UNKE LIYE</h1>
+                <div style="font-size:0.875rem;letter-spacing:0.05em;color:#666;font-family:sans-serif;">For The Voiceless</div>
+              </div>
+            </div>
+            <div class="receipt-ngo-details">
+              <strong>Unke Liye Foundation</strong><br>
+              12, Main Street, Baner<br>
+              Pune, Maharashtra 411045<br>
+              Email: contact@unkeliye.org<br>
+              Phone: +91 800-UNKE-LIYE
+            </div>
+          </div>
+
+          <div class="receipt-title">DONATION RECEIPT</div>
+
+          <div class="receipt-meta">
+            <div><strong>Receipt No:</strong> RCP-250801-0042</div>
+            <div><strong>Date:</strong> 01 August 2025</div>
+          </div>
+
+          <div class="receipt-body">
+            Received with thanks from <strong>Mr. Arjun Mehta</strong>, residing at Mumbai, Maharashtra, 
+            the sum of <strong>Rupees Twenty Five Thousand Only</strong> via <strong>UPI</strong> 
+            (Ref: RAZP2508011437) on <strong>01 August 2025</strong> towards <em>Uttarakhand Flood Relief</em>.
+            <br><br>
+            <strong>Donor PAN:</strong> ABRPM5602K
+          </div>
+
+          <div class="receipt-amount-box">
+            ₹ 25,000.00
+          </div>
+
+          <div class="receipt-footer">
+            <div style="width:100px;height:100px;border:1px solid #ccc;display:flex;align-items:center;justify-content:center;background:#f9f9f9;">
+              <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+              <!-- Mock QR -->
+            </div>
+            <div class="receipt-signature">
+              <div class="receipt-sig-line">
+                Authorized Signatory<br>
+                <strong>Unke Liye Foundation</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="receipt-80g-note">
+            Donations to Unke Liye Foundation are eligible for 50% tax deduction under Section 80G(5)(vi) of the Income Tax Act, 1961.<br>
+            Approval No: 80G/2024/UNK/12345 | Validity: 01/04/2024 to 31/03/2029.
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+  <script src="assets/js/finance-manager.js"></script>
+</body>
+</html>

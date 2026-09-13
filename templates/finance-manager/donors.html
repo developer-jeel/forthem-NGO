@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donors - Unke Liye Finance Manager</title>
+  <link rel="stylesheet" href="assets/css/finance-manager.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="../logo.png" alt="Unke Liye Logo" class="sidebar-logo-img">
+        <div class="sidebar-brand">UNKE LIYE<span>Finance Operations</span></div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-section"><div class="nav-section-title">Overview</div>
+          <a href="dashboard.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Dashboard</a>
+        </div>
+        <div class="nav-section"><div class="nav-section-title">Revenue</div>
+          <a href="donations.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>Donations</a>
+          <a href="donors.html" class="nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>Donors</a>
+          <a href="receipts.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>Receipts</a>
+        </div>
+        <div class="nav-section"><div class="nav-section-title">Programs</div>
+          <a href="campaigns.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>Campaigns</a>
+          <a href="expenses.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 14l4-4-4-4M5 20h14a2 2 0 002-2V8l-7-5-7 5v10a2 2 0 002 2z"/></svg>Expenses</a>
+        </div>
+        <div class="nav-section"><div class="nav-section-title">Analysis</div>
+          <a href="reports.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Financial Reports</a>
+          <a href="audit-log.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>Audit Log</a>
+        </div>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="user-profile">
+          <div class="user-avatar">AM</div>
+          <div class="user-info"><div class="user-name">Aarav Mehta</div><div class="user-role">Finance Manager</div><div class="user-status"><span class="user-status-dot"></span>Online</div></div>
+        </div>
+      </div>
+    </aside>
+    <div class="sidebar-overlay"></div>
+    <main class="main-content">
+      <header class="header">
+        <div class="header-left">
+          <button class="sidebar-toggle" aria-label="Toggle sidebar"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button>
+          <nav class="breadcrumb"><span>Finance Manager</span><span class="breadcrumb-separator">/</span><span class="breadcrumb-current">Donors</span></nav>
+        </div>
+        <div class="header-right">
+          <div class="search-input-wrapper"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg><input type="text" placeholder="Search..." aria-label="Global search"></div>
+          <button class="header-action" aria-label="Notifications"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg><span class="badge">4</span></button>
+          <button class="theme-toggle" aria-label="Toggle theme"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg></button>
+        </div>
+      </header>
+      <div class="page-content">
+        <div class="content-container">
+          <div class="page-header">
+            <h1 class="page-title">Donors</h1>
+            <p class="page-subtitle">Understand donor contributions, engagement, and giving history.</p>
+            <div class="page-actions">
+              <button class="btn btn-secondary" data-action="export"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Export</button>
+            </div>
+          </div>
+          <div class="filter-bar">
+            <div class="filter-group">
+              <label class="filter-label">Search</label>
+              <input type="text" class="filter-input" data-filter="search" placeholder="Name, email, city...">
+            </div>
+            <div class="filter-group">
+              <label class="filter-label">Type</label>
+              <select class="filter-select" data-filter="type">
+                <option value="all">All Types</option>
+                <option value="individual">Individual</option>
+                <option value="corporate">Corporate</option>
+              </select>
+            </div>
+          </div>
+          <div class="table-container">
+            <div class="table-wrapper">
+              <table class="data-table" id="donors-table">
+                <thead>
+                  <tr><th>Donor</th><th>Type</th><th>City</th><th>Total Contributions</th><th>Donations</th><th>Last Donation</th><th>Preferred Channel</th><th>Status</th></tr>
+                </thead>
+                <tbody>
+                  <tr data-donor-id="DNR-001" data-type="individual">
+                    <td><div class="donor-cell"><div class="avatar avatar-sm avatar-default">AS</div><div class="donor-info"><div class="donor-name">Ananya Shah</div><div class="donor-email">ananya.shah@example.com</div></div></div></td>
+                    <td>Individual</td><td>Mumbai</td><td class="amount-cell">₹1,25,000</td><td>5</td><td class="date-cell">26/08/2026</td><td>UPI</td><td><span class="badge badge-success">Active</span></td>
+                  </tr>
+                  <tr data-donor-id="DNR-002" data-type="individual">
+                    <td><div class="donor-cell"><div class="avatar avatar-sm avatar-default">RP</div><div class="donor-info"><div class="donor-name">Rohan Patel</div><div class="donor-email">rohan.patel@example.com</div></div></div></td>
+                    <td>Individual</td><td>Ahmedabad</td><td class="amount-cell">₹2,50,000</td><td>8</td><td class="date-cell">25/08/2026</td><td>Card</td><td><span class="badge badge-success">Active</span></td>
+                  </tr>
+                  <tr data-donor-id="DNR-003" data-type="corporate">
+                    <td><div class="donor-cell"><div class="avatar avatar-sm avatar-default">GB</div><div class="donor-info"><div class="donor-name">GreenBridge Foundation</div><div class="donor-email">donations@greenbridge.org</div></div></div></td>
+                    <td>Corporate</td><td>Bangalore</td><td class="amount-cell">₹5,00,000</td><td>3</td><td class="date-cell">24/08/2026</td><td>Net Banking</td><td><span class="badge badge-success">Active</span></td>
+                  </tr>
+                  <tr data-donor-id="DNR-004" data-type="individual">
+                    <td><div class="donor-cell"><div class="avatar avatar-sm avatar-default">PM</div><div class="donor-info"><div class="donor-name">Priya Mehta</div><div class="donor-email">priya.mehta@example.com</div></div></div></td>
+                    <td>Individual</td><td>Pune</td><td class="amount-cell">₹45,000</td><td>4</td><td class="date-cell">23/08/2026</td><td>UPI</td><td><span class="badge badge-success">Active</span></td>
+                  </tr>
+                  <tr data-donor-id="DNR-005" data-type="individual">
+                    <td><div class="donor-cell"><div class="avatar avatar-sm avatar-default">AJ</div><div class="donor-info"><div class="donor-name">Aarav Joshi</div><div class="donor-email">aarav.joshi@example.com</div></div></div></td>
+                    <td>Individual</td><td>Delhi</td><td class="amount-cell">₹78,000</td><td>6</td><td class="date-cell">22/08/2026</td><td>UPI</td><td><span class="badge badge-success">Active</span></td>
+                  </tr>
+                  <tr data-donor-id="DNR-006" data-type="corporate">
+                    <td><div class="donor-cell"><div class="avatar avatar-sm avatar-default">HI</div><div class="donor-info"><div class="donor-name">Horizon Impact Trust</div><div class="donor-email">csr@horizonimpact.org</div></div></div></td>
+                    <td>Corporate</td><td>Mumbai</td><td class="amount-cell">₹3,75,000</td><td>5</td><td class="date-cell">21/08/2026</td><td>Cheque</td><td><span class="badge badge-success">Active</span></td>
+                  </tr>
+                  <tr data-donor-id="DNR-007" data-type="individual">
+                    <td><div class="donor-cell"><div class="avatar avatar-sm avatar-default">MD</div><div class="donor-info"><div class="donor-name">Mehul Desai</div><div class="donor-email">mehul.desai@example.com</div></div></div></td>
+                    <td>Individual</td><td>Surat</td><td class="amount-cell">₹32,000</td><td>3</td><td class="date-cell">20/08/2026</td><td>UPI</td><td><span class="badge badge-success">Active</span></td>
+                  </tr>
+                  <tr data-donor-id="DNR-008" data-type="individual">
+                    <td><div class="donor-cell"><div class="avatar avatar-sm avatar-default">KS</div><div class="donor-info"><div class="donor-name">Kavya Shah</div><div class="donor-email">kavya.shah@example.com</div></div></div></td>
+                    <td>Individual</td><td>Mumbai</td><td class="amount-cell">₹95,000</td><td>7</td><td class="date-cell">19/08/2026</td><td>Card</td><td><span class="badge badge-success">Active</span></td>
+                  </tr>
+                  <tr data-donor-id="DNR-009" data-type="corporate">
+                    <td><div class="donor-cell"><div class="avatar avatar-sm avatar-default">SF</div><div class="donor-info"><div class="donor-name">Sunrise Foods Pvt. Ltd.</div><div class="donor-email">finance@sunrisefoods.in</div></div></div></td>
+                    <td>Corporate</td><td>Pune</td><td class="amount-cell">₹8,00,000</td><td>4</td><td class="date-cell">18/08/2026</td><td>NEFT</td><td><span class="badge badge-success">Active</span></td>
+                  </tr>
+                  <tr data-donor-id="DNR-010" data-type="individual">
+                    <td><div class="donor-cell"><div class="avatar avatar-sm avatar-default">DP</div><div class="donor-info"><div class="donor-name">Dev Patel</div><div class="donor-email">dev.patel@example.com</div></div></div></td>
+                    <td>Individual</td><td>Ahmedabad</td><td class="amount-cell">₹56,000</td><td>5</td><td class="date-cell">17/08/2026</td><td>UPI</td><td><span class="badge badge-success">Active</span></td>
+                  </tr>
+                  <tr data-donor-id="DNR-011" data-type="individual">
+                    <td><div class="donor-cell"><div class="avatar avatar-sm avatar-default">NT</div><div class="donor-info"><div class="donor-name">Neha Trivedi</div><div class="donor-email">neha.trivedi@example.com</div></div></div></td>
+                    <td>Individual</td><td>Jaipur</td><td class="amount-cell">₹42,000</td><td>4</td><td class="date-cell">15/08/2026</td><td>UPI</td><td><span class="badge badge-success">Active</span></td>
+                  </tr>
+                  <tr data-donor-id="DNR-012" data-type="individual">
+                    <td><div class="donor-cell"><div class="avatar avatar-sm avatar-default">IR</div><div class="donor-info"><div class="donor-name">Ishita Rao</div><div class="donor-email">ishita.rao@example.com</div></div></div></td>
+                    <td>Individual</td><td>Bangalore</td><td class="amount-cell">₹67,000</td><td>6</td><td class="date-cell">14/08/2026</td><td>Card</td><td><span class="badge badge-success">Active</span></td>
+                  </tr>
+                  <tr data-donor-id="DNR-013" data-type="corporate">
+                    <td><div class="donor-cell"><div class="avatar avatar-sm avatar-default">WI</div><div class="donor-info"><div class="donor-name">Western Impact Foundation</div><div class="donor-email">grants@westernimpact.org</div></div></div></td>
+                    <td>Corporate</td><td>Mumbai</td><td class="amount-cell">₹12,00,000</td><td>2</td><td class="date-cell">10/08/2026</td><td>NEFT</td><td><span class="badge badge-success">Active</span></td>
+                  </tr>
+                  <tr data-donor-id="DNR-014" data-type="individual">
+                    <td><div class="donor-cell"><div class="avatar avatar-sm avatar-default">KS</div><div class="donor-info"><div class="donor-name">Karan Shah</div><div class="donor-email">karan.shah@example.com</div></div></div></td>
+                    <td>Individual</td><td>Delhi</td><td class="amount-cell">₹89,000</td><td>7</td><td class="date-cell">08/08/2026</td><td>UPI</td><td><span class="badge badge-success">Active</span></td>
+                  </tr>
+                  <tr data-donor-id="DNR-015" data-type="individual">
+                    <td><div class="donor-cell"><div class="avatar avatar-sm avatar-default">RM</div><div class="donor-info"><div class="donor-name">Riya Malhotra</div><div class="donor-email">riya.malhotra@example.com</div></div></div></td>
+                    <td>Individual</td><td>Chandigarh</td><td class="amount-cell">₹34,000</td><td>3</td><td class="date-cell">05/08/2026</td><td>Card</td><td><span class="badge badge-success">Active</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="text-tertiary text-sm" style="margin-top: 1rem;" data-counter="donors">20 donors</div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <div class="toast-container"></div>
+  <script src="assets/js/layout.js"></script>
+  <script src="assets/js/ui.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/donors.js"></script>
+</body>
+</html>

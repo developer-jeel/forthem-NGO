@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thank You — Unke Liye</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <style>
+    .confirmation-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
+      padding: var(--space-12) 0;
+    }
+    .confirmation-card {
+      background: var(--color-surface);
+      border-radius: var(--radius-xl);
+      padding: var(--space-12) var(--space-10);
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+      box-shadow: var(--shadow-xl);
+    }
+    .checkmark {
+      width: 80px;
+      height: 80px;
+      background: var(--color-primary-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      margin: 0 auto var(--space-6);
+      animation: scaleIn 0.5s ease-out;
+    }
+    .receipt-box {
+      background: var(--color-surface-alt);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-6);
+      text-align: left;
+      margin: var(--space-8) 0;
+    }
+    .receipt-row {
+      display: flex;
+      justify-content: space-between;
+      padding: var(--space-2) 0;
+      font-size: var(--text-sm);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .receipt-row:last-child { border-bottom: none; font-weight: var(--font-weight-semibold); }
+    .receipt-label { color: var(--color-text-muted); }
+    .next-steps {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: var(--space-4);
+      margin: var(--space-8) 0;
+    }
+    @media (max-width: 480px) { .next-steps { grid-template-columns: 1fr; } }
+    .next-step-item {
+      background: var(--color-surface-alt);
+      border-radius: var(--radius-md);
+      padding: var(--space-4);
+      text-align: center;
+    }
+    .next-step-item .step-icon { font-size: 1.75rem; margin-bottom: var(--space-2); display: block; }
+    .next-step-item p { font-size: var(--text-xs); color: var(--color-text-muted); }
+  </style>
+</head>
+<body>
+<a href="#main-content" class="skip-nav">Skip to main content</a>
+
+<div class="confirmation-page">
+  <div class="container">
+    <div class="confirmation-card animate-scale-in" id="main-content">
+      <a href="index.html" class="nav-logo" style="display:inline-block;margin-bottom:1.5rem;"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" style="height:48px;width:auto;"></a>
+      <div class="checkmark" aria-hidden="true">💚</div>
+      <h1 style="font-size:var(--text-3xl);margin-bottom:var(--space-4)">Thank You!</h1>
+      <p style="font-size:var(--text-lg);color:var(--color-text-muted);max-width:40ch;margin:0 auto var(--space-6)">
+        Your donation has been received. A confirmation and 80G certificate will arrive in your inbox within 7 working days.
+      </p>
+
+      <!-- Receipt -->
+      <div class="receipt-box" aria-label="Donation receipt">
+        <div style="font-size:var(--text-sm);font-weight:var(--font-weight-semibold);letter-spacing:0.06em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:var(--space-4)">Donation Receipt</div>
+        <div class="receipt-row">
+          <span class="receipt-label">Receipt No.</span>
+          <span id="receipt-number">UKL-2024-08471</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">Date</span>
+          <span id="receipt-date"></span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">Fund</span>
+          <span id="receipt-fund">Animal Rescue</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">Amount Donated</span>
+          <span id="receipt-amount">₹500</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">80G Tax Benefit (50%)</span>
+          <span id="receipt-tax">₹250</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">Effective Cost</span>
+          <span id="receipt-effective">₹250</span>
+        </div>
+      </div>
+
+      <!-- Next Steps -->
+      <div class="next-steps">
+        <div class="next-step-item">
+          <span class="step-icon" aria-hidden="true">📧</span>
+          <p>Check your email for the receipt and update schedule</p>
+        </div>
+        <div class="next-step-item">
+          <span class="step-icon" aria-hidden="true">📊</span>
+          <p>Track how your money is used in real-time on our transparency page</p>
+        </div>
+        <div class="next-step-item">
+          <span class="step-icon" aria-hidden="true">📸</span>
+          <p>We'll send you photos and impact updates in 30 days</p>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-wrap:wrap;gap:var(--space-4);justify-content:center">
+        <a href="index.html" class="btn btn--primary">Back to Home</a>
+        <a href="impact.html" class="btn btn--outline">See Our Impact</a>
+        <a href="stories.html" class="btn btn--ghost">Read Stories</a>
+      </div>
+
+      <div style="margin-top:var(--space-8);padding-top:var(--space-6);border-top:1px solid var(--color-border)">
+        <p style="font-size:var(--text-sm);color:var(--color-text-muted)">Want to do more?</p>
+        <div style="display:flex;flex-wrap:wrap;gap:var(--space-3);justify-content:center;margin-top:var(--space-4)">
+          <a href="volunteer.html" class="btn btn--ghost btn--sm">Volunteer With Us</a>
+          <a href="adopt.html" class="btn btn--ghost btn--sm">Adopt a Pet</a>
+          <a href="sponsor-animal.html" class="btn btn--ghost btn--sm">Sponsor an Animal</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/main.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Parse URL params
+    const params = new URLSearchParams(window.location.search);
+    const amount = params.get('amount') || 500;
+    const fund = params.get('fund') || 'rescue';
+
+    const fundNames = { rescue: 'Animal Rescue', environment: 'Environment', disaster: 'Disaster Relief', general: 'Where Most Needed' };
+
+    document.getElementById('receipt-date').textContent = new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
+    document.getElementById('receipt-amount').textContent = '₹' + parseInt(amount).toLocaleString('en-IN');
+    document.getElementById('receipt-fund').textContent = fundNames[fund] || 'Animal Rescue';
+    document.getElementById('receipt-tax').textContent = '₹' + Math.round(amount * 0.5).toLocaleString('en-IN');
+    document.getElementById('receipt-effective').textContent = '₹' + Math.round(amount * 0.5).toLocaleString('en-IN');
+
+    // Generate receipt number
+    const receiptNo = 'UKL-' + new Date().getFullYear() + '-' + String(Math.floor(Math.random() * 99999)).padStart(5, '0');
+    document.getElementById('receipt-number').textContent = receiptNo;
+  });
+</script>
+</body>
+</html>

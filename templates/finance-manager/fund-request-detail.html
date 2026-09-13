@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Review Fund Request — Unke Liye Finance Manager</title>
+  <link rel="stylesheet" href="assets/css/finance-manager.css">
+  <link rel="stylesheet" href="../shared/css/platform-theme.css">
+  <style>
+    .review-grid {
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: var(--space-6);
+      align-items: start;
+    }
+    .impact-box {
+      background: var(--bg-sunken);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-4);
+      margin-bottom: var(--space-4);
+    }
+    .decision-panel {
+      background: var(--bg-surface);
+      border: 2px solid var(--border-medium);
+      border-radius: var(--radius-xl);
+      padding: var(--space-5);
+      position: sticky;
+      top: calc(var(--topbar-height) + 20px);
+    }
+    .action-btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      margin-top: var(--space-4);
+    }
+    @media (max-width: 960px) {
+      .review-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="../logo.png" alt="Unke Liye Logo" class="sidebar-logo-img">
+        <div class="sidebar-brand">
+          UNKE LIYE
+          <span>Finance Operations</span>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <div class="nav-section-title">Overview</div>
+          <a href="dashboard.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            Dashboard
+          </a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Fund Requests & Approvals</div>
+          <a href="fund-approvals.html" class="nav-item active">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+            Fund Approvals
+          </a>
+          <a href="fund-requests.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Fund Requests
+          </a>
+          <a href="disbursements.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+            Disbursements
+          </a>
+          <a href="expense-claims.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 14l4-4-4-4M5 20h14a2 2 0 002-2V8l-7-5-7 5v10a2 2 0 002 2z"/></svg>
+            Expense Claims
+          </a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Treasury & Budgets</div>
+          <a href="cash-position.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+            Cash Position
+          </a>
+          <a href="department-budgets.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+            Department Budgets
+          </a>
+          <a href="compliance.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Compliance & 80G
+          </a>
+        </div>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="user-profile">
+          <div class="user-avatar">AM</div>
+          <div class="user-info">
+            <div class="user-name">Aarav Mehta</div>
+            <div class="user-role">Finance Manager</div>
+            <div class="user-status"><span class="user-status-dot"></span> Online</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="header">
+        <div class="header-left">
+          <nav class="breadcrumb">
+            <span>Finance Manager</span>
+            <span class="breadcrumb-separator">/</span>
+            <a href="fund-approvals.html" style="color:var(--text-secondary);text-decoration:none;">Approvals</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current" id="breadcrumb-req-id">Review Dossier</span>
+          </nav>
+        </div>
+        <div class="header-right">
+          <button class="btn btn-secondary btn-sm theme-toggle-btn" title="Toggle theme">
+            <span class="icon-moon">🌙</span>
+            <span class="icon-sun" style="display:none;">☀️</span>
+          </button>
+          <a href="fund-approvals.html" class="btn btn-secondary btn-sm">← Back to Queue</a>
+        </div>
+      </header>
+
+      <div class="content-container">
+        <!-- Banner Strip -->
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:var(--space-6);flex-wrap:wrap;gap:var(--space-4);">
+          <div>
+            <div style="display:flex;gap:var(--space-2);align-items:center;margin-bottom:var(--space-2);">
+              <span class="badge badge-brand" id="dossier-dept-badge">Rescue</span>
+              <span class="badge badge-danger" id="dossier-priority-badge">CRITICAL</span>
+              <span id="dossier-status-badge"></span>
+            </div>
+            <h1 class="page-title" id="dossier-title" style="font-size:1.6rem;">Loading Request...</h1>
+            <p class="page-subtitle" id="dossier-subtitle">Submitted by Dr. Ananya Sharma • Related: Case #RC-2026-089</p>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:0.75rem;text-transform:uppercase;color:var(--text-tertiary);font-weight:600;">Requested Amount</div>
+            <div style="font-family:var(--font-heading);font-size:2.25rem;font-weight:700;color:var(--text-primary);" id="dossier-req-amount">₹35,000</div>
+          </div>
+        </div>
+
+        <div class="review-grid">
+          <!-- Left: Details & Evidence -->
+          <div>
+            <div class="card" style="margin-bottom:var(--space-6);">
+              <h3 class="card-title" style="margin-bottom:var(--space-3);">Operational Need & Medical Justification</h3>
+              <p style="color:var(--text-secondary);line-height:1.6;font-size:0.9375rem;" id="dossier-justification"></p>
+            </div>
+
+            <div class="card" style="margin-bottom:var(--space-6);">
+              <h3 class="card-title" style="margin-bottom:var(--space-3);">Itemized Cost Quotations</h3>
+              <div class="table-container" style="border:none;">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Line Item Description</th>
+                      <th style="text-align:right;">Vendor Estimate</th>
+                    </tr>
+                  </thead>
+                  <tbody id="dossier-breakdown-body"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3 class="card-title" style="margin-bottom:var(--space-3);">Attached Bills & Estimates</h3>
+              <div id="dossier-docs-list"></div>
+            </div>
+          </div>
+
+          <!-- Right: Financial Decision Desk -->
+          <div>
+            <div class="decision-panel">
+              <h3 style="font-family:var(--font-heading);font-size:1.25rem;font-weight:700;color:var(--text-primary);margin-bottom:var(--space-3);">Financial Impact Analysis</h3>
+
+              <!-- Impact Matrix -->
+              <div class="impact-box">
+                <div style="display:flex;justify-content:space-between;margin-bottom:var(--space-2);font-size:0.875rem;">
+                  <span style="color:var(--text-secondary);">Department Available:</span>
+                  <span style="font-weight:700;color:var(--brand-primary);" id="impact-avail">₹50,000</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;margin-bottom:var(--space-2);font-size:0.875rem;">
+                  <span style="color:var(--text-secondary);">Requested Draw:</span>
+                  <span style="font-weight:700;color:var(--status-danger);" id="impact-draw">- ₹35,000</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;border-top:1px dashed var(--border-medium);padding-top:var(--space-2);font-size:0.875rem;">
+                  <span style="color:var(--text-primary);font-weight:600;">Net Balance After Full:</span>
+                  <span style="font-weight:700;color:var(--status-warning);" id="impact-net">₹15,000</span>
+                </div>
+              </div>
+
+              <!-- Decision Form -->
+              <div id="decision-form-area">
+                <div style="margin-bottom:var(--space-3);">
+                  <label style="font-size:0.8125rem;font-weight:600;display:block;margin-bottom:var(--space-1);color:var(--text-secondary);">Authorized Allocation Amount (INR)</label>
+                  <input type="number" id="input-approve-amount" class="search-input" style="width:100%;font-size:1.1rem;font-weight:700;" value="30000">
+                  <div style="font-size:0.75rem;color:var(--text-tertiary);margin-top:var(--space-1);" id="partial-diff-hint">
+                    Partial recommendation: ₹30,000 (Saves ₹5,000 buffer)
+                  </div>
+                </div>
+
+                <div style="margin-bottom:var(--space-4);">
+                  <label style="font-size:0.8125rem;font-weight:600;display:block;margin-bottom:var(--space-1);color:var(--text-secondary);">Finance Manager Audit Notes</label>
+                  <textarea id="input-finance-notes" rows="3" class="search-input" style="width:100%;font-family:inherit;font-size:0.875rem;" placeholder="e.g. Approved partial ₹30,000 covering direct neurosurgery and ICU. Remaining balance to be claimed post-op.">Approved ₹30,000 under Emergency Veterinary fund. Pre-op anesthesia and surgery approved.</textarea>
+                </div>
+
+                <!-- Action Button Group -->
+                <div class="action-btn-group">
+                  <button class="btn btn-primary" id="btn-approve-partial" style="font-size:0.95rem;padding:0.75rem;">
+                    ✓ Approve Partial Allocation (₹30,000)
+                  </button>
+                  <button class="btn btn-secondary" id="btn-approve-full">
+                    Approve Full Requested (₹35,000)
+                  </button>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-2);margin-top:var(--space-2);">
+                    <button class="btn btn-secondary btn-sm" id="btn-hold">Put On Hold</button>
+                    <button class="btn btn-danger btn-sm" id="btn-reject">Reject Request</button>
+                  </div>
+                </div>
+              </div>
+
+              <div id="decision-completed-area" style="display:none;padding:var(--space-4);background:var(--status-success-bg);border-radius:var(--radius-md);border:1px solid var(--status-success-border);margin-top:var(--space-4);">
+                <div style="font-weight:700;color:var(--status-success);margin-bottom:var(--space-1);" id="decision-status-title">✓ Request Approved</div>
+                <p style="font-size:0.8125rem;color:var(--text-secondary);margin-bottom:var(--space-3);" id="decision-status-desc">Allocation recorded in department ledger. Next step: Release funds via Disbursements desk.</p>
+                <a href="disbursements.html" class="btn btn-primary btn-sm" style="width:100%;">Go to Disbursements Desk &rarr;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="toast-container"></div>
+  <script src="../shared/js/platform-store.js"></script>
+  <script src="../shared/js/platform-ui.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const reqId = urlParams.get('id') || 'FR-2026-1042';
+
+      const req = window.PlatformStore.getFundRequestById(reqId);
+      if (!req) {
+        document.getElementById('dossier-title').textContent = 'Request Not Found';
+        return;
+      }
+
+      document.getElementById('breadcrumb-req-id').textContent = req.id;
+      document.getElementById('dossier-title').textContent = req.title;
+      document.getElementById('dossier-dept-badge').textContent = req.departmentName;
+      document.getElementById('dossier-priority-badge').textContent = req.priority;
+      document.getElementById('dossier-subtitle').textContent = `Submitted by ${req.requestedBy} (${req.requesterRole}) • Entity: ${req.relatedEntity}`;
+      document.getElementById('dossier-req-amount').textContent = '₹' + Number(req.requestedAmount).toLocaleString('en-IN');
+      document.getElementById('dossier-justification').textContent = req.justification;
+
+      // Status badge
+      const statusBadge = document.getElementById('dossier-status-badge');
+      if (req.status === 'SUBMITTED') {
+        statusBadge.innerHTML = '<span class="badge badge-warning"><span class="badge-dot"></span> Pending Finance Review</span>';
+      } else {
+        statusBadge.innerHTML = `<span class="badge badge-success">${req.status.replace('_', ' ')}</span>`;
+      }
+
+      // Breakdown items
+      const breakdownBody = document.getElementById('dossier-breakdown-body');
+      breakdownBody.innerHTML = req.breakdown.map(b => `
+        <tr>
+          <td>${b.item}</td>
+          <td style="text-align:right;font-weight:600;">₹${Number(b.amount).toLocaleString('en-IN')}</td>
+        </tr>
+      `).join('');
+
+      // Documents
+      const docsList = document.getElementById('dossier-docs-list');
+      docsList.innerHTML = req.documents.map(d => `
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:var(--space-3);background:var(--bg-sunken);border-radius:var(--radius-md);margin-bottom:var(--space-2);">
+          <div style="display:flex;align-items:center;gap:var(--space-2);">
+            <span style="font-size:1.25rem;">📄</span>
+            <div>
+              <div style="font-weight:600;font-size:0.875rem;color:var(--text-primary);">${d.name}</div>
+              <div style="font-size:0.75rem;color:var(--text-tertiary);">${d.type} • ${d.size}</div>
+            </div>
+          </div>
+          <button class="btn btn-secondary btn-sm" onclick="PlatformUI.showToast('Inspecting attachment: ${d.name}', 'info')">View</button>
+        </div>
+      `).join('');
+
+      // Budget Impact
+      const budgets = window.PlatformStore.getBudgets();
+      const deptBudget = budgets[req.department.toLowerCase()] || budgets['rescue'];
+      document.getElementById('impact-avail').textContent = '₹' + Number(deptBudget.available).toLocaleString('en-IN');
+      document.getElementById('impact-draw').textContent = '- ₹' + Number(req.requestedAmount).toLocaleString('en-IN');
+      document.getElementById('impact-net').textContent = '₹' + Number(deptBudget.available - req.requestedAmount).toLocaleString('en-IN');
+
+      // Check if already approved/decided
+      if (req.status !== 'SUBMITTED') {
+        document.getElementById('decision-form-area').style.display = 'none';
+        document.getElementById('decision-completed-area').style.display = 'block';
+        document.getElementById('decision-status-title').textContent = `✓ Status: ${req.status.replace('_', ' ')}`;
+        document.getElementById('decision-status-desc').textContent = `Decision recorded. Approved amount: ₹${Number(req.approvedAmount || req.requestedAmount).toLocaleString('en-IN')}.`;
+      }
+
+      // Action Listeners
+      document.getElementById('btn-approve-partial').addEventListener('click', () => {
+        const approvedAmt = Number(document.getElementById('input-approve-amount').value) || 30000;
+        const notes = document.getElementById('input-finance-notes').value;
+
+        window.PlatformStore.reviewFundRequest(req.id, 'APPROVE_PARTIAL', approvedAmt, notes, 'Aarav Mehta');
+        PlatformUI.showToast(`Partial allocation of ₹${approvedAmt.toLocaleString('en-IN')} approved for ${req.id}!`, 'success');
+
+        document.getElementById('decision-form-area').style.display = 'none';
+        document.getElementById('decision-completed-area').style.display = 'block';
+        document.getElementById('decision-status-title').textContent = `✓ Partially Approved: ₹${approvedAmt.toLocaleString('en-IN')}`;
+      });
+
+      document.getElementById('btn-approve-full').addEventListener('click', () => {
+        const notes = document.getElementById('input-finance-notes').value;
+        window.PlatformStore.reviewFundRequest(req.id, 'APPROVE_FULL', req.requestedAmount, notes, 'Aarav Mehta');
+        PlatformUI.showToast(`Full allocation of ₹${req.requestedAmount.toLocaleString('en-IN')} approved!`, 'success');
+
+        document.getElementById('decision-form-area').style.display = 'none';
+        document.getElementById('decision-completed-area').style.display = 'block';
+        document.getElementById('decision-status-title').textContent = `✓ Approved in Full: ₹${req.requestedAmount.toLocaleString('en-IN')}`;
+      });
+
+      document.getElementById('btn-hold').addEventListener('click', () => {
+        const notes = document.getElementById('input-finance-notes').value;
+        window.PlatformStore.reviewFundRequest(req.id, 'HOLD', 0, notes, 'Aarav Mehta');
+        PlatformUI.showToast(`Request ${req.id} placed on hold.`, 'warning');
+        setTimeout(() => location.reload(), 1000);
+      });
+
+      document.getElementById('btn-reject').addEventListener('click', () => {
+        const notes = prompt('Enter justification for rejection:');
+        if (notes) {
+          window.PlatformStore.reviewFundRequest(req.id, 'REJECT', 0, notes, 'Aarav Mehta');
+          PlatformUI.showToast(`Request ${req.id} rejected.`, 'danger');
+          setTimeout(() => location.reload(), 1000);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

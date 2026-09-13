@@ -1,0 +1,293 @@
+/* ============================================
+   UNKE LIYE (ForThem) NGO
+   Volunteer Manager Panel - Responsive
+   ============================================ */
+
+/* Tablet Breakpoint */
+@media (max-width: 1024px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .quick-actions-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Mobile Breakpoint */
+@media (max-width: 768px) {
+  /* Sidebar */
+  .sidebar {
+    transform: translateX(-100%);
+  }
+  
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  
+  .sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: calc(var(--z-sticky) - 1);
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+  }
+  
+  .sidebar-overlay.active {
+    display: block;
+    opacity: 1;
+  }
+  
+  .main-content {
+    margin-left: 0;
+  }
+  
+  /* Header */
+  .header {
+    padding: var(--space-3) var(--space-4);
+  }
+  
+  .header-center {
+    display: none;
+  }
+  
+  .menu-toggle {
+    display: flex;
+  }
+  
+  /* Page Content */
+  .page-content {
+    padding: var(--space-4);
+  }
+  
+  .page-title {
+    font-size: var(--text-2xl);
+  }
+  
+  .page-subtitle {
+    font-size: var(--text-sm);
+  }
+  
+  .page-actions {
+    flex-direction: column;
+  }
+  
+  .page-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  /* Stats */
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+  
+  .stat-card {
+    padding: var(--space-4);
+  }
+  
+  /* Section */
+  .section {
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+  }
+  
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+  
+  /* Tables */
+  .table-container {
+    border-radius: var(--radius-md);
+  }
+  
+  .data-table th,
+  .data-table td {
+    padding: var(--space-3);
+  }
+  
+  /* Filter Toolbar */
+  .filter-toolbar {
+    flex-direction: column;
+  }
+  
+  .filter-group {
+    width: 100%;
+  }
+  
+  .filter-input,
+  .filter-select {
+    width: 100%;
+    min-width: auto;
+  }
+  
+  .filter-actions {
+    width: 100%;
+    margin-left: 0;
+  }
+  
+  .filter-actions .btn {
+    flex: 1;
+  }
+  
+  /* Pagination */
+  .pagination {
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  
+  /* Cards */
+  .application-card {
+    padding: var(--space-4);
+  }
+  
+  .application-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .application-actions {
+    flex-direction: column;
+  }
+  
+  .application-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  /* Modal */
+  .modal {
+    max-width: 100%;
+    max-height: 100vh;
+    border-radius: var(--radius-md);
+    margin: var(--space-2);
+  }
+  
+  .modal-header,
+  .modal-body,
+  .modal-footer {
+    padding: var(--space-4);
+  }
+  
+  /* Toast */
+  .toast-container {
+    left: var(--space-4);
+    right: var(--space-4);
+    max-width: none;
+  }
+  
+  .toast {
+    max-width: none;
+  }
+  
+  /* Profile Page */
+  .profile-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .profile-avatar {
+    margin: 0 auto;
+  }
+  
+  .profile-info {
+    text-align: center;
+  }
+  
+  .profile-actions {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .profile-metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  /* Broadcast */
+  .broadcast-layout {
+    grid-template-columns: 1fr;
+  }
+  
+  .broadcast-preview {
+    order: -1;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .page-title {
+    font-size: var(--text-xl);
+  }
+  
+  .stat-card-value {
+    font-size: var(--text-2xl);
+  }
+  
+  .quick-actions-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .profile-metrics-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .data-table {
+    font-size: var(--text-xs);
+  }
+  
+  .table-cell-primary {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .sidebar,
+  .header,
+  .page-actions,
+  .filter-toolbar,
+  .pagination,
+  .toast-container {
+    display: none !important;
+  }
+  
+  .main-content {
+    margin-left: 0;
+  }
+  
+  .section {
+    break-inside: avoid;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  :root {
+    --border-subtle: #000000;
+    --border-default: #000000;
+    --border-strong: #000000;
+  }
+  
+  [data-theme="dark"] {
+    --border-subtle: #FFFFFF;
+    --border-default: #FFFFFF;
+    --border-strong: #FFFFFF;
+  }
+}

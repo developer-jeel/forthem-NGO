@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Bruno — a 3-year-old male Indie dog recovering from surgery. Available for adoption at Unke Liye animal sanctuary, Pune." />
+  <title>Bruno — Adopt This Animal — Unke Liye</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/enhanced-pages.css" />
+</head>
+<body>
+<a href="#main" class="skip-nav">Skip to main content</a>
+<div class="emergency-bar"><span class="pulse-dot"></span><span>🚨 Animal in distress? 24/7 —</span><a href="report-animal.html">Report Now →</a></div>
+<header class="site-header">
+  <div class="container">
+    <nav class="nav-inner">
+      <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a>
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="adopt.html" class="nav-link active">Adopt</a></li>
+        <li class="nav-item"><a href="foster.html" class="nav-link">Foster</a></li>
+        <li class="nav-item"><a href="sponsor-animal.html" class="nav-link">Sponsor</a></li>
+        <li class="nav-item"><a href="events.html" class="nav-link">Events</a></li>
+        <li class="nav-item"><a href="news.html" class="nav-link">News</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="volunteer.html" class="btn btn--outline btn--sm">Volunteer</a>
+        <a href="donate.html" class="btn btn--primary btn--sm">Donate Now</a>
+        <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      </div>
+    </nav>
+  </div>
+</header>
+<div class="nav-mobile-panel"><div class="nav-mobile-overlay"></div><div class="nav-mobile-drawer"><button class="nav-mobile-close">✕</button><a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a><ul class="nav-mobile-list"><li><a href="adopt.html">Adopt</a></li><li><a href="foster.html">Foster</a></li><li><a href="sponsor-animal.html">Sponsor</a></li><li><a href="donate.html">Donate</a></li></ul></div></div>
+
+<main id="main">
+
+  <!-- BREADCRUMB + HERO -->
+  <div style="background:var(--color-surface-alt);border-bottom:1px solid var(--color-border);padding:.75rem 0">
+    <div class="container">
+      <nav class="pg-breadcrumb" style="color:var(--color-text-muted)">
+        <a href="index.html" style="color:var(--color-text-muted)">Home</a>
+        <span class="pg-breadcrumb-sep">›</span>
+        <a href="adopt.html" style="color:var(--color-text-muted)">Adopt</a>
+        <span class="pg-breadcrumb-sep">›</span>
+        <span id="bc-animal-name">Bruno</span>
+      </nav>
+    </div>
+  </div>
+
+  <div class="container" id="not-found-state" style="display:none; text-align:center; padding:4rem 1.5rem">
+    <div style="font-size:3rem;margin-bottom:1rem">🐾</div>
+    <h2 style="margin-bottom:.75rem">Animal Not Found</h2>
+    <p style="color:var(--color-text-muted);margin-bottom:1.5rem">We couldn't find that animal profile.</p>
+    <a href="adopt.html" class="btn btn--primary">Browse All Animals →</a>
+  </div>
+
+  <!-- ANIMAL PROFILE -->
+  <section class="pg-section" id="profile-section" style="display:none">
+    <div class="container">
+      <div class="pg-animal-profile reveal">
+
+        <!-- Photo + gallery -->
+        <div>
+          <div class="pg-animal-photo-main">
+            <div class="img-bg" id="animal-img-bg" style="background-image:url('')"></div>
+            <div style="position:absolute;top:1rem;left:1rem">
+              <span class="pg-badge pg-badge--care" id="animal-health-badge"></span>
+            </div>
+            <div style="position:absolute;top:1rem;right:1rem">
+              <span class="pg-badge pg-badge--success" id="animal-status-badge">Available</span>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-top:.75rem" id="animal-gallery-grid">
+            <!-- populated by JS -->
+          </div>
+        </div>
+
+        <!-- Info + CTA panel -->
+        <div>
+          <div class="pg-pill pg-pill--care" id="animal-profile-pill">🐕 Adoption Profile</div>
+          <h1 style="font-size:2.75rem;margin-bottom:.5rem" id="animal-name-heading">Bruno</h1>
+          <p style="color:var(--color-text-muted);font-size:1.125rem;margin-bottom:1.5rem" id="animal-subtitle"></p>
+
+          <!-- Stats chips -->
+          <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem" id="animal-chips-container">
+            <!-- populated by JS -->
+          </div>
+
+          <!-- Personality -->
+          <h3 style="margin-bottom:1rem" id="animal-who-title">Who is Bruno?</h3>
+          <p style="color:var(--color-text-muted);line-height:1.8;margin-bottom:1rem" id="animal-personality-p1"></p>
+          <p style="color:var(--color-text-muted);line-height:1.8;margin-bottom:2rem" id="animal-personality-p2"></p>
+
+          <!-- Fact grid -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:2rem" id="animal-facts-grid">
+            <!-- populated by JS -->
+          </div>
+
+          <!-- Medical notes -->
+          <div style="background:var(--color-primary-light);border-left:4px solid var(--color-primary);border-radius:0 var(--radius-md) var(--radius-md) 0;padding:1rem 1.25rem;margin-bottom:2rem">
+            <strong style="font-size:.875rem;color:var(--color-primary)">Medical Notes</strong>
+            <p style="font-size:.875rem;color:var(--color-primary-dark);margin:.5rem 0 0;line-height:1.7" id="animal-medical-notes"></p>
+          </div>
+
+          <!-- Adoption fee -->
+          <div style="background:var(--color-surface);border:2px solid var(--color-border);border-radius:var(--radius-lg);padding:1.25rem;margin-bottom:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem">
+            <div>
+              <div style="font-size:.75rem;color:var(--color-text-muted);margin-bottom:.25rem">Adoption Contribution</div>
+              <strong style="font-size:1.5rem;color:var(--color-primary)">₹1,500 <span style="font-size:.875rem;font-weight:400;color:var(--color-text-muted)">one-time</span></strong>
+            </div>
+            <div style="font-size:.75rem;color:var(--color-text-muted)">✅ Includes: Starter kit, first vet visit, microchip transfer</div>
+          </div>
+
+          <div style="display:grid;gap:.75rem">
+            <a href="" class="btn btn--primary btn--full btn--lg" id="cta-adopt-btn">Apply to Adopt Bruno →</a>
+            <a href="foster-form.html" class="btn btn--outline btn--full">Foster First (No Commitment) →</a>
+            <a href="" class="btn btn--outline btn--full" id="cta-sponsor-btn">Sponsor Bruno's Care ₹1,000/mo →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RELATED ANIMALS -->
+  <section class="pg-section">
+    <div class="container">
+      <div class="pg-flex-between reveal" style="margin-bottom:2rem">
+        <h2>You Might Also Love…</h2>
+        <a href="adopt.html" class="btn btn--outline">View All Animals →</a>
+      </div>
+      <div class="pg-related-grid reveal">
+        <div class="pg-photo-card">
+          <div class="pg-photo-card__img" style="background-image:url('https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=600&q=80')"></div>
+          <div class="pg-photo-card__body">
+            <div style="display:flex;gap:.5rem;margin-bottom:.75rem"><span class="pg-chip">🐈 Cat</span><span class="pg-chip pg-chip--success">Available</span></div>
+            <h3>Luna</h3>
+            <p>Gentle 2-year-old female cat seeking a quiet indoor home.</p>
+            <a href="adopt-detail.html?id=luna" class="btn btn--outline btn--sm" style="margin-top:1rem">View Profile →</a>
+          </div>
+        </div>
+        <div class="pg-photo-card">
+          <div class="pg-photo-card__img" style="background-image:url('https://images.unsplash.com/photo-1537151625747-768eb6cf92b2?auto=format&fit=crop&w=600&q=80')"></div>
+          <div class="pg-photo-card__body">
+            <div style="display:flex;gap:.5rem;margin-bottom:.75rem"><span class="pg-chip">🐕 Dog</span><span class="pg-chip pg-chip--success">Available</span></div>
+            <h3>Meera</h3>
+            <p>Senior 7-year-old girl, calm and loving. Perfect companion.</p>
+            <a href="adopt-detail.html?id=meera" class="btn btn--outline btn--sm" style="margin-top:1rem">View Profile →</a>
+          </div>
+        </div>
+        <div class="pg-photo-card">
+          <div class="pg-photo-card__img" style="background-image:url('https://images.unsplash.com/photo-1558788353-f76d92427f16?auto=format&fit=crop&w=600&q=80')"></div>
+          <div class="pg-photo-card__body">
+            <div style="display:flex;gap:.5rem;margin-bottom:.75rem"><span class="pg-chip">🐕 Dog</span><span class="pg-chip pg-chip--success">Available</span></div>
+            <h3>Rocky</h3>
+            <p>Energetic 5-year-old playful dog, fully recovered from mange.</p>
+            <a href="adopt-detail.html?id=rocky" class="btn btn--outline btn--sm" style="margin-top:1rem">View Profile →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col footer-col--brand"><a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="footer-logo-img" /></a><p style="color:rgba(255,255,255,.7);font-size:.875rem;line-height:1.75">Registered NGO · 80G Tax Exempt</p></div>
+      <div class="footer-col"><h4 style="color:#fff;margin-bottom:1rem">Adoption</h4><ul style="list-style:none;padding:0;margin:0;display:grid;gap:.5rem;font-size:.875rem"><li><a href="adopt.html">All Animals</a></li><li><a href="foster.html">Foster</a></li><li><a href="sponsor-animal.html">Sponsor</a></li></ul></div>
+      <div class="footer-col"><h4 style="color:#fff;margin-bottom:1rem">Contact</h4><p style="color:rgba(255,255,255,.7);font-size:.875rem">🚨 24/7: <a href="tel:+919876543210" style="color:#fff">+91 98765 43210</a></p></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 Unke Liye</p></div>
+  </div>
+</footer>
+<a href="report-animal.html" class="pg-float-btn"><span class="pg-float-pulse"></span> Report Emergency</a>
+<div class="pg-toast-wrap"></div>
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/enhanced-pages.js"></script>
+<script>
+(function() {
+  function init() {
+    var params = new URLSearchParams(window.location.search);
+    var id = params.get('id') || 'bruno';
+    var data = window.UnkeLiyeData;
+    if (!data) return;
+
+    var animal = data.animals.find(function(a) { return a.id === id; });
+    if (!animal) {
+      document.getElementById('not-found-state').style.display = 'block';
+      return;
+    }
+
+    // Populate profile
+    document.getElementById('bc-animal-name').textContent = animal.name;
+    document.getElementById('animal-img-bg').style.backgroundImage = "url('" + animal.imgUrl + "')";
+    document.getElementById('animal-health-badge').textContent = animal.health || 'Recovered';
+    document.getElementById('animal-status-badge').textContent = animal.status || 'Available';
+    document.getElementById('animal-profile-pill').textContent = (animal.type === 'Dog' ? '🐕' : '🐈') + ' Adoption Profile';
+    document.getElementById('animal-name-heading').textContent = animal.name;
+    document.getElementById('animal-subtitle').textContent = (animal.breed || animal.type) + ' · ' + animal.gender + ' · ' + animal.age + ' · Pune Sanctuary';
+    document.getElementById('animal-who-title').textContent = 'Who is ' + animal.name + '?';
+
+    // Personality paragraphs
+    var text = animal.personality || '';
+    var parts = text.split('. ');
+    var mid = Math.ceil(parts.length / 2);
+    var p1 = parts.slice(0, mid).join('. ') + (mid < parts.length ? '.' : '');
+    var p2 = parts.slice(mid).join('. ') + (parts.slice(mid).length > 0 && !text.endsWith('.') ? '.' : '');
+    document.getElementById('animal-personality-p1').textContent = p1;
+    document.getElementById('animal-personality-p2').textContent = p2 || (animal.story || '');
+
+    // Stats chips
+    var chips = [
+      (animal.type === 'Dog' ? '🐕 Dog' : '🐈 Cat'),
+      (animal.gender === 'Male' ? '♂ Male' : '♀ Female'),
+      animal.age,
+      'Vaccinated',
+      'Neutered/Spayed',
+      'Microchipped'
+    ];
+    var chipsContainer = document.getElementById('animal-chips-container');
+    chipsContainer.innerHTML = '';
+    chips.forEach(function(c) {
+      var span = document.createElement('span');
+      span.className = 'pg-chip';
+      if (c.includes('Vaccinated') || c.includes('Neutered')) span.className += ' pg-chip--success';
+      span.textContent = c;
+      chipsContainer.appendChild(span);
+    });
+
+    // Gallery tiles
+    var gallGrid = document.getElementById('animal-gallery-grid');
+    gallGrid.innerHTML = '';
+    var thumbs = animal.thumbImages || [animal.imgUrl];
+    thumbs.forEach(function(img) {
+      var tile = document.createElement('div');
+      tile.className = 'pg-gallery-tile';
+      tile.style.height = '100px';
+      tile.onclick = function() {
+        document.getElementById('animal-img-bg').style.backgroundImage = "url('" + img + "')";
+      };
+      tile.innerHTML = "<div class='pg-gallery-tile__img' style='background-image:url(\"" + img + "\")'></div>";
+      gallGrid.appendChild(tile);
+    });
+
+    // Fact grid
+    var factGrid = document.getElementById('animal-facts-grid');
+    var isDog = animal.type === 'Dog';
+    var isPersian = (animal.breed || '').includes('Persian');
+    var isLarge = (animal.size || '').includes('Large');
+    var isTommy = animal.id === 'tommy';
+    var isGolu = animal.id === 'golu';
+    var isBajrang = animal.id === 'bajrang';
+
+    var facts = [
+      { label: 'Good with dogs?', val: isDog ? '✅ Yes, sociable' : '✅ Untested, gentle' },
+      { label: 'Good with cats?', val: !isDog ? '✅ Yes, sociable' : '✅ Untested, gentle' },
+      { label: 'Good with kids?', val: isBajrang ? '❌ No' : '✅ Yes' },
+      { label: 'Apartment friendly?', val: isLarge ? '⚠️ Needs space' : '✅ Yes, low energy' },
+      { label: 'Energy level', val: isTommy ? '🌿 Low' : (isGolu ? '🔥 High' : '🌿 Medium') },
+      { label: 'Grooming needs', val: isPersian ? '🛁 High maintenance' : '🛁 Low maintenance' }
+    ];
+    factGrid.innerHTML = '';
+    facts.forEach(function(f) {
+      var block = document.createElement('div');
+      block.style.cssText = 'background:var(--color-surface-alt);border-radius:var(--radius-md);padding:1rem;border:1px solid var(--color-border)';
+      var lbl = document.createElement('div');
+      lbl.style.cssText = 'font-size:.75rem;color:var(--color-text-muted);margin-bottom:.25rem';
+      lbl.textContent = f.label;
+      var str = document.createElement('strong');
+      if (f.val.includes('✅')) str.style.color = 'var(--color-protect)';
+      str.textContent = f.val;
+      block.appendChild(lbl);
+      block.appendChild(str);
+      factGrid.appendChild(block);
+    });
+
+    // Medical notes
+    document.getElementById('animal-medical-notes').textContent = animal.medicalStatus || animal.health || 'Up to date with wellness checks.';
+
+    // CTA buttons
+    var adoptBtn = document.getElementById('cta-adopt-btn');
+    adoptBtn.href = 'adoption-form.html?id=' + animal.id;
+    adoptBtn.textContent = 'Apply to Adopt ' + animal.name + ' →';
+
+    var sponsorBtn = document.getElementById('cta-sponsor-btn');
+    sponsorBtn.href = 'sponsor-animal.html?id=' + animal.id;
+    sponsorBtn.textContent = "Sponsor " + animal.name + "'s Care ₹1,000/mo →";
+
+    document.getElementById('profile-section').style.display = 'block';
+  }
+
+  document.addEventListener('DOMContentLoaded', init);
+})();
+</script>
+</body>
+</html>

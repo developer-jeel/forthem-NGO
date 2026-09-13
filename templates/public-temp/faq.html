@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Frequently asked questions about Unke Liye — donations, volunteering, adoption, fostering, rescue reporting, and more." />
+  <title>FAQ — Unke Liye</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <style>
+    .faq-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-10);
+    }
+    @media (min-width: 1024px) {
+      .faq-layout { grid-template-columns: 240px 1fr; }
+    }
+    .faq-nav {
+      position: sticky;
+      top: calc(80px + var(--space-4));
+      height: fit-content;
+    }
+    .faq-nav-list {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+    }
+    .faq-nav-list a {
+      display: block;
+      padding: var(--space-2) var(--space-3);
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      text-decoration: none;
+      border-radius: var(--radius-sm);
+      border-left: 2px solid transparent;
+      transition: all var(--transition-fast);
+    }
+    .faq-nav-list a:hover {
+      color: var(--color-primary);
+      border-left-color: var(--color-primary);
+      background: var(--color-primary-light);
+    }
+    .faq-section {
+      margin-bottom: var(--space-12);
+    }
+    .faq-section-title {
+      font-size: var(--text-xl);
+      font-weight: var(--font-weight-bold);
+      margin-bottom: var(--space-6);
+      padding-bottom: var(--space-4);
+      border-bottom: 2px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+    }
+    .faq-search {
+      width: 100%;
+      padding: var(--space-4) var(--space-5);
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      font-size: var(--text-base);
+      outline: none;
+      transition: border-color var(--transition-fast);
+      margin-bottom: var(--space-10);
+      background: var(--color-surface);
+    }
+    .faq-search:focus { border-color: var(--color-primary); }
+  </style>
+</head>
+<body>
+<a href="#main-content" class="skip-nav">Skip to main content</a>
+<div class="emergency-bar"><span class="pulse-dot" aria-hidden="true"></span><span>🚨 Animal in distress? —</span><a href="report-animal.html">Report Now →</a></div>
+<header class="site-header" role="banner">
+  <div class="container">
+    <nav class="nav-inner" aria-label="Main navigation">
+      <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a>
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li><li><a href="about.html" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Our Work <svg viewBox="0 0 16 16" fill="currentColor" width="14" height="14"><path d="M4 6l4 4 4-4"/></svg></a><div class="nav-dropdown"><a href="work-animal-rescue.html"><span class="icon">🐾</span> Animal Rescue</a><a href="work-environment.html"><span class="icon">🌱</span> Environment</a><a href="work-sanitation.html"><span class="icon">🧹</span> Sanitation</a><a href="work-disaster-relief.html"><span class="icon">🚨</span> Disaster Relief</a></div></li>
+        <li><a href="campaigns.html" class="nav-link">Campaigns</a></li><li><a href="impact.html" class="nav-link">Impact</a></li><li><a href="stories.html" class="nav-link">Stories</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Get Involved <svg viewBox="0 0 16 16" fill="currentColor" width="14" height="14"><path d="M4 6l4 4 4-4"/></svg></a><div class="nav-dropdown"><a href="volunteer.html"><span class="icon">🙋</span> Volunteer</a><a href="foster.html"><span class="icon">🏠</span> Foster</a><a href="sponsor-animal.html"><span class="icon">💛</span> Sponsor</a><a href="report-animal.html" style="color:var(--color-urgent)"><span class="icon">🚨</span> Report</a></div></li>
+      </ul>
+      <div class="nav-actions"><a href="donate.html" class="btn btn--primary btn--sm">Donate</a><button class="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button></div>
+    </nav>
+  </div>
+</header>
+<div class="nav-mobile-panel" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <div class="nav-mobile-overlay"></div>
+  <div class="nav-mobile-drawer">
+    <button class="nav-mobile-close" aria-label="Close menu">✕</button>
+    <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a>
+    <ul class="nav-mobile-list"><li><a href="index.html">Home</a></li><li><a href="faq.html">FAQ</a></li><li><a href="contact.html">Contact</a></li><li><a href="donate.html">Donate</a></li></ul>
+    <div class="nav-mobile-actions"><a href="donate.html" class="btn btn--primary btn--full">Donate Now</a></div>
+  </div>
+</div>
+
+<main id="main-content">
+  <div class="page-hero" style="--ph-img: url('https://images.unsplash.com/photo-1576267423048-15c0040fec78?w=1600&q=80')">
+    <div class="container page-hero-content">
+      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">›</span><span aria-current="page">FAQ</span></nav>
+      <h1>Frequently Asked Questions</h1>
+      <p>Everything you need to know about donating, volunteering, adopting, rescuing, and working with us.</p>
+    </div>
+  </div>
+
+  <section class="section" aria-label="Frequently asked questions">
+    <div class="container">
+      <input type="search" class="faq-search" id="faq-search" placeholder="🔍 Search questions..." aria-label="Search FAQ questions" />
+
+      <div class="faq-layout">
+
+        <!-- Sidebar Nav -->
+        <nav class="faq-nav" aria-label="FAQ sections">
+          <div style="font-size:var(--text-xs);font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--color-text-muted);margin-bottom:var(--space-4)">Jump to Section</div>
+          <ul class="faq-nav-list">
+            <li><a href="#donations">💰 Donations</a></li>
+            <li><a href="#volunteering">🙋 Volunteering</a></li>
+            <li><a href="#adoption">🐾 Adoption & Fostering</a></li>
+            <li><a href="#rescue">🚨 Rescue Reporting</a></li>
+            <li><a href="#disaster">🆘 Disaster Relief</a></li>
+            <li><a href="#general">📋 General & Legal</a></li>
+          </ul>
+          <div style="margin-top:var(--space-8);padding:var(--space-5);background:var(--color-surface-alt);border-radius:var(--radius-md)">
+            <div style="font-size:var(--text-sm);font-weight:600;margin-bottom:var(--space-3)">Can't find your answer?</div>
+            <a href="contact.html" class="btn btn--outline btn--sm btn--full">Contact Us</a>
+          </div>
+        </nav>
+
+        <!-- FAQ Sections -->
+        <div>
+          <!-- DONATIONS -->
+          <div class="faq-section" id="donations">
+            <div class="faq-section-title"><span aria-hidden="true">💰</span> Donations</div>
+            <div class="accordion-group">
+              <div class="accordion-item">
+                <button class="accordion-trigger" aria-expanded="false">Is my donation tax-deductible?<svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+                <div class="accordion-content"><div class="accordion-body">Yes. Unke Liye is registered under Section 80G of the Income Tax Act, 1961. All donations qualify for a 50% tax deduction. You will receive your 80G certificate via email within 7 working days of your donation. PAN number is required to issue the certificate.</div></div>
+              </div>
+              <div class="accordion-item">
+                <button class="accordion-trigger" aria-expanded="false">What payment methods do you accept?<svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+                <div class="accordion-content"><div class="accordion-body">We accept all major UPI apps (GPay, PhonePe, Paytm), net banking, debit and credit cards (Visa, Mastercard, RuPay), and digital wallets. Payments are processed securely through Razorpay. We do not store your payment details.</div></div>
+              </div>
+              <div class="accordion-item">
+                <button class="accordion-trigger" aria-expanded="false">What is the minimum donation amount?<svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+                <div class="accordion-content"><div class="accordion-body">The minimum donation we accept is ₹100. There is no maximum limit. Every amount genuinely makes a difference — ₹100 can cover a day's food for a recovering animal.</div></div>
+              </div>
+              <div class="accordion-item">
+                <button class="accordion-trigger" aria-expanded="false">How is my donation utilized?<svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+                <div class="accordion-content"><div class="accordion-body">82% of all donations go directly toward program activities (rescue operations, vet care, environment drives, disaster relief). 10% covers administrative costs (staff, infrastructure), and 8% covers fundraising costs. Full annual financial statements and utilization reports are published on our <a href="transparency.html">Transparency</a> page.</div></div>
+              </div>
+              <div class="accordion-item">
+                <button class="accordion-trigger" aria-expanded="false">Can I set up a monthly recurring donation?<svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+                <div class="accordion-content"><div class="accordion-body">Yes! Monthly giving is our most impactful form of support — it allows us to plan rescue operations and maintain continuous programs. You can set up a monthly donation on our <a href="donate.html">Donate page</a> by selecting "Monthly." You can pause or cancel anytime by emailing us.</div></div>
+              </div>
+              <div class="accordion-item">
+                <button class="accordion-trigger" aria-expanded="false">Can I donate in memory of or in honor of someone?<svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+                <div class="accordion-content"><div class="accordion-body">Yes, we do tribute donations. Please email us at donate@unkeliye.org with the details and we'll issue a special acknowledgment certificate in the name of the person being honored.</div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- VOLUNTEERING -->
+          <div class="faq-section" id="volunteering">
+            <div class="faq-section-title"><span aria-hidden="true">🙋</span> Volunteering</div>
+            <div class="accordion-group">
+              <div class="accordion-item">
+                <button class="accordion-trigger" aria-expanded="false">How do I become a volunteer?<svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+                <div class="accordion-content"><div class="accordion-body">Fill out our <a href="volunteer.html">Volunteer Registration Form</a> online. Our coordinator will contact you within 3 working days to schedule an orientation session. There is no minimum commitment — we welcome people who can only do 3 hours a month.</div></div>
+              </div>
+              <div class="accordion-item">
+                <button class="accordion-trigger" aria-expanded="false">Do I need experience to volunteer?<svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+                <div class="accordion-content"><div class="accordion-body">No experience is needed for most roles. We provide full training before any field assignment. For specialized roles (veterinary assistance, medical support), relevant qualifications are appreciated but not always mandatory.</div></div>
+              </div>
+              <div class="accordion-item">
+                <button class="accordion-trigger" aria-expanded="false">Do I get a volunteer certificate?<svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+                <div class="accordion-content"><div class="accordion-body">Yes. After completing 20+ volunteer hours with us, you receive an official Unke Liye Volunteer Certificate signed by our Founder and stamped with our registration seal. Many volunteers use this for college, job applications, and CSR requirements.</div></div>
+              </div>
+              <div class="accordion-item">
+                <button class="accordion-trigger" aria-expanded="false">Can I volunteer remotely or from another city?<svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+                <div class="accordion-content"><div class="accordion-body">Yes! We have remote volunteer roles: social media management, content writing, graphic design, fundraising outreach, data management, and donor communication. Apply and mention your city — we'll match you to a remote role.</div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ADOPTION & FOSTERING -->
+          <div class="faq-section" id="adoption">
+            <div class="faq-section-title"><span aria-hidden="true">🐾</span> Adoption & Fostering</div>
+            <div class="accordion-group">
+              <div class="accordion-item">
+                <button class="accordion-trigger" aria-expanded="false">What does pet adoption involve?<svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+                <div class="accordion-content"><div class="accordion-body">Browse our <a href="adopt.html">Adopt page</a> to find an animal. Submit an online application, meet the animal at our shelter, and if it's a match — complete the paperwork and adoption fee. Every adoption includes the animal's full vaccination record, microchip ID, sterilization certificate, and a 30-day follow-up call from our team.</div></div>
+              </div>
+              <div class="accordion-item">
+                <button class="accordion-trigger" aria-expanded="false">Is there an adoption fee?<svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+                <div class="accordion-content"><div class="accordion-body">Yes. Adoption fees range from ₹500 to ₹2,000 depending on the animal. This covers final health check, deworming, microchipping, and paperwork. It is not a commercial fee — it's a small contribution to their care costs.</div></div>
+              </div>
+              <div class="accordion-item">
+                <button class="accordion-trigger" aria-expanded="false">What is fostering and how is it different from adopting?<svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+                <div class="accordion-content"><div class="accordion-body">Fostering means providing a temporary home for an animal — usually 2 weeks to 3 months — while we find them a permanent family. We provide food, medical care, and support. You provide love, shelter, and time. Many fosters become permanent adopters. Visit our <a href="foster.html">Foster page</a> to learn more.</div></div>
+              </div>
+              <div class="accordion-item">
+                <button class="accordion-trigger" aria-expanded="false">Can I sponsor an animal without adopting?<svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+                <div class="accordion-content"><div class="accordion-body">Yes! Our <a href="sponsor-animal.html">Sponsor an Animal</a> program lets you support a specific animal's care with a monthly contribution. You receive regular updates and photos. It's perfect for people who can't adopt or foster but want a personal connection.</div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RESCUE REPORTING -->
+          <div class="faq-section" id="rescue">
+            <div class="faq-section-title"><span aria-hidden="true">🚨</span> Rescue Reporting</div>
+            <div class="accordion-group">
+              <div class="accordion-item">
+                <button class="accordion-trigger" aria-expanded="false">How do I report an injured or distressed animal?<svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+                <div class="accordion-content"><div class="accordion-body">Call our 24/7 hotline at +91 88888 00000, or fill out our <a href="report-animal.html">online rescue form</a>. Provide the location (with landmark), animal type, and condition. We dispatch the nearest team immediately. If the situation is life-threatening, call first — don't wait to fill the form.</div></div>
+              </div>
+              <div class="accordion-item">
+                <button class="accordion-trigger" aria-expanded="false">Do you respond outside Pune?<svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+                <div class="accordion-content"><div class="accordion-body">Our primary rescue zone is Pune and immediate surrounding areas (within 60km). For other Maharashtra locations, we coordinate with partner NGOs. For all other states during disasters, we deploy our disaster relief team. Report any case to us — we'll do our best or refer you to the right organization.</div></div>
+              </div>
+              <div class="accordion-item">
+                <button class="accordion-trigger" aria-expanded="false">Can I track the status of a rescue I reported?<svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+                <div class="accordion-content"><div class="accordion-body">Yes. After submitting a report, you'll receive a reference number. You can track the rescue status on our <a href="dashboard-rescue-status.html">Rescue Status Tracker</a>, or call us with your reference number for an update.</div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- DISASTER RELIEF -->
+          <div class="faq-section" id="disaster">
+            <div class="faq-section-title"><span aria-hidden="true">🆘</span> Disaster Relief</div>
+            <div class="accordion-group">
+              <div class="accordion-item">
+                <button class="accordion-trigger" aria-expanded="false">How do you decide which disasters to respond to?<svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+                <div class="accordion-content"><div class="accordion-body">We prioritize disasters based on: scale of impact, gap in existing relief (are government agencies already there?), our existing volunteer presence in the region, and availability of funds. We focus on being where we can add the most value, not just where the cameras are.</div></div>
+              </div>
+              <div class="accordion-item">
+                <button class="accordion-trigger" aria-expanded="false">How can I register as an emergency volunteer?<svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+                <div class="accordion-content"><div class="accordion-body">Check the "Emergency Response Volunteer" option on our <a href="volunteer.html">Volunteer form</a>. You'll be required to attend a one-day emergency preparedness orientation. After that, you'll be on our emergency roster and contacted when needed.</div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- GENERAL -->
+          <div class="faq-section" id="general">
+            <div class="faq-section-title"><span aria-hidden="true">📋</span> General & Legal</div>
+            <div class="accordion-group">
+              <div class="accordion-item">
+                <button class="accordion-trigger" aria-expanded="false">Is Unke Liye a registered NGO?<svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+                <div class="accordion-content"><div class="accordion-body">Yes. Unke Liye is registered under the Societies Registration Act, 1860 with Registration No. MAH/2015/1234 (Maharashtra). We hold FCRA registration (for foreign contributions), 80G certification (for tax deductions), and 12A certification. All documents are available on our <a href="transparency.html">Transparency page</a>.</div></div>
+              </div>
+              <div class="accordion-item">
+                <button class="accordion-trigger" aria-expanded="false">Where is Unke Liye located?<svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+                <div class="accordion-content"><div class="accordion-body">Our main shelter, clinic, and office are in Hadapsar, Pune, Maharashtra. We also have operations across Pune city, Nashik, and temporary field offices during disaster operations in other states.</div></div>
+              </div>
+              <div class="accordion-item">
+                <button class="accordion-trigger" aria-expanded="false">How can I contact Unke Liye?<svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+                <div class="accordion-content"><div class="accordion-body">Visit our <a href="contact.html">Contact page</a> for all contact details. General inquiries: info@unkeliye.org · Donations: donate@unkeliye.org · Volunteering: volunteer@unkeliye.org · Emergency rescue: +91 88888 00000 (24/7)</div></div>
+              </div>
+              <div class="accordion-item">
+                <button class="accordion-trigger" aria-expanded="false">Does Unke Liye collaborate with government agencies?<svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+                <div class="accordion-content"><div class="accordion-body">Yes. We work closely with Pune Municipal Corporation (PMC) for ABC programs and cleanliness drives, Maharashtra Forest Department for wildlife rescue and reforestation, NDMA and state disaster management authorities for disaster response, and Animal Welfare Board of India for policy guidance.</div></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div><img src="logo.png" alt="Unke Liye" class="footer-logo-img" /><p class="footer-brand-tagline">For Every Life. For Nature. For a Better Tomorrow.</p><div class="footer-emergency"><div class="footer-emergency-title">🚨 24/7 Emergency</div><a href="tel:+918888000000">+91 88888 00000</a></div></div>
+      <div><h3 class="footer-col-title">Quick Links</h3><ul class="footer-links"><li><a href="about.html">About</a></li><li><a href="faq.html">FAQ</a></li><li><a href="contact.html">Contact</a></li><li><a href="transparency.html">Transparency</a></li></ul></div>
+      <div><h3 class="footer-col-title">Get Involved</h3><ul class="footer-links"><li><a href="volunteer.html">Volunteer</a></li><li><a href="donate.html">Donate</a></li><li><a href="adopt.html">Adopt</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2024 Unke Liye. Reg. No. MAH/2015/1234</p><div class="footer-legal-links"><a href="privacy-policy.html">Privacy</a><a href="terms.html">Terms</a><a href="sitemap.html">Sitemap</a></div></div>
+  </div>
+</footer>
+<a href="report-animal.html" class="emergency-float" aria-label="Report an animal emergency"><span aria-hidden="true">🚨</span><span>Report Animal Emergency</span></a>
+<script src="js/main.js"></script>
+<script>
+  // FAQ Search
+  document.getElementById('faq-search')?.addEventListener('input', function() {
+    const q = this.value.toLowerCase().trim();
+    document.querySelectorAll('.accordion-item').forEach(item => {
+      const text = item.textContent.toLowerCase();
+      item.style.display = !q || text.includes(q) ? '' : 'none';
+    });
+    // Show/hide section titles
+    document.querySelectorAll('.faq-section').forEach(sec => {
+      const visible = [...sec.querySelectorAll('.accordion-item')].some(i => i.style.display !== 'none');
+      sec.style.display = visible ? '' : 'none';
+    });
+  });
+</script>
+</body>
+</html>

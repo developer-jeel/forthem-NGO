@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Treasury Disbursements Desk — Unke Liye Finance Manager</title>
+  <link rel="stylesheet" href="assets/css/finance-manager.css">
+  <link rel="stylesheet" href="../shared/css/platform-theme.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="../logo.png" alt="Unke Liye Logo" class="sidebar-logo-img">
+        <div class="sidebar-brand">
+          UNKE LIYE
+          <span>Finance Operations</span>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <div class="nav-section-title">Overview</div>
+          <a href="dashboard.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            Dashboard
+          </a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Fund Requests & Approvals</div>
+          <a href="fund-approvals.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+            Fund Approvals
+          </a>
+          <a href="fund-requests.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Fund Requests
+          </a>
+          <a href="disbursements.html" class="nav-item active">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+            Disbursements
+          </a>
+          <a href="expense-claims.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 14l4-4-4-4M5 20h14a2 2 0 002-2V8l-7-5-7 5v10a2 2 0 002 2z"/></svg>
+            Expense Claims
+          </a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Treasury & Budgets</div>
+          <a href="cash-position.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+            Cash Position
+          </a>
+          <a href="department-budgets.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+            Department Budgets
+          </a>
+          <a href="compliance.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Compliance & 80G
+          </a>
+        </div>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="user-profile">
+          <div class="user-avatar">AM</div>
+          <div class="user-info">
+            <div class="user-name">Aarav Mehta</div>
+            <div class="user-role">Finance Manager</div>
+            <div class="user-status"><span class="user-status-dot"></span> Online</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="header">
+        <div class="header-left">
+          <nav class="breadcrumb">
+            <span>Finance Manager</span>
+            <span class="breadcrumb-separator">/</span>
+            <span>Treasury</span>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Disbursements Desk</span>
+          </nav>
+        </div>
+        <div class="header-right">
+          <button class="btn btn-secondary btn-sm theme-toggle-btn" title="Toggle theme">
+            <span class="icon-moon">🌙</span>
+            <span class="icon-sun" style="display:none;">☀️</span>
+          </button>
+          <a href="../index.html" class="btn btn-secondary btn-sm">Exit to Portals</a>
+        </div>
+      </header>
+
+      <div class="content-container">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:var(--space-6);flex-wrap:wrap;gap:var(--space-4);">
+          <div>
+            <h1 class="page-title">Treasury Disbursements Desk</h1>
+            <p class="page-subtitle">Release approved capital allocations to hospital vendors, field coordinators, and emergency relief supplies via verified bank channels.</p>
+          </div>
+          <a href="fund-approvals.html" class="btn btn-secondary btn-sm">← Back to Approvals</a>
+        </div>
+
+        <!-- Pending Release Queue Banner -->
+        <div id="pending-release-section" style="margin-bottom:var(--space-6);"></div>
+
+        <!-- Master Completed Disbursements Ledger -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Completed Disbursement Vouchers & UTR Registry</h3>
+            <button class="btn btn-secondary btn-sm" onclick="PlatformUI.showToast('Exporting bank transfer advice statements...', 'info')">Export Bank Advice</button>
+          </div>
+          <div class="table-container" style="border:none;">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Voucher ID</th>
+                  <th>Fund Request</th>
+                  <th>Beneficiary / Recipient</th>
+                  <th>Department</th>
+                  <th>Disbursed Amount</th>
+                  <th>Payment Channel</th>
+                  <th>Bank UTR / Ref</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="disbursements-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="toast-container"></div>
+  <script src="../shared/js/platform-store.js"></script>
+  <script src="../shared/js/platform-ui.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      function renderDisbursements() {
+        const requests = window.PlatformStore.getFundRequests();
+        const disbursements = window.PlatformStore.getDisbursements();
+        const pendingSection = document.getElementById('pending-release-section');
+        const tbody = document.getElementById('disbursements-table-body');
+
+        // Find requests that are APPROVED or PARTIALLY_APPROVED and awaiting disbursement
+        const readyToDisburse = requests.filter(r => r.status === 'APPROVED' || r.status === 'PARTIALLY_APPROVED');
+
+        if (readyToDisburse.length > 0) {
+          pendingSection.innerHTML = readyToDisburse.map(req => `
+            <div style="background:var(--status-warning-bg);border:1px solid var(--status-warning-border);border-radius:var(--radius-lg);padding:var(--space-5);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:var(--space-4);">
+              <div>
+                <span class="badge badge-warning" style="margin-bottom:var(--space-1);">READY FOR RELEASE</span>
+                <h3 style="font-family:var(--font-heading);font-size:1.15rem;font-weight:700;color:var(--text-primary);">${req.title}</h3>
+                <div style="font-size:0.8125rem;color:var(--text-secondary);">Request ID: <strong>${req.id}</strong> • Department: <strong>${req.departmentName}</strong> • Beneficiary: <strong>${req.requestedBy}</strong></div>
+              </div>
+              <div style="text-align:right;">
+                <div style="font-size:0.75rem;color:var(--text-tertiary);text-transform:uppercase;font-weight:600;">Approved Allocation</div>
+                <div style="font-family:var(--font-heading);font-size:1.6rem;font-weight:700;color:var(--brand-primary);margin-bottom:var(--space-2);">₹${Number(req.approvedAmount || req.requestedAmount).toLocaleString('en-IN')}</div>
+                <button class="btn btn-primary btn-sm btn-release-funds" data-req-id="${req.id}">
+                  ⚡ Release Funds via SBI NEFT
+                </button>
+              </div>
+            </div>
+          `).join('');
+
+          // Bind release button
+          pendingSection.querySelectorAll('.btn-release-funds').forEach(btn => {
+            btn.addEventListener('click', () => {
+              const reqId = btn.getAttribute('data-req-id');
+              const utr = 'SBI-' + Math.floor(10000000 + Math.random() * 90000000);
+              window.PlatformStore.disburseFunds(reqId, {
+                paymentMethod: 'SBI Corporate Direct NEFT',
+                utrNumber: utr
+              });
+              PlatformUI.showToast(`Funds released for ${reqId}! UTR Ref: ${utr}`, 'success');
+              renderDisbursements();
+            });
+          });
+        } else {
+          pendingSection.innerHTML = `
+            <div class="card" style="padding:var(--space-4);background:var(--status-success-bg);border:1px solid var(--status-success-border);display:flex;align-items:center;gap:var(--space-3);">
+              <span style="font-size:1.5rem;color:var(--status-success);">✓</span>
+              <div style="font-size:0.875rem;color:var(--status-success);font-weight:600;">All approved funding allocations have been successfully disbursed. Zero pending bank releases.</div>
+            </div>
+          `;
+        }
+
+        // Render table
+        tbody.innerHTML = disbursements.map(d => `
+          <tr>
+            <td><code style="font-weight:700;color:var(--brand-primary);">${d.id}</code></td>
+            <td><a href="../requests/request-detail.html?id=${d.fundRequestId}" style="color:var(--text-primary);font-weight:600;text-decoration:none;">${d.fundRequestId}</a></td>
+            <td>
+              <div style="font-weight:600;font-size:0.875rem;">${d.recipient}</div>
+              <div style="font-size:0.75rem;color:var(--text-tertiary);">${d.accountNumber}</div>
+            </td>
+            <td><span class="badge badge-brand">${d.department}</span></td>
+            <td><span style="font-family:var(--font-heading);font-weight:700;font-size:1rem;color:var(--text-primary);">₹${Number(d.amount).toLocaleString('en-IN')}</span></td>
+            <td><span style="font-size:0.8125rem;">${d.paymentMethod}</span></td>
+            <td><code style="font-size:0.75rem;color:var(--text-secondary);">${d.utrNumber}</code></td>
+            <td style="font-size:0.8125rem;color:var(--text-tertiary);">${d.date}</td>
+            <td><span class="badge badge-success">Disbursed</span></td>
+          </tr>
+        `).join('');
+      }
+
+      renderDisbursements();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Volunteer Operations Fund Requests — Unke Liye NGO</title>
+  <link rel="stylesheet" href="assets/css/volunteer-manager.css">
+  <link rel="stylesheet" href="../shared/css/platform-theme.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <img src="../logo.png" alt="Unke Liye Logo" class="sidebar-logo-img">
+        <div>
+          <div class="sidebar-brand">UNKE LIYE</div>
+          <div class="sidebar-brand-sub">Volunteer Operations</div>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <div class="nav-section-title">Overview</div>
+          <a href="dashboard.html" class="nav-item">
+            <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+            Dashboard
+          </a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Volunteers</div>
+          <a href="volunteers.html" class="nav-item">
+            <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+            Volunteers
+          </a>
+          <a href="applications.html" class="nav-item">
+            <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            Applications
+          </a>
+          <a href="shifts.html" class="nav-item">
+            <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            Shifts & Schedule
+          </a>
+          <a href="assignments.html" class="nav-item">
+            <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+            Assignments
+          </a>
+          <a href="attendance.html" class="nav-item">
+            <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Attendance & Hours
+          </a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Finance & Logistics</div>
+          <a href="fund-requests.html" class="nav-item active">
+            <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Fund Requests
+          </a>
+        </div>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="user-profile">
+          <div class="user-avatar">PI</div>
+          <div class="user-info">
+            <div class="user-name">Priya Iyer</div>
+            <div class="user-role">Volunteer Coordinator</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="header">
+        <div class="header-left">
+          <nav class="breadcrumb-nav">
+            <a href="dashboard.html">Volunteer Operations</a>
+            <span class="breadcrumb-sep">/</span>
+            <span class="breadcrumb-current">Fund Requests</span>
+          </nav>
+        </div>
+        <div class="header-right">
+          <button class="btn btn-secondary btn-sm theme-toggle-btn" title="Toggle theme">
+            <span class="icon-moon">🌙</span>
+            <span class="icon-sun" style="display:none;">☀️</span>
+          </button>
+          <a href="../index.html" class="btn btn-secondary btn-sm">Main Portal Hub</a>
+        </div>
+      </header>
+
+      <div class="content-container">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:var(--space-6);flex-wrap:wrap;gap:var(--space-4);">
+          <div>
+            <h1 class="page-title">Volunteer Operations Funding & Claims</h1>
+            <p class="page-subtitle">Manage funding requisitions for volunteer field logistics, safety equipment, transport allowances, and meal stipends.</p>
+          </div>
+          <button class="btn btn-primary btn-sm" id="btn-create-vol-req">+ Request Volunteer Funding</button>
+        </div>
+
+        <div class="kpi-row">
+          <div class="kpi-card kpi-primary">
+            <div class="kpi-header"><span class="kpi-label">Department Allocation</span></div>
+            <div class="kpi-value">₹2,50,000</div>
+            <div class="kpi-subtext">Volunteer training & support pool</div>
+          </div>
+
+          <div class="kpi-card kpi-success">
+            <div class="kpi-header"><span class="kpi-label">Available Balance</span></div>
+            <div class="kpi-value">₹45,000</div>
+            <div class="kpi-subtext" style="color:var(--status-success);">Under statutory limits</div>
+          </div>
+
+          <div class="kpi-card kpi-accent">
+            <div class="kpi-header"><span class="kpi-label">Disbursed This Quarter</span></div>
+            <div class="kpi-value">₹1,75,000</div>
+            <div class="kpi-subtext">Protective gear & bus logistics</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Volunteer Requisition History</h3>
+          </div>
+          <div class="table-container" style="border:none;">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Request ID</th>
+                  <th>Title & Purpose</th>
+                  <th>Category</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                  <th>Date</th>
+                  <th style="text-align:right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>#FR-2026-1031</code></td>
+                  <td>
+                    <div style="font-weight:600;">Volunteer Refreshments & Hydration Kits (Tree Drive)</div>
+                    <div style="font-size:0.75rem;color:var(--text-tertiary);">Electrolyte packets, water canisters, and high-protein biscuits</div>
+                  </td>
+                  <td><span class="badge badge-brand">Meals & Hydration</span></td>
+                  <td style="font-weight:700;color:var(--text-primary);">₹18,000</td>
+                  <td><span class="badge badge-success">Disbursed</span></td>
+                  <td style="font-size:0.8125rem;">28 Aug 2026</td>
+                  <td style="text-align:right;">
+                    <button class="btn btn-secondary btn-sm" onclick="PlatformUI.showToast('Voucher details: Disbursed via UPI payout to vendor', 'info')">Details</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>#FR-2026-1025</code></td>
+                  <td>
+                    <div style="font-weight:600;">Mini-Bus Hire for 45 Volunteers (Pune River Cleanup)</div>
+                    <div style="font-size:0.75rem;color:var(--text-tertiary);">Return coach transfer Mumbai-Pune base</div>
+                  </td>
+                  <td><span class="badge badge-brand">Transportation</span></td>
+                  <td style="font-weight:700;color:var(--text-primary);">₹24,000</td>
+                  <td><span class="badge badge-success">Disbursed & Reconciled</span></td>
+                  <td style="font-size:0.8125rem;">15 Aug 2026</td>
+                  <td style="text-align:right;">
+                    <button class="btn btn-secondary btn-sm" onclick="PlatformUI.showToast('Invoices verified by Finance', 'info')">Details</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="toast-container"></div>
+  <script src="../shared/js/platform-store.js"></script>
+  <script src="../shared/js/platform-ui.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('btn-create-vol-req').addEventListener('click', () => {
+        const title = prompt('Enter Requisition Title (e.g. Volunteer Heavy Gloves & Safety Vests):', 'First Aid Kits & Safety Vests for 30 Field Volunteers');
+        if (title) {
+          const req = window.PlatformStore.createFundRequest({
+            title,
+            department: 'volunteers',
+            departmentName: 'Volunteer Operations & Training',
+            requestedBy: 'Priya Iyer',
+            requesterRole: 'Volunteer Coordinator',
+            priority: 'NORMAL',
+            requestType: 'Protective Equipment',
+            category: 'Volunteer Welfare',
+            relatedEntity: 'Volunteer Field Program',
+            dateNeededBy: '2026-09-20',
+            requestedAmount: 15000,
+            justification: 'Procurement of standardized high-visibility reflector vests and trauma first aid pouches for active field duty volunteers.',
+            breakdown: [
+              { item: 'High-Vis Reflective Vests (30 units)', amount: 9000 },
+              { item: 'First-Aid Belt Pouches & Antiseptics', amount: 6000 }
+            ],
+            documents: []
+          });
+          PlatformUI.showToast(`Request ${req.id} submitted to Central Finance!`, 'success');
+          setTimeout(() => location.reload(), 1200);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

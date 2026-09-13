@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roles & Permissions Governance — Unke Liye Admin</title>
+  <link rel="stylesheet" href="assets/variables.css">
+  <link rel="stylesheet" href="assets/base.css">
+  <link rel="stylesheet" href="assets/components.css">
+  <link rel="stylesheet" href="../shared/css/platform-theme.css">
+  <style>
+    .perm-grid {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: var(--space-6);
+      align-items: start;
+    }
+    .role-list-group {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .role-item-btn {
+      width: 100%;
+      text-align: left;
+      padding: var(--space-4);
+      border: none;
+      background: transparent;
+      border-bottom: 1px solid var(--border-subtle);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background-color var(--transition-fast);
+      color: var(--text-primary);
+    }
+    .role-item-btn:hover { background: var(--bg-sunken); }
+    .role-item-btn.active { background: var(--brand-primary-light); font-weight: 700; color: var(--brand-primary); }
+    @media (max-width: 900px) {
+      .perm-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-brand">
+          <img src="../logo.png" alt="Unke Liye Logo" class="sidebar-logo-img">
+          <div class="sidebar-title">Unke Liye<span>Admin Console</span></div>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <div class="nav-section-title">Core</div>
+          <a href="dashboard.html" class="nav-item">Dashboard</a>
+          <a href="operations.html" class="nav-item">Operations Overview</a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Administration</div>
+          <a href="admin-users.html" class="nav-item">System Users</a>
+          <a href="roles.html" class="nav-item active">Roles & Permissions</a>
+          <a href="../finance-manager/audit-log.html" class="nav-item">Audit Trail</a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">Programs</div>
+          <a href="campaigns.html" class="nav-item">Campaigns</a>
+          <a href="donations.html" class="nav-item">Donations</a>
+          <a href="volunteers.html" class="nav-item">Volunteers</a>
+          <a href="animals.html" class="nav-item">Animals</a>
+        </div>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="user-block">
+          <div class="user-avatar">AD</div>
+          <div class="user-info">
+            <span class="user-name">Meera Nambiar</span>
+            <span class="user-role">Super Administrator</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="header">
+        <div class="header-left">
+          <nav class="breadcrumb-nav">
+            <a href="dashboard.html">Admin</a>
+            <span class="breadcrumb-sep">/</span>
+            <span class="breadcrumb-current">Role Governance</span>
+          </nav>
+        </div>
+        <div class="header-right">
+          <button class="btn btn-secondary btn-sm theme-toggle-btn" title="Toggle theme">
+            <span class="icon-moon">🌙</span>
+            <span class="icon-sun" style="display:none;">☀️</span>
+          </button>
+          <a href="../index.html" class="btn btn-secondary btn-sm">Main Portal Hub</a>
+        </div>
+      </header>
+
+      <div class="content-container">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:var(--space-6);flex-wrap:wrap;gap:var(--space-4);">
+          <div>
+            <h1 class="page-title">Role-Based Access Control & Permissions</h1>
+            <p class="page-subtitle">Configure granular authorizations across Finance, Rescue, Campaigns, Volunteer management, and Executive Administration.</p>
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="PlatformUI.showToast('Security ACL matrix saved and broadcasted to active sessions', 'success')">Save Permission Matrix</button>
+        </div>
+
+        <div class="perm-grid">
+          <!-- Role Selector -->
+          <div>
+            <div class="role-list-group">
+              <button class="role-item-btn active" data-role="finance">
+                <span>Finance Manager</span>
+                <span class="badge badge-brand">Active</span>
+              </button>
+              <button class="role-item-btn" data-role="rescue">
+                <span>Rescue Manager</span>
+                <span class="badge badge-neutral">4 Users</span>
+              </button>
+              <button class="role-item-btn" data-role="campaign">
+                <span>Campaign Manager</span>
+                <span class="badge badge-neutral">3 Users</span>
+              </button>
+              <button class="role-item-btn" data-role="volunteer">
+                <span>Volunteer Coordinator</span>
+                <span class="badge badge-neutral">5 Users</span>
+              </button>
+              <button class="role-item-btn" data-role="content">
+                <span>Content & CMS Editor</span>
+                <span class="badge badge-neutral">2 Users</span>
+              </button>
+              <button class="role-item-btn" data-role="admin">
+                <span>Super Administrator</span>
+                <span class="badge badge-danger">Root</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Permission Matrix Table -->
+          <div>
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title" id="role-matrix-title">Finance Manager Permissions</h3>
+                  <div style="font-size:0.8125rem;color:var(--text-tertiary);" id="role-matrix-desc">Treasury oversight, statutory 80G reconciliation, fund request reviews, and disbursement execution.</div>
+                </div>
+              </div>
+
+              <div class="table-container" style="border:none;">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Module Area</th>
+                      <th>Permission Name</th>
+                      <th>Operational Scope</th>
+                      <th style="text-align:center;">Granted</th>
+                    </tr>
+                  </thead>
+                  <tbody id="matrix-table-body">
+                    <tr>
+                      <td><span class="badge badge-brand">Treasury</span></td>
+                      <td><code>finance:approve_funds</code></td>
+                      <td>Review and approve department fund requests (full/partial)</td>
+                      <td style="text-align:center;"><input type="checkbox" checked></td>
+                    </tr>
+                    <tr>
+                      <td><span class="badge badge-brand">Treasury</span></td>
+                      <td><code>finance:disburse</code></td>
+                      <td>Release bank payments, UTR logging, and NEFT execution</td>
+                      <td style="text-align:center;"><input type="checkbox" checked></td>
+                    </tr>
+                    <tr>
+                      <td><span class="badge badge-brand">Treasury</span></td>
+                      <td><code>finance:budget_reallocate</code></td>
+                      <td>Modify department annual budget caps and transfer balances</td>
+                      <td style="text-align:center;"><input type="checkbox" checked></td>
+                    </tr>
+                    <tr>
+                      <td><span class="badge badge-brand">Compliance</span></td>
+                      <td><code>finance:verify_expenses</code></td>
+                      <td>Inspect and approve post-spending bills and receipts</td>
+                      <td style="text-align:center;"><input type="checkbox" checked></td>
+                    </tr>
+                    <tr>
+                      <td><span class="badge badge-neutral">Operations</span></td>
+                      <td><code>rescue:dispatch_unit</code></td>
+                      <td>Mobilize field ambulances and emergency rescue squads</td>
+                      <td style="text-align:center;"><input type="checkbox"></td>
+                    </tr>
+                    <tr>
+                      <td><span class="badge badge-neutral">Security</span></td>
+                      <td><code>admin:manage_users</code></td>
+                      <td>Create, modify, and revoke staff login credentials</td>
+                      <td style="text-align:center;"><input type="checkbox"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="toast-container"></div>
+  <script src="../shared/js/platform-store.js"></script>
+  <script src="../shared/js/platform-ui.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.role-item-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.role-item-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const role = btn.getAttribute('data-role');
+          const title = btn.querySelector('span').textContent;
+          document.getElementById('role-matrix-title').textContent = `${title} Permissions`;
+          PlatformUI.showToast(`Loaded permission matrix for ${title}`, 'info');
+        });
+      });
+    });
+  </script>
+</body>
+</html>

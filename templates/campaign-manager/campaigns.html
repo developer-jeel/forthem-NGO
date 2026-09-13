@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campaigns Directory — Campaign Manager Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/campaign-manager.css">
+</head>
+<body>
+
+<div class="toast-region" id="toast-region"></div>
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+<!-- Modal: New Campaign Quick Launcher -->
+<div class="modal-backdrop" id="modal-quick-create">
+  <div class="modal-panel modal-lg">
+    <div class="modal-header">
+      <h2>Launch New Campaign</h2>
+      <button class="modal-close" data-modal-close="modal-quick-create">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label required">Campaign Title</label>
+          <input type="text" class="form-control" placeholder="e.g. Save Tommy — Stray Dog Surgery">
+        </div>
+        <div class="form-group">
+          <label class="form-label required">Program Pillar</label>
+          <select class="form-control">
+            <option>Animal Rescue</option>
+            <option>Environment</option>
+            <option>Sanitation</option>
+            <option>Disaster Relief</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label required">Target Funding (₹)</label>
+          <input type="number" class="form-control" placeholder="250000">
+        </div>
+        <div class="form-group">
+          <label class="form-label required">Target Deadline</label>
+          <input type="date" class="form-control" value="2025-09-30">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label required">Campaign Overview & Goal</label>
+        <textarea class="form-control" rows="3" placeholder="Describe the mission, beneficiaries, and emergency scope..."></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" data-modal-close="modal-quick-create">Cancel</button>
+      <button class="btn btn-primary" data-modal-close="modal-quick-create" data-toast="success" data-toast-title="Campaign Drafted" data-toast-msg="Saved as pending draft.">Create Draft</button>
+    </div>
+  </div>
+</div>
+
+<div class="app-shell">
+
+  <!-- ── SIDEBAR NAVIGATION ── -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <img src="../logo.png" alt="Unke Liye Logo" class="sidebar-logo-img">
+      <div class="sidebar-logo-text">
+        <strong>Unke Liye</strong>
+        <span>Campaign Control</span>
+      </div>
+    </div>
+
+    <div class="sidebar-role-badge">
+      <span class="role-pulse-dot"></span>
+      Campaign Manager Portal
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-group">
+        <div class="nav-group-label">Overview</div>
+        <div class="nav-group-items">
+          <a href="dashboard.html" class="nav-item">
+            <span class="nav-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            </span>
+            <span class="nav-item-label">Dashboard</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="nav-group">
+        <div class="nav-group-label">Campaign Management</div>
+        <div class="nav-group-items">
+          <a href="campaigns.html" class="nav-item active">
+            <span class="nav-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </span>
+            <span class="nav-item-label">All Campaigns</span>
+            <span class="nav-item-badge">12</span>
+          </a>
+          <a href="campaign-new.html" class="nav-item">
+            <span class="nav-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+            </span>
+            <span class="nav-item-label">Create Campaign</span>
+          </a>
+          <a href="reports.html" class="nav-item">
+            <span class="nav-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            </span>
+            <span class="nav-item-label">Reports &amp; Analytics</span>
+          </a>
+          <a href="updates.html" class="nav-item">
+            <span class="nav-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </span>
+            <span class="nav-item-label">Field Updates</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="nav-group">
+        <div class="nav-group-label">Donors & Impact</div>
+        <div class="nav-group-items">
+          <a href="donors.html" class="nav-item">
+            <span class="nav-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </span>
+            <span class="nav-item-label">Campaign Donors</span>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-chip">
+        <div class="user-avatar">AD</div>
+        <div class="user-details">
+          <span class="user-name">Ananya Deshmukh</span>
+          <span class="user-role">Campaign Lead</span>
+        </div>
+      </div>
+      <button class="sidebar-collapse-btn" id="sidebar-collapse" title="Toggle Sidebar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ── MAIN WRAPPER ── -->
+  <div class="main-wrapper" id="main-wrapper">
+
+    <!-- ── TOPBAR ── -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open mobile menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <div class="breadcrumbs">
+          <a href="dashboard.html">Unke Liye</a>
+          <span>/</span>
+          <span class="current">Campaigns Master Directory</span>
+        </div>
+      </div>
+
+      <div class="topbar-right">
+        <button class="topbar-btn" id="theme-toggle" title="Toggle Light/Dark Theme">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- ── PAGE CONTAINER ── -->
+    <main class="page-container">
+
+      <!-- Page Header -->
+      <div class="page-header">
+        <div class="page-title-group">
+          <h1>All NGO Campaigns</h1>
+          <p class="page-subtitle">Manage, edit, feature, and track fundraising campaigns across all 4 pillars.</p>
+        </div>
+        <div class="page-actions">
+          <button class="btn btn-secondary" data-modal-open="modal-quick-create">+ Quick Launcher</button>
+          <a href="campaign-new.html" class="btn btn-primary">+ Full Campaign Creator Wizard</a>
+        </div>
+      </div>
+
+      <!-- Filter Controls & View Toggle Bar -->
+      <div class="filter-bar">
+        <div class="filter-pills" data-target-container="campaigns-grid">
+          <button class="filter-pill active" data-filter="all">All Campaigns (12)</button>
+          <button class="filter-pill" data-filter="active">Active (8)</button>
+          <button class="filter-pill" data-filter="urgent">Emergency (2)</button>
+          <button class="filter-pill" data-filter="draft">Drafts (2)</button>
+        </div>
+
+        <div class="view-toggle-btns">
+          <button class="view-toggle-btn active" id="view-btn-grid" title="Grid Cards View">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          </button>
+          <button class="view-toggle-btn" id="view-btn-table" title="Dense Table View">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- VIEW 1: GRID CARDS (Default View) -->
+      <div class="campaign-card-grid" id="view-container-grid">
+
+        <!-- Card 1 -->
+        <div class="campaign-card" data-category="active">
+          <div class="campaign-card-media">
+            <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=600&q=80" alt="Dog rescue" class="campaign-card-img">
+            <div class="campaign-card-overlay-tags">
+              <span class="badge badge-pillar-rescue">Animal Rescue</span>
+              <button class="star-toggle starred" title="Toggle Spotlight Feature">★</button>
+            </div>
+          </div>
+          <div class="campaign-card-body">
+            <div class="campaign-card-meta">
+              <span>Ends: 30 Jun 2025</span>
+              <span class="badge badge-active">Active</span>
+            </div>
+            <h3 class="campaign-card-title"><a href="campaign-detail.html">Save Raju — Street Dog Spine Surgery</a></h3>
+            <p class="campaign-card-desc">Emergency veterinary surgery, rehabilitation & post-op foster care for a injured stray rescued in Pune.</p>
+
+            <div class="campaign-funding-box">
+              <div class="funding-numbers">
+                <span class="funding-raised"><strong>₹1,17,000</strong> of ₹1,50,000</span>
+                <span class="funding-pct">78%</span>
+              </div>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar-fill fill-rescue" style="width:78%;"></div>
+              </div>
+            </div>
+
+            <div class="campaign-card-footer">
+              <span>42 Donors</span>
+              <a href="campaign-detail.html" class="btn btn-secondary btn-sm">Manage Campaign →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="campaign-card" data-category="urgent">
+          <div class="campaign-card-media">
+            <img src="https://images.unsplash.com/photo-1547683905-f686c993aae5?auto=format&fit=crop&w=600&q=80" alt="Flood Relief" class="campaign-card-img">
+            <div class="campaign-card-overlay-tags">
+              <span class="badge badge-pillar-disaster">Disaster Relief</span>
+              <button class="star-toggle starred" title="Toggle Spotlight Feature">★</button>
+            </div>
+          </div>
+          <div class="campaign-card-body">
+            <div class="campaign-card-meta">
+              <span>Ends: 15 Jul 2025</span>
+              <span class="badge badge-urgent">Emergency</span>
+            </div>
+            <h3 class="campaign-card-title"><a href="campaign-detail.html">Sundarbans Cyclone Flash Flood Relief Fund 2025</a></h3>
+            <p class="campaign-card-desc">Providing food kits, clean drinking water filtration units & emergency medical shelters for affected coastal villages.</p>
+
+            <div class="campaign-funding-box">
+              <div class="funding-numbers">
+                <span class="funding-raised"><strong>₹6,720,000</strong> of ₹8,000,000</span>
+                <span class="funding-pct" style="color:var(--status-urgent);">84%</span>
+              </div>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar-fill fill-disaster" style="width:84%;"></div>
+              </div>
+            </div>
+
+            <div class="campaign-card-footer">
+              <span>318 Donors</span>
+              <a href="campaign-detail.html" class="btn btn-accent btn-sm">Manage Emergency →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="campaign-card" data-category="active">
+          <div class="campaign-card-media">
+            <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=600&q=80" alt="Tree Plantation" class="campaign-card-img">
+            <div class="campaign-card-overlay-tags">
+              <span class="badge badge-pillar-env">Environment</span>
+              <button class="star-toggle">☆</button>
+            </div>
+          </div>
+          <div class="campaign-card-body">
+            <div class="campaign-card-meta">
+              <span>Ends: 31 Aug 2025</span>
+              <span class="badge badge-active">Active</span>
+            </div>
+            <h3 class="campaign-card-title"><a href="campaign-detail.html">Urban Green Canopy — 10,000 Tree Saplings</a></h3>
+            <p class="campaign-card-desc">Planting native trees across urban highways & school campuses in Maharashtra to combat air pollution.</p>
+
+            <div class="campaign-funding-box">
+              <div class="funding-numbers">
+                <span class="funding-raised"><strong>₹91,500</strong> of ₹1,50,000</span>
+                <span class="funding-pct" style="color:var(--pillar-env);">61%</span>
+              </div>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar-fill fill-env" style="width:61%;"></div>
+              </div>
+            </div>
+
+            <div class="campaign-card-footer">
+              <span>64 Donors</span>
+              <a href="campaign-detail.html" class="btn btn-secondary btn-sm">Manage Campaign →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="campaign-card" data-category="active">
+          <div class="campaign-card-media">
+            <img src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=600&q=80" alt="Sanitation" class="campaign-card-img">
+            <div class="campaign-card-overlay-tags">
+              <span class="badge badge-pillar-sanitation">Sanitation</span>
+              <button class="star-toggle starred">★</button>
+            </div>
+          </div>
+          <div class="campaign-card-body">
+            <div class="campaign-card-meta">
+              <span>Ends: 15 Sep 2025</span>
+              <span class="badge badge-active">Active</span>
+            </div>
+            <h3 class="campaign-card-title"><a href="campaign-detail.html">Dharavi Slum Bio-Toilet Installation Drive</a></h3>
+            <p class="campaign-card-desc">Installing sustainable bio-toilets and conducting hygiene workshops for over 500 slum households.</p>
+
+            <div class="campaign-funding-box">
+              <div class="funding-numbers">
+                <span class="funding-raised"><strong>₹2,67,000</strong> of ₹3,00,000</span>
+                <span class="funding-pct" style="color:var(--pillar-sanitation);">89%</span>
+              </div>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar-fill fill-sanitation" style="width:89%;"></div>
+              </div>
+            </div>
+
+            <div class="campaign-card-footer">
+              <span>88 Donors</span>
+              <a href="campaign-detail.html" class="btn btn-secondary btn-sm">Manage Campaign →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="campaign-card" data-category="draft">
+          <div class="campaign-card-media">
+            <img src="https://images.unsplash.com/photo-1576201836106-db1758fd1c97?auto=format&fit=crop&w=600&q=80" alt="Cat Shelter" class="campaign-card-img">
+            <div class="campaign-card-overlay-tags">
+              <span class="badge badge-pillar-rescue">Animal Rescue</span>
+              <button class="star-toggle">☆</button>
+            </div>
+          </div>
+          <div class="campaign-card-body">
+            <div class="campaign-card-meta">
+              <span>Draft</span>
+              <span class="badge badge-draft">Pending Review</span>
+            </div>
+            <h3 class="campaign-card-title"><a href="campaign-new.html">Winter Stray Cat Thermal Shelter Hub</a></h3>
+            <p class="campaign-card-desc">Setting up insulated winter sleeping pods for community cats across North Delhi shelters.</p>
+
+            <div class="campaign-funding-box">
+              <div class="funding-numbers">
+                <span class="funding-raised"><strong>₹0</strong> of ₹2,50,000</span>
+                <span class="funding-pct">0%</span>
+              </div>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar-fill" style="width:0%;"></div>
+              </div>
+            </div>
+
+            <div class="campaign-card-footer">
+              <span>Drafting</span>
+              <a href="campaign-edit.html" class="btn btn-secondary btn-sm">Edit Draft →</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- VIEW 2: DENSE TABLE (Hidden by default) -->
+      <div class="table-responsive" id="view-container-table" style="display:none;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Campaign</th>
+              <th>Pillar</th>
+              <th>Status</th>
+              <th>Raised / Target</th>
+              <th>Progress</th>
+              <th>Donors</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="table-campaign-cell">
+                  <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=100&q=80" alt="" class="table-thumb">
+                  <div class="table-campaign-info">
+                    <strong>Save Raju — Street Dog Spine Surgery</strong>
+                    <span>Ends: 30 Jun 2025</span>
+                  </div>
+                </div>
+              </td>
+              <td><span class="badge badge-pillar-rescue">Animal Rescue</span></td>
+              <td><span class="badge badge-active">Active</span></td>
+              <td class="tabular-nums"><strong>₹1,17,000</strong> / ₹1,50,000</td>
+              <td style="min-width:120px;">
+                <div class="progress-bar-wrap"><div class="progress-bar-fill fill-rescue" style="width:78%;"></div></div>
+                <span style="font-size:0.75rem;color:var(--text-muted);">78%</span>
+              </td>
+              <td class="tabular-nums">42</td>
+              <td><a href="campaign-detail.html" class="btn btn-secondary btn-sm">Manage</a></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="table-campaign-cell">
+                  <img src="https://images.unsplash.com/photo-1547683905-f686c993aae5?auto=format&fit=crop&w=100&q=80" alt="" class="table-thumb">
+                  <div class="table-campaign-info">
+                    <strong>Sundarbans Cyclone Flash Flood Relief</strong>
+                    <span>Ends: 15 Jul 2025</span>
+                  </div>
+                </div>
+              </td>
+              <td><span class="badge badge-pillar-disaster">Disaster Relief</span></td>
+              <td><span class="badge badge-urgent">Emergency</span></td>
+              <td class="tabular-nums"><strong>₹6,720,000</strong> / ₹8,00,000</td>
+              <td style="min-width:120px;">
+                <div class="progress-bar-wrap"><div class="progress-bar-fill fill-disaster" style="width:84%;"></div></div>
+                <span style="font-size:0.75rem;color:var(--text-muted);">84%</span>
+              </td>
+              <td class="tabular-nums">318</td>
+              <td><a href="campaign-detail.html" class="btn btn-accent btn-sm">Manage</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>

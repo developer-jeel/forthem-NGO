@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emergency Command Center — Rescue Operations · Unke Liye NGO</title>
+  <link rel="stylesheet" href="assets/css/rescue-manager.css">
+  <link rel="stylesheet" href="../shared/css/platform-theme.css">
+  <style>
+    .command-grid {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: var(--space-6);
+      align-items: start;
+    }
+    .status-pulse {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--status-danger);
+      box-shadow: 0 0 0 0 rgba(179, 56, 44, 0.7);
+      animation: pulseAlert 1.6s infinite;
+    }
+    @keyframes pulseAlert {
+      0% { box-shadow: 0 0 0 0 rgba(179, 56, 44, 0.7); }
+      70% { box-shadow: 0 0 0 8px rgba(179, 56, 44, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(179, 56, 44, 0); }
+    }
+    .fleet-item {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: var(--space-3) var(--space-4);
+      margin-bottom: var(--space-2);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    @media (max-width: 990px) {
+      .command-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell" id="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <img src="../logo.png" alt="Unke Liye Logo" class="sidebar-logo-img">
+        <div class="sidebar-logo-text">
+          <strong>Unke Liye</strong>
+          <span>Rescue Operations</span>
+        </div>
+      </div>
+      <div class="sidebar-role-badge">
+        <span class="role-pulse-dot"></span>
+        <span>Command Desk Active</span>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <div class="nav-section-label">Overview</div>
+          <a href="dashboard.html" class="nav-item">
+            <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+            <span class="nav-item-label">Dashboard</span>
+          </a>
+          <a href="command-center.html" class="nav-item active">
+            <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+            <span class="nav-item-label">Command Center</span>
+          </a>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-section">
+          <div class="nav-section-label">Emergency Operations</div>
+          <a href="incidents.html" class="nav-item">
+            <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><polygon points="7.86,2 16.14,2 22,7.86 22,16.14 16.14,22 7.86,22 2,16.14 2,7.86"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span class="nav-item-label">Incidents Queue</span>
+          </a>
+          <a href="dispatch.html" class="nav-item">
+            <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3"/><rect x="9" y="11" width="14" height="10" rx="1"/><circle cx="12" cy="21" r="1"/><circle cx="20" cy="21" r="1"/></svg>
+            <span class="nav-item-label">Team Dispatch</span>
+          </a>
+          <a href="cases.html" class="nav-item">
+            <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            <span class="nav-item-label">Active Cases</span>
+          </a>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-section">
+          <div class="nav-section-label">Finance & Logistics</div>
+          <a href="fund-requests.html" class="nav-item">
+            <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+            <span class="nav-item-label">Rescue Fund Requests</span>
+          </a>
+          <a href="resources.html" class="nav-item">
+            <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            <span class="nav-item-label">Fleet & Equipment</span>
+          </a>
+          <a href="medical-records.html" class="nav-item">
+            <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            <span class="nav-item-label">Medical Records</span>
+          </a>
+        </div>
+      </nav>
+      <div class="sidebar-user-block">
+        <div class="sidebar-avatar">AS</div>
+        <div class="sidebar-user-meta">
+          <span class="user-display-name">Dr. Ananya Sharma</span>
+          <span class="user-role-label">Lead Vet & Rescue Dir.</span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="header">
+        <div class="header-left">
+          <nav class="breadcrumb-nav">
+            <a href="dashboard.html">Rescue Operations</a>
+            <span class="breadcrumb-sep">/</span>
+            <span class="breadcrumb-current">Command Center</span>
+          </nav>
+        </div>
+        <div class="header-right">
+          <button class="btn btn-secondary btn-sm theme-toggle-btn" title="Toggle theme">
+            <span class="icon-moon">🌙</span>
+            <span class="icon-sun" style="display:none;">☀️</span>
+          </button>
+          <a href="../index.html" class="btn btn-secondary btn-sm">Main Portal Hub</a>
+        </div>
+      </header>
+
+      <div class="content-container">
+        <!-- Banner -->
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:var(--space-6);flex-wrap:wrap;gap:var(--space-4);">
+          <div>
+            <div style="display:flex;align-items:center;gap:var(--space-2);margin-bottom:var(--space-1);">
+              <span class="status-pulse"></span>
+              <span style="font-size:0.75rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--status-danger);">High Alert Status Active</span>
+            </div>
+            <h1 class="page-title">Emergency Rescue Command Center</h1>
+            <p class="page-subtitle">Real-time tactical situational awareness across Mumbai metropolitan emergency zones, ambulance coordinates, and trauma triage.</p>
+          </div>
+          <div style="display:flex;gap:var(--space-2);">
+            <a href="incident-new.html" class="btn btn-danger btn-sm">+ Log Emergency 911 Call</a>
+            <a href="fund-request-new.html" class="btn btn-primary btn-sm">+ Request Emergency Funds</a>
+          </div>
+        </div>
+
+        <!-- 4 Top Status Indicators -->
+        <div class="kpi-row">
+          <div class="kpi-card kpi-danger">
+            <div class="kpi-header"><span class="kpi-label">Active Critical Calls</span><span style="font-size:1.25rem;">🚨</span></div>
+            <div class="kpi-value">3</div>
+            <div class="kpi-subtext" style="color:var(--status-danger);">Immediate ambulance required</div>
+          </div>
+
+          <div class="kpi-card kpi-primary">
+            <div class="kpi-header"><span class="kpi-label">Ambulances Deployed</span><span style="font-size:1.25rem;">🚑</span></div>
+            <div class="kpi-value">4 / 6</div>
+            <div class="kpi-subtext">2 units on standby at HQ</div>
+          </div>
+
+          <div class="kpi-card kpi-warning">
+            <div class="kpi-header"><span class="kpi-label">Pending Fund Approvals</span><span style="font-size:1.25rem;">₹</span></div>
+            <div class="kpi-value" id="kpi-pending-fund-amt">₹35,000</div>
+            <div class="kpi-subtext" style="color:var(--status-warning);">Raju Spine Surgery (FR-1042)</div>
+          </div>
+
+          <div class="kpi-card kpi-success">
+            <div class="kpi-header"><span class="kpi-label">Animals in Recovery</span><span style="font-size:1.25rem;">🐾</span></div>
+            <div class="kpi-value">38</div>
+            <div class="kpi-subtext">Parel Trauma Center</div>
+          </div>
+        </div>
+
+        <div class="command-grid">
+          <!-- Left: Tactical Feed & Emergency Queue -->
+          <div>
+            <div class="card" style="margin-bottom:var(--space-6);">
+              <div class="card-header">
+                <h3 class="card-title">Live Priority Incident Queue</h3>
+                <a href="incidents.html" class="btn btn-secondary btn-sm">Full Dispatch Board &rarr;</a>
+              </div>
+              <div class="table-container" style="border:none;">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Call ID</th>
+                      <th>Location / Animal</th>
+                      <th>Severity</th>
+                      <th>Assigned Unit</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><code>#INC-2026-104</code></td>
+                      <td>
+                        <div style="font-weight:600;">Sion Flyover (Dr. Ambedkar Rd)</div>
+                        <div style="font-size:0.75rem;color:var(--text-tertiary);">Stray Dog Raju (Severe pelvic & spine trauma)</div>
+                      </td>
+                      <td><span class="badge badge-danger">CRITICAL</span></td>
+                      <td><span class="badge badge-brand">Ambulance 02 (En Route)</span></td>
+                      <td><a href="incident-detail.html" class="btn btn-secondary btn-sm" style="font-size:0.75rem;">Command &rarr;</a></td>
+                    </tr>
+                    <tr>
+                      <td><code>#INC-2026-102</code></td>
+                      <td>
+                        <div style="font-weight:600;">Goregaon East Highway</div>
+                        <div style="font-size:0.75rem;color:var(--text-tertiary);">Kite / Bird entangled in glass manja line</div>
+                      </td>
+                      <td><span class="badge badge-warning">HIGH</span></td>
+                      <td><span class="badge badge-brand">Bike Unit B1 (Arrived)</span></td>
+                      <td><a href="incident-detail.html" class="btn btn-secondary btn-sm" style="font-size:0.75rem;">Command &rarr;</a></td>
+                    </tr>
+                    <tr>
+                      <td><code>#INC-2026-098</code></td>
+                      <td>
+                        <div style="font-weight:600;">Bandra Reclamation</div>
+                        <div style="font-size:0.75rem;color:var(--text-tertiary);">Lactating cat with 4 stranded kittens</div>
+                      </td>
+                      <td><span class="badge badge-info">MODERATE</span></td>
+                      <td><span class="badge badge-neutral">Pending Dispatch</span></td>
+                      <td><a href="dispatch.html" class="btn btn-primary btn-sm" style="font-size:0.75rem;">Dispatch &rarr;</a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Department Funding Bridge -->
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Live Surgical & Emergency Fund Requests</h3>
+                <a href="fund-requests.html" class="btn btn-secondary btn-sm">All Rescue Requests &rarr;</a>
+              </div>
+              <div id="rescue-fund-requests-container"></div>
+            </div>
+          </div>
+
+          <!-- Right: Fleet & Inventory Readiness -->
+          <div>
+            <div class="card" style="margin-bottom:var(--space-6);">
+              <div class="card-header">
+                <h3 class="card-title">Fleet Tactical Status</h3>
+                <a href="resources.html" class="btn btn-secondary btn-sm">Fleet &rarr;</a>
+              </div>
+              <div>
+                <div class="fleet-item">
+                  <div>
+                    <div style="font-weight:600;font-size:0.875rem;">Ambulance Unit 01 (Trauma Van)</div>
+                    <div style="font-size:0.75rem;color:var(--text-tertiary);">Oxygen Suite • Driver: Ramesh K.</div>
+                  </div>
+                  <span class="badge badge-success">Standby (HQ)</span>
+                </div>
+                <div class="fleet-item">
+                  <div>
+                    <div style="font-weight:600;font-size:0.875rem;">Ambulance Unit 02 (Hydraulic)</div>
+                    <div style="font-size:0.75rem;color:var(--text-tertiary);">Transferring Raju to Apollo Vet</div>
+                  </div>
+                  <span class="badge badge-danger">Deployed</span>
+                </div>
+                <div class="fleet-item">
+                  <div>
+                    <div style="font-weight:600;font-size:0.875rem;">Ambulance Unit 03 (Large Animal)</div>
+                    <div style="font-size:0.75rem;color:var(--text-tertiary);">Cattle hoist • Driver: Suresh P.</div>
+                  </div>
+                  <span class="badge badge-warning">En Route</span>
+                </div>
+                <div class="fleet-item">
+                  <div>
+                    <div style="font-weight:600;font-size:0.875rem;">Rapid Bike Unit B1</div>
+                    <div style="font-size:0.75rem;color:var(--text-tertiary);">Bird kit • Handler: Pooja M.</div>
+                  </div>
+                  <span class="badge badge-danger">On Scene</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Critical Shortages Alert -->
+            <div class="card" style="background:var(--status-danger-bg);border:1px solid var(--status-danger-border);">
+              <div style="display:flex;align-items:center;gap:var(--space-2);margin-bottom:var(--space-2);">
+                <span style="font-size:1.25rem;">⚠️</span>
+                <h4 style="font-weight:700;color:var(--status-danger);font-size:0.95rem;">Critical Medicine Alert</h4>
+              </div>
+              <p style="font-size:0.8125rem;color:var(--text-secondary);margin-bottom:var(--space-3);">
+                Anti-venom sera and trauma ringer lactate solutions are at <strong>15% buffer threshold</strong>. Immediate replenishment required from Apollo central depot.
+              </p>
+              <a href="fund-request-new.html?type=medicine" class="btn btn-danger btn-sm" style="width:100%;">Create Urgent Medicine Request &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="toast-container"></div>
+  <script src="../shared/js/platform-store.js"></script>
+  <script src="../shared/js/platform-ui.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const requests = window.PlatformStore.getFundRequests();
+      const rescueReqs = requests.filter(r => r.department.toLowerCase() === 'rescue');
+      const container = document.getElementById('rescue-fund-requests-container');
+
+      if (rescueReqs.length === 0) {
+        container.innerHTML = '<p style="color:var(--text-secondary);font-size:0.875rem;padding:var(--space-4);">No active rescue fund requests.</p>';
+      } else {
+        container.innerHTML = rescueReqs.map(r => `
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:var(--space-3) 0;border-bottom:1px solid var(--border-subtle);flex-wrap:wrap;gap:var(--space-2);">
+            <div>
+              <div style="font-weight:600;font-size:0.9rem;color:var(--text-primary);">${r.title}</div>
+              <div style="font-size:0.75rem;color:var(--text-tertiary);">${r.id} • ${r.relatedEntity}</div>
+            </div>
+            <div style="text-align:right;">
+              <div style="font-family:var(--font-heading);font-weight:700;font-size:1rem;color:var(--text-primary);">₹${Number(r.requestedAmount).toLocaleString('en-IN')}</div>
+              <span class="badge badge-brand">${r.status.replace('_', ' ')}</span>
+            </div>
+          </div>
+        `).join('');
+      }
+    });
+  </script>
+</body>
+</html>

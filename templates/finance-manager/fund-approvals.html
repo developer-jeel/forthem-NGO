@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fund Approvals – Unke Liye Finance Manager</title>
+  <meta name="description" content="Finance Manager and Admin dashboard to review, approve, and disburse fund requests from panel managers.">
+  <link rel="stylesheet" href="assets/css/finance-manager.css">
+  <style>
+    /* ══════════════════════════════════════════
+       Fund Approvals Page – Scoped Styles
+    ══════════════════════════════════════════ */
+
+    /* ── Inbox Stats Strip ── */
+    .fa-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-4);
+      margin-bottom: var(--space-6);
+    }
+
+    .fa-stat-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-4) var(--space-5);
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      transition: box-shadow var(--transition-fast);
+    }
+
+    .fa-stat-card:hover { box-shadow: var(--shadow-md); }
+
+    .fa-stat-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .fa-stat-icon.warning { background: var(--status-warning-bg); color: var(--status-warning); }
+    .fa-stat-icon.info    { background: var(--status-info-bg);    color: var(--status-info); }
+    .fa-stat-icon.success { background: var(--status-success-bg); color: var(--status-success); }
+    .fa-stat-icon.neutral { background: var(--bg-sunken);         color: var(--text-tertiary); }
+
+    .fa-stat-label {
+      font-size: var(--text-xs);
+      font-weight: 600;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 2px;
+    }
+
+    .fa-stat-value {
+      font-family: var(--font-heading);
+      font-size: var(--text-2xl);
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1;
+    }
+
+    /* ── Main Layout (List + Detail Panel) ── */
+    .fa-workspace {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: var(--space-5);
+      align-items: start;
+    }
+
+    .fa-workspace.no-panel {
+      grid-template-columns: 1fr;
+    }
+
+    /* ── Kanban Tab Bar ── */
+    .fa-tab-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--space-4);
+    }
+
+    .fa-kanban-tabs {
+      display: flex;
+      background: var(--bg-sunken);
+      border-radius: var(--radius-md);
+      padding: 3px;
+      gap: 2px;
+    }
+
+    .fa-ktab {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-2) var(--space-4);
+      font-size: var(--text-xs);
+      font-weight: 600;
+      color: var(--text-tertiary);
+      border: none;
+      background: transparent;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .fa-ktab.active {
+      background: var(--bg-surface);
+      color: var(--text-primary);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .fa-ktab-count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 18px;
+      height: 18px;
+      padding: 0 5px;
+      font-size: 10px;
+      font-weight: 700;
+      border-radius: var(--radius-full);
+      background: var(--brand-accent);
+      color: #fff;
+    }
+
+    /* ── Request Queue List ── */
+    .fa-queue {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .fa-queue-item {
+      background: var(--bg-surface);
+      border: 2px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-4) var(--space-5);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      position: relative;
+    }
+
+    .fa-queue-item:hover {
+      border-color: var(--border-medium);
+      box-shadow: var(--shadow-sm);
+      transform: translateX(2px);
+    }
+
+    .fa-queue-item.selected {
+      border-color: var(--brand-primary);
+      box-shadow: 0 0 0 3px rgba(31, 61, 43, 0.1);
+    }
+
+    .fa-queue-item-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: var(--space-2);
+    }
+
+    .fa-queue-requester {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+    }
+
+    .fa-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--brand-primary);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--text-xs);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .fa-avatar.animal      { background: var(--pillar-animal);      }
+    .fa-avatar.environment { background: var(--pillar-environment);  }
+    .fa-avatar.sanitation  { background: var(--pillar-sanitation);   }
+    .fa-avatar.disaster    { background: var(--pillar-disaster);     }
+    .fa-avatar.general     { background: var(--brand-primary);       }
+
+    .fa-requester-name {
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .fa-requester-panel {
+      font-size: var(--text-xs);
+      color: var(--text-tertiary);
+    }
+
+    .fa-queue-amount {
+      font-family: var(--font-heading);
+      font-size: var(--text-xl);
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .fa-queue-title {
+      font-size: var(--text-sm);
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-bottom: var(--space-3);
+      padding-left: calc(36px + var(--space-3));
+    }
+
+    .fa-queue-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-left: calc(36px + var(--space-3));
+    }
+
+    .fa-queue-meta {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+    }
+
+    .fa-queue-date {
+      font-size: var(--text-xs);
+      color: var(--text-tertiary);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Urgency left-border accent */
+    .fa-queue-item[data-priority="critical"] { border-left: 4px solid var(--status-danger);  }
+    .fa-queue-item[data-priority="urgent"]   { border-left: 4px solid var(--status-warning); }
+    .fa-queue-item[data-priority="normal"]   { border-left: 4px solid var(--status-info);    }
+
+    /* ── Detail Panel ── */
+    .fa-detail-panel {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      position: sticky;
+      top: calc(var(--header-height) + var(--space-4));
+    }
+
+    .fa-detail-panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-4) var(--space-5);
+      border-bottom: 1px solid var(--border-subtle);
+      background: var(--bg-sunken);
+    }
+
+    .fa-detail-panel-title {
+      font-family: var(--font-heading);
+      font-size: var(--text-base);
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .fa-detail-close {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-tertiary);
+      display: flex;
+      padding: 4px;
+      border-radius: var(--radius-sm);
+      transition: all var(--transition-fast);
+    }
+
+    .fa-detail-close:hover {
+      background: var(--bg-sunken-hover);
+      color: var(--text-primary);
+    }
+
+    .fa-detail-body {
+      padding: var(--space-5);
+      overflow-y: auto;
+      max-height: calc(100vh - 200px);
+    }
+
+    /* Detail sections */
+    .fa-detail-section {
+      margin-bottom: var(--space-5);
+      padding-bottom: var(--space-5);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .fa-detail-section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .fa-detail-section-title {
+      font-size: var(--text-xs);
+      font-weight: 700;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: var(--space-3);
+    }
+
+    /* Requester block */
+    .fa-detail-requester {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      margin-bottom: var(--space-3);
+    }
+
+    .fa-detail-req-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--brand-primary);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--text-sm);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .fa-detail-req-name {
+      font-size: var(--text-base);
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .fa-detail-req-panel {
+      font-size: var(--text-sm);
+      color: var(--text-tertiary);
+    }
+
+    /* Amount Display */
+    .fa-detail-amount-block {
+      background: var(--bg-sunken);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: var(--space-4);
+      text-align: center;
+      margin-bottom: var(--space-3);
+    }
+
+    .fa-detail-amount-label {
+      font-size: var(--text-xs);
+      font-weight: 600;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: var(--space-2);
+    }
+
+    .fa-detail-amount-value {
+      font-family: var(--font-heading);
+      font-size: var(--text-4xl);
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1;
+    }
+
+    /* Budget context box */
+    .fa-budget-context {
+      background: var(--status-warning-bg);
+      border: 1px solid var(--status-warning);
+      border-radius: var(--radius-md);
+      padding: var(--space-4);
+      margin-top: var(--space-3);
+    }
+
+    .fa-budget-context-title {
+      font-size: var(--text-xs);
+      font-weight: 700;
+      color: var(--status-warning);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-2);
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .fa-budget-bar-wrap {
+      margin-bottom: var(--space-2);
+    }
+
+    .fa-budget-bar {
+      height: 8px;
+      background: var(--border-subtle);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+      margin-bottom: 4px;
+    }
+
+    .fa-budget-bar-fill {
+      height: 100%;
+      border-radius: var(--radius-full);
+      background: var(--status-success);
+      transition: width 0.4s ease;
+    }
+
+    .fa-budget-bar-fill.over { background: var(--status-danger); }
+
+    .fa-budget-bar-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      color: var(--text-tertiary);
+    }
+
+    .fa-budget-context-note {
+      font-size: var(--text-xs);
+      color: var(--status-warning);
+      font-weight: 500;
+    }
+
+    /* Attachment Thumbnail */
+    .fa-attachment {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-3);
+      background: var(--bg-sunken);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .fa-attachment:hover {
+      border-color: var(--border-medium);
+      background: var(--bg-sunken-hover);
+    }
+
+    .fa-attachment-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      background: var(--status-danger-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--status-danger);
+      flex-shrink: 0;
+    }
+
+    .fa-attachment-name {
+      font-size: var(--text-sm);
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .fa-attachment-size {
+      font-size: var(--text-xs);
+      color: var(--text-tertiary);
+    }
+
+    .fa-attachment-action {
+      margin-left: auto;
+      color: var(--text-tertiary);
+      flex-shrink: 0;
+    }
+
+    /* Key-value pairs in detail */
+    .fa-kv-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .fa-kv-item {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: var(--space-4);
+    }
+
+    .fa-kv-key {
+      font-size: var(--text-xs);
+      font-weight: 600;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      flex-shrink: 0;
+      padding-top: 1px;
+    }
+
+    .fa-kv-val {
+      font-size: var(--text-sm);
+      font-weight: 500;
+      color: var(--text-primary);
+      text-align: right;
+    }
+
+    /* Justification text box */
+    .fa-justification-box {
+      background: var(--bg-sunken);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: var(--space-4);
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* ── Action Panel ── */
+    .fa-action-panel {
+      padding: var(--space-5);
+      border-top: 1px solid var(--border-subtle);
+      background: var(--bg-surface);
+    }
+
+    .fa-action-title {
+      font-size: var(--text-xs);
+      font-weight: 700;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: var(--space-4);
+    }
+
+    .fa-action-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .btn-approve {
+      background: var(--status-success);
+      color: #fff;
+      border-color: var(--status-success);
+    }
+
+    .btn-approve:hover { background: #3d6849; }
+
+    .btn-info {
+      background: var(--status-info-bg);
+      color: var(--status-info);
+      border-color: var(--status-info);
+    }
+
+    .btn-info:hover { background: var(--status-info); color: #fff; }
+
+    .btn-reject-outline {
+      background: transparent;
+      color: var(--status-danger);
+      border-color: var(--status-danger);
+    }
+
+    .btn-reject-outline:hover {
+      background: var(--status-danger-bg);
+    }
+
+    /* ── Disbursement Sub-Panel (inline transition) ── */
+    .fa-disburse-panel {
+      display: none;
+      margin-top: var(--space-4);
+      padding: var(--space-4);
+      background: var(--status-success-bg);
+      border: 1px solid var(--status-success);
+      border-radius: var(--radius-md);
+      animation: slideDown 0.25s ease;
+    }
+
+    .fa-disburse-panel.open { display: block; }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .fa-disburse-panel-title {
+      font-size: var(--text-sm);
+      font-weight: 700;
+      color: var(--status-success);
+      margin-bottom: var(--space-3);
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .fa-disburse-select-label {
+      font-size: var(--text-xs);
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: var(--space-2);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .fa-disburse-select {
+      width: 100%;
+      padding: var(--space-3) var(--space-4);
+      font-size: var(--text-sm);
+      font-family: var(--font-body);
+      color: var(--text-primary);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-md);
+      outline: none;
+      margin-bottom: var(--space-3);
+      transition: border-color var(--transition-fast);
+      box-sizing: border-box;
+    }
+
+    .fa-disburse-select:focus { border-color: var(--status-success); }
+
+    .fa-disburse-note-input {
+      width: 100%;
+      padding: var(--space-3) var(--space-4);
+      font-size: var(--text-sm);
+      font-family: var(--font-body);
+      color: var(--text-primary);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-md);
+      outline: none;
+      resize: vertical;
+      margin-bottom: var(--space-3);
+      transition: border-color var(--transition-fast);
+      box-sizing: border-box;
+    }
+
+    .fa-disburse-note-input:focus { border-color: var(--status-success); }
+
+    /* Reject note textarea (inline in action panel) */
+    .fa-reject-panel {
+      display: none;
+      margin-top: var(--space-4);
+      padding: var(--space-4);
+      background: var(--status-danger-bg);
+      border: 1px solid var(--status-danger);
+      border-radius: var(--radius-md);
+      animation: slideDown 0.25s ease;
+    }
+
+    .fa-reject-panel.open { display: block; }
+
+    .fa-reject-panel-title {
+      font-size: var(--text-sm);
+      font-weight: 700;
+      color: var(--status-danger);
+      margin-bottom: var(--space-3);
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .fa-reject-textarea {
+      width: 100%;
+      padding: var(--space-3) var(--space-4);
+      font-size: var(--text-sm);
+      font-family: var(--font-body);
+      color: var(--text-primary);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-md);
+      outline: none;
+      resize: vertical;
+      margin-bottom: var(--space-3);
+      box-sizing: border-box;
+    }
+
+    /* Info-needed textarea */
+    .fa-info-panel {
+      display: none;
+      margin-top: var(--space-4);
+      padding: var(--space-4);
+      background: var(--status-info-bg);
+      border: 1px solid var(--status-info);
+      border-radius: var(--radius-md);
+      animation: slideDown 0.25s ease;
+    }
+
+    .fa-info-panel.open { display: block; }
+
+    .fa-info-panel-title {
+      font-size: var(--text-sm);
+      font-weight: 700;
+      color: var(--status-info);
+      margin-bottom: var(--space-3);
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .fa-info-textarea {
+      width: 100%;
+      padding: var(--space-3) var(--space-4);
+      font-size: var(--text-sm);
+      font-family: var(--font-body);
+      color: var(--text-primary);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-md);
+      outline: none;
+      resize: vertical;
+      margin-bottom: var(--space-3);
+      box-sizing: border-box;
+    }
+
+    /* Empty state for detail panel */
+    .fa-detail-empty {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-16) var(--space-8);
+      text-align: center;
+    }
+
+    .fa-detail-empty-icon {
+      width: 56px;
+      height: 56px;
+      background: var(--bg-sunken);
+      border-radius: var(--radius-xl);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--border-strong);
+      margin-bottom: var(--space-4);
+    }
+
+    .fa-detail-empty-text {
+      font-size: var(--text-sm);
+      color: var(--text-tertiary);
+    }
+
+    /* Badge variants */
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+      flex-shrink: 0;
+    }
+
+    .badge-normal   { background: var(--status-info-bg);    color: var(--status-info); }
+    .badge-urgent   { background: var(--status-warning-bg); color: var(--status-warning); }
+    .badge-critical { background: var(--status-danger-bg);  color: var(--status-danger); }
+
+    @media (max-width: 1100px) {
+      .fa-workspace { grid-template-columns: 1fr; }
+      .fa-detail-panel { position: static; }
+      .fa-stats-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .fa-stats-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="../logo.png" alt="Unke Liye Logo" class="sidebar-logo-img">
+        <div class="sidebar-brand">
+          UNKE LIYE
+          <span>Finance Operations</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <div class="nav-section-title">Overview</div>
+          <a href="dashboard.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+              <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+            </svg>
+            Dashboard
+          </a>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-section-title">Revenue</div>
+          <a href="donations.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+            </svg>
+            Donations
+          </a>
+          <a href="donors.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+            </svg>
+            Donors
+          </a>
+          <a href="receipts.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+            Receipts
+          </a>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-section-title">Programs</div>
+          <a href="campaigns.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+            </svg>
+            Campaigns
+          </a>
+          <a href="expenses.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 14l4-4-4-4M5 20h14a2 2 0 002-2V8l-7-5-7 5v10a2 2 0 002 2z"/>
+            </svg>
+            Expenses
+          </a>
+          <a href="fund-requests.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/>
+              <rect x="9" y="3" width="6" height="4" rx="1"/>
+              <path d="M9 12h6M9 16h4"/>
+            </svg>
+            Fund Requests
+          </a>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-section-title">Analysis</div>
+          <a href="reports.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+            </svg>
+            Financial Reports
+          </a>
+          <a href="fund-approvals.html" class="nav-item active">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+            Fund Approvals
+          </a>
+          <a href="audit-log.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+            </svg>
+            Audit Log
+          </a>
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-profile">
+          <div class="user-avatar">AM</div>
+          <div class="user-info">
+            <div class="user-name">Aarav Mehta</div>
+            <div class="user-role">Finance Manager</div>
+            <div class="user-status">
+              <span class="user-status-dot"></span>
+              Online
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="sidebar-overlay"></div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="header">
+        <div class="header-left">
+          <button class="sidebar-toggle" aria-label="Toggle sidebar">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 12h18M3 6h18M3 18h18"/>
+            </svg>
+          </button>
+          <nav class="breadcrumb">
+            <span>Finance Manager</span>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Fund Approvals</span>
+          </nav>
+        </div>
+
+        <div class="header-right">
+          <div class="search-input-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"/>
+              <path d="M21 21l-4.35-4.35"/>
+            </svg>
+            <input type="text" id="approvals-search" placeholder="Search requests..." aria-label="Search approvals">
+          </div>
+
+          <button class="header-action" aria-label="Notifications">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+              <path d="M13.73 21a2 2 0 01-3.46 0"/>
+            </svg>
+            <span class="badge">3</span>
+          </button>
+
+          <button class="theme-toggle" aria-label="Toggle theme">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <div class="page-content">
+        <div class="content-container">
+
+          <!-- Page Header -->
+          <div class="page-header">
+            <div>
+              <h1 class="page-title">Fund Approvals</h1>
+              <p class="page-subtitle">Review, approve, and disburse incoming fund requests from all panels and departments.</p>
+            </div>
+            <div class="page-actions">
+              <button class="btn btn-secondary" id="btn-export-approvals">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                </svg>
+                Export Report
+              </button>
+            </div>
+          </div>
+
+          <!-- Stats Strip -->
+          <div class="fa-stats-grid">
+            <div class="fa-stat-card">
+              <div class="fa-stat-icon warning">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                </svg>
+              </div>
+              <div>
+                <div class="fa-stat-label">Needs Review</div>
+                <div class="fa-stat-value">5</div>
+              </div>
+            </div>
+
+            <div class="fa-stat-card">
+              <div class="fa-stat-icon info">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+                </svg>
+              </div>
+              <div>
+                <div class="fa-stat-label">Awaiting Disbursement</div>
+                <div class="fa-stat-value">2</div>
+              </div>
+            </div>
+
+            <div class="fa-stat-card">
+              <div class="fa-stat-icon success">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+              </div>
+              <div>
+                <div class="fa-stat-label">Disbursed (MTD)</div>
+                <div class="fa-stat-value">₹3.2L</div>
+              </div>
+            </div>
+
+            <div class="fa-stat-card">
+              <div class="fa-stat-icon neutral">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/>
+                  <line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/>
+                  <line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/>
+                </svg>
+              </div>
+              <div>
+                <div class="fa-stat-label">Total Requests (YTD)</div>
+                <div class="fa-stat-value">34</div>
+              </div>
+            </div>
+          </div><!-- /.fa-stats-grid -->
+
+          <!-- Workspace: Queue + Detail Panel -->
+          <div class="fa-workspace" id="fa-workspace">
+
+            <!-- Left: Queue List -->
+            <div>
+              <div class="fa-tab-bar">
+                <div class="fa-kanban-tabs" id="fa-kanban-tabs">
+                  <button class="fa-ktab active" data-queue="review">
+                    Needs Review
+                    <span class="fa-ktab-count">5</span>
+                  </button>
+                  <button class="fa-ktab" data-queue="disburse">
+                    Awaiting Disbursement
+                    <span class="fa-ktab-count">2</span>
+                  </button>
+                  <button class="fa-ktab" data-queue="completed">
+                    Completed
+                  </button>
+                </div>
+                <div style="font-size:var(--text-xs);color:var(--text-tertiary);">
+                  Click a request to review details →
+                </div>
+              </div>
+
+              <!-- REVIEW Queue -->
+              <div class="fa-queue" id="queue-review">
+
+                <!-- Request 1 – Critical -->
+                <div class="fa-queue-item selected" data-req="FR-009" data-priority="critical" id="qitem-FR-009" tabindex="0" role="button" aria-label="Review request FR-009">
+                  <div class="fa-queue-item-header">
+                    <div class="fa-queue-requester">
+                      <div class="fa-avatar animal">RV</div>
+                      <div>
+                        <div class="fa-requester-name">Riya Verma</div>
+                        <div class="fa-requester-panel">Rescue Panel Manager</div>
+                      </div>
+                    </div>
+                    <div class="fa-queue-amount">₹45,000</div>
+                  </div>
+                  <div class="fa-queue-title">Annual Community Outreach Event</div>
+                  <div class="fa-queue-footer">
+                    <div class="fa-queue-meta">
+                      <span class="badge badge-critical"><span class="badge-dot"></span>Critical</span>
+                      <span class="campaign-pill animal">Events</span>
+                    </div>
+                    <div class="fa-queue-date">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+                      </svg>
+                      03 Sep 2026
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Request 2 – Urgent -->
+                <div class="fa-queue-item" data-req="FR-008" data-priority="urgent" id="qitem-FR-008" tabindex="0" role="button" aria-label="Review request FR-008">
+                  <div class="fa-queue-item-header">
+                    <div class="fa-queue-requester">
+                      <div class="fa-avatar animal">RV</div>
+                      <div>
+                        <div class="fa-requester-name">Riya Verma</div>
+                        <div class="fa-requester-panel">Rescue Panel Manager</div>
+                      </div>
+                    </div>
+                    <div class="fa-queue-amount">₹32,000</div>
+                  </div>
+                  <div class="fa-queue-title">Rescue Van Fuel &amp; Maintenance</div>
+                  <div class="fa-queue-footer">
+                    <div class="fa-queue-meta">
+                      <span class="badge badge-urgent"><span class="badge-dot"></span>Urgent</span>
+                      <span class="campaign-pill animal">Equipment</span>
+                    </div>
+                    <div class="fa-queue-date">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+                      </svg>
+                      01 Sep 2026
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Request 3 – Critical Medical -->
+                <div class="fa-queue-item" data-req="FR-007" data-priority="critical" id="qitem-FR-007" tabindex="0" role="button" aria-label="Review request FR-007">
+                  <div class="fa-queue-item-header">
+                    <div class="fa-queue-requester">
+                      <div class="fa-avatar disaster">NK</div>
+                      <div>
+                        <div class="fa-requester-name">Nikhil Kumar</div>
+                        <div class="fa-requester-panel">Disaster Relief Coordinator</div>
+                      </div>
+                    </div>
+                    <div class="fa-queue-amount">₹43,000</div>
+                  </div>
+                  <div class="fa-queue-title">Medical Supplies – Flood Relief Phase 2</div>
+                  <div class="fa-queue-footer">
+                    <div class="fa-queue-meta">
+                      <span class="badge badge-critical"><span class="badge-dot"></span>Critical</span>
+                      <span class="campaign-pill disaster">Medical</span>
+                    </div>
+                    <div class="fa-queue-date">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+                      </svg>
+                      28 Aug 2026
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Request 4 – Normal -->
+                <div class="fa-queue-item" data-req="FR-006" data-priority="normal" id="qitem-FR-006" tabindex="0" role="button" aria-label="Review request FR-006">
+                  <div class="fa-queue-item-header">
+                    <div class="fa-queue-requester">
+                      <div class="fa-avatar environment">SP</div>
+                      <div>
+                        <div class="fa-requester-name">Sunita Patil</div>
+                        <div class="fa-requester-panel">Environment Panel Lead</div>
+                      </div>
+                    </div>
+                    <div class="fa-queue-amount">₹18,500</div>
+                  </div>
+                  <div class="fa-queue-title">Tree Sapling Procurement – Monsoon Drive</div>
+                  <div class="fa-queue-footer">
+                    <div class="fa-queue-meta">
+                      <span class="badge badge-normal"><span class="badge-dot"></span>Normal</span>
+                      <span class="campaign-pill environment">Environment</span>
+                    </div>
+                    <div class="fa-queue-date">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+                      </svg>
+                      20 Aug 2026
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Request 5 – Sanitation -->
+                <div class="fa-queue-item" data-req="FR-003" data-priority="urgent" id="qitem-FR-003" tabindex="0" role="button" aria-label="Review request FR-003">
+                  <div class="fa-queue-item-header">
+                    <div class="fa-queue-requester">
+                      <div class="fa-avatar sanitation">MJ</div>
+                      <div>
+                        <div class="fa-requester-name">Meera Joshi</div>
+                        <div class="fa-requester-panel">Sanitation Program Head</div>
+                      </div>
+                    </div>
+                    <div class="fa-queue-amount">₹28,000</div>
+                  </div>
+                  <div class="fa-queue-title">Dharavi Community Toilets – Q3 Chemicals</div>
+                  <div class="fa-queue-footer">
+                    <div class="fa-queue-meta">
+                      <span class="badge badge-urgent"><span class="badge-dot"></span>Urgent</span>
+                      <span class="campaign-pill sanitation">Sanitation</span>
+                    </div>
+                    <div class="fa-queue-date">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+                      </svg>
+                      15 Aug 2026
+                    </div>
+                  </div>
+                </div>
+
+              </div><!-- /#queue-review -->
+
+              <!-- DISBURSE Queue (hidden by default) -->
+              <div class="fa-queue" id="queue-disburse" style="display:none;">
+                <div class="fa-queue-item" data-req="FR-010" data-priority="normal" id="qitem-FR-010" tabindex="0" role="button">
+                  <div class="fa-queue-item-header">
+                    <div class="fa-queue-requester">
+                      <div class="fa-avatar environment">SP</div>
+                      <div>
+                        <div class="fa-requester-name">Sunita Patil</div>
+                        <div class="fa-requester-panel">Environment Panel Lead</div>
+                      </div>
+                    </div>
+                    <div class="fa-queue-amount">₹18,500</div>
+                  </div>
+                  <div class="fa-queue-title">Adopt-a-Tree – Sapling Transport Costs</div>
+                  <div class="fa-queue-footer">
+                    <div class="fa-queue-meta">
+                      <span class="badge badge-success"><span class="badge-dot"></span>Approved</span>
+                      <span class="campaign-pill environment">Environment</span>
+                    </div>
+                    <div class="fa-queue-date">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+                      </svg>
+                      29 Aug 2026
+                    </div>
+                  </div>
+                </div>
+
+                <div class="fa-queue-item" data-req="FR-011" data-priority="urgent" id="qitem-FR-011" tabindex="0" role="button">
+                  <div class="fa-queue-item-header">
+                    <div class="fa-queue-requester">
+                      <div class="fa-avatar sanitation">MJ</div>
+                      <div>
+                        <div class="fa-requester-name">Meera Joshi</div>
+                        <div class="fa-requester-panel">Sanitation Program Head</div>
+                      </div>
+                    </div>
+                    <div class="fa-queue-amount">₹62,000</div>
+                  </div>
+                  <div class="fa-queue-title">Pune River Cleanup – Equipment Hire</div>
+                  <div class="fa-queue-footer">
+                    <div class="fa-queue-meta">
+                      <span class="badge badge-success"><span class="badge-dot"></span>Approved</span>
+                      <span class="campaign-pill sanitation">Sanitation</span>
+                    </div>
+                    <div class="fa-queue-date">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+                      </svg>
+                      27 Aug 2026
+                    </div>
+                  </div>
+                </div>
+              </div><!-- /#queue-disburse -->
+
+              <!-- COMPLETED Queue (hidden by default) -->
+              <div class="fa-queue" id="queue-completed" style="display:none;">
+                <p style="padding:var(--space-8);text-align:center;color:var(--text-tertiary);font-size:var(--text-sm);">
+                  All completed and disbursed requests appear here. Use the Audit Log for a full history.
+                </p>
+              </div>
+
+            </div><!-- /Left Queue Column -->
+
+            <!-- Right: Detail Panel -->
+            <div class="fa-detail-panel" id="fa-detail-panel">
+
+              <!-- Default empty state -->
+              <div class="fa-detail-body" id="fa-detail-body">
+                <div class="fa-detail-empty" id="fa-detail-empty">
+                  <div class="fa-detail-empty-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/>
+                      <rect x="9" y="3" width="6" height="4" rx="1"/>
+                      <path d="M9 12h6M9 16h4"/>
+                    </svg>
+                  </div>
+                  <div class="fa-detail-empty-text">Select a request from the queue<br>to review its details.</div>
+                </div>
+              </div>
+
+              <!-- Populated detail panel (shown when a request is selected) -->
+              <div id="fa-detail-content" style="display:none;">
+                <!-- Header -->
+                <div class="fa-detail-panel-header">
+                  <div class="fa-detail-panel-title" id="detail-panel-req-id">FR-009</div>
+                  <button class="fa-detail-close" id="fa-detail-close-btn" aria-label="Close detail panel">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M18 6L6 18M6 6l12 12"/>
+                    </svg>
+                  </button>
+                </div>
+
+                <div class="fa-detail-body" id="fa-detail-populated-body">
+
+                  <!-- Requester Info -->
+                  <div class="fa-detail-section">
+                    <div class="fa-detail-section-title">Requested By</div>
+                    <div class="fa-detail-requester">
+                      <div class="fa-detail-req-avatar" id="detail-avatar">RV</div>
+                      <div>
+                        <div class="fa-detail-req-name" id="detail-name">Riya Verma</div>
+                        <div class="fa-detail-req-panel" id="detail-panel-name">Rescue Panel Manager</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Amount + Budget Context -->
+                  <div class="fa-detail-section">
+                    <div class="fa-detail-section-title">Amount Requested</div>
+                    <div class="fa-detail-amount-block">
+                      <div class="fa-detail-amount-label">Total Amount</div>
+                      <div class="fa-detail-amount-value" id="detail-amount">₹45,000</div>
+                    </div>
+
+                    <!-- Budget Context Widget -->
+                    <div class="fa-budget-context">
+                      <div class="fa-budget-context-title">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+                        </svg>
+                        Budget Impact – Events Budget
+                      </div>
+                      <div class="fa-budget-bar-wrap">
+                        <div class="fa-budget-bar">
+                          <div class="fa-budget-bar-fill" style="width: 62%;"></div>
+                        </div>
+                        <div class="fa-budget-bar-labels">
+                          <span>₹0</span>
+                          <span>Used: ₹62,000 / ₹1,00,000</span>
+                          <span>Max</span>
+                        </div>
+                      </div>
+                      <div class="fa-budget-context-note">
+                        Approving this will consume an additional <strong>45%</strong> of remaining Events budget. New total: 107% — <strong>over budget</strong>.
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Request Details -->
+                  <div class="fa-detail-section">
+                    <div class="fa-detail-section-title">Request Details</div>
+                    <div class="fa-kv-list">
+                      <div class="fa-kv-item">
+                        <span class="fa-kv-key">Title</span>
+                        <span class="fa-kv-val" id="detail-title">Annual Community Outreach Event</span>
+                      </div>
+                      <div class="fa-kv-item">
+                        <span class="fa-kv-key">Category</span>
+                        <span class="fa-kv-val" id="detail-category">Events &amp; Outreach</span>
+                      </div>
+                      <div class="fa-kv-item">
+                        <span class="fa-kv-key">Priority</span>
+                        <span class="fa-kv-val"><span class="badge badge-critical" id="detail-priority"><span class="badge-dot"></span>Critical</span></span>
+                      </div>
+                      <div class="fa-kv-item">
+                        <span class="fa-kv-key">Submitted</span>
+                        <span class="fa-kv-val" id="detail-submitted">03 Sep 2026</span>
+                      </div>
+                      <div class="fa-kv-item">
+                        <span class="fa-kv-key">Required By</span>
+                        <span class="fa-kv-val" id="detail-required-by">10 Sep 2026</span>
+                      </div>
+                      <div class="fa-kv-item">
+                        <span class="fa-kv-key">Campaign</span>
+                        <span class="fa-kv-val" id="detail-campaign">General Operations</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Justification -->
+                  <div class="fa-detail-section">
+                    <div class="fa-detail-section-title">Justification</div>
+                    <div class="fa-justification-box" id="detail-justification">
+                      Funds are needed for venue booking, printed banners, catering for 200+ community attendees, and local transport arrangements for the Annual Community Outreach Day planned on 15 Sep 2026.
+                    </div>
+                  </div>
+
+                  <!-- Attachment -->
+                  <div class="fa-detail-section">
+                    <div class="fa-detail-section-title">Attached Documents</div>
+                    <div class="fa-attachment" id="detail-attachment" role="button" tabindex="0">
+                      <div class="fa-attachment-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                          <polyline points="14 2 14 8 20 8"/>
+                        </svg>
+                      </div>
+                      <div>
+                        <div class="fa-attachment-name" id="detail-file-name">Venue_Booking_Quote.pdf</div>
+                        <div class="fa-attachment-size">284 KB · PDF</div>
+                      </div>
+                      <div class="fa-attachment-action">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+
+                </div><!-- /#fa-detail-populated-body -->
+
+                <!-- Action Panel -->
+                <div class="fa-action-panel" id="fa-action-panel">
+                  <div class="fa-action-title">Take Action</div>
+
+                  <!-- Primary Action Buttons -->
+                  <div class="fa-action-buttons" id="fa-primary-actions">
+                    <button class="btn btn-approve" id="btn-approve-funds">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+                      </svg>
+                      Approve Funds
+                    </button>
+                    <button class="btn btn-info" id="btn-request-info">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+                      </svg>
+                      Request More Info
+                    </button>
+                    <button class="btn btn-reject-outline" id="btn-reject-request">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>
+                      </svg>
+                      Reject
+                    </button>
+                  </div>
+
+                  <!-- Disbursement Sub-Panel (appears after Approve click) -->
+                  <div class="fa-disburse-panel" id="fa-disburse-panel">
+                    <div class="fa-disburse-panel-title">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+                      </svg>
+                      Process Disbursement
+                    </div>
+                    <div class="fa-disburse-select-label">Funding Source</div>
+                    <select class="fa-disburse-select" id="disburse-source">
+                      <option value="">— Select a funding source —</option>
+                      <option value="main">Main Operations Account (Balance: ₹12,40,000)</option>
+                      <option value="reserve">Reserve Fund – General (Balance: ₹4,80,000)</option>
+                      <option value="program">Program Allocation Fund (Balance: ₹8,20,000)</option>
+                      <option value="emergency">Emergency Relief Pool (Balance: ₹2,00,000)</option>
+                    </select>
+                    <div class="fa-disburse-select-label">Disbursement Note (optional)</div>
+                    <textarea class="fa-disburse-note-input" id="disburse-note" rows="2" placeholder="e.g. Approved for venue booking only. Receipts required within 7 days."></textarea>
+                    <div style="display:flex;gap:var(--space-3);">
+                      <button class="btn btn-secondary btn-sm" id="btn-cancel-disburse">Cancel</button>
+                      <button class="btn btn-approve" id="btn-confirm-disburse">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                        Confirm &amp; Disburse
+                      </button>
+                    </div>
+                  </div><!-- /#fa-disburse-panel -->
+
+                  <!-- Info Needed Sub-Panel -->
+                  <div class="fa-info-panel" id="fa-info-panel">
+                    <div class="fa-info-panel-title">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+                      </svg>
+                      Request Additional Information
+                    </div>
+                    <textarea class="fa-info-textarea" id="info-message" rows="3" placeholder="Describe what additional documents or clarification is required from the requester…"></textarea>
+                    <div style="display:flex;gap:var(--space-3);">
+                      <button class="btn btn-secondary btn-sm" id="btn-cancel-info">Cancel</button>
+                      <button class="btn btn-info" id="btn-send-info">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                        </svg>
+                        Send to Requester
+                      </button>
+                    </div>
+                  </div><!-- /#fa-info-panel -->
+
+                  <!-- Reject Sub-Panel -->
+                  <div class="fa-reject-panel" id="fa-reject-panel">
+                    <div class="fa-reject-panel-title">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>
+                      </svg>
+                      Rejection Reason
+                    </div>
+                    <textarea class="fa-reject-textarea" id="reject-reason" rows="3" placeholder="Provide a clear reason for rejection so the panel manager can re-submit appropriately…"></textarea>
+                    <div style="display:flex;gap:var(--space-3);">
+                      <button class="btn btn-secondary btn-sm" id="btn-cancel-reject">Cancel</button>
+                      <button class="btn btn-danger" id="btn-confirm-reject">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                        Confirm Rejection
+                      </button>
+                    </div>
+                  </div><!-- /#fa-reject-panel -->
+
+                </div><!-- /.fa-action-panel -->
+              </div><!-- /#fa-detail-content -->
+
+            </div><!-- /.fa-detail-panel -->
+
+          </div><!-- /.fa-workspace -->
+
+        </div><!-- /.content-container -->
+      </div><!-- /.page-content -->
+    </main>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="assets/js/ui.js"></script>
+  <script src="assets/js/layout.js"></script>
+  <script src="assets/js/fund-requests.js"></script>
+</body>
+</html>

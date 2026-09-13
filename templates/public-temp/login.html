@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login — Unke Liye</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <style>
+    body { background: var(--color-primary-dark); min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: var(--space-8); }
+    .login-card {
+      background: var(--color-surface);
+      border-radius: var(--radius-xl);
+      padding: var(--space-10) var(--space-8);
+      max-width: 480px;
+      width: 100%;
+      box-shadow: var(--shadow-xl);
+    }
+    .login-logo { text-align: center; margin-bottom: var(--space-8); }
+    .login-logo .nav-logo-name { font-size: var(--text-2xl); }
+    .demo-notice {
+      background: var(--color-primary-light);
+      border: 1px solid rgba(31,75,63,0.2);
+      border-radius: var(--radius-md);
+      padding: var(--space-3) var(--space-4);
+      font-size: var(--text-xs);
+      color: var(--color-primary);
+      margin-bottom: var(--space-6);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<a href="#main-content" class="skip-nav">Skip to main content</a>
+<div class="login-card animate-scale-in" id="main-content">
+  <div class="login-logo">
+    <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a>
+    <p style="font-size:var(--text-sm);color:var(--color-text-muted)">Sign in to your account</p>
+  </div>
+
+  <div class="demo-notice">ℹ️ Demo site — no real authentication. Use any credentials to explore.</div>
+
+  <!-- Account Type Tabs -->
+  <div class="tabs" style="margin-bottom:var(--space-8)" role="tablist">
+    <button class="tab-btn active" data-tab="volunteer" role="tab" aria-selected="true">🙋 Volunteer</button>
+    <button class="tab-btn" data-tab="donor" role="tab" aria-selected="false">💛 Donor</button>
+    <button class="tab-btn" data-tab="rescuer" role="tab" aria-selected="false">🚨 Rescue Reporter</button>
+  </div>
+
+  <div data-tabs-container>
+    <div class="tab-panel active" data-tab-panel="volunteer">
+      <form id="vol-login" novalidate>
+        <div class="form-group" style="margin-bottom:var(--space-5)">
+          <label for="vol-email" class="form-label">Email</label>
+          <input type="email" id="vol-email" name="email" class="form-input" placeholder="volunteer@email.com" autocomplete="email" />
+        </div>
+        <div class="form-group" style="margin-bottom:var(--space-6)">
+          <label for="vol-pass" class="form-label">Password</label>
+          <input type="password" id="vol-pass" name="password" class="form-input" placeholder="••••••••" autocomplete="current-password" />
+        </div>
+        <button type="submit" class="btn btn--primary btn--full btn--lg">Sign In as Volunteer</button>
+        <p style="text-align:center;font-size:var(--text-sm);margin-top:var(--space-5)">Not a volunteer yet? <a href="volunteer.html">Register here →</a></p>
+      </form>
+    </div>
+    <div class="tab-panel" data-tab-panel="donor">
+      <form id="donor-login" novalidate>
+        <div class="form-group" style="margin-bottom:var(--space-5)">
+          <label for="donor-email" class="form-label">Email</label>
+          <input type="email" id="donor-email" name="email" class="form-input" placeholder="donor@email.com" autocomplete="email" />
+        </div>
+        <div class="form-group" style="margin-bottom:var(--space-6)">
+          <label for="donor-pass" class="form-label">Password</label>
+          <input type="password" id="donor-pass" name="password" class="form-input" placeholder="••••••••" autocomplete="current-password" />
+        </div>
+        <button type="submit" class="btn btn--primary btn--full btn--lg">Sign In as Donor</button>
+        <p style="text-align:center;font-size:var(--text-sm);margin-top:var(--space-5)">First donation? <a href="donate.html">Donate here →</a></p>
+      </form>
+    </div>
+    <div class="tab-panel" data-tab-panel="rescuer">
+      <form id="rescuer-login" novalidate>
+        <div class="form-group" style="margin-bottom:var(--space-5)">
+          <label for="res-ref" class="form-label">Rescue Reference Number</label>
+          <input type="text" id="res-ref" name="reference" class="form-input" placeholder="UKL-RESCUE-XXXXXX" />
+        </div>
+        <div class="form-group" style="margin-bottom:var(--space-6)">
+          <label for="res-phone" class="form-label">Registered Phone Number</label>
+          <input type="tel" id="res-phone" name="phone" class="form-input" placeholder="10-digit mobile" />
+        </div>
+        <button type="submit" class="btn btn--urgent btn--full btn--lg">Track Rescue Status</button>
+        <p style="text-align:center;font-size:var(--text-sm);margin-top:var(--space-5)">New rescue? <a href="report-animal.html">Report here →</a></p>
+      </form>
+    </div>
+  </div>
+</div>
+<script src="js/main.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('#vol-login, #donor-login').forEach(form => {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        window.location.href = form.id === 'vol-login' ? 'dashboard-volunteer.html' : 'dashboard-donor.html';
+      });
+    });
+    document.getElementById('rescuer-login').addEventListener('submit', (e) => {
+      e.preventDefault();
+      window.location.href = 'dashboard-rescue-status.html';
+    });
+  });
+</script>
+</body>
+</html>

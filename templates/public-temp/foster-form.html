@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Apply to foster a rescue animal from Unke Liye — Pune, Maharashtra." />
+  <title>Foster Application — Unke Liye</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/enhanced-pages.css" />
+  <style>
+    .ff-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      align-items: start;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Form card */
+    .ff-form-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+    }
+
+    /* Steps */
+    .ff-steps {
+      display: flex;
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--color-border);
+      gap: .5rem;
+      align-items: center;
+    }
+    .ff-step {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .35rem;
+      font-size: .7rem;
+      font-weight: 600;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    .ff-step-dot {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      border: 2px solid var(--color-border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .75rem; font-weight: 700;
+      transition: all .3s;
+    }
+    .ff-step.is-active .ff-step-dot { border-color: var(--color-care); background: var(--color-care); color: #fff; }
+    .ff-step.is-done .ff-step-dot { border-color: var(--color-primary); background: var(--color-primary); color: #fff; }
+    .ff-step.is-active { color: var(--color-care); }
+    .ff-step.is-done { color: var(--color-primary); }
+    .ff-step-line { flex: 1; height: 2px; background: var(--color-border); border-radius: 99px; margin-top: 13px; align-self: flex-start; }
+    .ff-step-line.is-done { background: var(--color-primary); }
+
+    /* Panels */
+    .ff-panel { display: none; padding: 1.5rem; }
+    .ff-panel.is-active { display: block; }
+
+    /* Fields */
+    .ff-field { margin-bottom: 1.25rem; }
+    .ff-label { display: block; font-size: .78rem; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; color: var(--color-text-muted); margin-bottom: .4rem; }
+    .ff-input {
+      width: 100%; padding: .75rem .875rem;
+      border: 1.5px solid var(--color-border); border-radius: var(--radius-md);
+      font-size: .95rem; font-family: var(--font-body);
+      background: var(--color-bg); color: var(--color-text);
+      transition: border-color .2s; box-sizing: border-box;
+    }
+    .ff-input:focus { outline: none; border-color: var(--color-care); }
+    .ff-input::placeholder { color: var(--color-text-muted); }
+    .ff-input-err { border-color: var(--color-urgent) !important; }
+    .ff-err { font-size: .75rem; color: var(--color-urgent); margin-top: .25rem; display: none; }
+    .ff-err.show { display: block; }
+    .ff-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+    @media(max-width:480px){ .ff-row-2 { grid-template-columns: 1fr; } }
+    .ff-optional { font-size: .72rem; font-weight: 400; color: var(--color-text-muted); margin-left: .25rem; }
+
+    /* Segmented Controls / Radio groups */
+    .ff-radio-group { display: grid; gap: .5rem; margin-bottom: 1rem; }
+    .ff-radio-grid { grid-template-columns: repeat(2, 1fr); }
+    .ff-radio-grid-3 { grid-template-columns: repeat(3, 1fr); }
+    @media(max-width:480px){
+      .ff-radio-grid { grid-template-columns: 1fr; }
+      .ff-radio-grid-3 { grid-template-columns: 1fr; }
+    }
+    .ff-radio-label {
+      display: flex; align-items: center; justify-content: center; gap: .5rem;
+      padding: .75rem .5rem;
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all .2s;
+      font-size: .88rem;
+      font-weight: 500;
+      text-align: center;
+    }
+    .ff-radio-label:hover { border-color: var(--color-care); }
+    .ff-radio-label input[type=radio] { accent-color: var(--color-care); width: 16px; height: 16px; flex-shrink: 0; }
+    .ff-radio-label:has(input:checked) { border-color: var(--color-care); background: #FFF8F0; color: var(--color-care-dark); }
+
+    /* Review Table */
+    .ff-review-table { border: 1px solid var(--color-border); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 1.25rem; }
+    .ff-review-section { padding: .5rem .875rem; background: var(--color-surface-alt); border-bottom: 1px solid var(--color-border); font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--color-text-muted); }
+    .ff-review-row { display: flex; justify-content: space-between; padding: .6rem .875rem; font-size: .85rem; border-bottom: 1px solid var(--color-border); gap: .5rem; align-items: center; }
+    .ff-review-row:last-child { border-bottom: none; }
+    .ff-review-label { color: var(--color-text-muted); flex-shrink: 0; }
+    .ff-review-val { font-weight: 600; text-align: right; }
+    .ff-review-edit { font-size: .75rem; color: var(--color-care); cursor: pointer; text-decoration: underline; flex-shrink: 0; }
+
+    /* Buttons */
+    .ff-nav { display: flex; gap: .75rem; margin-top: 1.25rem; }
+    .ff-btn-back {
+      padding: .75rem 1.25rem; border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-md); background: transparent;
+      font-size: .9rem; font-weight: 600; cursor: pointer;
+      font-family: var(--font-body); color: var(--color-text); transition: all .2s;
+    }
+    .ff-btn-next {
+      flex: 1; padding: .875rem 1.25rem;
+      background: var(--color-care); color: #fff;
+      border: none; border-radius: var(--radius-md);
+      font-size: .95rem; font-weight: 700; cursor: pointer;
+      font-family: var(--font-body); transition: background .2s;
+    }
+    .ff-btn-next:hover { filter: brightness(1.1); }
+    .ff-btn-submit {
+      width: 100%; padding: 1rem;
+      background: var(--color-care); color: #fff;
+      border: none; border-radius: var(--radius-md);
+      font-size: 1rem; font-weight: 700; cursor: pointer;
+      font-family: var(--font-body); transition: all .2s;
+    }
+
+    /* Success */
+    .ff-success { display: none; padding: 2.5rem 1.5rem; text-align: center; }
+    .ff-success.show { display: block; }
+    .ff-success-icon { width: 72px; height: 72px; border-radius: 50%; background: #FFF3E0; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; font-size: 2rem; }
+    .ff-ref { background: var(--color-surface-alt); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: .5rem 1rem; font-family: monospace; font-size: .9rem; display: inline-block; margin: .5rem 0 1rem; }
+    .ff-pipeline { display: flex; flex-direction: column; gap: 0; margin: 1.5rem auto; text-align: left; max-width: 400px; }
+    .ff-pipeline-step { display: flex; align-items: center; gap: .75rem; padding: .625rem 0; font-size: .85rem; }
+    .ff-pipeline-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .ff-pipeline-dot.done { background: var(--color-primary); }
+    .ff-pipeline-dot.pending { background: var(--color-border); }
+    .ff-demo-note { font-size: .75rem; color: var(--color-text-muted); background: var(--color-surface-alt); border-radius: var(--radius-md); padding: .6rem .875rem; margin-top: 1rem; }
+  </style>
+</head>
+<body>
+<a href="#main" class="skip-nav">Skip to main content</a>
+<div class="emergency-bar"><span class="pulse-dot"></span><span>🚨 Animal in distress? 24/7 —</span><a href="report-animal.html">Report Now →</a></div>
+<header class="site-header">
+  <div class="container">
+    <nav class="nav-inner" aria-label="Main navigation">
+      <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a>
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="adopt.html" class="nav-link">Adopt</a></li>
+        <li class="nav-item"><a href="foster.html" class="nav-link active">Foster</a></li>
+        <li class="nav-item"><a href="sponsor-animal.html" class="nav-link">Sponsor</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="donate.html" class="btn btn--primary btn--sm">Donate</a>
+        <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      </div>
+    </nav>
+  </div>
+</header>
+<div class="nav-mobile-panel"><div class="nav-mobile-overlay"></div><div class="nav-mobile-drawer"><button class="nav-mobile-close">✕</button><a href="index.html" class="nav-logo"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a><ul class="nav-mobile-list"><li><a href="foster.html">Foster</a></li><li><a href="adopt.html">Adopt</a></li><li><a href="donate.html">Donate</a></li></ul></div></div>
+
+<main id="main">
+  <div style="background:var(--color-surface-alt);border-bottom:1px solid var(--color-border);padding:.75rem 0">
+    <div class="container">
+      <nav class="pg-breadcrumb" style="color:var(--color-text-muted)">
+        <a href="index.html" style="color:var(--color-text-muted)">Home</a><span class="pg-breadcrumb-sep">›</span>
+        <a href="foster.html" style="color:var(--color-text-muted)">Foster</a><span class="pg-breadcrumb-sep">›</span>
+        <span>Foster Application</span>
+      </nav>
+    </div>
+  </div>
+
+  <section class="pg-section" id="main-content">
+    <div class="container">
+      <div class="ff-layout reveal">
+        <div class="ff-form-card">
+
+          <!-- Step indicator -->
+          <div class="ff-steps">
+            <div class="ff-step is-active" id="ff-step-1"><div class="ff-step-dot">1</div><span>About You</span></div>
+            <div class="ff-step-line" id="ff-line-1"></div>
+            <div class="ff-step" id="ff-step-2"><div class="ff-step-dot">2</div><span>Foster Details</span></div>
+            <div class="ff-step-line" id="ff-line-2"></div>
+            <div class="ff-step" id="ff-step-3"><div class="ff-step-dot">3</div><span>Review</span></div>
+          </div>
+
+          <!-- STEP 1: About You -->
+          <div class="ff-panel is-active" id="ff-panel-1">
+            <h3 style="font-size:1.1rem;margin-bottom:.25rem">About You</h3>
+            <p style="font-size:.82rem;color:var(--color-text-muted);margin-bottom:1.25rem">First, share your basic contact information.</p>
+
+            <div class="ff-row-2">
+              <div class="ff-field">
+                <label class="ff-label" for="ff-name">Full Name <span style="color:var(--color-urgent)">*</span></label>
+                <input class="ff-input" type="text" id="ff-name" name="full_name" autocomplete="name" placeholder="e.g. Rahul Sharma" required />
+                <div class="ff-err" id="ff-err-name">Please enter your name.</div>
+              </div>
+              <div class="ff-field">
+                <label class="ff-label" for="ff-phone">Phone <span style="color:var(--color-urgent)">*</span></label>
+                <input class="ff-input" type="tel" id="ff-phone" name="phone" autocomplete="tel" placeholder="10-digit mobile" maxlength="10" required />
+                <div class="ff-err" id="ff-err-phone">Please enter a valid 10-digit phone.</div>
+              </div>
+            </div>
+
+            <div class="ff-field">
+              <label class="ff-label" for="ff-email">Email <span style="color:var(--color-urgent)">*</span></label>
+              <input class="ff-input" type="email" id="ff-email" name="email" autocomplete="email" placeholder="name@email.com" required />
+              <div class="ff-err" id="ff-err-email">Please enter a valid email.</div>
+            </div>
+
+            <div class="ff-field">
+              <label class="ff-label" for="ff-city">Locality in Pune <span style="color:var(--color-urgent)">*</span></label>
+              <input class="ff-input" type="text" id="ff-city" name="city" placeholder="e.g. Kothrud, Pune" required />
+              <div class="ff-err" id="ff-err-city">Please enter your locality in Pune.</div>
+            </div>
+
+            <button class="ff-btn-next" onclick="ffGoStep(2)">Continue → Foster Details</button>
+          </div>
+
+          <!-- STEP 2: Foster Details -->
+          <div class="ff-panel" id="ff-panel-2">
+            <h3 style="font-size:1.1rem;margin-bottom:.25rem">Foster Preferences</h3>
+            <p style="font-size:.82rem;color:var(--color-text-muted);margin-bottom:1.25rem">Tell us what kind of foster placement fits your home.</p>
+
+            <div class="ff-field">
+              <div class="ff-label">Animal Preference <span style="color:var(--color-urgent)">*</span></div>
+              <div class="ff-radio-group ff-radio-grid-3" id="animal-pref-group">
+                <label class="ff-radio-label"><input type="radio" name="animal_preference" value="Dog" /> 🐕 Dog</label>
+                <label class="ff-radio-label"><input type="radio" name="animal_preference" value="Cat" /> 🐈 Cat</label>
+                <label class="ff-radio-label"><input type="radio" name="animal_preference" value="Any" /> 🐾 Any</label>
+              </div>
+              <div class="ff-err" id="ff-err-pref">Please select your preference.</div>
+            </div>
+
+            <div class="ff-field">
+              <div class="ff-label">Foster Duration <span style="color:var(--color-urgent)">*</span></div>
+              <div class="ff-radio-group ff-radio-grid-3" id="duration-group">
+                <label class="ff-radio-label"><input type="radio" name="foster_duration" value="Emergency" /> 🚨 Emergency (2w)</label>
+                <label class="ff-radio-label"><input type="radio" name="foster_duration" value="Short Term" /> 📅 Short Term (4w)</label>
+                <label class="ff-radio-label"><input type="radio" name="foster_duration" value="Long Term" /> 🏡 Long Term (2m+)</label>
+              </div>
+              <div class="ff-err" id="ff-err-duration">Please select a preferred duration.</div>
+            </div>
+
+            <div class="ff-field">
+              <div class="ff-label">Housing Type <span style="color:var(--color-urgent)">*</span></div>
+              <div class="ff-radio-group ff-radio-grid" id="housing-group">
+                <label class="ff-radio-label"><input type="radio" name="housing_type" value="Apartment" /> 🏢 Apartment</label>
+                <label class="ff-radio-label"><input type="radio" name="housing_type" value="Independent House" /> 🏠 House / Villa</label>
+                <label class="ff-radio-label"><input type="radio" name="housing_type" value="Farm" /> 🌿 Farm</label>
+                <label class="ff-radio-label"><input type="radio" name="housing_type" value="Other" /> 🔑 Other</label>
+              </div>
+              <div class="ff-err" id="ff-err-housing">Please select your housing type.</div>
+            </div>
+
+            <div class="ff-field">
+              <div class="ff-label">Previous Pet / Foster Experience <span style="color:var(--color-urgent)">*</span></div>
+              <div class="ff-radio-group ff-radio-grid" id="pet-exp-group">
+                <label class="ff-radio-label"><input type="radio" name="previous_pet_experience" value="Yes" /> ✅ Yes</label>
+                <label class="ff-radio-label"><input type="radio" name="previous_pet_experience" value="No" /> 🆕 No experience</label>
+              </div>
+              <div class="ff-err" id="ff-err-petexp">Please select one.</div>
+            </div>
+
+            <div class="ff-field">
+              <label class="ff-label" for="ff-message">Additional Notes <span class="ff-optional">(optional)</span></label>
+              <textarea class="ff-input" id="ff-message" name="message" rows="2" placeholder="Tell us more about your experience or home layout (optional)"></textarea>
+            </div>
+
+            <div class="ff-nav">
+              <button class="ff-btn-back" onclick="ffGoStep(1)">← Back</button>
+              <button class="ff-btn-next" onclick="ffGoStep(3)">Review →</button>
+            </div>
+          </div>
+
+          <!-- STEP 3: Review -->
+          <div class="ff-panel" id="ff-panel-3">
+            <h3 style="font-size:1.1rem;margin-bottom:.25rem">Review Application</h3>
+            <p style="font-size:.82rem;color:var(--color-text-muted);margin-bottom:1.25rem">Please verify your details before submitting.</p>
+
+            <div class="ff-review-table">
+              <div class="ff-review-section">Your Contact Details <span class="ff-review-edit" onclick="ffGoStep(1)" style="float:right;margin-top:0">Edit</span></div>
+              <div class="ff-review-row"><span class="ff-review-label">Name</span><span class="ff-review-val" id="rev-name"></span></div>
+              <div class="ff-review-row"><span class="ff-review-label">Phone</span><span class="ff-review-val" id="rev-phone"></span></div>
+              <div class="ff-review-row"><span class="ff-review-label">Email</span><span class="ff-review-val" id="rev-email"></span></div>
+              <div class="ff-review-row"><span class="ff-review-label">Locality</span><span class="ff-review-val" id="rev-city"></span></div>
+
+              <div class="ff-review-section">Foster Preferences <span class="ff-review-edit" onclick="ffGoStep(2)" style="float:right;margin-top:0">Edit</span></div>
+              <div class="ff-review-row"><span class="ff-review-label">Animal Preference</span><span class="ff-review-val" id="rev-pref"></span></div>
+              <div class="ff-review-row"><span class="ff-review-label">Duration</span><span class="ff-review-val" id="rev-duration"></span></div>
+              <div class="ff-review-row"><span class="ff-review-label">Housing</span><span class="ff-review-val" id="rev-housing"></span></div>
+              <div class="ff-review-row"><span class="ff-review-label">Pet Experience</span><span class="ff-review-val" id="rev-petexp"></span></div>
+            </div>
+
+            <button class="ff-btn-submit" onclick="ffSubmit()">Submit Foster Interest 🏠</button>
+            <div class="ff-nav" style="margin-top:.75rem">
+              <button class="ff-btn-back" onclick="ffGoStep(2)" style="width:100%;text-align:center">← Back</button>
+            </div>
+          </div>
+
+          <!-- SUCCESS -->
+          <div class="ff-success" id="ff-success">
+            <div class="ff-success-icon">🏠</div>
+            <h2 style="font-size:1.25rem;margin-bottom:.5rem">Foster Application Received!</h2>
+            <p style="color:var(--color-text-muted);font-size:.88rem;margin-bottom:.5rem">Your foster interest has been registered with our team.</p>
+            <div class="ff-ref" id="suc-ref"></div>
+            <div class="ff-pipeline">
+              <div class="ff-pipeline-step"><div class="ff-pipeline-dot done"></div><span><strong>Application Received</strong> — Right now</span></div>
+              <div style="width:2px;height:18px;background:var(--color-border);margin-left:4px"></div>
+              <div class="ff-pipeline-step"><div class="ff-pipeline-dot pending"></div><span>Application Review — Within 24 hours</span></div>
+              <div style="width:2px;height:18px;background:var(--color-border);margin-left:4px"></div>
+              <div class="ff-pipeline-step"><div class="ff-pipeline-dot pending"></div><span>Animal Matching — Finding the right guest</span></div>
+              <div style="width:2px;height:18px;background:var(--color-border);margin-left:4px"></div>
+              <div class="ff-pipeline-step"><div class="ff-pipeline-dot pending"></div><span>Foster Begins — Kit delivered &amp; drop-off</span></div>
+            </div>
+            <a href="foster.html" class="btn btn--outline btn--sm" style="margin-right:.5rem">Back to Foster Info</a>
+            <a href="index.html" class="btn btn--ghost btn--sm">Go Home</a>
+            <div class="ff-demo-note">🔒 Frontend Demo — No data is saved or transmitted.</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div><img src="logo.png" alt="Unke Liye" class="footer-logo-img" /><p class="footer-brand-tagline">For Every Life.</p></div>
+      <div><h3 class="footer-col-title">Animals</h3><ul class="footer-links"><li><a href="adopt.html">Adopt a Pet</a></li><li><a href="foster.html">Foster</a></li><li><a href="sponsor-animal.html">Sponsor</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 Unke Liye · Reg. No. MAH/2015/1234 · 80G Exempt</p></div>
+  </div>
+</footer>
+<a href="report-animal.html" class="emergency-float" aria-label="Report an animal emergency"><span aria-hidden="true">🚨</span><span>Report Animal Emergency</span></a>
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script>
+(function() {
+  var state = {
+    full_name: '', phone: '', email: '', city: '',
+    animal_preference: '', foster_duration: '',
+    housing_type: '', previous_pet_experience: '', message: ''
+  };
+
+  window.ffGoStep = function(step) {
+    if (step === 2 && !validateStep1()) return;
+    if (step === 3 && !validateStep2()) return;
+    if (step === 3) populateReview();
+    [1,2,3].forEach(function(n) {
+      document.getElementById('ff-panel-' + n).classList.toggle('is-active', n === step);
+      var ind = document.getElementById('ff-step-' + n);
+      ind.classList.remove('is-active','is-done');
+      if (n < step) ind.classList.add('is-done');
+      if (n === step) ind.classList.add('is-active');
+    });
+    [1,2].forEach(function(n) {
+      document.getElementById('ff-line-' + n).classList.toggle('is-done', n < step);
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  function validateStep1() {
+    var ok = true;
+    function chk(id, errId, cond) {
+      document.getElementById(id).classList.toggle('ff-input-err', !cond);
+      document.getElementById(errId).classList.toggle('show', !cond);
+      if (!cond) ok = false;
+    }
+    var name = document.getElementById('ff-name').value.trim();
+    var phone = document.getElementById('ff-phone').value.trim();
+    var email = document.getElementById('ff-email').value.trim();
+    var city = document.getElementById('ff-city').value.trim();
+    chk('ff-name','ff-err-name', name.length >= 2);
+    chk('ff-phone','ff-err-phone', /^\d{10}$/.test(phone));
+    chk('ff-email','ff-err-email', /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email));
+    chk('ff-city','ff-err-city', city.length >= 2);
+    if (ok) { state.full_name = name; state.phone = phone; state.email = email; state.city = city; }
+    return ok;
+  }
+
+  function validateStep2() {
+    var ok = true;
+    var pref = document.querySelector('input[name="animal_preference"]:checked');
+    var duration = document.querySelector('input[name="foster_duration"]:checked');
+    var housing = document.querySelector('input[name="housing_type"]:checked');
+    var petexp = document.querySelector('input[name="previous_pet_experience"]:checked');
+
+    function chkGroup(groupId, errId, val) {
+      document.getElementById(errId).classList.toggle('show', !val);
+      if (!val) ok = false;
+    }
+
+    chkGroup('animal-pref-group', 'ff-err-pref', pref);
+    chkGroup('duration-group', 'ff-err-duration', duration);
+    chkGroup('housing-group', 'ff-err-housing', housing);
+    chkGroup('pet-exp-group', 'ff-err-petexp', petexp);
+
+    if (ok) {
+      state.animal_preference = pref.value;
+      state.foster_duration = duration.value;
+      state.housing_type = housing.value;
+      state.previous_pet_experience = petexp.value;
+      state.message = document.getElementById('ff-message').value.trim();
+    }
+    return ok;
+  }
+
+  function populateReview() {
+    document.getElementById('rev-name').textContent = state.full_name;
+    document.getElementById('rev-phone').textContent = state.phone;
+    document.getElementById('rev-email').textContent = state.email;
+    document.getElementById('rev-city').textContent = state.city;
+    document.getElementById('rev-pref').textContent = state.animal_preference;
+    document.getElementById('rev-duration').textContent = state.foster_duration;
+    document.getElementById('rev-housing').textContent = state.housing_type;
+    document.getElementById('rev-petexp').textContent = state.previous_pet_experience;
+  }
+
+  window.ffSubmit = function() {
+    var btn = document.querySelector('.ff-btn-submit');
+    btn.textContent = 'Submitting…'; btn.disabled = true;
+    setTimeout(function() {
+      var ref = 'UL-FOS-' + new Date().getFullYear() + '-' + String(Math.floor(10000 + Math.random() * 90000));
+      document.getElementById('suc-ref').textContent = ref;
+      document.getElementById('ff-panel-3').classList.remove('is-active');
+      document.getElementById('ff-success').classList.add('show');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 900);
+  };
+})();
+</script>
+</body>
+</html>

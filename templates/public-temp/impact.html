@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Unke Liye Impact — our stats, year-wise reports, and the documented difference we've made for animals, nature, and communities." />
+  <title>Our Impact — Unke Liye</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <style>
+    .big-stats {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+    @media (min-width: 640px) { .big-stats { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1024px) { .big-stats { grid-template-columns: repeat(3, 1fr); } }
+
+    .big-stat-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-8) var(--space-6);
+      position: relative;
+      overflow: hidden;
+    }
+    .big-stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+    }
+    .big-stat-card--care::before   { background: var(--color-care); }
+    .big-stat-card--protect::before { background: var(--color-protect); }
+    .big-stat-card--restore::before { background: var(--color-restore); }
+    .big-stat-card--respond::before { background: var(--color-respond); }
+    .big-stat-card--primary::before { background: var(--color-primary); }
+
+    .big-stat-icon { font-size: 2.5rem; margin-bottom: var(--space-4); display: block; }
+    .big-stat-number {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: var(--space-2);
+    }
+    .big-stat-label { font-size: var(--text-base); font-weight: var(--font-weight-semibold); color: var(--color-text); margin-bottom: var(--space-2); }
+    .big-stat-desc { font-size: var(--text-sm); color: var(--color-text-muted); line-height: var(--leading-relaxed); }
+
+    .year-bar {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      margin-bottom: var(--space-3);
+    }
+    .year-label { font-size: var(--text-sm); font-weight: var(--font-weight-semibold); min-width: 60px; }
+    .year-track { flex: 1; height: 28px; background: var(--color-surface-alt); border-radius: var(--radius-sm); overflow: hidden; }
+    .year-fill { height: 100%; background: var(--color-primary); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: flex-end; padding-right: var(--space-3); font-size: var(--text-xs); font-weight: 700; color: #fff; transition: width 1.2s ease-in-out; }
+    .year-value { font-size: var(--text-sm); color: var(--color-text-muted); min-width: 80px; text-align: right; }
+
+    .impact-quote {
+      background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
+      border-radius: var(--radius-lg);
+      padding: var(--space-12);
+      text-align: center;
+      color: #fff;
+    }
+    .impact-quote blockquote { background: none; border: none; padding: 0; font-size: clamp(var(--text-xl), 3vw, var(--text-3xl)); font-style: italic; color: #fff; margin: 0; font-family: var(--font-display); line-height: var(--leading-snug); }
+    .impact-quote cite { font-style: normal; font-size: var(--text-sm); color: rgba(250,247,242,0.6); margin-top: var(--space-6); display: block; }
+
+    .pillar-impact-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+    @media (min-width: 768px) { .pillar-impact-grid { grid-template-columns: 1fr 1fr; } }
+    .pillar-impact-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+    }
+    .pillar-impact-header { display: flex; align-items: center; gap: var(--space-4); margin-bottom: var(--space-6); }
+    .pillar-impact-icon { font-size: 2rem; width: 52px; height: 52px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; }
+    .pillar-impact-card h3 { font-size: var(--text-xl); }
+    .mini-stat { display: flex; justify-content: space-between; padding: var(--space-3) 0; border-bottom: 1px solid var(--color-border); font-size: var(--text-sm); }
+    .mini-stat:last-child { border-bottom: none; }
+    .mini-stat-num { font-weight: var(--font-weight-bold); color: var(--color-primary); }
+  </style>
+</head>
+<body>
+<a href="#main-content" class="skip-nav">Skip to main content</a>
+<div class="emergency-bar"><span class="pulse-dot" aria-hidden="true"></span><span>🚨 Animal in distress? —</span><a href="report-animal.html">Report Now →</a></div>
+<header class="site-header" role="banner">
+  <div class="container">
+    <nav class="nav-inner" aria-label="Main navigation">
+      <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a>
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li><li><a href="about.html" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Our Work <svg viewBox="0 0 16 16" fill="currentColor" width="14" height="14"><path d="M4 6l4 4 4-4"/></svg></a>
+          <div class="nav-dropdown"><a href="work-animal-rescue.html"><span class="icon">🐾</span> Animal Rescue</a><a href="work-environment.html"><span class="icon">🌱</span> Environment</a><a href="work-sanitation.html"><span class="icon">🧹</span> Sanitation</a><a href="work-disaster-relief.html"><span class="icon">🚨</span> Disaster Relief</a></div>
+        </li>
+        <li><a href="adopt.html" class="nav-link">Adopt</a></li>
+        <li><a href="campaigns.html" class="nav-link">Campaigns</a></li>
+        <li><a href="impact.html" class="nav-link active">Impact</a></li>
+        <li><a href="stories.html" class="nav-link">Stories</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Get Involved <svg viewBox="0 0 16 16" fill="currentColor" width="14" height="14"><path d="M4 6l4 4 4-4"/></svg></a>
+          <div class="nav-dropdown"><a href="volunteer.html"><span class="icon">🙋</span> Volunteer</a><a href="foster.html"><span class="icon">🏠</span> Foster</a><a href="sponsor-animal.html"><span class="icon">💛</span> Sponsor</a><a href="report-animal.html" style="color:var(--color-urgent)"><span class="icon">🚨</span> Report</a></div>
+        </li>
+      </ul>
+      <div class="nav-actions"><a href="donate.html" class="btn btn--primary btn--sm">Donate</a><button class="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button></div>
+    </nav>
+  </div>
+</header>
+<div class="nav-mobile-panel" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <div class="nav-mobile-overlay"></div>
+  <div class="nav-mobile-drawer">
+    <button class="nav-mobile-close" aria-label="Close menu">✕</button>
+    <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a>
+    <ul class="nav-mobile-list"><li><a href="index.html">Home</a></li><li><a href="impact.html">Impact</a></li><li><a href="transparency.html">Transparency</a></li><li><a href="donate.html">Donate</a></li></ul>
+    <div class="nav-mobile-actions"><a href="donate.html" class="btn btn--primary btn--full">Donate Now</a></div>
+  </div>
+</div>
+
+<main id="main-content">
+  <div class="page-hero" style="--ph-img: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1600&q=80')">
+    <div class="container page-hero-content">
+      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">›</span><span aria-current="page">Our Impact</span></nav>
+      <h1>The Change We've Made</h1>
+      <p>Nine years. Every number below is a real life, a real tree, a real family. We don't inflate; we document.</p>
+    </div>
+  </div>
+
+  <!-- Big Stats -->
+  <section class="section" aria-labelledby="stats-heading">
+    <div class="container">
+      <div class="section-header text-center reveal">
+        <span class="eyebrow">Cumulative Impact (2015–2024)</span>
+        <h2 id="stats-heading">Our Numbers Tell the Real Story</h2>
+      </div>
+      <div class="big-stats">
+        <div class="big-stat-card big-stat-card--care reveal reveal-delay-1">
+          <span class="big-stat-icon" aria-hidden="true">🐾</span>
+          <div class="big-stat-number" style="color:var(--color-care)" data-counter data-target="14800" data-suffix="+">0</div>
+          <div class="big-stat-label">Animals Rescued</div>
+          <div class="big-stat-desc">From highways, floods, cruelty, and abandonment. Every one documented, treated, and given the best possible outcome.</div>
+        </div>
+        <div class="big-stat-card big-stat-card--care reveal reveal-delay-2">
+          <span class="big-stat-icon" aria-hidden="true">💉</span>
+          <div class="big-stat-number" style="color:var(--color-care)" data-counter data-target="32600" data-suffix="+">0</div>
+          <div class="big-stat-label">Animals Treated</div>
+          <div class="big-stat-desc">Surgeries, wound care, illness treatment, rehabilitation. Our clinic runs 250+ days a year.</div>
+        </div>
+        <div class="big-stat-card big-stat-card--care reveal reveal-delay-3">
+          <span class="big-stat-icon" aria-hidden="true">✂️</span>
+          <div class="big-stat-number" style="color:var(--color-care)" data-counter data-target="8200" data-suffix="+">0</div>
+          <div class="big-stat-label">Animals Sterilized</div>
+          <div class="big-stat-desc">Humane birth control — preventing suffering before it happens. Certified ABC program in partnership with PMC.</div>
+        </div>
+        <div class="big-stat-card big-stat-card--protect reveal reveal-delay-4">
+          <span class="big-stat-icon" aria-hidden="true">🌱</span>
+          <div class="big-stat-number" style="color:var(--color-protect)" data-counter data-target="12450" data-suffix="+">0</div>
+          <div class="big-stat-label">Trees Planted</div>
+          <div class="big-stat-desc">Native species. Every tree is GPS-tagged and monitored for 3 years post-planting for survival confirmation.</div>
+        </div>
+        <div class="big-stat-card big-stat-card--restore reveal reveal-delay-5">
+          <span class="big-stat-icon" aria-hidden="true">🧹</span>
+          <div class="big-stat-number" style="color:var(--color-restore)" data-counter data-target="280" data-suffix="+">0</div>
+          <div class="big-stat-label">Cleanliness Drives</div>
+          <div class="big-stat-desc">10,000+ kg of waste removed from waterways, hills, and public spaces. 280 drives in 3 years.</div>
+        </div>
+        <div class="big-stat-card big-stat-card--respond reveal" style="transition-delay:0.6s">
+          <span class="big-stat-icon" aria-hidden="true">🚨</span>
+          <div class="big-stat-number" style="color:var(--color-respond)" data-counter data-target="8400" data-suffix="+">0</div>
+          <div class="big-stat-label">People Supported in Disasters</div>
+          <div class="big-stat-desc">Food, shelter, medical aid, and psychological support across 47 disaster operations in 8 states.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Year-Wise Animal Rescues -->
+  <section class="section section--alt" aria-labelledby="year-report-heading">
+    <div class="container">
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:var(--space-4);margin-bottom:var(--space-10)">
+        <div class="reveal"><span class="eyebrow">Year by Year</span><h2 id="year-report-heading">Animal Rescues Per Year</h2></div>
+        <a href="transparency.html" class="btn btn--ghost btn--sm reveal">Full Annual Reports →</a>
+      </div>
+
+      <div style="max-width:800px">
+        <div class="year-bar reveal reveal-delay-1">
+          <div class="year-label">2015</div>
+          <div class="year-track"><div class="year-fill" data-progress="4" style="width:0%">12</div></div>
+          <div class="year-value">12 animals</div>
+        </div>
+        <div class="year-bar reveal reveal-delay-2">
+          <div class="year-label">2016</div>
+          <div class="year-track"><div class="year-fill" data-progress="8" style="width:0%">240</div></div>
+          <div class="year-value">240 animals</div>
+        </div>
+        <div class="year-bar reveal reveal-delay-3">
+          <div class="year-label">2017</div>
+          <div class="year-track"><div class="year-fill" data-progress="16" style="width:0%">680</div></div>
+          <div class="year-value">680 animals</div>
+        </div>
+        <div class="year-bar reveal reveal-delay-4">
+          <div class="year-label">2018</div>
+          <div class="year-track"><div class="year-fill" data-progress="26" style="width:0%">1,100</div></div>
+          <div class="year-value">1,100 animals</div>
+        </div>
+        <div class="year-bar reveal reveal-delay-5">
+          <div class="year-label">2019</div>
+          <div class="year-track"><div class="year-fill" data-progress="38" style="width:0%">1,850</div></div>
+          <div class="year-value">1,850 animals</div>
+        </div>
+        <div class="year-bar reveal" style="transition-delay:0.6s">
+          <div class="year-label">2020</div>
+          <div class="year-track"><div class="year-fill" data-progress="44" style="width:0%">2,200</div></div>
+          <div class="year-value">2,200 animals</div>
+        </div>
+        <div class="year-bar reveal" style="transition-delay:0.7s">
+          <div class="year-label">2021</div>
+          <div class="year-track"><div class="year-fill" data-progress="56" style="width:0%">2,800</div></div>
+          <div class="year-value">2,800 animals</div>
+        </div>
+        <div class="year-bar reveal" style="transition-delay:0.8s">
+          <div class="year-label">2022</div>
+          <div class="year-track"><div class="year-fill" data-progress="72" style="width:0%">2,600</div></div>
+          <div class="year-value">2,600 animals</div>
+        </div>
+        <div class="year-bar reveal" style="transition-delay:0.9s">
+          <div class="year-label">2023</div>
+          <div class="year-track"><div class="year-fill" data-progress="86" style="width:0%">2,720</div></div>
+          <div class="year-value">2,720 animals</div>
+        </div>
+        <div class="year-bar reveal" style="transition-delay:1s">
+          <div class="year-label">2024*</div>
+          <div class="year-track"><div class="year-fill" data-progress="100" style="width:0%;background:var(--color-care)">600+</div></div>
+          <div class="year-value">600+ (Jan–Feb)</div>
+        </div>
+      </div>
+      <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-top:var(--space-4)">* 2024 data as of February 2024 only.</p>
+    </div>
+  </section>
+
+  <!-- Pillar-wise Impact -->
+  <section class="section" aria-labelledby="pillar-impact-heading">
+    <div class="container">
+      <div class="section-header reveal"><span class="eyebrow">By Pillar</span><h2 id="pillar-impact-heading">What Each Team Has Accomplished</h2></div>
+      <div class="pillar-impact-grid">
+
+        <div class="pillar-impact-card reveal reveal-delay-1">
+          <div class="pillar-impact-header">
+            <div class="pillar-impact-icon pillar-icon--care" aria-hidden="true">🐾</div>
+            <h3 style="color:var(--color-care)">Animal Rescue & Healthcare</h3>
+          </div>
+          <div class="mini-stat"><span>Animals Rescued</span><span class="mini-stat-num">14,800+</span></div>
+          <div class="mini-stat"><span>Surgeries Performed</span><span class="mini-stat-num">3,200+</span></div>
+          <div class="mini-stat"><span>Vaccination Camps</span><span class="mini-stat-num">185</span></div>
+          <div class="mini-stat"><span>Sterilizations Done</span><span class="mini-stat-num">8,200+</span></div>
+          <div class="mini-stat"><span>Animals Adopted</span><span class="mini-stat-num">2,300+</span></div>
+          <div class="mini-stat"><span>Animals Currently in Shelter</span><span class="mini-stat-num">82</span></div>
+        </div>
+
+        <div class="pillar-impact-card reveal reveal-delay-2">
+          <div class="pillar-impact-header">
+            <div class="pillar-impact-icon pillar-icon--protect" aria-hidden="true">🌱</div>
+            <h3 style="color:var(--color-protect)">Environment</h3>
+          </div>
+          <div class="mini-stat"><span>Trees Planted</span><span class="mini-stat-num" style="color:var(--color-protect)">12,450+</span></div>
+          <div class="mini-stat"><span>Plantation Drives</span><span class="mini-stat-num" style="color:var(--color-protect)">96</span></div>
+          <div class="mini-stat"><span>Schools Engaged</span><span class="mini-stat-num" style="color:var(--color-protect)">240</span></div>
+          <div class="mini-stat"><span>Tree Survival Rate</span><span class="mini-stat-num" style="color:var(--color-protect)">78%</span></div>
+          <div class="mini-stat"><span>Water Bodies Restored</span><span class="mini-stat-num" style="color:var(--color-protect)">12</span></div>
+          <div class="mini-stat"><span>Plastic Collected (kg)</span><span class="mini-stat-num" style="color:var(--color-protect)">6,400+</span></div>
+        </div>
+
+        <div class="pillar-impact-card reveal reveal-delay-3">
+          <div class="pillar-impact-header">
+            <div class="pillar-impact-icon pillar-icon--restore" aria-hidden="true">🧹</div>
+            <h3 style="color:var(--color-restore)">Sanitation & Cleanliness</h3>
+          </div>
+          <div class="mini-stat"><span>Cleanliness Drives</span><span class="mini-stat-num" style="color:var(--color-restore)">280+</span></div>
+          <div class="mini-stat"><span>Waste Removed (kg)</span><span class="mini-stat-num" style="color:var(--color-restore)">10,200+</span></div>
+          <div class="mini-stat"><span>Communities Reached</span><span class="mini-stat-num" style="color:var(--color-restore)">84</span></div>
+          <div class="mini-stat"><span>Hygiene Workshops</span><span class="mini-stat-num" style="color:var(--color-restore)">340+</span></div>
+          <div class="mini-stat"><span>Riverbank km Cleaned</span><span class="mini-stat-num" style="color:var(--color-restore)">48</span></div>
+          <div class="mini-stat"><span>Volunteers in Drives</span><span class="mini-stat-num" style="color:var(--color-restore)">12,800+</span></div>
+        </div>
+
+        <div class="pillar-impact-card reveal reveal-delay-4">
+          <div class="pillar-impact-header">
+            <div class="pillar-impact-icon pillar-icon--respond" aria-hidden="true">🚨</div>
+            <h3 style="color:var(--color-respond)">Disaster Relief</h3>
+          </div>
+          <div class="mini-stat"><span>Disaster Operations</span><span class="mini-stat-num" style="color:var(--color-respond)">47</span></div>
+          <div class="mini-stat"><span>People Supported</span><span class="mini-stat-num" style="color:var(--color-respond)">8,400+</span></div>
+          <div class="mini-stat"><span>States Responded In</span><span class="mini-stat-num" style="color:var(--color-respond)">8</span></div>
+          <div class="mini-stat"><span>Food Kits Distributed</span><span class="mini-stat-num" style="color:var(--color-respond)">22,000+</span></div>
+          <div class="mini-stat"><span>Animals Rescued in Disasters</span><span class="mini-stat-num" style="color:var(--color-respond)">1,800+</span></div>
+          <div class="mini-stat"><span>Avg. Response Time</span><span class="mini-stat-num" style="color:var(--color-respond)">&lt; 6 hrs</span></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Impact Quote -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="impact-quote reveal">
+        <blockquote>"One rescued animal means one life restarted. One tree means decades of oxygen, shade, and habitat. One volunteer means a hundred people reached. We measure everything — because every number is a face we remember."</blockquote>
+        <cite>— Priya Kulkarni, Founder, Unke Liye</cite>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="container" style="max-width:720px;text-align:center">
+      <div class="reveal">
+        <span class="eyebrow">Be Part of the Next Number</span>
+        <h2>Every Donation Becomes a Data Point for Good</h2>
+        <p style="color:var(--color-text-muted);margin-bottom:var(--space-8)">We need you to keep growing these numbers. Donate, volunteer, adopt, or share — every action increments the count.</p>
+        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:var(--space-4)">
+          <a href="donate.html" class="btn btn--primary btn--lg">Donate Now</a>
+          <a href="transparency.html" class="btn btn--outline btn--lg">View Full Reports</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div><img src="logo.png" alt="Unke Liye" class="footer-logo-img" /><p class="footer-brand-tagline">For Every Life. For Nature. For a Better Tomorrow.</p><div class="footer-emergency"><div class="footer-emergency-title">🚨 24/7 Emergency</div><a href="tel:+918888000000">+91 88888 00000</a></div></div>
+      <div><h3 class="footer-col-title">Quick Links</h3><ul class="footer-links"><li><a href="about.html">About Us</a></li><li><a href="campaigns.html">Campaigns</a></li><li><a href="stories.html">Stories</a></li><li><a href="transparency.html">Transparency</a></li></ul></div>
+      <div><h3 class="footer-col-title">Our Work</h3><ul class="footer-links"><li><a href="work-animal-rescue.html">🐾 Animal Rescue</a></li><li><a href="work-environment.html">🌱 Environment</a></li><li><a href="work-sanitation.html">🧹 Sanitation</a></li><li><a href="work-disaster-relief.html">🚨 Disaster Relief</a></li></ul></div>
+      <div><h3 class="footer-col-title">Get Involved</h3><ul class="footer-links"><li><a href="volunteer.html">Volunteer</a></li><li><a href="donate.html">Donate</a></li><li><a href="adopt.html">Adopt</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2024 Unke Liye. Reg. No. MAH/2015/1234</p><div class="footer-legal-links"><a href="privacy-policy.html">Privacy</a><a href="terms.html">Terms</a><a href="sitemap.html">Sitemap</a></div></div>
+  </div>
+</footer>
+<a href="report-animal.html" class="emergency-float" aria-label="Report an animal emergency"><span aria-hidden="true">🚨</span><span>Report Animal Emergency</span></a>
+<script src="js/main.js"></script>
+<script>
+  // Animate year bars with IntersectionObserver
+  document.addEventListener('DOMContentLoaded', () => {
+    if (!('IntersectionObserver' in window)) {
+      document.querySelectorAll('.year-fill').forEach(el => {
+        el.style.width = el.dataset.progress + '%';
+      });
+      return;
+    }
+
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.width = e.target.dataset.progress + '%';
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('.year-fill').forEach(el => obs.observe(el));
+  });
+</script>
+</body>
+</html>

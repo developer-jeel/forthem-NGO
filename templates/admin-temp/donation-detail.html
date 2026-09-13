@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donation Detail — Unke Liye Admin</title>
+<meta name="description" content="Detailed view of a single donation transaction including 80G audit, PAN verification, and receipt generation.">
+<link rel="stylesheet" href="assets/variables.css">
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" href="assets/components.css">
+<style>
+  .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-5); margin-bottom: var(--sp-5); }
+  .detail-grid.three { grid-template-columns: 2fr 1fr; }
+  .detail-row { display: flex; align-items: flex-start; gap: var(--sp-3); padding: var(--sp-3) 0; border-bottom: 1px solid var(--border-subtle); font-size: 0.875rem; }
+  .detail-row:last-child { border-bottom: none; }
+  .detail-label { width: 160px; flex-shrink: 0; color: var(--text-secondary); font-size: 0.8125rem; }
+  .detail-value { flex: 1; font-weight: 500; }
+  .amount-hero { font-size: 2.5rem; font-family: var(--font-heading); font-weight: 700; color: var(--brand-primary); line-height: 1; }
+  .pan-status-box { border-radius: var(--radius-md); padding: var(--sp-4); display: flex; align-items: center; gap: var(--sp-3); margin-bottom: var(--sp-4); }
+  .pan-status-box.verified { background: var(--status-success-bg); border: 1px solid var(--status-success); }
+  .pan-status-box.pending { background: var(--status-warning-bg); border: 1px solid var(--status-warning); }
+  .timeline-spine { display: flex; flex-direction: column; gap: 0; }
+  .timeline-event { display: flex; gap: var(--sp-3); position: relative; padding-bottom: var(--sp-4); }
+  .timeline-event:last-child { padding-bottom: 0; }
+  .timeline-dot { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; z-index: 1; }
+  .timeline-line { position: absolute; left: 13px; top: 28px; bottom: 0; width: 2px; background: var(--border-subtle); }
+  .timeline-event:last-child .timeline-line { display: none; }
+  .timeline-body { flex: 1; }
+  .timeline-title { font-weight: 500; font-size: 0.875rem; }
+  .timeline-meta { font-size: 0.75rem; color: var(--text-secondary); margin-top: 2px; }
+  .receipt-preview-box { background: var(--bg-sunken); border: 1px dashed var(--border-subtle); border-radius: var(--radius-md); padding: var(--sp-5); text-align: center; }
+  .donor-history-row { display: flex; align-items: center; gap: var(--sp-3); padding: var(--sp-3) 0; border-bottom: 1px solid var(--border-subtle); font-size: 0.8125rem; }
+  .donor-history-row:last-child { border-bottom: none; }
+  @media (max-width: 900px) { .detail-grid, .detail-grid.three { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="toast-region" id="toast-region" aria-live="polite">
+  <div class="toast hidden" id="toast-tpl-success" role="alert"><div class="toast-icon success"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="toast-body"><div class="toast-title">Success</div><div class="toast-msg"></div></div><button class="toast-close" aria-label="Close"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button><div class="toast-progress"></div></div>
+  <div class="toast hidden" id="toast-tpl-info" role="alert"><div class="toast-icon info"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div><div class="toast-body"><div class="toast-title">Info</div><div class="toast-msg"></div></div><button class="toast-close" aria-label="Close"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button><div class="toast-progress" style="background:var(--status-info)"></div></div>
+</div>
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+<div class="admin-shell">
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar" role="navigation" aria-label="Main navigation">
+  <div class="sidebar-logo">
+    <img src="../user/logo.png" alt="Unke Liye NGO" style="width:36px;height:36px;object-fit:contain;border-radius:var(--radius-md);background:rgba(255,255,255,0.15);padding:2px;flex-shrink:0;">
+    <div class="sidebar-logo-text"><strong>Unke Liye</strong><span>Admin Panel</span></div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-group"><div class="nav-group-label">Overview</div><a href="dashboard.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg><span class="nav-link-label">Dashboard</span></a></div>
+    <div class="nav-group"><div class="nav-group-label">Content</div><a href="content.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg><span class="nav-link-label">Homepage Content</span></a><a href="banners.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg><span class="nav-link-label">Page Banners</span></a><a href="stories.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg><span class="nav-link-label">Stories</span></a><a href="gallery.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span class="nav-link-label">Gallery</span></a></div>
+    <div class="nav-group"><div class="nav-group-label">Programs</div><a href="campaigns.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span class="nav-link-label">Campaigns</span></a><a href="animals.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2.823.47-4.113 6.006-4 7 .08.703 1.725 1.722 3.656 1 1.261-.472 1.96-1.45 2.344-2.5"/><path d="M4.42 11.247A13.152 13.152 0 0 0 4 14.556C4 18.728 7.582 21 12 21s8-2.272 8-6.444c0-1.273-.241-2.248-.382-2.826"/></svg><span class="nav-link-label">Animals</span></a><a href="events.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span class="nav-link-label">Events</span></a></div>
+    <div class="nav-group"><div class="nav-group-label">People</div><a href="volunteers.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span class="nav-link-label">Volunteers</span></a><a href="donors.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span class="nav-link-label">Donors</span></a></div>
+    <div class="nav-group"><div class="nav-group-label">Money</div><a href="donations.html" class="nav-link active" aria-current="page"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg><span class="nav-link-label">Donations</span></a><a href="reports.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg><span class="nav-link-label">Reports</span></a></div>
+    <div class="nav-group"><div class="nav-group-label">Operations</div><a href="messages.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span class="nav-link-label">Messages</span></a></div>
+    <div class="nav-group"><div class="nav-group-label">System</div><a href="admin-users.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span class="nav-link-label">Admin Users</span></a><a href="settings.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg><span class="nav-link-label">Settings</span></a></div>
+  </nav>
+  <div class="sidebar-footer"><button class="sidebar-collapse-btn" id="sidebar-collapse" aria-label="Collapse sidebar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg><span class="sidebar-collapse-btn-label">Collapse</span></button></div>
+</aside>
+
+<!-- MAIN -->
+<div class="main-content" id="main-content">
+  <header class="topbar">
+    <button class="topbar-icon-btn" id="mobile-
+    menu-toggle" aria-label="Open menu" style="display:none;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+    <div class="topbar-breadcrumb">
+      <a href="dashboard.html">Unke Liye</a><span class="sep">/</span>
+      <a href="donations.html">Donations</a><span class="sep">/</span>
+      <span class="current">TXN-250801-0042</span>
+    </div>
+    <div class="topbar-actions">
+      <button class="topbar-icon-btn theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+      <div class="dropdown-wrap">
+        <button class="topbar-profile" data-dropdown="profile-dd" aria-expanded="false"><div class="profile-avatar">RS</div><div class="profile-info"><strong>Rohit Sinha</strong><small>Super Admin</small></div></button>
+        <div class="dropdown-menu profile-menu" id="profile-dd"><a href="login.html" class="dropdown-item danger"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Sign Out</a></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-content">
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="page-header-left">
+        <div style="display:flex;align-items:center;gap:var(--sp-3);margin-bottom:var(--sp-2);">
+          <a href="donations.html" class="btn btn-ghost btn-sm" style="padding:4px 8px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+            Back
+          </a>
+          <span class="badge badge-success">Completed</span>
+          <span class="badge badge-info">80G Eligible</span>
+        </div>
+        <h1>Donation: TXN-250801-0042</h1>
+        <p>Received 1 Aug 2025 · Uttarakhand Flood Relief · UPI Payment</p>
+      </div>
+      <div class="page-header-actions">
+        <button class="btn btn-secondary btn-sm" data-toast="info" data-toast-title="Generating Receipt" data-toast-msg="80G Tax Exemption receipt is being prepared…">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          Generate 80G Receipt
+        </button>
+        <button class="btn btn-secondary btn-sm" data-toast="info" data-toast-title="Sending Email" data-toast-msg="Thank-you email sent to arjun.mehta@gmail.com">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Send Email
+        </button>
+      </div>
+    </div>
+
+    <!-- Amount Hero + PAN Status -->
+    <div class="detail-grid" style="grid-template-columns:auto 1fr;gap:var(--sp-5);margin-bottom:var(--sp-5);">
+      <div class="card card-body" style="min-width:220px;">
+        <div style="color:var(--text-secondary);font-size:0.8rem;margin-bottom:var(--sp-2);text-transform:uppercase;letter-spacing:.06em;">Total Donated</div>
+        <div class="amount-hero">₹25,000</div>
+        <div style="margin-top:var(--sp-3);font-size:0.8125rem;color:var(--text-secondary);">50% Tax Deductible = <strong style="color:var(--status-success)">₹12,500</strong></div>
+      </div>
+      <div class="card card-body">
+        <div class="pan-status-box verified">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--status-success)" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <div>
+            <div style="font-weight:600;color:var(--status-success);font-size:0.875rem;">PAN Verified — 80G Eligible</div>
+            <div style="font-size:0.8rem;color:var(--text-secondary);">PAN: ABRPM5602K · Verified on 1 Aug 2025</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--sp-3);">
+          <div><div style="font-size:0.75rem;color:var(--text-secondary);margin-bottom:4px;">Campaign</div><span class="badge badge-terracotta">Flood Relief</span></div>
+          <div><div style="font-size:0.75rem;color:var(--text-secondary);margin-bottom:4px;">Channel</div><span class="badge badge-info">UPI / QR</span></div>
+          <div><div style="font-size:0.75rem;color:var(--text-secondary);margin-bottom:4px;">Receipt Status</div><span class="badge badge-success">Issued</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Details + Timeline -->
+    <div class="detail-grid">
+      <!-- Transaction Details -->
+      <div>
+        <div class="card" style="margin-bottom:var(--sp-5);">
+          <div class="card-header"><h3>Transaction Details</h3></div>
+          <div class="card-body">
+            <div class="detail-row"><span class="detail-label">Transaction ID</span><span class="detail-value" style="font-family:monospace;">TXN-250801-0042</span></div>
+            <div class="detail-row"><span class="detail-label">Date &amp; Time</span><span class="detail-value">1 August 2025 · 14:37:22 IST</span></div>
+            <div class="detail-row"><span class="detail-label">Amount</span><span class="detail-value" style="font-weight:700;">₹25,000.00</span></div>
+            <div class="detail-row"><span class="detail-label">Payment Mode</span><span class="detail-value">UPI · arjun@icici</span></div>
+            <div class="detail-row"><span class="detail-label">Gateway Ref</span><span class="detail-value" style="font-family:monospace;">RAZP2508011437</span></div>
+            <div class="detail-row"><span class="detail-label">Campaign</span><span class="detail-value">Uttarakhand Flood Relief</span></div>
+            <div class="detail-row"><span class="detail-label">Status</span><span class="detail-value"><span class="badge badge-success">Completed</span></span></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><h3>Donor Information</h3><a href="donor-profile.html?id=AM001" class="btn btn-ghost btn-sm">View Full Profile</a></div>
+          <div class="card-body">
+            <div style="display:flex;align-items:center;gap:var(--sp-3);margin-bottom:var(--sp-4);">
+              <div style="width:48px;height:48px;border-radius:50%;background:var(--brand-primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:600;flex-shrink:0;">AM</div>
+              <div>
+                <div style="font-weight:600;font-size:1rem;">Arjun Mehta</div>
+                <div style="font-size:0.8125rem;color:var(--text-secondary);">arjun.mehta@gmail.com · +91 98765 43210</div>
+                <span class="badge badge-warning" style="margin-top:4px;">Gold Donor</span>
+              </div>
+            </div>
+            <div class="detail-row"><span class="detail-label">PAN Number</span><span class="detail-value" style="font-family:monospace;">ABRPM5602K</span></div>
+            <div class="detail-row"><span class="detail-label">Donor Type</span><span class="detail-value">Individual</span></div>
+            <div class="detail-row"><span class="detail-label">Total Donated</span><span class="detail-value" style="font-weight:700;color:var(--brand-primary);">₹1,45,000 (all time)</span></div>
+            <div class="detail-row"><span class="detail-label">Member Since</span><span class="detail-value">March 2022</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Timeline + Receipt -->
+      <div>
+        <div class="card" style="margin-bottom:var(--sp-5);">
+          <div class="card-header"><h3>Transaction Timeline</h3></div>
+          <div class="card-body">
+            <div class="timeline-spine">
+              <div class="timeline-event">
+                <div class="timeline-dot" style="background:var(--status-success-bg);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--status-success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div class="timeline-line"></div>
+                <div class="timeline-body"><div class="timeline-title">Payment Completed</div><div class="timeline-meta">1 Aug 2025 · 14:37:22 IST · Razorpay Gateway</div></div>
+              </div>
+              <div class="timeline-event">
+                <div class="timeline-dot" style="background:var(--status-success-bg);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--status-success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div class="timeline-line"></div>
+                <div class="timeline-body"><div class="timeline-title">PAN Verified Automatically</div><div class="timeline-meta">1 Aug 2025 · 14:37:24 IST · System</div></div>
+              </div>
+              <div class="timeline-event">
+                <div class="timeline-dot" style="background:var(--status-success-bg);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--status-success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div class="timeline-line"></div>
+                <div class="timeline-body"><div class="timeline-title">80G Receipt Generated</div><div class="timeline-meta">1 Aug 2025 · 14:38:01 IST · System</div></div>
+              </div>
+              <div class="timeline-event">
+                <div class="timeline-dot" style="background:var(--status-success-bg);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--status-success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div class="timeline-line"></div>
+                <div class="timeline-body"><div class="timeline-title">Thank-You Email Sent</div><div class="timeline-meta">1 Aug 2025 · 14:38:45 IST · arjun.mehta@gmail.com</div></div>
+              </div>
+              <div class="timeline-event">
+                <div class="timeline-dot" style="background:var(--status-info-bg);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--status-info)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div>
+                <div class="timeline-body"><div class="timeline-title">Campaign Allocation Processed</div><div class="timeline-meta">1 Aug 2025 · 14:39:00 IST · Flood Relief Fund</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><h3>80G Receipt Preview</h3><a href="../finance-manager/receipt-preview.html?txn=TXN-250801-0042" class="btn btn-primary btn-sm" style="font-size:0.75rem;">Download PDF</a></div>
+          <div class="card-body">
+            <div class="receipt-preview-box">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" stroke-width="1.5" style="margin:0 auto var(--sp-3);"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              <div style="font-weight:600;margin-bottom:4px;">Receipt #RCP-250801-0042</div>
+              <div style="font-size:0.8125rem;color:var(--text-secondary);margin-bottom:var(--sp-3);">Issued: 1 August 2025 · ₹25,000 · Section 80G</div>
+              <div style="display:flex;gap:var(--sp-2);justify-content:center;">
+                <a href="../finance-manager/receipt-preview.html?txn=TXN-250801-0042" class="btn btn-secondary btn-sm">View Receipt</a>
+                <button class="btn btn-secondary btn-sm" data-toast="success" data-toast-title="Email Sent" data-toast-msg="Receipt emailed to arjun.mehta@gmail.com">Email to Donor</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Donor's Previous Donations -->
+    <div class="card" style="margin-top:var(--sp-5);">
+      <div class="card-header"><h3>Donor's Recent Transactions</h3><a href="donor-profile.html?id=AM001" class="btn btn-ghost btn-sm">View All</a></div>
+      <div class="card-body">
+        <div class="donor-history-row"><div style="width:36px;height:36px;border-radius:var(--radius-md);background:var(--status-success-bg);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--status-success)" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div style="flex:1;"><strong>TXN-250801-0042</strong> <span style="color:var(--text-secondary);">— Uttarakhand Flood Relief</span><div style="font-size:0.75rem;color:var(--text-secondary);">1 Aug 2025 · UPI</div></div><div style="font-weight:700;">₹25,000</div><span class="badge badge-success">Current</span></div>
+        <div class="donor-history-row"><div style="width:36px;height:36px;border-radius:var(--radius-md);background:var(--status-success-bg);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--status-success)" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div style="flex:1;"><strong>TXN-250614-0018</strong> <span style="color:var(--text-secondary);">— Save Raju Street Dog Rescue</span><div style="font-size:0.75rem;color:var(--text-secondary);">14 Jun 2025 · Net Banking</div></div><div style="font-weight:700;">₹10,000</div><span class="badge badge-success">Completed</span></div>
+        <div class="donor-history-row"><div style="width:36px;height:36px;border-radius:var(--radius-md);background:var(--status-success-bg);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--status-success)" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div style="flex:1;"><strong>TXN-250310-0005</strong> <span style="color:var(--text-secondary);">— General Fund</span><div style="font-size:0.75rem;color:var(--text-secondary);">10 Mar 2025 · Debit Card</div></div><div style="font-weight:700;">₹5,000</div><span class="badge badge-success">Completed</span></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+</div><!-- .admin-shell -->
+
+<script src="assets/app.js"></script>
+</body>
+</html>

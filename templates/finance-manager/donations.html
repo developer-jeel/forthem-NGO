@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donation Transactions - Unke Liye Finance Manager</title>
+  <link rel="stylesheet" href="assets/css/finance-manager.css">
+</head>
+<body>
+  <div class="app-shell">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="../logo.png" alt="Unke Liye Logo" class="sidebar-logo-img">
+        <div class="sidebar-brand">
+          UNKE LIYE
+          <span>Finance Operations</span>
+        </div>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <div class="nav-section-title">Overview</div>
+          <a href="dashboard.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="7" height="7"/>
+              <rect x="14" y="3" width="7" height="7"/>
+              <rect x="14" y="14" width="7" height="7"/>
+              <rect x="3" y="14" width="7" height="7"/>
+            </svg>
+            Dashboard
+          </a>
+        </div>
+        
+        <div class="nav-section">
+          <div class="nav-section-title">Revenue</div>
+          <a href="donations.html" class="nav-item active">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+            </svg>
+            Donations
+          </a>
+          <a href="donors.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+            </svg>
+            Donors
+          </a>
+          <a href="receipts.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+            Receipts
+          </a>
+        </div>
+        
+        <div class="nav-section">
+          <div class="nav-section-title">Programs</div>
+          <a href="campaigns.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+            </svg>
+            Campaigns
+          </a>
+          <a href="expenses.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 14l4-4-4-4M5 20h14a2 2 0 002-2V8l-7-5-7 5v10a2 2 0 002 2z"/>
+            </svg>
+            Expenses
+          </a>
+        </div>
+        
+        <div class="nav-section">
+          <div class="nav-section-title">Analysis</div>
+          <a href="reports.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+            </svg>
+            Financial Reports
+          </a>
+          <a href="audit-log.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+            </svg>
+            Audit Log
+          </a>
+        </div>
+      </nav>
+      
+      <div class="sidebar-footer">
+        <div class="user-profile">
+          <div class="user-avatar">AM</div>
+          <div class="user-info">
+            <div class="user-name">Aarav Mehta</div>
+            <div class="user-role">Finance Manager</div>
+            <div class="user-status">
+              <span class="user-status-dot"></span>
+              Online
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+    
+    <div class="sidebar-overlay"></div>
+    
+    <main class="main-content">
+      <header class="header">
+        <div class="header-left">
+          <button class="sidebar-toggle" aria-label="Toggle sidebar">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 12h18M3 6h18M3 18h18"/>
+            </svg>
+          </button>
+          <nav class="breadcrumb">
+            <span>Finance Manager</span>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Donations</span>
+          </nav>
+        </div>
+        
+        <div class="header-right">
+          <div class="search-input-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"/>
+              <path d="M21 21l-4.35-4.35"/>
+            </svg>
+            <input type="text" placeholder="Search..." aria-label="Global search">
+          </div>
+          
+          <button class="header-action" aria-label="Notifications">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+              <path d="M13.73 21a2 2 0 01-3.46 0"/>
+            </svg>
+            <span class="badge">4</span>
+          </button>
+          
+          <button class="theme-toggle" aria-label="Toggle theme">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+            </svg>
+          </button>
+        </div>
+      </header>
+      
+      <div class="page-content">
+        <div class="content-container">
+          <div class="page-header">
+            <h1 class="page-title">Donation Transactions</h1>
+            <p class="page-subtitle">Review, reconcile, and track incoming donations.</p>
+            <div class="page-actions">
+              <button class="btn btn-primary" onclick="UI.openModal('record-donation-modal')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 5v14M5 12h14"/>
+                </svg>
+                Record Donation
+              </button>
+              <button class="btn btn-secondary" data-action="export">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                </svg>
+                Export
+              </button>
+            </div>
+          </div>
+          
+          <!-- Filters -->
+          <div class="filter-bar">
+            <div class="filter-group">
+              <label class="filter-label">Search</label>
+              <div class="search-input-wrapper">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);width:16px;height:16px;">
+                  <circle cx="11" cy="11" r="8"/>
+                  <path d="M21 21l-4.35-4.35"/>
+                </svg>
+                <input type="text" class="filter-input" data-filter="search" placeholder="TXN ID, donor, email, PAN...">
+              </div>
+            </div>
+            
+            <div class="filter-group">
+              <label class="filter-label">Status</label>
+              <select class="filter-select" data-filter="status">
+                <option value="all">All Statuses</option>
+                <option value="verified">Verified</option>
+                <option value="pending-audit">Pending Audit</option>
+                <option value="pending-receipt">Pending Receipt</option>
+                <option value="failed">Failed</option>
+                <option value="refunded">Refunded</option>
+              </select>
+            </div>
+            
+            <div class="filter-group">
+              <label class="filter-label">Payment</label>
+              <select class="filter-select" data-filter="payment">
+                <option value="all">All Payment Methods</option>
+                <option value="upi">UPI / QR</option>
+                <option value="card">Card</option>
+                <option value="netbanking">Net Banking</option>
+                <option value="neft">NEFT / RTGS</option>
+                <option value="cheque">Cheque</option>
+              </select>
+            </div>
+            
+            <div class="filter-group">
+              <label class="filter-label">Campaign</label>
+              <select class="filter-select" data-filter="campaign">
+                <option value="all">All Campaigns</option>
+                <option value="uttarakhand-flood">Uttarakhand Flood Relief</option>
+                <option value="dharavi-sanitation">Slum Sanitation Dharavi</option>
+                <option value="save-raju">Save Raju Street Dog Rescue</option>
+                <option value="pune-river">Pune River Clean-Up</option>
+                <option value="adopt-tree">Adopt-a-Tree</option>
+                <option value="general-fund">General Fund</option>
+              </select>
+            </div>
+            
+            <div class="filter-group">
+              <label class="filter-label">Donor Type</label>
+              <select class="filter-select" data-filter="donor-type">
+                <option value="all">All Types</option>
+                <option value="individual">Individual</option>
+                <option value="corporate">Corporate</option>
+              </select>
+            </div>
+          </div>
+          
+          <!-- Table -->
+          <div class="table-container">
+            <div class="table-wrapper">
+              <table class="data-table" id="donations-table">
+                <thead>
+                  <tr>
+                    <th class="checkbox-cell"><input type="checkbox" aria-label="Select all"></th>
+                    <th>Transaction ID</th>
+                    <th>Donor</th>
+                    <th>Type</th>
+                    <th class="sortable">Amount</th>
+                    <th>Payment</th>
+                    <th>Campaign</th>
+                    <th class="sortable">Date</th>
+                    <th>Receipt</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- 30+ Transaction Records in HTML -->
+                  <tr data-txn-id="TXN-2608261042" data-status="verified" data-payment="upi" data-campaign="uttarakhand-flood" data-donor-type="individual" data-pan-status="provided">
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td><span class="txn-id">TXN-2608261042</span></td>
+                    <td>
+                      <div class="donor-cell">
+                        <div class="avatar avatar-sm avatar-default">AS</div>
+                        <div class="donor-info">
+                          <div class="donor-name">Ananya Shah</div>
+                          <div class="donor-email">ananya.shah@example.com</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>Individual</td>
+                    <td class="amount-cell">₹25,000</td>
+                    <td><span class="payment-method">UPI</span></td>
+                    <td><span class="campaign-pill disaster">Uttarakhand Flood</span></td>
+                    <td class="date-cell">26/08/2026</td>
+                    <td><span class="receipt-status"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></span></td>
+                    <td class="status-cell"><span class="badge badge-success">Verified</span></td>
+                    <td class="actions-cell">
+                      <div class="table-actions">
+                        <button class="table-action-btn" onclick="UI.openModal('donation-detail-modal')">View</button>
+                      </div>
+                    </td>
+                  </tr>
+                  
+                  <tr data-txn-id="TXN-2608259831" data-status="pending-audit" data-payment="card" data-campaign="dharavi-sanitation" data-donor-type="individual" data-pan-status="provided">
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td><span class="txn-id">TXN-2608259831</span></td>
+                    <td>
+                      <div class="donor-cell">
+                        <div class="avatar avatar-sm avatar-default">RP</div>
+                        <div class="donor-info">
+                          <div class="donor-name">Rohan Patel</div>
+                          <div class="donor-email">rohan.patel@example.com</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>Individual</td>
+                    <td class="amount-cell">₹50,000</td>
+                    <td><span class="payment-method">Card</span></td>
+                    <td><span class="campaign-pill sanitation">Dharavi Sanitation</span></td>
+                    <td class="date-cell">25/08/2026</td>
+                    <td><span class="receipt-status"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg></span></td>
+                    <td class="status-cell"><span class="badge badge-warning">Pending Audit</span></td>
+                    <td class="actions-cell">
+                      <div class="table-actions">
+                        <button class="table-action-btn" onclick="UI.openModal('donation-detail-modal')">View</button>
+                      </div>
+                    </td>
+                  </tr>
+                  
+                  <tr data-txn-id="TXN-2608247712" data-status="verified" data-payment="netbanking" data-campaign="save-raju" data-donor-type="corporate" data-pan-status="provided">
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td><span class="txn-id">TXN-2608247712</span></td>
+                    <td>
+                      <div class="donor-cell">
+                        <div class="avatar avatar-sm avatar-default">GB</div>
+                        <div class="donor-info">
+                          <div class="donor-name">GreenBridge Foundation</div>
+                          <div class="donor-email">donations@greenbridge.org</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>Corporate</td>
+                    <td class="amount-cell">₹1,00,000</td>
+                    <td><span class="payment-method">Net Banking</span></td>
+                    <td><span class="campaign-pill animal">Save Raju Rescue</span></td>
+                    <td class="date-cell">24/08/2026</td>
+                    <td><span class="receipt-status"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></span></td>
+                    <td class="status-cell"><span class="badge badge-success">Verified</span></td>
+                    <td class="actions-cell">
+                      <div class="table-actions">
+                        <button class="table-action-btn" onclick="UI.openModal('donation-detail-modal')">View</button>
+                      </div>
+                    </td>
+                  </tr>
+                  
+                  <tr data-txn-id="TXN-2608235621" data-status="verified" data-payment="upi" data-campaign="general-fund" data-donor-type="individual" data-pan-status="missing">
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td><span class="txn-id">TXN-2608235621</span></td>
+                    <td>
+                      <div class="donor-cell">
+                        <div class="avatar avatar-sm avatar-default">PM</div>
+                        <div class="donor-info">
+                          <div class="donor-name">Priya Mehta</div>
+                          <div class="donor-email">priya.mehta@example.com</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>Individual</td>
+                    <td class="amount-cell">₹10,000</td>
+                    <td><span class="payment-method">UPI</span></td>
+                    <td><span class="campaign-pill general">General Fund</span></td>
+                    <td class="date-cell">23/08/2026</td>
+                    <td><span class="receipt-status"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></span></td>
+                    <td class="status-cell"><span class="badge badge-success">Verified</span></td>
+                    <td class="actions-cell">
+                      <div class="table-actions">
+                        <button class="table-action-btn" onclick="UI.openModal('donation-detail-modal')">View</button>
+                      </div>
+                    </td>
+                  </tr>
+                  
+                  <tr data-txn-id="TXN-2608224512" data-status="pending-receipt" data-payment="upi" data-campaign="pune-river" data-donor-type="individual" data-pan-status="provided">
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td><span class="txn-id">TXN-2608224512</span></td>
+                    <td>
+                      <div class="donor-cell">
+                        <div class="avatar avatar-sm avatar-default">AJ</div>
+                        <div class="donor-info">
+                          <div class="donor-name">Aarav Joshi</div>
+                          <div class="donor-email">aarav.joshi@example.com</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>Individual</td>
+                    <td class="amount-cell">₹15,000</td>
+                    <td><span class="payment-method">UPI</span></td>
+                    <td><span class="campaign-pill environment">Pune River</span></td>
+                    <td class="date-cell">22/08/2026</td>
+                    <td><span class="receipt-status"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg></span></td>
+                    <td class="status-cell"><span class="badge badge-warning">Pending Receipt</span></td>
+                    <td class="actions-cell">
+                      <div class="table-actions">
+                        <button class="table-action-btn" onclick="UI.openModal('donation-detail-modal')">View</button>
+                      </div>
+                    </td>
+                  </tr>
+                  
+                  <tr data-txn-id="TXN-2608213401" data-status="verified" data-payment="cheque" data-campaign="adopt-tree" data-donor-type="corporate" data-pan-status="provided">
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td><span class="txn-id">TXN-2608213401</span></td>
+                    <td>
+                      <div class="donor-cell">
+                        <div class="avatar avatar-sm avatar-default">HI</div>
+                        <div class="donor-info">
+                          <div class="donor-name">Horizon Impact Trust</div>
+                          <div class="donor-email">csr@horizonimpact.org</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>Corporate</td>
+                    <td class="amount-cell">₹75,000</td>
+                    <td><span class="payment-method">Cheque</span></td>
+                    <td><span class="campaign-pill environment">Adopt-a-Tree</span></td>
+                    <td class="date-cell">21/08/2026</td>
+                    <td><span class="receipt-status"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></span></td>
+                    <td class="status-cell"><span class="badge badge-success">Verified</span></td>
+                    <td class="actions-cell">
+                      <div class="table-actions">
+                        <button class="table-action-btn" onclick="UI.openModal('donation-detail-modal')">View</button>
+                      </div>
+                    </td>
+                  </tr>
+                  
+                  <tr data-txn-id="TXN-2608202312" data-status="verified" data-payment="upi" data-campaign="uttarakhand-flood" data-donor-type="individual" data-pan-status="missing">
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td><span class="txn-id">TXN-2608202312</span></td>
+                    <td>
+                      <div class="donor-cell">
+                        <div class="avatar avatar-sm avatar-default">MD</div>
+                        <div class="donor-info">
+                          <div class="donor-name">Mehul Desai</div>
+                          <div class="donor-email">mehul.desai@example.com</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>Individual</td>
+                    <td class="amount-cell">₹5,000</td>
+                    <td><span class="payment-method">UPI</span></td>
+                    <td><span class="campaign-pill disaster">Uttarakhand Flood</span></td>
+                    <td class="date-cell">20/08/2026</td>
+                    <td><span class="receipt-status"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></span></td>
+                    <td class="status-cell"><span class="badge badge-success">Verified</span></td>
+                    <td class="actions-cell">
+                      <div class="table-actions">
+                        <button class="table-action-btn" onclick="UI.openModal('donation-detail-modal')">View</button>
+                      </div>
+                    </td>
+                  </tr>
+                  
+                  <tr data-txn-id="TXN-2608191245" data-status="pending-audit" data-payment="card" data-campaign="save-raju" data-donor-type="individual" data-pan-status="provided">
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td><span class="txn-id">TXN-2608191245</span></td>
+                    <td>
+                      <div class="donor-cell">
+                        <div class="avatar avatar-sm avatar-default">KS</div>
+                        <div class="donor-info">
+                          <div class="donor-name">Kavya Shah</div>
+                          <div class="donor-email">kavya.shah@example.com</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>Individual</td>
+                    <td class="amount-cell">₹20,000</td>
+                    <td><span class="payment-method">Card</span></td>
+                    <td><span class="campaign-pill animal">Save Raju Rescue</span></td>
+                    <td class="date-cell">19/08/2026</td>
+                    <td><span class="receipt-status"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg></span></td>
+                    <td class="status-cell"><span class="badge badge-warning">Pending Audit</span></td>
+                    <td class="actions-cell">
+                      <div class="table-actions">
+                        <button class="table-action-btn" onclick="UI.openModal('donation-detail-modal')">View</button>
+                      </div>
+                    </td>
+                  </tr>
+                  
+                  <tr data-txn-id="TXN-2608180156" data-status="verified" data-payment="neft" data-campaign="dharavi-sanitation" data-donor-type="corporate" data-pan-status="provided">
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td><span class="txn-id">TXN-2608180156</span></td>
+                    <td>
+                      <div class="donor-cell">
+                        <div class="avatar avatar-sm avatar-default">SF</div>
+                        <div class="donor-info">
+                          <div class="donor-name">Sunrise Foods Pvt. Ltd.</div>
+                          <div class="donor-email">finance@sunrisefoods.in</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>Corporate</td>
+                    <td class="amount-cell">₹2,00,000</td>
+                    <td><span class="payment-method">NEFT</span></td>
+                    <td><span class="campaign-pill sanitation">Dharavi Sanitation</span></td>
+                    <td class="date-cell">18/08/2026</td>
+                    <td><span class="receipt-status"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></span></td>
+                    <td class="status-cell"><span class="badge badge-success">Verified</span></td>
+                    <td class="actions-cell">
+                      <div class="table-actions">
+                        <button class="table-action-btn" onclick="UI.openModal('donation-detail-modal')">View</button>
+                      </div>
+                    </td>
+                  </tr>
+                  
+                  <tr data-txn-id="TXN-2608179067" data-status="verified" data-payment="upi" data-campaign="general-fund" data-donor-type="individual" data-pan-status="provided">
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td><span class="txn-id">TXN-2608179067</span></td>
+                    <td>
+                      <div class="donor-cell">
+                        <div class="avatar avatar-sm avatar-default">DP</div>
+                        <div class="donor-info">
+                          <div class="donor-name">Dev Patel</div>
+                          <div class="donor-email">dev.patel@example.com</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>Individual</td>
+                    <td class="amount-cell">₹8,000</td>
+                    <td><span class="payment-method">UPI</span></td>
+                    <td><span class="campaign-pill general">General Fund</span></td>
+                    <td class="date-cell">17/08/2026</td>
+                    <td><span class="receipt-status"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></span></td>
+                    <td class="status-cell"><span class="badge badge-success">Verified</span></td>
+                    <td class="actions-cell">
+                      <div class="table-actions">
+                        <button class="table-action-btn" onclick="UI.openModal('donation-detail-modal')">View</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          
+          <!-- Pagination -->
+          <div class="pagination">
+            <button class="pagination-btn" data-pagination="prev" disabled>Previous</button>
+            <span class="pagination-info" data-pagination="info">Page 1 of 3</span>
+            <button class="pagination-btn" data-pagination="next">Next</button>
+          </div>
+          
+          <div class="text-tertiary text-sm" style="margin-top: 1rem;" data-counter="donations">30 transactions</div>
+        </div>
+      </div>
+    </main>
+  </div>
+  
+  <!-- Record Donation Modal -->
+  <div id="record-donation-modal">
+    <div class="modal-overlay">
+      <div class="modal">
+        <div class="modal-header">
+          <h3 class="modal-title">Record New Donation</h3>
+          <button class="modal-close" aria-label="Close">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 6L6 18M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="record-donation-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Donor Name *</label>
+                <input type="text" name="donorName" class="form-input" required placeholder="Enter donor name">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Donor Type *</label>
+                <select name="donorType" class="form-input" required>
+                  <option value="">Select type</option>
+                  <option value="individual">Individual</option>
+                  <option value="corporate">Corporate</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Email</label>
+                <input type="email" name="email" class="form-input" placeholder="donor@example.com">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Phone</label>
+                <input type="tel" name="phone" class="form-input" placeholder="+91 XXXXX XXXXX">
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Amount (₹) *</label>
+                <input type="number" name="amount" class="form-input" required min="1" placeholder="Enter amount">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Campaign *</label>
+                <select name="campaign" class="form-input" required>
+                  <option value="">Select campaign</option>
+                  <option value="uttarakhand-flood">Uttarakhand Flood Relief</option>
+                  <option value="dharavi-sanitation">Slum Sanitation Dharavi</option>
+                  <option value="save-raju">Save Raju Street Dog Rescue</option>
+                  <option value="pune-river">Pune River Clean-Up</option>
+                  <option value="adopt-tree">Adopt-a-Tree</option>
+                  <option value="general-fund">General Fund</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Payment Mode *</label>
+                <select name="paymentMode" class="form-input" required>
+                  <option value="">Select payment mode</option>
+                  <option value="upi">UPI / QR</option>
+                  <option value="card">Debit / Credit Card</option>
+                  <option value="netbanking">Net Banking</option>
+                  <option value="neft">NEFT / RTGS</option>
+                  <option value="cheque">Cheque</option>
+                  <option value="cash">Cash</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">PAN (for 80G)</label>
+                <input type="text" name="pan" class="form-input" placeholder="ABCDE1234F" maxlength="10" style="text-transform: uppercase;">
+                <div class="form-hint">Format: 5 letters + 4 digits + 1 letter</div>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">Donation Date *</label>
+              <input type="date" name="donationDate" class="form-input" required>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">
+                <input type="checkbox" name="receiptRequested" style="width: auto; margin-right: 8px;">
+                80G Receipt Requested
+              </label>
+              <div class="form-hint">Eligibility subject to applicable law, donor circumstances, and NGO compliance requirements.</div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" onclick="UI.closeModal(document.querySelector('#record-donation-modal'))">Cancel</button>
+          <button class="btn btn-primary" type="submit" form="record-donation-form">Record Donation</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Donation Detail Modal -->
+  <div id="donation-detail-modal">
+    <div class="modal-overlay">
+      <div class="modal">
+        <div class="modal-header">
+          <h3 class="modal-title">Transaction Details</h3>
+          <button class="modal-close" aria-label="Close">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 6L6 18M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Transaction ID</label>
+            <div class="txn-id" data-field="txn-id">TXN-2608261042</div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Donor Name</label>
+              <div data-field="donor-name">Ananya Shah</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Donor Email</label>
+              <div data-field="donor-email">ananya.shah@example.com</div>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Amount</label>
+              <div class="amount-cell" data-field="amount">₹25,000</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Payment Mode</label>
+              <div data-field="payment">UPI</div>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Campaign</label>
+              <div data-field="campaign">Uttarakhand Flood Relief</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Date</label>
+              <div class="date-cell" data-field="date">26/08/2026</div>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Status</label>
+              <span class="badge badge-success" data-field="status">Verified</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label">PAN Status</label>
+              <div data-field="pan-status">Provided</div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary">Add Audit Note</button>
+          <button class="btn btn-secondary">Generate Receipt</button>
+          <button class="btn btn-primary">Mark Reconciled</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="toast-container"></div>
+  
+  <script src="assets/js/layout.js"></script>
+  <script src="assets/js/ui.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/donations.js"></script>
+</body>
+</html>

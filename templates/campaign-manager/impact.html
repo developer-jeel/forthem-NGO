@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Impact & Milestones Tracker — Campaign Manager · Unke Liye NGO</title>
+  <link rel="stylesheet" href="assets/css/campaign-manager.css">
+  <link rel="stylesheet" href="../shared/css/platform-theme.css">
+  <style>
+    .impact-meter-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-5);
+      margin-bottom: var(--space-4);
+      transition: box-shadow var(--transition-fast);
+    }
+    .impact-meter-card:hover {
+      box-shadow: var(--shadow-md);
+    }
+  </style>
+</head>
+<body>
+
+<!-- Mobile Overlay -->
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+  <div class="app-shell">
+      <aside class="sidebar" id="sidebar" role="navigation" aria-label="Campaign Manager navigation">
+
+    <div class="sidebar-header">
+      <img src="../logo.png" alt="Unke Liye Logo" class="sidebar-logo-img">
+      <div class="sidebar-logo-text">
+        <strong>Unke Liye</strong>
+        <span>Campaign Portal</span>
+      </div>
+    </div>
+
+    <div class="sidebar-role-badge">
+      <span class="role-pulse-dot"></span>
+      Campaign Manager
+    </div>
+
+    <nav class="sidebar-nav">
+
+      <!-- Overview -->
+      <div class="nav-group">
+        <div class="nav-group-label">Overview</div>
+        <div class="nav-group-items">
+          <a href="dashboard.html" class="nav-item " >
+            <span class="nav-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+            </span>
+            <span class="nav-item-label">Dashboard</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="nav-divider"></div>
+
+      <!-- Campaigns -->
+      <div class="nav-group">
+        <div class="nav-group-label">Campaigns</div>
+        <div class="nav-group-items">
+          <a href="campaigns.html" class="nav-item " >
+            <span class="nav-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </span>
+            <span class="nav-item-label">All Campaigns</span>
+            <span class="nav-item-badge">12</span>
+          </a>
+          <a href="campaign-new.html" class="nav-item " >
+            <span class="nav-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+            </span>
+            <span class="nav-item-label">Create Campaign</span>
+          </a>
+          <a href="reports.html" class="nav-item " >
+            <span class="nav-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            </span>
+            <span class="nav-item-label">Reports &amp; Analytics</span>
+          </a>
+          <a href="updates.html" class="nav-item " >
+            <span class="nav-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </span>
+            <span class="nav-item-label">Field Updates</span>
+            <span class="nav-item-badge" style="background:var(--pillar-env);">4 New</span>
+          </a>
+          <a href="impact.html" class="nav-item active" aria-current="page">
+            <span class="nav-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </span>
+            <span class="nav-item-label">Impact Metrics</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="nav-divider"></div>
+
+      <!-- Financials -->
+      <div class="nav-group">
+        <div class="nav-group-label">Financials</div>
+        <div class="nav-group-items">
+          <a href="budget.html" class="nav-item " >
+            <span class="nav-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+            </span>
+            <span class="nav-item-label">Campaign Budgets</span>
+          </a>
+          <a href="fund-request-new.html" class="nav-item " >
+            <span class="nav-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+            </span>
+            <span class="nav-item-label">Request Funds</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="nav-divider"></div>
+
+      <!-- Donors -->
+      <div class="nav-group">
+        <div class="nav-group-label">Impact</div>
+        <div class="nav-group-items">
+          <a href="donors.html" class="nav-item " >
+            <span class="nav-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </span>
+            <span class="nav-item-label">Donor Ledger</span>
+          </a>
+        </div>
+      </div>
+
+    </nav>
+
+    <!-- Footer -->
+    <div class="sidebar-footer">
+      <div class="user-chip">
+        <div class="user-avatar">AD</div>
+        <div class="user-details">
+          <div class="user-name">Ananya Deshmukh</div>
+          <div class="user-role">Campaign Lead</div>
+        </div>
+      </div>
+      <button class="sidebar-collapse-btn" id="sidebar-collapse" title="Collapse sidebar">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+    </div>
+
+  </aside>
+
+  <div class="main-wrapper" id="main-wrapper">
+    <main class="main-content">
+      <header class="header">
+        <div class="header-left" style="display:flex;align-items:center;">
+          <button class="btn btn-icon btn-secondary mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle Navigation" style="margin-right:0.75rem;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+          <nav class="breadcrumb-nav">
+            <a href="dashboard.html">Campaign Operations</a>
+            <span class="breadcrumb-sep">/</span>
+            <span class="breadcrumb-current">Impact & Milestones</span>
+          </nav>
+        </div>
+        <div class="header-right">
+          <button class="btn btn-secondary btn-sm theme-toggle-btn" title="Toggle theme">
+            <span class="icon-moon">🌙</span>
+            <span class="icon-sun" style="display:none;">☀️</span>
+          </button>
+          <a href="../index.html" class="btn btn-secondary btn-sm">Main Portal Hub</a>
+        </div>
+      </header>
+
+      <div class="content-container">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:var(--space-6);flex-wrap:wrap;gap:var(--space-4);">
+          <div>
+            <h1 class="page-title">Program Impact & Real-World Outcomes</h1>
+            <p class="page-subtitle">Track audited field deliverables, beneficiary metrics, relief kit distribution counters, and veterinary triage cases.</p>
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="PlatformUI.showToast('Public transparency report refreshed', 'success')">Publish Impact Update</button>
+        </div>
+
+        <!-- 4 Impact Counters -->
+        <div class="kpi-row">
+          <div class="kpi-card kpi-success">
+            <div class="kpi-header"><span class="kpi-label">Families Supported</span><span style="font-size:1.25rem;">👨‍👩‍👧‍👦</span></div>
+            <div class="kpi-value">742 / 1,000</div>
+            <div class="kpi-subtext" style="color:var(--status-success);">74.2% milestone reached</div>
+          </div>
+
+          <div class="kpi-card kpi-primary">
+            <div class="kpi-header"><span class="kpi-label">Relief Kits Distributed</span><span style="font-size:1.25rem;">📦</span></div>
+            <div class="kpi-value">520 / 700</div>
+            <div class="kpi-subtext">Chamoli & Dharavi sectors</div>
+          </div>
+
+          <div class="kpi-card kpi-accent">
+            <div class="kpi-header"><span class="kpi-label">Villages Covered</span><span style="font-size:1.25rem;">🏡</span></div>
+            <div class="kpi-value">4 / 5</div>
+            <div class="kpi-subtext">Highland evacuation zones</div>
+          </div>
+
+          <div class="kpi-card kpi-warning">
+            <div class="kpi-header"><span class="kpi-label">Veterinary Traumas Treated</span><span style="font-size:1.25rem;">🐕</span></div>
+            <div class="kpi-value">188 / 250</div>
+            <div class="kpi-subtext">Surgeries & rehab admissions</div>
+          </div>
+        </div>
+
+        <!-- Detailed Milestone Progression Cards -->
+        <div class="impact-meter-card">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-2);">
+            <div>
+              <span class="badge badge-brand">Disaster Response</span>
+              <h3 style="font-weight:700;font-size:1.05rem;color:var(--text-primary);margin-top:var(--space-1);">Uttarakhand Cloudburst — Family Relief Kits</h3>
+            </div>
+            <div style="font-family:var(--font-heading);font-weight:700;font-size:1.25rem;color:var(--brand-primary);">520 / 700 Kits (74%)</div>
+          </div>
+          <div class="budget-progress-bg" style="height:12px;background:var(--bg-sunken);border-radius:var(--radius-full);overflow:hidden;">
+            <div class="budget-progress-bar" style="width:74%;background:var(--status-success);height:100%;"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:var(--text-tertiary);margin-top:var(--space-2);">
+            <span>Target: 700 Families</span>
+            <span>Audited Deliveries: 520 Kits (180 remaining in pipeline)</span>
+          </div>
+        </div>
+
+        <div class="impact-meter-card">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-2);">
+            <div>
+              <span class="badge badge-info">Public Health</span>
+              <h3 style="font-weight:700;font-size:1.05rem;color:var(--text-primary);margin-top:var(--space-1);">Dharavi Slum Canals Desilted & Disinfected</h3>
+            </div>
+            <div style="font-family:var(--font-heading);font-weight:700;font-size:1.25rem;color:var(--status-warning);">3.8 / 5.0 km (76%)</div>
+          </div>
+          <div class="budget-progress-bg" style="height:12px;background:var(--bg-sunken);border-radius:var(--radius-full);overflow:hidden;">
+            <div class="budget-progress-bar" style="width:76%;background:var(--status-warning);height:100%;"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:var(--text-tertiary);margin-top:var(--space-2);">
+            <span>Target: 5.0 km network</span>
+            <span>Heavy debris cleared by 120 equipped volunteers</span>
+          </div>
+        </div>
+
+        <div class="impact-meter-card">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-2);">
+            <div>
+              <span class="badge badge-danger">Animal Rescue</span>
+              <h3 style="font-weight:700;font-size:1.05rem;color:var(--text-primary);margin-top:var(--space-1);">Street Animal Orthopedic Surgeries</h3>
+            </div>
+            <div style="font-family:var(--font-heading);font-weight:700;font-size:1.25rem;color:var(--brand-primary);">188 / 250 Surgeries (75%)</div>
+          </div>
+          <div class="budget-progress-bg" style="height:12px;background:var(--bg-sunken);border-radius:var(--radius-full);overflow:hidden;">
+            <div class="budget-progress-bar" style="width:75%;background:var(--brand-primary);height:100%;"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:var(--text-tertiary);margin-top:var(--space-2);">
+            <span>Target: 250 critically injured stray animals</span>
+            <span>Current Case in Surgery: Stray Dog Raju (#RC-2026-089)</span>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="toast-container"></div>
+  <script src="../shared/js/platform-store.js"></script>
+  <script src="../shared/js/platform-ui.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

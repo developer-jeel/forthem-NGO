@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Contact Unke Liye — reach our team for rescue emergencies, donations, volunteering, adoption, and general inquiries." />
+  <title>Contact Us — Unke Liye</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <style>
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-12);
+    }
+    @media (min-width: 1024px) {
+      .contact-layout { grid-template-columns: 1fr 400px; }
+    }
+    .contact-info-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+      display: flex;
+      gap: var(--space-4);
+      align-items: flex-start;
+      transition: box-shadow var(--transition-base);
+    }
+    .contact-info-card:hover { box-shadow: var(--shadow-sm); }
+    .contact-icon {
+      width: 48px; height: 48px;
+      background: var(--color-primary-light);
+      border-radius: var(--radius-md);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    .contact-info-card h4 { font-size: var(--text-base); margin-bottom: var(--space-1); }
+    .contact-info-card p, .contact-info-card a { font-size: var(--text-sm); color: var(--color-text-muted); }
+    .contact-info-card a { color: var(--color-primary); text-decoration: none; }
+    .contact-info-card a:hover { text-decoration: underline; }
+
+    .map-placeholder {
+      background: linear-gradient(135deg, var(--color-primary-light), #daeee6);
+      border-radius: var(--radius-lg);
+      height: 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--color-border);
+      gap: var(--space-3);
+      color: var(--color-primary);
+    }
+    .map-placeholder .map-icon { font-size: 3rem; }
+    .map-placeholder p { font-size: var(--text-sm); color: var(--color-text-muted); text-align: center; max-width: 200px; }
+
+    .emergency-contact-block {
+      background: var(--color-urgent);
+      border-radius: var(--radius-lg);
+      padding: var(--space-8);
+      color: #fff;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+    @media (min-width: 768px) {
+      .emergency-contact-block { grid-template-columns: 1fr auto; align-items: center; }
+    }
+    .emergency-contact-block h3 { color: #fff; margin-bottom: var(--space-3); }
+    .emergency-contact-block p { color: rgba(255,255,255,0.85); }
+    .emergency-hotline {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+      display: block;
+      margin-top: var(--space-4);
+      line-height: 1;
+    }
+    .emergency-hotline:hover { color: rgba(255,255,255,0.85); }
+  </style>
+</head>
+<body>
+<a href="#main-content" class="skip-nav">Skip to main content</a>
+<div class="emergency-bar"><span class="pulse-dot" aria-hidden="true"></span><span>🚨 Animal in distress? We respond 24/7 —</span><a href="report-animal.html">Report Now →</a></div>
+<header class="site-header" role="banner">
+  <div class="container">
+    <nav class="nav-inner" aria-label="Main navigation">
+      <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a>
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li><li><a href="about.html" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Our Work <svg viewBox="0 0 16 16" fill="currentColor" width="14" height="14"><path d="M4 6l4 4 4-4"/></svg></a><div class="nav-dropdown"><a href="work-animal-rescue.html"><span class="icon">🐾</span> Animal Rescue</a><a href="work-environment.html"><span class="icon">🌱</span> Environment</a><a href="work-sanitation.html"><span class="icon">🧹</span> Sanitation</a><a href="work-disaster-relief.html"><span class="icon">🚨</span> Disaster Relief</a></div></li>
+        <li><a href="campaigns.html" class="nav-link">Campaigns</a></li><li><a href="impact.html" class="nav-link">Impact</a></li><li><a href="stories.html" class="nav-link">Stories</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Get Involved <svg viewBox="0 0 16 16" fill="currentColor" width="14" height="14"><path d="M4 6l4 4 4-4"/></svg></a><div class="nav-dropdown"><a href="volunteer.html"><span class="icon">🙋</span> Volunteer</a><a href="foster.html"><span class="icon">🏠</span> Foster</a><a href="sponsor-animal.html"><span class="icon">💛</span> Sponsor</a><a href="report-animal.html" style="color:var(--color-urgent)"><span class="icon">🚨</span> Report</a></div></li>
+      </ul>
+      <div class="nav-actions"><a href="donate.html" class="btn btn--primary btn--sm">Donate</a><button class="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button></div>
+    </nav>
+  </div>
+</header>
+<div class="nav-mobile-panel" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <div class="nav-mobile-overlay"></div>
+  <div class="nav-mobile-drawer">
+    <button class="nav-mobile-close" aria-label="Close menu">✕</button>
+    <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a>
+    <ul class="nav-mobile-list"><li><a href="index.html">Home</a></li><li><a href="contact.html">Contact</a></li><li><a href="faq.html">FAQ</a></li><li><a href="donate.html">Donate</a></li></ul>
+    <div class="nav-mobile-actions"><a href="donate.html" class="btn btn--primary btn--full">Donate Now</a></div>
+  </div>
+</div>
+
+<main id="main-content">
+  <div class="page-hero" style="--ph-img: url('https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1600&q=80')">
+    <div class="container page-hero-content">
+      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">›</span><span aria-current="page">Contact</span></nav>
+      <h1>Get in Touch</h1>
+      <p>For rescue emergencies, call first. For everything else — fill the form or reach us directly below.</p>
+    </div>
+  </div>
+
+  <!-- Emergency Block (always first) -->
+  <section class="section--sm" style="background:var(--color-urgent-tint)" aria-label="Emergency contact">
+    <div class="container">
+      <div class="emergency-contact-block">
+        <div>
+          <h3>🚨 Animal Rescue Emergency</h3>
+          <p>Our rescue hotline is staffed around the clock. If you see an injured or distressed animal — call immediately. Do not wait to fill a form if it's urgent.</p>
+          <a href="tel:+918888000000" class="emergency-hotline" aria-label="Call emergency rescue hotline">+91 88888 00000</a>
+          <div style="display:flex;flex-wrap:wrap;gap:var(--space-3);margin-top:var(--space-5)">
+            <a href="report-animal.html" class="btn" style="background:#fff;color:var(--color-urgent);border:2px solid #fff">Report Online →</a>
+            <a href="dashboard-rescue-status.html" class="btn btn--outline-white">Track Rescue Status</a>
+          </div>
+        </div>
+        <div style="text-align:center;flex-shrink:0">
+          <div class="pulse-dot" style="width:16px;height:16px;margin:0 auto var(--space-2);background:#fff"></div>
+          <div style="font-size:var(--text-sm);color:rgba(255,255,255,0.8);font-weight:600">Available 24/7 · 365 days</div>
+          <div style="font-size:var(--text-xs);color:rgba(255,255,255,0.6);margin-top:4px">Avg. response: 42 minutes</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Contact Section -->
+  <section class="section" aria-labelledby="contact-heading">
+    <div class="container">
+      <div class="contact-layout">
+
+        <!-- FORM -->
+        <div>
+          <h2 id="contact-heading" style="margin-bottom:var(--space-6)">Send Us a Message</h2>
+          <form id="contact-form" novalidate aria-label="Contact form" class="form-section">
+            <div class="form-row form-row--2">
+              <div class="form-group">
+                <label for="contact-name" class="form-label">Your Name <span class="required">*</span></label>
+                <input type="text" id="contact-name" name="name" class="form-input" required autocomplete="name" />
+                <span class="form-error" role="alert"></span>
+              </div>
+              <div class="form-group">
+                <label for="contact-email" class="form-label">Email Address <span class="required">*</span></label>
+                <input type="email" id="contact-email" name="email" class="form-input" required autocomplete="email" />
+                <span class="form-error" role="alert"></span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="contact-phone" class="form-label">Phone Number</label>
+              <input type="tel" id="contact-phone" name="phone" class="form-input" autocomplete="tel" />
+            </div>
+            <div class="form-group">
+              <label for="contact-subject" class="form-label">Subject <span class="required">*</span></label>
+              <select id="contact-subject" name="subject" class="form-select" required>
+                <option value="">Select a topic</option>
+                <option value="donation">Donation / 80G Certificate</option>
+                <option value="volunteer">Volunteering</option>
+                <option value="adoption">Adoption / Fostering</option>
+                <option value="rescue">Rescue (Non-emergency)</option>
+                <option value="partnership">Partnership / CSR</option>
+                <option value="media">Media / Press</option>
+                <option value="feedback">Feedback</option>
+                <option value="other">Other</option>
+              </select>
+              <span class="form-error" role="alert"></span>
+            </div>
+            <div class="form-group">
+              <label for="contact-message" class="form-label">Message <span class="required">*</span></label>
+              <textarea id="contact-message" name="message" class="form-textarea" rows="5" required placeholder="Tell us how we can help..."></textarea>
+              <span class="form-error" role="alert"></span>
+            </div>
+            <button type="submit" class="btn btn--primary btn--lg">Send Message</button>
+            <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-top:var(--space-3)">We respond to all general inquiries within 2 working days.</p>
+          </form>
+        </div>
+
+        <!-- INFO SIDEBAR -->
+        <aside>
+          <!-- Map Placeholder -->
+          <div class="map-placeholder reveal" aria-label="Office location map placeholder">
+            <div class="map-icon" aria-hidden="true">📍</div>
+            <div style="font-weight:600;font-size:var(--text-base)">Hadapsar, Pune</div>
+            <p>Survey No. 24, Near Magarpatta Road, Hadapsar, Pune – 411028, Maharashtra</p>
+            <a href="https://maps.google.com" target="_blank" rel="noopener" class="btn btn--outline btn--sm">Open in Maps</a>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:var(--space-4);margin-top:var(--space-6)">
+            <div class="contact-info-card reveal reveal-delay-1">
+              <div class="contact-icon" aria-hidden="true">📞</div>
+              <div>
+                <h4>General Phone</h4>
+                <a href="tel:+919898000000">+91 98980 00000</a>
+                <p>Mon–Sat, 9 AM – 6 PM</p>
+              </div>
+            </div>
+            <div class="contact-info-card reveal reveal-delay-2">
+              <div class="contact-icon" aria-hidden="true">📧</div>
+              <div>
+                <h4>Email</h4>
+                <a href="mailto:info@unkeliye.org">info@unkeliye.org</a><br/>
+                <a href="mailto:donate@unkeliye.org">donate@unkeliye.org</a><br/>
+                <a href="mailto:volunteer@unkeliye.org">volunteer@unkeliye.org</a>
+              </div>
+            </div>
+            <div class="contact-info-card reveal reveal-delay-3">
+              <div class="contact-icon" aria-hidden="true">🏠</div>
+              <div>
+                <h4>Shelter & Clinic Hours</h4>
+                <p>Weekdays: 9 AM – 7 PM</p>
+                <p>Weekends: 10 AM – 5 PM</p>
+                <p>Rescue line: 24/7 always</p>
+              </div>
+            </div>
+            <div class="contact-info-card reveal reveal-delay-4">
+              <div class="contact-icon" aria-hidden="true">💼</div>
+              <div>
+                <h4>Partnership & CSR Inquiries</h4>
+                <a href="mailto:partnerships@unkeliye.org">partnerships@unkeliye.org</a>
+                <p>We welcome corporate volunteering, CSR funding, and institutional partnerships.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Social Links -->
+          <div style="margin-top:var(--space-8);padding:var(--space-6);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg)">
+            <h4 style="margin-bottom:var(--space-4)">Follow Our Work</h4>
+            <div style="display:flex;flex-direction:column;gap:var(--space-3)">
+              <a href="#" style="display:flex;align-items:center;gap:var(--space-3);color:var(--color-text);text-decoration:none;font-size:var(--text-sm);padding:var(--space-2) 0">
+                <span style="width:32px;height:32px;background:#1877F2;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;flex-shrink:0">f</span>
+                Facebook — /unkeliye
+              </a>
+              <a href="#" style="display:flex;align-items:center;gap:var(--space-3);color:var(--color-text);text-decoration:none;font-size:var(--text-sm);padding:var(--space-2) 0">
+                <span style="width:32px;height:32px;background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.8rem;flex-shrink:0">ig</span>
+                Instagram — @unkeliye
+              </a>
+              <a href="#" style="display:flex;align-items:center;gap:var(--space-3);color:var(--color-text);text-decoration:none;font-size:var(--text-sm);padding:var(--space-2) 0">
+                <span style="width:32px;height:32px;background:#FF0000;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.8rem;flex-shrink:0">▶</span>
+                YouTube — Unke Liye
+              </a>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div><img src="logo.png" alt="Unke Liye" class="footer-logo-img" /><p class="footer-brand-tagline">For Every Life. For Nature. For a Better Tomorrow.</p><div class="footer-emergency"><div class="footer-emergency-title">🚨 24/7 Animal Emergency</div><a href="tel:+918888000000">+91 88888 00000</a></div></div>
+      <div><h3 class="footer-col-title">Quick Links</h3><ul class="footer-links"><li><a href="about.html">About</a></li><li><a href="faq.html">FAQ</a></li><li><a href="contact.html">Contact</a></li><li><a href="transparency.html">Transparency</a></li></ul></div>
+      <div><h3 class="footer-col-title">Get Involved</h3><ul class="footer-links"><li><a href="volunteer.html">Volunteer</a></li><li><a href="donate.html">Donate</a></li><li><a href="adopt.html">Adopt</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2024 Unke Liye. Reg. No. MAH/2015/1234</p><div class="footer-legal-links"><a href="privacy-policy.html">Privacy</a><a href="terms.html">Terms</a><a href="sitemap.html">Sitemap</a></div></div>
+  </div>
+</footer>
+<a href="report-animal.html" class="emergency-float" aria-label="Report an animal emergency"><span aria-hidden="true">🚨</span><span>Report Animal Emergency</span></a>
+<script src="js/main.js"></script>
+<script src="js/forms.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('contact-form');
+    const { Validators, setupForm } = window.FormUtils;
+    setupForm(form, {
+      name: [Validators.required, Validators.minLength(2)],
+      email: [Validators.required, Validators.email],
+      subject: [Validators.required],
+      message: [Validators.required, Validators.minLength(20)],
+    }, (formEl) => {
+      const btn = formEl.querySelector('[type="submit"]');
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+      setTimeout(() => {
+        if (window.UnkeLiye) window.UnkeLiye.showToast('Message sent! We\'ll respond within 2 working days.', 'success');
+        formEl.reset();
+        btn.textContent = 'Send Message';
+        btn.disabled = false;
+      }, 1200);
+    });
+  });
+</script>
+</body>
+</html>

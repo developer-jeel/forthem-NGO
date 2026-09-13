@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Campaign Fund Request — Unke Liye NGO</title>
+  <link rel="stylesheet" href="assets/css/campaign-manager.css">
+  <link rel="stylesheet" href="../shared/css/platform-theme.css">
+  <style>
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: var(--space-6);
+      align-items: start;
+    }
+    .form-group { margin-bottom: var(--space-4); }
+    .form-label { display: block; font-size: 0.8125rem; font-weight: 600; color: var(--text-secondary); margin-bottom: var(--space-1); }
+    .form-control {
+      width: 100%;
+      padding: 0.6rem 0.85rem;
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-md);
+      font-size: 0.875rem;
+      background: var(--bg-surface);
+      color: var(--text-primary);
+      font-family: inherit;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Mobile Overlay -->
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+  <div class="app-shell">
+      <aside class="sidebar" id="sidebar" role="navigation" aria-label="Campaign Manager navigation">
+
+    <div class="sidebar-header">
+      <img src="../logo.png" alt="Unke Liye Logo" class="sidebar-logo-img">
+      <div class="sidebar-logo-text">
+        <strong>Unke Liye</strong>
+        <span>Campaign Portal</span>
+      </div>
+    </div>
+
+    <div class="sidebar-role-badge">
+      <span class="role-pulse-dot"></span>
+      Campaign Manager
+    </div>
+
+    <nav class="sidebar-nav">
+
+      <!-- Overview -->
+      <div class="nav-group">
+        <div class="nav-group-label">Overview</div>
+        <div class="nav-group-items">
+          <a href="dashboard.html" class="nav-item " >
+            <span class="nav-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+            </span>
+            <span class="nav-item-label">Dashboard</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="nav-divider"></div>
+
+      <!-- Campaigns -->
+      <div class="nav-group">
+        <div class="nav-group-label">Campaigns</div>
+        <div class="nav-group-items">
+          <a href="campaigns.html" class="nav-item " >
+            <span class="nav-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </span>
+            <span class="nav-item-label">All Campaigns</span>
+            <span class="nav-item-badge">12</span>
+          </a>
+          <a href="campaign-new.html" class="nav-item " >
+            <span class="nav-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+            </span>
+            <span class="nav-item-label">Create Campaign</span>
+          </a>
+          <a href="reports.html" class="nav-item " >
+            <span class="nav-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            </span>
+            <span class="nav-item-label">Reports &amp; Analytics</span>
+          </a>
+          <a href="updates.html" class="nav-item " >
+            <span class="nav-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </span>
+            <span class="nav-item-label">Field Updates</span>
+            <span class="nav-item-badge" style="background:var(--pillar-env);">4 New</span>
+          </a>
+          <a href="impact.html" class="nav-item " >
+            <span class="nav-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </span>
+            <span class="nav-item-label">Impact Metrics</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="nav-divider"></div>
+
+      <!-- Financials -->
+      <div class="nav-group">
+        <div class="nav-group-label">Financials</div>
+        <div class="nav-group-items">
+          <a href="budget.html" class="nav-item " >
+            <span class="nav-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+            </span>
+            <span class="nav-item-label">Campaign Budgets</span>
+          </a>
+          <a href="fund-request-new.html" class="nav-item active" aria-current="page">
+            <span class="nav-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+            </span>
+            <span class="nav-item-label">Request Funds</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="nav-divider"></div>
+
+      <!-- Donors -->
+      <div class="nav-group">
+        <div class="nav-group-label">Impact</div>
+        <div class="nav-group-items">
+          <a href="donors.html" class="nav-item " >
+            <span class="nav-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </span>
+            <span class="nav-item-label">Donor Ledger</span>
+          </a>
+        </div>
+      </div>
+
+    </nav>
+
+    <!-- Footer -->
+    <div class="sidebar-footer">
+      <div class="user-chip">
+        <div class="user-avatar">AD</div>
+        <div class="user-details">
+          <div class="user-name">Ananya Deshmukh</div>
+          <div class="user-role">Campaign Lead</div>
+        </div>
+      </div>
+      <button class="sidebar-collapse-btn" id="sidebar-collapse" title="Collapse sidebar">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+    </div>
+
+  </aside>
+
+  <div class="main-wrapper" id="main-wrapper">
+    <main class="main-content">
+      <header class="header">
+        <div class="header-left" style="display:flex;align-items:center;">
+          <button class="btn btn-icon btn-secondary mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle Navigation" style="margin-right:0.75rem;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+          <nav class="breadcrumb-nav">
+            <a href="dashboard.html">Campaign Operations</a>
+            <span class="breadcrumb-sep">/</span>
+            <a href="budget.html" style="color:var(--text-secondary);text-decoration:none;">Budgets</a>
+            <span class="breadcrumb-sep">/</span>
+            <span class="breadcrumb-current">New Fund Request</span>
+          </nav>
+        </div>
+        <div class="header-right">
+          <button class="btn btn-secondary btn-sm theme-toggle-btn" title="Toggle theme">
+            <span class="icon-moon">🌙</span>
+            <span class="icon-sun" style="display:none;">☀️</span>
+          </button>
+          <a href="budget.html" class="btn btn-secondary btn-sm">← Back to Budgets</a>
+        </div>
+      </header>
+
+      <div class="content-container">
+        <div style="margin-bottom:var(--space-6);">
+          <h1 class="page-title">Request Campaign Procurement Funds</h1>
+          <p class="page-subtitle">Submit logistics, dry ration kits, and volunteer field procurement funding directly to Central Finance.</p>
+        </div>
+
+        <form id="campaign-req-form">
+          <div class="form-grid">
+            <div>
+              <div class="card" style="margin-bottom:var(--space-6);">
+                <h3 class="card-title" style="margin-bottom:var(--space-4);">1. Campaign Requisition Scope</h3>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);">
+                  <div class="form-group">
+                    <label class="form-label">Link to Active Campaign</label>
+                    <select class="form-control" id="camp-select">
+                      <option value="CAM-DHARAVI-24">Dharavi Slum Sanitation & Drain Clearance</option>
+                      <option value="CAM-FLOOD-24">Uttarakhand Cloudburst Disaster Relief</option>
+                      <option value="CAM-TREE-24">Pune Green Corridor River Cleanup</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Funding Category</label>
+                    <select class="form-control" id="camp-category-select">
+                      <option value="Relief Kits">Emergency Relief Kits & Tarpaulins</option>
+                      <option value="Equipment & Safety PPE">Heavy Protective PPE & Biohazard Gear</option>
+                      <option value="Field Logistics">Transport Trucks & Logistics Fuel</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Request Title</label>
+                  <input type="text" class="form-control" id="camp-title-input" value="Emergency Ration & Filtered Water Kits for 200 Families" required>
+                </div>
+
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);">
+                  <div class="form-group">
+                    <label class="form-label">Total Amount Required (INR)</label>
+                    <input type="number" class="form-control" id="camp-amount-input" value="65000" style="font-weight:700;font-size:1.1rem;" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Priority</label>
+                    <select class="form-control" id="camp-priority-select">
+                      <option value="HIGH">🟡 HIGH (Deployment within 48h)</option>
+                      <option value="CRITICAL">🔴 CRITICAL (Immediate SOS)</option>
+                      <option value="NORMAL">🟢 NORMAL (Scheduled Drive)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <h3 class="card-title" style="margin-bottom:var(--space-3);">2. Operational Justification</h3>
+                <div class="form-group">
+                  <label class="form-label">Justification & Distribution Plan</label>
+                  <textarea class="form-control" id="camp-justification-input" rows="4" required>Direct procurement of 200 fortified dry ration bags, chlorine purification tablets, and heavy-duty polythene tarps for landslide-affected hamlets in Chamoli district.</textarea>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="card" style="border:2px solid var(--border-medium);position:sticky;top:calc(var(--topbar-height) + 20px);">
+                <h3 style="font-family:var(--font-heading);font-size:1.15rem;font-weight:700;margin-bottom:var(--space-3);">Campaign Budget Check</h3>
+                <div style="background:var(--bg-sunken);padding:var(--space-4);border-radius:var(--radius-md);margin-bottom:var(--space-4);">
+                  <div style="display:flex;justify-content:space-between;margin-bottom:var(--space-2);font-size:0.875rem;">
+                    <span style="color:var(--text-secondary);">Campaign Available:</span>
+                    <span style="font-weight:700;color:var(--brand-primary);">₹1,20,000</span>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;border-top:1px dashed var(--border-medium);padding-top:var(--space-2);font-size:0.875rem;">
+                    <span style="color:var(--text-primary);font-weight:600;">Balance After Approval:</span>
+                    <span style="font-weight:700;color:var(--status-success);">₹55,000</span>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%;padding:0.75rem;font-size:0.95rem;">
+                  🚀 Dispatch to Finance
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <div class="toast-container"></div>
+  <script src="../shared/js/platform-store.js"></script>
+  <script src="../shared/js/platform-ui.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('campaign-req-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const title = document.getElementById('camp-title-input').value;
+        const amount = Number(document.getElementById('camp-amount-input').value);
+        const priority = document.getElementById('camp-priority-select').value;
+        const category = document.getElementById('camp-category-select').value;
+        const campaign = document.getElementById('camp-select').value;
+        const justification = document.getElementById('camp-justification-input').value;
+
+        const req = window.PlatformStore.createFundRequest({
+          title,
+          department: 'campaigns',
+          departmentName: 'Disaster Relief & Campaigns',
+          requestedBy: 'Vikram Sengupta',
+          requesterRole: 'Campaign Director',
+          priority,
+          requestType: category,
+          category: 'Disaster Relief',
+          relatedEntity: `Campaign #${campaign}`,
+          dateNeededBy: '2026-09-15',
+          requestedAmount: amount,
+          justification,
+          breakdown: [
+            { item: 'Dry Ration Survival Packets (200 kits)', amount: 45000 },
+            { item: 'Chlorine Tablets & Water Filtration Units', amount: 12000 },
+            { item: 'Transport Haulage to Chamoli base', amount: 8000 }
+          ],
+          documents: [
+            { name: 'Ration_Wholesale_Estimate.pdf', size: '940 KB', type: 'Invoice Estimate' }
+          ]
+        });
+
+        PlatformUI.showToast(`Campaign request ${req.id} sent to Finance!`, 'success');
+        setTimeout(() => window.location.href = 'budget.html', 1200);
+      });
+    });
+  </script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

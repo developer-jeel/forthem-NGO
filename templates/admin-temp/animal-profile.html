@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Animal Profile — Unke Liye Admin</title>
+<link rel="stylesheet" href="assets/variables.css">
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" href="assets/components.css">
+</head>
+<body>
+<div class="toast-region" id="toast-region" aria-live="polite">
+  <div class="toast hidden" id="toast-tpl-success" role="alert"><div class="toast-icon success"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="toast-body"><div class="toast-title">Saved</div><div class="toast-msg"></div></div><button class="toast-close" aria-label="Close"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button><div class="toast-progress"></div></div>
+</div>
+
+<!-- Status Change Confirm -->
+<div class="modal-backdrop" id="modal-status-change">
+  <div class="modal-panel">
+    <div class="modal-header"><h2>Change Status</h2><button class="modal-close" data-modal-close="modal-status-change" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
+    <div class="modal-body">
+      <p style="margin-bottom:var(--sp-4);">Change Moti's status to:</p>
+      <select class="form-control" style="margin-bottom:var(--sp-4);">
+        <option>Intake</option>
+        <option>In Treatment</option>
+        <option selected>Healthy</option>
+        <option>Foster Care</option>
+        <option>Adopted</option>
+        <option>Released</option>
+        <option>Deceased</option>
+      </select>
+      <div class="form-group"><label class="form-label">Notes</label><textarea class="form-control" rows="3" placeholder="Add a note about this status change…"></textarea></div>
+    </div>
+    <div class="modal-footer"><button class="btn btn-secondary" data-modal-close="modal-status-change">Cancel</button><button class="btn btn-primary" data-modal-close="modal-status-change" data-toast="success" data-toast-title="Status Updated" data-toast-msg="Moti's status has been updated.">Save</button></div>
+  </div>
+</div>
+
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+<div class="admin-shell">
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo"><img src="../logo.png" alt="Unke Liye Logo" class="sidebar-logo-img"><div class="sidebar-logo-text"><strong>Unke Liye</strong><span>Admin Panel</span></div></div>
+  <nav class="sidebar-nav">
+    <div class="nav-group"><div class="nav-group-label">Overview</div><a href="dashboard.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg><span class="nav-link-label">Dashboard</span></a></div>
+    <div class="nav-group"><div class="nav-group-label">Programs</div><a href="campaigns.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span class="nav-link-label">Campaigns</span></a><a href="animals.html" class="nav-link active"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2.823.47-4.113 6.006-4 7 .08.703 1.725 1.722 3.656 1 1.261-.472 1.96-1.45 2.344-2.5"/><path d="M4.42 11.247A13.152 13.152 0 0 0 4 14.556C4 18.728 7.582 21 12 21s8-2.272 8-6.444c0-1.273-.241-2.248-.382-2.826"/></svg><span class="nav-link-label">Animals</span></a><a href="events.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span class="nav-link-label">Events</span></a></div>
+    <div class="nav-group"><div class="nav-group-label">People</div><a href="volunteers.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span class="nav-link-label">Volunteers</span></a><a href="donors.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span class="nav-link-label">Donors</span></a></div>
+    <div class="nav-group"><div class="nav-group-label">Money</div><a href="donations.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg><span class="nav-link-label">Donations</span></a><a href="reports.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg><span class="nav-link-label">Reports</span></a></div>
+    <div class="nav-group"><div class="nav-group-label">Operations</div><a href="messages.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span class="nav-link-label">Messages</span><span class="badge badge-danger" style="margin-left:auto;padding:2px 6px;font-size:.65rem;">7</span></a></div>
+    <div class="nav-group"><div class="nav-group-label">System</div><a href="admin-users.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span class="nav-link-label">Admin Users</span></a><a href="settings.html" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg><span class="nav-link-label">Settings</span></a></div>
+  </nav>
+  <div class="sidebar-footer"><button class="sidebar-collapse-btn" id="sidebar-collapse" aria-label="Collapse sidebar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg><span class="sidebar-collapse-btn-label">Collapse</span></button></div>
+</aside>
+
+<div class="main-content" id="main-content">
+  <header class="topbar">
+    <div class="topbar-breadcrumb"><a href="dashboard.html">Unke Liye</a><span class="sep">/</span><a href="animals.html">Animals</a><span class="sep">/</span><span class="current">Moti</span></div>
+    <div class="topbar-search"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="search" placeholder="Search…" aria-label="Search"></div>
+    <div class="topbar-actions">
+      <button class="topbar-icon-btn theme-toggle" id="theme-toggle" aria-label="Toggle dark mode"><svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/></svg></button>
+      <div class="dropdown-wrap"><button class="topbar-profile" data-dropdown="profile-dd-ap" aria-expanded="false"><div class="profile-avatar">RS</div><div class="profile-info"><strong>Rohit Sinha</strong><small>Super Admin</small></div></button><div class="dropdown-menu profile-menu" id="profile-dd-ap"><a href="login.html" class="dropdown-item danger"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Sign Out</a></div></div>
+    </div>
+  </header>
+
+  <main class="page-content">
+    <div class="page-header">
+      <div class="page-header-left">
+        <div style="margin-bottom:var(--sp-2);"><a href="animals.html" style="color:var(--text-secondary);font-size:0.875rem;">← Back to Animals</a></div>
+        <h1>Moti</h1>
+        <div style="display:flex;align-items:center;gap:var(--sp-3);margin-top:var(--sp-2);">
+          <span class="badge badge-warning">Foster Care</span>
+          <span style="font-size:0.8125rem;color:var(--text-secondary);">Labrador Mix · Male · 3 years · Mumbai Shelter</span>
+        </div>
+      </div>
+      <div class="page-header-actions">
+        <button class="btn btn-secondary btn-sm" data-modal-open="modal-status-change">Change Status</button>
+        <div class="toggle-wrap"><label class="toggle"><input type="checkbox"><span class="toggle-track"></span></label><span class="toggle-label" style="font-size:0.875rem;">Feature on Adopt page</span></div>
+        <button class="btn btn-primary btn-sm" data-toast="success" data-toast-title="Profile Saved" data-toast-msg="Moti's profile updated.">Save Profile</button>
+      </div>
+    </div>
+
+    <!-- Photo Gallery Strip -->
+    <div style="display:flex;gap:var(--sp-3);overflow-x:auto;padding-bottom:var(--sp-3);margin-bottom:var(--sp-5);">
+      <img src="https://loremflickr.com/320/240/labrador,dog?lock=1" style="width:200px;height:150px;object-fit:cover;border-radius:var(--radius-md);flex-shrink:0;cursor:pointer;" alt="Moti photo 1">
+      <img src="https://loremflickr.com/320/240/dog,happy?lock=101" style="width:200px;height:150px;object-fit:cover;border-radius:var(--radius-md);flex-shrink:0;cursor:pointer;" alt="Moti photo 2">
+      <img src="https://loremflickr.com/320/240/puppy,brown?lock=102" style="width:200px;height:150px;object-fit:cover;border-radius:var(--radius-md);flex-shrink:0;cursor:pointer;" alt="Moti photo 3">
+      <img src="https://loremflickr.com/320/240/dog,vet?lock=103" style="width:200px;height:150px;object-fit:cover;border-radius:var(--radius-md);flex-shrink:0;cursor:pointer;" alt="Moti photo 4">
+      <div style="width:200px;height:150px;border:2px dashed var(--border-subtle);border-radius:var(--radius-md);flex-shrink:0;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text-secondary);flex-direction:column;gap:8px;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        <span style="font-size:0.75rem;">Add Photo</span>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-5);">
+      <!-- Bio -->
+      <div class="card"><div class="card-body">
+        <div class="form-section-title">Animal Profile</div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Name</label><input class="form-control" type="text" value="Moti"></div>
+          <div class="form-group"><label class="form-label">Species</label><select class="form-control"><option selected>Dog</option><option>Cat</option><option>Bird</option><option>Other</option></select></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Breed</label><input class="form-control" type="text" value="Labrador Mix"></div>
+          <div class="form-group"><label class="form-label">Sex</label><select class="form-control"><option selected>Male</option><option>Female</option><option>Unknown</option></select></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Age</label><input class="form-control" type="text" value="~3 years"></div>
+          <div class="form-group"><label class="form-label">Weight</label><input class="form-control" type="text" value="22 kg"></div>
+        </div>
+        <div class="form-group"><label class="form-label">Rescue Location</label><input class="form-control" type="text" value="Andheri East, Mumbai"></div>
+        <div class="form-group"><label class="form-label">Current Location / Shelter</label><input class="form-control" type="text" value="Unke Liye Mumbai Shelter, Marol"></div>
+        <div class="form-group"><label class="form-label">Rescue Date</label><input class="form-control" type="date" value="2025-04-14"></div>
+        <div class="form-group"><label class="form-label">Description (for public adopt page)</label><textarea class="form-control" rows="4">Moti is a cheerful 3-year-old Labrador mix with a golden heart. He loves playing fetch, goes well with children, and is house-trained. He's currently in foster care with the Iyer family in Powai and is ready for adoption.</textarea></div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:var(--sp-3);">
+          <div class="toggle-wrap"><label class="toggle"><input type="checkbox" checked><span class="toggle-track"></span></label><span class="toggle-label" style="font-size:0.8125rem;">Good with kids</span></div>
+          <div class="toggle-wrap"><label class="toggle"><input type="checkbox" checked><span class="toggle-track"></span></label><span class="toggle-label" style="font-size:0.8125rem;">Good with dogs</span></div>
+          <div class="toggle-wrap"><label class="toggle"><input type="checkbox"><span class="toggle-track"></span></label><span class="toggle-label" style="font-size:0.8125rem;">Good with cats</span></div>
+          <div class="toggle-wrap"><label class="toggle"><input type="checkbox" checked><span class="toggle-track"></span></label><span class="toggle-label" style="font-size:0.8125rem;">House trained</span></div>
+          <div class="toggle-wrap"><label class="toggle"><input type="checkbox" checked><span class="toggle-track"></span></label><span class="toggle-label" style="font-size:0.8125rem;">Vaccinated</span></div>
+          <div class="toggle-wrap"><label class="toggle"><input type="checkbox" checked><span class="toggle-track"></span></label><span class="toggle-label" style="font-size:0.8125rem;">Neutered</span></div>
+        </div>
+      </div></div>
+
+      <!-- Right: Medical Timeline + Adoption -->
+      <div style="display:flex;flex-direction:column;gap:var(--sp-4);">
+        <!-- Medical Timeline -->
+        <div class="card"><div class="card-header"><h3>Medical Timeline</h3></div><div class="card-body" style="padding-top:var(--sp-3);">
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-spine"><div class="timeline-dot success"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div><div class="timeline-line"></div></div>
+              <div class="timeline-content"><div class="timeline-title">Monthly health check — All good</div><div class="timeline-meta">10 Jun 2025 · Dr. Priya Mehta (Marol Vet Clinic)</div><div class="timeline-body">Weight stable at 22kg. Coat healthy. Energy levels excellent. No concerns. Cleared for continued foster placement.</div></div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-spine"><div class="timeline-dot success"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div><div class="timeline-line"></div></div>
+              <div class="timeline-content"><div class="timeline-title">Rabies booster + annual vaccination</div><div class="timeline-meta">1 May 2025 · Dr. Rajan Nair</div><div class="timeline-body">Rabies, Distemper, Parvo, Hepatitis, Leptospirosis. All vaccines administered. Next booster due May 2026.</div></div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-spine"><div class="timeline-dot warning"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg></div><div class="timeline-line"></div></div>
+              <div class="timeline-content"><div class="timeline-title">Neutering surgery</div><div class="timeline-meta">20 Apr 2025 · Dr. Priya Mehta</div><div class="timeline-body">Routine neutering procedure. Recovery excellent. Stitches removed after 10 days.</div></div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-spine"><div class="timeline-dot danger"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/></svg></div><div class="timeline-line"></div></div>
+              <div class="timeline-content"><div class="timeline-title">Rescue intake — malnourished, skin infection</div><div class="timeline-meta">14 Apr 2025 · Dr. Rajan Nair</div><div class="timeline-body">Moti was found severely underweight (16kg) with a fungal skin infection. Started on a high-protein diet and antifungal treatment.</div></div>
+            </div>
+          </div>
+        </div></div>
+
+        <!-- Adoption/Foster Record -->
+        <div class="card"><div class="card-header"><h3>Foster / Adoption Record</h3></div><div class="card-body">
+          <dl>
+            <div class="info-row"><dt>Current Status</dt><dd><span class="badge badge-warning">In Foster Care</span></dd></div>
+            <div class="info-row"><dt>Foster Family</dt><dd>Iyer family, Powai, Mumbai</dd></div>
+            <div class="info-row"><dt>Foster Start</dt><dd>1 May 2025</dd></div>
+            <div class="info-row"><dt>Foster Contact</dt><dd>+91 98XXXXXXXX</dd></div>
+            <div class="info-row"><dt>Previous Foster</dt><dd>None</dd></div>
+            <div class="info-row"><dt>Adoption Inquiries</dt><dd>3 pending review</dd></div>
+          </dl>
+          <button class="btn btn-secondary btn-sm" style="margin-top:var(--sp-3);width:100%;justify-content:center;" data-toast="success" data-toast-title="Inquiry Opened" data-toast-msg="Viewing adoption inquiries for Moti.">View Adoption Inquiries (3)</button>
+        </div></div>
+      </div>
+    </div>
+  </main>
+</div>
+</div>
+<script src="assets/app.js"></script>
+</body>
+</html>
