@@ -10,6 +10,7 @@ def login(request):
         password = request.POST.get('password')
 
         manager = Manager.objects.filter(email=email).first()
+        print("================================>",manager)
 
         if manager.is_active:
             if manager is not None and check_password(password, manager.password):
@@ -39,6 +40,7 @@ def login(request):
     return render(request, "admin-temp/login.html")
 
 def dashboard(request):
+    print(make_password("1234"))
     return render(request, "admin-temp/dashboard.html")
 
 
@@ -104,10 +106,6 @@ def gallery(request):
 
 def index(request):
     return render(request, "admin-temp/index.html")
-
-
-def login(request):
-    return render(request, "admin-temp/login.html")
 
 
 def messages(request):

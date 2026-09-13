@@ -242,15 +242,17 @@
   </aside>
 
   <!-- Form Panel -->
+ 
   <main class="login-form-panel">
     <div class="login-form-inner">
       <h1>Welcome back</h1>
       <p class="sub">Sign in to your admin account to continue.</p>
 
-      <form id="login-form" novalidate>
+      <form action="{% url 'admin_panel:login' %}" method="post">
+        {% csrf_token %}
         <div class="form-group">
           <label class="form-label required" for="email">Email Address</label>
-          <input class="form-control" type="email" id="email" name="email" placeholder="admin@unkeliye.org" autocomplete="email" value="admin@unkeliye.org" required>
+          <input class="form-control" type="email" id="email" name="email" placeholder="admin@unkeliye.org" autocomplete="email" value="admin@unkeliye.org"required>
         </div>
 
         <div class="form-group">
