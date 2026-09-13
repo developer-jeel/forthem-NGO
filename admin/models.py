@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 import django.utils.timezone as timezone
 from datetime import timedelta
-from dateutil.relativedelta import relativedelta
 # Create your models here.
 
 class Manager(models.Model):
@@ -27,7 +26,7 @@ class Manager(models.Model):
 
     def __str__(self):
         if self.email:
-            return self.email
+            return f"{self.name}-{self.role}({self.email} )"
         elif self.contact:
-            return self.contact
+            return f"{self.name}-{self.role}({self.contact} )"
         return "No Data"
