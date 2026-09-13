@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,11 +8,11 @@
   <title>Bruno's Surgery Fund — Campaign — Unke Liye</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/variables.css" />
-  <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/components.css" />
-  <link rel="stylesheet" href="css/animations.css" />
-  <link rel="stylesheet" href="css/enhanced-pages.css" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/variables.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/base.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/components.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/animations.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/enhanced-pages.css' %}" />
 </head>
 <body>
 <a href="#main" class="skip-nav">Skip to main content</a>
@@ -19,25 +20,25 @@
 <header class="site-header">
   <div class="container">
     <nav class="nav-inner">
-      <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a>
+      <a href="{% url 'public:home' %}" class="nav-logo" aria-label="Unke Liye — Home"><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="nav-logo-img" /></a>
       <ul class="nav-menu">
-        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-        <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-        <li class="nav-item"><a href="adopt.html" class="nav-link">Adopt</a></li>
-        <li class="nav-item"><a href="campaigns.html" class="nav-link active">Campaigns</a></li>
-        <li class="nav-item"><a href="events.html" class="nav-link">Events</a></li>
-        <li class="nav-item"><a href="news.html" class="nav-link">News</a></li>
-        <li class="nav-item"><a href="stories.html" class="nav-link">Stories</a></li>
+        <li class="nav-item"><a href="{% url 'public:home' %}" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="{% url 'public:about' %}" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="{% url 'public:adopt' %}" class="nav-link">Adopt</a></li>
+        <li class="nav-item"><a href="{% url 'public:campaigns' %}" class="nav-link active">Campaigns</a></li>
+        <li class="nav-item"><a href="{% url 'public:events' %}" class="nav-link">Events</a></li>
+        <li class="nav-item"><a href="{% url 'public:news' %}" class="nav-link">News</a></li>
+        <li class="nav-item"><a href="{% url 'public:stories' %}" class="nav-link">Stories</a></li>
       </ul>
       <div class="nav-actions">
-        <a href="volunteer.html" class="btn btn--outline btn--sm">Volunteer</a>
-        <a href="donate.html" class="btn btn--primary btn--sm">Donate Now</a>
+        <a href="{% url 'public:volunteer' %}" class="btn btn--outline btn--sm">Volunteer</a>
+        <a href="{% url 'public:donate' %}" class="btn btn--primary btn--sm">Donate Now</a>
         <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
     </nav>
   </div>
 </header>
-<div class="nav-mobile-panel"><div class="nav-mobile-overlay"></div><div class="nav-mobile-drawer"><button class="nav-mobile-close">✕</button><a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a><ul class="nav-mobile-list"><li><a href="campaigns.html">Campaigns</a></li><li><a href="donate.html">Donate</a></li></ul></div></div>
+<div class="nav-mobile-panel"><div class="nav-mobile-overlay"></div><div class="nav-mobile-drawer"><button class="nav-mobile-close">✕</button><a href="{% url 'public:home' %}" class="nav-logo" aria-label="Unke Liye — Home"><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="nav-logo-img" /></a><ul class="nav-mobile-list"><li><a href="{% url 'public:campaigns' %}">Campaigns</a></li><li><a href="{% url 'public:donate' %}">Donate</a></li></ul></div></div>
 
 <main id="main">
 
@@ -47,7 +48,7 @@
       style="background-image:url('https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=1600&q=80')"></div>
     <div class="pg-hero__overlay"></div>
     <div class="container pg-hero__content">
-      <nav class="pg-breadcrumb"><a href="index.html">Home</a><span class="pg-breadcrumb-sep">›</span><a href="campaigns.html">Campaigns</a><span class="pg-breadcrumb-sep">›</span><span>Bruno's Surgery</span></nav>
+      <nav class="pg-breadcrumb"><a href="{% url 'public:home' %}">Home</a><span class="pg-breadcrumb-sep">›</span><a href="{% url 'public:campaigns' %}">Campaigns</a><span class="pg-breadcrumb-sep">›</span><span>Bruno's Surgery</span></nav>
       <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem">
         <span class="pg-badge pg-badge--care">🐾 Animal Medical</span>
         <span class="pg-badge pg-badge--warning">⏳ Ending Soon</span>
@@ -164,8 +165,8 @@
             </form>
 
             <div style="margin-top:1.5rem;display:grid;gap:.5rem">
-              <a href="adopt-detail.html?id=bruno" class="btn btn--outline btn--sm">🐾 Adopt Bruno Instead →</a>
-              <a href="foster-form.html" class="btn btn--outline btn--sm">🏠 Foster Bruno →</a>
+              <a href="{% url 'public:adopt_detail' 1 %}" class="btn btn--outline btn--sm">🐾 Adopt Bruno Instead →</a>
+              <a href="{% url 'public:foster_form' %}" class="btn btn--outline btn--sm">🏠 Foster Bruno →</a>
             </div>
           </div>
         </div>
@@ -179,7 +180,7 @@
     <div class="container">
       <div class="pg-flex-between reveal" style="margin-bottom:2rem">
         <h2>Other Active Campaigns</h2>
-        <a href="campaigns.html" class="btn btn--outline">All Campaigns →</a>
+        <a href="{% url 'public:campaigns' %}" class="btn btn--outline">All Campaigns →</a>
       </div>
       <div class="pg-grid-3 reveal">
         <div class="pg-photo-card">
@@ -189,7 +190,7 @@
             <h3>Kolhapur Flood Relief</h3>
             <div class="pg-progress-bar" style="margin:.5rem 0"><div class="pg-progress-fill" data-pct="40" style="background:var(--color-urgent)"></div></div>
             <p style="font-size:.875rem;color:var(--color-text-muted)">₹3.2L of ₹8L — Active response</p>
-            <a href="campaign-detail.html?id=kolhapur-flood" class="btn btn--outline btn--sm" style="margin-top:.75rem">Donate →</a>
+            <a href="{% url 'public:campaign_detail' 1 %}" class="btn btn--outline btn--sm" style="margin-top:.75rem">Donate →</a>
           </div>
         </div>
         <div class="pg-photo-card">
@@ -199,7 +200,7 @@
             <h3>Plant 5,000 Trees</h3>
             <div class="pg-progress-bar" style="margin:.5rem 0"><div class="pg-progress-fill" data-pct="62"></div></div>
             <p style="font-size:.875rem;color:var(--color-text-muted)">₹46,500 of ₹75,000</p>
-            <a href="campaign-detail.html?id=5000-trees" class="btn btn--outline btn--sm" style="margin-top:.75rem">Donate →</a>
+            <a href="{% url 'public:campaign_detail' 1 %}" class="btn btn--outline btn--sm" style="margin-top:.75rem">Donate →</a>
           </div>
         </div>
         <div class="pg-photo-card">
@@ -209,7 +210,7 @@
             <h3>Build 10 Community Toilets</h3>
             <div class="pg-progress-bar" style="margin:.5rem 0"><div class="pg-progress-fill" data-pct="55" style="background:var(--color-restore)"></div></div>
             <p style="font-size:.875rem;color:var(--color-text-muted)">₹1.1L of ₹2L</p>
-            <a href="campaign-detail.html?id=toilets-2025" class="btn btn--outline btn--sm" style="margin-top:.75rem">Donate →</a>
+            <a href="{% url 'public:campaign_detail' 1 %}" class="btn btn--outline btn--sm" style="margin-top:.75rem">Donate →</a>
           </div>
         </div>
       </div>
@@ -221,15 +222,15 @@
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
-      <div class="footer-col footer-col--brand"><a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="footer-logo-img" /></a></div>
-      <div class="footer-col"><h4 style="color:#fff;margin-bottom:1rem">Quick Links</h4><ul style="list-style:none;padding:0;margin:0;display:grid;gap:.5rem;font-size:.875rem"><li><a href="campaigns.html">All Campaigns</a></li><li><a href="adopt.html">Adopt</a></li><li><a href="donate.html">Donate</a></li><li><a href="transparency.html">Transparency</a></li></ul></div>
+      <div class="footer-col footer-col--brand"><a href="{% url 'public:home' %}" class="nav-logo" aria-label="Unke Liye — Home"><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="footer-logo-img" /></a></div>
+      <div class="footer-col"><h4 style="color:#fff;margin-bottom:1rem">Quick Links</h4><ul style="list-style:none;padding:0;margin:0;display:grid;gap:.5rem;font-size:.875rem"><li><a href="{% url 'public:campaigns' %}">All Campaigns</a></li><li><a href="{% url 'public:adopt' %}">Adopt</a></li><li><a href="{% url 'public:donate' %}">Donate</a></li><li><a href="{% url 'public:transparency' %}">Transparency</a></li></ul></div>
       <div class="footer-col"><h4 style="color:#fff;margin-bottom:1rem">Contact</h4><p style="color:rgba(255,255,255,.7);font-size:.875rem">🚨 24/7: <a href="tel:+919876543210" style="color:#fff">+91 98765 43210</a><br>📧 <a href="mailto:info@unkeliye.org" style="color:#fff">info@unkeliye.org</a></p></div>
     </div>
-    <div class="footer-bottom"><p>© 2026 Unke Liye · 80G Tax Exempt</p><div class="footer-legal-links"><a href="privacy-policy.html">Privacy</a><a href="terms.html">Terms</a></div></div>
+    <div class="footer-bottom"><p>© 2026 Unke Liye · 80G Tax Exempt</p><div class="footer-legal-links"><a href="{% url 'public:privacy_policy' %}">Privacy</a><a href="{% url 'public:terms' %}">Terms</a></div></div>
   </div>
 </footer>
-<a href="report-animal.html" class="pg-float-btn"><span class="pg-float-pulse"></span> Report Emergency</a>
+<a href="{% url 'public:report_animal' %}" class="pg-float-btn"><span class="pg-float-pulse"></span> Report Emergency</a>
 <div class="pg-toast-wrap"></div>
-<script src="js/data.js"></script><script src="js/main.js"></script><script src="js/enhanced-pages.js"></script>
+<script src="{% static 'public-assets/js/data.js' %}"></script><script src="{% static 'public-assets/js/main.js' %}"></script><script src="{% static 'public-assets/js/enhanced-pages.js' %}"></script>
 </body>
 </html>

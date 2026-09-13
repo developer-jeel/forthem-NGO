@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
@@ -5,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dashboard — Rescue Manager · Unke Liye NGO</title>
 <meta name="description" content="Rescue Manager control center — live incident tracking, dispatch board, fleet status, and field operations for Unke Liye NGO.">
-<link rel="stylesheet" href="assets/css/rescue-manager.css">
+<link rel="stylesheet" href="{% static 'rescue-manager-assets/css/rescue-manager.css' %}">
 </head>
 <body>
 
@@ -21,7 +22,7 @@
   ═══════════════════════════════════════════ -->
   <aside class="sidebar" id="sidebar" role="navigation" aria-label="Rescue Manager navigation">
     <div class="sidebar-header">
-      <img src="logo.png" alt="Unke Liye Logo" class="sidebar-logo-img">
+      <img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye Logo" class="sidebar-logo-img">
       <div class="sidebar-logo-text">
         <strong>Unke Liye</strong>
         <span>Rescue Portal</span>
@@ -36,11 +37,11 @@
     <nav class="sidebar-nav">
       <div class="nav-section">
         <div class="nav-section-label">Overview</div>
-        <a href="dashboard.html" class="nav-item active" aria-current="page">
+        <a href="{% url 'rescue_manager:dashboard' %}" class="nav-item active" aria-current="page">
           <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
           <span class="nav-item-label">Dashboard</span>
         </a>
-        <a href="command-center.html" class="nav-item">
+        <a href="{% url 'rescue_manager:command_center' %}" class="nav-item">
           <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
           <span class="nav-item-label">Command Center</span>
         </a>
@@ -50,20 +51,20 @@
 
       <div class="nav-section">
         <div class="nav-section-label">Operations</div>
-        <a href="incidents.html" class="nav-item">
+        <a href="{% url 'rescue_manager:incidents' %}" class="nav-item">
           <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><polygon points="7.86,2 16.14,2 22,7.86 22,16.14 16.14,22 7.86,22 2,16.14 2,7.86"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
           <span class="nav-item-label">Incidents Queue</span>
           <span class="nav-item-badge">5</span>
         </a>
-        <a href="dispatch.html" class="nav-item">
+        <a href="{% url 'rescue_manager:dispatch' %}" class="nav-item">
           <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3"/><rect x="9" y="11" width="14" height="10" rx="1"/><circle cx="12" cy="21" r="1"/><circle cx="20" cy="21" r="1"/></svg>
           <span class="nav-item-label">Team Dispatch</span>
         </a>
-        <a href="cases.html" class="nav-item">
+        <a href="{% url 'rescue_manager:cases' %}" class="nav-item">
           <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2.823.47-4.113 6.006-4 7 .08.703 1.725 1.722 3.656 1 1.261-.472 1.96-1.45 2.344-2.5"/><path d="M14.267 5.172c0-1.39 1.577-2.493 3.5-2.172 2.823.47 4.113 6.006 4 7-.08.703-1.725 1.722-3.656 1-1.261-.472-1.96-1.45-2.344-2.5"/><path d="M8 14v.5"/><path d="M16 14v.5"/><path d="M11.25 16.25h1.5L12 17l-.75-.75z"/><path d="M4.42 11.247A13.152 13.152 0 0 0 4 14.556C4 18.728 7.582 21 12 21s8-2.272 8-6.444c0-1.273-.241-2.248-.382-2.826"/></svg>
           <span class="nav-item-label">Active Cases</span>
         </a>
-        <a href="volunteers.html" class="nav-item">
+        <a href="{% url 'rescue_manager:volunteers' %}" class="nav-item">
           <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
           <span class="nav-item-label">Volunteers</span>
         </a>
@@ -73,15 +74,15 @@
 
       <div class="nav-section">
         <div class="nav-section-label">Finance & Logistics</div>
-        <a href="fund-requests.html" class="nav-item">
+        <a href="{% url 'rescue_manager:fund_requests' %}" class="nav-item">
           <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
           <span class="nav-item-label">Rescue Fund Requests</span>
         </a>
-        <a href="resources.html" class="nav-item">
+        <a href="{% url 'rescue_manager:resources' %}" class="nav-item">
           <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
           <span class="nav-item-label">Fleet & Equipment</span>
         </a>
-        <a href="medical-records.html" class="nav-item">
+        <a href="{% url 'rescue_manager:medical_records' %}" class="nav-item">
           <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
           <span class="nav-item-label">Medical Records</span>
         </a>
@@ -115,7 +116,7 @@
       </button>
       <div class="topbar-breadcrumb">
         <span class="rescue-dot"></span>
-        <a href="dashboard.html">Rescue Manager</a>
+        <a href="{% url 'rescue_manager:dashboard' %}">Rescue Manager</a>
         <span class="sep">/</span>
         <span class="current">Dashboard</span>
       </div>
@@ -421,11 +422,11 @@
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
                 Emergency Dispatch
               </button>
-              <a href="incidents.html" class="btn btn-outline" style="width:100%;justify-content:flex-start;gap:var(--sp-3);">
+              <a href="{% url 'rescue_manager:incidents' %}" class="btn btn-outline" style="width:100%;justify-content:flex-start;gap:var(--sp-3);">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="7.86,2 16.14,2 22,7.86 22,16.14 16.14,22 7.86,22 2,16.14 2,7.86"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
                 View Incident Queue
               </a>
-              <a href="volunteers.html" class="btn btn-outline" style="width:100%;justify-content:flex-start;gap:var(--sp-3);">
+              <a href="{% url 'rescue_manager:volunteers' %}" class="btn btn-outline" style="width:100%;justify-content:flex-start;gap:var(--sp-3);">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>
                 Broadcast Volunteer Alert
               </a>
@@ -438,7 +439,7 @@
       <div class="card mb-5">
         <div class="card-header">
           <h3>Active Operations</h3>
-          <a href="incidents.html" class="btn btn-ghost btn-sm">View all →</a>
+          <a href="{% url 'rescue_manager:incidents' %}" class="btn btn-ghost btn-sm">View all →</a>
         </div>
         <div class="table-wrap card-body-flush">
           <table class="data-table" id="ops-table">
@@ -461,7 +462,7 @@
                 <td>Kolhapur, MH</td>
                 <td>Van 3 + Boat A</td>
                 <td><span class="badge badge-info"><span class="badge-dot" style="background:var(--status-info)"></span>On-Site</span></td>
-                <td class="td-actions"><a href="incidents.html" class="btn btn-outline btn-sm">View</a></td>
+                <td class="td-actions"><a href="{% url 'rescue_manager:incidents' %}" class="btn btn-outline btn-sm">View</a></td>
               </tr>
               <tr data-status="dispatched">
                 <td><strong>INC-007</strong></td>
@@ -470,7 +471,7 @@
                 <td>Hadapsar, Pune</td>
                 <td>Van 4</td>
                 <td><span class="badge badge-info"><span class="badge-dot" style="background:var(--status-info)"></span>Dispatched</span></td>
-                <td class="td-actions"><a href="incidents.html" class="btn btn-outline btn-sm">View</a></td>
+                <td class="td-actions"><a href="{% url 'rescue_manager:incidents' %}" class="btn btn-outline btn-sm">View</a></td>
               </tr>
               <tr data-status="dispatched">
                 <td><strong>INC-003</strong></td>
@@ -479,7 +480,7 @@
                 <td>Kothrud, Pune</td>
                 <td>Van 1</td>
                 <td><span class="badge badge-warning"><span class="badge-dot" style="background:var(--status-warning)"></span>Transporting</span></td>
-                <td class="td-actions"><a href="incidents.html" class="btn btn-outline btn-sm">View</a></td>
+                <td class="td-actions"><a href="{% url 'rescue_manager:incidents' %}" class="btn btn-outline btn-sm">View</a></td>
               </tr>
               <tr data-status="open">
                 <td><strong>INC-005</strong></td>
@@ -488,7 +489,7 @@
                 <td>Sangvi, Pune</td>
                 <td>Boat B</td>
                 <td><span class="badge badge-warning"><span class="badge-dot" style="background:var(--status-warning)"></span>On-Site</span></td>
-                <td class="td-actions"><a href="incidents.html" class="btn btn-outline btn-sm">View</a></td>
+                <td class="td-actions"><a href="{% url 'rescue_manager:incidents' %}" class="btn btn-outline btn-sm">View</a></td>
               </tr>
               <tr data-status="open">
                 <td><strong>INC-001</strong></td>
@@ -497,7 +498,7 @@
                 <td>Aundh, Pune</td>
                 <td>Van 2</td>
                 <td><span class="badge badge-success"><span class="badge-dot" style="background:var(--status-success)"></span>Completed</span></td>
-                <td class="td-actions"><a href="incidents.html" class="btn btn-outline btn-sm">View</a></td>
+                <td class="td-actions"><a href="{% url 'rescue_manager:incidents' %}" class="btn btn-outline btn-sm">View</a></td>
               </tr>
             </tbody>
           </table>
@@ -561,6 +562,6 @@
   </div>
 </div>
 
-<script src="assets/js/app.js"></script>
+<script src="{% static 'rescue-manager-assets/js/app.js' %}"></script>
 </body>
 </html>

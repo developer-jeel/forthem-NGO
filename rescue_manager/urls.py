@@ -15,4 +15,5 @@ urlpatterns = [
     path("volunteers/", views.volunteers, name="volunteers"),
     path("fund-requests/", views.fund_requests, name="fund_requests"),
     path("fund-requests/new/", views.fund_request_new, name="fund_request_new"),
+    path("command-center/", views.command_center, name="command_center"),
 ]

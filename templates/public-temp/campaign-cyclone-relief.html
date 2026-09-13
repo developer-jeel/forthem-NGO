@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,11 +8,11 @@
   <title>Cyclone Relief 2026 — Emergency Campaign — Unke Liye</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/variables.css" />
-  <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/components.css" />
-  <link rel="stylesheet" href="css/animations.css" />
-  <link rel="stylesheet" href="css/enhanced-pages.css" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/variables.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/base.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/components.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/animations.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/enhanced-pages.css' %}" />
   <style>
     /* Custom Campaign specific page styling */
     .cmp-layout {
@@ -276,17 +277,17 @@
 <header class="site-header">
   <div class="container">
     <nav class="nav-inner">
-      <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a>
+      <a href="{% url 'public:home' %}" class="nav-logo" aria-label="Unke Liye — Home"><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="nav-logo-img" /></a>
       <ul class="nav-menu">
-        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-        <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-        <li class="nav-item"><a href="campaigns.html" class="nav-link active">Campaigns</a></li>
-        <li class="nav-item"><a href="adopt.html" class="nav-link">Adopt</a></li>
-        <li class="nav-item"><a href="stories.html" class="nav-link">Stories</a></li>
+        <li class="nav-item"><a href="{% url 'public:home' %}" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="{% url 'public:about' %}" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="{% url 'public:campaigns' %}" class="nav-link active">Campaigns</a></li>
+        <li class="nav-item"><a href="{% url 'public:adopt' %}" class="nav-link">Adopt</a></li>
+        <li class="nav-item"><a href="{% url 'public:stories' %}" class="nav-link">Stories</a></li>
       </ul>
       <div class="nav-actions">
-        <a href="volunteer.html" class="btn btn--outline btn--sm">Volunteer</a>
-        <a href="donate.html" class="btn btn--primary btn--sm">Donate Now</a>
+        <a href="{% url 'public:volunteer' %}" class="btn btn--outline btn--sm">Volunteer</a>
+        <a href="{% url 'public:donate' %}" class="btn btn--primary btn--sm">Donate Now</a>
         <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
     </nav>
@@ -301,8 +302,8 @@
     <div class="pg-hero__overlay"></div>
     <div class="container pg-hero__content">
       <nav class="pg-breadcrumb">
-        <a href="index.html">Home</a><span class="pg-breadcrumb-sep">›</span>
-        <a href="campaigns.html">Campaigns</a><span class="pg-breadcrumb-sep">›</span>
+        <a href="{% url 'public:home' %}">Home</a><span class="pg-breadcrumb-sep">›</span>
+        <a href="{% url 'public:campaigns' %}">Campaigns</a><span class="pg-breadcrumb-sep">›</span>
         <span>Cyclone Relief 2026</span>
       </nav>
       <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1rem">
@@ -742,8 +743,8 @@
                 💡 Frontend Demo Prototype
               </div>
 
-              <a href="campaigns.html" class="btn btn--outline btn--sm btn--full" style="margin-bottom:0.5rem">View Other Campaigns</a>
-              <a href="index.html" class="btn btn--ghost btn--sm btn--full">Return Home</a>
+              <a href="{% url 'public:campaigns' %}" class="btn btn--outline btn--sm btn--full" style="margin-bottom:0.5rem">View Other Campaigns</a>
+              <a href="{% url 'public:home' %}" class="btn btn--ghost btn--sm btn--full">Return Home</a>
             </div>
 
             <!-- PANEL: Failure -->
@@ -753,7 +754,7 @@
               <p style="font-size:0.875rem;color:var(--color-text-muted);margin-bottom:1.5rem">Your simulated transaction could not be processed.</p>
 
               <button class="btn btn--urgent btn--full" style="background:var(--color-urgent);border:none" onclick="goWizStep(3)">Try Again</button>
-              <a href="campaign-cyclone-relief.html" class="btn btn--ghost btn--full" style="margin-top:0.5rem">Return to Campaign</a>
+              <a href="{% url 'public:campaign_detail' 1 %}" class="btn btn--ghost btn--full" style="margin-top:0.5rem">Return to Campaign</a>
             </div>
 
           </div>
@@ -774,7 +775,7 @@
     <div class="container">
       <div class="pg-flex-between reveal" style="margin-bottom:2rem">
         <h2>Other Campaigns You Can Support</h2>
-        <a href="campaigns.html" class="btn btn--outline">All Campaigns →</a>
+        <a href="{% url 'public:campaigns' %}" class="btn btn--outline">All Campaigns →</a>
       </div>
       <div class="pg-grid-3 reveal">
         <div class="pg-photo-card">
@@ -784,7 +785,7 @@
             <h3>Monsoon Rescue &amp; Shelter</h3>
             <div class="pg-progress-bar" style="margin:.5rem 0"><div class="pg-progress-fill" style="width:42%;background:var(--color-primary)"></div></div>
             <p style="font-size:.875rem;color:var(--color-text-muted)">₹2.1L of ₹5L raised · 48 days left</p>
-            <a href="campaign-donate.html?id=animal-rescue" class="btn btn--primary btn--sm" style="margin-top:.75rem">Donate Now</a>
+            <a href="{% url 'public:campaign_donate' %}" class="btn btn--primary btn--sm" style="margin-top:.75rem">Donate Now</a>
           </div>
         </div>
         <div class="pg-photo-card">
@@ -794,7 +795,7 @@
             <h3>Plant 25,000 Native Trees</h3>
             <div class="pg-progress-bar" style="margin:.5rem 0"><div class="pg-progress-fill" style="width:68%;background:var(--color-primary)"></div></div>
             <p style="font-size:.875rem;color:var(--color-text-muted)">₹5.44L of ₹8L raised · 32 days left</p>
-            <a href="campaign-donate.html?id=tree-plantation" class="btn btn--primary btn--sm" style="margin-top:.75rem">Donate Now</a>
+            <a href="{% url 'public:campaign_donate' %}" class="btn btn--primary btn--sm" style="margin-top:.75rem">Donate Now</a>
           </div>
         </div>
         <div class="pg-photo-card">
@@ -804,7 +805,7 @@
             <h3>Mobile Vet Rural Clinics</h3>
             <div class="pg-progress-bar" style="margin:.5rem 0"><div class="pg-progress-fill" style="width:29%;background:var(--color-primary)"></div></div>
             <p style="font-size:.875rem;color:var(--color-text-muted)">₹1.45L of ₹5L raised · 60 days left</p>
-            <a href="campaign-donate.html?id=mobile-vet" class="btn btn--primary btn--sm" style="margin-top:.75rem">Donate Now</a>
+            <a href="{% url 'public:campaign_donate' %}" class="btn btn--primary btn--sm" style="margin-top:.75rem">Donate Now</a>
           </div>
         </div>
       </div>
@@ -818,7 +819,7 @@
       <p style="max-width:600px;margin:0 auto var(--space-6);color:rgba(255,255,255,0.8);font-size:var(--text-lg)">Your tax-exempt contribution directly supplies immediate hot food, shelter poles, and animal welfare operations.</p>
       <div style="display:flex;justify-content:center;gap:1rem;flex-wrap:wrap">
         <button onclick="scrollToDonate()" class="btn btn--primary">Donate Now 💚</button>
-        <a href="volunteer.html" class="btn btn--outline-white">Become a Volunteer</a>
+        <a href="{% url 'public:volunteer' %}" class="btn btn--outline-white">Become a Volunteer</a>
       </div>
     </div>
   </section>
@@ -838,15 +839,15 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-col footer-col--brand">
-        <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="footer-logo-img" /></a>
+        <a href="{% url 'public:home' %}" class="nav-logo" aria-label="Unke Liye — Home"><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="footer-logo-img" /></a>
         <p style="color:rgba(255,255,255,.7);font-size:.875rem;line-height:1.75">Registered NGO — Animal Rescue, Environmental Conservation, Sanitation &amp; Disaster Relief across Maharashtra.</p>
       </div>
       <div class="footer-col">
         <h4 style="color:#fff;margin-bottom:1rem">Get Involved</h4>
         <ul style="list-style:none;padding:0;margin:0;display:grid;gap:.5rem;font-size:.875rem">
-          <li><a href="volunteer.html">Volunteer</a></li>
-          <li><a href="foster.html">Foster an Animal</a></li>
-          <li><a href="donate.html">Make a Donation</a></li>
+          <li><a href="{% url 'public:volunteer' %}">Volunteer</a></li>
+          <li><a href="{% url 'public:foster' %}">Foster an Animal</a></li>
+          <li><a href="{% url 'public:donate' %}">Make a Donation</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -860,7 +861,7 @@
   </div>
 </footer>
 
-<script src="js/main.js"></script>
+<script src="{% static 'public-assets/js/main.js' %}"></script>
 <script>
 (function() {
   // ── BEFORE/AFTER SLIDER ──

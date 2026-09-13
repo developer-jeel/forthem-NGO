@@ -1,13 +1,14 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Notification Center — Unke Liye Admin Panel</title>
-  <link rel="stylesheet" href="assets/variables.css">
-  <link rel="stylesheet" href="assets/base.css">
-  <link rel="stylesheet" href="assets/components.css">
-  <link rel="stylesheet" href="../shared/css/platform-theme.css">
+  <link rel="stylesheet" href="{% static 'admin-assets/css/variables.css' %}">
+  <link rel="stylesheet" href="{% static 'admin-assets/css/base.css' %}">
+  <link rel="stylesheet" href="{% static 'admin-assets/css/components.css' %}">
+  <link rel="stylesheet" href="{% static 'shared/css/platform-theme.css' %}">
   <style>
     .notif-wrapper {
       max-width: 1040px;
@@ -107,7 +108,7 @@
     <!-- SIDEBAR -->
     <aside class="sidebar" id="sidebar" role="navigation" aria-label="Main navigation">
       <div class="sidebar-logo">
-        <img src="../logo.png" alt="Unke Liye Logo" class="sidebar-logo-img">
+        <img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye Logo" class="sidebar-logo-img">
         <div class="sidebar-logo-text">
           <strong>Unke Liye</strong>
           <span>Admin Panel</span>
@@ -117,7 +118,7 @@
       <nav class="sidebar-nav">
         <div class="nav-group">
           <div class="nav-group-label">Overview</div>
-          <a href="dashboard.html" class="nav-link">
+          <a href="{% url 'admin_panel:dashboard' %}" class="nav-link">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
             <span class="nav-link-label">Dashboard</span>
           </a>
@@ -125,23 +126,23 @@
 
         <div class="nav-group">
           <div class="nav-group-label">Content</div>
-          <a href="content.html" class="nav-link">
+          <a href="{% url 'admin_panel:content' %}" class="nav-link">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
             <span class="nav-link-label">Homepage Content</span>
           </a>
-          <a href="banners.html" class="nav-link">
+          <a href="{% url 'admin_panel:banners' %}" class="nav-link">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg>
             <span class="nav-link-label">Page Banners</span>
           </a>
-          <a href="stories.html" class="nav-link">
+          <a href="{% url 'admin_panel:stories' %}" class="nav-link">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
             <span class="nav-link-label">Stories</span>
           </a>
-          <a href="news.html" class="nav-link">
+          <a href="{% url 'admin_panel:content' %}" class="nav-link">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg>
             <span class="nav-link-label">News</span>
           </a>
-          <a href="gallery.html" class="nav-link">
+          <a href="{% url 'admin_panel:gallery' %}" class="nav-link">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
             <span class="nav-link-label">Gallery</span>
           </a>
@@ -149,15 +150,15 @@
 
         <div class="nav-group">
           <div class="nav-group-label">Programs</div>
-          <a href="campaigns.html" class="nav-link">
+          <a href="{% url 'admin_panel:campaigns' %}" class="nav-link">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
             <span class="nav-link-label">Campaigns</span>
           </a>
-          <a href="animals.html" class="nav-link">
+          <a href="{% url 'admin_panel:animals' %}" class="nav-link">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2.823.47-4.113 6.006-4 7 .08.703 1.725 1.722 3.656 1 1.261-.472 1.96-1.45 2.344-2.5"/><path d="M14.267 5.172c0-1.39 1.577-2.493 3.5-2.172 2.823.47 4.113 6.006 4 7-.08.703-1.725 1.722-3.656 1-1.261-.472-1.96-1.45-2.344-2.5"/><path d="M8 14v.5"/><path d="M16 14v.5"/><path d="M11.25 16.25h1.5L12 17l-.75-.75z"/><path d="M4.42 11.247A13.152 13.152 0 0 0 4 14.556C4 18.728 7.582 21 12 21s8-2.272 8-6.444c0-1.273-.241-2.248-.382-2.826"/></svg>
             <span class="nav-link-label">Animals</span>
           </a>
-          <a href="events.html" class="nav-link">
+          <a href="{% url 'admin_panel:events' %}" class="nav-link">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
             <span class="nav-link-label">Events</span>
           </a>
@@ -165,11 +166,11 @@
 
         <div class="nav-group">
           <div class="nav-group-label">People</div>
-          <a href="volunteers.html" class="nav-link">
+          <a href="{% url 'admin_panel:volunteers' %}" class="nav-link">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
             <span class="nav-link-label">Volunteers</span>
           </a>
-          <a href="donors.html" class="nav-link">
+          <a href="{% url 'admin_panel:donors' %}" class="nav-link">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
             <span class="nav-link-label">Donors</span>
           </a>
@@ -177,19 +178,19 @@
 
         <div class="nav-group">
           <div class="nav-group-label">Operations</div>
-          <a href="notifications.html" class="nav-link active" aria-current="page">
+          <a href="{% url 'admin_panel:notifications' %}" class="nav-link active" aria-current="page">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
             <span class="nav-link-label">Notifications</span>
           </a>
-          <a href="tasks.html" class="nav-link">
+          <a href="{% url 'admin_panel:tasks' %}" class="nav-link">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
             <span class="nav-link-label">Task Center</span>
           </a>
-          <a href="activity.html" class="nav-link">
+          <a href="{% url 'admin_panel:activity' %}" class="nav-link">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
             <span class="nav-link-label">Activity Feed</span>
           </a>
-          <a href="messages.html" class="nav-link">
+          <a href="{% url 'admin_panel:messages' %}" class="nav-link">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
             <span class="nav-link-label">Messages</span>
           </a>
@@ -197,11 +198,11 @@
 
         <div class="nav-group">
           <div class="nav-group-label">System</div>
-          <a href="admin-users.html" class="nav-link">
+          <a href="{% url 'admin_panel:admin_users' %}" class="nav-link">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             <span class="nav-link-label">Admin Users</span>
           </a>
-          <a href="settings.html" class="nav-link">
+          <a href="{% url 'admin_panel:settings' %}" class="nav-link">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
             <span class="nav-link-label">Settings</span>
           </a>
@@ -212,7 +213,7 @@
     <div class="admin-main">
       <header class="topbar">
         <div style="display:flex;align-items:center;gap:var(--space-3);">
-          <a href="../index.html" class="btn btn-secondary btn-sm">← Portal Gateway</a>
+          <a href="{% url 'admin_panel:dashboard' %}" class="btn btn-secondary btn-sm">← Portal Gateway</a>
           <span style="color:var(--border-medium);">|</span>
           <span style="font-weight:600;font-size:0.9rem;">Notification Center</span>
         </div>
@@ -260,8 +261,8 @@
 
   <div class="toast-container"></div>
 
-  <script src="../shared/js/platform-store.js"></script>
-  <script src="../shared/js/platform-ui.js"></script>
+  <script src="{% static 'shared/js/platform-store.js' %}"></script>
+  <script src="{% static 'shared/js/platform-ui.js' %}"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       let activeCategory = 'all';

@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,10 +13,10 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="css/variables.css" />
-  <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/components.css" />
-  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/variables.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/base.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/components.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/animations.css' %}" />
   <style>
     /* ---- Home-specific styles ---- */
     .hero-home {
@@ -407,7 +408,7 @@
   <div class="emergency-bar" role="banner" aria-label="Emergency rescue alert">
     <span class="pulse-dot" aria-hidden="true"></span>
     <span>🚨 Animal in distress? We respond 24/7 —</span>
-    <a href="report-animal.html" aria-label="Report an animal in need">Report Now →</a>
+    <a href="{% url 'public:report_animal' %}" aria-label="Report an animal in need">Report Now →</a>
   </div>
 
   <!-- Site Header -->
@@ -415,13 +416,13 @@
     <div class="container">
       <nav class="nav-inner" aria-label="Main navigation">
         <!-- Logo -->
-        <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye"
+        <a href="{% url 'public:home' %}" class="nav-logo" aria-label="Unke Liye — Home"><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye"
             class="nav-logo-img" /></a>
 
         <!-- Desktop Menu -->
         <ul class="nav-menu" role="list">
-          <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
-          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="{% url 'public:home' %}" class="nav-link active">Home</a></li>
+          <li class="nav-item"><a href="{% url 'public:about' %}" class="nav-link">About</a></li>
           <li class="nav-item">
             <a href="#" class="nav-link" aria-haspopup="true" aria-expanded="false">
               Our Work <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
@@ -429,17 +430,17 @@
               </svg>
             </a>
             <div class="nav-dropdown" role="menu">
-              <a href="work-animal-rescue.html" role="menuitem"><span class="icon">🐾</span> Animal Rescue &
+              <a href="{% url 'public:work_animal_rescue' %}" role="menuitem"><span class="icon">🐾</span> Animal Rescue &
                 Healthcare</a>
-              <a href="work-environment.html" role="menuitem"><span class="icon">🌱</span> Environment</a>
-              <a href="work-sanitation.html" role="menuitem"><span class="icon">🧹</span> Sanitation & Cleanliness</a>
-              <a href="work-disaster-relief.html" role="menuitem"><span class="icon">🚨</span> Disaster Relief</a>
+              <a href="{% url 'public:work_environment' %}" role="menuitem"><span class="icon">🌱</span> Environment</a>
+              <a href="{% url 'public:work_sanitation' %}" role="menuitem"><span class="icon">🧹</span> Sanitation & Cleanliness</a>
+              <a href="{% url 'public:work_disaster_relief' %}" role="menuitem"><span class="icon">🚨</span> Disaster Relief</a>
             </div>
           </li>
-          <li class="nav-item"><a href="adopt.html" class="nav-link">Adopt</a></li>
-          <li class="nav-item"><a href="campaigns.html" class="nav-link">Campaigns</a></li>
-          <li class="nav-item"><a href="impact.html" class="nav-link">Impact</a></li>
-          <li class="nav-item"><a href="stories.html" class="nav-link">Stories</a></li>
+          <li class="nav-item"><a href="{% url 'public:adopt' %}" class="nav-link">Adopt</a></li>
+          <li class="nav-item"><a href="{% url 'public:campaigns' %}" class="nav-link">Campaigns</a></li>
+          <li class="nav-item"><a href="{% url 'public:impact' %}" class="nav-link">Impact</a></li>
+          <li class="nav-item"><a href="{% url 'public:stories' %}" class="nav-link">Stories</a></li>
           <li class="nav-item">
             <a href="#" class="nav-link" aria-haspopup="true" aria-expanded="false">
               Get Involved <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
@@ -447,10 +448,10 @@
               </svg>
             </a>
             <div class="nav-dropdown" role="menu">
-              <a href="volunteer.html" role="menuitem"><span class="icon">🙋</span> Volunteer</a>
-              <a href="foster.html" role="menuitem"><span class="icon">🏠</span> Foster an Animal</a>
-              <a href="sponsor-animal.html" role="menuitem"><span class="icon">💛</span> Sponsor an Animal</a>
-              <a href="report-animal.html" role="menuitem" style="color: var(--color-urgent)"><span
+              <a href="{% url 'public:volunteer' %}" role="menuitem"><span class="icon">🙋</span> Volunteer</a>
+              <a href="{% url 'public:foster' %}" role="menuitem"><span class="icon">🏠</span> Foster an Animal</a>
+              <a href="{% url 'public:sponsor_animal' %}" role="menuitem"><span class="icon">💛</span> Sponsor an Animal</a>
+              <a href="{% url 'public:report_animal' %}" role="menuitem" style="color: var(--color-urgent)"><span
                   class="icon">🚨</span> Report an Animal</a>
             </div>
           </li>
@@ -458,9 +459,9 @@
 
         <!-- Nav Actions -->
         <div class="nav-actions">
-          <a href="volunteer.html" class="btn btn--outline btn--sm" style="display:none"
+          <a href="{% url 'public:volunteer' %}" class="btn btn--outline btn--sm" style="display:none"
             id="nav-volunteer-btn">Volunteer</a>
-          <a href="donate.html" class="btn btn--primary btn--sm">Donate</a>
+          <a href="{% url 'public:donate' %}" class="btn btn--primary btn--sm">Donate</a>
           <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
             <span></span><span></span><span></span>
           </button>
@@ -474,34 +475,34 @@
     <div class="nav-mobile-overlay"></div>
     <div class="nav-mobile-drawer">
       <button class="nav-mobile-close" aria-label="Close menu">✕</button>
-      <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye"
+      <a href="{% url 'public:home' %}" class="nav-logo" aria-label="Unke Liye — Home"><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye"
           class="nav-logo-img" /></a>
       <ul class="nav-mobile-list" role="list">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About Us</a></li>
+        <li><a href="{% url 'public:home' %}">Home</a></li>
+        <li><a href="{% url 'public:about' %}">About Us</a></li>
         <li><span class="section-label">Our Work</span></li>
-        <li class="nav-mobile-sub"><a href="work-animal-rescue.html">🐾 Animal Rescue & Healthcare</a></li>
-        <li class="nav-mobile-sub"><a href="work-environment.html">🌱 Environment</a></li>
-        <li class="nav-mobile-sub"><a href="work-sanitation.html">🧹 Sanitation & Cleanliness</a></li>
-        <li class="nav-mobile-sub"><a href="work-disaster-relief.html">🚨 Disaster Relief</a></li>
-        <li><a href="adopt.html">Adopt a Pet</a></li>
-        <li><a href="campaigns.html">Campaigns</a></li>
-        <li><a href="impact.html">Our Impact</a></li>
-        <li><a href="stories.html">Stories</a></li>
-        <li><a href="events.html">Events</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
+        <li class="nav-mobile-sub"><a href="{% url 'public:work_animal_rescue' %}">🐾 Animal Rescue & Healthcare</a></li>
+        <li class="nav-mobile-sub"><a href="{% url 'public:work_environment' %}">🌱 Environment</a></li>
+        <li class="nav-mobile-sub"><a href="{% url 'public:work_sanitation' %}">🧹 Sanitation & Cleanliness</a></li>
+        <li class="nav-mobile-sub"><a href="{% url 'public:work_disaster_relief' %}">🚨 Disaster Relief</a></li>
+        <li><a href="{% url 'public:adopt' %}">Adopt a Pet</a></li>
+        <li><a href="{% url 'public:campaigns' %}">Campaigns</a></li>
+        <li><a href="{% url 'public:impact' %}">Our Impact</a></li>
+        <li><a href="{% url 'public:stories' %}">Stories</a></li>
+        <li><a href="{% url 'public:events' %}">Events</a></li>
+        <li><a href="{% url 'public:gallery' %}">Gallery</a></li>
         <li><span class="section-label">Get Involved</span></li>
-        <li class="nav-mobile-sub"><a href="volunteer.html">Volunteer</a></li>
-        <li class="nav-mobile-sub"><a href="foster.html">Foster an Animal</a></li>
-        <li class="nav-mobile-sub"><a href="sponsor-animal.html">Sponsor an Animal</a></li>
-        <li class="nav-mobile-sub"><a href="report-animal.html" style="color:var(--color-urgent)">🚨 Report an
+        <li class="nav-mobile-sub"><a href="{% url 'public:volunteer' %}">Volunteer</a></li>
+        <li class="nav-mobile-sub"><a href="{% url 'public:foster' %}">Foster an Animal</a></li>
+        <li class="nav-mobile-sub"><a href="{% url 'public:sponsor_animal' %}">Sponsor an Animal</a></li>
+        <li class="nav-mobile-sub"><a href="{% url 'public:report_animal' %}" style="color:var(--color-urgent)">🚨 Report an
             Animal</a></li>
-        <li><a href="transparency.html">Transparency</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="{% url 'public:transparency' %}">Transparency</a></li>
+        <li><a href="{% url 'public:contact' %}">Contact</a></li>
       </ul>
       <div class="nav-mobile-actions">
-        <a href="donate.html" class="btn btn--primary btn--full">Donate Now</a>
-        <a href="volunteer.html" class="btn btn--outline btn--full">Become a Volunteer</a>
+        <a href="{% url 'public:donate' %}" class="btn btn--primary btn--full">Donate Now</a>
+        <a href="{% url 'public:volunteer' %}" class="btn btn--outline btn--full">Become a Volunteer</a>
       </div>
     </div>
   </div>
@@ -524,13 +525,13 @@
           and stands first at the scene of every disaster.
         </p>
         <div class="hero-actions">
-          <a href="donate.html" class="btn btn--primary btn--lg">
+          <a href="{% url 'public:donate' %}" class="btn btn--primary btn--lg">
             Donate Today
           </a>
-          <a href="report-animal.html" class="btn btn--urgent btn--lg">
+          <a href="{% url 'public:report_animal' %}" class="btn btn--urgent btn--lg">
             🚨 Report an Animal
           </a>
-          <a href="about.html" class="btn btn--outline-white btn--lg" style="display:none" id="hero-learn-more">
+          <a href="{% url 'public:about' %}" class="btn btn--outline-white btn--lg" style="display:none" id="hero-learn-more">
             Learn Our Story
           </a>
         </div>
@@ -573,7 +574,7 @@
         </div>
 
         <div class="pillars-grid">
-          <a href="work-animal-rescue.html" class="pillar-card reveal reveal-delay-1"
+          <a href="{% url 'public:work_animal_rescue' %}" class="pillar-card reveal reveal-delay-1"
             aria-label="Animal Rescue and Healthcare">
             <div class="pillar-icon pillar-icon--care" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
             <div>
@@ -586,7 +587,7 @@
             <span class="pillar-link" aria-hidden="true">Explore Rescue Work →</span>
           </a>
 
-          <a href="work-environment.html" class="pillar-card reveal reveal-delay-2" aria-label="Environment Protection">
+          <a href="{% url 'public:work_environment' %}" class="pillar-card reveal reveal-delay-2" aria-label="Environment Protection">
             <div class="pillar-icon pillar-icon--protect" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20h10"/><path d="M12 20V10"/><path d="M12 10C12 10 8 6 4 8c0 0 0 6 8 2"/><path d="M12 10c0 0 4-4 8-2 0 0 0 6-8 2"/></svg></div>
             <div>
               <h3 style="color:var(--color-protect)">Protect</h3>
@@ -597,7 +598,7 @@
             <span class="pillar-link" aria-hidden="true">Explore Green Work →</span>
           </a>
 
-          <a href="work-sanitation.html" class="pillar-card reveal reveal-delay-3"
+          <a href="{% url 'public:work_sanitation' %}" class="pillar-card reveal reveal-delay-3"
             aria-label="Sanitation and Cleanliness">
             <div class="pillar-icon pillar-icon--restore" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4"/><path d="M12 18v4"/><path d="M4.93 4.93l2.83 2.83"/><path d="M16.24 16.24l2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="M4.93 19.07l2.83-2.83"/><path d="M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="4"/></svg></div>
             <div>
@@ -609,7 +610,7 @@
             <span class="pillar-link" aria-hidden="true">Explore Sanitation Work →</span>
           </a>
 
-          <a href="work-disaster-relief.html" class="pillar-card reveal reveal-delay-4" aria-label="Disaster Relief">
+          <a href="{% url 'public:work_disaster_relief' %}" class="pillar-card reveal reveal-delay-4" aria-label="Disaster Relief">
             <div class="pillar-icon pillar-icon--respond" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
             <div>
               <h3 style="color:var(--color-respond)">Respond</h3>
@@ -634,7 +635,7 @@
             <span class="eyebrow">Real Impact</span>
             <h2 id="stories-heading">Stories That Matter</h2>
           </div>
-          <a href="stories.html" class="btn btn--ghost btn--sm">All Stories →</a>
+          <a href="{% url 'public:stories' %}" class="btn btn--ghost btn--sm">All Stories →</a>
         </div>
 
         <div class="stories-grid">
@@ -655,7 +656,7 @@
             </div>
             <div class="card-footer">
               <span style="font-size:var(--text-xs);color:var(--color-text-muted)">March 2024</span>
-              <a href="story-detail.html" class="btn btn--ghost btn--sm">Read Story</a>
+              <a href="{% url 'public:story_detail' 1 %}" class="btn btn--ghost btn--sm">Read Story</a>
             </div>
           </article>
 
@@ -676,7 +677,7 @@
             </div>
             <div class="card-footer">
               <span style="font-size:var(--text-xs);color:var(--color-text-muted)">February 2024</span>
-              <a href="story-detail.html" class="btn btn--ghost btn--sm">Read Story</a>
+              <a href="{% url 'public:story_detail' 1 %}" class="btn btn--ghost btn--sm">Read Story</a>
             </div>
           </article>
 
@@ -697,7 +698,7 @@
             </div>
             <div class="card-footer">
               <span style="font-size:var(--text-xs);color:var(--color-text-muted)">January 2024</span>
-              <a href="story-detail.html" class="btn btn--ghost btn--sm">Read Story</a>
+              <a href="{% url 'public:story_detail' 1 %}" class="btn btn--ghost btn--sm">Read Story</a>
             </div>
           </article>
         </div>
@@ -761,7 +762,7 @@
             <span class="eyebrow">Right Now</span>
             <h2 id="campaigns-heading">Active Campaigns</h2>
           </div>
-          <a href="campaigns.html" class="btn btn--ghost btn--sm">All Campaigns →</a>
+          <a href="{% url 'public:campaigns' %}" class="btn btn--ghost btn--sm">All Campaigns →</a>
         </div>
 
         <div class="campaigns-grid">
@@ -787,7 +788,7 @@
             </div>
             <div class="card-footer">
               <span style="font-size:var(--text-xs);color:var(--color-text-muted)">32 days left</span>
-              <a href="donate.html" class="btn btn--primary btn--sm">Donate</a>
+              <a href="{% url 'public:donate' %}" class="btn btn--primary btn--sm">Donate</a>
             </div>
           </article>
 
@@ -814,7 +815,7 @@
             </div>
             <div class="card-footer">
               <span style="font-size:var(--text-xs);color:var(--color-text-muted)">48 days left</span>
-              <a href="donate.html" class="btn btn--primary btn--sm">Donate</a>
+              <a href="{% url 'public:donate' %}" class="btn btn--primary btn--sm">Donate</a>
             </div>
           </article>
 
@@ -842,7 +843,7 @@
             </div>
             <div class="card-footer">
               <span style="font-size:var(--text-xs);color:var(--color-text-muted)">18 days left</span>
-              <a href="donate.html" class="btn btn--urgent btn--sm">Donate Now</a>
+              <a href="{% url 'public:donate' %}" class="btn btn--urgent btn--sm">Donate Now</a>
             </div>
           </article>
         </div>
@@ -860,11 +861,11 @@
             <span class="eyebrow">Join Us</span>
             <h2 id="events-heading">Upcoming Drives & Events</h2>
           </div>
-          <a href="events.html" class="btn btn--ghost btn--sm">All Events →</a>
+          <a href="{% url 'public:events' %}" class="btn btn--ghost btn--sm">All Events →</a>
         </div>
 
         <div class="events-grid">
-          <a href="event-detail.html" class="event-card reveal reveal-delay-1">
+          <a href="{% url 'public:event_detail' 1 %}" class="event-card reveal reveal-delay-1">
             <div class="event-date-box" aria-hidden="true">
               <span class="event-day">22</span>
               <span class="event-month">Jun</span>
@@ -880,7 +881,7 @@
             </div>
           </a>
 
-          <a href="event-detail.html" class="event-card reveal reveal-delay-2">
+          <a href="{% url 'public:event_detail' 1 %}" class="event-card reveal reveal-delay-2">
             <div class="event-date-box" aria-hidden="true">
               <span class="event-day">01</span>
               <span class="event-month">Jul</span>
@@ -897,7 +898,7 @@
             </div>
           </a>
 
-          <a href="event-detail.html" class="event-card reveal reveal-delay-3">
+          <a href="{% url 'public:event_detail' 1 %}" class="event-card reveal reveal-delay-3">
             <div class="event-date-box" aria-hidden="true">
               <span class="event-day">14</span>
               <span class="event-month">Jul</span>
@@ -913,7 +914,7 @@
             </div>
           </a>
 
-          <a href="event-detail.html" class="event-card reveal reveal-delay-4">
+          <a href="{% url 'public:event_detail' 1 %}" class="event-card reveal reveal-delay-4">
             <div class="event-date-box" aria-hidden="true">
               <span class="event-day">20</span>
               <span class="event-month">Jul</span>
@@ -943,8 +944,8 @@
             <h2 style="font-size:var(--text-3xl);max-width:16ch">340 volunteers. Room for one more — you.</h2>
           </div>
           <div style="display:flex;flex-direction:column;gap:var(--space-3);flex-shrink:0" class="reveal">
-            <a href="volunteer.html" class="btn btn--primary btn--lg">Become a Volunteer</a>
-            <a href="foster.html" class="btn btn--outline btn--lg">Foster an Animal</a>
+            <a href="{% url 'public:volunteer' %}" class="btn btn--primary btn--lg">Become a Volunteer</a>
+            <a href="{% url 'public:foster' %}" class="btn btn--outline btn--lg">Foster an Animal</a>
           </div>
         </div>
       </div>
@@ -962,10 +963,10 @@
           <p>₹500 feeds a rescued animal for a month. ₹2,000 covers a vet visit. ₹10,000 funds a full monsoon shelter
             kit. However much — it matters.</p>
           <div class="cta-banner-actions">
-            <a href="donate.html?amount=500" class="btn btn--outline-white">₹500</a>
-            <a href="donate.html?amount=2000" class="btn btn--outline-white">₹2,000</a>
-            <a href="donate.html?amount=5000" class="btn btn--outline-white">₹5,000</a>
-            <a href="donate.html" class="btn btn--primary"
+            <a href="{% url 'public:donate' %}" class="btn btn--outline-white">₹500</a>
+            <a href="{% url 'public:donate' %}" class="btn btn--outline-white">₹2,000</a>
+            <a href="{% url 'public:donate' %}" class="btn btn--outline-white">₹5,000</a>
+            <a href="{% url 'public:donate' %}" class="btn btn--primary"
               style="background:#A8D8B9;color:var(--color-primary-dark);border-color:#A8D8B9">Donate Any Amount</a>
           </div>
         </div>
@@ -1051,7 +1052,7 @@
             <span class="eyebrow">Stay Updated</span>
             <h2 id="news-heading">News & Updates</h2>
           </div>
-          <a href="news.html" class="btn btn--ghost btn--sm">All News →</a>
+          <a href="{% url 'public:news' %}" class="btn btn--ghost btn--sm">All News →</a>
         </div>
 
         <div class="news-grid">
@@ -1065,7 +1066,7 @@
               </h4>
               <p style="font-size:var(--text-sm);color:var(--color-text-muted)">Our monsoon plantation campaign hit a
                 historic milestone. Read the full update on how we did it.</p>
-              <a href="news-detail.html" class="btn btn--ghost btn--sm" style="margin-top:var(--space-4)">Read More</a>
+              <a href="{% url 'public:news_detail' 1 %}" class="btn btn--ghost btn--sm" style="margin-top:var(--space-4)">Read More</a>
             </div>
           </article>
 
@@ -1079,7 +1080,7 @@
                 Year 2024</h4>
               <p style="font-size:var(--text-sm);color:var(--color-text-muted)">Recognized by the Maharashtra State
                 Social Welfare Department for outstanding contribution to animal welfare.</p>
-              <a href="news-detail.html" class="btn btn--ghost btn--sm" style="margin-top:var(--space-4)">Read More</a>
+              <a href="{% url 'public:news_detail' 1 %}" class="btn btn--ghost btn--sm" style="margin-top:var(--space-4)">Read More</a>
             </div>
           </article>
 
@@ -1093,7 +1094,7 @@
                 Areas Launches July 1</h4>
               <p style="font-size:var(--text-sm);color:var(--color-text-muted)">Partnering with the municipal
                 corporation to bring hygiene education and waste management to 12,000 residents.</p>
-              <a href="news-detail.html" class="btn btn--ghost btn--sm" style="margin-top:var(--space-4)">Read More</a>
+              <a href="{% url 'public:news_detail' 1 %}" class="btn btn--ghost btn--sm" style="margin-top:var(--space-4)">Read More</a>
             </div>
           </article>
 
@@ -1107,7 +1108,7 @@
                 Cyclone-Affected Andhra Villages</h4>
               <p style="font-size:var(--text-sm);color:var(--color-text-muted)">Three months after Cyclone Michaung, our
                 team hands over rebuilt infrastructure and community kitchens to local leaders.</p>
-              <a href="news-detail.html" class="btn btn--ghost btn--sm" style="margin-top:var(--space-4)">Read More</a>
+              <a href="{% url 'public:news_detail' 1 %}" class="btn btn--ghost btn--sm" style="margin-top:var(--space-4)">Read More</a>
             </div>
           </article>
         </div>
@@ -1149,14 +1150,14 @@
       <div class="footer-grid">
         <!-- Brand column -->
         <div>
-          <img src="logo.png" alt="Unke Liye" class="footer-logo-img" />
+          <img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="footer-logo-img" />
           <p class="footer-brand-tagline">Registered NGO rescuing animals, protecting nature, and responding to
             disasters across Maharashtra since 2015.</p>
           <div class="footer-emergency">
             <div class="footer-emergency-title">🚨 24/7 Animal Emergency</div>
             <a href="tel:+918888xxxxxx" aria-label="Emergency rescue hotline">+91 88888 00000</a>
             <span style="color:rgba(250,247,242,0.6);margin:0 var(--space-1)">·</span>
-            <a href="report-animal.html">Report Online</a>
+            <a href="{% url 'public:report_animal' %}">Report Online</a>
           </div>
           <div class="footer-socials" aria-label="Social media links">
             <a href="#" class="footer-social-icon" aria-label="Facebook">f</a>
@@ -1171,12 +1172,12 @@
         <div>
           <h3 class="footer-col-title">Quick Links</h3>
           <ul class="footer-links">
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="campaigns.html">Campaigns</a></li>
-            <li><a href="impact.html">Our Impact</a></li>
-            <li><a href="stories.html">Stories & News</a></li>
-            <li><a href="events.html">Events</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="{% url 'public:about' %}">About Us</a></li>
+            <li><a href="{% url 'public:campaigns' %}">Campaigns</a></li>
+            <li><a href="{% url 'public:impact' %}">Our Impact</a></li>
+            <li><a href="{% url 'public:stories' %}">Stories & News</a></li>
+            <li><a href="{% url 'public:events' %}">Events</a></li>
+            <li><a href="{% url 'public:contact' %}">Contact Us</a></li>
           </ul>
         </div>
 
@@ -1184,12 +1185,12 @@
         <div>
           <h3 class="footer-col-title">Our Work</h3>
           <ul class="footer-links">
-            <li><a href="work-animal-rescue.html">🐾 Animal Rescue</a></li>
-            <li><a href="work-environment.html">🌱 Environment</a></li>
-            <li><a href="work-sanitation.html">🧹 Sanitation</a></li>
-            <li><a href="work-disaster-relief.html">🚨 Disaster Relief</a></li>
-            <li><a href="transparency.html">Financial Reports</a></li>
-            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="{% url 'public:work_animal_rescue' %}">🐾 Animal Rescue</a></li>
+            <li><a href="{% url 'public:work_environment' %}">🌱 Environment</a></li>
+            <li><a href="{% url 'public:work_sanitation' %}">🧹 Sanitation</a></li>
+            <li><a href="{% url 'public:work_disaster_relief' %}">🚨 Disaster Relief</a></li>
+            <li><a href="{% url 'public:transparency' %}">Financial Reports</a></li>
+            <li><a href="{% url 'public:faq' %}">FAQ</a></li>
           </ul>
         </div>
 
@@ -1197,12 +1198,12 @@
         <div>
           <h3 class="footer-col-title">Get Involved</h3>
           <ul class="footer-links">
-            <li><a href="volunteer.html">Volunteer</a></li>
-            <li><a href="donate.html">Donate Now</a></li>
-            <li><a href="adopt.html">Adopt a Pet</a></li>
-            <li><a href="foster.html">Foster Program</a></li>
-            <li><a href="sponsor-animal.html">Sponsor an Animal</a></li>
-            <li><a href="report-animal.html">Report Emergency</a></li>
+            <li><a href="{% url 'public:volunteer' %}">Volunteer</a></li>
+            <li><a href="{% url 'public:donate' %}">Donate Now</a></li>
+            <li><a href="{% url 'public:adopt' %}">Adopt a Pet</a></li>
+            <li><a href="{% url 'public:foster' %}">Foster Program</a></li>
+            <li><a href="{% url 'public:sponsor_animal' %}">Sponsor an Animal</a></li>
+            <li><a href="{% url 'public:report_animal' %}">Report Emergency</a></li>
           </ul>
         </div>
       </div>
@@ -1213,17 +1214,17 @@
           <p>© 2024 Unke Liye. Registered NGO, Maharashtra. Reg. No. MAH/2015/1234 | 80G Tax Exemption Available</p>
         </div>
         <div class="footer-legal-links">
-          <a href="privacy-policy.html">Privacy Policy</a>
-          <a href="terms.html">Terms of Use</a>
-          <a href="transparency.html">Financial Reports</a>
-          <a href="sitemap.html">Sitemap</a>
+          <a href="{% url 'public:privacy_policy' %}">Privacy Policy</a>
+          <a href="{% url 'public:terms' %}">Terms of Use</a>
+          <a href="{% url 'public:transparency' %}">Financial Reports</a>
+          <a href="{% url 'public:sitemap' %}">Sitemap</a>
         </div>
       </div>
     </div>
   </footer>
 
   <!-- Emergency Float Button -->
-  <a href="report-animal.html" class="emergency-float" aria-label="Report an animal emergency">
+  <a href="{% url 'public:report_animal' %}" class="emergency-float" aria-label="Report an animal emergency">
     <span class="emergency-float-icon" aria-hidden="true">🚨</span>
     <span>Report Animal Emergency</span>
   </a>
@@ -1231,8 +1232,8 @@
   <!-- Toast Container -->
   <div class="toast-container" aria-live="polite" aria-atomic="false"></div>
 
-  <script src="js/main.js"></script>
-  <script src="js/forms.js"></script>
+  <script src="{% static 'public-assets/js/main.js' %}"></script>
+  <script src="{% static 'public-assets/js/forms.js' %}"></script>
   <script>
     // Show volunteer btn on desktop
     document.addEventListener('DOMContentLoaded', () => {

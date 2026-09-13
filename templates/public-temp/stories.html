@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,10 +8,10 @@
   <title>Impact Stories — Unke Liye</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/variables.css" />
-  <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/components.css" />
-  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/variables.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/base.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/components.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/animations.css' %}" />
   <style>
     .stories-grid {
       display: grid;
@@ -41,21 +42,21 @@
 </head>
 <body>
 <a href="#main-content" class="skip-nav">Skip to main content</a>
-<div class="emergency-bar"><span class="pulse-dot" aria-hidden="true"></span><span>🚨 Animal in distress? —</span><a href="report-animal.html">Report Now →</a></div>
+<div class="emergency-bar"><span class="pulse-dot" aria-hidden="true"></span><span>🚨 Animal in distress? —</span><a href="{% url 'public:report_animal' %}">Report Now →</a></div>
 <header class="site-header" role="banner">
   <div class="container">
     <nav class="nav-inner" aria-label="Main navigation">
-      <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a>
+      <a href="{% url 'public:home' %}" class="nav-logo" aria-label="Unke Liye — Home"><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="nav-logo-img" /></a>
       <ul class="nav-menu">
-        <li><a href="index.html" class="nav-link">Home</a></li><li><a href="about.html" class="nav-link">About</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Our Work <svg viewBox="0 0 16 16" fill="currentColor" width="14" height="14"><path d="M4 6l4 4 4-4"/></svg></a><div class="nav-dropdown"><a href="work-animal-rescue.html"><span class="icon">🐾</span> Animal Rescue</a><a href="work-environment.html"><span class="icon">🌱</span> Environment</a><a href="work-sanitation.html"><span class="icon">🧹</span> Sanitation</a><a href="work-disaster-relief.html"><span class="icon">🚨</span> Disaster Relief</a></div></li>
-        <li><a href="adopt.html" class="nav-link">Adopt</a></li>
-        <li><a href="campaigns.html" class="nav-link">Campaigns</a></li>
-        <li><a href="impact.html" class="nav-link">Impact</a></li>
-        <li><a href="stories.html" class="nav-link active">Stories</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Get Involved <svg viewBox="0 0 16 16" fill="currentColor" width="14" height="14"><path d="M4 6l4 4 4-4"/></svg></a><div class="nav-dropdown"><a href="volunteer.html"><span class="icon">🙋</span> Volunteer</a><a href="foster.html"><span class="icon">🏠</span> Foster</a><a href="sponsor-animal.html"><span class="icon">💛</span> Sponsor</a><a href="report-animal.html" style="color:var(--color-urgent)"><span class="icon">🚨</span> Report</a></div></li>
+        <li><a href="{% url 'public:home' %}" class="nav-link">Home</a></li><li><a href="{% url 'public:about' %}" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Our Work <svg viewBox="0 0 16 16" fill="currentColor" width="14" height="14"><path d="M4 6l4 4 4-4"/></svg></a><div class="nav-dropdown"><a href="{% url 'public:work_animal_rescue' %}"><span class="icon">🐾</span> Animal Rescue</a><a href="{% url 'public:work_environment' %}"><span class="icon">🌱</span> Environment</a><a href="{% url 'public:work_sanitation' %}"><span class="icon">🧹</span> Sanitation</a><a href="{% url 'public:work_disaster_relief' %}"><span class="icon">🚨</span> Disaster Relief</a></div></li>
+        <li><a href="{% url 'public:adopt' %}" class="nav-link">Adopt</a></li>
+        <li><a href="{% url 'public:campaigns' %}" class="nav-link">Campaigns</a></li>
+        <li><a href="{% url 'public:impact' %}" class="nav-link">Impact</a></li>
+        <li><a href="{% url 'public:stories' %}" class="nav-link active">Stories</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Get Involved <svg viewBox="0 0 16 16" fill="currentColor" width="14" height="14"><path d="M4 6l4 4 4-4"/></svg></a><div class="nav-dropdown"><a href="{% url 'public:volunteer' %}"><span class="icon">🙋</span> Volunteer</a><a href="{% url 'public:foster' %}"><span class="icon">🏠</span> Foster</a><a href="{% url 'public:sponsor_animal' %}"><span class="icon">💛</span> Sponsor</a><a href="{% url 'public:report_animal' %}" style="color:var(--color-urgent)"><span class="icon">🚨</span> Report</a></div></li>
       </ul>
-      <div class="nav-actions"><a href="donate.html" class="btn btn--primary btn--sm">Donate</a><button class="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button></div>
+      <div class="nav-actions"><a href="{% url 'public:donate' %}" class="btn btn--primary btn--sm">Donate</a><button class="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button></div>
     </nav>
   </div>
 </header>
@@ -63,16 +64,16 @@
   <div class="nav-mobile-overlay"></div>
   <div class="nav-mobile-drawer">
     <button class="nav-mobile-close" aria-label="Close menu">✕</button>
-    <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a>
-    <ul class="nav-mobile-list"><li><a href="index.html">Home</a></li><li><a href="stories.html">Stories</a></li><li><a href="campaigns.html">Campaigns</a></li><li><a href="donate.html">Donate</a></li></ul>
-    <div class="nav-mobile-actions"><a href="donate.html" class="btn btn--primary btn--full">Donate Now</a></div>
+    <a href="{% url 'public:home' %}" class="nav-logo" aria-label="Unke Liye — Home"><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="nav-logo-img" /></a>
+    <ul class="nav-mobile-list"><li><a href="{% url 'public:home' %}">Home</a></li><li><a href="{% url 'public:stories' %}">Stories</a></li><li><a href="{% url 'public:campaigns' %}">Campaigns</a></li><li><a href="{% url 'public:donate' %}">Donate</a></li></ul>
+    <div class="nav-mobile-actions"><a href="{% url 'public:donate' %}" class="btn btn--primary btn--full">Donate Now</a></div>
   </div>
 </div>
 
 <main id="main-content">
   <div class="page-hero" style="--ph-img: url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600&q=80')">
     <div class="container page-hero-content">
-      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">›</span><span aria-current="page">Stories</span></nav>
+      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="{% url 'public:home' %}">Home</a><span class="breadcrumb-sep">›</span><span aria-current="page">Stories</span></nav>
       <h1>Stories That Matter</h1>
       <p>Behind every number in our impact report is a face, a name, a journey. These are some of them.</p>
     </div>
@@ -91,7 +92,7 @@
           <h2>Bruno's Second Chance — A Midnight Rescue That Changed Everything</h2>
           <p>Found with severe mange and a broken leg near Pune's expressway at 3 AM. Bruno refused to give up — and neither did our team. Eight weeks, four surgeries, and one incredibly persistent dog later, he found a forever home in Kothrud. This is his story in his own paw-prints.</p>
           <div style="margin-top:var(--space-4);display:flex;gap:var(--space-4);flex-wrap:wrap">
-            <a href="story-detail.html" class="btn btn--primary">Read Full Story</a>
+            <a href="{% url 'public:story_detail' 1 %}" class="btn btn--primary">Read Full Story</a>
             <span style="font-size:var(--text-sm);color:var(--color-text-muted);display:flex;align-items:center">March 2024 · Pune</span>
           </div>
         </div>
@@ -113,42 +114,42 @@
             <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=600&q=80" alt="Forest" style="width:100%;height:100%;object-fit:cover;" />
           </div>
           <div class="card-body"><span class="badge badge--protect" style="margin-bottom:var(--space-3)">Environment</span><h3 style="font-size:var(--text-xl);margin-bottom:var(--space-3)">The Forest We Grew Together</h3><p style="font-size:var(--text-sm);color:var(--color-text-muted)">150 school children. 3 villages. One barren hillside. In 18 months, the Nashik community planted 4,200 trees and a forest started growing in their names.</p></div>
-          <div class="card-footer"><span style="font-size:var(--text-xs);color:var(--color-text-muted)">Feb 2024 · Nashik</span><a href="story-detail.html" class="btn btn--ghost btn--sm">Read Story</a></div>
+          <div class="card-footer"><span style="font-size:var(--text-xs);color:var(--color-text-muted)">Feb 2024 · Nashik</span><a href="{% url 'public:story_detail' 1 %}" class="btn btn--ghost btn--sm">Read Story</a></div>
         </article>
         <article class="card story-card reveal reveal-delay-2" data-category="disaster">
           <div style="height:200px;overflow:hidden;" aria-hidden="true">
             <img src="https://images.unsplash.com/photo-1547683905-f686c993aae5?w=600&q=80" alt="Flooding" style="width:100%;height:100%;object-fit:cover;" />
           </div>
           <div class="card-body"><span class="badge badge--respond" style="margin-bottom:var(--space-3)">Disaster Relief</span><h3 style="font-size:var(--text-xl);margin-bottom:var(--space-3)">When the Flood Came, We Came First</h3><p style="font-size:var(--text-sm);color:var(--color-text-muted)">The 2023 Raigad floods displaced 1,200 families. Our team reached in 6 hours — with boats, food, medicine, and the one thing everyone needed: someone who showed up.</p></div>
-          <div class="card-footer"><span style="font-size:var(--text-xs);color:var(--color-text-muted)">Jan 2024 · Raigad</span><a href="story-detail.html" class="btn btn--ghost btn--sm">Read Story</a></div>
+          <div class="card-footer"><span style="font-size:var(--text-xs);color:var(--color-text-muted)">Jan 2024 · Raigad</span><a href="{% url 'public:story_detail' 1 %}" class="btn btn--ghost btn--sm">Read Story</a></div>
         </article>
         <article class="card story-card reveal reveal-delay-3" data-category="volunteer">
           <div style="height:200px;overflow:hidden;" aria-hidden="true">
             <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80" alt="Ananya" style="width:100%;height:100%;object-fit:cover;" />
           </div>
           <div class="card-body"><span class="badge badge--restore" style="margin-bottom:var(--space-3)">Volunteer</span><h3 style="font-size:var(--text-xl);margin-bottom:var(--space-3)">She Came for 3 Hours. She Stayed for 3 Years.</h3><p style="font-size:var(--text-sm);color:var(--color-text-muted)">Ananya signed up as a volunteer for one cleanliness drive. Three years later, she leads our sanitation team and has trained 400 new volunteers. Her story is why we do orientation right.</p></div>
-          <div class="card-footer"><span style="font-size:var(--text-xs);color:var(--color-text-muted)">Dec 2023 · Pune</span><a href="story-detail.html" class="btn btn--ghost btn--sm">Read Story</a></div>
+          <div class="card-footer"><span style="font-size:var(--text-xs);color:var(--color-text-muted)">Dec 2023 · Pune</span><a href="{% url 'public:story_detail' 1 %}" class="btn btn--ghost btn--sm">Read Story</a></div>
         </article>
         <article class="card story-card reveal reveal-delay-4" data-category="rescue">
           <div style="height:200px;overflow:hidden;" aria-hidden="true">
             <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=600&q=80" alt="Cat Meera" style="width:100%;height:100%;object-fit:cover;" />
           </div>
           <div class="card-body"><span class="badge badge--care" style="margin-bottom:var(--space-3)">Animal Rescue</span><h3 style="font-size:var(--text-xl);margin-bottom:var(--space-3)">Meera's Long Road Back to Trust</h3><p style="font-size:var(--text-sm);color:var(--color-text-muted)">Rescued from a hoarding situation with 40 other cats. Meera spent 6 weeks hiding under a blanket. Then one morning she walked out and sat in a sunbeam and never looked back.</p></div>
-          <div class="card-footer"><span style="font-size:var(--text-xs);color:var(--color-text-muted)">Nov 2023 · Pune</span><a href="story-detail.html" class="btn btn--ghost btn--sm">Read Story</a></div>
+          <div class="card-footer"><span style="font-size:var(--text-xs);color:var(--color-text-muted)">Nov 2023 · Pune</span><a href="{% url 'public:story_detail' 1 %}" class="btn btn--ghost btn--sm">Read Story</a></div>
         </article>
         <article class="card story-card reveal reveal-delay-5" data-category="community">
           <div style="height:200px;overflow:hidden;" aria-hidden="true">
             <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=600&q=80" alt="Dogs" style="width:100%;height:100%;object-fit:cover;" />
           </div>
           <div class="card-body"><span class="badge badge--primary" style="margin-bottom:var(--space-3)">Community</span><h3 style="font-size:var(--text-xl);margin-bottom:var(--space-3)">The Village That Adopted Stray Dogs Instead of Driving Them Away</h3><p style="font-size:var(--text-sm);color:var(--color-text-muted)">After our Animal Welfare workshop in Indapur village, residents collectively decided to care for their street dogs — names, feeding stations, vaccination — the whole community transformed.</p></div>
-          <div class="card-footer"><span style="font-size:var(--text-xs);color:var(--color-text-muted)">Oct 2023 · Indapur</span><a href="story-detail.html" class="btn btn--ghost btn--sm">Read Story</a></div>
+          <div class="card-footer"><span style="font-size:var(--text-xs);color:var(--color-text-muted)">Oct 2023 · Indapur</span><a href="{% url 'public:story_detail' 1 %}" class="btn btn--ghost btn--sm">Read Story</a></div>
         </article>
         <article class="card story-card reveal" style="transition-delay:0.6s" data-category="disaster">
           <div style="height:200px;overflow:hidden;" aria-hidden="true">
             <img src="https://images.unsplash.com/photo-1508873696983-2df519f0397e?w=600&q=80" alt="Fire recovery" style="width:100%;height:100%;object-fit:cover;" />
           </div>
           <div class="card-body"><span class="badge badge--respond" style="margin-bottom:var(--space-3)">Disaster Relief</span><h3 style="font-size:var(--text-xl);margin-bottom:var(--space-3)">48 Hours in Igatpuri — When Fire Took Everything</h3><p style="font-size:var(--text-sm);color:var(--color-text-muted)">A forest fire swept through three hamlets near Igatpuri. Families lost livestock, homes, and years of savings. We arrived in 48 hours and stayed for three weeks.</p></div>
-          <div class="card-footer"><span style="font-size:var(--text-xs);color:var(--color-text-muted)">Sep 2023 · Igatpuri</span><a href="story-detail.html" class="btn btn--ghost btn--sm">Read Story</a></div>
+          <div class="card-footer"><span style="font-size:var(--text-xs);color:var(--color-text-muted)">Sep 2023 · Igatpuri</span><a href="{% url 'public:story_detail' 1 %}" class="btn btn--ghost btn--sm">Read Story</a></div>
         </article>
       </div>
     </div>
@@ -158,13 +159,13 @@
 <footer class="site-footer" role="contentinfo">
   <div class="container">
     <div class="footer-grid">
-      <div><img src="logo.png" alt="Unke Liye" class="footer-logo-img" /><p class="footer-brand-tagline">For Every Life. For Nature. For a Better Tomorrow.</p><div class="footer-emergency"><div class="footer-emergency-title">🚨 24/7 Emergency</div><a href="tel:+918888000000">+91 88888 00000</a></div></div>
-      <div><h3 class="footer-col-title">Quick Links</h3><ul class="footer-links"><li><a href="stories.html">Stories</a></li><li><a href="impact.html">Impact</a></li><li><a href="campaigns.html">Campaigns</a></li><li><a href="donate.html">Donate</a></li></ul></div>
+      <div><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="footer-logo-img" /><p class="footer-brand-tagline">For Every Life. For Nature. For a Better Tomorrow.</p><div class="footer-emergency"><div class="footer-emergency-title">🚨 24/7 Emergency</div><a href="tel:+918888000000">+91 88888 00000</a></div></div>
+      <div><h3 class="footer-col-title">Quick Links</h3><ul class="footer-links"><li><a href="{% url 'public:stories' %}">Stories</a></li><li><a href="{% url 'public:impact' %}">Impact</a></li><li><a href="{% url 'public:campaigns' %}">Campaigns</a></li><li><a href="{% url 'public:donate' %}">Donate</a></li></ul></div>
     </div>
-    <div class="footer-bottom"><p>© 2024 Unke Liye. Reg. No. MAH/2015/1234</p><div class="footer-legal-links"><a href="privacy-policy.html">Privacy</a><a href="terms.html">Terms</a><a href="sitemap.html">Sitemap</a></div></div>
+    <div class="footer-bottom"><p>© 2024 Unke Liye. Reg. No. MAH/2015/1234</p><div class="footer-legal-links"><a href="{% url 'public:privacy_policy' %}">Privacy</a><a href="{% url 'public:terms' %}">Terms</a><a href="{% url 'public:sitemap' %}">Sitemap</a></div></div>
   </div>
 </footer>
-<a href="report-animal.html" class="emergency-float" aria-label="Report an animal emergency"><span aria-hidden="true">🚨</span><span>Report Animal Emergency</span></a>
-<script src="js/main.js"></script>
+<a href="{% url 'public:report_animal' %}" class="emergency-float" aria-label="Report an animal emergency"><span aria-hidden="true">🚨</span><span>Report Animal Emergency</span></a>
+<script src="{% static 'public-assets/js/main.js' %}"></script>
 </body>
 </html>

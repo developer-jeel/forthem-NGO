@@ -1,13 +1,14 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Roles & Permissions Governance — Unke Liye Admin</title>
-  <link rel="stylesheet" href="assets/variables.css">
-  <link rel="stylesheet" href="assets/base.css">
-  <link rel="stylesheet" href="assets/components.css">
-  <link rel="stylesheet" href="../shared/css/platform-theme.css">
+  <link rel="stylesheet" href="{% static 'admin-assets/css/variables.css' %}">
+  <link rel="stylesheet" href="{% static 'admin-assets/css/base.css' %}">
+  <link rel="stylesheet" href="{% static 'admin-assets/css/components.css' %}">
+  <link rel="stylesheet" href="{% static 'shared/css/platform-theme.css' %}">
   <style>
     .perm-grid {
       display: grid;
@@ -47,28 +48,28 @@
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-header">
         <div class="sidebar-brand">
-          <img src="../logo.png" alt="Unke Liye Logo" class="sidebar-logo-img">
+          <img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye Logo" class="sidebar-logo-img">
           <div class="sidebar-title">Unke Liye<span>Admin Console</span></div>
         </div>
       </div>
       <nav class="sidebar-nav">
         <div class="nav-section">
           <div class="nav-section-title">Core</div>
-          <a href="dashboard.html" class="nav-item">Dashboard</a>
-          <a href="operations.html" class="nav-item">Operations Overview</a>
+          <a href="{% url 'admin_panel:dashboard' %}" class="nav-item">Dashboard</a>
+          <a href="{% url 'admin_panel:operations' %}" class="nav-item">Operations Overview</a>
         </div>
         <div class="nav-section">
           <div class="nav-section-title">Administration</div>
-          <a href="admin-users.html" class="nav-item">System Users</a>
-          <a href="roles.html" class="nav-item active">Roles & Permissions</a>
-          <a href="../finance-manager/audit-log.html" class="nav-item">Audit Trail</a>
+          <a href="{% url 'admin_panel:admin_users' %}" class="nav-item">System Users</a>
+          <a href="{% url 'admin_panel:roles' %}" class="nav-item active">Roles & Permissions</a>
+          <a href="{% url 'finance_manager:audit_log' %}" class="nav-item">Audit Trail</a>
         </div>
         <div class="nav-section">
           <div class="nav-section-title">Programs</div>
-          <a href="campaigns.html" class="nav-item">Campaigns</a>
-          <a href="donations.html" class="nav-item">Donations</a>
-          <a href="volunteers.html" class="nav-item">Volunteers</a>
-          <a href="animals.html" class="nav-item">Animals</a>
+          <a href="{% url 'admin_panel:campaigns' %}" class="nav-item">Campaigns</a>
+          <a href="{% url 'admin_panel:donations' %}" class="nav-item">Donations</a>
+          <a href="{% url 'admin_panel:volunteers' %}" class="nav-item">Volunteers</a>
+          <a href="{% url 'admin_panel:animals' %}" class="nav-item">Animals</a>
         </div>
       </nav>
       <div class="sidebar-footer">
@@ -86,7 +87,7 @@
       <header class="header">
         <div class="header-left">
           <nav class="breadcrumb-nav">
-            <a href="dashboard.html">Admin</a>
+            <a href="{% url 'admin_panel:dashboard' %}">Admin</a>
             <span class="breadcrumb-sep">/</span>
             <span class="breadcrumb-current">Role Governance</span>
           </nav>
@@ -96,7 +97,7 @@
             <span class="icon-moon">🌙</span>
             <span class="icon-sun" style="display:none;">☀️</span>
           </button>
-          <a href="../index.html" class="btn btn-secondary btn-sm">Main Portal Hub</a>
+          <a href="{% url 'admin_panel:dashboard' %}" class="btn btn-secondary btn-sm">Main Portal Hub</a>
         </div>
       </header>
 
@@ -208,8 +209,8 @@
   </div>
 
   <div class="toast-container"></div>
-  <script src="../shared/js/platform-store.js"></script>
-  <script src="../shared/js/platform-ui.js"></script>
+  <script src="{% static 'shared/js/platform-store.js' %}"></script>
+  <script src="{% static 'shared/js/platform-ui.js' %}"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('.role-item-btn').forEach(btn => {

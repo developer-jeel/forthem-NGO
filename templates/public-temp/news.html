@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,38 +8,38 @@
   <title>News & Updates — Unke Liye</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/variables.css" />
-  <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/components.css" />
-  <link rel="stylesheet" href="css/animations.css" />
-  <link rel="stylesheet" href="css/enhanced-pages.css" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/variables.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/base.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/components.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/animations.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/enhanced-pages.css' %}" />
 </head>
 <body>
 <a href="#main" class="skip-nav">Skip to main content</a>
-<div class="emergency-bar"><span class="pulse-dot"></span><span>🚨 Animal in distress? 24/7 —</span><a href="report-animal.html">Report Now →</a></div>
+<div class="emergency-bar"><span class="pulse-dot"></span><span>🚨 Animal in distress? 24/7 —</span><a href="{% url 'public:report_animal' %}">Report Now →</a></div>
 <header class="site-header">
   <div class="container">
     <nav class="nav-inner">
-      <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a>
+      <a href="{% url 'public:home' %}" class="nav-logo" aria-label="Unke Liye — Home"><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="nav-logo-img" /></a>
       <ul class="nav-menu">
-        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-        <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-        <li class="nav-item"><a href="adopt.html" class="nav-link">Adopt</a></li>
-        <li class="nav-item"><a href="campaigns.html" class="nav-link">Campaigns</a></li>
-        <li class="nav-item"><a href="events.html" class="nav-link">Events</a></li>
-        <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
-        <li class="nav-item"><a href="news.html" class="nav-link active">News</a></li>
-        <li class="nav-item"><a href="stories.html" class="nav-link">Stories</a></li>
+        <li class="nav-item"><a href="{% url 'public:home' %}" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="{% url 'public:about' %}" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="{% url 'public:adopt' %}" class="nav-link">Adopt</a></li>
+        <li class="nav-item"><a href="{% url 'public:campaigns' %}" class="nav-link">Campaigns</a></li>
+        <li class="nav-item"><a href="{% url 'public:events' %}" class="nav-link">Events</a></li>
+        <li class="nav-item"><a href="{% url 'public:gallery' %}" class="nav-link">Gallery</a></li>
+        <li class="nav-item"><a href="{% url 'public:news' %}" class="nav-link active">News</a></li>
+        <li class="nav-item"><a href="{% url 'public:stories' %}" class="nav-link">Stories</a></li>
       </ul>
       <div class="nav-actions">
-        <a href="volunteer.html" class="btn btn--outline btn--sm">Volunteer</a>
-        <a href="donate.html" class="btn btn--primary btn--sm">Donate Now</a>
+        <a href="{% url 'public:volunteer' %}" class="btn btn--outline btn--sm">Volunteer</a>
+        <a href="{% url 'public:donate' %}" class="btn btn--primary btn--sm">Donate Now</a>
         <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
     </nav>
   </div>
 </header>
-<div class="nav-mobile-panel"><div class="nav-mobile-overlay"></div><div class="nav-mobile-drawer"><button class="nav-mobile-close">✕</button><a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a><ul class="nav-mobile-list"><li><a href="news.html">News</a></li><li><a href="stories.html">Stories</a></li><li><a href="events.html">Events</a></li><li><a href="gallery.html">Gallery</a></li></ul></div></div>
+<div class="nav-mobile-panel"><div class="nav-mobile-overlay"></div><div class="nav-mobile-drawer"><button class="nav-mobile-close">✕</button><a href="{% url 'public:home' %}" class="nav-logo" aria-label="Unke Liye — Home"><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="nav-logo-img" /></a><ul class="nav-mobile-list"><li><a href="{% url 'public:news' %}">News</a></li><li><a href="{% url 'public:stories' %}">Stories</a></li><li><a href="{% url 'public:events' %}">Events</a></li><li><a href="{% url 'public:gallery' %}">Gallery</a></li></ul></div></div>
 
 <main id="main">
 
@@ -48,7 +49,7 @@
       style="background-image:url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1600&q=80')"></div>
     <div class="pg-hero__overlay"></div>
     <div class="container pg-hero__content">
-      <nav class="pg-breadcrumb"><a href="index.html">Home</a><span class="pg-breadcrumb-sep">›</span><span>News</span></nav>
+      <nav class="pg-breadcrumb"><a href="{% url 'public:home' %}">Home</a><span class="pg-breadcrumb-sep">›</span><span>News</span></nav>
       <div class="pg-pill pg-pill--light">📰 Latest Updates</div>
       <h1>News &<br><em style="color:#A8D8B9;font-style:normal">Announcements</em></h1>
       <p class="lead">Stay up to date with our rescues, campaigns, programs, and impact stories from across Maharashtra.</p>
@@ -70,7 +71,7 @@
           </div>
           <h2 style="font-size:1.75rem;line-height:1.25;margin-bottom:1rem">89 Animals Rescued as Kolhapur Flooding Reaches Decade-High Levels</h2>
           <p style="color:var(--color-text-muted);line-height:1.8;margin-bottom:1.5rem">Three rescue boats, 45 volunteers, and 14 partner organisations joined forces as floodwaters submerged over 80 villages in Kolhapur district. Unke Liye's rapid response team had animals evacuated and residents supplied within 6 hours of activation...</p>
-          <a href="news-detail.html?id=kolhapur-flood-2025" class="btn btn--primary">Read Full Article →</a>
+          <a href="{% url 'public:news_detail' 1 %}" class="btn btn--primary">Read Full Article →</a>
         </div>
       </div>
     </div>
@@ -102,7 +103,7 @@
             <div class="pg-news-card__date">August 14, 2025</div>
             <h3>89 Animals Rescued in Kolhapur Flood Response</h3>
             <p>Three rescue boats and 45 volunteers deployed within hours of flood alert. Relief operations still active.</p>
-            <a href="news-detail.html?id=kolhapur-flood-2025" class="btn btn--outline btn--sm" style="margin-top:1rem">Read More →</a>
+            <a href="{% url 'public:news_detail' 1 %}" class="btn btn--outline btn--sm" style="margin-top:1rem">Read More →</a>
           </div>
         </div>
 
@@ -113,7 +114,7 @@
             <div class="pg-news-card__date">July 28, 2025</div>
             <h3>42,000th Tree Planted — Hitting a Milestone</h3>
             <p>A 5-year journey reaches a landmark achievement as volunteers gather at Sinhagad to celebrate the 42,000th sapling.</p>
-            <a href="news-detail.html?id=42k-trees" class="btn btn--outline btn--sm" style="margin-top:1rem">Read More →</a>
+            <a href="{% url 'public:news_detail' 1 %}" class="btn btn--outline btn--sm" style="margin-top:1rem">Read More →</a>
           </div>
         </div>
 
@@ -124,7 +125,7 @@
             <div class="pg-news-card__date">July 12, 2025</div>
             <h3>Paws Walkathon Raises ₹4.2 Lakh for Sanctuary Animals</h3>
             <p>Over 1,200 participants including their pets joined the walkathon — our biggest fundraiser yet.</p>
-            <a href="news-detail.html?id=walkathon-2025" class="btn btn--outline btn--sm" style="margin-top:1rem">Read More →</a>
+            <a href="{% url 'public:news_detail' 1 %}" class="btn btn--outline btn--sm" style="margin-top:1rem">Read More →</a>
           </div>
         </div>
 
@@ -135,7 +136,7 @@
             <div class="pg-news-card__date">June 5, 2025</div>
             <h3>Unke Liye Receives Maharashtra Eco-NGO Award 2025</h3>
             <p>Recognised at the Maharashtra Environmental Summit for outstanding environmental conservation contributions.</p>
-            <a href="news-detail.html?id=eco-award-2025" class="btn btn--outline btn--sm" style="margin-top:1rem">Read More →</a>
+            <a href="{% url 'public:news_detail' 1 %}" class="btn btn--outline btn--sm" style="margin-top:1rem">Read More →</a>
           </div>
         </div>
 
@@ -146,7 +147,7 @@
             <div class="pg-news-card__date">May 18, 2025</div>
             <h3>1,000th Animal Adoption Milestone — A Celebration</h3>
             <p>Luna the cat became our 1,000th adoption since the program began. The family met her at our March camp.</p>
-            <a href="news-detail.html?id=1000-adoption" class="btn btn--outline btn--sm" style="margin-top:1rem">Read More →</a>
+            <a href="{% url 'public:news_detail' 1 %}" class="btn btn--outline btn--sm" style="margin-top:1rem">Read More →</a>
           </div>
         </div>
 
@@ -157,7 +158,7 @@
             <div class="pg-news-card__date">April 22, 2025</div>
             <h3>Plastic-Free Market Initiative Reaches 25 Pune Neighbourhoods</h3>
             <p>Our door-to-door cloth bag campaign has eliminated over 2 tons of single-use plastic use in key Pune markets.</p>
-            <a href="news-detail.html?id=plastic-free-25" class="btn btn--outline btn--sm" style="margin-top:1rem">Read More →</a>
+            <a href="{% url 'public:news_detail' 1 %}" class="btn btn--outline btn--sm" style="margin-top:1rem">Read More →</a>
           </div>
         </div>
 
@@ -185,16 +186,16 @@
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
-      <div class="footer-col footer-col--brand"><a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="footer-logo-img" /></a><p style="color:rgba(255,255,255,.7);font-size:.875rem;line-height:1.75">Registered NGO · 80G Tax Exempt</p></div>
-      <div class="footer-col"><h4 style="color:#fff;margin-bottom:1rem">Media</h4><ul style="list-style:none;padding:0;margin:0;display:grid;gap:.5rem;font-size:.875rem"><li><a href="news.html">News</a></li><li><a href="stories.html">Stories</a></li><li><a href="gallery.html">Gallery</a></li></ul></div>
-      <div class="footer-col"><h4 style="color:#fff;margin-bottom:1rem">Get Involved</h4><ul style="list-style:none;padding:0;margin:0;display:grid;gap:.5rem;font-size:.875rem"><li><a href="volunteer.html">Volunteer</a></li><li><a href="donate.html">Donate</a></li><li><a href="events.html">Events</a></li></ul></div>
+      <div class="footer-col footer-col--brand"><a href="{% url 'public:home' %}" class="nav-logo" aria-label="Unke Liye — Home"><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="footer-logo-img" /></a><p style="color:rgba(255,255,255,.7);font-size:.875rem;line-height:1.75">Registered NGO · 80G Tax Exempt</p></div>
+      <div class="footer-col"><h4 style="color:#fff;margin-bottom:1rem">Media</h4><ul style="list-style:none;padding:0;margin:0;display:grid;gap:.5rem;font-size:.875rem"><li><a href="{% url 'public:news' %}">News</a></li><li><a href="{% url 'public:stories' %}">Stories</a></li><li><a href="{% url 'public:gallery' %}">Gallery</a></li></ul></div>
+      <div class="footer-col"><h4 style="color:#fff;margin-bottom:1rem">Get Involved</h4><ul style="list-style:none;padding:0;margin:0;display:grid;gap:.5rem;font-size:.875rem"><li><a href="{% url 'public:volunteer' %}">Volunteer</a></li><li><a href="{% url 'public:donate' %}">Donate</a></li><li><a href="{% url 'public:events' %}">Events</a></li></ul></div>
       <div class="footer-col"><h4 style="color:#fff;margin-bottom:1rem">Contact</h4><p style="color:rgba(255,255,255,.7);font-size:.875rem">📞 <a href="tel:+919876543210" style="color:#fff">+91 98765 43210</a><br>📧 <a href="mailto:info@unkeliye.org" style="color:#fff">info@unkeliye.org</a></p></div>
     </div>
-    <div class="footer-bottom"><p>© 2026 Unke Liye</p><div class="footer-legal-links"><a href="privacy-policy.html">Privacy</a><a href="terms.html">Terms</a></div></div>
+    <div class="footer-bottom"><p>© 2026 Unke Liye</p><div class="footer-legal-links"><a href="{% url 'public:privacy_policy' %}">Privacy</a><a href="{% url 'public:terms' %}">Terms</a></div></div>
   </div>
 </footer>
-<a href="report-animal.html" class="pg-float-btn"><span class="pg-float-pulse"></span> Report Emergency</a>
+<a href="{% url 'public:report_animal' %}" class="pg-float-btn"><span class="pg-float-pulse"></span> Report Emergency</a>
 <div class="pg-toast-wrap"></div>
-<script src="js/data.js"></script><script src="js/main.js"></script><script src="js/enhanced-pages.js"></script>
+<script src="{% static 'public-assets/js/data.js' %}"></script><script src="{% static 'public-assets/js/main.js' %}"></script><script src="{% static 'public-assets/js/enhanced-pages.js' %}"></script>
 </body>
 </html>

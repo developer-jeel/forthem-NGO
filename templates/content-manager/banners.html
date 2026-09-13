@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,13 +8,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/admin.css">
+  <link rel="stylesheet" href="{% static 'content-manager-assets/css/admin.css' %}">
 </head>
 <body>
   <div class="admin-shell">
     <aside id="sidebar" class="sidebar" role="navigation" aria-label="Content Manager navigation">
       <div class="sidebar-header">
-        <img src="../logo.png" alt="Unke Liye Logo" class="sidebar-logo-img">
+        <img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye Logo" class="sidebar-logo-img">
         <div class="logo-text">
           <strong>Unke Liye</strong>
           <small>Content Manager</small>
@@ -23,7 +24,7 @@
       <nav class="sidebar-nav">
         <div class="nav-group">
           <div class="nav-group-title">Overview</div>
-          <a href="dashboard.html" class="nav-link">
+          <a href="{% url 'content_managerr:dashboard' %}" class="nav-link">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
             <span class="label">Dashboard</span>
           </a>
@@ -31,27 +32,27 @@
 
         <div class="nav-group">
           <div class="nav-group-title">Content</div>
-          <a href="homepage-content.html" class="nav-link">
+          <a href="{% url 'content_managerr:homepage_content' %}" class="nav-link">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
             <span class="label">Homepage Content</span>
           </a>
-          <a href="banners.html" class="nav-link active" aria-current="page">
+          <a href="{% url 'content_managerr:banners' %}" class="nav-link active" aria-current="page">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
             <span class="label">Page Banners</span>
           </a>
-          <a href="stories.html" class="nav-link">
+          <a href="{% url 'content_managerr:stories' %}" class="nav-link">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
             <span class="label">Stories</span>
           </a>
-          <a href="news.html" class="nav-link">
+          <a href="{% url 'content_managerr:news' %}" class="nav-link">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
             <span class="label">News &amp; Press</span>
           </a>
-          <a href="gallery.html" class="nav-link">
+          <a href="{% url 'content_managerr:gallery' %}" class="nav-link">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
             <span class="label">Gallery</span>
           </a>
-          <a href="media-library.html" class="nav-link">
+          <a href="{% url 'content_managerr:media_library' %}" class="nav-link">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
             <span class="label">Media Library</span>
           </a>
@@ -59,12 +60,12 @@
 
         <div class="nav-group">
           <div class="nav-group-title">Programs</div>
-          <a href="campaigns.html" class="nav-link">
+          <a href="{% url 'content_managerr:campaigns' %}" class="nav-link">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
             <span class="label">Campaigns</span>
             <span class="nav-readonly">View</span>
           </a>
-          <a href="events.html" class="nav-link">
+          <a href="{% url 'content_managerr:events' %}" class="nav-link">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
             <span class="label">Events</span>
             <span class="nav-readonly">View</span>
@@ -117,7 +118,7 @@
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
           </button>
           <nav class="breadcrumb" aria-label="Breadcrumb">
-            <a href="../index.html">Unke Liye</a> / <a href="dashboard.html">Content</a> / <span id="breadcrumb-current" aria-current="page">Page Banners</span>
+            <a href="{% url 'content_managerr:dashboard' %}">Unke Liye</a> / <a href="{% url 'content_managerr:dashboard' %}">Content</a> / <span id="breadcrumb-current" aria-current="page">Page Banners</span>
           </nav>
         </div>
 
@@ -335,6 +336,6 @@
 
   <div id="sidebar-overlay"></div>
 
-  <script src="assets/js/admin-core.js"></script>
+  <script src="{% static 'content-manager-assets/js/admin-core.js' %}"></script>
 </body>
 </html>

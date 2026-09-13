@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,11 +8,11 @@
   <title>Volunteer Dashboard — Unke Liye</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/variables.css" />
-  <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/components.css" />
-  <link rel="stylesheet" href="css/animations.css" />
-  <link rel="stylesheet" href="css/missing-pages.css" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/variables.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/base.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/components.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/animations.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/missing-pages.css' %}" />
   <style>
     .dashboard-header {
       background: linear-gradient(rgba(31, 75, 63, 0.90), rgba(22, 58, 49, 0.95)), url('https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
@@ -29,46 +30,46 @@
 <div class="emergency-bar" role="banner" aria-label="Emergency rescue alert">
   <span class="pulse-dot" aria-hidden="true"></span>
   <span>🚨 Animal in distress? We respond 24/7 —</span>
-  <a href="report-animal.html" aria-label="Report an animal in need">Report Now →</a>
+  <a href="{% url 'public:report_animal' %}" aria-label="Report an animal in need">Report Now →</a>
 </div>
 
 <header class="site-header" role="banner">
   <div class="container">
     <nav class="nav-inner" aria-label="Main navigation">
-      <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a>
+      <a href="{% url 'public:home' %}" class="nav-logo" aria-label="Unke Liye — Home"><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="nav-logo-img" /></a>
       <ul class="nav-menu" role="list">
-        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-        <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="{% url 'public:home' %}" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="{% url 'public:about' %}" class="nav-link">About</a></li>
         <li class="nav-item">
           <a href="#" class="nav-link" aria-haspopup="true" aria-expanded="false">
             Our Work <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 6l4 4 4-4"/></svg>
           </a>
           <div class="nav-dropdown" role="menu">
-            <a href="work-animal-rescue.html" role="menuitem"><span class="icon">🐾</span> Animal Rescue & Healthcare</a>
-            <a href="work-environment.html" role="menuitem"><span class="icon">🌱</span> Environment</a>
-            <a href="work-sanitation.html" role="menuitem"><span class="icon">🧹</span> Sanitation & Cleanliness</a>
-            <a href="work-disaster-relief.html" role="menuitem"><span class="icon">🚨</span> Disaster Relief</a>
+            <a href="{% url 'public:work_animal_rescue' %}" role="menuitem"><span class="icon">🐾</span> Animal Rescue & Healthcare</a>
+            <a href="{% url 'public:work_environment' %}" role="menuitem"><span class="icon">🌱</span> Environment</a>
+            <a href="{% url 'public:work_sanitation' %}" role="menuitem"><span class="icon">🧹</span> Sanitation & Cleanliness</a>
+            <a href="{% url 'public:work_disaster_relief' %}" role="menuitem"><span class="icon">🚨</span> Disaster Relief</a>
           </div>
         </li>
-        <li class="nav-item"><a href="adopt.html" class="nav-link">Adopt</a></li>
-        <li class="nav-item"><a href="campaigns.html" class="nav-link">Campaigns</a></li>
-        <li class="nav-item"><a href="impact.html" class="nav-link">Impact</a></li>
-        <li class="nav-item"><a href="stories.html" class="nav-link">Stories</a></li>
+        <li class="nav-item"><a href="{% url 'public:adopt' %}" class="nav-link">Adopt</a></li>
+        <li class="nav-item"><a href="{% url 'public:campaigns' %}" class="nav-link">Campaigns</a></li>
+        <li class="nav-item"><a href="{% url 'public:impact' %}" class="nav-link">Impact</a></li>
+        <li class="nav-item"><a href="{% url 'public:stories' %}" class="nav-link">Stories</a></li>
         <li class="nav-item">
           <a href="#" class="nav-link" aria-haspopup="true" aria-expanded="false">
             Get Involved <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 6l4 4 4-4"/></svg>
           </a>
           <div class="nav-dropdown" role="menu">
-            <a href="volunteer.html" role="menuitem"><span class="icon">🙋</span> Volunteer</a>
-            <a href="foster.html" role="menuitem"><span class="icon">🏠</span> Foster an Animal</a>
-            <a href="sponsor-animal.html" role="menuitem"><span class="icon">💛</span> Sponsor an Animal</a>
-            <a href="report-animal.html" role="menuitem" style="color: var(--color-urgent)"><span class="icon">🚨</span> Report an Animal</a>
+            <a href="{% url 'public:volunteer' %}" role="menuitem"><span class="icon">🙋</span> Volunteer</a>
+            <a href="{% url 'public:foster' %}" role="menuitem"><span class="icon">🏠</span> Foster an Animal</a>
+            <a href="{% url 'public:sponsor_animal' %}" role="menuitem"><span class="icon">💛</span> Sponsor an Animal</a>
+            <a href="{% url 'public:report_animal' %}" role="menuitem" style="color: var(--color-urgent)"><span class="icon">🚨</span> Report an Animal</a>
           </div>
         </li>
       </ul>
       <div class="nav-actions">
-        <a href="login.html" class="btn btn--outline btn--sm" style="color: var(--color-primary); border-color: var(--color-primary)">My Account</a>
-        <a href="donate.html" class="btn btn--primary btn--sm">Donate</a>
+        <a href="{% url 'public:login' %}" class="btn btn--outline btn--sm" style="color: var(--color-primary); border-color: var(--color-primary)">My Account</a>
+        <a href="{% url 'public:donate' %}" class="btn btn--primary btn--sm">Donate</a>
         <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
           <span></span><span></span><span></span>
         </button>
@@ -81,18 +82,18 @@
   <div class="nav-mobile-overlay"></div>
   <div class="nav-mobile-drawer">
     <button class="nav-mobile-close" aria-label="Close menu">✕</button>
-    <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a>
+    <a href="{% url 'public:home' %}" class="nav-logo" aria-label="Unke Liye — Home"><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="nav-logo-img" /></a>
     <ul class="nav-mobile-list" role="list">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About Us</a></li>
-      <li><a href="work-animal-rescue.html">Animal Rescue & Healthcare</a></li>
-      <li><a href="work-environment.html">Environment & Reforestation</a></li>
-      <li><a href="work-sanitation.html">Sanitation & Cleanliness</a></li>
-      <li><a href="work-disaster-relief.html">Disaster Relief</a></li>
-      <li><a href="adopt.html">Adopt an Animal</a></li>
-      <li><a href="volunteer.html">Volunteer With Us</a></li>
-      <li><a href="dashboard-volunteer.html">Volunteer Dashboard</a></li>
-      <li><a href="dashboard-donor.html">Donor Dashboard</a></li>
+      <li><a href="{% url 'public:home' %}">Home</a></li>
+      <li><a href="{% url 'public:about' %}">About Us</a></li>
+      <li><a href="{% url 'public:work_animal_rescue' %}">Animal Rescue & Healthcare</a></li>
+      <li><a href="{% url 'public:work_environment' %}">Environment & Reforestation</a></li>
+      <li><a href="{% url 'public:work_sanitation' %}">Sanitation & Cleanliness</a></li>
+      <li><a href="{% url 'public:work_disaster_relief' %}">Disaster Relief</a></li>
+      <li><a href="{% url 'public:adopt' %}">Adopt an Animal</a></li>
+      <li><a href="{% url 'public:volunteer' %}">Volunteer With Us</a></li>
+      <li><a href="{% url 'public:dashboard_volunteer' %}">Volunteer Dashboard</a></li>
+      <li><a href="{% url 'public:dashboard_donor' %}">Donor Dashboard</a></li>
     </ul>
   </div>
 </div>
@@ -108,8 +109,8 @@
           <p style="opacity: 0.9; font-size: var(--text-sm)">Registered Animal Rescue & Sanitation Volunteer · Hadapsar Zone, Pune</p>
         </div>
         <div style="display: flex; gap: var(--space-3)">
-          <a href="events.html" class="btn btn--sm" style="background:#fff; color:var(--color-primary); font-weight:600">Browse Drives →</a>
-          <a href="login.html" class="btn btn--outline btn--sm" style="color:#fff; border-color:rgba(255,255,255,0.4)">Logout</a>
+          <a href="{% url 'public:events' %}" class="btn btn--sm" style="background:#fff; color:var(--color-primary); font-weight:600">Browse Drives →</a>
+          <a href="{% url 'public:login' %}" class="btn btn--outline btn--sm" style="color:#fff; border-color:rgba(255,255,255,0.4)">Logout</a>
         </div>
       </div>
     </div>
@@ -182,7 +183,7 @@
                 <strong>Mula-Mutha Clean Waterways Drive</strong><br/>
                 <small style="color: var(--color-text-muted)">📅 27 September 2026 · 7:30 AM - 10:30 AM | Mula-Mutha Riverbank</small>
               </div>
-              <a href="event-detail.html?id=river-cleanup" class="btn btn--outline btn--sm" style="align-self: center">Register Shift</a>
+              <a href="{% url 'public:event_detail' 1 %}" class="btn btn--outline btn--sm" style="align-self: center">Register Shift</a>
             </div>
           </div>
         </div>
@@ -293,7 +294,7 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-col footer-col--brand">
-        <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="footer-logo-img" /></a>
+        <a href="{% url 'public:home' %}" class="nav-logo" aria-label="Unke Liye — Home"><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="footer-logo-img" /></a>
         <p style="color: rgba(255,255,255,0.7); font-size: var(--text-sm); line-height: var(--leading-relaxed); margin-bottom: var(--space-4)">
           Registered NGO dedicated to animal rescue, environmental conservation, clean water initiatives, and disaster emergency response in Maharashtra.
         </p>
@@ -301,23 +302,23 @@
       <div class="footer-col">
         <h4 style="color:#fff; font-size: var(--text-base); margin-bottom: var(--space-4)">Our Work</h4>
         <ul style="list-style:none; padding:0; margin:0; display:grid; gap:var(--space-2); font-size: var(--text-sm)">
-          <li><a href="work-animal-rescue.html">Animal Rescue & Healthcare</a></li>
-          <li><a href="work-environment.html">Environment & Reforestation</a></li>
-          <li><a href="work-sanitation.html">Sanitation & Cleanliness</a></li>
-          <li><a href="work-disaster-relief.html">Disaster Emergency Relief</a></li>
-          <li><a href="adopt.html">Animal Adoption</a></li>
-          <li><a href="sponsor-animal.html">Sponsor an Animal</a></li>
+          <li><a href="{% url 'public:work_animal_rescue' %}">Animal Rescue & Healthcare</a></li>
+          <li><a href="{% url 'public:work_environment' %}">Environment & Reforestation</a></li>
+          <li><a href="{% url 'public:work_sanitation' %}">Sanitation & Cleanliness</a></li>
+          <li><a href="{% url 'public:work_disaster_relief' %}">Disaster Emergency Relief</a></li>
+          <li><a href="{% url 'public:adopt' %}">Animal Adoption</a></li>
+          <li><a href="{% url 'public:sponsor_animal' %}">Sponsor an Animal</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4 style="color:#fff; font-size: var(--text-base); margin-bottom: var(--space-4)">Get Involved</h4>
         <ul style="list-style:none; padding:0; margin:0; display:grid; gap:var(--space-2); font-size: var(--text-sm)">
-          <li><a href="volunteer.html">Volunteer With Us</a></li>
-          <li><a href="foster.html">Foster an Animal</a></li>
-          <li><a href="events.html">Upcoming Events & Drives</a></li>
-          <li><a href="campaigns.html">Active Campaigns</a></li>
-          <li><a href="donate.html">Make a Donation</a></li>
-          <li><a href="transparency.html">Transparency & Reports</a></li>
+          <li><a href="{% url 'public:volunteer' %}">Volunteer With Us</a></li>
+          <li><a href="{% url 'public:foster' %}">Foster an Animal</a></li>
+          <li><a href="{% url 'public:events' %}">Upcoming Events & Drives</a></li>
+          <li><a href="{% url 'public:campaigns' %}">Active Campaigns</a></li>
+          <li><a href="{% url 'public:donate' %}">Make a Donation</a></li>
+          <li><a href="{% url 'public:transparency' %}">Transparency & Reports</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -335,25 +336,25 @@
         <p>© 2026 Unke Liye. Registered NGO, Maharashtra. Reg. No. MAH/2015/1234 | 80G Tax Exemption Available</p>
       </div>
       <div class="footer-legal-links">
-        <a href="privacy-policy.html">Privacy Policy</a>
-        <a href="terms.html">Terms of Use</a>
-        <a href="transparency.html">Financial Reports</a>
-        <a href="sitemap.html">Sitemap</a>
+        <a href="{% url 'public:privacy_policy' %}">Privacy Policy</a>
+        <a href="{% url 'public:terms' %}">Terms of Use</a>
+        <a href="{% url 'public:transparency' %}">Financial Reports</a>
+        <a href="{% url 'public:sitemap' %}">Sitemap</a>
       </div>
     </div>
   </div>
 </footer>
 
-<a href="report-animal.html" class="emergency-float" aria-label="Report an animal emergency">
+<a href="{% url 'public:report_animal' %}" class="emergency-float" aria-label="Report an animal emergency">
   <span class="emergency-float-icon" aria-hidden="true">🚨</span>
   <span>Report Animal Emergency</span>
 </a>
 
 <div class="toast-container" aria-live="polite" aria-atomic="false"></div>
 
-<script src="js/data.js"></script>
-<script src="js/main.js"></script>
-<script src="js/forms.js"></script>
+<script src="{% static 'public-assets/js/data.js' %}"></script>
+<script src="{% static 'public-assets/js/main.js' %}"></script>
+<script src="{% static 'public-assets/js/forms.js' %}"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const logForm = document.getElementById('log-hours-form');

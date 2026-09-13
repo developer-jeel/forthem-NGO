@@ -1,11 +1,12 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Treasury & Cash Position — Unke Liye Finance Manager</title>
-  <link rel="stylesheet" href="assets/css/finance-manager.css">
-  <link rel="stylesheet" href="../shared/css/platform-theme.css">
+  <link rel="stylesheet" href="{% static 'finance-manager-assets/css/finance-manager.css' %}">
+  <link rel="stylesheet" href="{% static 'shared/css/platform-theme.css' %}">
   <style>
     .bank-card {
       background: var(--bg-surface);
@@ -46,7 +47,7 @@
     <!-- Sidebar -->
     <aside class="sidebar">
       <div class="sidebar-header">
-        <img src="../logo.png" alt="Unke Liye Logo" class="sidebar-logo-img">
+        <img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye Logo" class="sidebar-logo-img">
         <div class="sidebar-brand">
           UNKE LIYE
           <span>Finance Operations</span>
@@ -55,67 +56,67 @@
       <nav class="sidebar-nav">
         <div class="nav-section">
           <div class="nav-section-title">Overview</div>
-          <a href="dashboard.html" class="nav-item">
+          <a href="{% url 'finance_manager:dashboard' %}" class="nav-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
             Dashboard
           </a>
         </div>
         <div class="nav-section">
           <div class="nav-section-title">Treasury & Budgets</div>
-          <a href="cash-position.html" class="nav-item active">
+          <a href="{% url 'finance_manager:cash_position' %}" class="nav-item active">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
             Cash Position
           </a>
-          <a href="department-budgets.html" class="nav-item">
+          <a href="{% url 'finance_manager:department_budgets' %}" class="nav-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
             Department Budgets
           </a>
-          <a href="compliance.html" class="nav-item">
+          <a href="{% url 'finance_manager:compliance' %}" class="nav-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             Compliance & 80G
           </a>
         </div>
         <div class="nav-section">
           <div class="nav-section-title">Fund Requests & Approvals</div>
-          <a href="fund-approvals.html" class="nav-item">
+          <a href="{% url 'finance_manager:fund_approvals' %}" class="nav-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
             Fund Approvals
           </a>
-          <a href="fund-requests.html" class="nav-item">
+          <a href="{% url 'finance_manager:fund_requests' %}" class="nav-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
             Fund Requests
           </a>
-          <a href="disbursements.html" class="nav-item">
+          <a href="{% url 'finance_manager:disbursements' %}" class="nav-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
             Disbursements
           </a>
-          <a href="expense-claims.html" class="nav-item">
+          <a href="{% url 'finance_manager:expense_claims' %}" class="nav-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 14l4-4-4-4M5 20h14a2 2 0 002-2V8l-7-5-7 5v10a2 2 0 002 2z"/></svg>
             Expense Claims
           </a>
         </div>
         <div class="nav-section">
           <div class="nav-section-title">Revenue & Donors</div>
-          <a href="donations.html" class="nav-item">
+          <a href="{% url 'finance_manager:donations' %}" class="nav-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
             Donations
           </a>
-          <a href="donors.html" class="nav-item">
+          <a href="{% url 'finance_manager:donors' %}" class="nav-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
             Donors
           </a>
-          <a href="receipts.html" class="nav-item">
+          <a href="{% url 'finance_manager:receipts' %}" class="nav-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
             Receipts
           </a>
         </div>
         <div class="nav-section">
           <div class="nav-section-title">Analysis</div>
-          <a href="reports.html" class="nav-item">
+          <a href="{% url 'finance_manager:reports' %}" class="nav-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
             Reports
           </a>
-          <a href="audit-log.html" class="nav-item">
+          <a href="{% url 'finance_manager:audit_log' %}" class="nav-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/></svg>
             Audit Log
           </a>
@@ -150,7 +151,7 @@
             <span class="icon-moon">🌙</span>
             <span class="icon-sun" style="display:none;">☀️</span>
           </button>
-          <a href="../index.html" class="btn btn-secondary btn-sm">Exit to Portals</a>
+          <a href="{% url 'finance_manager:dashboard' %}" class="btn btn-secondary btn-sm">Exit to Portals</a>
         </div>
       </header>
 
@@ -270,7 +271,7 @@
         <div class="card">
           <div class="card-header">
             <h3 class="card-title">Recent Inflow Settlements & Bank Credits</h3>
-            <a href="donations.html" class="btn btn-secondary btn-sm">View All Inflows &rarr;</a>
+            <a href="{% url 'finance_manager:donations' %}" class="btn btn-secondary btn-sm">View All Inflows &rarr;</a>
           </div>
           <div class="table-container" style="border:none;">
             <table class="data-table">
@@ -322,7 +323,7 @@
   </div>
 
   <div class="toast-container"></div>
-  <script src="../shared/js/platform-store.js"></script>
-  <script src="../shared/js/platform-ui.js"></script>
+  <script src="{% static 'shared/js/platform-store.js' %}"></script>
+  <script src="{% static 'shared/js/platform-ui.js' %}"></script>
 </body>
 </html>

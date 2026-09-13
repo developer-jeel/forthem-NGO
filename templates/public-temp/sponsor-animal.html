@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,49 +8,49 @@
   <title>Sponsor an Animal — Unke Liye</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/variables.css" />
-  <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/components.css" />
-  <link rel="stylesheet" href="css/animations.css" />
-  <link rel="stylesheet" href="css/enhanced-pages.css" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/variables.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/base.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/components.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/animations.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/enhanced-pages.css' %}" />
 </head>
 <body>
 <a href="#main" class="skip-nav">Skip to main content</a>
-<div class="emergency-bar"><span class="pulse-dot"></span><span>🚨 Animal in distress?</span><a href="report-animal.html">Report Now →</a></div>
+<div class="emergency-bar"><span class="pulse-dot"></span><span>🚨 Animal in distress?</span><a href="{% url 'public:report_animal' %}">Report Now →</a></div>
 
 <header class="site-header">
   <div class="container">
     <nav class="nav-inner">
-      <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a>
+      <a href="{% url 'public:home' %}" class="nav-logo" aria-label="Unke Liye — Home"><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="nav-logo-img" /></a>
       <ul class="nav-menu">
-        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-        <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="{% url 'public:home' %}" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="{% url 'public:about' %}" class="nav-link">About</a></li>
         <li class="nav-item">
           <a href="#" class="nav-link">Our Work <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M4 6l4 4 4-4"/></svg></a>
           <div class="nav-dropdown">
-            <a href="work-animal-rescue.html"><span class="icon">🐾</span> Animal Rescue</a>
-            <a href="work-environment.html"><span class="icon">🌱</span> Environment</a>
-            <a href="work-sanitation.html"><span class="icon">🧹</span> Sanitation</a>
-            <a href="work-disaster-relief.html"><span class="icon">🚨</span> Disaster Relief</a>
+            <a href="{% url 'public:work_animal_rescue' %}"><span class="icon">🐾</span> Animal Rescue</a>
+            <a href="{% url 'public:work_environment' %}"><span class="icon">🌱</span> Environment</a>
+            <a href="{% url 'public:work_sanitation' %}"><span class="icon">🧹</span> Sanitation</a>
+            <a href="{% url 'public:work_disaster_relief' %}"><span class="icon">🚨</span> Disaster Relief</a>
           </div>
         </li>
-        <li class="nav-item"><a href="adopt.html" class="nav-link">Adopt</a></li>
-        <li class="nav-item"><a href="campaigns.html" class="nav-link">Campaigns</a></li>
-        <li class="nav-item"><a href="events.html" class="nav-link">Events</a></li>
-        <li class="nav-item"><a href="stories.html" class="nav-link">Stories</a></li>
+        <li class="nav-item"><a href="{% url 'public:adopt' %}" class="nav-link">Adopt</a></li>
+        <li class="nav-item"><a href="{% url 'public:campaigns' %}" class="nav-link">Campaigns</a></li>
+        <li class="nav-item"><a href="{% url 'public:events' %}" class="nav-link">Events</a></li>
+        <li class="nav-item"><a href="{% url 'public:stories' %}" class="nav-link">Stories</a></li>
         <li class="nav-item">
           <a href="#" class="nav-link active">Get Involved <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M4 6l4 4 4-4"/></svg></a>
           <div class="nav-dropdown">
-            <a href="volunteer.html"><span class="icon">🙋</span> Volunteer</a>
-            <a href="foster.html"><span class="icon">🏠</span> Foster an Animal</a>
-            <a href="sponsor-animal.html"><span class="icon">💛</span> Sponsor an Animal</a>
-            <a href="report-animal.html" style="color:var(--color-urgent)"><span class="icon">🚨</span> Report an Animal</a>
+            <a href="{% url 'public:volunteer' %}"><span class="icon">🙋</span> Volunteer</a>
+            <a href="{% url 'public:foster' %}"><span class="icon">🏠</span> Foster an Animal</a>
+            <a href="{% url 'public:sponsor_animal' %}"><span class="icon">💛</span> Sponsor an Animal</a>
+            <a href="{% url 'public:report_animal' %}" style="color:var(--color-urgent)"><span class="icon">🚨</span> Report an Animal</a>
           </div>
         </li>
       </ul>
       <div class="nav-actions">
-        <a href="volunteer.html" class="btn btn--outline btn--sm">Volunteer</a>
-        <a href="donate.html" class="btn btn--primary btn--sm">Donate Now</a>
+        <a href="{% url 'public:volunteer' %}" class="btn btn--outline btn--sm">Volunteer</a>
+        <a href="{% url 'public:donate' %}" class="btn btn--primary btn--sm">Donate Now</a>
         <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
     </nav>
@@ -60,11 +61,11 @@
   <div class="nav-mobile-overlay"></div>
   <div class="nav-mobile-drawer">
     <button class="nav-mobile-close" aria-label="Close menu">✕</button>
-    <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a>
+    <a href="{% url 'public:home' %}" class="nav-logo" aria-label="Unke Liye — Home"><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="nav-logo-img" /></a>
     <ul class="nav-mobile-list">
-      <li><a href="index.html">Home</a></li><li><a href="adopt.html">Adopt</a></li>
-      <li><a href="foster.html">Foster</a></li><li><a href="sponsor-animal.html">Sponsor</a></li>
-      <li><a href="donate.html">Donate</a></li><li><a href="volunteer.html">Volunteer</a></li>
+      <li><a href="{% url 'public:home' %}">Home</a></li><li><a href="{% url 'public:adopt' %}">Adopt</a></li>
+      <li><a href="{% url 'public:foster' %}">Foster</a></li><li><a href="{% url 'public:sponsor_animal' %}">Sponsor</a></li>
+      <li><a href="{% url 'public:donate' %}">Donate</a></li><li><a href="{% url 'public:volunteer' %}">Volunteer</a></li>
     </ul>
   </div>
 </div>
@@ -78,7 +79,7 @@
     <div class="pg-hero__overlay"></div>
     <div class="container pg-hero__content">
       <nav class="pg-breadcrumb" aria-label="Breadcrumb">
-        <a href="index.html">Home</a><span class="pg-breadcrumb-sep">›</span>
+        <a href="{% url 'public:home' %}">Home</a><span class="pg-breadcrumb-sep">›</span>
         <span>Sponsor an Animal</span>
       </nav>
       <div class="pg-pill pg-pill--light">💛 Monthly Sponsorship Program</div>
@@ -86,7 +87,7 @@
       <p class="lead">Sponsor a rescued animal at our sanctuary and directly fund their food, medicine, and rehabilitation — receive monthly photo &amp; health updates.</p>
       <div class="pg-hero__actions">
         <a href="#sponsor-animals" class="btn btn--primary btn--lg">Choose Your Animal →</a>
-        <a href="donate.html" class="btn btn--outline btn--lg" style="border-color:rgba(255,255,255,0.45);color:#fff">One-Time Donation</a>
+        <a href="{% url 'public:donate' %}" class="btn btn--outline btn--lg" style="border-color:rgba(255,255,255,0.45);color:#fff">One-Time Donation</a>
       </div>
     </div>
   </section>
@@ -155,7 +156,7 @@
             <li>Tax benefit under 80G</li>
             <li>Sponsor badge on your profile</li>
           </ul>
-          <a href="donate.html?plan=basic" class="btn btn--outline btn--full">Become a Caretaker →</a>
+          <a href="{% url 'public:donate' %}" class="btn btn--outline btn--full">Become a Caretaker →</a>
         </div>
         <!-- Tier 2 — featured -->
         <div class="pg-tier-card is-featured">
@@ -171,7 +172,7 @@
             <li>Name on sanctuary wall</li>
             <li>Tax benefit under 80G</li>
           </ul>
-          <a href="donate.html?plan=guardian" class="btn btn--primary btn--full">Become a Guardian →</a>
+          <a href="{% url 'public:donate' %}" class="btn btn--primary btn--full">Become a Guardian →</a>
         </div>
         <!-- Tier 3 -->
         <div class="pg-tier-card">
@@ -186,7 +187,7 @@
             <li>Co-branding opportunity</li>
             <li>CSR certification</li>
           </ul>
-          <a href="donate.html?plan=champion" class="btn btn--outline btn--full">Become a Champion →</a>
+          <a href="{% url 'public:donate' %}" class="btn btn--outline btn--full">Become a Champion →</a>
         </div>
       </div>
     </div>
@@ -225,7 +226,7 @@
               <div style="display:flex;justify-content:space-between;font-size:.75rem;color:var(--color-text-muted)"><span>Monthly sponsorship</span><span style="color:var(--color-care)">₹700 / ₹1,000</span></div>
               <div class="pg-progress-bar"><div class="pg-progress-fill" data-pct="70"></div></div>
             </div>
-            <a href="adopt-detail.html?id=bhola" class="btn btn--primary btn--sm" style="width:100%;text-align:center">Sponsor Bhola →</a>
+            <a href="{% url 'public:adopt_detail' 1 %}" class="btn btn--primary btn--sm" style="width:100%;text-align:center">Sponsor Bhola →</a>
           </div>
         </div>
 
@@ -244,7 +245,7 @@
               <div style="display:flex;justify-content:space-between;font-size:.75rem;color:var(--color-text-muted)"><span>Monthly sponsorship</span><span style="color:var(--color-care)">₹200 / ₹500</span></div>
               <div class="pg-progress-bar"><div class="pg-progress-fill" data-pct="40"></div></div>
             </div>
-            <a href="adopt-detail.html?id=kaju" class="btn btn--primary btn--sm" style="width:100%;text-align:center">Sponsor Kaju →</a>
+            <a href="{% url 'public:adopt_detail' 1 %}" class="btn btn--primary btn--sm" style="width:100%;text-align:center">Sponsor Kaju →</a>
           </div>
         </div>
 
@@ -264,7 +265,7 @@
               <div style="display:flex;justify-content:space-between;font-size:.75rem;color:var(--color-text-muted)"><span>Monthly sponsorship</span><span style="color:var(--color-care)">₹800 / ₹2,500</span></div>
               <div class="pg-progress-bar"><div class="pg-progress-fill" data-pct="32"></div></div>
             </div>
-            <a href="adopt-detail.html?id=rani" class="btn btn--primary btn--sm" style="width:100%;text-align:center">Sponsor Rani →</a>
+            <a href="{% url 'public:adopt_detail' 1 %}" class="btn btn--primary btn--sm" style="width:100%;text-align:center">Sponsor Rani →</a>
           </div>
         </div>
 
@@ -283,7 +284,7 @@
               <div style="display:flex;justify-content:space-between;font-size:.75rem;color:var(--color-text-muted)"><span>Monthly sponsorship</span><span style="color:var(--color-care)">₹350 / ₹500</span></div>
               <div class="pg-progress-bar"><div class="pg-progress-fill" data-pct="70"></div></div>
             </div>
-            <a href="adopt-detail.html?id=golu" class="btn btn--primary btn--sm" style="width:100%;text-align:center">Sponsor Golu →</a>
+            <a href="{% url 'public:adopt_detail' 1 %}" class="btn btn--primary btn--sm" style="width:100%;text-align:center">Sponsor Golu →</a>
           </div>
         </div>
 
@@ -322,7 +323,7 @@
               <div style="display:flex;justify-content:space-between;font-size:.75rem;color:var(--color-text-muted)"><span>Monthly sponsorship</span><span style="color:var(--color-care)">₹200 / ₹1,000</span></div>
               <div class="pg-progress-bar"><div class="pg-progress-fill" data-pct="20"></div></div>
             </div>
-            <a href="adopt-detail.html?id=rocky" class="btn btn--primary btn--sm" style="width:100%;text-align:center">Sponsor Rocky →</a>
+            <a href="{% url 'public:adopt_detail' 1 %}" class="btn btn--primary btn--sm" style="width:100%;text-align:center">Sponsor Rocky →</a>
           </div>
         </div>
       </div>
@@ -351,7 +352,7 @@
         </table>
       </div>
       <div style="text-align:center;margin-top:1rem">
-        <a href="transparency.html" class="btn btn--outline">View Full Financial Reports →</a>
+        <a href="{% url 'public:transparency' %}" class="btn btn--outline">View Full Financial Reports →</a>
       </div>
     </div>
   </section>
@@ -365,8 +366,8 @@
           <p>A one-time donation of any amount is equally valued and goes directly to animal care.</p>
         </div>
         <div style="display:flex;gap:.75rem;flex-wrap:wrap">
-          <a href="donate.html" class="btn btn--sm" style="background:#fff;color:var(--color-primary);font-weight:600">Make a One-Time Gift →</a>
-          <a href="foster.html" class="btn btn--outline btn--sm" style="border-color:rgba(255,255,255,0.45);color:#fff">Foster Instead</a>
+          <a href="{% url 'public:donate' %}" class="btn btn--sm" style="background:#fff;color:var(--color-primary);font-weight:600">Make a One-Time Gift →</a>
+          <a href="{% url 'public:foster' %}" class="btn btn--outline btn--sm" style="border-color:rgba(255,255,255,0.45);color:#fff">Foster Instead</a>
         </div>
       </div>
     </div>
@@ -378,25 +379,25 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-col footer-col--brand">
-        <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="footer-logo-img" /></a>
+        <a href="{% url 'public:home' %}" class="nav-logo" aria-label="Unke Liye — Home"><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="footer-logo-img" /></a>
         <p style="color:rgba(255,255,255,.7);font-size:.875rem;line-height:1.75">Registered NGO — Animal Rescue, Environmental Conservation, Sanitation &amp; Disaster Relief.</p>
       </div>
       <div class="footer-col">
         <h4 style="color:#fff;margin-bottom:1rem">Our Work</h4>
         <ul style="list-style:none;padding:0;margin:0;display:grid;gap:.5rem;font-size:.875rem">
-          <li><a href="work-animal-rescue.html">Animal Rescue</a></li>
-          <li><a href="work-environment.html">Environment</a></li>
-          <li><a href="work-sanitation.html">Sanitation</a></li>
-          <li><a href="work-disaster-relief.html">Disaster Relief</a></li>
+          <li><a href="{% url 'public:work_animal_rescue' %}">Animal Rescue</a></li>
+          <li><a href="{% url 'public:work_environment' %}">Environment</a></li>
+          <li><a href="{% url 'public:work_sanitation' %}">Sanitation</a></li>
+          <li><a href="{% url 'public:work_disaster_relief' %}">Disaster Relief</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4 style="color:#fff;margin-bottom:1rem">Get Involved</h4>
         <ul style="list-style:none;padding:0;margin:0;display:grid;gap:.5rem;font-size:.875rem">
-          <li><a href="volunteer.html">Volunteer</a></li>
-          <li><a href="foster.html">Foster an Animal</a></li>
-          <li><a href="sponsor-animal.html">Sponsor an Animal</a></li>
-          <li><a href="donate.html">Make a Donation</a></li>
+          <li><a href="{% url 'public:volunteer' %}">Volunteer</a></li>
+          <li><a href="{% url 'public:foster' %}">Foster an Animal</a></li>
+          <li><a href="{% url 'public:sponsor_animal' %}">Sponsor an Animal</a></li>
+          <li><a href="{% url 'public:donate' %}">Make a Donation</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -407,12 +408,12 @@
     </div>
     <div class="footer-bottom">
       <p>© 2026 Unke Liye · 80G Tax Exempt</p>
-      <div class="footer-legal-links"><a href="privacy-policy.html">Privacy</a><a href="terms.html">Terms</a><a href="transparency.html">Transparency</a></div>
+      <div class="footer-legal-links"><a href="{% url 'public:privacy_policy' %}">Privacy</a><a href="{% url 'public:terms' %}">Terms</a><a href="{% url 'public:transparency' %}">Transparency</a></div>
     </div>
   </div>
 </footer>
-<a href="report-animal.html" class="pg-float-btn"><span class="pg-float-pulse"></span> Report Emergency</a>
+<a href="{% url 'public:report_animal' %}" class="pg-float-btn"><span class="pg-float-pulse"></span> Report Emergency</a>
 <div class="pg-toast-wrap"></div>
-<script src="js/data.js"></script><script src="js/main.js"></script><script src="js/enhanced-pages.js"></script>
+<script src="{% static 'public-assets/js/data.js' %}"></script><script src="{% static 'public-assets/js/main.js' %}"></script><script src="{% static 'public-assets/js/enhanced-pages.js' %}"></script>
 </body>
 </html>

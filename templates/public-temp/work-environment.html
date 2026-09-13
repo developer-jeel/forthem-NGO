@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,47 +8,47 @@
   <title>Environment Conservation — Unke Liye</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/variables.css" />
-  <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/components.css" />
-  <link rel="stylesheet" href="css/animations.css" />
-  <link rel="stylesheet" href="css/enhanced-pages.css" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/variables.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/base.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/components.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/animations.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/enhanced-pages.css' %}" />
 </head>
 <body>
 <a href="#main" class="skip-nav">Skip to main content</a>
-<div class="emergency-bar"><span class="pulse-dot"></span><span>🚨 Animal in distress?</span><a href="report-animal.html">Report Now →</a></div>
+<div class="emergency-bar"><span class="pulse-dot"></span><span>🚨 Animal in distress?</span><a href="{% url 'public:report_animal' %}">Report Now →</a></div>
 
 <header class="site-header">
   <div class="container">
     <nav class="nav-inner">
-      <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a>
+      <a href="{% url 'public:home' %}" class="nav-logo" aria-label="Unke Liye — Home"><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="nav-logo-img" /></a>
       <ul class="nav-menu">
-        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-        <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="{% url 'public:home' %}" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="{% url 'public:about' %}" class="nav-link">About</a></li>
         <li class="nav-item">
           <a href="#" class="nav-link active">Our Work <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M4 6l4 4 4-4"/></svg></a>
           <div class="nav-dropdown">
-            <a href="work-animal-rescue.html"><span class="icon">🐾</span> Animal Rescue</a>
-            <a href="work-environment.html"><span class="icon">🌱</span> Environment</a>
-            <a href="work-sanitation.html"><span class="icon">🧹</span> Sanitation</a>
-            <a href="work-disaster-relief.html"><span class="icon">🚨</span> Disaster Relief</a>
+            <a href="{% url 'public:work_animal_rescue' %}"><span class="icon">🐾</span> Animal Rescue</a>
+            <a href="{% url 'public:work_environment' %}"><span class="icon">🌱</span> Environment</a>
+            <a href="{% url 'public:work_sanitation' %}"><span class="icon">🧹</span> Sanitation</a>
+            <a href="{% url 'public:work_disaster_relief' %}"><span class="icon">🚨</span> Disaster Relief</a>
           </div>
         </li>
-        <li class="nav-item"><a href="adopt.html" class="nav-link">Adopt</a></li>
-        <li class="nav-item"><a href="campaigns.html" class="nav-link">Campaigns</a></li>
-        <li class="nav-item"><a href="events.html" class="nav-link">Events</a></li>
-        <li class="nav-item"><a href="stories.html" class="nav-link">Stories</a></li>
-        <li class="nav-item"><a href="volunteer.html" class="nav-link">Get Involved</a></li>
+        <li class="nav-item"><a href="{% url 'public:adopt' %}" class="nav-link">Adopt</a></li>
+        <li class="nav-item"><a href="{% url 'public:campaigns' %}" class="nav-link">Campaigns</a></li>
+        <li class="nav-item"><a href="{% url 'public:events' %}" class="nav-link">Events</a></li>
+        <li class="nav-item"><a href="{% url 'public:stories' %}" class="nav-link">Stories</a></li>
+        <li class="nav-item"><a href="{% url 'public:volunteer' %}" class="nav-link">Get Involved</a></li>
       </ul>
       <div class="nav-actions">
-        <a href="volunteer.html" class="btn btn--outline btn--sm">Volunteer</a>
-        <a href="donate.html" class="btn btn--primary btn--sm">Donate Now</a>
+        <a href="{% url 'public:volunteer' %}" class="btn btn--outline btn--sm">Volunteer</a>
+        <a href="{% url 'public:donate' %}" class="btn btn--primary btn--sm">Donate Now</a>
         <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
     </nav>
   </div>
 </header>
-<div class="nav-mobile-panel"><div class="nav-mobile-overlay"></div><div class="nav-mobile-drawer"><button class="nav-mobile-close">✕</button><a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a><ul class="nav-mobile-list"><li><a href="index.html">Home</a></li><li><a href="work-environment.html">Environment</a></li><li><a href="work-sanitation.html">Sanitation</a></li><li><a href="work-disaster-relief.html">Disaster Relief</a></li><li><a href="volunteer.html">Volunteer</a></li><li><a href="donate.html">Donate</a></li></ul></div></div>
+<div class="nav-mobile-panel"><div class="nav-mobile-overlay"></div><div class="nav-mobile-drawer"><button class="nav-mobile-close">✕</button><a href="{% url 'public:home' %}" class="nav-logo" aria-label="Unke Liye — Home"><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="nav-logo-img" /></a><ul class="nav-mobile-list"><li><a href="{% url 'public:home' %}">Home</a></li><li><a href="{% url 'public:work_environment' %}">Environment</a></li><li><a href="{% url 'public:work_sanitation' %}">Sanitation</a></li><li><a href="{% url 'public:work_disaster_relief' %}">Disaster Relief</a></li><li><a href="{% url 'public:volunteer' %}">Volunteer</a></li><li><a href="{% url 'public:donate' %}">Donate</a></li></ul></div></div>
 
 <main id="main">
 
@@ -57,13 +58,13 @@
       style="background-image:url('https://images.unsplash.com/photo-1440342359743-84fcb8c21f21?auto=format&fit=crop&w=1600&q=80')"></div>
     <div class="pg-hero__overlay" style="background:linear-gradient(to bottom,rgba(15,45,20,0.3) 0%,rgba(15,45,20,0.65) 55%,rgba(15,45,20,0.94) 100%)"></div>
     <div class="container pg-hero__content">
-      <nav class="pg-breadcrumb"><a href="index.html">Home</a><span class="pg-breadcrumb-sep">›</span><a href="#">Our Work</a><span class="pg-breadcrumb-sep">›</span><span>Environment</span></nav>
+      <nav class="pg-breadcrumb"><a href="{% url 'public:home' %}">Home</a><span class="pg-breadcrumb-sep">›</span><a href="#">Our Work</a><span class="pg-breadcrumb-sep">›</span><span>Environment</span></nav>
       <div class="pg-pill pg-pill--light">🌱 Pillar 2 of 4</div>
       <h1>Restoring Nature,<br><em style="color:#A8D8B9;font-style:normal">One Green Act at a Time</em></h1>
       <p class="lead">Unke Liye plants trees, restores rivers, reduces plastic, and builds climate-resilient communities across the Pune Metropolitan Region.</p>
       <div class="pg-hero__actions">
-        <a href="volunteer.html?pillar=environment" class="btn btn--primary btn--lg">Join Environment Drives →</a>
-        <a href="campaigns.html" class="btn btn--outline btn--lg" style="border-color:rgba(255,255,255,0.45);color:#fff">Active Campaigns</a>
+        <a href="{% url 'public:volunteer' %}" class="btn btn--primary btn--lg">Join Environment Drives →</a>
+        <a href="{% url 'public:campaigns' %}" class="btn btn--outline btn--lg" style="border-color:rgba(255,255,255,0.45);color:#fff">Active Campaigns</a>
       </div>
     </div>
   </section>
@@ -115,7 +116,7 @@
                 <small style="color:var(--color-text-muted)">Trees Planted</small>
               </div>
             </div>
-            <a href="events.html?tag=tree-planting" class="btn btn--primary">Join Next Tree Drive →</a>
+            <a href="{% url 'public:events' %}" class="btn btn--primary">Join Next Tree Drive →</a>
           </div>
         </div>
       </div>
@@ -130,7 +131,7 @@
             <h3 style="font-size:1.75rem">Mula-Mutha River Cleanup</h3>
             <p style="color:var(--color-text-muted);line-height:1.8;margin-bottom:1rem">Monthly cleanup drives along Pune's Mula and Mutha rivers — removing garbage, plastic, and industrial waste with 50–200 volunteers each session.</p>
             <p style="color:var(--color-text-muted);line-height:1.8;margin-bottom:1.5rem">We've removed 18 tons of plastic waste and 40+ tons of total debris over the past two years — measurably improving water quality metrics.</p>
-            <a href="events.html?tag=river-cleanup" class="btn btn--primary">Join Next River Drive →</a>
+            <a href="{% url 'public:events' %}" class="btn btn--primary">Join Next River Drive →</a>
           </div>
         </div>
       </div>
@@ -144,7 +145,7 @@
           <div>
             <h3 style="font-size:1.75rem">Zero Plastic Initiative</h3>
             <p style="color:var(--color-text-muted);line-height:1.8;margin-bottom:1rem">Free distribution of cloth bags, awareness campaigns in markets, and partnerships with local businesses to eliminate single-use plastic in 25 Pune neighbourhoods.</p>
-            <a href="campaigns.html?tag=plastic-free" class="btn btn--primary">Support This Campaign →</a>
+            <a href="{% url 'public:campaigns' %}" class="btn btn--primary">Support This Campaign →</a>
           </div>
         </div>
       </div>
@@ -158,7 +159,7 @@
           <div>
             <h3 style="font-size:1.75rem">Urban Biodiversity Corridors</h3>
             <p style="color:var(--color-text-muted);line-height:1.8;margin-bottom:1rem">Creating pollinator patches, bird feeding stations, and butterfly gardens in schools and public parks — restoring native flora and fauna in urban areas.</p>
-            <a href="volunteer.html?pillar=environment" class="btn btn--primary">Volunteer for This Program →</a>
+            <a href="{% url 'public:volunteer' %}" class="btn btn--primary">Volunteer for This Program →</a>
           </div>
         </div>
       </div>
@@ -196,19 +197,19 @@
           <div class="pg-feat-icon" style="background:rgba(62,125,92,0.12)">🙋</div>
           <h4 style="color:var(--color-protect)">Volunteer at Drives</h4>
           <p>Join any of our 3–4 monthly environment drives — tree planting, cleanups, or biodiversity activities.</p>
-          <div style="margin-top:1.25rem"><a href="volunteer.html?pillar=environment" class="btn btn--outline btn--sm">Sign Up →</a></div>
+          <div style="margin-top:1.25rem"><a href="{% url 'public:volunteer' %}" class="btn btn--outline btn--sm">Sign Up →</a></div>
         </div>
         <div class="pg-feat-card reveal">
           <div class="pg-feat-icon" style="background:rgba(62,125,92,0.12)">💰</div>
           <h4 style="color:var(--color-protect)">Fund a Tree</h4>
           <p>₹150 plants, GPS-tags, and maintains one sapling for 3 years. Fund 10, 50, or 100 trees today.</p>
-          <div style="margin-top:1.25rem"><a href="donate.html?tag=tree" class="btn btn--outline btn--sm">Fund Trees →</a></div>
+          <div style="margin-top:1.25rem"><a href="{% url 'public:donate' %}" class="btn btn--outline btn--sm">Fund Trees →</a></div>
         </div>
         <div class="pg-feat-card reveal">
           <div class="pg-feat-icon" style="background:rgba(62,125,92,0.12)">🏢</div>
           <h4 style="color:var(--color-protect)">Corporate Green CSR</h4>
           <p>Partner your company for team-building cleanups, green pledges, and annual CSR environmental reports.</p>
-          <div style="margin-top:1.25rem"><a href="contact.html?ref=corporate" class="btn btn--outline btn--sm">Partner With Us →</a></div>
+          <div style="margin-top:1.25rem"><a href="{% url 'public:contact' %}" class="btn btn--outline btn--sm">Partner With Us →</a></div>
         </div>
       </div>
     </div>
@@ -222,7 +223,7 @@
           <div class="pg-pill pg-pill--green">Upcoming</div>
           <h2 style="margin-top:.5rem">Environment Events Near You</h2>
         </div>
-        <a href="events.html?pillar=environment" class="btn btn--outline">All Events →</a>
+        <a href="{% url 'public:events' %}" class="btn btn--outline">All Events →</a>
       </div>
       <div class="pg-grid-3 reveal">
         <div class="pg-event-card">
@@ -233,7 +234,7 @@
           <div class="pg-event-card__body">
             <h3>Monsoon Tree Plantation Drive</h3>
             <div class="pg-event-card__meta"><span>📍 Sinhagad Road, Pune</span><span>⏰ 7:00 AM – 11:00 AM</span></div>
-            <a href="event-detail.html?id=tree-drive-sep" class="btn btn--primary btn--sm" style="margin-top:auto">RSVP Free →</a>
+            <a href="{% url 'public:event_detail' 1 %}" class="btn btn--primary btn--sm" style="margin-top:auto">RSVP Free →</a>
           </div>
         </div>
         <div class="pg-event-card">
@@ -244,7 +245,7 @@
           <div class="pg-event-card__body">
             <h3>Mula-Mutha River Cleanup</h3>
             <div class="pg-event-card__meta"><span>📍 Baner Ghat, Pune</span><span>⏰ 6:30 AM – 10:30 AM</span></div>
-            <a href="event-detail.html?id=river-oct" class="btn btn--primary btn--sm" style="margin-top:auto">RSVP Free →</a>
+            <a href="{% url 'public:event_detail' 1 %}" class="btn btn--primary btn--sm" style="margin-top:auto">RSVP Free →</a>
           </div>
         </div>
         <div class="pg-event-card">
@@ -255,7 +256,7 @@
           <div class="pg-event-card__body">
             <h3>Plastic-Free Market Campaign</h3>
             <div class="pg-event-card__meta"><span>📍 NIBM Road Market</span><span>⏰ 9:00 AM – 1:00 PM</span></div>
-            <a href="event-detail.html?id=plastic-free-oct" class="btn btn--primary btn--sm" style="margin-top:auto">RSVP →</a>
+            <a href="{% url 'public:event_detail' 1 %}" class="btn btn--primary btn--sm" style="margin-top:auto">RSVP →</a>
           </div>
         </div>
       </div>
@@ -271,8 +272,8 @@
           <p>Donate ₹150 to plant and maintain one tree for 3 years — GPS-tagged, survival-monitored.</p>
         </div>
         <div style="display:flex;gap:.75rem;flex-wrap:wrap">
-          <a href="donate.html?tag=environment" class="btn btn--sm" style="background:#fff;color:var(--color-protect);font-weight:600">Donate for Environment →</a>
-          <a href="events.html?pillar=environment" class="btn btn--outline btn--sm" style="border-color:rgba(255,255,255,0.45);color:#fff">Volunteer at Events</a>
+          <a href="{% url 'public:donate' %}" class="btn btn--sm" style="background:#fff;color:var(--color-protect);font-weight:600">Donate for Environment →</a>
+          <a href="{% url 'public:events' %}" class="btn btn--outline btn--sm" style="border-color:rgba(255,255,255,0.45);color:#fff">Volunteer at Events</a>
         </div>
       </div>
     </div>
@@ -283,16 +284,16 @@
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
-      <div class="footer-col footer-col--brand"><a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="footer-logo-img" /></a><p style="color:rgba(255,255,255,.7);font-size:.875rem;line-height:1.75">Registered NGO — Animal Rescue, Environmental Conservation, Sanitation &amp; Disaster Relief across Maharashtra.</p></div>
-      <div class="footer-col"><h4 style="color:#fff;margin-bottom:1rem">Our Work</h4><ul style="list-style:none;padding:0;margin:0;display:grid;gap:.5rem;font-size:.875rem"><li><a href="work-animal-rescue.html">Animal Rescue</a></li><li><a href="work-environment.html">Environment</a></li><li><a href="work-sanitation.html">Sanitation</a></li><li><a href="work-disaster-relief.html">Disaster Relief</a></li></ul></div>
-      <div class="footer-col"><h4 style="color:#fff;margin-bottom:1rem">Get Involved</h4><ul style="list-style:none;padding:0;margin:0;display:grid;gap:.5rem;font-size:.875rem"><li><a href="volunteer.html">Volunteer</a></li><li><a href="foster.html">Foster</a></li><li><a href="donate.html">Donate</a></li><li><a href="events.html">Events</a></li></ul></div>
+      <div class="footer-col footer-col--brand"><a href="{% url 'public:home' %}" class="nav-logo" aria-label="Unke Liye — Home"><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="footer-logo-img" /></a><p style="color:rgba(255,255,255,.7);font-size:.875rem;line-height:1.75">Registered NGO — Animal Rescue, Environmental Conservation, Sanitation &amp; Disaster Relief across Maharashtra.</p></div>
+      <div class="footer-col"><h4 style="color:#fff;margin-bottom:1rem">Our Work</h4><ul style="list-style:none;padding:0;margin:0;display:grid;gap:.5rem;font-size:.875rem"><li><a href="{% url 'public:work_animal_rescue' %}">Animal Rescue</a></li><li><a href="{% url 'public:work_environment' %}">Environment</a></li><li><a href="{% url 'public:work_sanitation' %}">Sanitation</a></li><li><a href="{% url 'public:work_disaster_relief' %}">Disaster Relief</a></li></ul></div>
+      <div class="footer-col"><h4 style="color:#fff;margin-bottom:1rem">Get Involved</h4><ul style="list-style:none;padding:0;margin:0;display:grid;gap:.5rem;font-size:.875rem"><li><a href="{% url 'public:volunteer' %}">Volunteer</a></li><li><a href="{% url 'public:foster' %}">Foster</a></li><li><a href="{% url 'public:donate' %}">Donate</a></li><li><a href="{% url 'public:events' %}">Events</a></li></ul></div>
       <div class="footer-col"><h4 style="color:#fff;margin-bottom:1rem">Contact</h4><p style="color:rgba(255,255,255,.7);font-size:.875rem">🚨 24/7: <a href="tel:+919876543210" style="color:#fff;font-weight:600">+91 98765 43210</a></p><p style="color:rgba(255,255,255,.7);font-size:.875rem;margin-top:.5rem">📧 <a href="mailto:info@unkeliye.org" style="color:#fff">info@unkeliye.org</a></p></div>
     </div>
-    <div class="footer-bottom"><p>© 2026 Unke Liye · 80G Tax Exempt</p><div class="footer-legal-links"><a href="privacy-policy.html">Privacy</a><a href="terms.html">Terms</a><a href="transparency.html">Transparency</a></div></div>
+    <div class="footer-bottom"><p>© 2026 Unke Liye · 80G Tax Exempt</p><div class="footer-legal-links"><a href="{% url 'public:privacy_policy' %}">Privacy</a><a href="{% url 'public:terms' %}">Terms</a><a href="{% url 'public:transparency' %}">Transparency</a></div></div>
   </div>
 </footer>
-<a href="report-animal.html" class="pg-float-btn"><span class="pg-float-pulse"></span> Report Emergency</a>
+<a href="{% url 'public:report_animal' %}" class="pg-float-btn"><span class="pg-float-pulse"></span> Report Emergency</a>
 <div class="pg-toast-wrap"></div>
-<script src="js/data.js"></script><script src="js/main.js"></script><script src="js/enhanced-pages.js"></script>
+<script src="{% static 'public-assets/js/data.js' %}"></script><script src="{% static 'public-assets/js/main.js' %}"></script><script src="{% static 'public-assets/js/enhanced-pages.js' %}"></script>
 </body>
 </html>

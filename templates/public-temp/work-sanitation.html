@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,45 +8,45 @@
   <title>Sanitation & Hygiene — Unke Liye</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/variables.css" />
-  <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/components.css" />
-  <link rel="stylesheet" href="css/animations.css" />
-  <link rel="stylesheet" href="css/enhanced-pages.css" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/variables.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/base.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/components.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/animations.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/enhanced-pages.css' %}" />
 </head>
 <body>
 <a href="#main" class="skip-nav">Skip to main content</a>
-<div class="emergency-bar"><span class="pulse-dot"></span><span>🚨 Animal in distress?</span><a href="report-animal.html">Report Now →</a></div>
+<div class="emergency-bar"><span class="pulse-dot"></span><span>🚨 Animal in distress?</span><a href="{% url 'public:report_animal' %}">Report Now →</a></div>
 <header class="site-header">
   <div class="container">
     <nav class="nav-inner">
-      <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a>
+      <a href="{% url 'public:home' %}" class="nav-logo" aria-label="Unke Liye — Home"><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="nav-logo-img" /></a>
       <ul class="nav-menu">
-        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-        <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="{% url 'public:home' %}" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="{% url 'public:about' %}" class="nav-link">About</a></li>
         <li class="nav-item">
           <a href="#" class="nav-link active">Our Work <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M4 6l4 4 4-4"/></svg></a>
           <div class="nav-dropdown">
-            <a href="work-animal-rescue.html"><span class="icon">🐾</span> Animal Rescue</a>
-            <a href="work-environment.html"><span class="icon">🌱</span> Environment</a>
-            <a href="work-sanitation.html"><span class="icon">🧹</span> Sanitation</a>
-            <a href="work-disaster-relief.html"><span class="icon">🚨</span> Disaster Relief</a>
+            <a href="{% url 'public:work_animal_rescue' %}"><span class="icon">🐾</span> Animal Rescue</a>
+            <a href="{% url 'public:work_environment' %}"><span class="icon">🌱</span> Environment</a>
+            <a href="{% url 'public:work_sanitation' %}"><span class="icon">🧹</span> Sanitation</a>
+            <a href="{% url 'public:work_disaster_relief' %}"><span class="icon">🚨</span> Disaster Relief</a>
           </div>
         </li>
-        <li class="nav-item"><a href="adopt.html" class="nav-link">Adopt</a></li>
-        <li class="nav-item"><a href="campaigns.html" class="nav-link">Campaigns</a></li>
-        <li class="nav-item"><a href="events.html" class="nav-link">Events</a></li>
-        <li class="nav-item"><a href="volunteer.html" class="nav-link">Get Involved</a></li>
+        <li class="nav-item"><a href="{% url 'public:adopt' %}" class="nav-link">Adopt</a></li>
+        <li class="nav-item"><a href="{% url 'public:campaigns' %}" class="nav-link">Campaigns</a></li>
+        <li class="nav-item"><a href="{% url 'public:events' %}" class="nav-link">Events</a></li>
+        <li class="nav-item"><a href="{% url 'public:volunteer' %}" class="nav-link">Get Involved</a></li>
       </ul>
       <div class="nav-actions">
-        <a href="volunteer.html" class="btn btn--outline btn--sm">Volunteer</a>
-        <a href="donate.html" class="btn btn--primary btn--sm">Donate Now</a>
+        <a href="{% url 'public:volunteer' %}" class="btn btn--outline btn--sm">Volunteer</a>
+        <a href="{% url 'public:donate' %}" class="btn btn--primary btn--sm">Donate Now</a>
         <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
     </nav>
   </div>
 </header>
-<div class="nav-mobile-panel"><div class="nav-mobile-overlay"></div><div class="nav-mobile-drawer"><button class="nav-mobile-close">✕</button><a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a><ul class="nav-mobile-list"><li><a href="index.html">Home</a></li><li><a href="work-sanitation.html">Sanitation</a></li><li><a href="volunteer.html">Volunteer</a></li><li><a href="donate.html">Donate</a></li></ul></div></div>
+<div class="nav-mobile-panel"><div class="nav-mobile-overlay"></div><div class="nav-mobile-drawer"><button class="nav-mobile-close">✕</button><a href="{% url 'public:home' %}" class="nav-logo" aria-label="Unke Liye — Home"><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="nav-logo-img" /></a><ul class="nav-mobile-list"><li><a href="{% url 'public:home' %}">Home</a></li><li><a href="{% url 'public:work_sanitation' %}">Sanitation</a></li><li><a href="{% url 'public:volunteer' %}">Volunteer</a></li><li><a href="{% url 'public:donate' %}">Donate</a></li></ul></div></div>
 
 <main id="main">
 
@@ -55,13 +56,13 @@
       style="background-image:url('https://images.unsplash.com/photo-1562565652-a0d8f0c59eb4?auto=format&fit=crop&w=1600&q=80')"></div>
     <div class="pg-hero__overlay" style="background:linear-gradient(to bottom,rgba(20,45,50,0.3) 0%,rgba(20,45,50,0.7) 55%,rgba(20,45,50,0.95) 100%)"></div>
     <div class="container pg-hero__content">
-      <nav class="pg-breadcrumb"><a href="index.html">Home</a><span class="pg-breadcrumb-sep">›</span><a href="#">Our Work</a><span class="pg-breadcrumb-sep">›</span><span>Sanitation</span></nav>
+      <nav class="pg-breadcrumb"><a href="{% url 'public:home' %}">Home</a><span class="pg-breadcrumb-sep">›</span><a href="#">Our Work</a><span class="pg-breadcrumb-sep">›</span><span>Sanitation</span></nav>
       <div class="pg-pill pg-pill--light">🧹 Pillar 3 of 4</div>
       <h1>Clean Communities,<br><em style="color:#A8D8B9;font-style:normal">Dignified Lives</em></h1>
       <p class="lead">We build toilets, provide hygiene kits, educate communities, and drive waste management initiatives in Pune's most underserved neighbourhoods.</p>
       <div class="pg-hero__actions">
-        <a href="volunteer.html?pillar=sanitation" class="btn btn--primary btn--lg">Join Sanitation Drives →</a>
-        <a href="campaigns.html?tag=sanitation" class="btn btn--outline btn--lg" style="border-color:rgba(255,255,255,0.45);color:#fff">View Campaigns</a>
+        <a href="{% url 'public:volunteer' %}" class="btn btn--primary btn--lg">Join Sanitation Drives →</a>
+        <a href="{% url 'public:campaigns' %}" class="btn btn--outline btn--lg" style="border-color:rgba(255,255,255,0.45);color:#fff">View Campaigns</a>
       </div>
     </div>
   </section>
@@ -92,7 +93,7 @@
             <div class="pg-pill pg-pill--blue" style="font-size:.7rem">Infrastructure</div>
             <h3>Community Toilet Blocks</h3>
             <p>Building and maintaining hygienic toilet facilities in slum settlements where no public sanitation exists — reducing open defecation and related health risks.</p>
-            <a href="campaigns.html?tag=toilet" class="btn btn--outline btn--sm" style="margin-top:1rem">Support This →</a>
+            <a href="{% url 'public:campaigns' %}" class="btn btn--outline btn--sm" style="margin-top:1rem">Support This →</a>
           </div>
         </div>
         <div class="pg-photo-card reveal">
@@ -101,7 +102,7 @@
             <div class="pg-pill pg-pill--blue" style="font-size:.7rem">Education</div>
             <h3>Hygiene Education Workshops</h3>
             <p>Conducting interactive workshops in schools and community centres on handwashing, menstrual hygiene, safe drinking water, and disease prevention.</p>
-            <a href="events.html?tag=hygiene-edu" class="btn btn--outline btn--sm" style="margin-top:1rem">See Events →</a>
+            <a href="{% url 'public:events' %}" class="btn btn--outline btn--sm" style="margin-top:1rem">See Events →</a>
           </div>
         </div>
         <div class="pg-photo-card reveal">
@@ -110,7 +111,7 @@
             <div class="pg-pill pg-pill--blue" style="font-size:.7rem">Waste Management</div>
             <h3>Solid Waste Segregation</h3>
             <p>Setting up colour-coded waste segregation stations, partnering with PMC, and training households in dry-wet waste separation and composting.</p>
-            <a href="campaigns.html?tag=waste" class="btn btn--outline btn--sm" style="margin-top:1rem">Join Campaign →</a>
+            <a href="{% url 'public:campaigns' %}" class="btn btn--outline btn--sm" style="margin-top:1rem">Join Campaign →</a>
           </div>
         </div>
       </div>
@@ -144,7 +145,7 @@
               <small>Change duration</small>
             </div>
           </div>
-          <a href="stories.html?tag=sanitation" class="btn btn--primary">Read All Stories →</a>
+          <a href="{% url 'public:stories' %}" class="btn btn--primary">Read All Stories →</a>
         </div>
       </div>
     </div>
@@ -177,8 +178,8 @@
           <p>Sanitation is a human right. Help us reach 10,000 more families this year.</p>
         </div>
         <div style="display:flex;gap:.75rem;flex-wrap:wrap">
-          <a href="donate.html?tag=sanitation" class="btn btn--sm" style="background:#fff;color:var(--color-restore);font-weight:600">Donate for Sanitation →</a>
-          <a href="volunteer.html?pillar=sanitation" class="btn btn--outline btn--sm" style="border-color:rgba(255,255,255,0.45);color:#fff">Volunteer</a>
+          <a href="{% url 'public:donate' %}" class="btn btn--sm" style="background:#fff;color:var(--color-restore);font-weight:600">Donate for Sanitation →</a>
+          <a href="{% url 'public:volunteer' %}" class="btn btn--outline btn--sm" style="border-color:rgba(255,255,255,0.45);color:#fff">Volunteer</a>
         </div>
       </div>
     </div>
@@ -189,16 +190,16 @@
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
-      <div class="footer-col footer-col--brand"><a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="footer-logo-img" /></a><p style="color:rgba(255,255,255,.7);font-size:.875rem;line-height:1.75">Registered NGO · 80G Tax Exempt</p></div>
-      <div class="footer-col"><h4 style="color:#fff;margin-bottom:1rem">Our Work</h4><ul style="list-style:none;padding:0;margin:0;display:grid;gap:.5rem;font-size:.875rem"><li><a href="work-animal-rescue.html">Animal Rescue</a></li><li><a href="work-environment.html">Environment</a></li><li><a href="work-sanitation.html">Sanitation</a></li><li><a href="work-disaster-relief.html">Disaster Relief</a></li></ul></div>
-      <div class="footer-col"><h4 style="color:#fff;margin-bottom:1rem">Get Involved</h4><ul style="list-style:none;padding:0;margin:0;display:grid;gap:.5rem;font-size:.875rem"><li><a href="volunteer.html">Volunteer</a></li><li><a href="donate.html">Donate</a></li><li><a href="events.html">Events</a></li></ul></div>
+      <div class="footer-col footer-col--brand"><a href="{% url 'public:home' %}" class="nav-logo" aria-label="Unke Liye — Home"><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="footer-logo-img" /></a><p style="color:rgba(255,255,255,.7);font-size:.875rem;line-height:1.75">Registered NGO · 80G Tax Exempt</p></div>
+      <div class="footer-col"><h4 style="color:#fff;margin-bottom:1rem">Our Work</h4><ul style="list-style:none;padding:0;margin:0;display:grid;gap:.5rem;font-size:.875rem"><li><a href="{% url 'public:work_animal_rescue' %}">Animal Rescue</a></li><li><a href="{% url 'public:work_environment' %}">Environment</a></li><li><a href="{% url 'public:work_sanitation' %}">Sanitation</a></li><li><a href="{% url 'public:work_disaster_relief' %}">Disaster Relief</a></li></ul></div>
+      <div class="footer-col"><h4 style="color:#fff;margin-bottom:1rem">Get Involved</h4><ul style="list-style:none;padding:0;margin:0;display:grid;gap:.5rem;font-size:.875rem"><li><a href="{% url 'public:volunteer' %}">Volunteer</a></li><li><a href="{% url 'public:donate' %}">Donate</a></li><li><a href="{% url 'public:events' %}">Events</a></li></ul></div>
       <div class="footer-col"><h4 style="color:#fff;margin-bottom:1rem">Contact</h4><p style="color:rgba(255,255,255,.7);font-size:.875rem">📞 <a href="tel:+919876543210" style="color:#fff;font-weight:600">+91 98765 43210</a><br>📧 <a href="mailto:info@unkeliye.org" style="color:#fff">info@unkeliye.org</a></p></div>
     </div>
-    <div class="footer-bottom"><p>© 2026 Unke Liye · Reg. No. MAH/2015/1234</p><div class="footer-legal-links"><a href="privacy-policy.html">Privacy</a><a href="terms.html">Terms</a></div></div>
+    <div class="footer-bottom"><p>© 2026 Unke Liye · Reg. No. MAH/2015/1234</p><div class="footer-legal-links"><a href="{% url 'public:privacy_policy' %}">Privacy</a><a href="{% url 'public:terms' %}">Terms</a></div></div>
   </div>
 </footer>
-<a href="report-animal.html" class="pg-float-btn"><span class="pg-float-pulse"></span> Report Emergency</a>
+<a href="{% url 'public:report_animal' %}" class="pg-float-btn"><span class="pg-float-pulse"></span> Report Emergency</a>
 <div class="pg-toast-wrap"></div>
-<script src="js/data.js"></script><script src="js/main.js"></script><script src="js/enhanced-pages.js"></script>
+<script src="{% static 'public-assets/js/data.js' %}"></script><script src="{% static 'public-assets/js/main.js' %}"></script><script src="{% static 'public-assets/js/enhanced-pages.js' %}"></script>
 </body>
 </html>

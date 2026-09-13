@@ -1,0 +1,1 @@
+/* Auto-generated static stub */

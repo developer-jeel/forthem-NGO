@@ -1,21 +1,22 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Financial Audit Log - Unke Liye Finance Manager</title>
-  <link rel="stylesheet" href="assets/css/finance-manager.css">
+  <link rel="stylesheet" href="{% static 'finance-manager-assets/css/finance-manager.css' %}">
 </head>
 <body>
   <div class="app-shell">
     <aside class="sidebar">
       <div class="sidebar-header">
-        <img src="../logo.png" alt="Unke Liye Logo" class="sidebar-logo-img"><div class="sidebar-brand">UNKE LIYE<span>Finance Operations</span></div></div>
+        <img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye Logo" class="sidebar-logo-img"><div class="sidebar-brand">UNKE LIYE<span>Finance Operations</span></div></div>
       <nav class="sidebar-nav">
-        <div class="nav-section"><div class="nav-section-title">Overview</div><a href="dashboard.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Dashboard</a></div>
-        <div class="nav-section"><div class="nav-section-title">Revenue</div><a href="donations.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>Donations</a><a href="donors.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>Donors</a><a href="receipts.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>Receipts</a></div>
-        <div class="nav-section"><div class="nav-section-title">Programs</div><a href="campaigns.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>Campaigns</a><a href="expenses.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 14l4-4-4-4M5 20h14a2 2 0 002-2V8l-7-5-7 5v10a2 2 0 002 2z"/></svg>Expenses</a></div>
-        <div class="nav-section"><div class="nav-section-title">Analysis</div><a href="reports.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Financial Reports</a><a href="audit-log.html" class="nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>Audit Log</a></div>
+        <div class="nav-section"><div class="nav-section-title">Overview</div><a href="{% url 'finance_manager:dashboard' %}" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Dashboard</a></div>
+        <div class="nav-section"><div class="nav-section-title">Revenue</div><a href="{% url 'finance_manager:donations' %}" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>Donations</a><a href="{% url 'finance_manager:donors' %}" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>Donors</a><a href="{% url 'finance_manager:receipts' %}" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>Receipts</a></div>
+        <div class="nav-section"><div class="nav-section-title">Programs</div><a href="{% url 'finance_manager:campaigns' %}" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>Campaigns</a><a href="{% url 'finance_manager:expenses' %}" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 14l4-4-4-4M5 20h14a2 2 0 002-2V8l-7-5-7 5v10a2 2 0 002 2z"/></svg>Expenses</a></div>
+        <div class="nav-section"><div class="nav-section-title">Analysis</div><a href="{% url 'finance_manager:reports' %}" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Financial Reports</a><a href="{% url 'finance_manager:audit_log' %}" class="nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>Audit Log</a></div>
       </nav>
       <div class="sidebar-footer"><div class="user-profile"><div class="user-avatar">AM</div><div class="user-info"><div class="user-name">Aarav Mehta</div><div class="user-role">Finance Manager</div><div class="user-status"><span class="user-status-dot"></span>Online</div></div></div></div>
     </aside>
@@ -165,9 +166,9 @@
     </main>
   </div>
   <div class="toast-container"></div>
-  <script src="assets/js/layout.js"></script>
-  <script src="assets/js/ui.js"></script>
-  <script src="assets/js/app.js"></script>
-  <script src="assets/js/audit.js"></script>
+  <script src="{% static 'finance-manager-assets/js/layout.js' %}"></script>
+  <script src="{% static 'finance-manager-assets/js/ui.js' %}"></script>
+  <script src="{% static 'finance-manager-assets/js/app.js' %}"></script>
+  <script src="{% static 'finance-manager-assets/js/audit.js' %}"></script>
 </body>
 </html>

@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,7 +67,7 @@
 </head>
 <body>
 <!-- Logo & Brand for Unke Liye -->
-<div style="display:none;"><img src="../logo.png" alt="Unke Liye Logo"><span>Unke Liye</span></div>
+<div style="display:none;"><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye Logo"><span>Unke Liye</span></div>
   <div class="redirect-container">
     <div class="brand">UNKE LIYE</div>
     <div class="subtitle">Volunteer Operations</div>
@@ -74,7 +75,7 @@
       <div class="spinner"></div>
       <span>Redirecting to Dashboard...</span>
     </div>
-    <a href="dashboard.html" class="redirect-link">Click here if not redirected</a>
+    <a href="{% url 'volunteer_manager:dashboard' %}" class="redirect-link">Click here if not redirected</a>
   </div>
 </body>
 </html>

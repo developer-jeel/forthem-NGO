@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,11 +8,11 @@
   <title>Adoption Application — Unke Liye</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/variables.css" />
-  <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/components.css" />
-  <link rel="stylesheet" href="css/animations.css" />
-  <link rel="stylesheet" href="css/enhanced-pages.css" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/variables.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/base.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/components.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/animations.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/enhanced-pages.css' %}" />
   <style>
     .af-layout {
       display: grid;
@@ -172,32 +173,32 @@
 </head>
 <body>
 <a href="#main" class="skip-nav">Skip to main content</a>
-<div class="emergency-bar"><span class="pulse-dot"></span><span>🚨 Animal in distress? 24/7 —</span><a href="report-animal.html">Report Now →</a></div>
+<div class="emergency-bar"><span class="pulse-dot"></span><span>🚨 Animal in distress? 24/7 —</span><a href="{% url 'public:report_animal' %}">Report Now →</a></div>
 <header class="site-header">
   <div class="container">
     <nav class="nav-inner" aria-label="Main navigation">
-      <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a>
+      <a href="{% url 'public:home' %}" class="nav-logo" aria-label="Unke Liye — Home"><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="nav-logo-img" /></a>
       <ul class="nav-menu">
-        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-        <li class="nav-item"><a href="adopt.html" class="nav-link active">Adopt</a></li>
-        <li class="nav-item"><a href="foster.html" class="nav-link">Foster</a></li>
-        <li class="nav-item"><a href="sponsor-animal.html" class="nav-link">Sponsor</a></li>
+        <li class="nav-item"><a href="{% url 'public:home' %}" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="{% url 'public:adopt' %}" class="nav-link active">Adopt</a></li>
+        <li class="nav-item"><a href="{% url 'public:foster' %}" class="nav-link">Foster</a></li>
+        <li class="nav-item"><a href="{% url 'public:sponsor_animal' %}" class="nav-link">Sponsor</a></li>
       </ul>
       <div class="nav-actions">
-        <a href="donate.html" class="btn btn--primary btn--sm">Donate</a>
+        <a href="{% url 'public:donate' %}" class="btn btn--primary btn--sm">Donate</a>
         <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
     </nav>
   </div>
 </header>
-<div class="nav-mobile-panel"><div class="nav-mobile-overlay"></div><div class="nav-mobile-drawer"><button class="nav-mobile-close">✕</button><a href="index.html" class="nav-logo"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a><ul class="nav-mobile-list"><li><a href="adopt.html">Adopt</a></li><li><a href="foster.html">Foster</a></li><li><a href="donate.html">Donate</a></li></ul></div></div>
+<div class="nav-mobile-panel"><div class="nav-mobile-overlay"></div><div class="nav-mobile-drawer"><button class="nav-mobile-close">✕</button><a href="{% url 'public:home' %}" class="nav-logo"><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="nav-logo-img" /></a><ul class="nav-mobile-list"><li><a href="{% url 'public:adopt' %}">Adopt</a></li><li><a href="{% url 'public:foster' %}">Foster</a></li><li><a href="{% url 'public:donate' %}">Donate</a></li></ul></div></div>
 
 <main id="main">
   <div style="background:var(--color-surface-alt);border-bottom:1px solid var(--color-border);padding:.75rem 0">
     <div class="container">
       <nav class="pg-breadcrumb" style="color:var(--color-text-muted)">
-        <a href="index.html" style="color:var(--color-text-muted)">Home</a><span class="pg-breadcrumb-sep">›</span>
-        <a href="adopt.html" style="color:var(--color-text-muted)">Adopt</a><span class="pg-breadcrumb-sep">›</span>
+        <a href="{% url 'public:home' %}" style="color:var(--color-text-muted)">Home</a><span class="pg-breadcrumb-sep">›</span>
+        <a href="{% url 'public:adopt' %}" style="color:var(--color-text-muted)">Adopt</a><span class="pg-breadcrumb-sep">›</span>
         <span id="bc-name">Adoption Application</span>
       </nav>
     </div>
@@ -211,7 +212,7 @@
         <div style="font-size:3rem;margin-bottom:1rem">🐾</div>
         <h2 style="margin-bottom:.75rem">Animal Not Found</h2>
         <p style="color:var(--color-text-muted);margin-bottom:1.5rem">We couldn't find that animal profile.</p>
-        <a href="adopt.html" class="btn btn--primary">Browse All Animals →</a>
+        <a href="{% url 'public:adopt' %}" class="btn btn--primary">Browse All Animals →</a>
       </div>
 
       <div class="af-layout reveal" id="adopt-form-layout" style="display:none">
@@ -234,7 +235,7 @@
                 <div class="af-fact">🏥 <span id="animal-medical"></span></div>
               </div>
               <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--color-border)">
-                <a id="animal-detail-link" href="adopt-detail.html" class="btn btn--ghost btn--sm btn--full">← View Full Profile</a>
+                <a id="animal-detail-link" href="{% url 'public:adopt_detail' 1 %}" class="btn btn--ghost btn--sm btn--full">← View Full Profile</a>
               </div>
             </div>
           </div>
@@ -371,8 +372,8 @@
                 <div style="width:2px;height:18px;background:var(--color-border);margin-left:4px"></div>
                 <div class="af-pipeline-step"><div class="af-pipeline-dot pending"></div><span>Adoption Decision — After home visit</span></div>
               </div>
-              <a href="adopt.html" class="btn btn--outline btn--sm" style="margin-right:.5rem">Browse More Animals</a>
-              <a href="index.html" class="btn btn--ghost btn--sm">Go Home</a>
+              <a href="{% url 'public:adopt' %}" class="btn btn--outline btn--sm" style="margin-right:.5rem">Browse More Animals</a>
+              <a href="{% url 'public:home' %}" class="btn btn--ghost btn--sm">Go Home</a>
               <div class="af-demo-note">🔒 Frontend Demo — No data is stored or transmitted.</div>
             </div>
 
@@ -386,15 +387,15 @@
 <footer class="site-footer" role="contentinfo">
   <div class="container">
     <div class="footer-grid">
-      <div><img src="logo.png" alt="Unke Liye" class="footer-logo-img" /><p class="footer-brand-tagline">For Every Life.</p></div>
-      <div><h3 class="footer-col-title">Animals</h3><ul class="footer-links"><li><a href="adopt.html">Adopt a Pet</a></li><li><a href="foster.html">Foster</a></li><li><a href="sponsor-animal.html">Sponsor</a></li></ul></div>
+      <div><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="footer-logo-img" /><p class="footer-brand-tagline">For Every Life.</p></div>
+      <div><h3 class="footer-col-title">Animals</h3><ul class="footer-links"><li><a href="{% url 'public:adopt' %}">Adopt a Pet</a></li><li><a href="{% url 'public:foster' %}">Foster</a></li><li><a href="{% url 'public:sponsor_animal' %}">Sponsor</a></li></ul></div>
     </div>
     <div class="footer-bottom"><p>© 2024 Unke Liye. Reg. No. MAH/2015/1234</p></div>
   </div>
 </footer>
-<a href="report-animal.html" class="emergency-float" aria-label="Report an animal emergency"><span aria-hidden="true">🚨</span><span>Report Animal Emergency</span></a>
-<script src="js/data.js"></script>
-<script src="js/main.js"></script>
+<a href="{% url 'public:report_animal' %}" class="emergency-float" aria-label="Report an animal emergency"><span aria-hidden="true">🚨</span><span>Report Animal Emergency</span></a>
+<script src="{% static 'public-assets/js/data.js' %}"></script>
+<script src="{% static 'public-assets/js/main.js' %}"></script>
 <script>
 (function() {
   var state = {

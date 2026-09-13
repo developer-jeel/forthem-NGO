@@ -1,12 +1,13 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sign In — Unke Liye Admin</title>
-<link rel="stylesheet" href="assets/variables.css">
-<link rel="stylesheet" href="assets/base.css">
-<link rel="stylesheet" href="assets/components.css">
+<link rel="stylesheet" href="{% static 'admin-assets/css/variables.css' %}">
+<link rel="stylesheet" href="{% static 'admin-assets/css/base.css' %}">
+<link rel="stylesheet" href="{% static 'admin-assets/css/components.css' %}">
 <style>
   body { display: flex; min-height: 100vh; background: var(--bg-canvas); }
   .login-shell { display: flex; width: 100%; min-height: 100vh; }
@@ -194,7 +195,7 @@
 <div class="login-shell">
   <!-- Brand Panel -->
   <aside class="login-brand">
-    <img src="logo.png" alt="Unke Liye Logo" class="sidebar-logo-img" style="width:48px;height:48px;object-fit:contain;margin-bottom:24px;">
+    <img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye Logo" class="sidebar-logo-img" style="width:48px;height:48px;object-fit:contain;margin-bottom:24px;">
     <h1 class="brand-tagline">Unke Liye<br>Admin Panel</h1>
     <p class="brand-sub">The internal operations hub for managing rescue programs, campaigns, volunteers, and community outreach — all in one place.</p>
 
@@ -280,6 +281,6 @@
   </main>
 </div>
 
-<script src="assets/app.js"></script>
+<script src="{% static 'admin-assets/js/app.js' %}"></script>
 </body>
 </html>

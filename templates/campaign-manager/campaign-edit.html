@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
@@ -7,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/campaign-manager.css">
+  <link rel="stylesheet" href="{% static 'campaign-manager-assets/css/campaign-manager.css' %}">
   <style>
     .slug-preview {
       display: flex;
@@ -92,7 +93,7 @@
     <aside class="sidebar" id="sidebar" role="navigation" aria-label="Campaign Manager navigation">
 
     <div class="sidebar-header">
-      <img src="../logo.png" alt="Unke Liye Logo" class="sidebar-logo-img">
+      <img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye Logo" class="sidebar-logo-img">
       <div class="sidebar-logo-text">
         <strong>Unke Liye</strong>
         <span>Campaign Portal</span>
@@ -110,7 +111,7 @@
       <div class="nav-group">
         <div class="nav-group-label">Overview</div>
         <div class="nav-group-items">
-          <a href="dashboard.html" class="nav-item " >
+          <a href="{% url 'campaign_manager:dashboard' %}" class="nav-item " >
             <span class="nav-item-icon">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
             </span>
@@ -125,33 +126,33 @@
       <div class="nav-group">
         <div class="nav-group-label">Campaigns</div>
         <div class="nav-group-items">
-          <a href="campaigns.html" class="nav-item active" aria-current="page">
+          <a href="{% url 'campaign_manager:campaigns' %}" class="nav-item active" aria-current="page">
             <span class="nav-item-icon">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
             </span>
             <span class="nav-item-label">All Campaigns</span>
             <span class="nav-item-badge">12</span>
           </a>
-          <a href="campaign-new.html" class="nav-item " >
+          <a href="{% url 'campaign_manager:campaign_new' %}" class="nav-item " >
             <span class="nav-item-icon">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
             </span>
             <span class="nav-item-label">Create Campaign</span>
           </a>
-          <a href="reports.html" class="nav-item " >
+          <a href="{% url 'campaign_manager:reports' %}" class="nav-item " >
             <span class="nav-item-icon">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
             </span>
             <span class="nav-item-label">Reports &amp; Analytics</span>
           </a>
-          <a href="updates.html" class="nav-item " >
+          <a href="{% url 'campaign_manager:updates' %}" class="nav-item " >
             <span class="nav-item-icon">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
             </span>
             <span class="nav-item-label">Field Updates</span>
             <span class="nav-item-badge" style="background:var(--pillar-env);">4 New</span>
           </a>
-          <a href="impact.html" class="nav-item " >
+          <a href="{% url 'campaign_manager:impact' %}" class="nav-item " >
             <span class="nav-item-icon">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
             </span>
@@ -166,13 +167,13 @@
       <div class="nav-group">
         <div class="nav-group-label">Financials</div>
         <div class="nav-group-items">
-          <a href="budget.html" class="nav-item " >
+          <a href="{% url 'campaign_manager:budget' %}" class="nav-item " >
             <span class="nav-item-icon">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
             </span>
             <span class="nav-item-label">Campaign Budgets</span>
           </a>
-          <a href="fund-request-new.html" class="nav-item " >
+          <a href="{% url 'campaign_manager:fund_request_new' %}" class="nav-item " >
             <span class="nav-item-icon">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
             </span>
@@ -187,7 +188,7 @@
       <div class="nav-group">
         <div class="nav-group-label">Impact</div>
         <div class="nav-group-items">
-          <a href="donors.html" class="nav-item " >
+          <a href="{% url 'campaign_manager:donors' %}" class="nav-item " >
             <span class="nav-item-icon">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
             </span>
@@ -222,9 +223,9 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
           </button>
       <div class="breadcrumbs">
-        <a href="campaigns.html">Campaigns</a>
+        <a href="{% url 'campaign_manager:campaigns' %}">Campaigns</a>
         <span>/</span>
-        <a href="campaign-detail.html">Save Raju</a>
+        <a href="{% url 'campaign_manager:campaign_detail' 1 %}">Save Raju</a>
         <span>/</span>
         <span class="current">Edit Campaign</span>
       </div>
@@ -246,7 +247,7 @@
           <p class="page-subtitle">Update financial milestones, extension dates, story updates, and public portal media.</p>
         </div>
         <div class="page-actions">
-          <a href="campaign-detail.html" class="btn btn-secondary" id="btn-cancel-edit">Cancel</a>
+          <a href="{% url 'campaign_manager:campaign_detail' 1 %}" class="btn btn-secondary" id="btn-cancel-edit">Cancel</a>
           <button class="btn btn-primary" id="btn-save-campaign">Save Changes</button>
         </div>
       </div>
@@ -408,9 +409,9 @@ https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=cro
 
         <!-- Bottom Action Bar -->
         <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-bottom:3rem;">
-          <a href="campaign-detail.html" class="btn btn-secondary">&larr; Back to Campaign Details</a>
+          <a href="{% url 'campaign_manager:campaign_detail' 1 %}" class="btn btn-secondary">&larr; Back to Campaign Details</a>
           <div style="display:flex;gap:0.75rem;">
-            <button type="button" class="btn btn-secondary" onclick="window.location.href='campaign-detail.html'">Discard Changes</button>
+            <button type="button" class="btn btn-secondary" onclick="window.location.href='{% url "campaign_manager:campaign_detail" 1 %}'">Discard Changes</button>
             <button type="submit" class="btn btn-primary" id="btn-submit-bottom">Save &amp; Update Campaign</button>
           </div>
         </div>
@@ -420,7 +421,7 @@ https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=cro
   </div>
 </div>
 
-<script src="assets/js/app.js"></script>
+<script src="{% static 'campaign-manager-assets/js/app.js' %}"></script>
 <script>
   (function() {
     const form = document.getElementById('edit-campaign-form');
@@ -439,7 +440,7 @@ https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=cro
       e.preventDefault();
       const title = document.getElementById('campaign-title').value;
       alert(`Campaign "${title}" updated successfully!\nChanges have been synchronized to the Public Portal.`);
-      window.location.href = 'campaign-detail.html';
+      window.location.href = "{% url 'campaign_manager:campaign_detail' 1 %}";
     });
 
     document.getElementById('btn-save-campaign')?.addEventListener('click', (e) => {
@@ -451,7 +452,7 @@ https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=cro
     document.getElementById('btn-archive-campaign')?.addEventListener('click', () => {
       if (confirm('Are you sure you want to archive this campaign? It will no longer receive donations.')) {
         alert('Campaign #CMP-2025-084 has been archived.');
-        window.location.href = 'campaigns.html';
+        window.location.href = "{% url 'campaign_manager:campaigns' %}";
       }
     });
   })();

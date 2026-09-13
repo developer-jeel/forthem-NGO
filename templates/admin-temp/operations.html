@@ -1,13 +1,14 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cross-Department Operations Executive Overview — Unke Liye Admin</title>
-  <link rel="stylesheet" href="assets/variables.css">
-  <link rel="stylesheet" href="assets/base.css">
-  <link rel="stylesheet" href="assets/components.css">
-  <link rel="stylesheet" href="../shared/css/platform-theme.css">
+  <link rel="stylesheet" href="{% static 'admin-assets/css/variables.css' %}">
+  <link rel="stylesheet" href="{% static 'admin-assets/css/base.css' %}">
+  <link rel="stylesheet" href="{% static 'admin-assets/css/components.css' %}">
+  <link rel="stylesheet" href="{% static 'shared/css/platform-theme.css' %}">
   <style>
     .portal-link-card {
       background: var(--bg-surface);
@@ -33,28 +34,28 @@
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-header">
         <div class="sidebar-brand">
-          <img src="../logo.png" alt="Unke Liye Logo" class="sidebar-logo-img">
+          <img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye Logo" class="sidebar-logo-img">
           <div class="sidebar-title">Unke Liye<span>Admin Console</span></div>
         </div>
       </div>
       <nav class="sidebar-nav">
         <div class="nav-section">
           <div class="nav-section-title">Core</div>
-          <a href="dashboard.html" class="nav-item">Dashboard</a>
-          <a href="operations.html" class="nav-item active">Operations Overview</a>
+          <a href="{% url 'admin_panel:dashboard' %}" class="nav-item">Dashboard</a>
+          <a href="{% url 'admin_panel:operations' %}" class="nav-item active">Operations Overview</a>
         </div>
         <div class="nav-section">
           <div class="nav-section-title">Administration</div>
-          <a href="admin-users.html" class="nav-item">System Users</a>
-          <a href="roles.html" class="nav-item">Roles & Permissions</a>
-          <a href="../finance-manager/audit-log.html" class="nav-item">Audit Trail</a>
+          <a href="{% url 'admin_panel:admin_users' %}" class="nav-item">System Users</a>
+          <a href="{% url 'admin_panel:roles' %}" class="nav-item">Roles & Permissions</a>
+          <a href="{% url 'finance_manager:audit_log' %}" class="nav-item">Audit Trail</a>
         </div>
         <div class="nav-section">
           <div class="nav-section-title">Programs</div>
-          <a href="campaigns.html" class="nav-item">Campaigns</a>
-          <a href="donations.html" class="nav-item">Donations</a>
-          <a href="volunteers.html" class="nav-item">Volunteers</a>
-          <a href="animals.html" class="nav-item">Animals</a>
+          <a href="{% url 'admin_panel:campaigns' %}" class="nav-item">Campaigns</a>
+          <a href="{% url 'admin_panel:donations' %}" class="nav-item">Donations</a>
+          <a href="{% url 'admin_panel:volunteers' %}" class="nav-item">Volunteers</a>
+          <a href="{% url 'admin_panel:animals' %}" class="nav-item">Animals</a>
         </div>
       </nav>
       <div class="sidebar-footer">
@@ -72,7 +73,7 @@
       <header class="header">
         <div class="header-left">
           <nav class="breadcrumb-nav">
-            <a href="dashboard.html">Admin</a>
+            <a href="{% url 'admin_panel:dashboard' %}">Admin</a>
             <span class="breadcrumb-sep">/</span>
             <span class="breadcrumb-current">Executive Operations</span>
           </nav>
@@ -82,7 +83,7 @@
             <span class="icon-moon">🌙</span>
             <span class="icon-sun" style="display:none;">☀️</span>
           </button>
-          <a href="../index.html" class="btn btn-secondary btn-sm">Main Portal Hub</a>
+          <a href="{% url 'admin_panel:dashboard' %}" class="btn btn-secondary btn-sm">Main Portal Hub</a>
         </div>
       </header>
 
@@ -93,7 +94,7 @@
             <p class="page-subtitle">Real-time status bridge across all 6 management consoles: Live incident response, fundraising campaigns, and treasury approvals.</p>
           </div>
           <div style="display:flex;gap:var(--space-2);">
-            <a href="../requests/request-center.html" class="btn btn-primary btn-sm">Universal Request Center &rarr;</a>
+            <a href="{% url 'finance_manager:fund_requests' %}" class="btn btn-primary btn-sm">Universal Request Center &rarr;</a>
           </div>
         </div>
 
@@ -128,7 +129,7 @@
         <h2 style="font-family:var(--font-heading);font-size:1.25rem;font-weight:700;margin-bottom:var(--space-4);">Department Management Consoles</h2>
         <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));gap:var(--space-5);margin-bottom:var(--space-8);">
           <!-- Rescue -->
-          <a href="../rescue-manager/command-center.html" class="portal-link-card">
+          <a href="{% url 'rescue_manager:command_center' %}" class="portal-link-card">
             <div>
               <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-2);">
                 <span class="badge badge-danger">High Alert</span>
@@ -144,7 +145,7 @@
           </a>
 
           <!-- Finance -->
-          <a href="../finance-manager/dashboard.html" class="portal-link-card">
+          <a href="{% url 'admin_panel:dashboard' %}" class="portal-link-card">
             <div>
               <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-2);">
                 <span class="badge badge-success">80G Audited</span>
@@ -160,7 +161,7 @@
           </a>
 
           <!-- Campaigns -->
-          <a href="../campaign-manager/dashboard.html" class="portal-link-card">
+          <a href="{% url 'admin_panel:dashboard' %}" class="portal-link-card">
             <div>
               <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-2);">
                 <span class="badge badge-brand">Active Drives</span>
@@ -176,7 +177,7 @@
           </a>
 
           <!-- Volunteers -->
-          <a href="../volunteer-manager/dashboard.html" class="portal-link-card">
+          <a href="{% url 'admin_panel:dashboard' %}" class="portal-link-card">
             <div>
               <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-2);">
                 <span class="badge badge-brand">Operations</span>
@@ -192,7 +193,7 @@
           </a>
 
           <!-- Content -->
-          <a href="../content-manager/dashboard.html" class="portal-link-card">
+          <a href="{% url 'admin_panel:dashboard' %}" class="portal-link-card">
             <div>
               <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-2);">
                 <span class="badge badge-info">CMS Publishing</span>
@@ -208,7 +209,7 @@
           </a>
 
           <!-- Public Website -->
-          <a href="../user/index.html" class="portal-link-card">
+          <a href="{% url 'admin_panel:dashboard' %}" class="portal-link-card">
             <div>
               <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-2);">
                 <span class="badge badge-success">Public Site</span>
@@ -228,7 +229,7 @@
   </div>
 
   <div class="toast-container"></div>
-  <script src="../shared/js/platform-store.js"></script>
-  <script src="../shared/js/platform-ui.js"></script>
+  <script src="{% static 'shared/js/platform-store.js' %}"></script>
+  <script src="{% static 'shared/js/platform-ui.js' %}"></script>
 </body>
 </html>

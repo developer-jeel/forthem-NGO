@@ -1,10 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>New Incident — Rescue Manager · Unke Liye NGO</title>
-<link rel="stylesheet" href="assets/css/rescue-manager.css">
+<link rel="stylesheet" href="{% static 'rescue-manager-assets/css/rescue-manager.css' %}">
 <style>
   .form-container { max-width:800px;margin:0 auto; }
   .form-section { background:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:var(--sp-6);margin-bottom:var(--sp-5); }
@@ -29,19 +30,19 @@
 <div class="app-shell" id="app-shell">
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
-      <img src="../logo.png" alt="Unke Liye Logo" class="sidebar-logo-img">
-      <img src="../user/logo.png" alt="Unke Liye NGO" style="width:36px;height:36px;object-fit:contain;border-radius:var(--radius-md);background:rgba(255,255,255,0.15);padding:2px;flex-shrink:0;">
+      <img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye Logo" class="sidebar-logo-img">
+      <img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye NGO" style="width:36px;height:36px;object-fit:contain;border-radius:var(--radius-md);background:rgba(255,255,255,0.15);padding:2px;flex-shrink:0;">
       <div class="sidebar-logo-text"><strong>Unke Liye</strong><span>Rescue Portal</span></div>
     </div>
     <div class="sidebar-role-badge"><span class="role-pulse-dot"></span><span>Rescue Manager</span></div>
     <nav class="sidebar-nav">
       <div class="nav-section">
         <div class="nav-section-label">Overview</div>
-        <a href="dashboard.html" class="nav-item"><svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span class="nav-item-label">Dashboard</span></a>
+        <a href="{% url 'rescue_manager:dashboard' %}" class="nav-item"><svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span class="nav-item-label">Dashboard</span></a>
       </div>
       <div class="nav-section">
         <div class="nav-section-label">Operations</div>
-        <a href="incidents.html" class="nav-item"><svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><polygon points="7.86,2 16.14,2 22,7.86 22,16.14 16.14,22 7.86,22 2,16.14 2,7.86"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><span class="nav-item-label">Incidents Queue</span></a>
+        <a href="{% url 'rescue_manager:incidents' %}" class="nav-item"><svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><polygon points="7.86,2 16.14,2 22,7.86 22,16.14 16.14,22 7.86,22 2,16.14 2,7.86"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><span class="nav-item-label">Incidents Queue</span></a>
       </div>
     </nav>
     <div class="sidebar-footer">
@@ -53,8 +54,8 @@
     <header class="topbar">
       <button class="topbar-icon-btn topbar-menu-btn" id="mobile-menu-toggle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
       <div class="topbar-breadcrumb">
-        <a href="dashboard.html">Rescue Manager</a><span class="sep">/</span>
-        <a href="incidents.html">Incidents</a><span class="sep">/</span>
+        <a href="{% url 'rescue_manager:dashboard' %}">Rescue Manager</a><span class="sep">/</span>
+        <a href="{% url 'rescue_manager:incidents' %}">Incidents</a><span class="sep">/</span>
         <span class="current">Log New</span>
       </div>
     </header>
@@ -123,7 +124,7 @@
           </div>
 
           <div style="display:flex;gap:var(--sp-3);justify-content:flex-end;">
-            <a href="incidents.html" class="btn btn-secondary">Cancel</a>
+            <a href="{% url 'rescue_manager:incidents' %}" class="btn btn-secondary">Cancel</a>
             <button type="submit" class="btn btn-primary" style="padding:12px 24px;">Log &amp; Assign Team</button>
           </div>
         </form>
@@ -137,6 +138,6 @@
     el.classList.add('active');
   }
 </script>
-<script src="assets/js/app.js"></script>
+<script src="{% static 'rescue-manager-assets/js/app.js' %}"></script>
 </body>
 </html>

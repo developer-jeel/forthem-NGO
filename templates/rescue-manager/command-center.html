@@ -1,11 +1,12 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Emergency Command Center — Rescue Operations · Unke Liye NGO</title>
-  <link rel="stylesheet" href="assets/css/rescue-manager.css">
-  <link rel="stylesheet" href="../shared/css/platform-theme.css">
+  <link rel="stylesheet" href="{% static 'rescue-manager-assets/css/rescue-manager.css' %}">
+  <link rel="stylesheet" href="{% static 'shared/css/platform-theme.css' %}">
   <style>
     .command-grid {
       display: grid;
@@ -48,7 +49,7 @@
   <div class="app-shell" id="app-shell">
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-header">
-        <img src="../logo.png" alt="Unke Liye Logo" class="sidebar-logo-img">
+        <img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye Logo" class="sidebar-logo-img">
         <div class="sidebar-logo-text">
           <strong>Unke Liye</strong>
           <span>Rescue Operations</span>
@@ -61,11 +62,11 @@
       <nav class="sidebar-nav">
         <div class="nav-section">
           <div class="nav-section-label">Overview</div>
-          <a href="dashboard.html" class="nav-item">
+          <a href="{% url 'rescue_manager:dashboard' %}" class="nav-item">
             <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
             <span class="nav-item-label">Dashboard</span>
           </a>
-          <a href="command-center.html" class="nav-item active">
+          <a href="{% url 'rescue_manager:command_center' %}" class="nav-item active">
             <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
             <span class="nav-item-label">Command Center</span>
           </a>
@@ -73,15 +74,15 @@
         <div class="nav-divider"></div>
         <div class="nav-section">
           <div class="nav-section-label">Emergency Operations</div>
-          <a href="incidents.html" class="nav-item">
+          <a href="{% url 'rescue_manager:incidents' %}" class="nav-item">
             <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><polygon points="7.86,2 16.14,2 22,7.86 22,16.14 16.14,22 7.86,22 2,16.14 2,7.86"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
             <span class="nav-item-label">Incidents Queue</span>
           </a>
-          <a href="dispatch.html" class="nav-item">
+          <a href="{% url 'rescue_manager:dispatch' %}" class="nav-item">
             <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3"/><rect x="9" y="11" width="14" height="10" rx="1"/><circle cx="12" cy="21" r="1"/><circle cx="20" cy="21" r="1"/></svg>
             <span class="nav-item-label">Team Dispatch</span>
           </a>
-          <a href="cases.html" class="nav-item">
+          <a href="{% url 'rescue_manager:cases' %}" class="nav-item">
             <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
             <span class="nav-item-label">Active Cases</span>
           </a>
@@ -89,15 +90,15 @@
         <div class="nav-divider"></div>
         <div class="nav-section">
           <div class="nav-section-label">Finance & Logistics</div>
-          <a href="fund-requests.html" class="nav-item">
+          <a href="{% url 'rescue_manager:fund_requests' %}" class="nav-item">
             <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
             <span class="nav-item-label">Rescue Fund Requests</span>
           </a>
-          <a href="resources.html" class="nav-item">
+          <a href="{% url 'rescue_manager:resources' %}" class="nav-item">
             <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
             <span class="nav-item-label">Fleet & Equipment</span>
           </a>
-          <a href="medical-records.html" class="nav-item">
+          <a href="{% url 'rescue_manager:medical_records' %}" class="nav-item">
             <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
             <span class="nav-item-label">Medical Records</span>
           </a>
@@ -116,7 +117,7 @@
       <header class="header">
         <div class="header-left">
           <nav class="breadcrumb-nav">
-            <a href="dashboard.html">Rescue Operations</a>
+            <a href="{% url 'rescue_manager:dashboard' %}">Rescue Operations</a>
             <span class="breadcrumb-sep">/</span>
             <span class="breadcrumb-current">Command Center</span>
           </nav>
@@ -126,7 +127,7 @@
             <span class="icon-moon">🌙</span>
             <span class="icon-sun" style="display:none;">☀️</span>
           </button>
-          <a href="../index.html" class="btn btn-secondary btn-sm">Main Portal Hub</a>
+          <a href="{% url 'rescue_manager:dashboard' %}" class="btn btn-secondary btn-sm">Main Portal Hub</a>
         </div>
       </header>
 
@@ -142,8 +143,8 @@
             <p class="page-subtitle">Real-time tactical situational awareness across Mumbai metropolitan emergency zones, ambulance coordinates, and trauma triage.</p>
           </div>
           <div style="display:flex;gap:var(--space-2);">
-            <a href="incident-new.html" class="btn btn-danger btn-sm">+ Log Emergency 911 Call</a>
-            <a href="fund-request-new.html" class="btn btn-primary btn-sm">+ Request Emergency Funds</a>
+            <a href="{% url 'rescue_manager:incident_new' %}" class="btn btn-danger btn-sm">+ Log Emergency 911 Call</a>
+            <a href="{% url 'rescue_manager:fund_request_new' %}" class="btn btn-primary btn-sm">+ Request Emergency Funds</a>
           </div>
         </div>
 
@@ -180,7 +181,7 @@
             <div class="card" style="margin-bottom:var(--space-6);">
               <div class="card-header">
                 <h3 class="card-title">Live Priority Incident Queue</h3>
-                <a href="incidents.html" class="btn btn-secondary btn-sm">Full Dispatch Board &rarr;</a>
+                <a href="{% url 'rescue_manager:incidents' %}" class="btn btn-secondary btn-sm">Full Dispatch Board &rarr;</a>
               </div>
               <div class="table-container" style="border:none;">
                 <table class="data-table">
@@ -202,7 +203,7 @@
                       </td>
                       <td><span class="badge badge-danger">CRITICAL</span></td>
                       <td><span class="badge badge-brand">Ambulance 02 (En Route)</span></td>
-                      <td><a href="incident-detail.html" class="btn btn-secondary btn-sm" style="font-size:0.75rem;">Command &rarr;</a></td>
+                      <td><a href="{% url 'rescue_manager:incident_detail' 1 %}" class="btn btn-secondary btn-sm" style="font-size:0.75rem;">Command &rarr;</a></td>
                     </tr>
                     <tr>
                       <td><code>#INC-2026-102</code></td>
@@ -212,7 +213,7 @@
                       </td>
                       <td><span class="badge badge-warning">HIGH</span></td>
                       <td><span class="badge badge-brand">Bike Unit B1 (Arrived)</span></td>
-                      <td><a href="incident-detail.html" class="btn btn-secondary btn-sm" style="font-size:0.75rem;">Command &rarr;</a></td>
+                      <td><a href="{% url 'rescue_manager:incident_detail' 1 %}" class="btn btn-secondary btn-sm" style="font-size:0.75rem;">Command &rarr;</a></td>
                     </tr>
                     <tr>
                       <td><code>#INC-2026-098</code></td>
@@ -222,7 +223,7 @@
                       </td>
                       <td><span class="badge badge-info">MODERATE</span></td>
                       <td><span class="badge badge-neutral">Pending Dispatch</span></td>
-                      <td><a href="dispatch.html" class="btn btn-primary btn-sm" style="font-size:0.75rem;">Dispatch &rarr;</a></td>
+                      <td><a href="{% url 'rescue_manager:dispatch' %}" class="btn btn-primary btn-sm" style="font-size:0.75rem;">Dispatch &rarr;</a></td>
                     </tr>
                   </tbody>
                 </table>
@@ -233,7 +234,7 @@
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">Live Surgical & Emergency Fund Requests</h3>
-                <a href="fund-requests.html" class="btn btn-secondary btn-sm">All Rescue Requests &rarr;</a>
+                <a href="{% url 'rescue_manager:fund_requests' %}" class="btn btn-secondary btn-sm">All Rescue Requests &rarr;</a>
               </div>
               <div id="rescue-fund-requests-container"></div>
             </div>
@@ -244,7 +245,7 @@
             <div class="card" style="margin-bottom:var(--space-6);">
               <div class="card-header">
                 <h3 class="card-title">Fleet Tactical Status</h3>
-                <a href="resources.html" class="btn btn-secondary btn-sm">Fleet &rarr;</a>
+                <a href="{% url 'rescue_manager:resources' %}" class="btn btn-secondary btn-sm">Fleet &rarr;</a>
               </div>
               <div>
                 <div class="fleet-item">
@@ -287,7 +288,7 @@
               <p style="font-size:0.8125rem;color:var(--text-secondary);margin-bottom:var(--space-3);">
                 Anti-venom sera and trauma ringer lactate solutions are at <strong>15% buffer threshold</strong>. Immediate replenishment required from Apollo central depot.
               </p>
-              <a href="fund-request-new.html?type=medicine" class="btn btn-danger btn-sm" style="width:100%;">Create Urgent Medicine Request &rarr;</a>
+              <a href="{% url 'rescue_manager:fund_request_new' %}" class="btn btn-danger btn-sm" style="width:100%;">Create Urgent Medicine Request &rarr;</a>
             </div>
           </div>
         </div>
@@ -296,8 +297,8 @@
   </div>
 
   <div class="toast-container"></div>
-  <script src="../shared/js/platform-store.js"></script>
-  <script src="../shared/js/platform-ui.js"></script>
+  <script src="{% static 'shared/js/platform-store.js' %}"></script>
+  <script src="{% static 'shared/js/platform-ui.js' %}"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const requests = window.PlatformStore.getFundRequests();

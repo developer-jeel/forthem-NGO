@@ -28,6 +28,7 @@ urlpatterns = [
     path("settings/", views.settings, name="settings"),
     path("stories/", views.stories, name="stories"),
     path("tasks/", views.tasks, name="tasks"),
+    path("login/", views.login, name="login"),
     path("volunteers/", views.volunteers, name="volunteers"),
     path("volunteers/<int:volunteer_id>/", views.volunteer_profile, name="volunteer_profile"),
 ]

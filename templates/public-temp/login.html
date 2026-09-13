@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,10 +7,10 @@
   <title>Login — Unke Liye</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/variables.css" />
-  <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/components.css" />
-  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/variables.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/base.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/components.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/animations.css' %}" />
   <style>
     body { background: var(--color-primary-dark); min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: var(--space-8); }
     .login-card {
@@ -38,7 +39,7 @@
 <a href="#main-content" class="skip-nav">Skip to main content</a>
 <div class="login-card animate-scale-in" id="main-content">
   <div class="login-logo">
-    <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a>
+    <a href="{% url 'public:home' %}" class="nav-logo" aria-label="Unke Liye — Home"><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="nav-logo-img" /></a>
     <p style="font-size:var(--text-sm);color:var(--color-text-muted)">Sign in to your account</p>
   </div>
 
@@ -63,7 +64,7 @@
           <input type="password" id="vol-pass" name="password" class="form-input" placeholder="••••••••" autocomplete="current-password" />
         </div>
         <button type="submit" class="btn btn--primary btn--full btn--lg">Sign In as Volunteer</button>
-        <p style="text-align:center;font-size:var(--text-sm);margin-top:var(--space-5)">Not a volunteer yet? <a href="volunteer.html">Register here →</a></p>
+        <p style="text-align:center;font-size:var(--text-sm);margin-top:var(--space-5)">Not a volunteer yet? <a href="{% url 'public:volunteer' %}">Register here →</a></p>
       </form>
     </div>
     <div class="tab-panel" data-tab-panel="donor">
@@ -77,7 +78,7 @@
           <input type="password" id="donor-pass" name="password" class="form-input" placeholder="••••••••" autocomplete="current-password" />
         </div>
         <button type="submit" class="btn btn--primary btn--full btn--lg">Sign In as Donor</button>
-        <p style="text-align:center;font-size:var(--text-sm);margin-top:var(--space-5)">First donation? <a href="donate.html">Donate here →</a></p>
+        <p style="text-align:center;font-size:var(--text-sm);margin-top:var(--space-5)">First donation? <a href="{% url 'public:donate' %}">Donate here →</a></p>
       </form>
     </div>
     <div class="tab-panel" data-tab-panel="rescuer">
@@ -91,12 +92,12 @@
           <input type="tel" id="res-phone" name="phone" class="form-input" placeholder="10-digit mobile" />
         </div>
         <button type="submit" class="btn btn--urgent btn--full btn--lg">Track Rescue Status</button>
-        <p style="text-align:center;font-size:var(--text-sm);margin-top:var(--space-5)">New rescue? <a href="report-animal.html">Report here →</a></p>
+        <p style="text-align:center;font-size:var(--text-sm);margin-top:var(--space-5)">New rescue? <a href="{% url 'public:report_animal' %}">Report here →</a></p>
       </form>
     </div>
   </div>
 </div>
-<script src="js/main.js"></script>
+<script src="{% static 'public-assets/js/main.js' %}"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('#vol-login, #donor-login').forEach(form => {

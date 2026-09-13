@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,36 +8,36 @@
   <title>Monthly Adoption Camp — Event Detail — Unke Liye</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/variables.css" />
-  <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/components.css" />
-  <link rel="stylesheet" href="css/animations.css" />
-  <link rel="stylesheet" href="css/enhanced-pages.css" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/variables.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/base.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/components.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/animations.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/enhanced-pages.css' %}" />
 </head>
 <body>
 <a href="#main" class="skip-nav">Skip to main content</a>
-<div class="emergency-bar"><span class="pulse-dot"></span><span>🚨 Animal in distress? 24/7 —</span><a href="report-animal.html">Report Now →</a></div>
+<div class="emergency-bar"><span class="pulse-dot"></span><span>🚨 Animal in distress? 24/7 —</span><a href="{% url 'public:report_animal' %}">Report Now →</a></div>
 <header class="site-header">
   <div class="container">
     <nav class="nav-inner">
-      <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a>
+      <a href="{% url 'public:home' %}" class="nav-logo" aria-label="Unke Liye — Home"><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="nav-logo-img" /></a>
       <ul class="nav-menu">
-        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-        <li class="nav-item"><a href="adopt.html" class="nav-link">Adopt</a></li>
-        <li class="nav-item"><a href="events.html" class="nav-link active">Events</a></li>
-        <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
-        <li class="nav-item"><a href="news.html" class="nav-link">News</a></li>
-        <li class="nav-item"><a href="volunteer.html" class="nav-link">Volunteer</a></li>
+        <li class="nav-item"><a href="{% url 'public:home' %}" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="{% url 'public:adopt' %}" class="nav-link">Adopt</a></li>
+        <li class="nav-item"><a href="{% url 'public:events' %}" class="nav-link active">Events</a></li>
+        <li class="nav-item"><a href="{% url 'public:gallery' %}" class="nav-link">Gallery</a></li>
+        <li class="nav-item"><a href="{% url 'public:news' %}" class="nav-link">News</a></li>
+        <li class="nav-item"><a href="{% url 'public:volunteer' %}" class="nav-link">Volunteer</a></li>
       </ul>
       <div class="nav-actions">
-        <a href="volunteer.html" class="btn btn--outline btn--sm">Volunteer</a>
-        <a href="donate.html" class="btn btn--primary btn--sm">Donate Now</a>
+        <a href="{% url 'public:volunteer' %}" class="btn btn--outline btn--sm">Volunteer</a>
+        <a href="{% url 'public:donate' %}" class="btn btn--primary btn--sm">Donate Now</a>
         <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
     </nav>
   </div>
 </header>
-<div class="nav-mobile-panel"><div class="nav-mobile-overlay"></div><div class="nav-mobile-drawer"><button class="nav-mobile-close">✕</button><a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a><ul class="nav-mobile-list"><li><a href="events.html">Events</a></li><li><a href="adopt.html">Adopt</a></li><li><a href="volunteer.html">Volunteer</a></li><li><a href="donate.html">Donate</a></li></ul></div></div>
+<div class="nav-mobile-panel"><div class="nav-mobile-overlay"></div><div class="nav-mobile-drawer"><button class="nav-mobile-close">✕</button><a href="{% url 'public:home' %}" class="nav-logo" aria-label="Unke Liye — Home"><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="nav-logo-img" /></a><ul class="nav-mobile-list"><li><a href="{% url 'public:events' %}">Events</a></li><li><a href="{% url 'public:adopt' %}">Adopt</a></li><li><a href="{% url 'public:volunteer' %}">Volunteer</a></li><li><a href="{% url 'public:donate' %}">Donate</a></li></ul></div></div>
 
 <main id="main">
 
@@ -46,7 +47,7 @@
       style="background-image:url('https://images.unsplash.com/photo-1522276498395-f4f68f7f8454?auto=format&fit=crop&w=1600&q=80')"></div>
     <div class="pg-hero__overlay"></div>
     <div class="container pg-hero__content">
-      <nav class="pg-breadcrumb"><a href="index.html">Home</a><span class="pg-breadcrumb-sep">›</span><a href="events.html">Events</a><span class="pg-breadcrumb-sep">›</span><span>Adoption Camp</span></nav>
+      <nav class="pg-breadcrumb"><a href="{% url 'public:home' %}">Home</a><span class="pg-breadcrumb-sep">›</span><a href="{% url 'public:events' %}">Events</a><span class="pg-breadcrumb-sep">›</span><span>Adoption Camp</span></nav>
       <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem">
         <span class="pg-badge pg-badge--success">✅ Open for RSVP</span>
         <span class="pg-chip pg-chip--blue" style="background:rgba(255,255,255,.18);color:#fff;border-color:rgba(255,255,255,.25)">📅 September 21, 2025</span>
@@ -190,10 +191,10 @@
           <div style="background:var(--color-surface-alt);border-radius:var(--radius-lg);padding:1.5rem;margin-top:1.5rem;border:1px solid var(--color-border)">
             <h4 style="margin-bottom:1rem">Related Resources</h4>
             <div style="display:grid;gap:.5rem">
-              <a href="adopt.html" class="btn btn--outline btn--sm">🐾 View Adoptable Animals</a>
-              <a href="foster.html" class="btn btn--outline btn--sm">🏠 Foster Instead</a>
-              <a href="donate.html" class="btn btn--outline btn--sm">❤️ Make a Donation</a>
-              <a href="gallery.html" class="btn btn--outline btn--sm">📷 Past Events Gallery</a>
+              <a href="{% url 'public:adopt' %}" class="btn btn--outline btn--sm">🐾 View Adoptable Animals</a>
+              <a href="{% url 'public:foster' %}" class="btn btn--outline btn--sm">🏠 Foster Instead</a>
+              <a href="{% url 'public:donate' %}" class="btn btn--outline btn--sm">❤️ Make a Donation</a>
+              <a href="{% url 'public:gallery' %}" class="btn btn--outline btn--sm">📷 Past Events Gallery</a>
             </div>
           </div>
         </div>
@@ -207,7 +208,7 @@
     <div class="container">
       <div class="pg-flex-between reveal" style="margin-bottom:2rem">
         <h2>Other Upcoming Events</h2>
-        <a href="events.html" class="btn btn--outline">All Events →</a>
+        <a href="{% url 'public:events' %}" class="btn btn--outline">All Events →</a>
       </div>
       <div class="pg-grid-3 reveal">
         <div class="pg-event-card">
@@ -217,7 +218,7 @@
           <div class="pg-event-card__body">
             <h3>Monsoon Tree Drive</h3>
             <div class="pg-event-card__meta"><span>📍 Sinhagad Fort</span></div>
-            <a href="event-detail.html?id=tree-drive-sep" class="btn btn--outline btn--sm" style="margin-top:auto">Learn More →</a>
+            <a href="{% url 'public:event_detail' 1 %}" class="btn btn--outline btn--sm" style="margin-top:auto">Learn More →</a>
           </div>
         </div>
         <div class="pg-event-card">
@@ -227,7 +228,7 @@
           <div class="pg-event-card__body">
             <h3>Paws Walkathon</h3>
             <div class="pg-event-card__meta"><span>📍 Baner Road</span></div>
-            <a href="event-detail.html?id=walkathon-oct" class="btn btn--outline btn--sm" style="margin-top:auto">Learn More →</a>
+            <a href="{% url 'public:event_detail' 1 %}" class="btn btn--outline btn--sm" style="margin-top:auto">Learn More →</a>
           </div>
         </div>
         <div class="pg-event-card">
@@ -237,7 +238,7 @@
           <div class="pg-event-card__body">
             <h3>Pet First Aid Workshop</h3>
             <div class="pg-event-card__meta"><span>📍 Kothrud Centre</span></div>
-            <a href="event-detail.html?id=first-aid-oct" class="btn btn--outline btn--sm" style="margin-top:auto">Learn More →</a>
+            <a href="{% url 'public:event_detail' 1 %}" class="btn btn--outline btn--sm" style="margin-top:auto">Learn More →</a>
           </div>
         </div>
       </div>
@@ -261,15 +262,15 @@
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
-      <div class="footer-col footer-col--brand"><a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="footer-logo-img" /></a></div>
-      <div class="footer-col"><h4 style="color:#fff;margin-bottom:1rem">Quick Links</h4><ul style="list-style:none;padding:0;margin:0;display:grid;gap:.5rem;font-size:.875rem"><li><a href="events.html">All Events</a></li><li><a href="adopt.html">Adopt</a></li><li><a href="volunteer.html">Volunteer</a></li></ul></div>
+      <div class="footer-col footer-col--brand"><a href="{% url 'public:home' %}" class="nav-logo" aria-label="Unke Liye — Home"><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="footer-logo-img" /></a></div>
+      <div class="footer-col"><h4 style="color:#fff;margin-bottom:1rem">Quick Links</h4><ul style="list-style:none;padding:0;margin:0;display:grid;gap:.5rem;font-size:.875rem"><li><a href="{% url 'public:events' %}">All Events</a></li><li><a href="{% url 'public:adopt' %}">Adopt</a></li><li><a href="{% url 'public:volunteer' %}">Volunteer</a></li></ul></div>
       <div class="footer-col"><h4 style="color:#fff;margin-bottom:1rem">Contact</h4><p style="color:rgba(255,255,255,.7);font-size:.875rem">📞 <a href="tel:+919876543210" style="color:#fff">+91 98765 43210</a></p></div>
     </div>
     <div class="footer-bottom"><p>© 2026 Unke Liye</p></div>
   </div>
 </footer>
-<a href="report-animal.html" class="pg-float-btn"><span class="pg-float-pulse"></span> Report Emergency</a>
+<a href="{% url 'public:report_animal' %}" class="pg-float-btn"><span class="pg-float-pulse"></span> Report Emergency</a>
 <div class="pg-toast-wrap"></div>
-<script src="js/data.js"></script><script src="js/main.js"></script><script src="js/enhanced-pages.js"></script>
+<script src="{% static 'public-assets/js/data.js' %}"></script><script src="{% static 'public-assets/js/main.js' %}"></script><script src="{% static 'public-assets/js/enhanced-pages.js' %}"></script>
 </body>
 </html>

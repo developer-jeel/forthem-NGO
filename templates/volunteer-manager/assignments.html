@@ -1,17 +1,18 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Field Assignments — Volunteer Manager | Unke Liye NGO</title>
-  <link rel="stylesheet" href="assets/css/volunteer-manager.css">
-  <link rel="stylesheet" href="../shared/css/platform-theme.css">
+  <link rel="stylesheet" href="{% static 'volunteer-manager-assets/css/volunteer-manager.css' %}">
+  <link rel="stylesheet" href="{% static 'shared/css/platform-theme.css' %}">
 </head>
 <body>
   <div class="app-shell">
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-header">
-        <img src="../logo.png" alt="Unke Liye Logo" class="sidebar-logo-img">
+        <img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye Logo" class="sidebar-logo-img">
         <div>
           <div class="sidebar-brand">UNKE LIYE</div>
           <div class="sidebar-brand-sub">Volunteer Operations</div>
@@ -20,41 +21,41 @@
       <nav class="sidebar-nav">
         <div class="nav-section">
           <div class="nav-section-title">Overview</div>
-          <a href="dashboard.html" class="nav-item">
+          <a href="{% url 'volunteer_manager:dashboard' %}" class="nav-item">
             <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
             Dashboard
           </a>
         </div>
         <div class="nav-section">
           <div class="nav-section-title">Volunteers</div>
-          <a href="volunteers.html" class="nav-item">
+          <a href="{% url 'volunteer_manager:volunteers' %}" class="nav-item">
             <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
             Volunteers
           </a>
-          <a href="applications.html" class="nav-item">
+          <a href="{% url 'volunteer_manager:applications' %}" class="nav-item">
             <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
             Applications
           </a>
-          <a href="shifts.html" class="nav-item">
+          <a href="{% url 'volunteer_manager:shifts' %}" class="nav-item">
             <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
             Shifts & Schedule
           </a>
-          <a href="assignments.html" class="nav-item active">
+          <a href="{% url 'volunteer_manager:assignments' %}" class="nav-item active">
             <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
             Assignments
           </a>
-          <a href="attendance.html" class="nav-item">
+          <a href="{% url 'volunteer_manager:attendance' %}" class="nav-item">
             <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             Attendance & Hours
           </a>
         </div>
         <div class="nav-section">
           <div class="nav-section-title">Finance & Logistics</div>
-          <a href="fund-requests.html" class="nav-item">
+          <a href="{% url 'volunteer_manager:fund_requests' %}" class="nav-item">
             <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             Fund Requests
           </a>
-          <a href="broadcast.html" class="nav-item">
+          <a href="{% url 'volunteer_manager:broadcast' %}" class="nav-item">
             <svg class="nav-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/></svg>
             Broadcast Alerts
           </a>
@@ -75,7 +76,7 @@
       <header class="header">
         <div class="header-left">
           <nav class="breadcrumb-nav">
-            <a href="dashboard.html">Volunteer Operations</a>
+            <a href="{% url 'volunteer_manager:dashboard' %}">Volunteer Operations</a>
             <span class="breadcrumb-sep">/</span>
             <span class="breadcrumb-current">Assignments</span>
           </nav>
@@ -85,7 +86,7 @@
             <span class="icon-moon">🌙</span>
             <span class="icon-sun" style="display:none;">☀️</span>
           </button>
-          <a href="../index.html" class="btn btn-secondary btn-sm">Main Portal Hub</a>
+          <a href="{% url 'volunteer_manager:dashboard' %}" class="btn btn-secondary btn-sm">Main Portal Hub</a>
         </div>
       </header>
 
@@ -95,7 +96,7 @@
             <h1 class="page-title">Field Duty Assignments & Team Leads</h1>
             <p class="page-subtitle">Allocate vetted volunteer teams to active emergency rescues, shelter feeding duties, and canal cleanup shifts.</p>
           </div>
-          <a href="shifts.html" class="btn btn-primary btn-sm">View Weekly Shift Calendar &rarr;</a>
+          <a href="{% url 'volunteer_manager:shifts' %}" class="btn btn-primary btn-sm">View Weekly Shift Calendar &rarr;</a>
         </div>
 
         <div class="card">
@@ -157,7 +158,7 @@
   </div>
 
   <div class="toast-container"></div>
-  <script src="../shared/js/platform-store.js"></script>
-  <script src="../shared/js/platform-ui.js"></script>
+  <script src="{% static 'shared/js/platform-store.js' %}"></script>
+  <script src="{% static 'shared/js/platform-ui.js' %}"></script>
 </body>
 </html>

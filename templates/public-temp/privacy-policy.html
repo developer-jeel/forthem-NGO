@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,10 +7,10 @@
   <title>Privacy Policy — Unke Liye</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/variables.css" />
-  <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/components.css" />
-  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/variables.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/base.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/components.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/animations.css' %}" />
   <style>
     .legal-content { max-width: 720px; margin: 0 auto; }
     .legal-content h2 { font-size: var(--text-2xl); margin-top: var(--space-12); margin-bottom: var(--space-5); padding-top: var(--space-8); border-top: 1px solid var(--color-border); }
@@ -23,12 +24,12 @@
 </head>
 <body>
 <a href="#main-content" class="skip-nav">Skip to main content</a>
-<div class="emergency-bar"><span class="pulse-dot" aria-hidden="true"></span><span>🚨 Animal in distress? —</span><a href="report-animal.html">Report Now →</a></div>
+<div class="emergency-bar"><span class="pulse-dot" aria-hidden="true"></span><span>🚨 Animal in distress? —</span><a href="{% url 'public:report_animal' %}">Report Now →</a></div>
 <header class="site-header" role="banner">
   <div class="container">
     <nav class="nav-inner">
-      <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a>
-      <div class="nav-actions"><a href="donate.html" class="btn btn--primary btn--sm">Donate</a></div>
+      <a href="{% url 'public:home' %}" class="nav-logo" aria-label="Unke Liye — Home"><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="nav-logo-img" /></a>
+      <div class="nav-actions"><a href="{% url 'public:donate' %}" class="btn btn--primary btn--sm">Donate</a></div>
     </nav>
   </div>
 </header>
@@ -36,7 +37,7 @@
 <main id="main-content">
   <div class="page-hero" style="padding:var(--space-12) 0 var(--space-10); --ph-img: url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600&q=80')">
     <div class="container page-hero-content">
-      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">›</span><span aria-current="page">Privacy Policy</span></nav>
+      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="{% url 'public:home' %}">Home</a><span class="breadcrumb-sep">›</span><span aria-current="page">Privacy Policy</span></nav>
       <h1>Privacy Policy</h1>
     </div>
   </div>
@@ -116,10 +117,10 @@
   <div class="container">
     <div class="footer-bottom" style="padding-top:var(--space-8)">
       <p>© 2024 Unke Liye. Reg. No. MAH/2015/1234</p>
-      <div class="footer-legal-links"><a href="privacy-policy.html">Privacy Policy</a><a href="terms.html">Terms</a><a href="sitemap.html">Sitemap</a></div>
+      <div class="footer-legal-links"><a href="{% url 'public:privacy_policy' %}">Privacy Policy</a><a href="{% url 'public:terms' %}">Terms</a><a href="{% url 'public:sitemap' %}">Sitemap</a></div>
     </div>
   </div>
 </footer>
-<script src="js/main.js"></script>
+<script src="{% static 'public-assets/js/main.js' %}"></script>
 </body>
 </html>

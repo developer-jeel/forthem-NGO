@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,10 +7,10 @@
   <title>Rescue Status — Unke Liye</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/variables.css" />
-  <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/components.css" />
-  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/variables.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/base.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/components.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/animations.css' %}" />
   <style>
     .dashboard-layout { display: grid; grid-template-columns: 1fr; gap: var(--space-8); }
     @media (min-width: 1024px) { .dashboard-layout { grid-template-columns: 280px 1fr; } }
@@ -27,14 +28,14 @@
 </head>
 <body>
 <a href="#main-content" class="skip-nav">Skip to main content</a>
-<div class="emergency-bar"><span class="pulse-dot" aria-hidden="true"></span><span>🚨 Animal in distress? —</span><a href="report-animal.html">Report Now →</a></div>
+<div class="emergency-bar"><span class="pulse-dot" aria-hidden="true"></span><span>🚨 Animal in distress? —</span><a href="{% url 'public:report_animal' %}">Report Now →</a></div>
 <header class="site-header" role="banner">
   <div class="container">
     <nav class="nav-inner">
-      <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a>
+      <a href="{% url 'public:home' %}" class="nav-logo" aria-label="Unke Liye — Home"><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="nav-logo-img" /></a>
       <div class="nav-actions">
-        <a href="report-animal.html" class="btn btn--urgent btn--sm">🚨 Report Animal</a>
-        <a href="donate.html" class="btn btn--primary btn--sm">Donate</a>
+        <a href="{% url 'public:report_animal' %}" class="btn btn--urgent btn--sm">🚨 Report Animal</a>
+        <a href="{% url 'public:donate' %}" class="btn btn--primary btn--sm">Donate</a>
       </div>
     </nav>
   </div>
@@ -43,7 +44,7 @@
 <main id="main-content">
   <div class="page-hero" style="padding:var(--space-12) 0 var(--space-10); --ph-img: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80')">
     <div class="container page-hero-content">
-      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">›</span><a href="login.html">My Account</a><span class="breadcrumb-sep">›</span><span aria-current="page">Rescue Status</span></nav>
+      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="{% url 'public:home' %}">Home</a><span class="breadcrumb-sep">›</span><a href="{% url 'public:login' %}">My Account</a><span class="breadcrumb-sep">›</span><span aria-current="page">Rescue Status</span></nav>
       <h1>Rescue Status Tracker</h1>
       <p>Track your rescue report in real-time.</p>
     </div>
@@ -68,8 +69,8 @@
             <div><span style="color:var(--color-text-muted)">Reporter:</span> <strong>Meena Kulkarni</strong></div>
           </div>
           <div style="margin-top:var(--space-6);padding-top:var(--space-6);border-top:1px solid var(--color-border)">
-            <a href="report-animal.html" class="btn btn--urgent btn--full btn--sm">Report Another Animal</a>
-            <a href="index.html" class="btn btn--ghost btn--full btn--sm" style="margin-top:var(--space-3)">← Back to Home</a>
+            <a href="{% url 'public:report_animal' %}" class="btn btn--urgent btn--full btn--sm">Report Another Animal</a>
+            <a href="{% url 'public:home' %}" class="btn btn--ghost btn--full btn--sm" style="margin-top:var(--space-3)">← Back to Home</a>
           </div>
         </aside>
 
@@ -158,11 +159,11 @@
   <div class="container">
     <div class="footer-bottom" style="padding-top:var(--space-8)">
       <p>© 2024 Unke Liye · <a href="tel:+918888000000" style="color:rgba(250,247,242,0.7)">+91 88888 00000</a> (24/7 Emergency)</p>
-      <div class="footer-legal-links"><a href="index.html">Home</a><a href="contact.html">Contact</a><a href="sitemap.html">Sitemap</a></div>
+      <div class="footer-legal-links"><a href="{% url 'public:home' %}">Home</a><a href="{% url 'public:contact' %}">Contact</a><a href="{% url 'public:sitemap' %}">Sitemap</a></div>
     </div>
   </div>
 </footer>
-<a href="report-animal.html" class="emergency-float" aria-label="Report an animal emergency"><span aria-hidden="true">🚨</span><span>Report Animal Emergency</span></a>
-<script src="js/main.js"></script>
+<a href="{% url 'public:report_animal' %}" class="emergency-float" aria-label="Report an animal emergency"><span aria-hidden="true">🚨</span><span>Report Animal Emergency</span></a>
+<script src="{% static 'public-assets/js/main.js' %}"></script>
 </body>
 </html>

@@ -1,11 +1,12 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>New Rescue Fund Request — Unke Liye NGO</title>
-  <link rel="stylesheet" href="assets/css/rescue-manager.css">
-  <link rel="stylesheet" href="../shared/css/platform-theme.css">
+  <link rel="stylesheet" href="{% static 'rescue-manager-assets/css/rescue-manager.css' %}">
+  <link rel="stylesheet" href="{% static 'shared/css/platform-theme.css' %}">
   <style>
     .form-grid {
       display: grid;
@@ -49,7 +50,7 @@
   <div class="app-shell" id="app-shell">
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-header">
-        <img src="../logo.png" alt="Unke Liye Logo" class="sidebar-logo-img">
+        <img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye Logo" class="sidebar-logo-img">
         <div class="sidebar-logo-text">
           <strong>Unke Liye</strong>
           <span>Rescue Operations</span>
@@ -62,11 +63,11 @@
       <nav class="sidebar-nav">
         <div class="nav-section">
           <div class="nav-section-label">Overview</div>
-          <a href="dashboard.html" class="nav-item">
+          <a href="{% url 'rescue_manager:dashboard' %}" class="nav-item">
             <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
             <span class="nav-item-label">Dashboard</span>
           </a>
-          <a href="command-center.html" class="nav-item">
+          <a href="{% url 'rescue_manager:command_center' %}" class="nav-item">
             <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
             <span class="nav-item-label">Command Center</span>
           </a>
@@ -74,15 +75,15 @@
         <div class="nav-divider"></div>
         <div class="nav-section">
           <div class="nav-section-label">Finance & Logistics</div>
-          <a href="fund-requests.html" class="nav-item active">
+          <a href="{% url 'rescue_manager:fund_requests' %}" class="nav-item active">
             <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
             <span class="nav-item-label">Rescue Fund Requests</span>
           </a>
-          <a href="resources.html" class="nav-item">
+          <a href="{% url 'rescue_manager:resources' %}" class="nav-item">
             <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
             <span class="nav-item-label">Fleet & Equipment</span>
           </a>
-          <a href="medical-records.html" class="nav-item">
+          <a href="{% url 'rescue_manager:medical_records' %}" class="nav-item">
             <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
             <span class="nav-item-label">Medical Records</span>
           </a>
@@ -101,9 +102,9 @@
       <header class="header">
         <div class="header-left">
           <nav class="breadcrumb-nav">
-            <a href="dashboard.html">Rescue Operations</a>
+            <a href="{% url 'rescue_manager:dashboard' %}">Rescue Operations</a>
             <span class="breadcrumb-sep">/</span>
-            <a href="fund-requests.html" style="color:var(--text-secondary);text-decoration:none;">Fund Requests</a>
+            <a href="{% url 'rescue_manager:fund_requests' %}" style="color:var(--text-secondary);text-decoration:none;">Fund Requests</a>
             <span class="breadcrumb-sep">/</span>
             <span class="breadcrumb-current">New Request</span>
           </nav>
@@ -113,7 +114,7 @@
             <span class="icon-moon">🌙</span>
             <span class="icon-sun" style="display:none;">☀️</span>
           </button>
-          <a href="fund-requests.html" class="btn btn-secondary btn-sm">← Back to Requests</a>
+          <a href="{% url 'rescue_manager:fund_requests' %}" class="btn btn-secondary btn-sm">← Back to Requests</a>
         </div>
       </header>
 
@@ -238,7 +239,7 @@
                 <button type="submit" class="btn btn-primary" style="width:100%;padding:0.75rem;font-size:0.95rem;">
                   🚀 Submit Request to Finance
                 </button>
-                <a href="fund-requests.html" class="btn btn-secondary" style="width:100%;margin-top:var(--space-2);text-align:center;">Cancel</a>
+                <a href="{% url 'rescue_manager:fund_requests' %}" class="btn btn-secondary" style="width:100%;margin-top:var(--space-2);text-align:center;">Cancel</a>
               </div>
             </div>
           </div>
@@ -248,8 +249,8 @@
   </div>
 
   <div class="toast-container"></div>
-  <script src="../shared/js/platform-store.js"></script>
-  <script src="../shared/js/platform-ui.js"></script>
+  <script src="{% static 'shared/js/platform-store.js' %}"></script>
+  <script src="{% static 'shared/js/platform-ui.js' %}"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const form = document.getElementById('new-request-form');

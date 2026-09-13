@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,34 +8,34 @@
   <title>Terms & Conditions — Unke Liye</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/variables.css" />
-  <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/components.css" />
-  <link rel="stylesheet" href="css/animations.css" />
-  <link rel="stylesheet" href="css/enhanced-pages.css" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/variables.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/base.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/components.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/animations.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/enhanced-pages.css' %}" />
 </head>
 <body>
 <a href="#main" class="skip-nav">Skip to main content</a>
-<div class="emergency-bar"><span class="pulse-dot"></span><span>🚨 Animal in distress? 24/7 —</span><a href="report-animal.html">Report Now →</a></div>
+<div class="emergency-bar"><span class="pulse-dot"></span><span>🚨 Animal in distress? 24/7 —</span><a href="{% url 'public:report_animal' %}">Report Now →</a></div>
 <header class="site-header">
   <div class="container">
     <nav class="nav-inner">
-      <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a>
+      <a href="{% url 'public:home' %}" class="nav-logo" aria-label="Unke Liye — Home"><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="nav-logo-img" /></a>
       <ul class="nav-menu">
-        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-        <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-        <li class="nav-item"><a href="donate.html" class="nav-link">Donate</a></li>
-        <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+        <li class="nav-item"><a href="{% url 'public:home' %}" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="{% url 'public:about' %}" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="{% url 'public:donate' %}" class="nav-link">Donate</a></li>
+        <li class="nav-item"><a href="{% url 'public:contact' %}" class="nav-link">Contact</a></li>
       </ul>
       <div class="nav-actions">
-        <a href="volunteer.html" class="btn btn--outline btn--sm">Volunteer</a>
-        <a href="donate.html" class="btn btn--primary btn--sm">Donate Now</a>
+        <a href="{% url 'public:volunteer' %}" class="btn btn--outline btn--sm">Volunteer</a>
+        <a href="{% url 'public:donate' %}" class="btn btn--primary btn--sm">Donate Now</a>
         <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
     </nav>
   </div>
 </header>
-<div class="nav-mobile-panel"><div class="nav-mobile-overlay"></div><div class="nav-mobile-drawer"><button class="nav-mobile-close">✕</button><a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a><ul class="nav-mobile-list"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="donate.html">Donate</a></li><li><a href="contact.html">Contact</a></li></ul></div></div>
+<div class="nav-mobile-panel"><div class="nav-mobile-overlay"></div><div class="nav-mobile-drawer"><button class="nav-mobile-close">✕</button><a href="{% url 'public:home' %}" class="nav-logo" aria-label="Unke Liye — Home"><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="nav-logo-img" /></a><ul class="nav-mobile-list"><li><a href="{% url 'public:home' %}">Home</a></li><li><a href="{% url 'public:about' %}">About</a></li><li><a href="{% url 'public:donate' %}">Donate</a></li><li><a href="{% url 'public:contact' %}">Contact</a></li></ul></div></div>
 
 <main id="main">
 
@@ -42,7 +43,7 @@
   <section style="background:var(--color-surface-alt);border-bottom:1px solid var(--color-border);padding:3.5rem 0 3rem">
     <div class="container">
       <nav class="pg-breadcrumb" style="color:var(--color-text-muted);margin-bottom:1rem">
-        <a href="index.html" style="color:var(--color-text-muted)">Home</a>
+        <a href="{% url 'public:home' %}" style="color:var(--color-text-muted)">Home</a>
         <span class="pg-breadcrumb-sep">›</span>
         <span>Terms &amp; Conditions</span>
       </nav>
@@ -147,7 +148,7 @@
           <p>Our website may contain links to third-party websites (including Razorpay, Google Maps, social media platforms). These links are provided for convenience and do not imply endorsement. Unke Liye is not responsible for the content, privacy practices, or security of third-party websites.</p>
 
           <h2 id="terms-privacy">9. Privacy</h2>
-          <p>Collection and use of your personal data is governed by our <a href="privacy-policy.html">Privacy Policy</a>, which forms part of these Terms. By using our services, you consent to our data practices as described therein.</p>
+          <p>Collection and use of your personal data is governed by our <a href="{% url 'public:privacy_policy' %}">Privacy Policy</a>, which forms part of these Terms. By using our services, you consent to our data practices as described therein.</p>
 
           <h2 id="terms-governing-law">10. Governing Law</h2>
           <p>These Terms are governed by the laws of India. Any disputes arising in connection with these Terms shall be subject to the exclusive jurisdiction of the courts of Pune, Maharashtra.</p>
@@ -167,9 +168,9 @@
 
           <!-- Related pages -->
           <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--color-border)">
-            <a href="privacy-policy.html" class="btn btn--outline">Privacy Policy →</a>
-            <a href="transparency.html" class="btn btn--outline">Financial Transparency →</a>
-            <a href="contact.html" class="btn btn--outline">Contact Us →</a>
+            <a href="{% url 'public:privacy_policy' %}" class="btn btn--outline">Privacy Policy →</a>
+            <a href="{% url 'public:transparency' %}" class="btn btn--outline">Financial Transparency →</a>
+            <a href="{% url 'public:contact' %}" class="btn btn--outline">Contact Us →</a>
           </div>
 
         </div>
@@ -182,16 +183,16 @@
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
-      <div class="footer-col footer-col--brand"><a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="footer-logo-img" /></a><p style="color:rgba(255,255,255,.7);font-size:.875rem;line-height:1.75">Registered NGO — Section 12A &amp; 80G · Reg. No. MAH/2015/1234</p></div>
-      <div class="footer-col"><h4 style="color:#fff;margin-bottom:1rem">Legal</h4><ul style="list-style:none;padding:0;margin:0;display:grid;gap:.5rem;font-size:.875rem"><li><a href="terms.html">Terms &amp; Conditions</a></li><li><a href="privacy-policy.html">Privacy Policy</a></li><li><a href="transparency.html">Financial Transparency</a></li><li><a href="sitemap.html">Sitemap</a></li></ul></div>
-      <div class="footer-col"><h4 style="color:#fff;margin-bottom:1rem">Get Involved</h4><ul style="list-style:none;padding:0;margin:0;display:grid;gap:.5rem;font-size:.875rem"><li><a href="donate.html">Donate</a></li><li><a href="volunteer.html">Volunteer</a></li><li><a href="adopt.html">Adopt</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col footer-col--brand"><a href="{% url 'public:home' %}" class="nav-logo" aria-label="Unke Liye — Home"><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="footer-logo-img" /></a><p style="color:rgba(255,255,255,.7);font-size:.875rem;line-height:1.75">Registered NGO — Section 12A &amp; 80G · Reg. No. MAH/2015/1234</p></div>
+      <div class="footer-col"><h4 style="color:#fff;margin-bottom:1rem">Legal</h4><ul style="list-style:none;padding:0;margin:0;display:grid;gap:.5rem;font-size:.875rem"><li><a href="{% url 'public:terms' %}">Terms &amp; Conditions</a></li><li><a href="{% url 'public:privacy_policy' %}">Privacy Policy</a></li><li><a href="{% url 'public:transparency' %}">Financial Transparency</a></li><li><a href="{% url 'public:sitemap' %}">Sitemap</a></li></ul></div>
+      <div class="footer-col"><h4 style="color:#fff;margin-bottom:1rem">Get Involved</h4><ul style="list-style:none;padding:0;margin:0;display:grid;gap:.5rem;font-size:.875rem"><li><a href="{% url 'public:donate' %}">Donate</a></li><li><a href="{% url 'public:volunteer' %}">Volunteer</a></li><li><a href="{% url 'public:adopt' %}">Adopt</a></li><li><a href="{% url 'public:contact' %}">Contact</a></li></ul></div>
       <div class="footer-col"><h4 style="color:#fff;margin-bottom:1rem">Contact</h4><p style="color:rgba(255,255,255,.7);font-size:.875rem">📞 <a href="tel:+912025678900" style="color:#fff">+91 20 2567 8900</a><br>📧 <a href="mailto:legal@unkeliye.org" style="color:#fff">legal@unkeliye.org</a></p></div>
     </div>
-    <div class="footer-bottom"><p>© 2026 Unke Liye · All rights reserved</p><div class="footer-legal-links"><a href="privacy-policy.html">Privacy</a><a href="terms.html">Terms</a><a href="transparency.html">Transparency</a><a href="sitemap.html">Sitemap</a></div></div>
+    <div class="footer-bottom"><p>© 2026 Unke Liye · All rights reserved</p><div class="footer-legal-links"><a href="{% url 'public:privacy_policy' %}">Privacy</a><a href="{% url 'public:terms' %}">Terms</a><a href="{% url 'public:transparency' %}">Transparency</a><a href="{% url 'public:sitemap' %}">Sitemap</a></div></div>
   </div>
 </footer>
-<a href="report-animal.html" class="pg-float-btn"><span class="pg-float-pulse"></span> Report Emergency</a>
+<a href="{% url 'public:report_animal' %}" class="pg-float-btn"><span class="pg-float-pulse"></span> Report Emergency</a>
 <div class="pg-toast-wrap"></div>
-<script src="js/data.js"></script><script src="js/main.js"></script><script src="js/enhanced-pages.js"></script>
+<script src="{% static 'public-assets/js/data.js' %}"></script><script src="{% static 'public-assets/js/main.js' %}"></script><script src="{% static 'public-assets/js/enhanced-pages.js' %}"></script>
 </body>
 </html>

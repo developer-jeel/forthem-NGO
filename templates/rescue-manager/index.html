@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
@@ -5,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sign In — Rescue Manager · Unke Liye NGO</title>
 <meta name="description" content="Secure portal login for Rescue Manager operations — Unke Liye NGO.">
-<link rel="stylesheet" href="assets/css/rescue-manager.css">
+<link rel="stylesheet" href="{% static 'rescue-manager-assets/css/rescue-manager.css' %}">
 <style>
   body { display: flex; min-height: 100vh; background: var(--bg-canvas); }
   .login-shell { display: flex; width: 100%; min-height: 100vh; }
@@ -145,7 +146,7 @@
 </head>
 <body>
 <!-- Logo & Brand for Unke Liye -->
-<div style="display:none;"><img src="../logo.png" alt="Unke Liye Logo"><span>Unke Liye</span></div>
+<div style="display:none;"><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye Logo"><span>Unke Liye</span></div>
 
 <button class="topbar-icon-btn theme-btn" id="theme-toggle" aria-label="Toggle dark mode">
   <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>

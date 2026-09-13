@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,10 +7,10 @@
   <title>Thank You — Unke Liye</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/variables.css" />
-  <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/components.css" />
-  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/variables.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/base.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/components.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/animations.css' %}" />
   <style>
     .confirmation-page {
       min-height: 100vh;
@@ -79,7 +80,7 @@
 <div class="confirmation-page">
   <div class="container">
     <div class="confirmation-card animate-scale-in" id="main-content">
-      <a href="index.html" class="nav-logo" style="display:inline-block;margin-bottom:1.5rem;"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" style="height:48px;width:auto;"></a>
+      <a href="{% url 'public:home' %}" class="nav-logo" style="display:inline-block;margin-bottom:1.5rem;"><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="nav-logo-img" style="height:48px;width:auto;"></a>
       <div class="checkmark" aria-hidden="true">💚</div>
       <h1 style="font-size:var(--text-3xl);margin-bottom:var(--space-4)">Thank You!</h1>
       <p style="font-size:var(--text-lg);color:var(--color-text-muted);max-width:40ch;margin:0 auto var(--space-6)">
@@ -132,24 +133,24 @@
       </div>
 
       <div style="display:flex;flex-wrap:wrap;gap:var(--space-4);justify-content:center">
-        <a href="index.html" class="btn btn--primary">Back to Home</a>
-        <a href="impact.html" class="btn btn--outline">See Our Impact</a>
-        <a href="stories.html" class="btn btn--ghost">Read Stories</a>
+        <a href="{% url 'public:home' %}" class="btn btn--primary">Back to Home</a>
+        <a href="{% url 'public:impact' %}" class="btn btn--outline">See Our Impact</a>
+        <a href="{% url 'public:stories' %}" class="btn btn--ghost">Read Stories</a>
       </div>
 
       <div style="margin-top:var(--space-8);padding-top:var(--space-6);border-top:1px solid var(--color-border)">
         <p style="font-size:var(--text-sm);color:var(--color-text-muted)">Want to do more?</p>
         <div style="display:flex;flex-wrap:wrap;gap:var(--space-3);justify-content:center;margin-top:var(--space-4)">
-          <a href="volunteer.html" class="btn btn--ghost btn--sm">Volunteer With Us</a>
-          <a href="adopt.html" class="btn btn--ghost btn--sm">Adopt a Pet</a>
-          <a href="sponsor-animal.html" class="btn btn--ghost btn--sm">Sponsor an Animal</a>
+          <a href="{% url 'public:volunteer' %}" class="btn btn--ghost btn--sm">Volunteer With Us</a>
+          <a href="{% url 'public:adopt' %}" class="btn btn--ghost btn--sm">Adopt a Pet</a>
+          <a href="{% url 'public:sponsor_animal' %}" class="btn btn--ghost btn--sm">Sponsor an Animal</a>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<script src="js/main.js"></script>
+<script src="{% static 'public-assets/js/main.js' %}"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     // Parse URL params

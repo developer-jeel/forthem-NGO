@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/admin.css">
+  <link rel="stylesheet" href="{% static 'content-manager-assets/css/admin.css' %}">
   <style>
     .editor-layout { display:grid;grid-template-columns:1fr 320px;gap:24px; }
     .editor-main { background:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:12px;overflow:hidden; }
@@ -42,16 +43,16 @@
   <div class="admin-shell">
     <aside id="sidebar" class="sidebar" role="navigation">
       <div class="sidebar-header">
-        <img src="../user/logo.png" alt="Unke Liye NGO" style="width:36px;height:36px;object-fit:contain;border-radius:8px;background:rgba(255,255,255,0.15);padding:2px;flex-shrink:0;">
+        <img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye NGO" style="width:36px;height:36px;object-fit:contain;border-radius:8px;background:rgba(255,255,255,0.15);padding:2px;flex-shrink:0;">
         <div class="logo-text"><strong>Unke Liye</strong><small>Content Manager</small></div>
       </div>
       <nav class="sidebar-nav">
-        <div class="nav-group"><div class="nav-group-title">Content</div><a href="homepage-content.html" class="nav-link"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg><span class="label">Homepage Content</span></a><a href="banners.html" class="nav-link"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg><span class="label">Page Banners</span></a><a href="stories.html" class="nav-link"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg><span class="label">Stories</span></a><a href="news.html" class="nav-link active"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg><span class="label">News &amp; Press</span></a><a href="gallery.html" class="nav-link"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg><span class="label">Gallery</span></a><a href="media-library.html" class="nav-link"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span class="label">Media Library</span></a></div>
+        <div class="nav-group"><div class="nav-group-title">Content</div><a href="{% url 'content_managerr:homepage_content' %}" class="nav-link"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg><span class="label">Homepage Content</span></a><a href="{% url 'content_managerr:banners' %}" class="nav-link"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg><span class="label">Page Banners</span></a><a href="{% url 'content_managerr:stories' %}" class="nav-link"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg><span class="label">Stories</span></a><a href="{% url 'content_managerr:news' %}" class="nav-link active"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg><span class="label">News &amp; Press</span></a><a href="{% url 'content_managerr:gallery' %}" class="nav-link"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg><span class="label">Gallery</span></a><a href="{% url 'content_managerr:media_library' %}" class="nav-link"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span class="label">Media Library</span></a></div>
       </nav>
     </aside>
     <main class="main-content">
       <header class="topbar">
-        <div class="topbar-left"><button id="sidebar-toggle" class="icon-btn" aria-label="Toggle sidebar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg></button><nav class="breadcrumb"><a href="news.html">News & Press</a><span class="separator">/</span><span class="current">New Article</span></nav></div>
+        <div class="topbar-left"><button id="sidebar-toggle" class="icon-btn" aria-label="Toggle sidebar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg></button><nav class="breadcrumb"><a href="{% url 'content_managerr:news' %}">News & Press</a><span class="separator">/</span><span class="current">New Article</span></nav></div>
         <div class="topbar-right">
           <button class="btn btn-outline">Schedule</button>
           <button class="btn btn-primary" onclick="alert('Published!')">Publish</button>
@@ -104,7 +105,7 @@
                 <span style="font-weight:500;font-size:14px;">Upload Image</span>
               </div>
               <div style="margin-top:10px;">
-                <a href="media-library.html?returnUrl=news-editor.html" class="btn btn-secondary btn-sm" style="width:100%; display:flex; align-items:center; justify-content:center; gap:0.35rem; text-decoration:none;">
+                <a href="{% url 'content_managerr:media_library' %}" class="btn btn-secondary btn-sm" style="width:100%; display:flex; align-items:center; justify-content:center; gap:0.35rem; text-decoration:none;">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
                   Browse Media Library
                 </a>
@@ -122,7 +123,7 @@
       if (inserted) {
         const box = document.getElementById('news-hero-box');
         if (box) {
-          box.innerHTML = `<img src="${inserted}" alt="Featured" style="width:100%;height:100%;object-fit:cover;border-radius:6px;">`;
+          box.innerHTML = `<img src="{% static '${inserted}' %}" alt="Featured" style="width:100%;height:100%;object-fit:cover;border-radius:6px;">`;
           box.style.padding = '0';
         }
       }

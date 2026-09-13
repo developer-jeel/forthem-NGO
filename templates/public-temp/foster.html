@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,11 +8,11 @@
   <title>Foster an Animal — Unke Liye</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/variables.css" />
-  <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/components.css" />
-  <link rel="stylesheet" href="css/animations.css" />
-  <link rel="stylesheet" href="css/enhanced-pages.css" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/variables.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/base.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/components.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/animations.css' %}" />
+  <link rel="stylesheet" href="{% static 'public-assets/css/enhanced-pages.css' %}" />
 </head>
 <body>
 
@@ -21,43 +22,43 @@
 <div class="emergency-bar">
   <span class="pulse-dot"></span>
   <span>🚨 Animal in distress? We respond 24 / 7 —</span>
-  <a href="report-animal.html">Report Now →</a>
+  <a href="{% url 'public:report_animal' %}">Report Now →</a>
 </div>
 
 <!-- Site Header -->
 <header class="site-header">
   <div class="container">
     <nav class="nav-inner">
-      <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a>
+      <a href="{% url 'public:home' %}" class="nav-logo" aria-label="Unke Liye — Home"><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="nav-logo-img" /></a>
       <ul class="nav-menu">
-        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-        <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="{% url 'public:home' %}" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="{% url 'public:about' %}" class="nav-link">About</a></li>
         <li class="nav-item">
           <a href="#" class="nav-link">Our Work <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M4 6l4 4 4-4"/></svg></a>
           <div class="nav-dropdown">
-            <a href="work-animal-rescue.html"><span class="icon">🐾</span> Animal Rescue</a>
-            <a href="work-environment.html"><span class="icon">🌱</span> Environment</a>
-            <a href="work-sanitation.html"><span class="icon">🧹</span> Sanitation</a>
-            <a href="work-disaster-relief.html"><span class="icon">🚨</span> Disaster Relief</a>
+            <a href="{% url 'public:work_animal_rescue' %}"><span class="icon">🐾</span> Animal Rescue</a>
+            <a href="{% url 'public:work_environment' %}"><span class="icon">🌱</span> Environment</a>
+            <a href="{% url 'public:work_sanitation' %}"><span class="icon">🧹</span> Sanitation</a>
+            <a href="{% url 'public:work_disaster_relief' %}"><span class="icon">🚨</span> Disaster Relief</a>
           </div>
         </li>
-        <li class="nav-item"><a href="adopt.html" class="nav-link">Adopt</a></li>
-        <li class="nav-item"><a href="campaigns.html" class="nav-link">Campaigns</a></li>
-        <li class="nav-item"><a href="events.html" class="nav-link">Events</a></li>
-        <li class="nav-item"><a href="stories.html" class="nav-link">Stories</a></li>
+        <li class="nav-item"><a href="{% url 'public:adopt' %}" class="nav-link">Adopt</a></li>
+        <li class="nav-item"><a href="{% url 'public:campaigns' %}" class="nav-link">Campaigns</a></li>
+        <li class="nav-item"><a href="{% url 'public:events' %}" class="nav-link">Events</a></li>
+        <li class="nav-item"><a href="{% url 'public:stories' %}" class="nav-link">Stories</a></li>
         <li class="nav-item">
           <a href="#" class="nav-link active">Get Involved <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M4 6l4 4 4-4"/></svg></a>
           <div class="nav-dropdown">
-            <a href="volunteer.html"><span class="icon">🙋</span> Volunteer</a>
-            <a href="foster.html"><span class="icon">🏠</span> Foster an Animal</a>
-            <a href="sponsor-animal.html"><span class="icon">💛</span> Sponsor an Animal</a>
-            <a href="report-animal.html" style="color:var(--color-urgent)"><span class="icon">🚨</span> Report an Animal</a>
+            <a href="{% url 'public:volunteer' %}"><span class="icon">🙋</span> Volunteer</a>
+            <a href="{% url 'public:foster' %}"><span class="icon">🏠</span> Foster an Animal</a>
+            <a href="{% url 'public:sponsor_animal' %}"><span class="icon">💛</span> Sponsor an Animal</a>
+            <a href="{% url 'public:report_animal' %}" style="color:var(--color-urgent)"><span class="icon">🚨</span> Report an Animal</a>
           </div>
         </li>
       </ul>
       <div class="nav-actions">
-        <a href="volunteer.html" class="btn btn--outline btn--sm">Volunteer</a>
-        <a href="donate.html" class="btn btn--primary btn--sm">Donate Now</a>
+        <a href="{% url 'public:volunteer' %}" class="btn btn--outline btn--sm">Volunteer</a>
+        <a href="{% url 'public:donate' %}" class="btn btn--primary btn--sm">Donate Now</a>
         <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
     </nav>
@@ -69,21 +70,21 @@
   <div class="nav-mobile-overlay"></div>
   <div class="nav-mobile-drawer">
     <button class="nav-mobile-close" aria-label="Close menu">✕</button>
-    <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="nav-logo-img" /></a>
+    <a href="{% url 'public:home' %}" class="nav-logo" aria-label="Unke Liye — Home"><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="nav-logo-img" /></a>
     <ul class="nav-mobile-list">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About Us</a></li>
-      <li><a href="adopt.html">Adopt an Animal</a></li>
-      <li><a href="foster.html">Foster an Animal</a></li>
-      <li><a href="sponsor-animal.html">Sponsor an Animal</a></li>
-      <li><a href="campaigns.html">Campaigns</a></li>
-      <li><a href="events.html">Events & Drives</a></li>
-      <li><a href="gallery.html">Gallery</a></li>
-      <li><a href="news.html">News</a></li>
-      <li><a href="stories.html">Stories</a></li>
-      <li><a href="volunteer.html">Volunteer</a></li>
-      <li><a href="donate.html">Donate</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="{% url 'public:home' %}">Home</a></li>
+      <li><a href="{% url 'public:about' %}">About Us</a></li>
+      <li><a href="{% url 'public:adopt' %}">Adopt an Animal</a></li>
+      <li><a href="{% url 'public:foster' %}">Foster an Animal</a></li>
+      <li><a href="{% url 'public:sponsor_animal' %}">Sponsor an Animal</a></li>
+      <li><a href="{% url 'public:campaigns' %}">Campaigns</a></li>
+      <li><a href="{% url 'public:events' %}">Events & Drives</a></li>
+      <li><a href="{% url 'public:gallery' %}">Gallery</a></li>
+      <li><a href="{% url 'public:news' %}">News</a></li>
+      <li><a href="{% url 'public:stories' %}">Stories</a></li>
+      <li><a href="{% url 'public:volunteer' %}">Volunteer</a></li>
+      <li><a href="{% url 'public:donate' %}">Donate</a></li>
+      <li><a href="{% url 'public:contact' %}">Contact</a></li>
     </ul>
   </div>
 </div>
@@ -100,16 +101,16 @@
     <div class="pg-hero__overlay"></div>
     <div class="container pg-hero__content">
       <nav class="pg-breadcrumb" aria-label="Breadcrumb">
-        <a href="index.html">Home</a><span class="pg-breadcrumb-sep">›</span>
-        <a href="adopt.html">Get Involved</a><span class="pg-breadcrumb-sep">›</span>
+        <a href="{% url 'public:home' %}">Home</a><span class="pg-breadcrumb-sep">›</span>
+        <a href="{% url 'public:adopt' %}">Get Involved</a><span class="pg-breadcrumb-sep">›</span>
         <span>Foster an Animal</span>
       </nav>
       <div class="pg-pill pg-pill--light">🏠 Temporary Care Program</div>
       <h1>Open Your Home,<br><em style="color:#A8D8B9;font-style:normal">Save a Life</em></h1>
       <p class="lead">Foster a recovering rescue animal for 2–8 weeks. We provide all food, veterinary care, medicines, bedding, and 24/7 expert support. You bring the love.</p>
       <div class="pg-hero__actions">
-        <a href="foster-form.html" class="btn btn--primary btn--lg">Apply to Foster →</a>
-        <a href="adopt.html" class="btn btn--outline btn--lg" style="border-color:rgba(255,255,255,0.45);color:#fff">View Adoptable Animals</a>
+        <a href="{% url 'public:foster_form' %}" class="btn btn--primary btn--lg">Apply to Foster →</a>
+        <a href="{% url 'public:adopt' %}" class="btn btn--outline btn--lg" style="border-color:rgba(255,255,255,0.45);color:#fff">View Adoptable Animals</a>
       </div>
     </div>
   </section>
@@ -226,7 +227,7 @@
           <div class="pg-pill pg-pill--care">Urgent Cases</div>
           <h2 style="margin-top:.5rem">Animals Ready for Foster Homes</h2>
         </div>
-        <a href="adopt.html" class="btn btn--outline">View All Profiles →</a>
+        <a href="{% url 'public:adopt' %}" class="btn btn--outline">View All Profiles →</a>
       </div>
 
       <div class="pg-grid-3">
@@ -248,7 +249,7 @@
             <h3>Bruno</h3>
             <p>Recovering from a fractured leg. Needs a calm home without stairs for 4 weeks — gentle and sweet-natured.</p>
             <div style="margin-top:1rem">
-              <a href="adopt-detail.html?id=bruno" class="btn btn--outline btn--sm" style="width:100%;text-align:center">View Profile &amp; Foster →</a>
+              <a href="{% url 'public:adopt_detail' 1 %}" class="btn btn--outline btn--sm" style="width:100%;text-align:center">View Profile &amp; Foster →</a>
             </div>
           </div>
         </div>
@@ -271,7 +272,7 @@
             <h3>Luna</h3>
             <p>Rescued from a construction site with kittens. Needs a quiet indoor room for 6 weeks while her kittens grow.</p>
             <div style="margin-top:1rem">
-              <a href="adopt-detail.html?id=luna" class="btn btn--outline btn--sm" style="width:100%;text-align:center">View Profile &amp; Foster →</a>
+              <a href="{% url 'public:adopt_detail' 1 %}" class="btn btn--outline btn--sm" style="width:100%;text-align:center">View Profile &amp; Foster →</a>
             </div>
           </div>
         </div>
@@ -294,7 +295,7 @@
             <h3>Meera</h3>
             <p>A gentle senior dog who needs warm indoor care, daily walks, and joint supplement routine.</p>
             <div style="margin-top:1rem">
-              <a href="adopt-detail.html?id=meera" class="btn btn--outline btn--sm" style="width:100%;text-align:center">View Profile &amp; Foster →</a>
+              <a href="{% url 'public:adopt_detail' 1 %}" class="btn btn--outline btn--sm" style="width:100%;text-align:center">View Profile &amp; Foster →</a>
             </div>
           </div>
         </div>
@@ -325,8 +326,8 @@
             </div>
           </div>
           <div style="margin-top:2rem;display:flex;gap:.75rem;flex-wrap:wrap">
-            <a href="foster-form.html" class="btn btn--primary">Become a Foster Parent →</a>
-            <a href="stories.html" class="btn btn--outline">More Stories</a>
+            <a href="{% url 'public:foster_form' %}" class="btn btn--primary">Become a Foster Parent →</a>
+            <a href="{% url 'public:stories' %}" class="btn btn--outline">More Stories</a>
           </div>
         </div>
         <div class="pg-visual" style="height:420px">
@@ -375,10 +376,10 @@
           <div style="background:var(--color-surface-alt);border-radius:var(--radius-lg);padding:1.5rem;margin-top:2rem;border:1px solid var(--color-border)">
             <p style="font-size:.875rem;color:var(--color-text-muted);margin-bottom:.75rem">Looking for other ways to help?</p>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem">
-              <a href="sponsor-animal.html" class="btn btn--outline btn--sm">💛 Sponsor an Animal</a>
-              <a href="adopt.html" class="btn btn--outline btn--sm">🏡 Adopt Permanently</a>
-              <a href="volunteer.html" class="btn btn--outline btn--sm">🙋 Volunteer</a>
-              <a href="donate.html" class="btn btn--outline btn--sm">❤️ Donate</a>
+              <a href="{% url 'public:sponsor_animal' %}" class="btn btn--outline btn--sm">💛 Sponsor an Animal</a>
+              <a href="{% url 'public:adopt' %}" class="btn btn--outline btn--sm">🏡 Adopt Permanently</a>
+              <a href="{% url 'public:volunteer' %}" class="btn btn--outline btn--sm">🙋 Volunteer</a>
+              <a href="{% url 'public:donate' %}" class="btn btn--outline btn--sm">❤️ Donate</a>
             </div>
           </div>
         </div>
@@ -390,7 +391,7 @@
             <div class="pg-pill pg-pill--care" style="margin-bottom:.75rem">Apply Today</div>
             <h3>Become a Foster Parent</h3>
             <p style="font-size:.875rem;color:var(--color-text-muted);margin-bottom:2rem;line-height:1.6">Provide a temporary, loving home to an animal in recovery. Our quick application takes less than a minute.</p>
-            <a href="foster-form.html" class="btn btn--primary btn--full btn--lg">Start Foster Application →</a>
+            <a href="{% url 'public:foster_form' %}" class="btn btn--primary btn--full btn--lg">Start Foster Application →</a>
             <div style="margin-top:1.5rem;font-size:.78rem;color:var(--color-text-muted)">
               🤝 Free kit provided · 24/7 helpline access
             </div>
@@ -409,8 +410,8 @@
           <p>Sponsor an animal's monthly food and medical care for as little as ₹500/month.</p>
         </div>
         <div style="display:flex;gap:.75rem;flex-wrap:wrap">
-          <a href="sponsor-animal.html" class="btn btn--sm" style="background:#fff;color:var(--color-primary);font-weight:600">Sponsor an Animal</a>
-          <a href="donate.html" class="btn btn--outline btn--sm" style="border-color:rgba(255,255,255,0.45);color:#fff">Make a Donation</a>
+          <a href="{% url 'public:sponsor_animal' %}" class="btn btn--sm" style="background:#fff;color:var(--color-primary);font-weight:600">Sponsor an Animal</a>
+          <a href="{% url 'public:donate' %}" class="btn btn--outline btn--sm" style="border-color:rgba(255,255,255,0.45);color:#fff">Make a Donation</a>
         </div>
       </div>
     </div>
@@ -425,29 +426,29 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-col footer-col--brand">
-        <a href="index.html" class="nav-logo" aria-label="Unke Liye — Home"><img src="logo.png" alt="Unke Liye" class="footer-logo-img" /></a>
+        <a href="{% url 'public:home' %}" class="nav-logo" aria-label="Unke Liye — Home"><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="footer-logo-img" /></a>
         <p style="color:rgba(255,255,255,.7);font-size:.875rem;line-height:1.75">Registered NGO — Animal Rescue, Environmental Conservation, Sanitation &amp; Disaster Relief across Maharashtra.</p>
       </div>
       <div class="footer-col">
         <h4 style="color:#fff;margin-bottom:1rem">Our Work</h4>
         <ul style="list-style:none;padding:0;margin:0;display:grid;gap:.5rem;font-size:.875rem">
-          <li><a href="work-animal-rescue.html">Animal Rescue</a></li>
-          <li><a href="work-environment.html">Environment</a></li>
-          <li><a href="work-sanitation.html">Sanitation</a></li>
-          <li><a href="work-disaster-relief.html">Disaster Relief</a></li>
-          <li><a href="adopt.html">Animal Adoption</a></li>
-          <li><a href="sponsor-animal.html">Sponsor an Animal</a></li>
+          <li><a href="{% url 'public:work_animal_rescue' %}">Animal Rescue</a></li>
+          <li><a href="{% url 'public:work_environment' %}">Environment</a></li>
+          <li><a href="{% url 'public:work_sanitation' %}">Sanitation</a></li>
+          <li><a href="{% url 'public:work_disaster_relief' %}">Disaster Relief</a></li>
+          <li><a href="{% url 'public:adopt' %}">Animal Adoption</a></li>
+          <li><a href="{% url 'public:sponsor_animal' %}">Sponsor an Animal</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4 style="color:#fff;margin-bottom:1rem">Get Involved</h4>
         <ul style="list-style:none;padding:0;margin:0;display:grid;gap:.5rem;font-size:.875rem">
-          <li><a href="volunteer.html">Volunteer</a></li>
-          <li><a href="foster.html">Foster an Animal</a></li>
-          <li><a href="events.html">Events &amp; Drives</a></li>
-          <li><a href="campaigns.html">Active Campaigns</a></li>
-          <li><a href="donate.html">Make a Donation</a></li>
-          <li><a href="transparency.html">Financial Reports</a></li>
+          <li><a href="{% url 'public:volunteer' %}">Volunteer</a></li>
+          <li><a href="{% url 'public:foster' %}">Foster an Animal</a></li>
+          <li><a href="{% url 'public:events' %}">Events &amp; Drives</a></li>
+          <li><a href="{% url 'public:campaigns' %}">Active Campaigns</a></li>
+          <li><a href="{% url 'public:donate' %}">Make a Donation</a></li>
+          <li><a href="{% url 'public:transparency' %}">Financial Reports</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -459,25 +460,25 @@
     <div class="footer-bottom">
       <p>© 2026 Unke Liye · Reg. No. MAH/2015/1234 · 80G Exempt</p>
       <div class="footer-legal-links">
-        <a href="privacy-policy.html">Privacy</a>
-        <a href="terms.html">Terms</a>
-        <a href="transparency.html">Transparency</a>
-        <a href="sitemap.html">Sitemap</a>
+        <a href="{% url 'public:privacy_policy' %}">Privacy</a>
+        <a href="{% url 'public:terms' %}">Terms</a>
+        <a href="{% url 'public:transparency' %}">Transparency</a>
+        <a href="{% url 'public:sitemap' %}">Sitemap</a>
       </div>
     </div>
   </div>
 </footer>
 
 <!-- Emergency float -->
-<a href="report-animal.html" class="pg-float-btn" aria-label="Report animal emergency">
+<a href="{% url 'public:report_animal' %}" class="pg-float-btn" aria-label="Report animal emergency">
   <span class="pg-float-pulse"></span> Report Emergency
 </a>
 
 <!-- Toast container -->
 <div class="pg-toast-wrap"></div>
 
-<script src="js/data.js"></script>
-<script src="js/main.js"></script>
-<script src="js/enhanced-pages.js"></script>
+<script src="{% static 'public-assets/js/data.js' %}"></script>
+<script src="{% static 'public-assets/js/main.js' %}"></script>
+<script src="{% static 'public-assets/js/enhanced-pages.js' %}"></script>
 </body>
 </html>
