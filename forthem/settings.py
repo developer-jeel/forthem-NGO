@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'public',
     'rescue_manager',
     'volunteer_manager',
+    'login',
 ]
 
 MIDDLEWARE = [

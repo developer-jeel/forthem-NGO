@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 import django.utils.timezone as timezone
 from .models import *
-from auth.views import check_login
+from login.views import check_login
 
 
 

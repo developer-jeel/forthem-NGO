@@ -19,6 +19,7 @@ from django.urls import include, path
 
 urlpatterns = [
     path('django-admin/', admin.site.urls),
+    path('login/', include('login.urls')),
     path('', include('public.urls')),
     path('admin-panel/', include('admin.urls')),
     path('campaign-manager/', include('campaign_manager.urls')),

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 
 
 def home(request):
@@ -46,8 +46,7 @@ def impact(request):
 
 
 def login(request):
-    return render(request, "public-temp/login.html")
-
+    return redirect("login:login")
 
 def news(request):
     return render(request, "public-temp/news.html")
