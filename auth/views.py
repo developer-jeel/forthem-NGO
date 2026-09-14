@@ -1,5 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+import django.utils.timezone as timezone    
 from admin.models import Manager
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.hashers import check_password, make_password
+from django.contrib import messages
 # Create your views here.
 def login(request):
     if request.method == 'POST':

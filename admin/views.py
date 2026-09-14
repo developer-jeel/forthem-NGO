@@ -2,13 +2,11 @@ from django.shortcuts import redirect, render
 import django.utils.timezone as timezone
 from .models import *
 from auth.views import check_login
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.hashers import check_password, make_password
+
 
 
 @check_login(['Admin'])
 def dashboard(request):
-    print(make_password("1234"))
     return render(request, "admin-temp/dashboard.html")
 
 
