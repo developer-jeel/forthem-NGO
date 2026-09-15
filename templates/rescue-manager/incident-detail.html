@@ -6,28 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Incident Detail — Rescue Manager · Unke Liye NGO</title>
 <link rel="stylesheet" href="{% static 'rescue-manager-assets/css/rescue-manager.css' %}">
-<style>
-  .detail-grid { display:grid;grid-template-columns:2fr 1fr;gap:var(--sp-6); }
-  .info-panel { background:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);margin-bottom:var(--sp-6);overflow:hidden; }
-  .info-panel-header { padding:var(--sp-4) var(--sp-5);border-bottom:1px solid var(--border-subtle);font-weight:600;display:flex;justify-content:space-between;align-items:center; }
-  .info-panel-body { padding:var(--sp-5); }
-  .data-grid { display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-4); }
-  .data-item-label { font-size:0.75rem;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px; }
-  .data-item-value { font-weight:500;font-size:0.9375rem; }
-  .photo-gallery { display:flex;gap:var(--sp-3);overflow-x:auto;padding-bottom:var(--sp-2); }
-  .photo-item { width:120px;height:120px;border-radius:var(--radius-md);background:var(--bg-sunken);flex-shrink:0;display:flex;align-items:center;justify-content:center;color:var(--text-secondary);border:1px solid var(--border-subtle); }
-  .timeline-list { display:flex;flex-direction:column;gap:0; }
-  .timeline-item { display:flex;gap:var(--sp-3);position:relative;padding-bottom:var(--sp-4); }
-  .timeline-item:last-child { padding-bottom:0; }
-  .timeline-node { width:32px;height:32px;border-radius:50%;background:var(--bg-sunken);display:flex;align-items:center;justify-content:center;flex-shrink:0;z-index:2;border:2px solid var(--bg-surface); }
-  .timeline-item.done .timeline-node { background:var(--brand-primary);color:#fff;border-color:var(--brand-primary); }
-  .timeline-item.active .timeline-node { background:var(--status-warning);color:#fff;border-color:var(--status-warning); }
-  .timeline-path { position:absolute;top:32px;bottom:0;left:15px;width:2px;background:var(--border-subtle);z-index:1; }
-  .timeline-item:last-child .timeline-path { display:none; }
-  .timeline-content { padding-top:4px; }
-  .timeline-time { font-size:0.75rem;color:var(--text-secondary);margin-top:2px; }
-  @media(max-width:1024px){.detail-grid{grid-template-columns:1fr;}}
-</style>
+<link rel="stylesheet" href="{% static 'shared/css/platform-theme.css' %}">
 </head>
 <body>
 <div class="toast-region" id="toast-region"></div>
@@ -35,28 +14,64 @@
 
 <div class="app-shell" id="app-shell">
   <!-- SIDEBAR -->
-  <aside class="sidebar" id="sidebar">
+  <aside class="sidebar" id="sidebar" role="navigation" aria-label="Rescue Manager navigation">
     <div class="sidebar-header">
       <img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye Logo" class="sidebar-logo-img">
-      <img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye NGO" style="width:36px;height:36px;object-fit:contain;border-radius:var(--radius-md);background:rgba(255,255,255,0.15);padding:2px;flex-shrink:0;">
       <div class="sidebar-logo-text"><strong>Unke Liye</strong><span>Rescue Portal</span></div>
     </div>
-    <div class="sidebar-role-badge"><span class="role-pulse-dot"></span><span>Rescue Manager</span></div>
+    <div class="sidebar-role-badge"><span class="role-pulse-dot"></span><span>Rescue Manager · Active</span></div>
     <nav class="sidebar-nav">
       <div class="nav-section">
         <div class="nav-section-label">Overview</div>
-        <a href="{% url 'rescue_manager:dashboard' %}" class="nav-item"><svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span class="nav-item-label">Dashboard</span></a>
+        <a href="{% url 'rescue_manager:dashboard' %}" class="nav-item">
+          <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          <span class="nav-item-label">Dashboard</span>
+        </a>
+        <a href="{% url 'rescue_manager:command_center' %}" class="nav-item">
+          <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          <span class="nav-item-label">Command Center</span>
+        </a>
       </div>
+      <div class="nav-divider"></div>
       <div class="nav-section">
         <div class="nav-section-label">Operations</div>
-        <a href="{% url 'rescue_manager:incidents' %}" class="nav-item active"><svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><polygon points="7.86,2 16.14,2 22,7.86 22,16.14 16.14,22 7.86,22 2,16.14 2,7.86"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><span class="nav-item-label">Incidents Queue</span></a>
-        <a href="{% url 'rescue_manager:dispatch' %}" class="nav-item"><svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2-2v3"/><rect x="9" y="11" width="14" height="10" rx="1"/><circle cx="12" cy="21" r="1"/><circle cx="20" cy="21" r="1"/></svg><span class="nav-item-label">Team Dispatch</span></a>
-        <a href="{% url 'rescue_manager:cases' %}" class="nav-item"><svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2.823.47-4.113 6.006-4 7 .08.703 1.725 1.722 3.656 1 1.261-.472 1.96-1.45 2.344-2.5"/><path d="M14.267 5.172c0-1.39 1.577-2.493 3.5-2.172 2.823.47 4.113 6.006 4 7-.08.703-1.725 1.722-3.656 1-1.261-.472-1.96-1.45-2.344-2.5"/><path d="M4.42 11.247A13.152 13.152 0 0 0 4 14.556C4 18.728 7.582 21 12 21s8-2.272 8-6.444c0-1.273-.241-2.248-.382-2.826"/></svg><span class="nav-item-label">Active Cases</span></a>
-        <a href="{% url 'rescue_manager:medical_records' %}" class="nav-item"><svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg><span class="nav-item-label">Medical Records</span></a>
+        <a href="{% url 'rescue_manager:incidents' %}" class="nav-item active" aria-current="page">
+          <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><polygon points="7.86,2 16.14,2 22,7.86 22,16.14 16.14,22 7.86,22 2,16.14 2,7.86"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span class="nav-item-label">Incidents Queue</span>
+        </a>
+        <a href="{% url 'rescue_manager:dispatch' %}" class="nav-item">
+          <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3"/><rect x="9" y="11" width="14" height="10" rx="1"/><circle cx="12" cy="21" r="1"/><circle cx="20" cy="21" r="1"/></svg>
+          <span class="nav-item-label">Team Dispatch</span>
+        </a>
+        <a href="{% url 'rescue_manager:cases' %}" class="nav-item">
+          <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2.823.47-4.113 6.006-4 7 .08.703 1.725 1.722 3.656 1 1.261-.472 1.96-1.45 2.344-2.5"/><path d="M14.267 5.172c0-1.39 1.577-2.493 3.5-2.172 2.823.47 4.113 6.006 4 7-.08.703-1.725 1.722-3.656 1-1.261-.472-1.96-1.45-2.344-2.5"/><path d="M4.42 11.247A13.152 13.152 0 0 0 4 14.556C4 18.728 7.582 21 12 21s8-2.272 8-6.444c0-1.273-.241-2.248-.382-2.826"/></svg>
+          <span class="nav-item-label">Active Cases</span>
+        </a>
+        <a href="{% url 'rescue_manager:volunteers' %}" class="nav-item">
+          <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span class="nav-item-label">Volunteers</span>
+        </a>
+      </div>
+      <div class="nav-divider"></div>
+      <div class="nav-section">
+        <div class="nav-section-label">Finance & Logistics</div>
+        <a href="{% url 'rescue_manager:fund_requests' %}" class="nav-item">
+          <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          <span class="nav-item-label">Rescue Fund Requests</span>
+        </a>
+        <a href="{% url 'rescue_manager:resources' %}" class="nav-item">
+          <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          <span class="nav-item-label">Fleet & Equipment</span>
+        </a>
+        <a href="{% url 'rescue_manager:medical_records' %}" class="nav-item">
+          <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          <span class="nav-item-label">Medical Records</span>
+        </a>
       </div>
     </nav>
     <div class="sidebar-footer">
       <div class="user-chip"><div class="user-avatar">KJ</div><div class="user-meta"><strong>Karan Joshi</strong><small>Chief Dispatcher</small></div></div>
+      <button class="sidebar-collapse-btn" id="sidebar-collapse" aria-label="Collapse sidebar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg><span class="collapse-label">Collapse</span></button>
     </div>
   </aside>
 
@@ -70,7 +85,7 @@
         <span class="current">INC-1042</span>
       </div>
       <div class="topbar-actions">
-        <button class="topbar-icon-btn" id="theme-toggle"><svg class="icon-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="icon-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/></svg></button>
+        <button class="topbar-icon-btn theme-toggle-btn" id="theme-toggle"><svg class="icon-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="icon-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/></svg></button>
       </div>
     </header>
 
@@ -78,16 +93,16 @@
       <div class="page-header">
         <div class="page-header-left">
           <div style="display:flex;align-items:center;gap:var(--sp-3);margin-bottom:var(--sp-2);">
-            <a href="{% url 'rescue_manager:incidents' %}" class="btn btn-secondary btn-sm" style="padding:4px 8px;border-color:transparent;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>Back</a>
+            <a href="{% url 'rescue_manager:incidents' %}" class="btn btn-outline btn-sm" style="padding:4px 8px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>Back</a>
             <span class="badge badge-warning">En Route</span>
-            <span class="badge" style="background:#faeae9;color:#B3382C;">Critical Priority</span>
+            <span class="badge badge-danger">Critical Priority</span>
           </div>
           <h1>Incident: INC-1042</h1>
           <p>Street Dog (Accident) · Baner Road, Near DMart</p>
         </div>
         <div class="page-header-actions">
-          <button class="btn btn-secondary"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>Share Details</button>
-          <button class="btn btn-danger">Escalate</button>
+          <button class="btn btn-outline btn-sm" data-toast="info" data-toast-title="Share Report" data-toast-msg="Shareable incident link copied to clipboard."><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>Share Details</button>
+          <button class="btn btn-danger btn-sm" data-toast="warning" data-toast-title="Incident Escalated" data-toast-msg="Disaster relief lead notified for backup support.">Escalate</button>
         </div>
       </div>
 
@@ -106,23 +121,23 @@
               <div class="data-item-label">Exact Location</div>
               <div class="data-item-value" style="margin-bottom:var(--sp-3);">Baner Road, Near DMart, Opposite Reliance Digital, Pune 411045</div>
               <div style="height:150px;background:var(--bg-sunken);border-radius:var(--radius-md);border:1px solid var(--border-subtle);display:flex;align-items:center;justify-content:center;color:var(--text-secondary);font-size:0.875rem;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:8px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Map Integration Placeholder
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:8px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Live Coordinates: 18.5590° N, 73.7868° E
               </div>
             </div>
           </div>
 
           <div class="info-panel">
             <div class="info-panel-header"><h3>Reporter Details</h3></div>
-            <div class="info-panel-body" style="display:flex;align-items:center;justify-content:space-between;">
+            <div class="info-panel-body" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--sp-3);">
               <div style="display:flex;align-items:center;gap:var(--sp-4);">
-                <div style="width:48px;height:48px;border-radius:50%;background:var(--brand-primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:1.1rem;">AS</div>
+                <div style="width:44px;height:44px;border-radius:50%;background:var(--accent-terracotta-bg);color:var(--accent-terracotta);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:1rem;">AS</div>
                 <div>
                   <div style="font-weight:600;">Amit Sharma</div>
                   <div style="font-size:0.875rem;color:var(--text-secondary);">+91 98765 12345</div>
                 </div>
               </div>
               <div>
-                <button class="btn btn-secondary btn-sm"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Call Reporter</button>
+                <button class="btn btn-outline btn-sm" data-toast="info" data-toast-title="Connecting Call" data-toast-msg="Initiating phone call to reporter..."><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Call Reporter</button>
               </div>
             </div>
           </div>
@@ -144,14 +159,14 @@
             <div class="info-panel-header"><h3>Assigned Team</h3></div>
             <div class="info-panel-body">
               <div style="display:flex;align-items:center;gap:var(--sp-3);margin-bottom:var(--sp-3);">
-                <div style="width:40px;height:40px;border-radius:var(--radius-md);background:rgba(var(--brand-primary-rgb),0.1);color:var(--brand-primary);display:flex;align-items:center;justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2-2v3"/><rect x="9" y="11" width="14" height="10" rx="1"/><circle cx="12" cy="21" r="1"/><circle cx="20" cy="21" r="1"/></svg></div>
+                <div style="width:40px;height:40px;border-radius:var(--radius-md);background:var(--accent-terracotta-bg);color:var(--accent-terracotta);display:flex;align-items:center;justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3"/><rect x="9" y="11" width="14" height="10" rx="1"/><circle cx="12" cy="21" r="1"/><circle cx="20" cy="21" r="1"/></svg></div>
                 <div><div style="font-weight:600;">Ambulance Unit 3</div><div style="font-size:0.8125rem;color:var(--text-secondary);">Lead: Dr. Rakesh</div></div>
               </div>
               <div style="background:var(--bg-sunken);border-radius:var(--radius-md);padding:var(--sp-3);font-size:0.8125rem;margin-bottom:var(--sp-3);">
                 <div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="color:var(--text-secondary);">Current ETA</span><strong>8 mins</strong></div>
                 <div style="display:flex;justify-content:space-between;"><span style="color:var(--text-secondary);">Distance</span><strong>2.4 km</strong></div>
               </div>
-              <button class="btn btn-secondary w-full" style="justify-content:center;">Reassign Team</button>
+              <button class="btn btn-outline btn-sm" style="width:100%;justify-content:center;" data-toast="info" data-toast-title="Reassign Team" data-toast-msg="Team re-assignment window requested.">Reassign Team</button>
             </div>
           </div>
 
@@ -177,7 +192,7 @@
                 </div>
                 <div class="timeline-item active">
                   <div class="timeline-path"></div>
-                  <div class="timeline-node"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2-2v3"/><circle cx="12" cy="21" r="1"/><circle cx="20" cy="21" r="1"/></svg></div>
+                  <div class="timeline-node"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3"/><circle cx="12" cy="21" r="1"/><circle cx="20" cy="21" r="1"/></svg></div>
                   <div class="timeline-content">
                     <div style="font-weight:600;font-size:0.875rem;">En Route</div>
                     <div class="timeline-time">14:12 IST · Unit 3</div>
@@ -206,6 +221,9 @@
     </main>
   </div>
 </div>
+
+<script src="{% static 'shared/js/platform-store.js' %}"></script>
+<script src="{% static 'shared/js/platform-ui.js' %}"></script>
 <script src="{% static 'rescue-manager-assets/js/app.js' %}"></script>
 </body>
 </html>

@@ -6,47 +6,84 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>New Incident — Rescue Manager · Unke Liye NGO</title>
 <link rel="stylesheet" href="{% static 'rescue-manager-assets/css/rescue-manager.css' %}">
+<link rel="stylesheet" href="{% static 'shared/css/platform-theme.css' %}">
 <style>
-  .form-container { max-width:800px;margin:0 auto; }
-  .form-section { background:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:var(--sp-6);margin-bottom:var(--sp-5); }
-  .form-section-title { font-size:1.125rem;font-weight:600;margin-bottom:var(--sp-5);padding-bottom:var(--sp-3);border-bottom:1px solid var(--border-subtle); }
-  .form-row { display:flex;gap:var(--sp-4);margin-bottom:var(--sp-4); }
-  .form-row > * { flex:1; }
-  .form-group { margin-bottom:var(--sp-4); }
-  .form-label { display:block;font-size:0.875rem;font-weight:500;margin-bottom:6px; }
-  .form-control { width:100%;padding:10px 12px;border:1px solid var(--border-subtle);border-radius:var(--radius-md);font-family:inherit;font-size:0.9375rem;background:var(--bg-canvas);color:var(--text-primary);transition:border-color var(--transition-fast); }
-  .form-control:focus { outline:none;border-color:var(--brand-primary);box-shadow:0 0 0 3px rgba(var(--brand-primary-rgb),0.1); }
-  .priority-selector { display:flex;gap:var(--sp-3); }
-  .priority-btn { flex:1;padding:12px;text-align:center;border:1px solid var(--border-subtle);border-radius:var(--radius-md);cursor:pointer;font-weight:500;transition:all 0.2s;background:var(--bg-surface); }
-  .priority-btn.critical:hover, .priority-btn.critical.active { background:#faeae9;border-color:#B3382C;color:#B3382C; }
-  .priority-btn.high:hover, .priority-btn.high.active { background:var(--status-warning-bg);border-color:var(--status-warning);color:#9c6500; }
-  .priority-btn.medium:hover, .priority-btn.medium.active { background:var(--status-info-bg);border-color:var(--status-info);color:#0a58ca; }
-  .upload-area { border:2px dashed var(--border-subtle);border-radius:var(--radius-md);padding:2rem;text-align:center;cursor:pointer;background:var(--bg-canvas); }
-  .upload-area:hover { border-color:var(--brand-primary); }
+  .form-container { max-width:800px; margin:0 auto; }
+  .form-section { background:var(--bg-surface); border:1px solid var(--border-subtle); border-radius:var(--radius-lg); padding:var(--sp-6); margin-bottom:var(--sp-5); }
+  .form-section-title { font-size:1.125rem; font-weight:600; margin-bottom:var(--sp-5); padding-bottom:var(--sp-3); border-bottom:1px solid var(--border-subtle); }
+  .priority-selector { display:flex; gap:var(--sp-3); flex-wrap:wrap; }
+  .priority-btn { flex:1; padding:12px; text-align:center; border:1px solid var(--border-subtle); border-radius:var(--radius-md); cursor:pointer; font-weight:500; transition:all 0.2s; background:var(--bg-surface); min-width:120px; }
+  .priority-btn.critical:hover, .priority-btn.critical.active { background:var(--accent-signal-red-bg); border-color:var(--accent-signal-red); color:var(--accent-signal-red); }
+  .priority-btn.high:hover, .priority-btn.high.active { background:var(--status-warning-bg); border-color:var(--status-warning); color:var(--status-warning); }
+  .priority-btn.medium:hover, .priority-btn.medium.active { background:var(--status-info-bg); border-color:var(--status-info); color:var(--status-info); }
+  .upload-area { border:2px dashed var(--border-default); border-radius:var(--radius-md); padding:2rem; text-align:center; cursor:pointer; background:var(--bg-canvas); }
+  .upload-area:hover { border-color:var(--accent-terracotta); }
 </style>
 </head>
 <body>
+<div class="toast-region" id="toast-region"></div>
 <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
 <div class="app-shell" id="app-shell">
-  <aside class="sidebar" id="sidebar">
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar" role="navigation" aria-label="Rescue Manager navigation">
     <div class="sidebar-header">
       <img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye Logo" class="sidebar-logo-img">
-      <img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye NGO" style="width:36px;height:36px;object-fit:contain;border-radius:var(--radius-md);background:rgba(255,255,255,0.15);padding:2px;flex-shrink:0;">
       <div class="sidebar-logo-text"><strong>Unke Liye</strong><span>Rescue Portal</span></div>
     </div>
-    <div class="sidebar-role-badge"><span class="role-pulse-dot"></span><span>Rescue Manager</span></div>
+    <div class="sidebar-role-badge"><span class="role-pulse-dot"></span><span>Rescue Manager · Active</span></div>
     <nav class="sidebar-nav">
       <div class="nav-section">
         <div class="nav-section-label">Overview</div>
-        <a href="{% url 'rescue_manager:dashboard' %}" class="nav-item"><svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span class="nav-item-label">Dashboard</span></a>
+        <a href="{% url 'rescue_manager:dashboard' %}" class="nav-item">
+          <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          <span class="nav-item-label">Dashboard</span>
+        </a>
+        <a href="{% url 'rescue_manager:command_center' %}" class="nav-item">
+          <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          <span class="nav-item-label">Command Center</span>
+        </a>
       </div>
+      <div class="nav-divider"></div>
       <div class="nav-section">
         <div class="nav-section-label">Operations</div>
-        <a href="{% url 'rescue_manager:incidents' %}" class="nav-item"><svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><polygon points="7.86,2 16.14,2 22,7.86 22,16.14 16.14,22 7.86,22 2,16.14 2,7.86"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><span class="nav-item-label">Incidents Queue</span></a>
+        <a href="{% url 'rescue_manager:incidents' %}" class="nav-item active" aria-current="page">
+          <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><polygon points="7.86,2 16.14,2 22,7.86 22,16.14 16.14,22 7.86,22 2,16.14 2,7.86"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span class="nav-item-label">Incidents Queue</span>
+        </a>
+        <a href="{% url 'rescue_manager:dispatch' %}" class="nav-item">
+          <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3"/><rect x="9" y="11" width="14" height="10" rx="1"/><circle cx="12" cy="21" r="1"/><circle cx="20" cy="21" r="1"/></svg>
+          <span class="nav-item-label">Team Dispatch</span>
+        </a>
+        <a href="{% url 'rescue_manager:cases' %}" class="nav-item">
+          <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2.823.47-4.113 6.006-4 7 .08.703 1.725 1.722 3.656 1 1.261-.472 1.96-1.45 2.344-2.5"/><path d="M14.267 5.172c0-1.39 1.577-2.493 3.5-2.172 2.823.47 4.113 6.006 4 7-.08.703-1.725 1.722-3.656 1-1.261-.472-1.96-1.45-2.344-2.5"/><path d="M4.42 11.247A13.152 13.152 0 0 0 4 14.556C4 18.728 7.582 21 12 21s8-2.272 8-6.444c0-1.273-.241-2.248-.382-2.826"/></svg>
+          <span class="nav-item-label">Active Cases</span>
+        </a>
+        <a href="{% url 'rescue_manager:volunteers' %}" class="nav-item">
+          <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span class="nav-item-label">Volunteers</span>
+        </a>
+      </div>
+      <div class="nav-divider"></div>
+      <div class="nav-section">
+        <div class="nav-section-label">Finance & Logistics</div>
+        <a href="{% url 'rescue_manager:fund_requests' %}" class="nav-item">
+          <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          <span class="nav-item-label">Rescue Fund Requests</span>
+        </a>
+        <a href="{% url 'rescue_manager:resources' %}" class="nav-item">
+          <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          <span class="nav-item-label">Fleet & Equipment</span>
+        </a>
+        <a href="{% url 'rescue_manager:medical_records' %}" class="nav-item">
+          <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          <span class="nav-item-label">Medical Records</span>
+        </a>
       </div>
     </nav>
     <div class="sidebar-footer">
       <div class="user-chip"><div class="user-avatar">KJ</div><div class="user-meta"><strong>Karan Joshi</strong><small>Chief Dispatcher</small></div></div>
+      <button class="sidebar-collapse-btn" id="sidebar-collapse" aria-label="Collapse sidebar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg><span class="collapse-label">Collapse</span></button>
     </div>
   </aside>
 
@@ -58,6 +95,9 @@
         <a href="{% url 'rescue_manager:incidents' %}">Incidents</a><span class="sep">/</span>
         <span class="current">Log New</span>
       </div>
+      <div class="topbar-actions">
+        <button class="topbar-icon-btn theme-toggle-btn" id="theme-toggle"><svg class="icon-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="icon-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/></svg></button>
+      </div>
     </header>
 
     <main class="page-content">
@@ -67,12 +107,12 @@
           <p>Record a new hotline report and dispatch an emergency team.</p>
         </div>
 
-        <form action="incidents.html">
+        <form action="{% url 'rescue_manager:incidents' %}" method="get">
           <div class="form-section">
             <h2 class="form-section-title">Caller Details</h2>
             <div class="form-row">
-              <div class="form-group"><label class="form-label">Name</label><input type="text" class="form-control" required placeholder="Full Name"></div>
-              <div class="form-group"><label class="form-label">Phone Number</label><input type="tel" class="form-control" required placeholder="+91"></div>
+              <div class="form-group"><label class="form-label required" for="c-name">Name</label><input type="text" class="form-control" id="c-name" required placeholder="Full Name"></div>
+              <div class="form-group"><label class="form-label required" for="c-phone">Phone Number</label><input type="tel" class="form-control" id="c-phone" required placeholder="+91"></div>
             </div>
             <div class="form-group">
               <label style="display:flex;align-items:center;gap:8px;font-size:0.875rem;"><input type="checkbox"> Caller wishes to remain anonymous</label>
@@ -83,17 +123,17 @@
             <h2 class="form-section-title">Animal & Condition</h2>
             <div class="form-row">
               <div class="form-group">
-                <label class="form-label">Species</label>
-                <select class="form-control" required><option value="">Select species...</option><option>Dog (Indie)</option><option>Cat (Stray)</option><option>Cow / Cattle</option><option>Bird</option><option>Other</option></select>
+                <label class="form-label required" for="c-species">Species</label>
+                <select class="form-control" id="c-species" required><option value="">Select species...</option><option>Dog (Indie)</option><option>Cat (Stray)</option><option>Cow / Cattle</option><option>Bird</option><option>Other</option></select>
               </div>
-              <div class="form-group"><label class="form-label">Approximate Count</label><input type="number" class="form-control" value="1" min="1"></div>
+              <div class="form-group"><label class="form-label" for="c-count">Approximate Count</label><input type="number" class="form-control" id="c-count" value="1" min="1"></div>
             </div>
-            <div class="form-group"><label class="form-label">Condition Description</label><textarea class="form-control" rows="3" placeholder="e.g. Hit by car, bleeding from leg..." required></textarea></div>
+            <div class="form-group"><label class="form-label required" for="c-desc">Condition Description</label><textarea class="form-control" id="c-desc" rows="3" placeholder="e.g. Hit by car, bleeding from leg..." required></textarea></div>
             <div class="form-group">
               <label class="form-label" style="margin-bottom:var(--sp-3);">Priority Level</label>
               <div class="priority-selector">
                 <div class="priority-btn critical" onclick="setActivePriority(this)">Critical<br><small style="font-weight:normal;opacity:0.8;">Life threatening</small></div>
-                <div class="priority-btn high" onclick="setActivePriority(this)">High<br><small style="font-weight:normal;opacity:0.8;">Severe injury</small></div>
+                <div class="priority-btn high active" onclick="setActivePriority(this)">High<br><small style="font-weight:normal;opacity:0.8;">Severe injury</small></div>
                 <div class="priority-btn medium" onclick="setActivePriority(this)">Medium<br><small style="font-weight:normal;opacity:0.8;">Stable, needs care</small></div>
               </div>
             </div>
@@ -101,15 +141,15 @@
 
           <div class="form-section">
             <h2 class="form-section-title">Location</h2>
-            <div class="form-group"><label class="form-label">Exact Address / Landmark</label><textarea class="form-control" rows="2" placeholder="Provide clear directions..." required></textarea></div>
+            <div class="form-group"><label class="form-label required" for="c-address">Exact Address / Landmark</label><textarea class="form-control" id="c-address" rows="2" placeholder="Provide clear directions..." required></textarea></div>
             <div class="form-row">
               <div class="form-group">
-                <label class="form-label">Location Type</label>
-                <select class="form-control"><option>Main Road / Highway</option><option>Residential Society</option><option>Construction Site</option><option>Forest / Rural</option></select>
+                <label class="form-label" for="c-loctype">Location Type</label>
+                <select class="form-control" id="c-loctype"><option>Main Road / Highway</option><option>Residential Society</option><option>Construction Site</option><option>Forest / Rural</option></select>
               </div>
               <div class="form-group">
                 <label class="form-label">Capture GPS Pin</label>
-                <button type="button" class="btn btn-secondary w-full" style="justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="3"/><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/></svg>Drop Pin on Map</button>
+                <button type="button" class="btn btn-outline" style="width:100%;justify-content:center;" data-toast="info" data-toast-title="GPS Pin Dropped" data-toast-msg="Current coordinates 18.5204° N, 73.8567° E attached."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="3"/><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/></svg>Drop Pin on Map</button>
               </div>
             </div>
           </div>
@@ -124,8 +164,8 @@
           </div>
 
           <div style="display:flex;gap:var(--sp-3);justify-content:flex-end;">
-            <a href="{% url 'rescue_manager:incidents' %}" class="btn btn-secondary">Cancel</a>
-            <button type="submit" class="btn btn-primary" style="padding:12px 24px;">Log &amp; Assign Team</button>
+            <a href="{% url 'rescue_manager:incidents' %}" class="btn btn-outline">Cancel</a>
+            <button type="submit" class="btn btn-primary" style="padding:10px 24px;">Log &amp; Assign Team</button>
           </div>
         </form>
       </div>
@@ -138,6 +178,8 @@
     el.classList.add('active');
   }
 </script>
+<script src="{% static 'shared/js/platform-store.js' %}"></script>
+<script src="{% static 'shared/js/platform-ui.js' %}"></script>
 <script src="{% static 'rescue-manager-assets/js/app.js' %}"></script>
 </body>
 </html>

@@ -271,7 +271,7 @@
     btn.disabled = true;
     btn.innerHTML = '<span class="spinner"></span> Authenticating…';
     setTimeout(function() {
-      window.location.href = 'dashboard.html';
+      window.location.href = "{% url 'rescue_manager:dashboard' %}";
     }, 1400);
   });
 </script>

@@ -1,1 +1,121 @@
-/* Auto-generated static stub */
+/* ============================================================
+   SHARED PLATFORM THEME — UNKE LIYE NGO
+   static/shared/css/platform-theme.css
+   ============================================================ */
+
+/* Page Titles & Headers */
+.page-title {
+  font-family: var(--font-heading, "Fraunces", Georgia, serif);
+  font-size: 1.625rem;
+  font-weight: 700;
+  color: var(--text-primary, #1F231F);
+  margin-bottom: 4px;
+}
+.page-subtitle {
+  font-size: 0.875rem;
+  color: var(--text-secondary, #5B615A);
+  line-height: 1.5;
+}
+
+/* KPI Cards & Rows */
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--sp-4, 16px);
+  margin-bottom: var(--sp-6, 24px);
+}
+.kpi-card {
+  background: var(--bg-surface, #FFFFFF);
+  border: 1px solid var(--border-subtle, #E4DFD5);
+  border-radius: var(--radius-lg, 12px);
+  padding: var(--sp-4, 16px) var(--sp-5, 20px);
+  box-shadow: var(--shadow-sm, 0 1px 3px rgba(31,35,31,0.08));
+  position: relative;
+  overflow: hidden;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+.kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md, 0 4px 6px rgba(31,35,31,0.07));
+}
+.kpi-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--accent-terracotta, #C0552A);
+}
+.kpi-card.kpi-primary::before { background: var(--brand-primary, #1F3D2B); }
+.kpi-card.kpi-danger::before  { background: var(--accent-signal-red, #B3382C); }
+.kpi-card.kpi-warning::before { background: var(--status-warning, #B8863B); }
+.kpi-card.kpi-success::before { background: var(--status-success, #2E7D4F); }
+.kpi-card.kpi-accent::before  { background: var(--accent-terracotta, #C0552A); }
+
+.kpi-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--sp-2, 8px);
+}
+.kpi-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary, #5B615A);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.kpi-value {
+  font-family: var(--font-heading, "Fraunces", Georgia, serif);
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: var(--text-primary, #1F231F);
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+.kpi-subtext {
+  font-size: 0.75rem;
+  color: var(--text-muted, #8A9288);
+}
+
+/* Secondary Button Overrides for Header Controls */
+.btn-secondary {
+  background: var(--bg-surface, #FFFFFF);
+  color: var(--text-primary, #1F231F);
+  border: 1px solid var(--border-default, #D0C9BE);
+}
+.btn-secondary:hover {
+  background: var(--bg-sunken, #F0ECE4);
+}
+
+/* Fleet items in command center */
+.fleet-item {
+  background: var(--bg-surface, #FFFFFF);
+  border: 1px solid var(--border-subtle, #E4DFD5);
+  border-radius: var(--radius-md, 8px);
+  padding: var(--sp-3, 12px) var(--sp-4, 16px);
+  margin-bottom: var(--sp-2, 8px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3, 12px);
+  transition: background 120ms ease;
+}
+.fleet-item:hover {
+  background: var(--bg-sunken, #F0ECE4);
+}
+
+/* Status Pulse Alert */
+.status-pulse {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--accent-signal-red, #B3382C);
+  box-shadow: 0 0 0 0 rgba(179, 56, 44, 0.7);
+  animation: pulseAlert 1.6s infinite;
+}
+@keyframes pulseAlert {
+  0% { box-shadow: 0 0 0 0 rgba(179, 56, 44, 0.7); }
+  70% { box-shadow: 0 0 0 8px rgba(179, 56, 44, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(179, 56, 44, 0); }
+}

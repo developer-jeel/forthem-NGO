@@ -92,11 +92,13 @@
     const html = document.documentElement;
     const saved = localStorage.getItem('rm-theme') || 'light';
     html.setAttribute('data-theme', saved);
-    qsa('[id="theme-toggle"]').forEach(btn => {
-      btn.addEventListener('click', () => {
+    qsa('#theme-toggle, .theme-toggle-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
         const isDark = html.getAttribute('data-theme') === 'dark';
-        html.setAttribute('data-theme', isDark ? 'light' : 'dark');
-        localStorage.setItem('rm-theme', isDark ? 'light' : 'dark');
+        const nextTheme = isDark ? 'light' : 'dark';
+        html.setAttribute('data-theme', nextTheme);
+        localStorage.setItem('rm-theme', nextTheme);
       });
     });
   }
@@ -119,6 +121,7 @@
     function closeSidebar() { sidebar.classList.remove('mobile-open'); overlay && overlay.classList.remove('active'); document.body.style.overflow=''; }
     if (menuBtn) menuBtn.addEventListener('click', openSidebar);
     if (overlay) overlay.addEventListener('click', closeSidebar);
+    qsa('.sidebar a').forEach(link => link.addEventListener('click', closeSidebar));
   }
 
   /* ── Dropdowns ───────────────────────────────────────────────── */
@@ -224,9 +227,14 @@
       if (!table) return;
       input.addEventListener('input', () => {
         const q = input.value.toLowerCase().trim();
+        let visible = 0;
         qsa('tbody tr', table).forEach(row => {
-          row.classList.toggle('row-hidden', q !== '' && !row.textContent.toLowerCase().includes(q));
+          const hidden = q !== '' && !row.textContent.toLowerCase().includes(q);
+          row.classList.toggle('row-hidden', hidden);
+          if (!hidden) visible++;
         });
+        const empty = table.closest('.card')?.querySelector('[data-search-empty]');
+        if (empty) empty.hidden = visible !== 0;
       });
     });
   }

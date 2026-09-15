@@ -74,6 +74,26 @@
         </div>
         <div class="nav-divider"></div>
         <div class="nav-section">
+          <div class="nav-section-label">Operations</div>
+          <a href="{% url 'rescue_manager:incidents' %}" class="nav-item">
+            <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><polygon points="7.86,2 16.14,2 22,7.86 22,16.14 16.14,22 7.86,22 2,16.14 2,7.86"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span class="nav-item-label">Incidents Queue</span>
+          </a>
+          <a href="{% url 'rescue_manager:dispatch' %}" class="nav-item">
+            <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3"/><rect x="9" y="11" width="14" height="10" rx="1"/><circle cx="12" cy="21" r="1"/><circle cx="20" cy="21" r="1"/></svg>
+            <span class="nav-item-label">Team Dispatch</span>
+          </a>
+          <a href="{% url 'rescue_manager:cases' %}" class="nav-item">
+            <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2.823.47-4.113 6.006-4 7 .08.703 1.725 1.722 3.656 1 1.261-.472 1.96-1.45-2.344-2.5"/><path d="M14.267 5.172c0-1.39 1.577-2.493 3.5-2.172 2.823.47 4.113 6.006 4 7-.08.703-1.725 1.722-3.656 1-1.261-.472-1.96-1.45-2.344-2.5"/><path d="M4.42 11.247A13.152 13.152 0 0 0 4 14.556C4 18.728 7.582 21 12 21s8-2.272 8-6.444c0-1.273-.241-2.248-.382-2.826"/></svg>
+            <span class="nav-item-label">Active Cases</span>
+          </a>
+          <a href="{% url 'rescue_manager:volunteers' %}" class="nav-item">
+            <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span class="nav-item-label">Volunteers</span>
+          </a>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-section">
           <div class="nav-section-label">Finance & Logistics</div>
           <a href="{% url 'rescue_manager:fund_requests' %}" class="nav-item active">
             <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
@@ -251,6 +271,7 @@
   <div class="toast-container"></div>
   <script src="{% static 'shared/js/platform-store.js' %}"></script>
   <script src="{% static 'shared/js/platform-ui.js' %}"></script>
+  <script src="{% static 'rescue-manager-assets/js/app.js' %}"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const form = document.getElementById('new-request-form');
@@ -293,7 +314,7 @@
         PlatformUI.showToast(`Fund Request ${newReq.id} submitted to Central Finance!`, 'success');
 
         setTimeout(() => {
-          window.location.href = 'fund-requests.html';
+          window.location.href = "{% url 'rescue_manager:fund_requests' %}";
         }, 1200);
       });
     });

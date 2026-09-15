@@ -7,6 +7,7 @@
 <title>Incidents Queue — Rescue Manager · Unke Liye NGO</title>
 <meta name="description" content="Rescue incident triage and hotline log — manage, prioritize, and dispatch rescue teams.">
 <link rel="stylesheet" href="{% static 'rescue-manager-assets/css/rescue-manager.css' %}">
+<link rel="stylesheet" href="{% static 'shared/css/platform-theme.css' %}">
 </head>
 <body>
 <div class="toast-region" id="toast-region"></div>
@@ -28,6 +29,10 @@
           <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
           <span class="nav-item-label">Dashboard</span>
         </a>
+        <a href="{% url 'rescue_manager:command_center' %}" class="nav-item">
+          <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          <span class="nav-item-label">Command Center</span>
+        </a>
       </div>
       <div class="nav-divider"></div>
       <div class="nav-section">
@@ -48,6 +53,22 @@
         <a href="{% url 'rescue_manager:volunteers' %}" class="nav-item">
           <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
           <span class="nav-item-label">Volunteers</span>
+        </a>
+      </div>
+      <div class="nav-divider"></div>
+      <div class="nav-section">
+        <div class="nav-section-label">Finance & Logistics</div>
+        <a href="{% url 'rescue_manager:fund_requests' %}" class="nav-item">
+          <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          <span class="nav-item-label">Rescue Fund Requests</span>
+        </a>
+        <a href="{% url 'rescue_manager:resources' %}" class="nav-item">
+          <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          <span class="nav-item-label">Fleet & Equipment</span>
+        </a>
+        <a href="{% url 'rescue_manager:medical_records' %}" class="nav-item">
+          <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          <span class="nav-item-label">Medical Records</span>
         </a>
       </div>
     </nav>
@@ -76,13 +97,22 @@
         <input type="search" placeholder="Search incidents…" aria-label="Search incidents" data-search-table="incidents-table">
       </div>
       <div class="topbar-actions">
-        <button class="topbar-icon-btn" id="theme-toggle" aria-label="Toggle dark mode">
+        <button class="topbar-icon-btn theme-toggle-btn" id="theme-toggle" aria-label="Toggle dark mode">
           <svg class="icon-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-          <svg class="icon-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>
+          <svg class="icon-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/></svg>
         </button>
-        <div class="topbar-icon-btn" style="position:relative;">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-          <span class="notif-count">3</span>
+        <div class="dropdown-wrap">
+          <button class="topbar-icon-btn" data-dropdown="notif-menu-incidents" aria-label="Notifications">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <span class="notif-count">3</span>
+          </button>
+          <div class="dropdown-menu" id="notif-menu-incidents">
+            <div class="dropdown-header">Queue Alerts <span style="font-size:.7rem;color:var(--text-muted)">3 active</span></div>
+            <div class="notif-item unread">
+              <div class="notif-item-icon" style="background:var(--accent-signal-red-bg)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--accent-signal-red)" stroke-width="2.5"><polygon points="7.86,2 16.14,2 22,7.86 22,16.14 16.14,22 7.86,22 2,16.14 2,7.86"/><line x1="12" y1="8" x2="12" y2="12"/></svg></div>
+              <div class="notif-item-body"><div class="notif-item-title">INC-008 (Nashik Highway)</div><div class="notif-item-meta">Critical disaster dispatch pending</div></div>
+            </div>
+          </div>
         </div>
       </div>
     </header>
@@ -166,7 +196,7 @@
                 <td>Aundh, Pune</td>
                 <td><span class="badge badge-animal">🐾 Animal</span></td>
                 <td><span class="badge badge-warning">High</span></td>
-                <td class="td-actions"><button class="btn btn-outline btn-sm" data-modal-open="incident-modal" onclick="currentIncident='INC-001'">Details</button></td>
+                <td class="td-actions"><button class="btn btn-outline btn-sm" data-modal-open="incident-modal">Details</button></td>
               </tr>
               <tr data-incident-row="INC-002" data-priority="critical" data-pillar="disaster">
                 <td><strong>INC-002</strong></td>
@@ -176,7 +206,7 @@
                 <td>Kolhapur, MH</td>
                 <td><span class="badge badge-disaster">🚨 Disaster</span></td>
                 <td><span class="badge badge-danger">Critical</span></td>
-                <td class="td-actions"><button class="btn btn-danger btn-sm" data-modal-open="incident-modal" onclick="currentIncident='INC-002'">Details</button></td>
+                <td class="td-actions"><button class="btn btn-danger btn-sm" data-modal-open="incident-modal">Details</button></td>
               </tr>
               <tr data-incident-row="INC-003" data-priority="high" data-pillar="animal">
                 <td><strong>INC-003</strong></td>
@@ -186,7 +216,7 @@
                 <td>Kothrud, Pune</td>
                 <td><span class="badge badge-animal">🐾 Animal</span></td>
                 <td><span class="badge badge-warning">High</span></td>
-                <td class="td-actions"><button class="btn btn-outline btn-sm" data-modal-open="incident-modal" onclick="currentIncident='INC-003'">Details</button></td>
+                <td class="td-actions"><button class="btn btn-outline btn-sm" data-modal-open="incident-modal">Details</button></td>
               </tr>
               <tr data-incident-row="INC-004" data-priority="medium" data-pillar="animal">
                 <td><strong>INC-004</strong></td>
@@ -196,7 +226,7 @@
                 <td>Baner, Pune</td>
                 <td><span class="badge badge-animal">🐾 Animal</span></td>
                 <td><span class="badge badge-info">Medium</span></td>
-                <td class="td-actions"><button class="btn btn-outline btn-sm" data-modal-open="incident-modal" onclick="currentIncident='INC-004'">Details</button></td>
+                <td class="td-actions"><button class="btn btn-outline btn-sm" data-modal-open="incident-modal">Details</button></td>
               </tr>
               <tr data-incident-row="INC-005" data-priority="high" data-pillar="disaster">
                 <td><strong>INC-005</strong></td>
@@ -206,7 +236,7 @@
                 <td>Sangvi, Pune</td>
                 <td><span class="badge badge-disaster">🚨 Disaster</span></td>
                 <td><span class="badge badge-warning">High</span></td>
-                <td class="td-actions"><button class="btn btn-outline btn-sm" data-modal-open="incident-modal" onclick="currentIncident='INC-005'">Details</button></td>
+                <td class="td-actions"><button class="btn btn-outline btn-sm" data-modal-open="incident-modal">Details</button></td>
               </tr>
               <tr data-incident-row="INC-006" data-priority="medium" data-pillar="animal">
                 <td><strong>INC-006</strong></td>
@@ -216,7 +246,7 @@
                 <td>Talegaon, Pune</td>
                 <td><span class="badge badge-animal">🦚 Wildlife</span></td>
                 <td><span class="badge badge-info">Medium</span></td>
-                <td class="td-actions"><button class="btn btn-outline btn-sm" data-modal-open="incident-modal" onclick="currentIncident='INC-006'">Details</button></td>
+                <td class="td-actions"><button class="btn btn-outline btn-sm" data-modal-open="incident-modal">Details</button></td>
               </tr>
               <tr data-incident-row="INC-007" data-priority="critical" data-pillar="animal">
                 <td><strong>INC-007</strong></td>
@@ -226,7 +256,7 @@
                 <td>Hadapsar, Pune</td>
                 <td><span class="badge badge-animal">🐍 Wildlife</span></td>
                 <td><span class="badge badge-danger">Critical</span></td>
-                <td class="td-actions"><button class="btn btn-danger btn-sm" data-modal-open="incident-modal" onclick="currentIncident='INC-007'">Details</button></td>
+                <td class="td-actions"><button class="btn btn-danger btn-sm" data-modal-open="incident-modal">Details</button></td>
               </tr>
               <tr data-incident-row="INC-008" data-priority="critical" data-pillar="disaster">
                 <td><strong>INC-008</strong></td>
@@ -236,7 +266,7 @@
                 <td>Nashik Highway</td>
                 <td><span class="badge badge-disaster">🚨 Disaster</span></td>
                 <td><span class="badge badge-danger">Critical</span></td>
-                <td class="td-actions"><button class="btn btn-danger btn-sm" data-modal-open="incident-modal" onclick="currentIncident='INC-008'">Details</button></td>
+                <td class="td-actions"><button class="btn btn-danger btn-sm" data-modal-open="incident-modal">Details</button></td>
               </tr>
             </tbody>
           </table>
@@ -343,6 +373,8 @@
   </div>
 </div>
 
+<script src="{% static 'shared/js/platform-store.js' %}"></script>
+<script src="{% static 'shared/js/platform-ui.js' %}"></script>
 <script src="{% static 'rescue-manager-assets/js/app.js' %}"></script>
 </body>
 </html>
