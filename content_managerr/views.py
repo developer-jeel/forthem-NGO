@@ -3,9 +3,11 @@ from django.contrib import messages
 
 from content_managerr.models import *
 
+global uid
+uid = {'name' : 'bhadu' , 'email' : "bhadu@gmaial.com"}
 
 def dashboard(request):
-    return render(request, "content-manager/dashboard.html")
+    return render(request, "content-manager/dashboard.html", {"uid": uid})
 
 
 def banners(request):

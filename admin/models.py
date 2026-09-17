@@ -15,6 +15,7 @@ class Manager(models.Model):
     )
     
     name = models.CharField(max_length=255)
+    profile_picture = models.ImageField(upload_to='managers/profile_pictures/', blank=True, null=True)
     role = models.CharField(max_length=20, choices=ROLE_CHOICES)
     email = models.EmailField(unique=True,blank=True, null=True)
     city = models.CharField(max_length=100, blank=True, null=True)

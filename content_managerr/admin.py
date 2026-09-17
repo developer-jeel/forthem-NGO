@@ -17,3 +17,8 @@ class HomePageContentAdmin(admin.ModelAdmin):
 @admin.register(numbers)
 class NumbersAdmin(admin.ModelAdmin):
 	list_display = ('animals_rescued', 'animals_treated', 'trees_planted', 'cleanups_conducted', 'funds_raised', 'active_volunteers', 'cities_covered', 'people_supported')
+
+@admin.register(story)
+class StoryAdmin(admin.ModelAdmin):
+	list_display = ('story_no', 'title','author', 'created_at', 'updated_at')
+	search_fields = ('story_no', 'title','author', 'instagram_link', 'youtube_link', 'facebook_link')

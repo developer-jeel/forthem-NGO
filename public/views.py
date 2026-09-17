@@ -1,4 +1,5 @@
 from django.shortcuts import redirect, render
+from login.views import check_login
 from content_managerr.models import Banner, HomePageContent ,numbers
 
 
