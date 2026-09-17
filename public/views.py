@@ -8,7 +8,8 @@ def home(request):
 
 
 def about(request):
-    return render(request, "public-temp/about.html")
+    about_banner = Banner.objects.filter(page='about', is_active=True).first()
+    return render(request, "public-temp/about.html", {"about_banner": about_banner})    
 
 
 def campaigns(request):
