@@ -20,5 +20,5 @@ class NumbersAdmin(admin.ModelAdmin):
 
 @admin.register(story)
 class StoryAdmin(admin.ModelAdmin):
-	list_display = ('story_no', 'title','author', 'created_at', 'updated_at')
+	list_display = ('story_no', 'title','author', 'created_at', 'updated_at', 'status', 'is_featured')
 	search_fields = ('story_no', 'title','author', 'instagram_link', 'youtube_link', 'facebook_link')

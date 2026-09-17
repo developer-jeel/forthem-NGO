@@ -75,16 +75,41 @@ class numbers(models.Model):
             return 'Numbers that Unke Liye has achieved'
 
 class story(models.Model):
+    type_choices = (
+        ('success', 'Success Story'),
+        ('rescue', 'Rescue Story'),
+        ('awareness', 'Awareness Story'),
+        ('campaign', 'Campaign Story'),
+        ('volunteer', 'Volunteer Story'),
+        ('event', 'Event Story'),
+        ('fundraising', 'Fundraising Story'),
+        ('partnership', 'Partnership Story'),
+        ('media', 'Media Story'),
+        ('Disaster Relief', 'Disaster Relief Story'),
+        ('Sanitation', 'Sanitation Story'),
+        ('Environment', 'Environment Story'),
+    )
+    status_choices = (
+            ('draft', 'Draft'),
+            ('published', 'Published'),
+            ('archived', 'Archived'),
+        )
+    type = models.CharField(max_length=20, choices=type_choices, default='success')
+    status = models.CharField(max_length=20, choices=status_choices, default='draft')
     story_no = models.IntegerField(unique=True)
     title = models.CharField(max_length=200)
     content = models.TextField()
     image = models.ImageField(upload_to='content/stories/')
+    city = models.CharField(max_length=100, blank=True, null=True)
+    state = models.CharField(max_length=100, blank=True, null=True)
     instagram_link = models.URLField(max_length=200, blank=True, null=True)
     youtube_link = models.URLField(max_length=200, blank=True, null=True)
     facebook_link = models.URLField(max_length=200, blank=True, null=True)
     author = models.CharField(max_length=100, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    is_featured = models.BooleanField(default=False)
+    
 
     def __str__(self):
         return self.title

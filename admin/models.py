@@ -19,6 +19,7 @@ class Manager(models.Model):
     role = models.CharField(max_length=20, choices=ROLE_CHOICES)
     email = models.EmailField(unique=True,blank=True, null=True)
     city = models.CharField(max_length=100, blank=True, null=True)
+    state = models.CharField(max_length=100, blank=True, null=True)
     contact = models.CharField(max_length=10, unique=True , blank=True, null=True)
     second_contact = models.CharField(max_length=10, unique=True , blank=True, null=True)
     password = models.CharField(max_length=128)
