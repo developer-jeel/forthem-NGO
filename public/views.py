@@ -3,7 +3,8 @@ from content_managerr.models import Banner
 
 
 def home(request):
-    return render(request, "public-temp/index.html")
+    home_banner = Banner.objects.filter(page='home', is_active=True).first()
+    return render(request, "public-temp/index.html", {"home_banner": home_banner})
 
 
 def about(request):
