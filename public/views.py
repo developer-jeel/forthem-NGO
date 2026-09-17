@@ -13,7 +13,8 @@ def about(request):
 
 
 def campaigns(request):
-    return render(request, "public-temp/campaigns.html")
+    campaigns_banner = Banner.objects.filter(page='campaigns', is_active=True).first()
+    return render(request, "public-temp/campaigns.html", {"campaigns_banner": campaigns_banner})
 
 
 def campaign_detail(request, campaign_id):
@@ -25,7 +26,8 @@ def campaign_donate(request):
 
 
 def donate(request):
-    return render(request, "public-temp/donate.html")
+    donate_banner = Banner.objects.filter(page='donate', is_active=True).first()
+    return render(request, "public-temp/donate.html", {"donate_banner": donate_banner})
 
 
 def donate_confirmation(request):
@@ -45,7 +47,8 @@ def gallery(request):
 
 
 def impact(request):
-    return render(request, "public-temp/impact.html")
+    impact_banner = Banner.objects.filter(page='impact', is_active=True).first()
+    return render(request, "public-temp/impact.html", {"impact_banner": impact_banner})
 
 
 def login(request):
@@ -60,7 +63,8 @@ def news_detail(request, news_id):
 
 
 def stories(request):
-    return render(request, "public-temp/stories.html")
+    stories_banner = Banner.objects.filter(page='stories', is_active=True).first()
+    return render(request, "public-temp/stories.html", {"stories_banner": stories_banner})
 
 
 def story_detail(request, story_id):
@@ -68,31 +72,37 @@ def story_detail(request, story_id):
 
 
 def volunteer(request):
-    return render(request, "public-temp/volunteer.html")
+    volunteer_banner = Banner.objects.filter(page='volunteer', is_active=True).first()
+    return render(request, "public-temp/volunteer.html", {"volunteer_banner": volunteer_banner})
 
 
 def contact(request):
-    return render(request, "public-temp/contact.html")
+    contact_banner = Banner.objects.filter(page='contact', is_active=True).first()
+    return render(request, "public-temp/contact.html", {"contact_banner": contact_banner})
 
 
 def faq(request):
-    return render(request, "public-temp/faq.html")
-
+    faq_banner = Banner.objects.filter(page='faq', is_active=True).first()
+    return render(request, "public-temp/faq.html", {"faq_banner": faq_banner})
 
 def privacy_policy(request):
-    return render(request, "public-temp/privacy-policy.html")
+    privacy_policy_banner = Banner.objects.filter(page='privacy_policy', is_active=True).first()
+    return render(request, "public-temp/privacy-policy.html", {"privacy_policy_banner": privacy_policy_banner})
 
 
 def terms(request):
-    return render(request, "public-temp/terms.html")
+    terms_banner = Banner.objects.filter(page='terms', is_active=True).first()
+    return render(request, "public-temp/terms.html", {"terms_banner": terms_banner})
 
 
 def transparency(request):
-    return render(request, "public-temp/transparency.html")
+    transparency_banner = Banner.objects.filter(page='transparency', is_active=True).first()
+    return render(request, "public-temp/transparency.html", {"transparency_banner": transparency_banner})
 
 
 def adopt(request):
-    return render(request, "public-temp/adopt.html")
+    adopt_banner = Banner.objects.filter(page='adopt', is_active=True).first()
+    return render(request, "public-temp/adopt.html", {"adopt_banner": adopt_banner})    
 
 
 def adopt_detail(request, animal_id):
@@ -120,19 +130,23 @@ def sponsor_animal(request):
 
 
 def work_animal_rescue(request):
-    return render(request, "public-temp/work-animal-rescue.html")
+    work_animal_rescue_banner = Banner.objects.filter(page='work_animal_rescue', is_active=True).first()
+    return render(request, "public-temp/work-animal-rescue.html", {"work_animal_rescue_banner": work_animal_rescue_banner})
 
 
 def work_disaster_relief(request):
-    return render(request, "public-temp/work-disaster-relief.html")
+    work_disaster_relief_banner = Banner.objects.filter(page='work_disaster_relief', is_active=True).first()
+    return render(request, "public-temp/work-disaster-relief.html", {"work_disaster_relief_banner": work_disaster_relief_banner})
 
 
 def work_environment(request):
-    return render(request, "public-temp/work-environment.html")
+    environment_banner = Banner.objects.filter(page='environment', is_active=True).first()
+    return render(request, "public-temp/work-environment.html", {"environment_banner": environment_banner})
 
 
 def work_sanitation(request):
-    return render(request, "public-temp/work-sanitation.html")
+    work_sanitation_banner = Banner.objects.filter(page='work_sanitation', is_active=True).first()
+    return render(request, "public-temp/work-sanitation.html", {"work_sanitation_banner": work_sanitation_banner})
 
 
 def dashboard_donor(request):
@@ -148,7 +162,8 @@ def dashboard_volunteer(request):
 
 
 def sitemap(request):
-    return render(request, "public-temp/sitemap.html")
+    sitemap_banner = Banner.objects.filter(page='sitemap', is_active=True).first()
+    return render(request, "public-temp/sitemap.html", {"sitemap_banner": sitemap_banner})
 
 
 def page_not_found(request):

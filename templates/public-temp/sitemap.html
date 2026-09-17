@@ -49,7 +49,7 @@
 <div class="nav-mobile-panel" role="dialog" aria-modal="true" aria-label="Navigation menu"><div class="nav-mobile-overlay"></div><div class="nav-mobile-drawer"><button class="nav-mobile-close" aria-label="Close menu">✕</button><a href="{% url 'public:home' %}" class="nav-logo" aria-label="Unke Liye — Home"><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="nav-logo-img" /></a><ul class="nav-mobile-list"><li><a href="{% url 'public:home' %}">Home</a></li><li><a href="{% url 'public:sitemap' %}">Sitemap</a></li></ul><div class="nav-mobile-actions"><a href="{% url 'public:donate' %}" class="btn btn--primary btn--full">Donate Now</a></div></div></div>
 
 <main id="main-content">
-  <div class="page-hero" style="--ph-img: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1600&q=80')"><div class="container page-hero-content"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="{% url 'public:home' %}">Home</a><span class="breadcrumb-sep">›</span><span aria-current="page">Sitemap</span></nav><h1>Sitemap</h1><p>All pages on the Unke Liye website — organized by section.</p></div></div>
+  <div class="page-hero" style="--ph-img: url('{{ sitemap_banner.image.url }}')"><div class="container page-hero-content"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="{% url 'public:home' %}">Home</a><span class="breadcrumb-sep">›</span><span aria-current="page">Sitemap</span></nav><h1>Sitemap</h1><p>All pages on the Unke Liye website — organized by section.</p></div></div>
 
   <section class="section">
     <div class="container">

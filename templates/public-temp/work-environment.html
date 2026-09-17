@@ -55,7 +55,7 @@
   <!-- HERO -->
   <section class="pg-hero" style="min-height:560px">
     <div class="pg-hero__bg" data-parallax
-      style="background-image:url('https://images.unsplash.com/photo-1440342359743-84fcb8c21f21?auto=format&fit=crop&w=1600&q=80')"></div>
+      style="background-image:url('{{ environment_banner.image.url }}')"></div>
     <div class="pg-hero__overlay" style="background:linear-gradient(to bottom,rgba(15,45,20,0.3) 0%,rgba(15,45,20,0.65) 55%,rgba(15,45,20,0.94) 100%)"></div>
     <div class="container pg-hero__content">
       <nav class="pg-breadcrumb"><a href="{% url 'public:home' %}">Home</a><span class="pg-breadcrumb-sep">›</span><a href="#">Our Work</a><span class="pg-breadcrumb-sep">›</span><span>Environment</span></nav>
