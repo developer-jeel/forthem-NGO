@@ -519,39 +519,36 @@
           <span>🐾</span> <span>🌱</span> <span>🧹</span> <span>🚨</span>
           <span style="margin-left: var(--space-2)">NGO Registered · Maharashtra</span>
         </div>
-        <h1>Every Life<br />Deserves <em>Care</em><br />and <em>Purpose.</em></h1>
-        <p class="hero-tagline">
-          Unke Liye rescues animals, restores nature, revives communities,
-          and stands first at the scene of every disaster.
-        </p>
+        <h1>{{ homepage_content.hero_heading }}</h1>
+        <p class="hero-tagline">{{ homepage_content.hero_subheading }}</p>
         <div class="hero-actions">
-          <a href="{% url 'public:donate' %}" class="btn btn--primary btn--lg">
-            Donate Today
+          <a href="{{ homepage_content.primary_cta_url }}" class="btn btn--primary btn--lg">
+            {{ homepage_content.primary_cta_label }}
           </a>
-          <a href="{% url 'public:report_animal' %}" class="btn btn--urgent btn--lg">
-            🚨 Report an Animal
+          <a href="{{ homepage_content.secondary_cta_url }}" class="btn btn--urgent btn--lg">
+            {{ homepage_content.secondary_cta_label }}
           </a>
           <a href="{% url 'public:about' %}" class="btn btn--outline-white btn--lg" style="display:none" id="hero-learn-more">
             Learn Our Story
           </a>
         </div>
         <!-- Hero Stats -->
-        <div class="hero-stats" aria-label="Impact statistics">
+        <div class="hero-stats" aria-label="Impact statistics" {% if not homepage_content.stats_visible %}hidden{% endif %}>
           <div class="hero-stat-item">
-            <div class="hero-stat-number" data-counter data-target="14800" data-suffix="+">0</div>
-            <div class="hero-stat-label">Animals Rescued</div>
+            <div class="hero-stat-number">{{ homepage_content.stat1_number }}</div>
+            <div class="hero-stat-label">{{ homepage_content.stat1_label }}</div>
           </div>
           <div class="hero-stat-item">
-            <div class="hero-stat-number" data-counter data-target="12450" data-suffix="+">0</div>
-            <div class="hero-stat-label">Trees Planted</div>
+            <div class="hero-stat-number">{{ homepage_content.stat2_number }}</div>
+            <div class="hero-stat-label">{{ homepage_content.stat2_label }}</div>
           </div>
           <div class="hero-stat-item">
-            <div class="hero-stat-number" data-counter data-target="340" data-suffix="+">0</div>
-            <div class="hero-stat-label">Volunteers</div>
+            <div class="hero-stat-number">{{ homepage_content.stat3_number }}</div>
+            <div class="hero-stat-label">{{ homepage_content.stat3_label }}</div>
           </div>
           <div class="hero-stat-item">
-            <div class="hero-stat-number" data-counter data-target="9" data-suffix=" yrs">0</div>
-            <div class="hero-stat-label">Serving Lives</div>
+            <div class="hero-stat-number">{{ homepage_content.stat4_number }}</div>
+            <div class="hero-stat-label">{{ homepage_content.stat4_label }}</div>
           </div>
         </div>
       </div>

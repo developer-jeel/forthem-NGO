@@ -1,10 +1,14 @@
 from django.shortcuts import redirect, render
-from content_managerr.models import Banner
+from content_managerr.models import Banner, HomePageContent
 
 
 def home(request):
     home_banner = Banner.objects.filter(page='home', is_active=True).first()
-    return render(request, "public-temp/index.html", {"home_banner": home_banner})
+    homepage_content, _ = HomePageContent.objects.get_or_create(pk=1)
+    return render(request, "public-temp/index.html", {
+        "home_banner": home_banner,
+        "homepage_content": homepage_content,
+    })
 
 
 def about(request):

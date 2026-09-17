@@ -6,6 +6,7 @@ app_name = "content_managerr"
 urlpatterns = [
     path("", views.dashboard, name="dashboard"),
     path("banners/", views.banners, name="banners"),
+    path("banners/<int:banner_id>/edit/", views.edit_banner, name="edit_banner"),
     path("campaigns/", views.campaigns, name="campaigns"),
     path("events/", views.events, name="events"),
     path("events/editor/", views.event_editor, name="event_editor"),

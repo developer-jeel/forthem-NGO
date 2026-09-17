@@ -2,7 +2,7 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase
 from django.urls import reverse
 
-from content_managerr.models import Banner
+from content_managerr.models import Banner, HomePageContent
 
 
 class BannerRenderingTests(TestCase):
@@ -33,3 +33,11 @@ class BannerRenderingTests(TestCase):
             self.assertEqual(response.status_code, 200)
             self.assertIn(f'{url_name}_banner', response.context)
             self.assertIsNotNone(response.context[f'{url_name}_banner'])
+
+    def test_homepage_renders_saved_homepage_content(self):
+        HomePageContent.objects.create(hero_heading='Saved homepage heading')
+
+        response = self.client.get(reverse('public:home'))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Saved homepage heading')

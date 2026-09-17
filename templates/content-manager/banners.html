@@ -176,70 +176,19 @@
                   </tr>
                 </thead>
                 <tbody>
+                  {%for banner in banner_list %}
                   <tr>
-                    <td><strong>Home</strong><br><span style="font-size:12px;color:var(--text-secondary);">/</span></td>
-                    <td><img src="https://picsum.photos/seed/homehero/160/60" alt="Home banner preview" class="table-thumb" loading="lazy"></td>
-                    <td>For Those Who Cannot Speak</td>
-                    <td>We rescue, protect, and advocate for animals and communities across India.</td>
+                    <td><strong>{{ banner.page|title }}</strong><br><span style="font-size:12px;color:var(--text-secondary);">/{{ banner.page }}</span></td>
+                    <td><img src="{{ banner.image.url }}" alt="{{ banner.title }} banner preview" class="table-thumb" loading="lazy"></td>
+                    <td>{{ banner.title }}</td>
+                    <td>{{ banner.content }}</td>
                     <td><span class="badge badge-neutral">Donate Now</span></td>
-                    <td><button class="btn btn-secondary btn-sm" data-modal-open="modal-edit-banner">Edit</button></td>
+                    <td>
+                      <a href="{% url 'content_managerr:edit_banner' banner.id %}" class="btn btn-secondary btn-sm">Edit</a>
+                    </td>
                   </tr>
-                  <tr>
-                    <td><strong>About</strong><br><span style="font-size:12px;color:var(--text-secondary);">/about</span></td>
-                    <td><img src="https://picsum.photos/seed/aboutteam/160/60" alt="About banner preview" class="table-thumb" loading="lazy"></td>
-                    <td>Our Story — Born from Love and Urgency</td>
-                    <td>Founded in 2018 in Mumbai, Unke Liye began as a small rescue group and grew into a national movement.</td>
-                    <td><span class="badge badge-neutral">Meet the Team</span></td>
-                    <td><button class="btn btn-secondary btn-sm" data-modal-open="modal-edit-banner">Edit</button></td>
-                  </tr>
-                  <tr>
-                    <td><strong>Adopt</strong><br><span style="font-size:12px;color:var(--text-secondary);">/adopt</span></td>
-                    <td><img src="https://picsum.photos/seed/adoptdog/160/60" alt="Adopt banner preview" class="table-thumb" loading="lazy"></td>
-                    <td>Give a Home, Change a Life</td>
-                    <td>47 animals waiting for a forever home. Meet them today.</td>
-                    <td><span class="badge badge-neutral">Find Your Match</span></td>
-                    <td><button class="btn btn-secondary btn-sm" data-modal-open="modal-edit-banner">Edit</button></td>
-                  </tr>
-                  <tr>
-                    <td><strong>Donate</strong><br><span style="font-size:12px;color:var(--text-secondary);">/donate</span></td>
-                    <td><img src="https://picsum.photos/seed/donation/160/60" alt="Donate banner preview" class="table-thumb" loading="lazy"></td>
-                    <td>Every Rupee Reaches the Ground</td>
-                    <td>100% goes directly to rescue, rehabilitation, and community programmes.</td>
-                    <td><span class="badge badge-neutral">Donate Today</span></td>
-                    <td><button class="btn btn-secondary btn-sm" data-modal-open="modal-edit-banner">Edit</button></td>
-                  </tr>
-                  <tr>
-                    <td><strong>Animal Rescue</strong><br><span style="font-size:12px;color:var(--text-secondary);">/programs/rescue</span></td>
-                    <td><img src="https://picsum.photos/seed/dogrescue/160/60" alt="Rescue banner preview" class="table-thumb" loading="lazy"></td>
-                    <td>Rescue. Rehabilitate. Rehome.</td>
-                    <td>4,200 rescued since 2018. Report a case or join our volunteer network.</td>
-                    <td><span class="badge badge-terracotta">Report a Case</span></td>
-                    <td><button class="btn btn-secondary btn-sm" data-modal-open="modal-edit-banner">Edit</button></td>
-                  </tr>
-                  <tr>
-                    <td><strong>Environment</strong><br><span style="font-size:12px;color:var(--text-secondary);">/programs/environment</span></td>
-                    <td><img src="https://picsum.photos/seed/forestenv/160/60" alt="Environment banner preview" class="table-thumb" loading="lazy"></td>
-                    <td>Healing the Land We Share</td>
-                    <td>River cleanups to restoration drives — protecting India's green spaces together.</td>
-                    <td><span class="badge badge-leaf">Join a Drive</span></td>
-                    <td><button class="btn btn-secondary btn-sm" data-modal-open="modal-edit-banner">Edit</button></td>
-                  </tr>
-                  <tr>
-                    <td><strong>Contact</strong><br><span style="font-size:12px;color:var(--text-secondary);">/contact</span></td>
-                    <td><img src="https://picsum.photos/seed/indiacommunity/160/60" alt="Contact banner preview" class="table-thumb" loading="lazy"></td>
-                    <td>We'd Love to Hear From You</td>
-                    <td>Volunteer, partner, or report an animal in need. Our team responds within 24 hours.</td>
-                    <td><span class="badge badge-neutral">Send Message</span></td>
-                    <td><button class="btn btn-secondary btn-sm" data-modal-open="modal-edit-banner">Edit</button></td>
-                  </tr>
-                  <tr>
-                    <td><strong>FAQ</strong><br><span style="font-size:12px;color:var(--text-secondary);">/faq</span></td>
-                    <td><div class="table-thumb-placeholder">No image</div></td>
-                    <td>Questions Answered</td>
-                    <td>Everything about adopting, donating, volunteering, and reporting cases.</td>
-                    <td><span class="badge badge-neutral">—</span></td>
-                    <td><button class="btn btn-secondary btn-sm" data-modal-open="modal-edit-banner">Edit</button></td>
-                  </tr>
+                  {%endfor%}
+
                 </tbody>
               </table>
             </div>
@@ -247,64 +196,61 @@
         </section>
       </main>
 
-      <div id="modal-edit-banner" class="modal modal-lg" role="dialog" aria-modal="true" aria-labelledby="modal-edit-banner-title">
+      {% if selected_banner %}
+      <div id="modal-edit-banner" class="modal modal-lg open" role="dialog" aria-modal="true" aria-labelledby="modal-edit-banner-title">
         <div class="modal-backdrop"></div>
         <div class="modal-panel">
           <div class="modal-header">
             <h2 id="modal-edit-banner-title" class="modal-title">Edit Page Banner</h2>
-            <button class="modal-close" data-modal-close="modal-edit-banner" aria-label="Close modal">
+            <a href="{% url 'content_managerr:banners' %}" class="modal-close" aria-label="Close modal">
               <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
-            </button>
+            </a>
           </div>
           <div class="modal-body">
-            <form onsubmit="return false;">
+            <form method="post" enctype="multipart/form-data" action="{% url 'content_managerr:edit_banner' selected_banner.id %}">
+              {% csrf_token %}
               <div class="form-group">
                 <label for="banner-page-name">Page Name</label>
-                <input type="text" id="banner-page-name" value="About Us" readonly>
+                <select id="banner-page-name" name="page" required>
+                  {% for value, label in selected_banner.PAGE_CHOICES %}
+                    <option value="{{ value }}" {% if selected_banner.page == value %}selected{% endif %}>{{ label }}</option>
+                  {% endfor %}
+                </select>
               </div>
               <div class="form-group">
                 <label>Banner Image</label>
-                <img src="https://picsum.photos/seed/aboutbanner/760/200" alt="Banner preview" style="width:100%;height:200px;object-fit:cover;border-radius:var(--radius-md);margin-bottom:var(--sp-3);">
+                {% if selected_banner.image %}
+                  <img src="{{ selected_banner.image.url }}" alt="{{ selected_banner.title }} banner preview" style="width:100%;height:200px;object-fit:cover;border-radius:var(--radius-md);margin-bottom:var(--sp-3);">
+                {% endif %}
                 <div style="display:flex;gap:var(--sp-2);align-items:center;">
-                  <button class="btn btn-secondary btn-sm">Replace Image</button>
+                  <input type="file" name="image" accept="image/*">
                   <span class="hint" style="margin:0;">1920×480px JPEG/WebP</span>
                 </div>
               </div>
               <div class="form-group">
-                <label for="banner-heading">Banner Heading</label>
-                <input type="text" id="banner-heading" value="Our Story — Born from Love and Urgency" required>
+                <label for="banner-heading">Banner Title</label>
+                <input type="text" id="banner-heading" name="title" value="{{ selected_banner.title }}" required>
               </div>
               <div class="form-group">
-                <label for="banner-subheading">Banner Subheading</label>
-                <textarea id="banner-subheading" rows="2">Founded in 2018 in Mumbai, Unke Liye began as a small rescue group and grew into a national movement.</textarea>
-              </div>
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="banner-cta-label">CTA Label</label>
-                  <input type="text" id="banner-cta-label" value="Meet the Team">
-                </div>
-                <div class="form-group">
-                  <label for="banner-cta-url">CTA URL</label>
-                  <input type="url" id="banner-cta-url" value="/about/team">
-                </div>
-              </div>
-              <div class="form-section-title">SEO Metadata</div>
-              <div class="form-group">
-                <label for="meta-title">Meta Title</label>
-                <input type="text" id="meta-title" value="About Unke Liye | Our Mission & Team | NGO India">
+                <label for="banner-subheading">Banner Content</label>
+                <textarea id="banner-subheading" name="content" rows="2">{{ selected_banner.content }}</textarea>
               </div>
               <div class="form-group">
-                <label for="meta-desc">Meta Description</label>
-                <textarea id="meta-desc" rows="2">Learn about Unke Liye NGO — our founding story, mission, team, and impact across animal rescue, environment, and sanitation.</textarea>
+                <label for="banner-is-active">Status</label>
+                <label style="display:flex;align-items:center;gap:10px;">
+                  <input id="banner-is-active" type="checkbox" name="is_active" {% if selected_banner.is_active %}checked{% endif %}>
+                  Active banner
+                </label>
+              </div>
+              <div class="modal-footer" style="padding:0; margin-top: 1rem;">
+                <a href="{% url 'content_managerr:banners' %}" class="btn btn-ghost">Cancel</a>
+                <button type="submit" class="btn btn-primary">Save Changes</button>
               </div>
             </form>
           </div>
-          <div class="modal-footer">
-            <button class="btn btn-ghost" data-modal-close="modal-edit-banner">Cancel</button>
-            <button class="btn btn-primary" data-modal-close="modal-edit-banner" data-toast="success" data-toast-title="Banner Saved" data-toast-msg="Page banner and SEO metadata updated.">Save Changes</button>
-          </div>
         </div>
       </div>
+      {% endif %}
 
       <div id="toast-region" class="toast-region" aria-live="polite" role="alert" aria-atomic="true"></div>
       <template id="toast-tpl-success">

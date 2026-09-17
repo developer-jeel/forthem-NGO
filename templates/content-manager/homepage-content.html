@@ -162,11 +162,12 @@
           <div class="page-actions">
             <span class="badge badge-success badge-dot">Live</span>
             <span style="font-size:13px;color:var(--text-secondary);">Last published: 8 Jun 2025</span>
-            <button class="btn btn-secondary" data-toast="info" data-toast-title="Draft Saved" data-toast-msg="Homepage content saved as draft.">Save Draft</button>
-            <button class="btn btn-primary" data-toast="success" data-toast-title="Homepage Published" data-toast-msg="Homepage is now live.">Publish Now</button>
+            <button type="submit" form="homepage-content-form" class="btn btn-primary">Save Changes</button>
           </div>
         </div>
 
+        <form id="homepage-content-form" method="post">
+          {% csrf_token %}
         <section class="card">
           <div class="card-header">
             <h2 class="card-title">Hero Banner</h2>
@@ -177,30 +178,30 @@
               <div style="display:flex;flex-direction:column;gap:var(--sp-4);">
                 <div class="form-group">
                   <label for="hero-heading">Hero Heading</label>
-                  <input type="text" id="hero-heading" value="For Those Who Cannot Speak">
+                  <input type="text" id="hero-heading" name="hero_heading" value="{{ homepage_content.hero_heading }}" required>
                 </div>
                 <div class="form-group">
                   <label for="hero-subheading">Hero Subheading</label>
-                  <textarea id="hero-subheading" rows="3">We rescue, protect, and advocate for animals, communities, and the environment across India.</textarea>
+                  <textarea id="hero-subheading" name="hero_subheading" rows="3" required>{{ homepage_content.hero_subheading }}</textarea>
                 </div>
                 <div class="form-row">
                   <div class="form-group">
                     <label for="cta1-label">Primary CTA Label</label>
-                    <input type="text" id="cta1-label" value="Donate Now">
+                    <input type="text" id="cta1-label" name="primary_cta_label" value="{{ homepage_content.primary_cta_label }}" required>
                   </div>
                   <div class="form-group">
                     <label for="cta1-url">Primary CTA URL</label>
-                    <input type="url" id="cta1-url" value="/donate">
+                    <input type="text" id="cta1-url" name="primary_cta_url" value="{{ homepage_content.primary_cta_url }}" required>
                   </div>
                 </div>
                 <div class="form-row">
                   <div class="form-group">
                     <label for="cta2-label">Secondary CTA Label</label>
-                    <input type="text" id="cta2-label" value="Meet the Animals">
+                    <input type="text" id="cta2-label" name="secondary_cta_label" value="{{ homepage_content.secondary_cta_label }}" required>
                   </div>
                   <div class="form-group">
                     <label for="cta2-url">Secondary CTA URL</label>
-                    <input type="url" id="cta2-url" value="/adopt">
+                    <input type="text" id="cta2-url" name="secondary_cta_url" value="{{ homepage_content.secondary_cta_url }}" required>
                   </div>
                 </div>
               </div>
@@ -220,7 +221,7 @@
           <div class="card-header">
             <h2 class="card-title">Impact Stats Bar</h2>
             <label class="toggle-wrap switch" for="impact-stats-toggle">
-              <input type="checkbox" id="impact-stats-toggle" checked>
+              <input type="checkbox" id="impact-stats-toggle" name="stats_visible" {% if homepage_content.stats_visible %}checked{% endif %}>
               <span class="slider"></span>
               <span class="toggle-label">Visible</span>
             </label>
@@ -229,29 +230,29 @@
             <div class="form-row three-col">
               <div class="form-group">
                 <label for="stat1-num">Stat 1 Number</label>
-                <input type="text" id="stat1-num" value="4,200+">
+                <input type="text" id="stat1-num" name="stat1_number" value="{{ homepage_content.stat1_number }}" required>
                 <label for="stat1-label" style="margin-top:var(--sp-3);">Stat 1 Label</label>
-                <input type="text" id="stat1-label" value="Animals Rescued">
+                <input type="text" id="stat1-label" name="stat1_label" value="{{ homepage_content.stat1_label }}" required>
               </div>
               <div class="form-group">
                 <label for="stat2-num">Stat 2 Number</label>
-                <input type="text" id="stat2-num" value="₹2.8Cr">
+                <input type="text" id="stat2-num" name="stat2_number" value="{{ homepage_content.stat2_number }}" required>
                 <label for="stat2-label" style="margin-top:var(--sp-3);">Stat 2 Label</label>
-                <input type="text" id="stat2-label" value="Funds Raised">
+                <input type="text" id="stat2-label" name="stat2_label" value="{{ homepage_content.stat2_label }}" required>
               </div>
               <div class="form-group">
                 <label for="stat3-num">Stat 3 Number</label>
-                <input type="text" id="stat3-num" value="840+">
+                <input type="text" id="stat3-num" name="stat3_number" value="{{ homepage_content.stat3_number }}" required>
                 <label for="stat3-label" style="margin-top:var(--sp-3);">Stat 3 Label</label>
-                <input type="text" id="stat3-label" value="Active Volunteers">
+                <input type="text" id="stat3-label" name="stat3_label" value="{{ homepage_content.stat3_label }}" required>
               </div>
             </div>
             <div class="form-row three-col" style="margin-top:var(--sp-4);">
               <div class="form-group">
                 <label for="stat4-num">Stat 4 Number</label>
-                <input type="text" id="stat4-num" value="24">
+                <input type="text" id="stat4-num" name="stat4_number" value="{{ homepage_content.stat4_number }}" required>
                 <label for="stat4-label" style="margin-top:var(--sp-3);">Stat 4 Label</label>
-                <input type="text" id="stat4-label" value="Cities Covered">
+                <input type="text" id="stat4-label" name="stat4_label" value="{{ homepage_content.stat4_label }}" required>
               </div>
             </div>
           </div>
@@ -261,7 +262,7 @@
           <div class="card-header">
             <h2 class="card-title">Featured Campaigns</h2>
             <label class="toggle-wrap switch" for="featured-campaigns-toggle">
-              <input type="checkbox" id="featured-campaigns-toggle" checked>
+              <input type="checkbox" id="featured-campaigns-toggle" name="featured_campaigns_visible" {% if homepage_content.featured_campaigns_visible %}checked{% endif %}>
               <span class="slider"></span>
               <span class="toggle-label">Visible</span>
             </label>
@@ -269,7 +270,7 @@
           <div class="card-body">
             <div class="form-group">
               <label for="feat-section-heading">Section Heading</label>
-              <input type="text" id="feat-section-heading" value="Campaigns Urgently Needing Support">
+              <input type="text" id="feat-section-heading" name="featured_campaigns_heading" value="{{ homepage_content.featured_campaigns_heading }}" required>
             </div>
             <p class="hint">Campaigns marked as Featured appear here automatically. Currently showing 4.</p>
             <div style="display:flex;flex-wrap:wrap;gap:var(--sp-2);margin-top:var(--sp-3);">
@@ -280,6 +281,7 @@
             </div>
           </div>
         </section>
+        </form>
       </main>
 
       <div id="toast-region" class="toast-region" aria-live="polite" role="alert" aria-atomic="true"></div>
