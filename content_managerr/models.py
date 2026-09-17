@@ -61,14 +61,15 @@ class HomePageContent(models.Model):
         return 'Homepage content'
 
 class numbers(models.Model):
-    animals_rescued = models.CharField(max_length=40, default='4,200+')
-    animals_treated = models.CharField(max_length=40, default='3,500+')
-    trees_planted = models.CharField(max_length=40, default='1,200+')
-    cleanups_conducted = models.CharField(max_length=40, default='150+')
+    animals_rescued = models.IntegerField(default=4200)
+    animals_treated = models.IntegerField(default=3500)
+    trees_planted = models.IntegerField(default=1000)
+    cleanups_conducted = models.IntegerField(default=150)
     funds_raised = models.CharField(max_length=40, default='2.8Cr')
     active_volunteers = models.CharField(max_length=40, default='840+')
     cities_covered = models.CharField(max_length=40, default='24')
-    people_supported = models.CharField(max_length=40, default='1,00,000+')
+    people_supported = models.CharField(max_length=40, default='1000+')
+    disaster_ops = models.IntegerField(default=47)
 
     def __str__(self):
             return 'Numbers that Unke Liye has achieved'
