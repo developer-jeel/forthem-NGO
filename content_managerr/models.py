@@ -99,7 +99,7 @@ class story(models.Model):
     story_no = models.IntegerField(unique=True)
     title = models.CharField(max_length=200)
     content = models.TextField()
-    image = models.ImageField(upload_to='content/stories/')
+    image = models.ImageField(upload_to='content/stories/', blank=True, null=True)
     city = models.CharField(max_length=100, blank=True, null=True)
     state = models.CharField(max_length=100, blank=True, null=True)
     instagram_link = models.URLField(max_length=200, blank=True, null=True)

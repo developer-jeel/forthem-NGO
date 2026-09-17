@@ -94,6 +94,20 @@
     initFilterChips();
     initStarToggle();
     initEditorToolbar();
+
+    const form = document.getElementById('new-story-form');
+    const editor = document.getElementById('story-editor');
+    const content = document.getElementById('story-content');
+    const status = document.getElementById('story-status');
+    if (form && editor && content && status) {
+      form.addEventListener('submit', function (event) {
+        const submitter = event.submitter;
+        content.value = editor.innerHTML.trim();
+        if (submitter && submitter.dataset.storyStatus) {
+          status.value = submitter.dataset.storyStatus;
+        }
+      });
+    }
   }
 
   if (document.readyState === 'loading') {

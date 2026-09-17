@@ -17,4 +17,7 @@ urlpatterns = [
     path("news/editor/", views.news_editor, name="news_editor"),
     path("stories/", views.stories, name="stories"),
     path("stories/editor/", views.story_editor, name="story_editor"),
+    path("stories/<int:story_id>/edit/", views.story_editor, name="edit_story"),
+    path("stories/<int:story_id>/delete/", views.delete_story, name="delete_story"),
 ]
+
