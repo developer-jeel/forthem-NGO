@@ -44,18 +44,24 @@
 <main id="main">
 
   <!-- HERO -->
-  <section class="pg-hero" style="min-height:580px">
+  <section class="pg-hero" style="min-height:480px">
     <div class="pg-hero__bg" data-parallax
-      style="background-image:url('https://images.unsplash.com/photo-1601758174493-01f4e4b1c0e6?auto=format&fit=crop&w=1600&q=80')"></div>
+      style="background-image:url('{% if story and story.image %}{{ story.image.url }}{% else %}https://images.unsplash.com/photo-1601758174493-01f4e4b1c0e6?auto=format&fit=crop&w=1600&q=80{% endif %}')"></div>
     <div class="pg-hero__overlay"></div>
     <div class="container pg-hero__content">
-      <nav class="pg-breadcrumb"><a href="{% url 'public:home' %}">Home</a><span class="pg-breadcrumb-sep">›</span><a href="{% url 'public:stories' %}">Stories</a><span class="pg-breadcrumb-sep">›</span><span>Bruno's Comeback</span></nav>
+      <nav class="pg-breadcrumb"><a href="{% url 'public:home' %}">Home</a><span class="pg-breadcrumb-sep">›</span><a href="{% url 'public:stories' %}">Stories</a><span class="pg-breadcrumb-sep">›</span><span>{% if story %}{{ story.title }}{% else %}Bruno's Comeback{% endif %}</span></nav>
       <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.25rem">
-        <span class="pg-badge pg-badge--success">❤️ Happy Ending</span>
-        <span class="pg-chip" style="background:rgba(255,255,255,.18);color:#fff;border-color:rgba(255,255,255,.25)">🐕 Animal Rescue</span>
+        <span class="pg-chip" style="background:rgba(255,255,255,.18);color:#fff;border-color:rgba(255,255,255,.25)">{% if story %}{{ story.get_type_display }}{% else %}🐕 Animal Rescue{% endif %}</span>
       </div>
-      <h1 style="max-width:18ch">Bruno's Comeback — The Dog Who Refused to Give Up</h1>
-      <p class="lead" style="max-width:50ch">Found broken on a highway. Rebuilt by love, science, and community. Bruno is now running laps in his forever home in Kothrud, Pune.</p>
+      <h1 style="max-width:24ch">{% if story %}{{ story.title }}{% else %}Bruno's Comeback — The Dog Who Refused to Give Up{% endif %}</h1>
+      <p class="lead" style="max-width:55ch">
+        {% if story %}
+          By {{ story.author|default:"Unke Liye Team" }} · {{ story.created_at|date:"j F Y" }}
+          {% if story.city or story.state %} · {{ story.city }}{% if story.city and story.state %}, {% endif %}{{ story.state }}{% endif %}
+        {% else %}
+          Found broken on a highway. Rebuilt by love, science, and community. Bruno is now running laps in his forever home in Kothrud, Pune.
+        {% endif %}
+      </p>
     </div>
   </section>
 
@@ -66,63 +72,40 @@
 
         <!-- Story body -->
         <article class="pg-article">
-
-          <p class="pg-article__lead">When our rescue team found Bruno on a deserted stretch of the Pune-Solapur highway, he was barely conscious — his right hind leg bent at an impossible angle.</p>
-
-          <div class="pg-article__hero-img"
-            style="background-image:url('https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=1200&q=80')"></div>
-
-          <p>It was 2:30 AM on June 3rd, 2025. Volunteer Vikram Joshi had received a tip from a truck driver who had spotted the injured dog and stopped just long enough to call our helpline. Twenty minutes later, our duty team was on-site.</p>
-
-          <p>The vet's diagnosis was unambiguous: compound fracture of the right femur, caused by high-speed vehicle impact. Without surgery within 48 hours, the leg would need amputation. The cost — ₹35,000 — was beyond our emergency budget.</p>
-
-          <blockquote class="pg-article__quote">
-            "I had never crowd-funded for an animal before. But Bruno's eyes — even in that pain — there was something so full of life. I shared the campaign at 8 AM. By noon, we had 50 donors."
-            <cite style="display:block;font-size:.875rem;font-family:var(--font-body);margin-top:.75rem;opacity:.7">— Rahul Nimkar, Rapid Response Coordinator</cite>
-          </blockquote>
-
-          <h2>The Community That Saved Him</h2>
-          <p>The campaign went live on August 10th. Within 4 days, 142 donors had collectively raised ₹27,300 — enough to proceed with surgery. The remaining gap was filled by a corporate donor who had followed Bruno's story on Instagram.</p>
-          <p>The surgery was performed on August 14th by Dr. Kavita Nair. A titanium implant was placed, and Bruno was transferred to a recovery ward at our sanctuary.</p>
-
-          <!-- Photo grid -->
-          <div class="pg-gallery-grid" style="margin:2rem 0">
-            <div class="pg-gallery-tile" onclick="pgLightboxOpen('https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=1200&q=80','Bruno — Day of Rescue','Rescue')">
-              <div class="pg-gallery-tile__img" style="background-image:url('https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=600&q=80')"></div>
-              <div class="pg-gallery-tile__overlay"></div>
-              <div class="pg-gallery-tile__caption"><h4>Day of Rescue</h4></div>
-              <div class="pg-gallery-tile__zoom">🔍</div>
+          {% if story %}
+            {% if story.image %}
+              <div class="pg-article__hero-img" style="background-image:url('{{ story.image.url }}')"></div>
+            {% endif %}
+            
+            <div class="pg-story-dynamic-content" style="font-size:1.1rem;line-height:1.8;color:var(--color-text-body, #334155);">
+              {{ story.content|safe }}
             </div>
-            <div class="pg-gallery-tile" onclick="pgLightboxOpen('https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=1200&q=80','Bruno — Post Surgery','Recovery')">
-              <div class="pg-gallery-tile__img" style="background-image:url('https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=600&q=80')"></div>
-              <div class="pg-gallery-tile__overlay"></div>
-              <div class="pg-gallery-tile__caption"><h4>Post-Surgery Rest</h4></div>
-              <div class="pg-gallery-tile__zoom">🔍</div>
-            </div>
-            <div class="pg-gallery-tile" onclick="pgLightboxOpen('https://images.unsplash.com/photo-1601758174493-01f4e4b1c0e6?auto=format&fit=crop&w=1200&q=80','Bruno — Forever Home','Happy Ending')">
-              <div class="pg-gallery-tile__img" style="background-image:url('https://images.unsplash.com/photo-1601758174493-01f4e4b1c0e6?auto=format&fit=crop&w=600&q=80')"></div>
-              <div class="pg-gallery-tile__overlay"></div>
-              <div class="pg-gallery-tile__caption"><h4>His Forever Home</h4></div>
-              <div class="pg-gallery-tile__zoom">🔍</div>
-            </div>
-          </div>
 
-          <h2>Priya's Family — Bruno's Forever Home</h2>
-          <p>Priya Kulkarni had initially applied to foster Bruno during his recovery. "I just wanted to help for a few weeks," she laughs. "But by week two, he had become part of the family."</p>
-          <p>Six weeks after surgery, Bruno walked out of his foster home as a full member of the Kulkarni family. He now has his own bed, a toy basket, and a routine of morning walks in Kothrud's lanes — without a trace of a limp.</p>
-
-          <div style="background:var(--color-primary-light);border-radius:var(--radius-xl);padding:2rem;margin:2rem 0;display:flex;gap:1.5rem;align-items:flex-start">
-            <img src="https://images.unsplash.com/photo-1494790108755-2616b30a5d38?auto=format&fit=crop&w=80&h=80&q=80" alt="Priya" style="width:56px;height:56px;border-radius:50%;object-fit:cover;flex-shrink:0;border:3px solid var(--color-care)">
-            <div>
-              <p style="font-family:var(--font-display);font-size:1.1rem;color:var(--color-primary-dark);margin-bottom:.5rem">"I fostered Bruno for 5 weeks. By the end, the idea of him going anywhere else was unthinkable. We just signed the adoption papers last week. He's family."</p>
-              <strong style="font-size:.875rem">Priya Kulkarni</strong>
-              <small style="color:var(--color-text-muted);display:block">Adoptive parent, Kothrud, Pune</small>
-            </div>
-          </div>
+            {% if story.instagram_link or story.youtube_link or story.facebook_link %}
+              <div style="margin-top:2rem;padding:1.5rem;background:var(--color-surface-muted, #f8fafc);border-radius:12px;border:1px solid var(--color-border, #e2e8f0);">
+                <h4 style="margin-bottom:0.75rem;">Follow This Story On Social Media:</h4>
+                <div style="display:flex;gap:12px;flex-wrap:wrap;">
+                  {% if story.instagram_link %}
+                    <a href="{{ story.instagram_link }}" target="_blank" rel="noopener" class="btn btn--outline btn--sm">📷 Instagram</a>
+                  {% endif %}
+                  {% if story.youtube_link %}
+                    <a href="{{ story.youtube_link }}" target="_blank" rel="noopener" class="btn btn--outline btn--sm">▶️ YouTube</a>
+                  {% endif %}
+                  {% if story.facebook_link %}
+                    <a href="{{ story.facebook_link }}" target="_blank" rel="noopener" class="btn btn--outline btn--sm">📘 Facebook</a>
+                  {% endif %}
+                </div>
+              </div>
+            {% endif %}
+          {% else %}
+            <p class="pg-article__lead">When our rescue team found Bruno on a deserted stretch of the Pune-Solapur highway, he was barely conscious — his right hind leg bent at an impossible angle.</p>
+            <div class="pg-article__hero-img" style="background-image:url('https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=1200&q=80')"></div>
+            <p>It was 2:30 AM on June 3rd, 2025. Volunteer Vikram Joshi had received a tip from a truck driver who had spotted the injured dog and stopped just long enough to call our helpline.</p>
+          {% endif %}
 
           <!-- Share -->
-          <div class="pg-article__share">
-            <span style="font-size:.875rem;color:var(--color-text-muted)">Share Bruno's story:</span>
+          <div class="pg-article__share" style="margin-top:2rem;">
+            <span style="font-size:.875rem;color:var(--color-text-muted)">Share story:</span>
             <a href="#" class="btn btn--outline btn--sm">Share on WhatsApp</a>
             <a href="#" class="btn btn--outline btn--sm">Share on Instagram</a>
             <a href="#" class="btn btn--outline btn--sm">Copy Link</a>

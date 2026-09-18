@@ -114,3 +114,22 @@ class story(models.Model):
     def __str__(self):
         return self.title
 
+    @property
+    def type_badge_class(self):
+        mapping = {
+            'rescue': 'badge-terracotta',
+            'Environment': 'badge-leaf',
+            'Disaster Relief': 'badge-red',
+            'Sanitation': 'badge-info',
+            'campaign': 'badge-warning',
+            'fundraising': 'badge-warning',
+            'success': 'badge-success',
+            'volunteer': 'badge-leaf',
+            'awareness': 'badge-info',
+            'media': 'badge-info',
+            'event': 'badge-slate',
+            'partnership': 'badge-terracotta',
+        }
+        return mapping.get(self.type, 'badge-slate')
+
+

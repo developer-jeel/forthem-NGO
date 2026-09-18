@@ -1,16 +1,18 @@
 from django.shortcuts import redirect, render
 from login.views import check_login
-from content_managerr.models import Banner, HomePageContent ,numbers
+from content_managerr.models import Banner, HomePageContent, numbers, story
 
 
 def home(request):
     home_banner = Banner.objects.filter(page='home', is_active=True).first()
     homepage_content, _ = HomePageContent.objects.get_or_create(pk=1)
     numbers_data = numbers.objects.first()
+    featured_stories = story.objects.filter(status='published').order_by('-created_at')[:3]
     return render(request, "public-temp/index.html", {
         "home_banner": home_banner,
         "homepage_content": homepage_content,
         "numbers_data": numbers_data,
+        "featured_stories": featured_stories,
     })
 
 
@@ -71,11 +73,21 @@ def news_detail(request, news_id):
 
 def stories(request):
     stories_banner = Banner.objects.filter(page='stories', is_active=True).first()
-    return render(request, "public-temp/stories.html", {"stories_banner": stories_banner})
+    published_stories = story.objects.filter(status='published').order_by('-created_at')
+    featured_story = published_stories.filter(is_featured=True).first() or published_stories.first()
+    return render(request, "public-temp/stories.html", {
+        "stories_banner": stories_banner,
+        "stories": published_stories,
+        "featured_story": featured_story,
+    })
 
 
 def story_detail(request, story_id):
-    return render(request, "public-temp/story-detail.html")
+    story_item = story.objects.filter(id=story_id).first()
+    return render(request, "public-temp/story-detail.html", {
+        "story": story_item,
+    })
+
 
 
 def volunteer(request):

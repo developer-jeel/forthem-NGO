@@ -1,165 +1,433 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% if story_obj %}Edit Story: {{ story_obj.title }}{% else %}Write New Story{% endif %} · Content Manager · Unke Liye</title>
+  <title>{% if story_obj %}Edit Story: {{ story_obj.title }}{% else %}Write New Story{% endif %} · Content Manager ·
+    Unke Liye</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="{% static 'content-manager-assets/css/admin.css' %}">
   <style>
-    .editor-layout { display:grid;grid-template-columns:1fr 340px;gap:24px; }
-    .editor-main { background:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:12px;overflow:hidden; }
-    .editor-header { padding:24px;border-bottom:1px solid var(--border-subtle); }
-    .editor-body { padding:0; }
-    .input-title { font-size:24px;font-weight:700;font-family:var(--font-heading);width:100%;border:none;background:transparent;outline:none;padding:0;color:var(--text-primary);margin-bottom:8px; }
-    .input-title::placeholder { color:var(--text-secondary);opacity:0.5; }
-    
-    .rich-text-toolbar { display:flex;gap:8px;padding:12px 24px;border-bottom:1px solid var(--border-subtle);background:var(--bg-sunken);align-items:center;flex-wrap:wrap; }
-    .rt-btn { width:32px;height:32px;border:none;background:transparent;border-radius:6px;color:var(--text-secondary);cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:600; }
-    .rt-btn:hover { background:rgba(0,0,0,0.05);color:var(--text-primary); }
-    .rt-divider { width:1px;height:24px;background:var(--border-subtle);margin:0 4px; }
-    
-    .rich-text-area { padding:24px;min-height:450px;outline:none;font-size:16px;line-height:1.8; }
-    .rich-text-area:empty:before { content:attr(placeholder);color:var(--text-secondary);opacity:0.5;pointer-events:none;display:block; }
-    
-    .sidebar-panel { background:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:12px;padding:20px;margin-bottom:20px; }
-    .panel-title { font-size:13px;font-weight:700;margin-bottom:14px;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-secondary); }
-    
-    .hero-upload { border:2px dashed var(--border-subtle);border-radius:8px;height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:all 0.2s;color:var(--text-secondary);background:var(--bg-canvas);position:relative;overflow:hidden; }
-    .hero-upload:hover { border-color:var(--brand-primary);color:var(--brand-primary);background:rgba(var(--brand-primary-rgb),0.02); }
-    
-    .form-group { margin-bottom:14px; }
-    .form-group:last-child { margin-bottom:0; }
-    .form-label { display:block;font-size:13px;font-weight:600;margin-bottom:6px;color:var(--text-primary); }
-    .form-control { width:100%;padding:9px 12px;border:1px solid var(--border-subtle);border-radius:6px;font-family:inherit;font-size:14px;background:var(--bg-canvas);color:var(--text-primary); }
-    .form-control:focus { outline:none;border-color:var(--brand-primary); }
-    
-    .seo-preview { border:1px solid var(--border-subtle);border-radius:8px;padding:14px;background:var(--bg-canvas); }
-    .seo-title { color:#1a0dab;font-size:16px;font-weight:600;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
-    .seo-url { color:#006621;font-size:13px;margin-bottom:4px; }
-    .seo-desc { color:#545454;font-size:13px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden; }
+    .editor-layout {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 24px;
+    }
 
-    .messages { margin-bottom: 20px; }
-    .message { padding: 12px 16px; border-radius: 8px; margin-bottom: 10px; font-size: 14px; }
-    .message-error { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
-    .message-success { background: #dcfce7; color: #166534; border: 1px solid #86efac; }
-    
-    @media(max-width:1024px){.editor-layout{grid-template-columns:1fr;}}
+    .editor-main {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .editor-header {
+      padding: 24px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .editor-body {
+      padding: 0;
+    }
+
+    .input-title {
+      font-size: 24px;
+      font-weight: 700;
+      font-family: var(--font-heading);
+      width: 100%;
+      border: none;
+      background: transparent;
+      outline: none;
+      padding: 0;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .input-title::placeholder {
+      color: var(--text-secondary);
+      opacity: 0.5;
+    }
+
+    .rich-text-toolbar {
+      display: flex;
+      gap: 8px;
+      padding: 12px 24px;
+      border-bottom: 1px solid var(--border-subtle);
+      background: var(--bg-sunken);
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .rt-btn {
+      width: 32px;
+      height: 32px;
+      border: none;
+      background: transparent;
+      border-radius: 6px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+    }
+
+    .rt-btn:hover {
+      background: rgba(0, 0, 0, 0.05);
+      color: var(--text-primary);
+    }
+
+    .rt-divider {
+      width: 1px;
+      height: 24px;
+      background: var(--border-subtle);
+      margin: 0 4px;
+    }
+
+    .rich-text-area {
+      padding: 24px;
+      min-height: 450px;
+      outline: none;
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .rich-text-area:empty:before {
+      content: attr(placeholder);
+      color: var(--text-secondary);
+      opacity: 0.5;
+      pointer-events: none;
+      display: block;
+    }
+
+    .sidebar-panel {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .panel-title {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-secondary);
+    }
+
+    .hero-upload {
+      border: 2px dashed var(--border-subtle);
+      border-radius: 8px;
+      height: 160px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: var(--text-secondary);
+      background: var(--bg-canvas);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-upload:hover {
+      border-color: var(--brand-primary);
+      color: var(--brand-primary);
+      background: rgba(var(--brand-primary-rgb), 0.02);
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    .form-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--text-primary);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 9px 12px;
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 14px;
+      background: var(--bg-canvas);
+      color: var(--text-primary);
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--brand-primary);
+    }
+
+    .seo-preview {
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 14px;
+      background: var(--bg-canvas);
+    }
+
+    .seo-title {
+      color: #1a0dab;
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .seo-url {
+      color: #006621;
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    .seo-desc {
+      color: #545454;
+      font-size: 13px;
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .messages {
+      margin-bottom: 20px;
+    }
+
+    .message {
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .message-error {
+      background: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #fca5a5;
+    }
+
+    .message-success {
+      background: #dcfce7;
+      color: #166534;
+      border: 1px solid #86efac;
+    }
+
+    @media(max-width:1024px) {
+      .editor-layout {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
+
 <body>
   <div class="admin-shell">
     <aside id="sidebar" class="sidebar" role="navigation">
       <div class="sidebar-header">
-        <img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye NGO" style="width:36px;height:36px;object-fit:contain;border-radius:8px;background:rgba(255,255,255,0.15);padding:2px;flex-shrink:0;">
+        <img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye NGO"
+          style="width:36px;height:36px;object-fit:contain;border-radius:8px;background:rgba(255,255,255,0.15);padding:2px;flex-shrink:0;">
         <div class="logo-text"><strong>Unke Liye</strong><small>Content Manager</small></div>
       </div>
       <nav class="sidebar-nav">
-        <div class="nav-group"><div class="nav-group-title">Overview</div><a href="{% url 'content_managerr:dashboard' %}" class="nav-link"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg><span class="label">Dashboard</span></a></div>
-        <div class="nav-group"><div class="nav-group-title">Content</div><a href="{% url 'content_managerr:homepage_content' %}" class="nav-link"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg><span class="label">Homepage Content</span></a><a href="{% url 'content_managerr:banners' %}" class="nav-link"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg><span class="label">Page Banners</span></a><a href="{% url 'content_managerr:stories' %}" class="nav-link active"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg><span class="label">Stories</span></a><a href="{% url 'content_managerr:news' %}" class="nav-link"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg><span class="label">News &amp; Press</span></a><a href="{% url 'content_managerr:gallery' %}" class="nav-link"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg><span class="label">Gallery</span></a><a href="{% url 'content_managerr:media_library' %}" class="nav-link"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span class="label">Media Library</span></a></div>
+        <div class="nav-group">
+          <div class="nav-group-title">Overview</div><a href="{% url 'content_managerr:dashboard' %}"
+            class="nav-link"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg><span class="label">Dashboard</span></a>
+        </div>
+        <div class="nav-group">
+          <div class="nav-group-title">Content</div><a href="{% url 'content_managerr:homepage_content' %}"
+            class="nav-link"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+            </svg><span class="label">Homepage Content</span></a><a href="{% url 'content_managerr:banners' %}"
+            class="nav-link"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg><span class="label">Page Banners</span></a><a href="{% url 'content_managerr:stories' %}"
+            class="nav-link active"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg><span class="label">Stories</span></a><a href="{% url 'content_managerr:news' %}"
+            class="nav-link"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+            </svg><span class="label">News &amp; Press</span></a><a href="{% url 'content_managerr:gallery' %}"
+            class="nav-link"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg><span class="label">Gallery</span></a><a href="{% url 'content_managerr:media_library' %}"
+            class="nav-link"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <circle cx="8.5" cy="8.5" r="1.5" />
+              <polyline points="21 15 16 10 5 21" />
+            </svg><span class="label">Media Library</span></a>
+        </div>
       </nav>
     </aside>
 
     <main class="main-content">
-      <form id="story-form" method="post" enctype="multipart/form-data" action="{% if story_obj %}{% url 'content_managerr:edit_story' story_obj.id %}{% else %}{% url 'content_managerr:story_editor' %}{% endif %}">
+      <form id="story-form" method="post" enctype="multipart/form-data"
+        action="{% if story_obj %}{% url 'content_managerr:edit_story' story_obj.id %}{% else %}{% url 'content_managerr:story_editor' %}{% endif %}">
         {% csrf_token %}
-        <input type="hidden" name="status" id="story-status-input" value="{% if form_data.status %}{{ form_data.status }}{% elif story_obj %}{{ story_obj.status }}{% else %}draft{% endif %}">
-        <input type="hidden" name="content" id="story-content-input" value="{% if form_data.content %}{{ form_data.content }}{% elif story_obj %}{{ story_obj.content }}{% endif %}">
+        <input type="hidden" name="status" id="story-status-input"
+          value="{% if form_data.status %}{{ form_data.status }}{% elif story_obj %}{{ story_obj.status }}{% else %}draft{% endif %}">
+        <input type="hidden" name="content" id="story-content-input"
+          value="{% if form_data.content %}{{ form_data.content }}{% elif story_obj %}{{ story_obj.content }}{% endif %}">
 
         <header class="topbar">
           <div class="topbar-left">
-            <button type="button" id="sidebar-toggle" class="icon-btn" aria-label="Toggle sidebar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
-            <nav class="breadcrumb"><a href="{% url 'content_managerr:stories' %}">Stories</a><span class="separator">/</span><span class="current">{% if story_obj %}Edit Story{% else %}Write New Story{% endif %}</span></nav>
+            <button type="button" id="sidebar-toggle" class="icon-btn" aria-label="Toggle sidebar"><svg
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+              </svg></button>
+            <nav class="breadcrumb"><a href="{% url 'content_managerr:stories' %}">Stories</a><span
+                class="separator">/</span><span class="current">{% if story_obj %}Edit Story{% else %}Write New Story{%
+                endif %}</span></nav>
           </div>
           <div class="topbar-right">
             <button type="button" class="btn btn-outline" onclick="submitStoryForm('draft')">Save Draft</button>
-            <button type="button" class="btn btn-primary" onclick="submitStoryForm('published')">{% if story_obj %}Update Story{% else %}Publish Story{% endif %}</button>
+            <button type="button" class="btn btn-primary" onclick="submitStoryForm('published')">{% if story_obj
+              %}Update Story{% else %}Publish Story{% endif %}</button>
           </div>
         </header>
 
         <div class="page-content" style="padding:24px;">
           {% if messages %}
-            <div class="messages">
-              {% for message in messages %}
-                <div class="message message-{{ message.tags|default:'info' }}">{{ message }}</div>
-              {% endfor %}
-            </div>
+          <div class="messages">
+            {% for message in messages %}
+            <div class="message message-{{ message.tags|default:'info' }}">{{ message }}</div>
+            {% endfor %}
+          </div>
           {% endif %}
 
           <div class="editor-layout">
             <div class="editor-main">
               <div class="editor-header">
-                <input type="text" name="title" class="input-title" placeholder="Enter story title..." id="story-title" value="{% if form_data.title %}{{ form_data.title }}{% elif story_obj %}{{ story_obj.title }}{% endif %}" required oninput="updateSEO()">
+                <input type="text" name="title" class="input-title" placeholder="Enter story title..." id="story-title"
+                  value="{% if form_data.title %}{{ form_data.title }}{% elif story_obj %}{{ story_obj.title }}{% endif %}"
+                  required oninput="updateSEO()">
               </div>
               <div class="editor-body">
                 <div class="rich-text-toolbar">
                   <button type="button" class="rt-btn" onclick="execCmd('bold')" title="Bold"><b>B</b></button>
                   <button type="button" class="rt-btn" onclick="execCmd('italic')" title="Italic"><i>I</i></button>
-                  <button type="button" class="rt-btn" onclick="execCmd('underline')" title="Underline"><u>U</u></button>
+                  <button type="button" class="rt-btn" onclick="execCmd('underline')"
+                    title="Underline"><u>U</u></button>
                   <div class="rt-divider"></div>
-                  <button type="button" class="rt-btn" onclick="execCmd('formatBlock', '<h2>')" title="Heading 2">H2</button>
-                  <button type="button" class="rt-btn" onclick="execCmd('formatBlock', '<h3>')" title="Heading 3">H3</button>
+                  <button type="button" class="rt-btn" onclick="execCmd('formatBlock', '<h2>')"
+                    title="Heading 2">H2</button>
+                  <button type="button" class="rt-btn" onclick="execCmd('formatBlock', '<h3>')"
+                    title="Heading 3">H3</button>
                   <div class="rt-divider"></div>
-                  <button type="button" class="rt-btn" onclick="execCmd('insertUnorderedList')" title="Bullet list">• List</button>
+                  <button type="button" class="rt-btn" onclick="execCmd('insertUnorderedList')" title="Bullet list">•
+                    List</button>
                   <button type="button" class="rt-btn" onclick="insertLink()" title="Link">🔗 Link</button>
-                  <button type="button" class="rt-btn" onclick="execCmd('formatBlock', '<blockquote>')" title="Quote">” Quote</button>
-                  <a href="{% url 'content_managerr:media_library' %}" class="rt-btn" title="Media Library" style="text-decoration:none;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></a>
+                  <button type="button" class="rt-btn" onclick="execCmd('formatBlock', '<blockquote>')" title="Quote">”
+                    Quote</button>
+                  <a href="{% url 'content_managerr:media_library' %}" class="rt-btn" title="Media Library"
+                    style="text-decoration:none;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2">
+                      <rect x="3" y="3" width="18" height="18" rx="2" />
+                      <circle cx="8.5" cy="8.5" r="1.5" />
+                      <polyline points="21 15 16 10 5 21" />
+                    </svg></a>
                 </div>
-                <div class="rich-text-area" id="rich-editor" contenteditable="true" placeholder="Start writing your story here..." oninput="updateSEO()">{% if form_data.content %}{{ form_data.content|safe }}{% elif story_obj %}{{ story_obj.content|safe }}{% endif %}</div>
+                <div class="rich-text-area" id="rich-editor" contenteditable="true"
+                  placeholder="Start writing your story here..." oninput="updateSEO()">{% if form_data.content %}{{
+                  form_data.content|safe }}{% elif story_obj %}{{ story_obj.content|safe }}{% endif %}</div>
               </div>
             </div>
-            
+
             <div class="editor-sidebar">
               <div class="sidebar-panel">
                 <div class="panel-title">Cover Image</div>
-                <input type="file" name="image" id="story-image-file" accept="image/*" style="display:none;" onchange="previewCoverImage(this)">
-                <div class="hero-upload" id="hero-upload-box" onclick="document.getElementById('story-image-file').click()" style="{% if story_obj.image %}padding:0;{% endif %}">
+                <input type="file" name="image" id="story-image-file" accept="image/*" style="display:none;"
+                  onchange="previewCoverImage(this)">
+                <div class="hero-upload" id="hero-upload-box"
+                  onclick="document.getElementById('story-image-file').click()"
+                  style="{% if story_obj.image %}padding:0;{% endif %}">
                   {% if story_obj.image %}
-                    <img src="{{ story_obj.image.url }}" alt="Cover Image" style="width:100%;height:100%;object-fit:cover;border-radius:6px;">
+                  <img src="{{ story_obj.image.url }}" alt="Cover Image"
+                    style="width:100%;height:100%;object-fit:cover;border-radius:6px;">
                   {% else %}
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-bottom:8px;"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-                    <span style="font-weight:500;font-size:14px;">Upload Image</span>
-                    <span style="font-size:12px;opacity:0.7;margin-top:4px;">Click to select file</span>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    style="margin-bottom:8px;">
+                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" />
+                  </svg>
+                  <span style="font-weight:500;font-size:14px;">Upload Image</span>
+                  <span style="font-size:12px;opacity:0.7;margin-top:4px;">Click to select file</span>
                   {% endif %}
                 </div>
               </div>
-              
+
               <div class="sidebar-panel">
                 <div class="panel-title">Story Details</div>
                 <div class="form-group">
                   <label class="form-label" for="story-type-select">Story Type</label>
                   <select name="type" id="story-type-select" class="form-control">
                     {% for val, label in type_choices %}
-                      <option value="{{ val }}" {% if form_data.type == val or story_obj and story_obj.type == val %}selected{% endif %}>{{ label }}</option>
+                    <option value="{{ val }}" {% if form_data.type==val or story_obj and story_obj.type==val
+                      %}selected{% endif %}>{{ label }}</option>
                     {% endfor %}
                   </select>
                 </div>
                 <div class="form-group">
                   <label class="form-label" for="story-status-select">Publishing Status</label>
-                  <select name="status_select" id="story-status-select" class="form-control" onchange="document.getElementById('story-status-input').value = this.value;">
+                  <select name="status_select" id="story-status-select" class="form-control"
+                    onchange="document.getElementById('story-status-input').value = this.value;">
                     {% for val, label in status_choices %}
-                      <option value="{{ val }}" {% if form_data.status == val or story_obj and story_obj.status == val %}selected{% endif %}>{{ label }}</option>
+                    <option value="{{ val }}" {% if form_data.status==val or story_obj and story_obj.status==val
+                      %}selected{% endif %}>{{ label }}</option>
                     {% endfor %}
                   </select>
                 </div>
                 <div class="form-group">
                   <label class="form-label" for="story-author-input">Author Name</label>
-                  <input type="text" name="author" id="story-author-input" class="form-control" placeholder="e.g. Neha Kulkarni" value="{% if form_data.author %}{{ form_data.author }}{% elif story_obj %}{{ story_obj.author|default:'' }}{% endif %}">
+                  <input type="text" name="author" id="story-author-input" class="form-control"
+                    placeholder="e.g. Neha Kulkarni"
+                    value="{% if form_data.author %}{{ form_data.author }}{% elif story_obj %}{{ story_obj.author|default:'' }}{% endif %}">
                 </div>
                 <div class="form-group">
                   <label class="form-label" for="story-city-input">City</label>
-                  <input type="text" name="city" id="story-city-input" class="form-control" placeholder="e.g. Pune" value="{% if form_data.city %}{{ form_data.city }}{% elif story_obj %}{{ story_obj.city|default:'' }}{% endif %}">
+                  <input type="text" name="city" id="story-city-input" class="form-control" placeholder="e.g. Pune"
+                    value="{% if form_data.city %}{{ form_data.city }}{% elif story_obj %}{{ story_obj.city|default:'' }}{% endif %}">
                 </div>
                 <div class="form-group">
                   <label class="form-label" for="story-state-input">State</label>
-                  <input type="text" name="state" id="story-state-input" class="form-control" placeholder="e.g. Maharashtra" value="{% if form_data.state %}{{ form_data.state }}{% elif story_obj %}{{ story_obj.state|default:'' }}{% endif %}">
+                  <input type="text" name="state" id="story-state-input" class="form-control"
+                    placeholder="e.g. Maharashtra"
+                    value="{% if form_data.state %}{{ form_data.state }}{% elif story_obj %}{{ story_obj.state|default:'' }}{% endif %}">
                 </div>
                 <div class="form-group" style="margin-top:10px;">
-                  <label class="form-label" style="display:flex;align-items:center;gap:8px;cursor:pointer;font-weight:500;">
-                    <input type="checkbox" name="is_featured" value="on" {% if form_data.is_featured or story_obj and story_obj.is_featured %}checked{% endif %}>
+                  <label class="form-label"
+                    style="display:flex;align-items:center;gap:8px;cursor:pointer;font-weight:500;">
+                    <input type="checkbox" name="is_featured" value="on" {% if form_data.is_featured or story_obj and
+                      story_obj.is_featured %}checked{% endif %}>
                     <span>Feature this story on homepage</span>
                   </label>
                 </div>
@@ -169,33 +437,44 @@
                 <div class="panel-title">Social Links</div>
                 <div class="form-group">
                   <label class="form-label" for="story-insta">Instagram Link</label>
-                  <input type="url" name="instagram_link" id="story-insta" class="form-control" placeholder="https://instagram.com/..." value="{% if form_data.instagram_link %}{{ form_data.instagram_link }}{% elif story_obj %}{{ story_obj.instagram_link|default:'' }}{% endif %}">
+                  <input type="url" name="instagram_link" id="story-insta" class="form-control"
+                    placeholder="https://instagram.com/..."
+                    value="{% if form_data.instagram_link %}{{ form_data.instagram_link }}{% elif story_obj %}{{ story_obj.instagram_link|default:'' }}{% endif %}">
                 </div>
                 <div class="form-group">
                   <label class="form-label" for="story-yt">YouTube Link</label>
-                  <input type="url" name="youtube_link" id="story-yt" class="form-control" placeholder="https://youtube.com/..." value="{% if form_data.youtube_link %}{{ form_data.youtube_link }}{% elif story_obj %}{{ story_obj.youtube_link|default:'' }}{% endif %}">
+                  <input type="url" name="youtube_link" id="story-yt" class="form-control"
+                    placeholder="https://youtube.com/..."
+                    value="{% if form_data.youtube_link %}{{ form_data.youtube_link }}{% elif story_obj %}{{ story_obj.youtube_link|default:'' }}{% endif %}">
                 </div>
                 <div class="form-group">
                   <label class="form-label" for="story-fb">Facebook Link</label>
-                  <input type="url" name="facebook_link" id="story-fb" class="form-control" placeholder="https://facebook.com/..." value="{% if form_data.facebook_link %}{{ form_data.facebook_link }}{% elif story_obj %}{{ story_obj.facebook_link|default:'' }}{% endif %}">
+                  <input type="url" name="facebook_link" id="story-fb" class="form-control"
+                    placeholder="https://facebook.com/..."
+                    value="{% if form_data.facebook_link %}{{ form_data.facebook_link }}{% elif story_obj %}{{ story_obj.facebook_link|default:'' }}{% endif %}">
                 </div>
               </div>
-              
+
               <div class="sidebar-panel">
                 <div class="panel-title">SEO Preview</div>
                 <div class="seo-preview">
                   <div class="seo-title" id="seo-title-preview">Your Story Title | Unke Liye NGO</div>
-                  <div class="seo-url">https://unkeliye.org/stories/<span id="seo-slug-preview">your-story-title</span></div>
-                  <div class="seo-desc" id="seo-desc-preview">Start writing your story to see a preview of how it will look in search results.</div>
+                  <div class="seo-url">https://unkeliye.org/stories/<span id="seo-slug-preview">your-story-title</span>
+                  </div>
+                  <div class="seo-desc" id="seo-desc-preview">Start writing your story to see a preview of how it will
+                    look in search results.</div>
                 </div>
               </div>
             </div>
           </div>
-          
-          <div style="margin-top:24px;display:flex;justify-content:flex-end;gap:12px;border-top:1px solid var(--border-subtle);padding-top:20px;">
-            <a href="{% url 'content_managerr:stories' %}" class="btn btn-outline" style="text-decoration:none;">Cancel</a>
+
+          <div
+            style="margin-top:24px;display:flex;justify-content:flex-end;gap:12px;border-top:1px solid var(--border-subtle);padding-top:20px;">
+            <a href="{% url 'content_managerr:stories' %}" class="btn btn-outline"
+              style="text-decoration:none;">Cancel</a>
             <button type="button" class="btn btn-secondary" onclick="submitStoryForm('draft')">Save Draft</button>
-            <button type="button" class="btn btn-primary" onclick="submitStoryForm('published')">{% if story_obj %}Update Story{% else %}Publish Story{% endif %}</button>
+            <button type="button" class="btn btn-primary" onclick="submitStoryForm('published')">{% if story_obj
+              %}Update Story{% else %}Publish Story{% endif %}</button>
           </div>
         </div>
       </form>
@@ -217,7 +496,7 @@
       const richEditor = document.getElementById('rich-editor');
       const contentInput = document.getElementById('story-content-input');
       const statusInput = document.getElementById('story-status-input');
-      
+
       if (richEditor && contentInput) {
         contentInput.value = richEditor.innerHTML.trim();
       }
@@ -244,7 +523,7 @@
     function previewCoverImage(input) {
       if (input.files && input.files[0]) {
         const reader = new FileReader();
-        reader.onload = function(e) {
+        reader.onload = function (e) {
           const box = document.getElementById('hero-upload-box');
           box.innerHTML = `<img src="${e.target.result}" alt="Preview" style="width:100%;height:100%;object-fit:cover;border-radius:6px;">`;
           box.style.padding = '0';
@@ -257,12 +536,12 @@
       const title = document.getElementById('story-title').value;
       const richEditor = document.getElementById('rich-editor');
       const textContent = richEditor.innerText || richEditor.textContent || '';
-      
+
       document.getElementById('seo-title-preview').textContent = title ? `${title} | Unke Liye NGO` : 'Your Story Title | Unke Liye NGO';
-      
+
       const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
       document.getElementById('seo-slug-preview').textContent = slug || 'your-story-title';
-      
+
       document.getElementById('seo-desc-preview').textContent = textContent.trim() ? textContent.trim().substring(0, 150) + '...' : 'Start writing your story to see a preview of how it will look in search results.';
     }
 
@@ -270,5 +549,5 @@
     window.addEventListener('DOMContentLoaded', updateSEO);
   </script>
 </body>
-</html>
 
+</html>
