@@ -3,6 +3,7 @@ from django.contrib import admin
 from .models import *
 
 
+
 @admin.register(Banner)
 class BannerAdmin(admin.ModelAdmin):
 	list_display = ('page', 'title', 'is_active', 'created_at', 'updated_at')
@@ -23,6 +24,10 @@ class StoryAdmin(admin.ModelAdmin):
 	list_display = ('story_no', 'title','author', 'created_at', 'updated_at', 'status', 'is_featured')
 	search_fields = ('story_no', 'title','author', 'instagram_link', 'youtube_link', 'facebook_link')
 
+@admin.register(about_team)
+class AboutTeamAdmin(admin.ModelAdmin):
+	list_display = ('name', 'role', 'bio', 'image', 'updated_at')
+
 @admin.register(about)
 class AboutAdmin(admin.ModelAdmin):
 	list_display = ('heading', 'content', 'vision_heading', 'vision_content', 'mission_heading', 'mission_content', 'updated_at')
@@ -30,4 +35,12 @@ class AboutAdmin(admin.ModelAdmin):
 @admin.register(about_journey)
 class AboutJourneyAdmin(admin.ModelAdmin):
 	list_display = ('year', 'title', 'content', 'updated_at')
+
+@admin.register(about_partners)
+class AboutPartnersAdmin(admin.ModelAdmin):
+	list_display = ('name', 'logo', 'website', 'updated_at')
+
+@admin.register(about_story)
+class AboutStoryAdmin(admin.ModelAdmin):
+	list_display = ('title', 'content', 'image', 'updated_at')
 
