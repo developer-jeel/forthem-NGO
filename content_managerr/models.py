@@ -133,3 +133,51 @@ class story(models.Model):
         return mapping.get(self.type, 'badge-slate')
 
 
+class about(models.Model):
+    heading = models.CharField(max_length=200, default='About Unke Liye')
+    content = models.TextField(default='Unke Liye is a non-profit organization dedicated to rescuing and protecting animals, advocating for communities, and promoting environmental sustainability across India. Our mission is to create a world where every life is valued and cared for.')
+    vision_heading = models.CharField(max_length=200, default='Our Vision')
+    vision_content = models.TextField(default='To create a compassionate society where animals, communities,and the environment are respected and nurtured.')
+    mission_heading = models.CharField(max_length=200, default='Our Mission')
+    mission_content = models.TextField(default='To rescue, protect, and advocate for animals, communities, and the environment through direct action, education, and collaboration.')
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return 'About Unke Liye Content'
+
+class about_story(models.Model):
+    title = models.CharField(max_length=200, default='Our Story')
+    content = models.TextField(default='Unke Liye was founded with the belief that every life deserves care and purpose. Over the years, we have grown into a dedicated team of volunteers and professionals committed to making a positive impact on the lives of animals, communities, and the environment across India.')
+    image = models.ImageField(upload_to='content/about/', blank=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return 'About Story Content'
+
+class about_journey(models.Model):
+    year = models.IntegerField(default=2015)
+    title = models.CharField(max_length=200, default='Our Journey')
+    content = models.TextField(default='From our humble beginnings to our current initiatives, our journey has been one of compassion, dedication, and growth. We have faced challenges and celebrated successes, all while staying true to our mission of making a difference in the lives of those we serve.')
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f'About Journey Content ({self.year})'
+
+class about_team(models.Model):
+    name = models.CharField(max_length=100, default='John Doe')
+    role = models.CharField(max_length=100, default='Founder & CEO')
+    bio = models.TextField(default='John Doe is the founder of Unke Liye, with a passion for animal welfare and community development. Under his leadership, the organization has grown to make a significant impact across India.')
+    image = models.ImageField(upload_to='content/about/team/', blank=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f'About Team Member: {self.name}'
+
+class about_partners(models.Model):
+    name = models.CharField(max_length=200, default='Partner Name')
+    logo = models.ImageField(upload_to='content/about/partners/', blank=True, null=True)
+    website = models.URLField(max_length=200, blank=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f'About Partner: {self.name}'
