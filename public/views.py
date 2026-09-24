@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
 from login.views import check_login
 from content_managerr.models import Banner, HomePageContent, numbers, story
+from content_managerr.models import *
 
 
 def home(request):
@@ -18,7 +19,8 @@ def home(request):
 
 def about(request):
     about_banner = Banner.objects.filter(page='about', is_active=True).first()
-    return render(request, "public-temp/about.html", {"about_banner": about_banner})    
+    team_members = about_team.objects.all()
+    return render(request, "public-temp/about.html", {"about_banner": about_banner,"team_members": team_members})    
 
 
 def campaigns(request):

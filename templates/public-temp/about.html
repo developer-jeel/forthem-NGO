@@ -334,37 +334,16 @@
         <h2 id="team-heading">Our Core Team</h2>
         <p>47 full-time staff, 340+ volunteers. Here are the people you'll recognize.</p>
       </div>
+      
       <div class="team-grid">
-        <div class="card team-card reveal reveal-delay-1">
-          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&q=80" alt="Priya Kulkarni" style="width:96px;height:96px;border-radius:50%;object-fit:cover;margin:0 auto var(--space-4);display:block;" />
-          <h4>Priya Kulkarni</h4>
-          <div class="role">Founder & Executive Director</div>
-          <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-top:var(--space-3)">Former software engineer, now full-time for the animals. 9 years in the field.</p>
+        {%for member in team_members %}
+        <div class="card team-card reveal reveal-delay-{{member.id}}">
+          <img src="{{ member.image.url }}" alt="{{ member.name }}" style="width:96px;height:96px;border-radius:50%;object-fit:cover;margin:0 auto var(--space-4);display:block;" />
+          <h4>{{ member.name }}</h4>
+          <div class="role">{{ member.role }}</div>
+          <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-top:var(--space-3)">{{ member.bio }}</p>
         </div>
-        <div class="card team-card reveal reveal-delay-2">
-          <img src="https://images.unsplash.com/photo-1594744803329-e58b31de215f?w=150&q=80" alt="Dr. Ananya Joshi" style="width:96px;height:96px;border-radius:50%;object-fit:cover;margin:0 auto var(--space-4);display:block;" />
-          <h4>Dr. Ananya Joshi</h4>
-          <div class="role">Head Veterinarian</div>
-          <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-top:var(--space-3)">BVSc, MVSc (Surgery). Leads our clinic and vaccination drives. 7+ years street animal practice.</p>
-        </div>
-        <div class="card team-card reveal reveal-delay-3">
-          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=80" alt="Rahul Bapat" style="width:96px;height:96px;border-radius:50%;object-fit:cover;margin:0 auto var(--space-4);display:block;" />
-          <h4>Rahul Bapat</h4>
-          <div class="role">Head of Disaster Relief</div>
-          <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-top:var(--space-3)">Ex-NCC, former disaster management trainer. Led 23 relief operations in 5 states.</p>
-        </div>
-        <div class="card team-card reveal reveal-delay-4">
-          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&q=80" alt="Neha Deore" style="width:96px;height:96px;border-radius:50%;object-fit:cover;margin:0 auto var(--space-4);display:block;" />
-          <h4>Neha Deore</h4>
-          <div class="role">Environment Program Lead</div>
-          <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-top:var(--space-3)">MSc Environmental Science. Coordinates plantation drives, school programs, and biodiversity surveys.</p>
-        </div>
-        <div class="card team-card reveal reveal-delay-5">
-          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&q=80" alt="Sanjay Thorat" style="width:96px;height:96px;border-radius:50%;object-fit:cover;margin:0 auto var(--space-4);display:block;" />
-          <h4>Sanjay Thorat</h4>
-          <div class="role">Finance & Transparency Officer</div>
-          <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-top:var(--space-3)">CA, 14 years NGO finance. Ensures every rupee is accounted for and published on time.</p>
-        </div>
+        {%endfor%}
       </div>
     </div>
   </section>
