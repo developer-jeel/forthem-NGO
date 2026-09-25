@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from login.views import check_login
-from content_managerr.models import Banner, HomePageContent, numbers, story
+from content_managerr.models import Banner, HomePageContent, numbers, story,About, about_team ,about_partners
 from content_managerr.models import *
 
 
@@ -19,8 +19,12 @@ def home(request):
 
 def about(request):
     about_banner = Banner.objects.filter(page='about', is_active=True).first()
+    about_content = About.objects.first()
     team_members = about_team.objects.all()
-    return render(request, "public-temp/about.html", {"about_banner": about_banner,"team_members": team_members})    
+    journey_entries = about_journey.objects.all().order_by('year')
+    about_partner = about_partners.objects.all()
+    about_storys = about_story.objects.first()
+    return render(request, "public-temp/about.html", {"about_banner": about_banner,"about_content": about_content,"team_members": team_members, "journey_entries": journey_entries, "about_partners": about_partner, "about_storys": about_storys})    
 
 
 def campaigns(request):

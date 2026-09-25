@@ -197,8 +197,8 @@
         <span class="breadcrumb-sep" aria-hidden="true">›</span>
         <span aria-current="page">About Us</span>
       </nav>
-      <h1>About Unke Liye</h1>
-      <p>Born from urgency, built on love — the story of a small team that refused to look away.</p>
+      <h1>{{about_content.heading}}</h1>
+      <p>{{about_content.content }}</p>
     </div>
   </div>
 
@@ -208,15 +208,13 @@
       <div class="vision-mission-grid">
         <div class="vm-card vm-card--vision reveal reveal-left">
           <span style="font-size:2.5rem;margin-bottom:var(--space-4);display:block" aria-hidden="true">🔭</span>
-          <h3 id="vision-heading">Our Vision</h3>
-          <p>A Maharashtra — and eventually an India — where no animal suffers on the street, no forest is razed without a replacement, no community faces a disaster alone, and where every person feels a responsibility to care for the living world around them.</p>
-          <p>We believe care is contagious. When one person acts, five follow. We are building that culture — one rescue, one tree, one drive, one disaster response at a time.</p>
+          <h3 id="vision-heading">{{ about_content.vision_heading }}</h3>
+          <p>{{ about_content.vision_content }}</p>
         </div>
         <div class="vm-card vm-card--mission reveal reveal-right">
           <span style="font-size:2.5rem;margin-bottom:var(--space-4);display:block" aria-hidden="true">🎯</span>
-          <h3>Our Mission</h3>
-          <p>To provide rapid, compassionate, and professional rescue and relief across four areas — Animal Healthcare, Environmental Restoration, Community Sanitation, and Disaster Response — with full transparency, zero bureaucracy, and deep community rooting.</p>
-          <p>Every rupee donated, every hour volunteered, and every report submitted through us generates a direct, documented, and measurable impact on a real life.</p>
+          <h3 id="mission-heading">{{ about_content.mission_heading }}</h3>
+          <p>{{ about_content.mission_content }}</p>
         </div>
       </div>
     </div>
@@ -227,15 +225,12 @@
     <div class="container">
       <div class="founding-story">
         <div class="story-visual reveal reveal-left" style="overflow:hidden;padding:0;height:320px;" aria-hidden="true">
-          <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600&q=80" alt="Founded 2015" style="width:100%;height:100%;object-fit:cover;" />
+          <img src="{{ about_storys.image.url }}" alt="Founded 2015" style="width:100%;height:100%;object-fit:cover;" />
         </div>
         <div class="reveal reveal-right">
           <span class="eyebrow">Our Story</span>
-          <h2 id="story-heading">It Started with One Dog and a Midnight Phone Call</h2>
-          <p>In 2015, Priya Kulkarni — a software engineer with no NGO experience — received a frantic call from a neighbour about an injured dog hit by a car near Hadapsar. She called every rescue number she could find. No one picked up. She went herself, wrapped the dog in her dupatta, and drove to three different vets before finding one who would treat a street animal.</p>
-          <p style="margin-top:var(--space-4)">That dog survived. Priya didn't stop. Three friends joined. They named the effort <em>Unke Liye</em> — "For Them" — because it was always about the ones who couldn't speak for themselves.</p>
-          <p style="margin-top:var(--space-4)">Nine years later, we have a team of 47 staff, 340+ active volunteers, a full veterinary clinic, a shelter housing 80+ animals, and operations spanning animal rescue, environmental drives, community sanitation, and disaster relief across Maharashtra.</p>
-          <p style="margin-top:var(--space-4)">But we still pick up every call.</p>
+          <h2 id="story-heading">{{ about_storys.title }}</h2>
+          <p>{{ about_storys.content }}</p>
           <a href="{% url 'public:stories' %}" class="btn btn--primary" style="margin-top:var(--space-6)">Read Our Stories</a>
         </div>
       </div>
@@ -247,49 +242,16 @@
     <div class="container" style="max-width:800px">
       <div class="section-header reveal">
         <span class="eyebrow">Our Journey</span>
-        <h2 id="milestones-heading">Nine Years of Showing Up</h2>
+        <h2 id="milestones-heading">Years of Showing Up</h2>
       </div>
       <div class="timeline">
-        <div class="timeline-item reveal reveal-delay-1">
-          <div class="timeline-year">2015</div>
-          <div class="timeline-title">Founded — First Rescue</div>
-          <div class="timeline-desc">Unke Liye registered as an NGO in Pune. First veterinary tie-up with Dr. Anand Deshpande clinic. 12 rescues in Year 1.</div>
+        {% for entry in journey_entries %}
+        <div class="timeline-item reveal reveal-delay-{{ forloop.counter }}">
+          <div class="timeline-year">{{ entry.year }}</div>
+          <div class="timeline-title">{{ entry.title }}</div>
+          <div class="timeline-desc">{{ entry.content }}</div>
         </div>
-        <div class="timeline-item reveal reveal-delay-2">
-          <div class="timeline-year">2016</div>
-          <div class="timeline-title">First Vaccination Camp</div>
-          <div class="timeline-desc">Partnered with Pune Municipal Corporation to run Maharashtra's first free street animal vaccination camp — 800 animals vaccinated in one weekend.</div>
-        </div>
-        <div class="timeline-item reveal reveal-delay-3">
-          <div class="timeline-year">2017</div>
-          <div class="timeline-title">Green Pillar Launched</div>
-          <div class="timeline-desc">Expanded beyond animals — first tree plantation drive in Sinhagad Road hills. 1,200 trees planted. Partnerships with 6 schools.</div>
-        </div>
-        <div class="timeline-item reveal reveal-delay-4">
-          <div class="timeline-year">2018</div>
-          <div class="timeline-title">First Disaster Response</div>
-          <div class="timeline-desc">Responded to Kerala floods — 47 volunteers deployed, 1,200 families supported. This defined the Disaster Relief pillar permanently.</div>
-        </div>
-        <div class="timeline-item reveal reveal-delay-5">
-          <div class="timeline-year">2019</div>
-          <div class="timeline-title">Shelter & Clinic Opened</div>
-          <div class="timeline-desc">Inaugurated our permanent shelter in Hadapsar — capacity 80 animals, full veterinary clinic, ICU unit, and adoption center.</div>
-        </div>
-        <div class="timeline-item reveal" style="transition-delay:0.6s">
-          <div class="timeline-year">2021</div>
-          <div class="timeline-title">COVID Relief — 14,000 Meals</div>
-          <div class="timeline-desc">Distributed 14,000+ dry ration kits across Pune's slums during lockdown. Partnered with 3 corporate CSR funds for emergency relief.</div>
-        </div>
-        <div class="timeline-item reveal" style="transition-delay:0.7s">
-          <div class="timeline-year">2023</div>
-          <div class="timeline-title">Sanitation Pillar Formalized</div>
-          <div class="timeline-desc">Launched structured Sanitation & Cleanliness pillar. 120+ drives, 4,500 kg of waste removed from waterways in first year.</div>
-        </div>
-        <div class="timeline-item reveal" style="transition-delay:0.8s">
-          <div class="timeline-year">2024</div>
-          <div class="timeline-title">Maharashtra NGO of the Year</div>
-          <div class="timeline-desc">Awarded Maharashtra State Social Welfare Department's NGO of the Year. 14,800+ animals rescued since inception. We don't plan to stop.</div>
-        </div>
+        {% endfor %}
       </div>
     </div>
   </section>
@@ -356,14 +318,9 @@
         <h2 id="partners-heading">Our Partners & Supporters</h2>
       </div>
       <div class="partners-strip">
-        <div class="partner-logo reveal reveal-delay-1">Pune Municipal Corporation</div>
-        <div class="partner-logo reveal reveal-delay-2">Animal Welfare Board of India</div>
-        <div class="partner-logo reveal reveal-delay-3">NDMA India</div>
-        <div class="partner-logo reveal reveal-delay-4">Maharashtra Forest Dept.</div>
-        <div class="partner-logo reveal reveal-delay-5">TCS Foundation CSR</div>
-        <div class="partner-logo reveal" style="transition-delay:0.6s">Infosys BPM</div>
-        <div class="partner-logo reveal" style="transition-delay:0.7s">PETA India</div>
-        <div class="partner-logo reveal" style="transition-delay:0.8s">WWF India</div>
+        {% for partner in about_partners %}
+        <a class="partner-logo reveal reveal-delay-{{ forloop.counter }}" href="{{ partner.website }}" style="text-decoration: none;" target="_blank">{{ partner.name }}</a>
+        {% endfor %}
       </div>
     </div>
   </section>

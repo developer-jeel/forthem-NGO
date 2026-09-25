@@ -28,7 +28,7 @@ class StoryAdmin(admin.ModelAdmin):
 class AboutTeamAdmin(admin.ModelAdmin):
 	list_display = ('name', 'role', 'bio', 'image', 'updated_at')
 
-@admin.register(about)
+@admin.register(About)
 class AboutAdmin(admin.ModelAdmin):
 	list_display = ('heading', 'content', 'vision_heading', 'vision_content', 'mission_heading', 'mission_content', 'updated_at')
 

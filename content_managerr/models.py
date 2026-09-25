@@ -133,7 +133,7 @@ class story(models.Model):
         return mapping.get(self.type, 'badge-slate')
 
 
-class about(models.Model):
+class About(models.Model):
     heading = models.CharField(max_length=200, default='About Unke Liye')
     content = models.TextField(default='Unke Liye is a non-profit organization dedicated to rescuing and protecting animals, advocating for communities, and promoting environmental sustainability across India. Our mission is to create a world where every life is valued and cared for.')
     vision_heading = models.CharField(max_length=200, default='Our Vision')
