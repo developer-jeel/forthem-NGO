@@ -172,12 +172,3 @@ class about_team(models.Model):
 
     def __str__(self):
         return f'About Team Member: {self.name}'
-
-class about_partners(models.Model):
-    name = models.CharField(max_length=200, default='Partner Name')
-    logo = models.ImageField(upload_to='content/about/partners/', blank=True, null=True)
-    website = models.URLField(max_length=200, blank=True, null=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return f'About Partner: {self.name}'

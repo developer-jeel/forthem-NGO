@@ -36,9 +36,7 @@ class AboutAdmin(admin.ModelAdmin):
 class AboutJourneyAdmin(admin.ModelAdmin):
 	list_display = ('year', 'title', 'content', 'updated_at')
 
-@admin.register(about_partners)
-class AboutPartnersAdmin(admin.ModelAdmin):
-	list_display = ('name', 'logo', 'website', 'updated_at')
+
 
 @admin.register(about_story)
 class AboutStoryAdmin(admin.ModelAdmin):

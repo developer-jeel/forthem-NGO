@@ -1,7 +1,8 @@
 from django.shortcuts import redirect, render
 from login.views import check_login
-from content_managerr.models import Banner, HomePageContent, numbers, story,About, about_team ,about_partners
+from content_managerr.models import Banner, HomePageContent, numbers, story,About, about_team 
 from content_managerr.models import *
+from admin.models import about_partners
 
 
 def home(request):

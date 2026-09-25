@@ -32,3 +32,12 @@ class Manager(models.Model):
         elif self.contact:
             return f"{self.name}-{self.role}({self.contact} )"
         return "No Data"
+
+class about_partners(models.Model):
+    name = models.CharField(max_length=200, default='Partner Name')
+    logo = models.ImageField(upload_to='content/about/partners/', blank=True, null=True)
+    website = models.URLField(max_length=200, blank=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f'About Partner: {self.name}'
