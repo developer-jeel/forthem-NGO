@@ -4,7 +4,6 @@ from django.contrib import messages
 
 from content_managerr.models import *
 
-global uid
 uid = {'name' : 'bhadu' , 'email' : "bhadu@gmaial.com"}
 
 def dashboard(request):

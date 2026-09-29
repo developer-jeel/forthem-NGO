@@ -44,3 +44,15 @@ class FosterRequestAdmin(admin.ModelAdmin):
     list_filter = ('request_date', 'start_date', 'end_date')
     search_fields = ('requester_name', 'requester_email', 'animal__name')
     ordering = ('-request_date',)
+
+@admin.register(sponsored_animal)
+class SponsoredAnimalAdmin(admin.ModelAdmin):
+    list_display = ('animal',)
+    search_fields = ('name',)
+
+@admin.register(sponser_donation)
+class SponserDonationAdmin(admin.ModelAdmin):
+    list_display = ('animal', 'name', 'email', 'contact', 'amount', 'donation_date', 'donation_renewal', 'donation_renewal_date')
+    list_filter = ('donation_date', 'donation_renewal')
+    search_fields = ('name', 'email', 'contact')
+    ordering = ('-donation_date',)

@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils import timezone
+from dateutil.relativedelta import relativedelta
 
 # Create your models here.
 class animal(models.Model):    
@@ -34,6 +36,7 @@ class animal(models.Model):
     description = models.TextField(default='Description')
     size = models.CharField(max_length=10, choices=size_choices, default='Small')
     weight = models.CharField(max_length=10, default='Weight')
+    available_for_adoption = models.BooleanField(default=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_adopted = models.BooleanField(default=False)
    
@@ -127,3 +130,40 @@ class foster_request(models.Model):
     def __str__(self):
         return f'Adoption Request: {self.animal.name} by {self.requester_name}'
 
+class sponsored_animal(models.Model):
+    animal = models.ForeignKey(animal, on_delete=models.CASCADE)
+    approx_expenses = models.IntegerField(default=1000)
+    current_fund = models.IntegerField(default=0)
+
+    def __str__(self):
+        return f'Sponsored Animal: {self.animal.name}'
+    
+class sponser_donation(models.Model):
+    donation_renewal_choice = (
+        ('Monthly', 'Monthly'),
+        ('Yearly', 'Yearly'),
+        ('One-time', 'One-time'),)
+    animal = models.ForeignKey(sponsored_animal, on_delete=models.CASCADE)
+    name = models.CharField(max_length=200, default='Sponser Name')
+    email = models.EmailField(max_length=200, default='Sponser Email')
+    contact = models.CharField(max_length=10, default='Sponser Contact')
+    amount = models.IntegerField(default=0)
+    donation_date = models.DateTimeField(auto_now_add=True)
+    donation_renewal = models.CharField(max_length=20, choices=donation_renewal_choice, default='Monthly')
+    donation_renewal_date = models.DateTimeField(null=True, blank=True)
+    def save(self, *args, **kwargs):
+        if not self.donation_renewal_date:
+
+            if self.donation_renewal == 'Monthly':
+                self.donation_renewal_date = timezone.now() + relativedelta(months=1)
+
+            elif self.donation_renewal == 'Yearly':
+                self.donation_renewal_date = timezone.now() + relativedelta(years=1)
+
+            elif self.donation_renewal == 'One-time':
+                self.donation_renewal_date = None
+
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f'Sponser Donation: {self.animal.animal.name} by {self.name}'
