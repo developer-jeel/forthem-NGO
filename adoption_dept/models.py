@@ -36,7 +36,6 @@ class animal(models.Model):
     description = models.TextField(default='Description')
     size = models.CharField(max_length=10, choices=size_choices, default='Small')
     weight = models.CharField(max_length=10, default='Weight')
-    available_for_adoption = models.BooleanField(default=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_adopted = models.BooleanField(default=False)
    
@@ -61,8 +60,13 @@ class animal_details(models.Model):
     good_with_dogs = models.BooleanField(default=False)
     good_with_cats = models.BooleanField(default=False)
     good_with_kids = models.BooleanField(default=False)
+    vaccinated = models.BooleanField(default=False)
+    neutered = models.BooleanField(default=False)
     rescued_from = models.CharField(max_length=200, default='Rescued From')
+    available_for_adoption = models.BooleanField(default=True)
     friendly = models.BooleanField(default=False)
+    vaccination_date = models.DateTimeField(null=True, blank=True)
+    neutering_date = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
         return f'Animal Details: {self.animal.name} | {self.rescued_from} |' 

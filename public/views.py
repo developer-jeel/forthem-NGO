@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 from login.views import check_login
 from content_managerr.models import Banner, HomePageContent, numbers, story,About, about_team 
 from content_managerr.models import *
+from adoption_dept.models import *
 from admin.models import about_partners
 
 
@@ -128,7 +129,8 @@ def transparency(request):
 
 def adopt(request):
     adopt_banner = Banner.objects.filter(page='adopt', is_active=True).first()
-    return render(request, "public-temp/adopt.html", {"adopt_banner": adopt_banner})    
+    animal_detail = animal_details.objects.filter(available_for_adoption=True)
+    return render(request, "public-temp/adopt.html", {"adopt_banner": adopt_banner, "animals": animal_detail})    
 
 
 def adopt_detail(request, animal_id):

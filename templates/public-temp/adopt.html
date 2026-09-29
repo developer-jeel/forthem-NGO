@@ -1,13 +1,17 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Adopt a pet from Unke Liye — browse dogs, cats, and other animals looking for their forever homes in Pune, Maharashtra." />
+  <meta name="description"
+    content="Adopt a pet from Unke Liye — browse dogs, cats, and other animals looking for their forever homes in Pune, Maharashtra." />
   <title>Pet Adoption — Unke Liye</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="{% static 'public-assets/css/variables.css' %}" />
   <link rel="stylesheet" href="{% static 'public-assets/css/base.css' %}" />
   <link rel="stylesheet" href="{% static 'public-assets/css/components.css' %}" />
@@ -24,19 +28,59 @@
       gap: var(--space-4);
       align-items: flex-end;
     }
-    .filter-group { display: flex; flex-direction: column; gap: var(--space-2); min-width: 140px; }
-    .filter-group label { font-size: var(--text-xs); font-weight: var(--font-weight-semibold); text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-text-muted); }
-    .filter-group select { padding: var(--space-2) var(--space-3); border: 1.5px solid var(--color-border); border-radius: var(--radius-md); font-size: var(--text-sm); background: var(--color-bg); color: var(--color-text); outline: none; }
-    .filter-group select:focus { border-color: var(--color-primary); }
+
+    .filter-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      min-width: 140px;
+    }
+
+    .filter-group label {
+      font-size: var(--text-xs);
+      font-weight: var(--font-weight-semibold);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--color-text-muted);
+    }
+
+    .filter-group select {
+      padding: var(--space-2) var(--space-3);
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-md);
+      font-size: var(--text-sm);
+      background: var(--color-bg);
+      color: var(--color-text);
+      outline: none;
+    }
+
+    .filter-group select:focus {
+      border-color: var(--color-primary);
+    }
 
     .animals-grid {
       display: grid;
       grid-template-columns: 1fr;
       gap: var(--space-6);
     }
-    @media (min-width: 480px) { .animals-grid { grid-template-columns: 1fr 1fr; } }
-    @media (min-width: 768px) { .animals-grid { grid-template-columns: repeat(3, 1fr); } }
-    @media (min-width: 1200px) { .animals-grid { grid-template-columns: repeat(4, 1fr); } }
+
+    @media (min-width: 480px) {
+      .animals-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .animals-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .animals-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
 
     .animal-card {
       background: var(--color-surface);
@@ -45,7 +89,11 @@
       overflow: hidden;
       transition: transform var(--transition-base), box-shadow var(--transition-base);
     }
-    .animal-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+
+    .animal-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
 
     .animal-photo {
       width: 100%;
@@ -64,396 +112,602 @@
       right: var(--space-3);
     }
 
-    .animal-info { padding: var(--space-5); }
-    .animal-name { font-family: var(--font-display); font-size: var(--text-xl); font-weight: var(--font-weight-bold); margin-bottom: var(--space-1); }
-    .animal-breed { font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: var(--space-3); }
-    .animal-meta { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-bottom: var(--space-3); }
+    .animal-info {
+      padding: var(--space-5);
+    }
+
+    .animal-name {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: var(--font-weight-bold);
+      margin-bottom: var(--space-1);
+    }
+
+    .animal-breed {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-3);
+    }
+
+    .animal-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      margin-bottom: var(--space-3);
+    }
+
     .animal-meta-item {
-      display: flex; align-items: center; gap: 4px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
       font-size: var(--text-xs);
       background: var(--color-surface-alt);
       padding: 3px 8px;
       border-radius: var(--radius-full);
       color: var(--color-text-muted);
     }
-    .animal-personality { font-size: var(--text-sm); color: var(--color-text-muted); line-height: var(--leading-relaxed); margin-bottom: var(--space-5); font-style: italic; }
-    .animal-tags { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-bottom: var(--space-5); }
+
+    .animal-personality {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: var(--leading-relaxed);
+      margin-bottom: var(--space-5);
+      font-style: italic;
+    }
+
+    .animal-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      margin-bottom: var(--space-5);
+    }
 
     .adoption-steps {
       display: grid;
       grid-template-columns: 1fr;
       gap: var(--space-6);
     }
-    @media (min-width: 640px) { .adoption-steps { grid-template-columns: repeat(2, 1fr); } }
-    @media (min-width: 1024px) { .adoption-steps { grid-template-columns: repeat(4, 1fr); } }
-    .step-card { text-align: center; padding: var(--space-6); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); }
-    .step-number { font-family: var(--font-display); font-size: 2.5rem; font-weight: var(--font-weight-bold); color: var(--color-primary); line-height: 1; margin-bottom: var(--space-3); }
-    .step-card h4 { font-size: var(--text-base); margin-bottom: var(--space-2); }
-    .step-card p { font-size: var(--text-sm); color: var(--color-text-muted); }
-  </style>
-</head>
-<body>
-<a href="#main-content" class="skip-nav">Skip to main content</a>
-<div class="emergency-bar"><span class="pulse-dot" aria-hidden="true"></span><span>🚨 Animal in distress? —</span><a href="{% url 'public:report_animal' %}">Report Now →</a></div>
 
-<header class="site-header" role="banner">
-  <div class="container">
-    <nav class="nav-inner" aria-label="Main navigation">
-      <a href="{% url 'public:home' %}" class="nav-logo" aria-label="Unke Liye — Home"><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="nav-logo-img" /></a>
-      <ul class="nav-menu">
-        <li><a href="{% url 'public:home' %}" class="nav-link">Home</a></li><li><a href="{% url 'public:about' %}" class="nav-link">About</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Our Work <svg viewBox="0 0 16 16" fill="currentColor" width="14" height="14"><path d="M4 6l4 4 4-4"/></svg></a>
-          <div class="nav-dropdown"><a href="{% url 'public:work_animal_rescue' %}"><span class="icon">🐾</span> Animal Rescue</a><a href="{% url 'public:work_environment' %}"><span class="icon">🌱</span> Environment</a><a href="{% url 'public:work_sanitation' %}"><span class="icon">🧹</span> Sanitation</a><a href="{% url 'public:work_disaster_relief' %}"><span class="icon">🚨</span> Disaster Relief</a></div>
-        </li>
-        <li><a href="{% url 'public:adopt' %}" class="nav-link active">Adopt</a></li>
-        <li><a href="{% url 'public:campaigns' %}" class="nav-link">Campaigns</a></li>
-        <li><a href="{% url 'public:impact' %}" class="nav-link">Impact</a></li>
-        <li><a href="{% url 'public:stories' %}" class="nav-link">Stories</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Get Involved <svg viewBox="0 0 16 16" fill="currentColor" width="14" height="14"><path d="M4 6l4 4 4-4"/></svg></a>
-          <div class="nav-dropdown"><a href="{% url 'public:volunteer' %}"><span class="icon">🙋</span> Volunteer</a><a href="{% url 'public:foster' %}"><span class="icon">🏠</span> Foster</a><a href="{% url 'public:sponsor_animal' %}"><span class="icon">💛</span> Sponsor</a><a href="{% url 'public:report_animal' %}" style="color:var(--color-urgent)"><span class="icon">🚨</span> Report</a></div>
-        </li>
-      </ul>
-      <div class="nav-actions"><a href="{% url 'public:donate' %}" class="btn btn--primary btn--sm">Donate</a><button class="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button></div>
-    </nav>
-  </div>
-</header>
-<div class="nav-mobile-panel" role="dialog" aria-modal="true" aria-label="Navigation menu">
-  <div class="nav-mobile-overlay"></div>
-  <div class="nav-mobile-drawer">
-    <button class="nav-mobile-close" aria-label="Close menu">✕</button>
-    <a href="{% url 'public:home' %}" class="nav-logo" aria-label="Unke Liye — Home"><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="nav-logo-img" /></a>
-    <ul class="nav-mobile-list"><li><a href="{% url 'public:home' %}">Home</a></li><li><a href="{% url 'public:adopt' %}">Adopt a Pet</a></li><li><a href="{% url 'public:foster' %}">Foster</a></li><li><a href="{% url 'public:volunteer' %}">Volunteer</a></li><li><a href="{% url 'public:donate' %}">Donate</a></li></ul>
-    <div class="nav-mobile-actions"><a href="{% url 'public:donate' %}" class="btn btn--primary btn--full">Donate Now</a></div>
-  </div>
-</div>
-
-<main id="main-content">
-  <div class="page-hero" style="--ph-img: url('{{ adopt_banner.image.url }}')">
-    <div class="container page-hero-content">
-      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="{% url 'public:home' %}">Home</a><span class="breadcrumb-sep">›</span><span aria-current="page">Adopt a Pet</span></nav>
-      <h1>Find Your Forever Family Member</h1>
-      <p>Every animal here was rescued, treated, and loved back to health by our team. Now they're waiting for you.</p>
-    </div>
-  </div>
-
-  <!-- Adoption Process -->
-  <section class="section section--alt" aria-labelledby="process-heading">
-    <div class="container">
-      <div class="section-header text-center reveal"><span class="eyebrow">How to Adopt</span><h2 id="process-heading">Simple. Thoughtful. Forever.</h2></div>
-      <div class="adoption-steps">
-        <div class="step-card reveal reveal-delay-1"><div class="step-number" aria-hidden="true">01</div><h4>Browse & Connect</h4><p>Find an animal that speaks to your heart. Click "Meet [Name]" to learn their full story.</p></div>
-        <div class="step-card reveal reveal-delay-2"><div class="step-number" aria-hidden="true">02</div><h4>Apply Online</h4><p>Fill out a short adoption application. We ask about your home, experience, and lifestyle — to make the best match.</p></div>
-        <div class="step-card reveal reveal-delay-3"><div class="step-number" aria-hidden="true">03</div><h4>Meet & Greet</h4><p>Visit our shelter to spend time with the animal. We want you to be sure before committing.</p></div>
-        <div class="step-card reveal reveal-delay-4"><div class="step-number" aria-hidden="true">04</div><h4>Take Them Home</h4><p>Adoption fee, documentation, vaccination records, microchip details, and a 30-day follow-up call included.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Filters + Grid -->
-  <section class="section" aria-labelledby="animals-heading">
-    <div class="container">
-      <div class="section-header reveal" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:var(--space-4)">
-        <div><span class="eyebrow">Available Now</span><h2 id="animals-heading">Animals Looking for Homes</h2><p style="color:var(--color-text-muted)">Currently <span id="animal-count-display">12</span> animals available for adoption.</p></div>
-        <div style="display:flex;gap:var(--space-3)">
-          <a href="{% url 'public:foster' %}" class="btn btn--outline btn--sm">Can't Adopt? Foster →</a>
-          <a href="{% url 'public:sponsor_animal' %}" class="btn btn--ghost btn--sm">Or Sponsor →</a>
-        </div>
-      </div>
-
-      <!-- Filters -->
-      <div class="adoption-filters" role="search" aria-label="Filter adoptable animals">
-        <div class="filter-group">
-          <label for="filter-species">Species</label>
-          <select id="filter-species" aria-label="Filter by species">
-            <option value="all">All Animals</option>
-            <option value="dog">Dogs</option>
-            <option value="cat">Cats</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-        <div class="filter-group">
-          <label for="filter-age">Age</label>
-          <select id="filter-age" aria-label="Filter by age">
-            <option value="all">Any Age</option>
-            <option value="puppy">Puppy / Kitten (0–1 yr)</option>
-            <option value="young">Young (1–3 yrs)</option>
-            <option value="adult">Adult (3–7 yrs)</option>
-            <option value="senior">Senior (7+ yrs)</option>
-          </select>
-        </div>
-        <div class="filter-group">
-          <label for="filter-size">Size</label>
-          <select id="filter-size" aria-label="Filter by size">
-            <option value="all">Any Size</option>
-            <option value="small">Small</option>
-            <option value="medium">Medium</option>
-            <option value="large">Large</option>
-          </select>
-        </div>
-        <div class="filter-group">
-          <label for="filter-gender">Gender</label>
-          <select id="filter-gender" aria-label="Filter by gender">
-            <option value="all">Any Gender</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-          </select>
-        </div>
-        <button class="btn btn--outline btn--sm" id="clear-filters">Clear Filters</button>
-      </div>
-
-      <!-- Animals Grid -->
-      <div class="animals-grid" id="animals-grid" aria-label="Adoptable animals">
-
-        <!-- Animal Cards -->
-        <article class="animal-card reveal reveal-delay-1" data-species="dog" data-age="young" data-size="medium" data-gender="male">
-          <div class="animal-photo" aria-hidden="true">
-            <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=500&q=80" alt="Bruno" style="width:100%;height:100%;object-fit:cover;" />
-            <span class="animal-status-badge badge badge--primary">Available</span>
-          </div>
-          <div class="animal-info">
-            <div class="animal-name">Bruno</div>
-            <div class="animal-breed">Indie Mix · Male · 2 years</div>
-            <div class="animal-meta">
-              <span class="animal-meta-item">📏 Medium (18kg)</span>
-              <span class="animal-meta-item">💉 Vaccinated</span>
-              <span class="animal-meta-item">✂️ Neutered</span>
-            </div>
-            <p class="animal-personality">"A gentle giant who survived a highway accident. Bruno is now completely healed and lights up every room he walks into."</p>
-            <div class="animal-tags">
-              <span class="badge badge--success">Good with kids</span>
-              <span class="badge badge--primary">House-trained</span>
-            </div>
-            <a href="{% url 'public:adopt_detail' 1 %}" class="btn btn--primary btn--full">Meet Bruno 🐾</a>
-          </div>
-        </article>
-
-        <article class="animal-card reveal reveal-delay-2" data-species="cat" data-age="puppy" data-size="small" data-gender="female">
-          <div class="animal-photo" aria-hidden="true">
-            <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=500&q=80" alt="Luna" style="width:100%;height:100%;object-fit:cover;" />
-            <span class="animal-status-badge badge badge--primary">Available</span>
-          </div>
-          <div class="animal-info">
-            <div class="animal-name">Luna</div>
-            <div class="animal-breed">Domestic Shorthair · Female · 8 months</div>
-            <div class="animal-meta">
-              <span class="animal-meta-item">📏 Small (3kg)</span>
-              <span class="animal-meta-item">💉 Vaccinated</span>
-              <span class="animal-meta-item">✂️ Spayed</span>
-            </div>
-            <p class="animal-personality">"Found in a box on a rainy night. Luna is curious, affectionate, and absolutely convinced she owns every pillow she sits on."</p>
-            <div class="animal-tags">
-              <span class="badge badge--success">Good with cats</span>
-              <span class="badge badge--primary">Apartment-ready</span>
-            </div>
-            <a href="{% url 'public:adopt_detail' 1 %}" class="btn btn--primary btn--full">Meet Luna 🐱</a>
-          </div>
-        </article>
-
-        <article class="animal-card reveal reveal-delay-3" data-species="dog" data-age="adult" data-size="large" data-gender="male">
-          <div class="animal-photo" aria-hidden="true">
-            <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?w=500&q=80" alt="Bajrang" style="width:100%;height:100%;object-fit:cover;" />
-            <span class="animal-status-badge badge badge--warning" style="background:#FFF3CD;color:#8a6000;border:none">Foster First</span>
-          </div>
-          <div class="animal-info">
-            <div class="animal-name">Bajrang</div>
-            <div class="animal-breed">Labrador Mix · Male · 4 years</div>
-            <div class="animal-meta">
-              <span class="animal-meta-item">📏 Large (28kg)</span>
-              <span class="animal-meta-item">💉 Vaccinated</span>
-              <span class="animal-meta-item">✂️ Neutered</span>
-            </div>
-            <p class="animal-personality">"Rescued from a construction site where he was chained for 2 years. Bajrang needs patience and space — but gives all of himself back."</p>
-            <div class="animal-tags">
-              <span class="badge badge--care">Needs experienced owner</span>
-            </div>
-            <a href="{% url 'public:adopt_detail' 1 %}" class="btn btn--primary btn--full">Meet Bajrang 🦮</a>
-          </div>
-        </article>
-
-        <article class="animal-card reveal reveal-delay-4" data-species="cat" data-age="adult" data-size="small" data-gender="female">
-          <div class="animal-photo" aria-hidden="true">
-            <img src="https://images.unsplash.com/photo-1618826411640-d6df44dd3f7a?w=500&q=80" alt="Meera" style="width:100%;height:100%;object-fit:cover;" />
-            <span class="animal-status-badge badge badge--primary">Available</span>
-          </div>
-          <div class="animal-info">
-            <div class="animal-name">Meera</div>
-            <div class="animal-breed">Persian Mix · Female · 3 years</div>
-            <div class="animal-meta">
-              <span class="animal-meta-item">📏 Small (4kg)</span>
-              <span class="animal-meta-item">💉 Vaccinated</span>
-              <span class="animal-meta-item">✂️ Spayed</span>
-            </div>
-            <p class="animal-personality">"Rescued from animal hoarding. Meera took 3 weeks to trust anyone — now she picks a lap and stays there for hours. Quiet, gentle, deeply loving."</p>
-            <div class="animal-tags">
-              <span class="badge badge--success">Only pet home</span>
-              <span class="badge badge--primary">Calm adult home</span>
-            </div>
-            <a href="{% url 'public:adopt_detail' 1 %}" class="btn btn--primary btn--full">Meet Meera 🐈</a>
-          </div>
-        </article>
-
-        <article class="animal-card reveal reveal-delay-5" data-species="dog" data-age="puppy" data-size="small" data-gender="female">
-          <div class="animal-photo" aria-hidden="true">
-            <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=500&q=80" alt="Golu" style="width:100%;height:100%;object-fit:cover;" />
-            <span class="animal-status-badge badge badge--primary">Available</span>
-          </div>
-          <div class="animal-info">
-            <div class="animal-name">Golu</div>
-            <div class="animal-breed">Indie Pup · Female · 5 months</div>
-            <div class="animal-meta">
-              <span class="animal-meta-item">📏 Small (5kg)</span>
-              <span class="animal-meta-item">💉 Vaccinated</span>
-            </div>
-            <p class="animal-personality">"Born to a street mom who couldn't feed them all. Golu is pure joy bottled in a puppy — energetic, social, and learns new tricks in minutes."</p>
-            <div class="animal-tags">
-              <span class="badge badge--success">Good with kids</span>
-              <span class="badge badge--success">Good with dogs</span>
-            </div>
-            <a href="{% url 'public:adopt_detail' 1 %}" class="btn btn--primary btn--full">Meet Golu 🐶</a>
-          </div>
-        </article>
-
-        <article class="animal-card reveal" style="transition-delay:0.6s" data-species="dog" data-age="senior" data-size="medium" data-gender="male">
-          <div class="animal-photo" aria-hidden="true">
-            <img src="https://images.unsplash.com/photo-1596492784531-6e6eb5ea9993?w=500&q=80" alt="Tommy" style="width:100%;height:100%;object-fit:cover;" />
-            <span class="animal-status-badge badge badge--respond">Senior</span>
-          </div>
-          <div class="animal-info">
-            <div class="animal-name">Tommy</div>
-            <div class="animal-breed">Indie Mix · Male · 9 years</div>
-            <div class="animal-meta">
-              <span class="animal-meta-item">📏 Medium (20kg)</span>
-              <span class="animal-meta-item">💉 Vaccinated</span>
-              <span class="animal-meta-item">✂️ Neutered</span>
-            </div>
-            <p class="animal-personality">"9 years on the street, then hit by a car. Tommy healed and forgave everything. He sleeps all day and only asks for one walk and one gentle pat."</p>
-            <div class="animal-tags">
-              <span class="badge badge--primary">Senior-friendly home</span>
-              <span class="badge badge--primary">Low energy</span>
-            </div>
-            <a href="{% url 'public:adopt_detail' 1 %}" class="btn btn--primary btn--full">Meet Tommy 🐕</a>
-          </div>
-        </article>
-
-        <article class="animal-card reveal" style="transition-delay:0.7s" data-species="cat" data-age="young" data-size="small" data-gender="male">
-          <div class="animal-photo" aria-hidden="true">
-            <img src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?w=500&q=80" alt="Kalu" style="width:100%;height:100%;object-fit:cover;" />
-            <span class="animal-status-badge badge badge--primary">Available</span>
-          </div>
-          <div class="animal-info">
-            <div class="animal-name">Kalu</div>
-            <div class="animal-breed">Indian Shorthair · Male · 1.5 years</div>
-            <div class="animal-meta">
-              <span class="animal-meta-item">📏 Small (3.5kg)</span>
-              <span class="animal-meta-item">💉 Vaccinated</span>
-              <span class="animal-meta-item">✂️ Neutered</span>
-            </div>
-            <p class="animal-personality">"Midnight highway rescue — this is the cat that started everything (read Bruno's story). Kalu is mischievous, talkative, and deeply opinionated about breakfast time."</p>
-            <div class="animal-tags">
-              <span class="badge badge--success">Good with cats</span>
-              <span class="badge badge--success">Good with kids</span>
-            </div>
-            <a href="{% url 'public:adopt_detail' 1 %}" class="btn btn--primary btn--full">Meet Kalu 🐱</a>
-          </div>
-        </article>
-
-        <article class="animal-card reveal" style="transition-delay:0.8s" data-species="dog" data-age="young" data-size="large" data-gender="female">
-          <div class="animal-photo" aria-hidden="true">
-            <img src="https://images.unsplash.com/photo-1608096299210-db7e38487075?w=500&q=80" alt="Rani" style="width:100%;height:100%;object-fit:cover;" />
-            <span class="animal-status-badge badge badge--primary">Available</span>
-          </div>
-          <div class="animal-info">
-            <div class="animal-name">Rani</div>
-            <div class="animal-breed">Rajapalayam Mix · Female · 2.5 years</div>
-            <div class="animal-meta">
-              <span class="animal-meta-item">📏 Large (25kg)</span>
-              <span class="animal-meta-item">💉 Vaccinated</span>
-              <span class="animal-meta-item">✂️ Spayed</span>
-            </div>
-            <p class="animal-personality">"Flood rescue from Raigad. Rani swam to safety on her own and waited on a roof for two days. Brave, loyal, protective — and an absolute sweetheart once she trusts you."</p>
-            <div class="animal-tags">
-              <span class="badge badge--care">House with yard</span>
-              <span class="badge badge--success">Good with older kids</span>
-            </div>
-            <a href="{% url 'public:adopt_detail' 1 %}" class="btn btn--primary btn--full">Meet Rani 🐕‍🦺</a>
-          </div>
-        </article>
-
-      </div>
-
-      <!-- Can't Adopt? -->
-      <div style="text-align:center;margin-top:var(--space-16);padding:var(--space-12);background:var(--color-surface-alt);border-radius:var(--radius-lg)">
-        <span class="eyebrow">Not ready to adopt?</span>
-        <h3 style="margin-bottom:var(--space-4)">There Are Other Ways to Help</h3>
-        <p style="color:var(--color-text-muted);max-width:50ch;margin:0 auto var(--space-8)">Fostering, sponsoring, or volunteering at the shelter makes just as big a difference to these animals' lives.</p>
-        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:var(--space-4)">
-          <a href="{% url 'public:foster' %}" class="btn btn--primary">Foster an Animal</a>
-          <a href="{% url 'public:sponsor_animal' %}" class="btn btn--outline">Sponsor an Animal</a>
-          <a href="{% url 'public:volunteer' %}" class="btn btn--ghost">Volunteer at Shelter</a>
-        </div>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer class="site-footer" role="contentinfo">
-  <div class="container">
-    <div class="footer-grid">
-      <div><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="footer-logo-img" /><p class="footer-brand-tagline">For Every Life.</p><div class="footer-emergency"><div class="footer-emergency-title">🚨 24/7 Emergency</div><a href="tel:+918888000000">+91 88888 00000</a></div></div>
-      <div><h3 class="footer-col-title">Animals</h3><ul class="footer-links"><li><a href="{% url 'public:adopt' %}">Adopt a Pet</a></li><li><a href="{% url 'public:foster' %}">Foster</a></li><li><a href="{% url 'public:sponsor_animal' %}">Sponsor</a></li><li><a href="{% url 'public:report_animal' %}">Report</a></li></ul></div>
-      <div><h3 class="footer-col-title">Our Work</h3><ul class="footer-links"><li><a href="{% url 'public:work_animal_rescue' %}">🐾 Animal Rescue</a></li><li><a href="{% url 'public:work_environment' %}">🌱 Environment</a></li></ul></div>
-      <div><h3 class="footer-col-title">Quick Links</h3><ul class="footer-links"><li><a href="{% url 'public:about' %}">About</a></li><li><a href="{% url 'public:volunteer' %}">Volunteer</a></li><li><a href="{% url 'public:donate' %}">Donate</a></li><li><a href="{% url 'public:faq' %}">FAQ</a></li></ul></div>
-    </div>
-    <div class="footer-bottom"><p>© 2024 Unke Liye. Reg. No. MAH/2015/1234</p><div class="footer-legal-links"><a href="{% url 'public:privacy_policy' %}">Privacy</a><a href="{% url 'public:terms' %}">Terms</a><a href="{% url 'public:sitemap' %}">Sitemap</a></div></div>
-  </div>
-</footer>
-<a href="{% url 'public:report_animal' %}" class="emergency-float" aria-label="Report an animal emergency"><span aria-hidden="true">🚨</span><span>Report Animal Emergency</span></a>
-<script src="{% static 'public-assets/js/main.js' %}"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const speciesFilter = document.getElementById('filter-species');
-    const ageFilter = document.getElementById('filter-age');
-    const sizeFilter = document.getElementById('filter-size');
-    const genderFilter = document.getElementById('filter-gender');
-    const grid = document.getElementById('animals-grid');
-    const countDisplay = document.getElementById('animal-count-display');
-    const clearBtn = document.getElementById('clear-filters');
-
-    function applyFilters() {
-      const species = speciesFilter.value;
-      const age = ageFilter.value;
-      const size = sizeFilter.value;
-      const gender = genderFilter.value;
-
-      const cards = grid.querySelectorAll('.animal-card');
-      let visible = 0;
-
-      cards.forEach(card => {
-        const matchSpecies = species === 'all' || card.dataset.species === species;
-        const matchAge = age === 'all' || card.dataset.age === age;
-        const matchSize = size === 'all' || card.dataset.size === size;
-        const matchGender = gender === 'all' || card.dataset.gender === gender;
-
-        const show = matchSpecies && matchAge && matchSize && matchGender;
-        card.style.display = show ? '' : 'none';
-        if (show) visible++;
-      });
-
-      if (countDisplay) countDisplay.textContent = visible;
+    @media (min-width: 640px) {
+      .adoption-steps {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
-    [speciesFilter, ageFilter, sizeFilter, genderFilter].forEach(el => {
-      el.addEventListener('change', applyFilters);
-    });
+    @media (min-width: 1024px) {
+      .adoption-steps {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
 
-    clearBtn.addEventListener('click', () => {
-      speciesFilter.value = 'all';
-      ageFilter.value = 'all';
-      sizeFilter.value = 'all';
-      genderFilter.value = 'all';
-      applyFilters();
+    .step-card {
+      text-align: center;
+      padding: var(--space-6);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+    }
+
+    .step-number {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: var(--font-weight-bold);
+      color: var(--color-primary);
+      line-height: 1;
+      margin-bottom: var(--space-3);
+    }
+
+    .step-card h4 {
+      font-size: var(--text-base);
+      margin-bottom: var(--space-2);
+    }
+
+    .step-card p {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+    }
+  </style>
+</head>
+
+<body>
+  <a href="#main-content" class="skip-nav">Skip to main content</a>
+  <div class="emergency-bar"><span class="pulse-dot" aria-hidden="true"></span><span>🚨 Animal in distress? —</span><a
+      href="{% url 'public:report_animal' %}">Report Now →</a></div>
+
+  <header class="site-header" role="banner">
+    <div class="container">
+      <nav class="nav-inner" aria-label="Main navigation">
+        <a href="{% url 'public:home' %}" class="nav-logo" aria-label="Unke Liye — Home"><img
+            src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="nav-logo-img" /></a>
+        <ul class="nav-menu">
+          <li><a href="{% url 'public:home' %}" class="nav-link">Home</a></li>
+          <li><a href="{% url 'public:about' %}" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Our Work <svg viewBox="0 0 16 16" fill="currentColor"
+                width="14" height="14">
+                <path d="M4 6l4 4 4-4" />
+              </svg></a>
+            <div class="nav-dropdown"><a href="{% url 'public:work_animal_rescue' %}"><span class="icon">🐾</span>
+                Animal Rescue</a><a href="{% url 'public:work_environment' %}"><span class="icon">🌱</span>
+                Environment</a><a href="{% url 'public:work_sanitation' %}"><span class="icon">🧹</span>
+                Sanitation</a><a href="{% url 'public:work_disaster_relief' %}"><span class="icon">🚨</span> Disaster
+                Relief</a></div>
+          </li>
+          <li><a href="{% url 'public:adopt' %}" class="nav-link active">Adopt</a></li>
+          <li><a href="{% url 'public:campaigns' %}" class="nav-link">Campaigns</a></li>
+          <li><a href="{% url 'public:impact' %}" class="nav-link">Impact</a></li>
+          <li><a href="{% url 'public:stories' %}" class="nav-link">Stories</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Get Involved <svg viewBox="0 0 16 16" fill="currentColor"
+                width="14" height="14">
+                <path d="M4 6l4 4 4-4" />
+              </svg></a>
+            <div class="nav-dropdown"><a href="{% url 'public:volunteer' %}"><span class="icon">🙋</span>
+                Volunteer</a><a href="{% url 'public:foster' %}"><span class="icon">🏠</span> Foster</a><a
+                href="{% url 'public:sponsor_animal' %}"><span class="icon">💛</span> Sponsor</a><a
+                href="{% url 'public:report_animal' %}" style="color:var(--color-urgent)"><span class="icon">🚨</span>
+                Report</a></div>
+          </li>
+        </ul>
+        <div class="nav-actions"><a href="{% url 'public:donate' %}" class="btn btn--primary btn--sm">Donate</a><button
+            class="nav-hamburger" aria-label="Open menu"
+            aria-expanded="false"><span></span><span></span><span></span></button></div>
+      </nav>
+    </div>
+  </header>
+  <div class="nav-mobile-panel" role="dialog" aria-modal="true" aria-label="Navigation menu">
+    <div class="nav-mobile-overlay"></div>
+    <div class="nav-mobile-drawer">
+      <button class="nav-mobile-close" aria-label="Close menu">✕</button>
+      <a href="{% url 'public:home' %}" class="nav-logo" aria-label="Unke Liye — Home"><img
+          src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="nav-logo-img" /></a>
+      <ul class="nav-mobile-list">
+        <li><a href="{% url 'public:home' %}">Home</a></li>
+        <li><a href="{% url 'public:adopt' %}">Adopt a Pet</a></li>
+        <li><a href="{% url 'public:foster' %}">Foster</a></li>
+        <li><a href="{% url 'public:volunteer' %}">Volunteer</a></li>
+        <li><a href="{% url 'public:donate' %}">Donate</a></li>
+      </ul>
+      <div class="nav-mobile-actions"><a href="{% url 'public:donate' %}" class="btn btn--primary btn--full">Donate
+          Now</a></div>
+    </div>
+  </div>
+
+  <main id="main-content">
+    <div class="page-hero" style="--ph-img: url('{{ adopt_banner.image.url }}')">
+      <div class="container page-hero-content">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="{% url 'public:home' %}">Home</a><span
+            class="breadcrumb-sep">›</span><span aria-current="page">Adopt a Pet</span></nav>
+        <h1>Find Your Forever Family Member</h1>
+        <p>Every animal here was rescued, treated, and loved back to health by our team. Now they're waiting for you.
+        </p>
+      </div>
+    </div>
+
+    <!-- Adoption Process -->
+    <section class="section section--alt" aria-labelledby="process-heading">
+      <div class="container">
+        <div class="section-header text-center reveal"><span class="eyebrow">How to Adopt</span>
+          <h2 id="process-heading">Simple. Thoughtful. Forever.</h2>
+        </div>
+        <div class="adoption-steps">
+          <div class="step-card reveal reveal-delay-1">
+            <div class="step-number" aria-hidden="true">01</div>
+            <h4>Browse & Connect</h4>
+            <p>Find an animal that speaks to your heart. Click "Meet [Name]" to learn their full story.</p>
+          </div>
+          <div class="step-card reveal reveal-delay-2">
+            <div class="step-number" aria-hidden="true">02</div>
+            <h4>Apply Online</h4>
+            <p>Fill out a short adoption application. We ask about your home, experience, and lifestyle — to make the
+              best match.</p>
+          </div>
+          <div class="step-card reveal reveal-delay-3">
+            <div class="step-number" aria-hidden="true">03</div>
+            <h4>Meet & Greet</h4>
+            <p>Visit our shelter to spend time with the animal. We want you to be sure before committing.</p>
+          </div>
+          <div class="step-card reveal reveal-delay-4">
+            <div class="step-number" aria-hidden="true">04</div>
+            <h4>Take Them Home</h4>
+            <p>Adoption fee, documentation, vaccination records, microchip details, and a 30-day follow-up call
+              included.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filters + Grid -->
+    <section class="section" aria-labelledby="animals-heading">
+      <div class="container">
+        <div class="section-header reveal"
+          style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:var(--space-4)">
+          <div><span class="eyebrow">Available Now</span>
+            <h2 id="animals-heading">Animals Looking for Homes</h2>
+            <p style="color:var(--color-text-muted)">Currently <span id="animal-count-display">12</span> animals
+              available for adoption.</p>
+          </div>
+          <div style="display:flex;gap:var(--space-3)">
+            <a href="{% url 'public:foster' %}" class="btn btn--outline btn--sm">Can't Adopt? Foster →</a>
+            <a href="{% url 'public:sponsor_animal' %}" class="btn btn--ghost btn--sm">Or Sponsor →</a>
+          </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="adoption-filters" role="search" aria-label="Filter adoptable animals">
+          <div class="filter-group">
+            <label for="filter-species">Species</label>
+            <select id="filter-species" aria-label="Filter by species">
+              <option value="all">All Animals</option>
+              <option value="dog">Dogs</option>
+              <option value="cat">Cats</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="filter-age">Age</label>
+            <select id="filter-age" aria-label="Filter by age">
+              <option value="all">Any Age</option>
+              <option value="puppy">Puppy / Kitten (0–1 yr)</option>
+              <option value="young">Young (1–3 yrs)</option>
+              <option value="adult">Adult (3–7 yrs)</option>
+              <option value="senior">Senior (7+ yrs)</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="filter-size">Size</label>
+            <select id="filter-size" aria-label="Filter by size">
+              <option value="all">Any Size</option>
+              <option value="small">Small</option>
+              <option value="medium">Medium</option>
+              <option value="large">Large</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="filter-gender">Gender</label>
+            <select id="filter-gender" aria-label="Filter by gender">
+              <option value="all">Any Gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+          <button class="btn btn--outline btn--sm" id="clear-filters">Clear Filters</button>
+        </div>
+
+        <!-- Animals Grid -->
+        <div class="animals-grid" id="animals-grid" aria-label="Adoptable animals">
+
+          <!-- Animal Cards -->
+          {%for animal in animals%}
+          <article class="animal-card reveal reveal-delay-1" data-species="dog" data-age="young" data-size="medium"
+            data-gender="male">
+            <div class="animal-photo" aria-hidden="true">
+              <img src="{{animal.animal.image.url}}" alt="Bruno" style="width:100%;height:100%;object-fit:cover;" />
+              <span class="animal-status-badge badge badge--primary">Available</span>
+            </div>
+            <div class="animal-info">
+              <div class="animal-name">{{animal.animal.name}}</div>
+              <div class="animal-breed">{{animal.animal.breed}} · {{animal.animal.gender}} · {{animal.animal.age}} years</div>
+              <div class="animal-meta">
+                <span class="animal-meta-item">📏 {{animal.animal.size}} ({{animal.animal.weight}}kg)</span>
+                {%if animal.animal.vaccinated == True%}
+                <span class="animal-meta-item">💉 Vaccinated</span>
+                {%else%}
+                <span class="animal-meta-item">💉 Not Vaccinated</span>
+                {%endif%}
+                {%if animal.animal.neutered%}
+                {%if animal.animal.gender == "Male"%}
+                <span class="animal-meta-item">✂️ neutered{{animal.animal.neutered}}</span>
+                {%else%}
+                <span class="animal-meta-item">✂️ spayed{{animal.animal.neutered}}</span>
+                {%endif%}
+                {%else%}
+                <span class="animal-meta-item">✂️ Not neutered/spayed{{animal.animal.neutered}}</span>
+                {%endif%}
+              </div>
+              <p class="animal-personality">{{animal.animal.description}}</p>
+              <div class="animal-tags">
+                {%if animal.good_with_dogs%}
+                <span class="badge badge--success">Good with dogs</span>
+                {%endif%}
+                {%if animal.good_with_cats%}
+                <span class="badge badge--success">Good with cats</span>
+                {%endif%}
+                {%if animal.good_with_kids%}
+                <span class="badge badge--success">Good with kids</span>
+                {%endif%}
+                {%if animal.house_trained%}
+                <span class="badge badge--primary">House-trained</span>
+                {%endif%}
+              </div>
+              <a href="{% url 'public:adopt_detail' animal.id %}" class="btn btn--primary btn--full">Meet
+                {{animal.name}} 🐾</a>
+            </div>
+          </article>
+          {%endfor%}
+
+          <article class="animal-card reveal reveal-delay-2" data-species="cat" data-age="puppy" data-size="small"
+            data-gender="female">
+            <div class="animal-photo" aria-hidden="true">
+              <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=500&q=80" alt="Luna"
+                style="width:100%;height:100%;object-fit:cover;" />
+              <span class="animal-status-badge badge badge--primary">Available</span>
+            </div>
+            <div class="animal-info">
+              <div class="animal-name">Luna</div>
+              <div class="animal-breed">Domestic Shorthair · Female · 8 months</div>
+              <div class="animal-meta">
+                <span class="animal-meta-item">📏 Small (3kg)</span>
+                <span class="animal-meta-item">💉 Vaccinated</span>
+                <span class="animal-meta-item">✂️ Spayed</span>
+              </div>
+              <p class="animal-personality">"Found in a box on a rainy night. Luna is curious, affectionate, and
+                absolutely convinced she owns every pillow she sits on."</p>
+              <div class="animal-tags">
+                <span class="badge badge--success">Good with cats</span>
+                <span class="badge badge--primary">Apartment-ready</span>
+              </div>
+              <a href="{% url 'public:adopt_detail' 1 %}" class="btn btn--primary btn--full">Meet Luna 🐱</a>
+            </div>
+          </article>
+
+          <article class="animal-card reveal reveal-delay-3" data-species="dog" data-age="adult" data-size="large"
+            data-gender="male">
+            <div class="animal-photo" aria-hidden="true">
+              <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?w=500&q=80" alt="Bajrang"
+                style="width:100%;height:100%;object-fit:cover;" />
+              <span class="animal-status-badge badge badge--warning"
+                style="background:#FFF3CD;color:#8a6000;border:none">Foster First</span>
+            </div>
+            <div class="animal-info">
+              <div class="animal-name">Bajrang</div>
+              <div class="animal-breed">Labrador Mix · Male · 4 years</div>
+              <div class="animal-meta">
+                <span class="animal-meta-item">📏 Large (28kg)</span>
+                <span class="animal-meta-item">💉 Vaccinated</span>
+                <span class="animal-meta-item">✂️ Neutered</span>
+              </div>
+              <p class="animal-personality">"Rescued from a construction site where he was chained for 2 years. Bajrang
+                needs patience and space — but gives all of himself back."</p>
+              <div class="animal-tags">
+                <span class="badge badge--care">Needs experienced owner</span>
+              </div>
+              <a href="{% url 'public:adopt_detail' 1 %}" class="btn btn--primary btn--full">Meet Bajrang 🦮</a>
+            </div>
+          </article>
+
+          <article class="animal-card reveal reveal-delay-4" data-species="cat" data-age="adult" data-size="small"
+            data-gender="female">
+            <div class="animal-photo" aria-hidden="true">
+              <img src="https://images.unsplash.com/photo-1618826411640-d6df44dd3f7a?w=500&q=80" alt="Meera"
+                style="width:100%;height:100%;object-fit:cover;" />
+              <span class="animal-status-badge badge badge--primary">Available</span>
+            </div>
+            <div class="animal-info">
+              <div class="animal-name">Meera</div>
+              <div class="animal-breed">Persian Mix · Female · 3 years</div>
+              <div class="animal-meta">
+                <span class="animal-meta-item">📏 Small (4kg)</span>
+                <span class="animal-meta-item">💉 Vaccinated</span>
+                <span class="animal-meta-item">✂️ Spayed</span>
+              </div>
+              <p class="animal-personality">"Rescued from animal hoarding. Meera took 3 weeks to trust anyone — now she
+                picks a lap and stays there for hours. Quiet, gentle, deeply loving."</p>
+              <div class="animal-tags">
+                <span class="badge badge--success">Only pet home</span>
+                <span class="badge badge--primary">Calm adult home</span>
+              </div>
+              <a href="{% url 'public:adopt_detail' 1 %}" class="btn btn--primary btn--full">Meet Meera 🐈</a>
+            </div>
+          </article>
+
+          <article class="animal-card reveal reveal-delay-5" data-species="dog" data-age="puppy" data-size="small"
+            data-gender="female">
+            <div class="animal-photo" aria-hidden="true">
+              <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=500&q=80" alt="Golu"
+                style="width:100%;height:100%;object-fit:cover;" />
+              <span class="animal-status-badge badge badge--primary">Available</span>
+            </div>
+            <div class="animal-info">
+              <div class="animal-name">Golu</div>
+              <div class="animal-breed">Indie Pup · Female · 5 months</div>
+              <div class="animal-meta">
+                <span class="animal-meta-item">📏 Small (5kg)</span>
+                <span class="animal-meta-item">💉 Vaccinated</span>
+              </div>
+              <p class="animal-personality">"Born to a street mom who couldn't feed them all. Golu is pure joy bottled
+                in a puppy — energetic, social, and learns new tricks in minutes."</p>
+              <div class="animal-tags">
+                <span class="badge badge--success">Good with kids</span>
+                <span class="badge badge--success">Good with dogs</span>
+              </div>
+              <a href="{% url 'public:adopt_detail' 1 %}" class="btn btn--primary btn--full">Meet Golu 🐶</a>
+            </div>
+          </article>
+
+          <article class="animal-card reveal" style="transition-delay:0.6s" data-species="dog" data-age="senior"
+            data-size="medium" data-gender="male">
+            <div class="animal-photo" aria-hidden="true">
+              <img src="https://images.unsplash.com/photo-1596492784531-6e6eb5ea9993?w=500&q=80" alt="Tommy"
+                style="width:100%;height:100%;object-fit:cover;" />
+              <span class="animal-status-badge badge badge--respond">Senior</span>
+            </div>
+            <div class="animal-info">
+              <div class="animal-name">Tommy</div>
+              <div class="animal-breed">Indie Mix · Male · 9 years</div>
+              <div class="animal-meta">
+                <span class="animal-meta-item">📏 Medium (20kg)</span>
+                <span class="animal-meta-item">💉 Vaccinated</span>
+                <span class="animal-meta-item">✂️ Neutered</span>
+              </div>
+              <p class="animal-personality">"9 years on the street, then hit by a car. Tommy healed and forgave
+                everything. He sleeps all day and only asks for one walk and one gentle pat."</p>
+              <div class="animal-tags">
+                <span class="badge badge--primary">Senior-friendly home</span>
+                <span class="badge badge--primary">Low energy</span>
+              </div>
+              <a href="{% url 'public:adopt_detail' 1 %}" class="btn btn--primary btn--full">Meet Tommy 🐕</a>
+            </div>
+          </article>
+
+          <article class="animal-card reveal" style="transition-delay:0.7s" data-species="cat" data-age="young"
+            data-size="small" data-gender="male">
+            <div class="animal-photo" aria-hidden="true">
+              <img src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?w=500&q=80" alt="Kalu"
+                style="width:100%;height:100%;object-fit:cover;" />
+              <span class="animal-status-badge badge badge--primary">Available</span>
+            </div>
+            <div class="animal-info">
+              <div class="animal-name">Kalu</div>
+              <div class="animal-breed">Indian Shorthair · Male · 1.5 years</div>
+              <div class="animal-meta">
+                <span class="animal-meta-item">📏 Small (3.5kg)</span>
+                <span class="animal-meta-item">💉 Vaccinated</span>
+                <span class="animal-meta-item">✂️ Neutered</span>
+              </div>
+              <p class="animal-personality">"Midnight highway rescue — this is the cat that started everything (read
+                Bruno's story). Kalu is mischievous, talkative, and deeply opinionated about breakfast time."</p>
+              <div class="animal-tags">
+                <span class="badge badge--success">Good with cats</span>
+                <span class="badge badge--success">Good with kids</span>
+              </div>
+              <a href="{% url 'public:adopt_detail' 1 %}" class="btn btn--primary btn--full">Meet Kalu 🐱</a>
+            </div>
+          </article>
+
+          <article class="animal-card reveal" style="transition-delay:0.8s" data-species="dog" data-age="young"
+            data-size="large" data-gender="female">
+            <div class="animal-photo" aria-hidden="true">
+              <img src="https://images.unsplash.com/photo-1608096299210-db7e38487075?w=500&q=80" alt="Rani"
+                style="width:100%;height:100%;object-fit:cover;" />
+              <span class="animal-status-badge badge badge--primary">Available</span>
+            </div>
+            <div class="animal-info">
+              <div class="animal-name">Rani</div>
+              <div class="animal-breed">Rajapalayam Mix · Female · 2.5 years</div>
+              <div class="animal-meta">
+                <span class="animal-meta-item">📏 Large (25kg)</span>
+                <span class="animal-meta-item">💉 Vaccinated</span>
+                <span class="animal-meta-item">✂️ Spayed</span>
+              </div>
+              <p class="animal-personality">"Flood rescue from Raigad. Rani swam to safety on her own and waited on a
+                roof for two days. Brave, loyal, protective — and an absolute sweetheart once she trusts you."</p>
+              <div class="animal-tags">
+                <span class="badge badge--care">House with yard</span>
+                <span class="badge badge--success">Good with older kids</span>
+              </div>
+              <a href="{% url 'public:adopt_detail' 1 %}" class="btn btn--primary btn--full">Meet Rani 🐕‍🦺</a>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Can't Adopt? -->
+        <div
+          style="text-align:center;margin-top:var(--space-16);padding:var(--space-12);background:var(--color-surface-alt);border-radius:var(--radius-lg)">
+          <span class="eyebrow">Not ready to adopt?</span>
+          <h3 style="margin-bottom:var(--space-4)">There Are Other Ways to Help</h3>
+          <p style="color:var(--color-text-muted);max-width:50ch;margin:0 auto var(--space-8)">Fostering, sponsoring, or
+            volunteering at the shelter makes just as big a difference to these animals' lives.</p>
+          <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:var(--space-4)">
+            <a href="{% url 'public:foster' %}" class="btn btn--primary">Foster an Animal</a>
+            <a href="{% url 'public:sponsor_animal' %}" class="btn btn--outline">Sponsor an Animal</a>
+            <a href="{% url 'public:volunteer' %}" class="btn btn--ghost">Volunteer at Shelter</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div><img src="{% static 'public-assets/images/logo.png' %}" alt="Unke Liye" class="footer-logo-img" />
+          <p class="footer-brand-tagline">For Every Life.</p>
+          <div class="footer-emergency">
+            <div class="footer-emergency-title">🚨 24/7 Emergency</div><a href="tel:+918888000000">+91 88888 00000</a>
+          </div>
+        </div>
+        <div>
+          <h3 class="footer-col-title">Animals</h3>
+          <ul class="footer-links">
+            <li><a href="{% url 'public:adopt' %}">Adopt a Pet</a></li>
+            <li><a href="{% url 'public:foster' %}">Foster</a></li>
+            <li><a href="{% url 'public:sponsor_animal' %}">Sponsor</a></li>
+            <li><a href="{% url 'public:report_animal' %}">Report</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer-col-title">Our Work</h3>
+          <ul class="footer-links">
+            <li><a href="{% url 'public:work_animal_rescue' %}">🐾 Animal Rescue</a></li>
+            <li><a href="{% url 'public:work_environment' %}">🌱 Environment</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer-col-title">Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="{% url 'public:about' %}">About</a></li>
+            <li><a href="{% url 'public:volunteer' %}">Volunteer</a></li>
+            <li><a href="{% url 'public:donate' %}">Donate</a></li>
+            <li><a href="{% url 'public:faq' %}">FAQ</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2024 Unke Liye. Reg. No. MAH/2015/1234</p>
+        <div class="footer-legal-links"><a href="{% url 'public:privacy_policy' %}">Privacy</a><a
+            href="{% url 'public:terms' %}">Terms</a><a href="{% url 'public:sitemap' %}">Sitemap</a></div>
+      </div>
+    </div>
+  </footer>
+  <a href="{% url 'public:report_animal' %}" class="emergency-float" aria-label="Report an animal emergency"><span
+      aria-hidden="true">🚨</span><span>Report Animal Emergency</span></a>
+  <script src="{% static 'public-assets/js/main.js' %}"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const speciesFilter = document.getElementById('filter-species');
+      const ageFilter = document.getElementById('filter-age');
+      const sizeFilter = document.getElementById('filter-size');
+      const genderFilter = document.getElementById('filter-gender');
+      const grid = document.getElementById('animals-grid');
+      const countDisplay = document.getElementById('animal-count-display');
+      const clearBtn = document.getElementById('clear-filters');
+
+      function applyFilters() {
+        const species = speciesFilter.value;
+        const age = ageFilter.value;
+        const size = sizeFilter.value;
+        const gender = genderFilter.value;
+
+        const cards = grid.querySelectorAll('.animal-card');
+        let visible = 0;
+
+        cards.forEach(card => {
+          const matchSpecies = species === 'all' || card.dataset.species === species;
+          const matchAge = age === 'all' || card.dataset.age === age;
+          const matchSize = size === 'all' || card.dataset.size === size;
+          const matchGender = gender === 'all' || card.dataset.gender === gender;
+
+          const show = matchSpecies && matchAge && matchSize && matchGender;
+          card.style.display = show ? '' : 'none';
+          if (show) visible++;
+        });
+
+        if (countDisplay) countDisplay.textContent = visible;
+      }
+
+      [speciesFilter, ageFilter, sizeFilter, genderFilter].forEach(el => {
+        el.addEventListener('change', applyFilters);
+      });
+
+      clearBtn.addEventListener('click', () => {
+        speciesFilter.value = 'all';
+        ageFilter.value = 'all';
+        sizeFilter.value = 'all';
+        genderFilter.value = 'all';
+        applyFilters();
+      });
     });
-  });
-</script>
+  </script>
 </body>
+
 </html>
