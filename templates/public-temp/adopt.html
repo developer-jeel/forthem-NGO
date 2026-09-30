@@ -377,11 +377,18 @@
 
           <!-- Animal Cards -->
           {%for animal in animals%}
-          <article class="animal-card reveal reveal-delay-1" data-species="dog" data-age="young" data-size="medium"
-            data-gender="male">
+          <article class="animal-card reveal reveal-delay-1" data-species="{{ animal.animal.species|lower }}" data-age="{{ animal.animal.age }}" data-size="{{ animal.animal.size|lower }}"
+            data-gender="{{ animal.animal.gender|lower }}">
             <div class="animal-photo" aria-hidden="true">
               <img src="{{animal.animal.image.url}}" alt="Bruno" style="width:100%;height:100%;object-fit:cover;" />
+              {% if animal.status == 'Available'%}
               <span class="animal-status-badge badge badge--primary">Available</span>
+              {% elif animal.status == 'Foster First' %}
+              <span class="animal-status-badge badge badge--warning"
+                style="background:#FFF3CD;color:#8a6000;border:none">Foster First</span>
+              {% elif animal.status == 'Senior' %}
+              <span class="animal-status-badge badge badge--respond">Senior</span>
+              {%endif%}
             </div>
             <div class="animal-info">
               <div class="animal-name">{{animal.animal.name}}</div>
@@ -424,180 +431,6 @@
             </div>
           </article>
           {%endfor%}
-
-          <article class="animal-card reveal reveal-delay-2" data-species="cat" data-age="puppy" data-size="small"
-            data-gender="female">
-            <div class="animal-photo" aria-hidden="true">
-              <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=500&q=80" alt="Luna"
-                style="width:100%;height:100%;object-fit:cover;" />
-              <span class="animal-status-badge badge badge--primary">Available</span>
-            </div>
-            <div class="animal-info">
-              <div class="animal-name">Luna</div>
-              <div class="animal-breed">Domestic Shorthair · Female · 8 months</div>
-              <div class="animal-meta">
-                <span class="animal-meta-item">📏 Small (3kg)</span>
-                <span class="animal-meta-item">💉 Vaccinated</span>
-                <span class="animal-meta-item">✂️ Spayed</span>
-              </div>
-              <p class="animal-personality">"Found in a box on a rainy night. Luna is curious, affectionate, and
-                absolutely convinced she owns every pillow she sits on."</p>
-              <div class="animal-tags">
-                <span class="badge badge--success">Good with cats</span>
-                <span class="badge badge--primary">Apartment-ready</span>
-              </div>
-              <a href="{% url 'public:adopt_detail' 1 %}" class="btn btn--primary btn--full">Meet Luna 🐱</a>
-            </div>
-          </article>
-
-          <article class="animal-card reveal reveal-delay-3" data-species="dog" data-age="adult" data-size="large"
-            data-gender="male">
-            <div class="animal-photo" aria-hidden="true">
-              <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?w=500&q=80" alt="Bajrang"
-                style="width:100%;height:100%;object-fit:cover;" />
-              <span class="animal-status-badge badge badge--warning"
-                style="background:#FFF3CD;color:#8a6000;border:none">Foster First</span>
-            </div>
-            <div class="animal-info">
-              <div class="animal-name">Bajrang</div>
-              <div class="animal-breed">Labrador Mix · Male · 4 years</div>
-              <div class="animal-meta">
-                <span class="animal-meta-item">📏 Large (28kg)</span>
-                <span class="animal-meta-item">💉 Vaccinated</span>
-                <span class="animal-meta-item">✂️ Neutered</span>
-              </div>
-              <p class="animal-personality">"Rescued from a construction site where he was chained for 2 years. Bajrang
-                needs patience and space — but gives all of himself back."</p>
-              <div class="animal-tags">
-                <span class="badge badge--care">Needs experienced owner</span>
-              </div>
-              <a href="{% url 'public:adopt_detail' 1 %}" class="btn btn--primary btn--full">Meet Bajrang 🦮</a>
-            </div>
-          </article>
-
-          <article class="animal-card reveal reveal-delay-4" data-species="cat" data-age="adult" data-size="small"
-            data-gender="female">
-            <div class="animal-photo" aria-hidden="true">
-              <img src="https://images.unsplash.com/photo-1618826411640-d6df44dd3f7a?w=500&q=80" alt="Meera"
-                style="width:100%;height:100%;object-fit:cover;" />
-              <span class="animal-status-badge badge badge--primary">Available</span>
-            </div>
-            <div class="animal-info">
-              <div class="animal-name">Meera</div>
-              <div class="animal-breed">Persian Mix · Female · 3 years</div>
-              <div class="animal-meta">
-                <span class="animal-meta-item">📏 Small (4kg)</span>
-                <span class="animal-meta-item">💉 Vaccinated</span>
-                <span class="animal-meta-item">✂️ Spayed</span>
-              </div>
-              <p class="animal-personality">"Rescued from animal hoarding. Meera took 3 weeks to trust anyone — now she
-                picks a lap and stays there for hours. Quiet, gentle, deeply loving."</p>
-              <div class="animal-tags">
-                <span class="badge badge--success">Only pet home</span>
-                <span class="badge badge--primary">Calm adult home</span>
-              </div>
-              <a href="{% url 'public:adopt_detail' 1 %}" class="btn btn--primary btn--full">Meet Meera 🐈</a>
-            </div>
-          </article>
-
-          <article class="animal-card reveal reveal-delay-5" data-species="dog" data-age="puppy" data-size="small"
-            data-gender="female">
-            <div class="animal-photo" aria-hidden="true">
-              <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=500&q=80" alt="Golu"
-                style="width:100%;height:100%;object-fit:cover;" />
-              <span class="animal-status-badge badge badge--primary">Available</span>
-            </div>
-            <div class="animal-info">
-              <div class="animal-name">Golu</div>
-              <div class="animal-breed">Indie Pup · Female · 5 months</div>
-              <div class="animal-meta">
-                <span class="animal-meta-item">📏 Small (5kg)</span>
-                <span class="animal-meta-item">💉 Vaccinated</span>
-              </div>
-              <p class="animal-personality">"Born to a street mom who couldn't feed them all. Golu is pure joy bottled
-                in a puppy — energetic, social, and learns new tricks in minutes."</p>
-              <div class="animal-tags">
-                <span class="badge badge--success">Good with kids</span>
-                <span class="badge badge--success">Good with dogs</span>
-              </div>
-              <a href="{% url 'public:adopt_detail' 1 %}" class="btn btn--primary btn--full">Meet Golu 🐶</a>
-            </div>
-          </article>
-
-          <article class="animal-card reveal" style="transition-delay:0.6s" data-species="dog" data-age="senior"
-            data-size="medium" data-gender="male">
-            <div class="animal-photo" aria-hidden="true">
-              <img src="https://images.unsplash.com/photo-1596492784531-6e6eb5ea9993?w=500&q=80" alt="Tommy"
-                style="width:100%;height:100%;object-fit:cover;" />
-              <span class="animal-status-badge badge badge--respond">Senior</span>
-            </div>
-            <div class="animal-info">
-              <div class="animal-name">Tommy</div>
-              <div class="animal-breed">Indie Mix · Male · 9 years</div>
-              <div class="animal-meta">
-                <span class="animal-meta-item">📏 Medium (20kg)</span>
-                <span class="animal-meta-item">💉 Vaccinated</span>
-                <span class="animal-meta-item">✂️ Neutered</span>
-              </div>
-              <p class="animal-personality">"9 years on the street, then hit by a car. Tommy healed and forgave
-                everything. He sleeps all day and only asks for one walk and one gentle pat."</p>
-              <div class="animal-tags">
-                <span class="badge badge--primary">Senior-friendly home</span>
-                <span class="badge badge--primary">Low energy</span>
-              </div>
-              <a href="{% url 'public:adopt_detail' 1 %}" class="btn btn--primary btn--full">Meet Tommy 🐕</a>
-            </div>
-          </article>
-
-          <article class="animal-card reveal" style="transition-delay:0.7s" data-species="cat" data-age="young"
-            data-size="small" data-gender="male">
-            <div class="animal-photo" aria-hidden="true">
-              <img src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?w=500&q=80" alt="Kalu"
-                style="width:100%;height:100%;object-fit:cover;" />
-              <span class="animal-status-badge badge badge--primary">Available</span>
-            </div>
-            <div class="animal-info">
-              <div class="animal-name">Kalu</div>
-              <div class="animal-breed">Indian Shorthair · Male · 1.5 years</div>
-              <div class="animal-meta">
-                <span class="animal-meta-item">📏 Small (3.5kg)</span>
-                <span class="animal-meta-item">💉 Vaccinated</span>
-                <span class="animal-meta-item">✂️ Neutered</span>
-              </div>
-              <p class="animal-personality">"Midnight highway rescue — this is the cat that started everything (read
-                Bruno's story). Kalu is mischievous, talkative, and deeply opinionated about breakfast time."</p>
-              <div class="animal-tags">
-                <span class="badge badge--success">Good with cats</span>
-                <span class="badge badge--success">Good with kids</span>
-              </div>
-              <a href="{% url 'public:adopt_detail' 1 %}" class="btn btn--primary btn--full">Meet Kalu 🐱</a>
-            </div>
-          </article>
-
-          <article class="animal-card reveal" style="transition-delay:0.8s" data-species="dog" data-age="young"
-            data-size="large" data-gender="female">
-            <div class="animal-photo" aria-hidden="true">
-              <img src="https://images.unsplash.com/photo-1608096299210-db7e38487075?w=500&q=80" alt="Rani"
-                style="width:100%;height:100%;object-fit:cover;" />
-              <span class="animal-status-badge badge badge--primary">Available</span>
-            </div>
-            <div class="animal-info">
-              <div class="animal-name">Rani</div>
-              <div class="animal-breed">Rajapalayam Mix · Female · 2.5 years</div>
-              <div class="animal-meta">
-                <span class="animal-meta-item">📏 Large (25kg)</span>
-                <span class="animal-meta-item">💉 Vaccinated</span>
-                <span class="animal-meta-item">✂️ Spayed</span>
-              </div>
-              <p class="animal-personality">"Flood rescue from Raigad. Rani swam to safety on her own and waited on a
-                roof for two days. Brave, loyal, protective — and an absolute sweetheart once she trusts you."</p>
-              <div class="animal-tags">
-                <span class="badge badge--care">House with yard</span>
-                <span class="badge badge--success">Good with older kids</span>
-              </div>
-              <a href="{% url 'public:adopt_detail' 1 %}" class="btn btn--primary btn--full">Meet Rani 🐕‍🦺</a>
-            </div>
-          </article>
 
         </div>
 
@@ -683,8 +516,20 @@
         let visible = 0;
 
         cards.forEach(card => {
-          const matchSpecies = species === 'all' || card.dataset.species === species;
-          const matchAge = age === 'all' || card.dataset.age === age;
+          const matchSpecies = species === 'all' || card.dataset.species === species || (species === 'other' && !['dog', 'cat'].includes(card.dataset.species));
+          
+          let matchAge = false;
+          if (age === 'all') {
+            matchAge = true;
+          } else {
+            const ageNum = parseFloat(card.dataset.age);
+            if (!isNaN(ageNum)) {
+              if (age === 'puppy' && ageNum <= 1) matchAge = true;
+              else if (age === 'young' && ageNum > 1 && ageNum <= 3) matchAge = true;
+              else if (age === 'adult' && ageNum > 3 && ageNum <= 7) matchAge = true;
+              else if (age === 'senior' && ageNum > 7) matchAge = true;
+            }
+          }
           const matchSize = size === 'all' || card.dataset.size === size;
           const matchGender = gender === 'all' || card.dataset.gender === gender;
 
