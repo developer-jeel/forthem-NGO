@@ -53,6 +53,12 @@ class animal_details(models.Model):
         ('Medium maintenance', 'Medium maintenance'),
         ('High maintenance', 'High maintenance'),)
 
+    status =(
+        ('Available' , 'Available'),
+        ('Foster First','Foster First'),
+        ('Senior','Senior')
+        )
+
 
     animal = models.ForeignKey(animal, on_delete=models.CASCADE)
     energy_level = models.CharField(max_length=20, choices=energy_level_choices, default='Medium')
@@ -64,6 +70,7 @@ class animal_details(models.Model):
     neutered = models.BooleanField(default=False)
     rescued_from = models.CharField(max_length=200, default='Rescued From')
     available_for_adoption = models.BooleanField(default=True)
+    status = models.CharField(max_length=20, choices=status, default='Available')
     friendly = models.BooleanField(default=False)
     vaccination_date = models.DateTimeField(null=True, blank=True)
     neutering_date = models.DateTimeField(null=True, blank=True)
