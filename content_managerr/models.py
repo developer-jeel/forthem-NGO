@@ -14,6 +14,7 @@ class Banner(models.Model):
         ('privacy_policy', 'Privacy Policy'),
         ('terms', 'Terms & Conditions'),
         ('sitemap', 'Sitemap'),
+        ('foster', 'Foster'),
         ('adopt', 'Adopt'),
         ('donate', 'Donate'),
         ('rescue', 'Animal Rescue'),

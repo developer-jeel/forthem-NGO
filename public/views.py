@@ -133,8 +133,11 @@ def adopt(request):
     return render(request, "public-temp/adopt.html", {"adopt_banner": adopt_banner, "animals": animal_detail})    
 
 
-def adopt_detail(request, animal_id):
-    return render(request, "public-temp/adopt-detail.html")
+def adopt_detail(request,pk):
+    animal = animal_details.objects.filter(pk=pk).first()
+    if not animal:
+        return redirect('public:adopt')
+    return render(request, "public-temp/adopt-detail.html", {"animal": animal})
 
 
 def adoption_form(request):
@@ -142,7 +145,9 @@ def adoption_form(request):
 
 
 def foster(request):
-    return render(request, "public-temp/foster.html")
+    foster_banner = Banner.objects.filter(page='foster', is_active=True).first()
+    animal_detail = animal_details.objects.filter(status='Foster First')
+    return render(request, "public-temp/foster.html", {"foster_banner": foster_banner, "animals": animal_detail})
 
 
 def foster_form(request):

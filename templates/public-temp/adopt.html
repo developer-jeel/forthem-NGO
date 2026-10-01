@@ -426,7 +426,7 @@
                 <span class="badge badge--primary">House-trained</span>
                 {%endif%}
               </div>
-              <a href="{% url 'public:adopt_detail' animal.id %}" class="btn btn--primary btn--full">Meet
+              <a href="{% url 'public:adopt_detail' pk=animal.id %}" class="btn btn--primary btn--full">Meet
                 {{animal.name}} 🐾</a>
             </div>
           </article>

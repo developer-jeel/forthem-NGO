@@ -96,7 +96,7 @@
   ════════════════════════════════════════════════════════════ -->
   <section class="pg-hero" style="min-height:520px">
     <div class="pg-hero__bg" data-parallax
-      style="background-image:url('https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=1600&q=80')">
+      style="{% if foster_banner and foster_banner.image %}background-image:url('{{ foster_banner.image.url }}'){% else %}background-image:url('https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=1600&q=80'){% endif %}">
     </div>
     <div class="pg-hero__overlay"></div>
     <div class="container pg-hero__content">
@@ -106,8 +106,17 @@
         <span>Foster an Animal</span>
       </nav>
       <div class="pg-pill pg-pill--light">🏠 Temporary Care Program</div>
+      {% if foster_banner and foster_banner.title %}
+      <h1>{{ foster_banner.title|safe }}</h1>
+      {% else %}
       <h1>Open Your Home,<br><em style="color:#A8D8B9;font-style:normal">Save a Life</em></h1>
+      {% endif %}
+      
+      {% if foster_banner and foster_banner.content %}
+      <p class="lead">{{ foster_banner.content }}</p>
+      {% else %}
       <p class="lead">Foster a recovering rescue animal for 2–8 weeks. We provide all food, veterinary care, medicines, bedding, and 24/7 expert support. You bring the love.</p>
+      {% endif %}
       <div class="pg-hero__actions">
         <a href="{% url 'public:foster_form' %}" class="btn btn--primary btn--lg">Apply to Foster →</a>
         <a href="{% url 'public:adopt' %}" class="btn btn--outline btn--lg" style="border-color:rgba(255,255,255,0.45);color:#fff">View Adoptable Animals</a>
@@ -231,74 +240,41 @@
       </div>
 
       <div class="pg-grid-3">
-        <!-- Bruno -->
-        <div class="pg-photo-card reveal" data-category="Dog">
+        {% for animal in animals %}
+        <div class="pg-photo-card reveal" data-category="{{ animal.animal.species }}">
+          {% if animal.animal.image %}
           <div class="pg-photo-card__img"
-            style="background-image:url('https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=800&q=80')">
+            style="background-image:url('{{ animal.animal.image.url }}')">
+          {% else %}
+          <div class="pg-photo-card__img"
+            style="background-color:#eee">
+          {% endif %}
             <div style="position:absolute;top:12px;left:12px">
-              <span class="pg-badge pg-badge--care">Post-Surgery Rehab</span>
+              <span class="pg-badge pg-badge--care">{{ animal.status }}</span>
             </div>
           </div>
           <div class="pg-photo-card__body">
             <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.75rem">
-              <span class="pg-chip">🐕 Dog</span>
-              <span class="pg-chip">3 Years</span>
-              <span class="pg-chip">Male</span>
+              <span class="pg-chip">{% if animal.animal.species|lower == 'dog' %}🐕{% elif animal.animal.species|lower == 'cat' %}🐈{% else %}🐾{% endif %} {{ animal.animal.species }}</span>
+              <span class="pg-chip">{{ animal.animal.age }} Years</span>
+              <span class="pg-chip">{{ animal.animal.gender }}</span>
+              {% if animal.vaccinated %}
               <span class="pg-chip pg-chip--success">Vaccinated</span>
-            </div>
-            <h3>Bruno</h3>
-            <p>Recovering from a fractured leg. Needs a calm home without stairs for 4 weeks — gentle and sweet-natured.</p>
-            <div style="margin-top:1rem">
-              <a href="{% url 'public:adopt_detail' 1 %}" class="btn btn--outline btn--sm" style="width:100%;text-align:center">View Profile &amp; Foster →</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Luna -->
-        <div class="pg-photo-card reveal" data-category="Cat">
-          <div class="pg-photo-card__img"
-            style="background-image:url('https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=800&q=80')">
-            <div style="position:absolute;top:12px;left:12px">
-              <span class="pg-badge pg-badge--care">Mother & Kittens</span>
-            </div>
-          </div>
-          <div class="pg-photo-card__body">
-            <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.75rem">
-              <span class="pg-chip">🐈 Cat</span>
-              <span class="pg-chip">2 Years</span>
-              <span class="pg-chip">Female</span>
+              {% endif %}
+              {% if animal.neutered %}
               <span class="pg-chip pg-chip--success">Sterilised</span>
+              {% endif %}
             </div>
-            <h3>Luna</h3>
-            <p>Rescued from a construction site with kittens. Needs a quiet indoor room for 6 weeks while her kittens grow.</p>
+            <h3>{{ animal.animal.name }}</h3>
+            <p>{{ animal.animal.description|truncatewords:15 }}</p>
             <div style="margin-top:1rem">
-              <a href="{% url 'public:adopt_detail' 1 %}" class="btn btn--outline btn--sm" style="width:100%;text-align:center">View Profile &amp; Foster →</a>
+              <a href="{% url 'public:adopt_detail' animal.id %}" class="btn btn--outline btn--sm" style="width:100%;text-align:center">View Profile &amp; Foster →</a>
             </div>
           </div>
         </div>
-
-        <!-- Meera -->
-        <div class="pg-photo-card reveal" data-category="Dog">
-          <div class="pg-photo-card__img"
-            style="background-image:url('https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=800&q=80')">
-            <div style="position:absolute;top:12px;left:12px">
-              <span class="pg-badge pg-badge--care">Senior Rest</span>
-            </div>
-          </div>
-          <div class="pg-photo-card__body">
-            <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.75rem">
-              <span class="pg-chip">🐕 Dog</span>
-              <span class="pg-chip">7 Years</span>
-              <span class="pg-chip">Female</span>
-              <span class="pg-chip pg-chip--success">Vaccinated</span>
-            </div>
-            <h3>Meera</h3>
-            <p>A gentle senior dog who needs warm indoor care, daily walks, and joint supplement routine.</p>
-            <div style="margin-top:1rem">
-              <a href="{% url 'public:adopt_detail' 1 %}" class="btn btn--outline btn--sm" style="width:100%;text-align:center">View Profile &amp; Foster →</a>
-            </div>
-          </div>
-        </div>
+        {% empty %}
+        <p>No animals currently in need of foster care.</p>
+        {% endfor %}
       </div>
     </div>
   </section>
