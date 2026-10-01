@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from login.views import check_login
 from content_managerr.models import Banner, HomePageContent, numbers, story,About, about_team 
 from content_managerr.models import *
@@ -134,10 +134,13 @@ def adopt(request):
 
 
 def adopt_detail(request,pk):
-    animal = animal_details.objects.filter(pk=pk).first()
-    if not animal:
-        return redirect('public:adopt')
-    return render(request, "public-temp/adopt-detail.html", {"animal": animal})
+    animal = get_object_or_404(animal_details.objects.select_related("animal"), pk=pk)
+    animal = get_object_or_404(animal_details.objects.select_related("animal"), pk=pk)
+    related_animals = animal_details.objects.select_related("animal").filter(available_for_adoption=True).exclude(pk=animal.pk)[:3]
+    return render(request, "public-temp/adopt-detail.html", {
+        "animal": animal,
+        "related_animals": related_animals,
+    })
 
 
 def adoption_form(request):

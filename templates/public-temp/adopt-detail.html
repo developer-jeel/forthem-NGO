@@ -4,8 +4,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Bruno — a 3-year-old male Indie dog recovering from surgery. Available for adoption at Unke Liye animal sanctuary, Pune." />
-  <title>Bruno — Adopt This Animal — Unke Liye</title>
+  <meta name="description" content="Meet {{ animal.animal.name }}, a {{ animal.animal.age }} {{ animal.animal.species|lower }} available for adoption at Unke Liye." />
+  <title>{{ animal.animal.name }} — Adopt This Animal — Unke Liye</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="{% static 'public-assets/css/variables.css' %}" />
@@ -50,64 +50,68 @@
         <span class="pg-breadcrumb-sep">›</span>
         <a href="{% url 'public:adopt' %}" style="color:var(--color-text-muted)">Adopt</a>
         <span class="pg-breadcrumb-sep">›</span>
-        <span id="bc-animal-name">Bruno</span>
+        <span>{{ animal.animal.name }}</span>
       </nav>
     </div>
   </div>
 
-  <div class="container" id="not-found-state" style="display:none; text-align:center; padding:4rem 1.5rem">
-    <div style="font-size:3rem;margin-bottom:1rem">🐾</div>
-    <h2 style="margin-bottom:.75rem">Animal Not Found</h2>
-    <p style="color:var(--color-text-muted);margin-bottom:1.5rem">We couldn't find that animal profile.</p>
-    <a href="{% url 'public:adopt' %}" class="btn btn--primary">Browse All Animals →</a>
-  </div>
-
   <!-- ANIMAL PROFILE -->
-  <section class="pg-section" id="profile-section" style="display:none">
+  <section class="pg-section">
     <div class="container">
       <div class="pg-animal-profile reveal">
 
         <!-- Photo + gallery -->
         <div>
           <div class="pg-animal-photo-main">
-            <div class="img-bg" id="animal-img-bg" style="background-image:url('')"></div>
+            {% if animal.animal.image %}
+            <div class="img-bg" role="img" aria-label="Photo of {{ animal.animal.name }}" style="background-image:url('{{ animal.animal.image.url }}')"></div>
+            {% else %}
+            <div class="img-bg" role="img" aria-label="No photo available for {{ animal.animal.name }}"></div>
+            {% endif %}
             <div style="position:absolute;top:1rem;left:1rem">
-              <span class="pg-badge pg-badge--care" id="animal-health-badge"></span>
+              <span class="pg-badge pg-badge--care">{{ animal.animal.medical_notes|default:"Medical details available on request" }}</span>
             </div>
             <div style="position:absolute;top:1rem;right:1rem">
-              <span class="pg-badge pg-badge--success" id="animal-status-badge">Available</span>
+              <span class="pg-badge {% if animal.available_for_adoption %}pg-badge--success{% else %}pg-badge--care{% endif %}">{{ animal.get_status_display }}</span>
             </div>
-          </div>
-          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-top:.75rem" id="animal-gallery-grid">
-            <!-- populated by JS -->
           </div>
         </div>
 
         <!-- Info + CTA panel -->
         <div>
-          <div class="pg-pill pg-pill--care" id="animal-profile-pill">🐕 Adoption Profile</div>
-          <h1 style="font-size:2.75rem;margin-bottom:.5rem" id="animal-name-heading">Bruno</h1>
-          <p style="color:var(--color-text-muted);font-size:1.125rem;margin-bottom:1.5rem" id="animal-subtitle"></p>
+          <div class="pg-pill pg-pill--care">{{ animal.animal.species }} Adoption Profile</div>
+          <h1 style="font-size:2.75rem;margin-bottom:.5rem">{{ animal.animal.name }}</h1>
+          <p style="color:var(--color-text-muted);font-size:1.125rem;margin-bottom:1.5rem">{{ animal.animal.breed }} · {{ animal.animal.gender }} · {{ animal.animal.age }}</p>
 
           <!-- Stats chips -->
-          <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem" id="animal-chips-container">
-            <!-- populated by JS -->
+          <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem">
+            <span class="pg-chip">{{ animal.animal.species }}</span>
+            <span class="pg-chip">{{ animal.animal.gender }}</span>
+            <span class="pg-chip">{{ animal.animal.age }}</span>
+            <span class="pg-chip">{{ animal.animal.size }} · {{ animal.animal.weight }} kg</span>
+            <span class="pg-chip {% if animal.vaccinated %}pg-chip--success{% endif %}">{% if animal.vaccinated %}Vaccinated{% else %}Not vaccinated{% endif %}</span>
+            <span class="pg-chip {% if animal.neutered %}pg-chip--success{% endif %}">{% if animal.neutered %}Neutered / spayed{% else %}Not neutered / spayed{% endif %}</span>
           </div>
 
           <!-- Personality -->
-          <h3 style="margin-bottom:1rem" id="animal-who-title">Who is Bruno?</h3>
-          <p style="color:var(--color-text-muted);line-height:1.8;margin-bottom:1rem" id="animal-personality-p1"></p>
-          <p style="color:var(--color-text-muted);line-height:1.8;margin-bottom:2rem" id="animal-personality-p2"></p>
+          <h3 style="margin-bottom:1rem">Meet {{ animal.animal.name }}</h3>
+          <p style="color:var(--color-text-muted);line-height:1.8;margin-bottom:1rem">{{ animal.animal.description|default:"More about this animal will be shared soon."|linebreaksbr }}</p>
+          {% if animal.animal.note %}<p style="color:var(--color-text-muted);line-height:1.8;margin-bottom:2rem">{{ animal.animal.note|linebreaksbr }}</p>{% endif %}
 
           <!-- Fact grid -->
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:2rem" id="animal-facts-grid">
-            <!-- populated by JS -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:2rem">
+            <div style="background:var(--color-surface-alt);border-radius:var(--radius-md);padding:1rem;border:1px solid var(--color-border)"><div style="font-size:.75rem;color:var(--color-text-muted);margin-bottom:.25rem">Good with dogs?</div><strong>{% if animal.good_with_dogs %}Yes{% else %}Not indicated{% endif %}</strong></div>
+            <div style="background:var(--color-surface-alt);border-radius:var(--radius-md);padding:1rem;border:1px solid var(--color-border)"><div style="font-size:.75rem;color:var(--color-text-muted);margin-bottom:.25rem">Good with cats?</div><strong>{% if animal.good_with_cats %}Yes{% else %}Not indicated{% endif %}</strong></div>
+            <div style="background:var(--color-surface-alt);border-radius:var(--radius-md);padding:1rem;border:1px solid var(--color-border)"><div style="font-size:.75rem;color:var(--color-text-muted);margin-bottom:.25rem">Good with children?</div><strong>{% if animal.good_with_kids %}Yes{% else %}Not indicated{% endif %}</strong></div>
+            <div style="background:var(--color-surface-alt);border-radius:var(--radius-md);padding:1rem;border:1px solid var(--color-border)"><div style="font-size:.75rem;color:var(--color-text-muted);margin-bottom:.25rem">Energy level</div><strong>{{ animal.energy_level }}</strong></div>
+            <div style="background:var(--color-surface-alt);border-radius:var(--radius-md);padding:1rem;border:1px solid var(--color-border)"><div style="font-size:.75rem;color:var(--color-text-muted);margin-bottom:.25rem">Grooming</div><strong>{{ animal.grooming_needs }}</strong></div>
+            <div style="background:var(--color-surface-alt);border-radius:var(--radius-md);padding:1rem;border:1px solid var(--color-border)"><div style="font-size:.75rem;color:var(--color-text-muted);margin-bottom:.25rem">Rescued from</div><strong>{{ animal.rescued_from }}</strong></div>
           </div>
 
           <!-- Medical notes -->
           <div style="background:var(--color-primary-light);border-left:4px solid var(--color-primary);border-radius:0 var(--radius-md) var(--radius-md) 0;padding:1rem 1.25rem;margin-bottom:2rem">
             <strong style="font-size:.875rem;color:var(--color-primary)">Medical Notes</strong>
-            <p style="font-size:.875rem;color:var(--color-primary-dark);margin:.5rem 0 0;line-height:1.7" id="animal-medical-notes"></p>
+            <p style="font-size:.875rem;color:var(--color-primary-dark);margin:.5rem 0 0;line-height:1.7">{{ animal.animal.medical_notes|default:"No additional medical notes."|linebreaksbr }}</p>
           </div>
 
           <!-- Adoption fee -->
@@ -120,9 +124,9 @@
           </div>
 
           <div style="display:grid;gap:.75rem">
-            <a href="" class="btn btn--primary btn--full btn--lg" id="cta-adopt-btn">Apply to Adopt Bruno →</a>
+            <a href="{% url 'public:adoption_form' %}?id={{ animal.animal_id }}" class="btn btn--primary btn--full btn--lg">Apply to Adopt {{ animal.animal.name }} →</a>
             <a href="{% url 'public:foster_form' %}" class="btn btn--outline btn--full">Foster First (No Commitment) →</a>
-            <a href="" class="btn btn--outline btn--full" id="cta-sponsor-btn">Sponsor Bruno's Care ₹1,000/mo →</a>
+            <a href="{% url 'public:sponsor_animal' %}?id={{ animal.animal_id }}" class="btn btn--outline btn--full">Sponsor {{ animal.animal.name }}'s Care →</a>
           </div>
         </div>
       </div>
@@ -137,33 +141,19 @@
         <a href="{% url 'public:adopt' %}" class="btn btn--outline">View All Animals →</a>
       </div>
       <div class="pg-related-grid reveal">
+        {% for related in related_animals %}
         <div class="pg-photo-card">
-          <div class="pg-photo-card__img" style="background-image:url('https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=600&q=80')"></div>
+          <div class="pg-photo-card__img"{% if related.animal.image %} style="background-image:url('{{ related.animal.image.url }}')"{% endif %}></div>
           <div class="pg-photo-card__body">
-            <div style="display:flex;gap:.5rem;margin-bottom:.75rem"><span class="pg-chip">🐈 Cat</span><span class="pg-chip pg-chip--success">Available</span></div>
-            <h3>Luna</h3>
-            <p>Gentle 2-year-old female cat seeking a quiet indoor home.</p>
-            <a href="{% url 'public:adopt_detail' 1 %}" class="btn btn--outline btn--sm" style="margin-top:1rem">View Profile →</a>
+            <div style="display:flex;gap:.5rem;margin-bottom:.75rem"><span class="pg-chip">{{ related.animal.species }}</span><span class="pg-chip pg-chip--success">{{ related.get_status_display }}</span></div>
+            <h3>{{ related.animal.name }}</h3>
+            <p>{{ related.animal.breed }} · {{ related.animal.gender }} · {{ related.animal.age }}</p>
+            <a href="{% url 'public:adopt_detail' related.pk %}" class="btn btn--outline btn--sm" style="margin-top:1rem">View Profile →</a>
           </div>
         </div>
-        <div class="pg-photo-card">
-          <div class="pg-photo-card__img" style="background-image:url('https://images.unsplash.com/photo-1537151625747-768eb6cf92b2?auto=format&fit=crop&w=600&q=80')"></div>
-          <div class="pg-photo-card__body">
-            <div style="display:flex;gap:.5rem;margin-bottom:.75rem"><span class="pg-chip">🐕 Dog</span><span class="pg-chip pg-chip--success">Available</span></div>
-            <h3>Meera</h3>
-            <p>Senior 7-year-old girl, calm and loving. Perfect companion.</p>
-            <a href="{% url 'public:adopt_detail' 1 %}" class="btn btn--outline btn--sm" style="margin-top:1rem">View Profile →</a>
-          </div>
-        </div>
-        <div class="pg-photo-card">
-          <div class="pg-photo-card__img" style="background-image:url('https://images.unsplash.com/photo-1558788353-f76d92427f16?auto=format&fit=crop&w=600&q=80')"></div>
-          <div class="pg-photo-card__body">
-            <div style="display:flex;gap:.5rem;margin-bottom:.75rem"><span class="pg-chip">🐕 Dog</span><span class="pg-chip pg-chip--success">Available</span></div>
-            <h3>Rocky</h3>
-            <p>Energetic 5-year-old playful dog, fully recovered from mange.</p>
-            <a href="{% url 'public:adopt_detail' 1 %}" class="btn btn--outline btn--sm" style="margin-top:1rem">View Profile →</a>
-          </div>
-        </div>
+        {% empty %}
+        <p style="color:var(--color-text-muted)">No other animals are available right now.</p>
+        {% endfor %}
       </div>
     </div>
   </section>
@@ -182,7 +172,6 @@
 </footer>
 <a href="{% url 'public:report_animal' %}" class="pg-float-btn"><span class="pg-float-pulse"></span> Report Emergency</a>
 <div class="pg-toast-wrap"></div>
-<script src="{% static 'public-assets/js/data.js' %}"></script>
 <script src="{% static 'public-assets/js/main.js' %}"></script>
 <script src="{% static 'public-assets/js/enhanced-pages.js' %}"></script>
 <script>
